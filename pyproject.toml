@@ -1,0 +1,41 @@
+[project]
+name = "transitlab-hk"
+version = "0.1.0"
+description = "Hong Kong transport scenario lab: data pipeline, transport model and API"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # Backend API
+    "fastapi",
+    "uvicorn[standard]",
+    "httpx[http2]",
+    "pydantic",
+    "python-dotenv",
+    "openai",  # DeepSeek exposes an OpenAI-compatible API
+    # Data pipeline and model
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "geopandas",
+    "pyogrio",
+    "shapely",
+    "pyproj",
+    "r5py",  # public transport travel-time matrices (needs Java 21)
+    "opencc-python-reimplemented>=0.1.7",
+    "xlrd>=2.0.2",
+    "aequilibrae>=1.7.0",
+    "pypdf>=6.19.0",
+    "pypdfium2>=5.13.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "jupyterlab",
+    "lonboard",  # quick interactive maps inside Jupyter for data inspection
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["model", "backend", "tests"]

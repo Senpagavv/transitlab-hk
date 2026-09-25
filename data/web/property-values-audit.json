@@ -1,0 +1,175 @@
+{
+ "source": "差饷物业估价署：估价册统计摘要表 7–10（2026-04-01）、物业市场统计 2025 年度",
+ "districts": [
+  {
+   "district": "中西区",
+   "region": "Hong Kong",
+   "dom_price_m2": 157286.163,
+   "dom_rent_m2_month": 483.688,
+   "gross_yield": 0.037,
+   "shop_rv_per_unit": 907804.536,
+   "office_rv_per_unit": 1163874.425
+  },
+  {
+   "district": "湾仔区",
+   "region": "Hong Kong",
+   "dom_price_m2": 152316.603,
+   "dom_rent_m2_month": 464.263,
+   "gross_yield": 0.037,
+   "shop_rv_per_unit": 927150.49,
+   "office_rv_per_unit": 857013.356
+  },
+  {
+   "district": "东区",
+   "region": "Hong Kong",
+   "dom_price_m2": 132517.533,
+   "dom_rent_m2_month": 435.798,
+   "gross_yield": 0.039,
+   "shop_rv_per_unit": 468054.923,
+   "office_rv_per_unit": 1373864.66
+  },
+  {
+   "district": "南区",
+   "region": "Hong Kong",
+   "dom_price_m2": 143780.056,
+   "dom_rent_m2_month": 426.752,
+   "gross_yield": 0.036,
+   "shop_rv_per_unit": 595056.758,
+   "office_rv_per_unit": 636157.869
+  },
+  {
+   "district": "油尖旺区",
+   "region": "Kowloon",
+   "dom_price_m2": 131515.727,
+   "dom_rent_m2_month": 416.938,
+   "gross_yield": 0.038,
+   "shop_rv_per_unit": 796374.245,
+   "office_rv_per_unit": 537698.99
+  },
+  {
+   "district": "深水埗区",
+   "region": "Kowloon",
+   "dom_price_m2": 121173.933,
+   "dom_rent_m2_month": 391.889,
+   "gross_yield": 0.039,
+   "shop_rv_per_unit": 453927.63,
+   "office_rv_per_unit": 514962.001
+  },
+  {
+   "district": "九龙城区",
+   "region": "Kowloon",
+   "dom_price_m2": 140511.481,
+   "dom_rent_m2_month": 433.675,
+   "gross_yield": 0.037,
+   "shop_rv_per_unit": 441318.588,
+   "office_rv_per_unit": 1002275.742
+  },
+  {
+   "district": "黄大仙区",
+   "region": "Kowloon",
+   "dom_price_m2": 107101.971,
+   "dom_rent_m2_month": 359.875,
+   "gross_yield": 0.04,
+   "shop_rv_per_unit": 589120.162,
+   "office_rv_per_unit": 642904.762
+  },
+  {
+   "district": "观塘区",
+   "region": "Kowloon",
+   "dom_price_m2": 116134.934,
+   "dom_rent_m2_month": 391.321,
+   "gross_yield": 0.04,
+   "shop_rv_per_unit": 784893.551,
+   "office_rv_per_unit": 1212574.797
+  },
+  {
+   "district": "葵青区",
+   "region": "New Territories",
+   "dom_price_m2": 113401.087,
+   "dom_rent_m2_month": 327.382,
+   "gross_yield": 0.035,
+   "shop_rv_per_unit": 620694.765,
+   "office_rv_per_unit": 905940.02
+  },
+  {
+   "district": "荃湾区",
+   "region": "New Territories",
+   "dom_price_m2": 127010.808,
+   "dom_rent_m2_month": 362.91,
+   "gross_yield": 0.034,
+   "shop_rv_per_unit": 584182.545,
+   "office_rv_per_unit": 391199.442
+  },
+  {
+   "district": "屯门区",
+   "region": "New Territories",
+   "dom_price_m2": 90308.865,
+   "dom_rent_m2_month": 260.023,
+   "gross_yield": 0.035,
+   "shop_rv_per_unit": 533468.289,
+   "office_rv_per_unit": 203179.545
+  },
+  {
+   "district": "元朗区",
+   "region": "New Territories",
+   "dom_price_m2": 86300.521,
+   "dom_rent_m2_month": 245.098,
+   "gross_yield": 0.034,
+   "shop_rv_per_unit": 519100.873,
+   "office_rv_per_unit": 371884.511
+  },
+  {
+   "district": "北区",
+   "region": "New Territories",
+   "dom_price_m2": 82146.709,
+   "dom_rent_m2_month": 236.445,
+   "gross_yield": 0.035,
+   "shop_rv_per_unit": 608866.833,
+   "office_rv_per_unit": 535219.008
+  },
+  {
+   "district": "大埔区",
+   "region": "New Territories",
+   "dom_price_m2": 102640.2,
+   "dom_rent_m2_month": 289.254,
+   "gross_yield": 0.034,
+   "shop_rv_per_unit": 562686.21,
+   "office_rv_per_unit": 410475.41
+  },
+  {
+   "district": "沙田区",
+   "region": "New Territories",
+   "dom_price_m2": 127174.661,
+   "dom_rent_m2_month": 360.945,
+   "gross_yield": 0.034,
+   "shop_rv_per_unit": 1001519.003,
+   "office_rv_per_unit": 747526.588
+  },
+  {
+   "district": "西贡区",
+   "region": "New Territories",
+   "dom_price_m2": 134355.134,
+   "dom_rent_m2_month": 383.164,
+   "gross_yield": 0.034,
+   "shop_rv_per_unit": 775159.488,
+   "office_rv_per_unit": 984866.667
+  },
+  {
+   "district": "离岛区",
+   "region": "New Territories",
+   "dom_price_m2": 97712.432,
+   "dom_rent_m2_month": 271.908,
+   "gross_yield": 0.033,
+   "shop_rv_per_unit": 1347208.369,
+   "office_rv_per_unit": 1690182.692
+  }
+ ],
+ "flags": [],
+ "report": [
+  "Hong Kong A/B 类楼价：各区加权 132,494 元/平方米，统计 132,494（+0.0%）",
+  "Kowloon A/B 类楼价：各区加权 119,574 元/平方米，统计 119,574（-0.0%）",
+  "New Territories A/B 类楼价：各区加权 107,489 元/平方米，统计 107,489（+0.0%）",
+  "住宅楼价（元/平方米实用）最高：中西区 157,286、湾仔区 152,317、南区 143,780、九龙城区 140,511；最低：屯门区 90,309、元朗区 86,301、北区 82,147",
+  "回报率 3.3%–4.0%"
+ ]
+}

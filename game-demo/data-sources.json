@@ -1,0 +1,22 @@
+{
+ "note": "game-demo 的数据来自下列原始文件（只读）；指纹 = SHA-256",
+ "files": {
+  "data/model/skim-car-freeflow.npz": "f05eacd787afb20cf4924428db14a34d66178d48093a153d09c5f5cdc97d7e93",
+  "data/model/am-peak-2026.npz": "bea075814425d09611f9329ec22480344590ee33f1943837b9f786270830ae6d",
+  "data/model/goods-2026.npz": "b4f37718368d146b09e075e0c59f70c42245afca5e814a48b1adf159b40b7701",
+  "data/model/zone-centres.parquet": "39e38e87d48acc0671eb7989f3d8b68e6065555d1f6930778ea2623734644506",
+  "data/model/road-links.parquet": "f802aafbef320706f7bf2e5482f74509db8148f7c0fd20fedaf1bb7173d46d2e",
+  "data/model/road-connectors.parquet": "3e35bba6d1f90349dec38dcf0ae94c5d7ca8caa3d09975c1477ba6d5f89dcc00",
+  "data/model/road-nodes.parquet": "2c21a307d01050b37663a064c6eab4b3b11781f64a2accc746417effd6daf899",
+  "data/model/assignment-am-2026.parquet": "84a274151eee2075a1e160d99742756cd9642d3b879000045ff1c6653bb103df",
+  "data/model/skim-active-transit.npz": "e13a60badf48978652d75fdf9a9ca908da17c7cc1b40e578ccd3f7797585e8fe",
+  "data/model/mode-split-2026.npz": "903fc6e70caf8083fb07d82b4b9154d712935daacb05690c9a7bac44b4a9c45d",
+  "data/web/am-peak-audit.json": "30adbfc56d01103b2bbe14e49d6742e2bb9ea01c74097d307a31457944bc1ec7",
+  "data/web/traffic/atc-stations.json": "0e0f3bef929dfe94a942aa0ca4ef765813ee0873e52a73d9e5b889ade531708f",
+  "data/web/zones-2026.geojson": "a97b74111627144f57e5ba5ea0c7c01b01fe0f8a9e7ded33ed1d903935397052",
+  "data/web/mode-choice-audit.json": "7756a966999da40d601f479b84abf794065cee1394c739549ff171687bdbe10b",
+  "data/web/trip-distribution-audit.json": "a1ff69a0039d58c6074d88463dff781153de228d1f377a403a4773dde2bee677",
+  "data/raw/road-network/RdNet_IRNP.gdb.zip": "7ed841d5ec6c6d325fdb0c28c2e4a2e007d86e473e7d882b869f4e945977ce1a",
+  "data/raw/landuse/luhk2024_codes.tif": "01cac50775cf85ba61dfda1497c67c6e89131067344dd68cec0a01c7128f8d5b"
+ }
+}

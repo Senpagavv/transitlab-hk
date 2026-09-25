@@ -1,0 +1,5970 @@
+{
+  "by_station": [
+    {
+      "station": 1001,
+      "link": "HARCOURT RD (from TAMAR ST to ARSENAL ST)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 8423.202,
+      "modelled": 2257.4762839433674,
+      "ratio": 0.2680069033062923,
+      "geh": 84.37227938402259,
+      "by_class": {
+        "car": {
+          "modelled": 1234.5136822429547,
+          "observed": 4194.754596,
+          "ratio": 0.2942993812844623
+        },
+        "taxi": {
+          "modelled": 262.81572827896736,
+          "observed": 2628.0390239999997,
+          "ratio": 0.10000449988712473
+        },
+        "goods_light": {
+          "modelled": 291.9031676818035,
+          "observed": 783.357786,
+          "ratio": 0.3726307096177933
+        },
+        "goods_heavy": {
+          "modelled": 83.56070415845711,
+          "observed": 117.92482799999998,
+          "ratio": 0.7085929704171977
+        },
+        "coach": {
+          "modelled": 25.68300158118499,
+          "observed": 320.081676,
+          "ratio": 0.08023889996497327
+        },
+        "bus": {
+          "modelled": 359.0,
+          "observed": 387.46729199999993,
+          "ratio": 0.9265298191931
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1002,
+      "link": "VICTORIA PARK RD (from GLOUCESTER RD to ISLAND EASTERN CORRIDOR)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 7395.291,
+      "modelled": 6340.479142741528,
+      "ratio": 0.8573670924837884,
+      "geh": 12.728097505066067,
+      "by_class": {
+        "car": {
+          "modelled": 3629.8192241062306,
+          "observed": 3978.666558000001,
+          "ratio": 0.9123205403598513
+        },
+        "taxi": {
+          "modelled": 1099.3439845359073,
+          "observed": 1819.2415860000003,
+          "ratio": 0.6042869693590586
+        },
+        "goods_light": {
+          "modelled": 907.1899918041662,
+          "observed": 776.5055550000001,
+          "ratio": 1.1682981351037034
+        },
+        "goods_heavy": {
+          "modelled": 236.15438160007707,
+          "observed": 147.90582,
+          "ratio": 1.5966537462831216
+        },
+        "coach": {
+          "modelled": 212.97156069514713,
+          "observed": 288.416349,
+          "ratio": 0.738417088467988
+        },
+        "bus": {
+          "modelled": 255.0,
+          "observed": 384.55513199999996,
+          "ratio": 0.6631038797318665
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 1003,
+      "link": "ISLAND EASTERN CORRIDOR (from HEALTHY ST INT EASTERN END to TAIKOO SHING INT WESTERN END)",
+      "road_type": "EXPRESSWAY",
+      "observed": 8183.025600000001,
+      "modelled": 5084.718150454401,
+      "ratio": 0.6213738535113957,
+      "geh": 38.04004057692353,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1004,
+      "link": "ABERDEEN TUNNEL (from TOLL PLAZA to NORTH PORTAL)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4283.2482,
+      "modelled": 4227.775240880987,
+      "ratio": 0.9870488571923026,
+      "geh": 0.8503651193010083,
+      "by_class": {
+        "car": {
+          "modelled": 2293.8703394220965,
+          "observed": 2574.2321682,
+          "ratio": 0.8910891440790505
+        },
+        "taxi": {
+          "modelled": 515.8066560777677,
+          "observed": 561.1055142,
+          "ratio": 0.9192685564909882
+        },
+        "goods_light": {
+          "modelled": 776.2834639881423,
+          "observed": 556.822266,
+          "ratio": 1.3941315054885797
+        },
+        "goods_heavy": {
+          "modelled": 200.11382989358148,
+          "observed": 115.6477014,
+          "ratio": 1.7303744689350262
+        },
+        "coach": {
+          "modelled": 129.70095149939934,
+          "observed": 201.31266540000001,
+          "ratio": 0.6442761623650894
+        },
+        "bus": {
+          "modelled": 312.0,
+          "observed": 274.1278848,
+          "ratio": 1.138154917102399
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 1005,
+      "link": "POK FU LAM RD (from SASSOON RD to CHI FU RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2211.2364,
+      "modelled": 1901.1620743939313,
+      "ratio": 0.8597733260875823,
+      "geh": 6.8380647833689485,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1006,
+      "link": "CONNAUGHT RD W (from WATER ST to EASTERN ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 3830.4224,
+      "modelled": 2507.3890950070972,
+      "ratio": 0.6545985881366758,
+      "geh": 23.502611180266005,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1007,
+      "link": "QUEENSWAY (from RODNEY ST to QUEEN'S RD E)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 3807.012,
+      "modelled": 2870.283359928919,
+      "ratio": 0.7539464966038769,
+      "geh": 16.21169793450501,
+      "by_class": {
+        "car": {
+          "modelled": 1331.1619619784665,
+          "observed": 1572.295956,
+          "ratio": 0.8466357474867579
+        },
+        "taxi": {
+          "modelled": 432.8682670065723,
+          "observed": 1153.524636,
+          "ratio": 0.3752570630026598
+        },
+        "goods_light": {
+          "modelled": 451.4986387560982,
+          "observed": 209.38566000000003,
+          "ratio": 2.1563016242664284
+        },
+        "goods_heavy": {
+          "modelled": 124.2691118167202,
+          "observed": 3.8070120000000003,
+          "ratio": 32.64216446302775
+        },
+        "coach": {
+          "modelled": 67.48538037106151,
+          "observed": 224.613708,
+          "ratio": 0.3004508539214424
+        },
+        "bus": {
+          "modelled": 463.0,
+          "observed": 647.19204,
+          "ratio": 0.7153981683705504
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 1008,
+      "link": "KING'S RD (from NORTH POINT RD to TONG SHUI RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1580.7504999999999,
+      "modelled": 2672.48042282445,
+      "ratio": 1.6906402514656491,
+      "geh": 23.673950235536637,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1009,
+      "link": "CHAI WAN RD (from ISLAND EASTERN CORRIDOR APPROACH to TAI TAM RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1660.2784,
+      "modelled": 2173.9864376586297,
+      "ratio": 1.309410781745176,
+      "geh": 11.73249304144425,
+      "by_class": {
+        "car": {
+          "modelled": 1056.4039367525868,
+          "observed": 1014.4301024,
+          "ratio": 1.0413767634194633
+        },
+        "taxi": {
+          "modelled": 504.21023175893436,
+          "observed": 293.86927679999997,
+          "ratio": 1.7157636798558127
+        },
+        "goods_light": {
+          "modelled": 239.92514249239517,
+          "observed": 91.31531199999999,
+          "ratio": 2.6274360481010586
+        },
+        "goods_heavy": {
+          "modelled": 61.636349596630964,
+          "observed": 14.942505599999999,
+          "ratio": 4.12490055192825
+        },
+        "coach": {
+          "modelled": 118.81077705808252,
+          "observed": 46.487795199999994,
+          "ratio": 2.5557412767573573
+        },
+        "bus": {
+          "modelled": 193.0,
+          "observed": 200.89368639999998,
+          "ratio": 0.9607071454486487
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 1010,
+      "link": "WONG CHUK HANG RD (from NAM LONG SHAN RD to NAM FUNG RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 4300.0566,
+      "modelled": 4186.143027428876,
+      "ratio": 0.9735088201929426,
+      "geh": 1.7487746468817789,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1011,
+      "link": "REPULSE BAY RD & STANLEY GAP RD (from SOUTH BAY RD to TAI TAM RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 982.9512000000001,
+      "modelled": 514.5271554736647,
+      "ratio": 0.5234513732458587,
+      "geh": 17.1188229588902,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1012,
+      "link": "BELCHER'S ST (from SANDS ST to QUEEN'S RD W)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 456.2688,
+      "modelled": 194.77745810404352,
+      "ratio": 0.42689190692864276,
+      "geh": 14.493270170475508,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1013,
+      "link": "CAINE RD (from SEYMOUR RD to ABERDEEN ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 449.121,
+      "modelled": 700.9681169058238,
+      "ratio": 1.5607556024007423,
+      "geh": 10.502343881734022,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1014,
+      "link": "PEAK RD (from MT. AUSTIN RD to MAGAZINE GAP RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 716.898,
+      "modelled": 381.54094276261344,
+      "ratio": 0.5322109180979908,
+      "geh": 14.30983042001135,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1015,
+      "link": "STUBBS RD (from QUEEN'S RD E to STUBBS RD FO <H119> NORTHERN END)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1219.2740999999999,
+      "modelled": 688.0260441656312,
+      "ratio": 0.5642915273650374,
+      "geh": 17.20294618405623,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1016,
+      "link": "SING WOO RD (from WONG NAI CHUNG RD to BLUE POOL RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 899.0784000000001,
+      "modelled": 808.4296104810852,
+      "ratio": 0.8991758788567105,
+      "geh": 3.102384572250505,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1017,
+      "link": "AP LEI CHAU BRIDGE & AP LEI CHAU BRIDGE RD (from WONG CHUK HANG RD to AP LEI CHAU EST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 2081.6342999999997,
+      "modelled": 2184.1747143828707,
+      "ratio": 1.049259571857973,
+      "geh": 2.22028825804262,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1018,
+      "link": "SHEK O RD (from TAI TAM RD to SHEK O VILLAGE)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 177.7184,
+      "modelled": 138.16802777033558,
+      "ratio": 0.7774548261200618,
+      "geh": 3.1470242521087304,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1019,
+      "link": "HOLLYWOOD RD (from QUEEN'S RD W to LADDER ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 461.5427,
+      "modelled": 311.5493945148795,
+      "ratio": 0.6750174892049631,
+      "geh": 7.629063991432499,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1020,
+      "link": "LOCKHART RD (from ARSENAL ST to PERCIVAL ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 568.026,
+      "modelled": 597.8061020413963,
+      "ratio": 1.0524273572713156,
+      "geh": 1.2334546156685107,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1021,
+      "link": "TAI TAM RD (from CHAI WAN RD to SHEK O RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 735.1441,
+      "modelled": 435.20470418975503,
+      "ratio": 0.5919991797387139,
+      "geh": 12.399119688924987,
+      "by_class": {
+        "car": {
+          "modelled": 287.31719826528865,
+          "observed": 516.8063023,
+          "ratio": 0.5559475513100542
+        },
+        "taxi": {
+          "modelled": 73.61882636614277,
+          "observed": 83.80642739999999,
+          "ratio": 0.8784389055837831
+        },
+        "goods_light": {
+          "modelled": 23.14551079839402,
+          "observed": 73.51441,
+          "ratio": 0.3148431824236095
+        },
+        "goods_heavy": {
+          "modelled": 5.92264141097923,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 24.200527348950338,
+          "observed": 24.2597553,
+          "ratio": 0.997558592396451
+        },
+        "bus": {
+          "modelled": 21.0,
+          "observed": 36.757205,
+          "ratio": 0.5713165622903047
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 1022,
+      "link": "CROSS HARBOUR TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 5319.36,
+      "modelled": 7679.742425965755,
+      "ratio": 1.4437342887049862,
+      "geh": 29.277951526549703,
+      "by_class": {
+        "car": {
+          "modelled": 4931.197397665091,
+          "observed": 3702.27456,
+          "ratio": 1.3319372503980609
+        },
+        "taxi": {
+          "modelled": 1126.8211733215526,
+          "observed": 494.70048,
+          "ratio": 2.2777846775518644
+        },
+        "goods_light": {
+          "modelled": 901.4878596329261,
+          "observed": 648.96192,
+          "ratio": 1.3891228928084502
+        },
+        "goods_heavy": {
+          "modelled": 220.46014808871843,
+          "observed": 111.70656,
+          "ratio": 1.973564919452523
+        },
+        "coach": {
+          "modelled": 303.77584725746726,
+          "observed": 58.51296,
+          "ratio": 5.19159938682759
+        },
+        "bus": {
+          "modelled": 196.0,
+          "observed": 303.20351999999997,
+          "ratio": 0.6464304899890345
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1023,
+      "link": "TAI TAM RD (from RED HILL RD to SHEK O RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 611.3667,
+      "modelled": 373.2715501932929,
+      "ratio": 0.6105526359111363,
+      "geh": 10.730678790579677,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1024,
+      "link": "TAI HANG RD (from KA NING PATH to LAI TAK TSUEN RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1662.344,
+      "modelled": 390.18623288602436,
+      "ratio": 0.23472051084855142,
+      "geh": 39.71103352948022,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1025,
+      "link": "EASTERN HARBOUR CROSSING (from KAI TIN RD to ISLAND EASTERN CORRIDOR)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 5274.9144,
+      "modelled": 5638.118645651596,
+      "ratio": 1.068855002775324,
+      "geh": 4.916920418872532,
+      "by_class": {
+        "car": {
+          "modelled": 3025.8938598782643,
+          "observed": 3302.0964144,
+          "ratio": 0.9163553937076903
+        },
+        "taxi": {
+          "modelled": 1212.788052023402,
+          "observed": 749.0378447999999,
+          "ratio": 1.6191278724337725
+        },
+        "goods_light": {
+          "modelled": 585.6995795481795,
+          "observed": 643.5395567999999,
+          "ratio": 0.9101221103805496
+        },
+        "goods_heavy": {
+          "modelled": 189.58865021636254,
+          "observed": 174.07217519999998,
+          "ratio": 1.0891381692595898
+        },
+        "coach": {
+          "modelled": 388.14850398538715,
+          "observed": 147.69760319999997,
+          "ratio": 2.6279946023212597
+        },
+        "bus": {
+          "modelled": 236.0,
+          "observed": 258.4708056,
+          "ratio": 0.913062500239292
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1026,
+      "link": "WESTERN HARBOUR CROSSING (from TOLL PLAZA to SOUTH PORTAL)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 6904.3858,
+      "modelled": 6393.294923137062,
+      "ratio": 0.9259759098538587,
+      "geh": 6.267944984468532,
+      "by_class": {
+        "car": {
+          "modelled": 1441.3645374101468,
+          "observed": 3300.2964124000005,
+          "ratio": 0.4367379039029939
+        },
+        "taxi": {
+          "modelled": 1805.8109131684646,
+          "observed": 1429.2078605999998,
+          "ratio": 1.2635047447964372
+        },
+        "goods_light": {
+          "modelled": 1282.421983692505,
+          "observed": 1028.7534842,
+          "ratio": 1.2465785082514376
+        },
+        "goods_heavy": {
+          "modelled": 411.60835345712786,
+          "observed": 400.45437639999994,
+          "ratio": 1.0278533029340315
+        },
+        "coach": {
+          "modelled": 1081.0891354088183,
+          "observed": 276.175432,
+          "ratio": 3.914501473139067
+        },
+        "bus": {
+          "modelled": 371.0,
+          "observed": 462.5938486,
+          "ratio": 0.8019994237337984
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1027,
+      "link": "SHING SAI RD (from SAI CHEUNG ST N to NEW PRAYA, KENNEDY TOWN)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1949.7365,
+      "modelled": 1184.064762930877,
+      "ratio": 0.6072947615900287,
+      "geh": 19.342913454360566,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1028,
+      "link": "GLOUCESTER RD (from ARSENAL ST to CROSS HARBOUR TUNNEL S. INT)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 7489.6831999999995,
+      "modelled": 3064.600322964391,
+      "ratio": 0.40917622830354045,
+      "geh": 60.91468861530541,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1029,
+      "link": "HENNESSY RD (from LUARD RD to FLEMING RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1493.5908,
+      "modelled": 1111.6282712096163,
+      "ratio": 0.7442656122477564,
+      "geh": 10.583117876748187,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1030,
+      "link": "CONNAUGHT RD C & UNDERPASS (from PEDDER ST to COTTON TREE DRIVE)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 5550.334400000001,
+      "modelled": 995.2049397990613,
+      "ratio": 0.17930540181489987,
+      "geh": 79.62381895765193,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1031,
+      "link": "CENTRAL-WANCHAI BYPASS – CENTRAL SECTION (from CWB WESTERN END PORTAL to WAN CHAI EXIT)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 3844.0314000000003,
+      "modelled": 4485.186676408586,
+      "ratio": 1.166792413924763,
+      "geh": 9.93518828553253,
+      "by_class": {
+        "car": {
+          "modelled": 2054.886832992761,
+          "observed": 2018.116485,
+          "ratio": 1.0182201316257327
+        },
+        "taxi": {
+          "modelled": 1035.6391575153414,
+          "observed": 991.7601012,
+          "ratio": 1.0442436192605944
+        },
+        "goods_light": {
+          "modelled": 693.6780102521152,
+          "observed": 538.164396,
+          "ratio": 1.2889704622007643
+        },
+        "goods_heavy": {
+          "modelled": 207.85444033755442,
+          "observed": 123.00900480000001,
+          "ratio": 1.6897497925091285
+        },
+        "coach": {
+          "modelled": 451.1282353108144,
+          "observed": 73.03659660000001,
+          "ratio": 6.1767422951196815
+        },
+        "bus": {
+          "modelled": 42.0,
+          "observed": 103.78884780000003,
+          "ratio": 0.40466775467951566
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1032,
+      "link": "CENTRAL-WANCHAI BYPASS – CAUSEWAY BAY SECTION (from WAN CHAI EXIT to MERGING POINT TO IEC)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4353.7,
+      "modelled": 5277.238560338007,
+      "ratio": 1.2121272849158204,
+      "geh": 13.30870273904924,
+      "by_class": {
+        "car": {
+          "modelled": 2820.035129855887,
+          "observed": 2202.9721999999997,
+          "ratio": 1.2801047284463634
+        },
+        "taxi": {
+          "modelled": 1098.659854196821,
+          "observed": 1354.0007,
+          "ratio": 0.8114174935041178
+        },
+        "goods_light": {
+          "modelled": 750.527793680295,
+          "observed": 500.67549999999994,
+          "ratio": 1.4990303972938461
+        },
+        "goods_heavy": {
+          "modelled": 200.56389381750398,
+          "observed": 108.8425,
+          "ratio": 1.8426983376668487
+        },
+        "coach": {
+          "modelled": 363.45188878750025,
+          "observed": 87.074,
+          "ratio": 4.174057569280156
+        },
+        "bus": {
+          "modelled": 44.0,
+          "observed": 100.13509999999998,
+          "ratio": 0.43940636200493144
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1101,
+      "link": "MOUNT BUTLER RD (from TAI HANG RD to END)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 382.98479999999995,
+      "modelled": 13.0,
+      "ratio": 0.03394390586780468,
+      "geh": 26.294179440838686,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1102,
+      "link": "CHEUNG LEE ST (from HONG MAN ST to KUT SHING ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 267.83459999999997,
+      "modelled": 86.26477965340018,
+      "ratio": 0.32208228381770015,
+      "geh": 13.645708157683897,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1103,
+      "link": "STANLEY VILLAGE RD (from TAI TAM RD to STANLEY NEW ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 766.9612,
+      "modelled": 172.93473338339155,
+      "ratio": 0.22548041984834638,
+      "geh": 27.40191455599327,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1104,
+      "link": "WING LOK ST (from DES VOEUX RD W to BONHAM STRAND)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 137.235,
+      "modelled": 620.0814367266665,
+      "ratio": 4.518391348611262,
+      "geh": 24.81334632953067,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1105,
+      "link": "CONDUIT RD (from KOTEWALL RD to GLENEALY)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 933.2388000000001,
+      "modelled": 14.0,
+      "ratio": 0.01500151943961181,
+      "geh": 42.23899782899779,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1107,
+      "link": "TUNG LO WAN RD (from CAUSEWAY RD to MORETON TERRACE)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 785.2174,
+      "modelled": 16.606776857748628,
+      "ratio": 0.021149272618957028,
+      "geh": 38.38679089253965,
+      "by_class": {
+        "car": {
+          "modelled": 2.592934548854828,
+          "observed": 480.55304879999994,
+          "ratio": 0.005395730097498505
+        },
+        "taxi": {
+          "modelled": 0.860991358757019,
+          "observed": 149.97652340000002,
+          "ratio": 0.0057408408945490924
+        },
+        "goods_light": {
+          "modelled": 0.09197410196065903,
+          "observed": 67.5286964,
+          "ratio": 0.0013620002586138924
+        },
+        "goods_heavy": {
+          "modelled": 0.03802791237831116,
+          "observed": 10.207826200000001,
+          "ratio": 0.0037253683236016647
+        },
+        "coach": {
+          "modelled": 0.022848935797810555,
+          "observed": 51.039131,
+          "ratio": 0.00044767485946832746
+        },
+        "bus": {
+          "modelled": 13.0,
+          "observed": 25.9121742,
+          "ratio": 0.5016946821853335
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 1108,
+      "link": "JUSTICE DRIVE (from QUEENSWAY to SUPREME COURT RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 1192.5144,
+      "modelled": 18.0,
+      "ratio": 0.015094157353571579,
+      "geh": 47.74065393842588,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 1109,
+      "link": "OCEAN PARK RD (from WONG CHUK HANG RD to OCEAN PARK)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 1209.0623999999998,
+      "modelled": 33.0,
+      "ratio": 0.02729387664358763,
+      "geh": 47.19257293634634,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 2201,
+      "link": "POK FU LAM RD (from POKFIELD RD to MOUNT DAVIS RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2631.5063999999998,
+      "modelled": 2549.716352781705,
+      "ratio": 0.9689189252139784,
+      "geh": 1.6069387544658034,
+      "by_class": {
+        "car": {
+          "modelled": 1270.1953144175995,
+          "observed": 1442.0655071999997,
+          "ratio": 0.8808166536649825
+        },
+        "taxi": {
+          "modelled": 501.0657633827532,
+          "observed": 678.9286512,
+          "ratio": 0.7380241833911769
+        },
+        "goods_light": {
+          "modelled": 306.710080741748,
+          "observed": 155.2588776,
+          "ratio": 1.9754753189182401
+        },
+        "goods_heavy": {
+          "modelled": 81.62027950967712,
+          "observed": 18.4205448,
+          "ratio": 4.4309373254626605
+        },
+        "coach": {
+          "modelled": 170.1249147299277,
+          "observed": 102.62874959999999,
+          "ratio": 1.6576730730228804
+        },
+        "bus": {
+          "modelled": 220.0,
+          "observed": 236.83557599999997,
+          "ratio": 0.9289144972037479
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2202,
+      "link": "WONG NAI CHUNG GAP RD (from STUBBS RD FO <H119> SOUTHERN END to REPULSE BAY RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1976.2212,
+      "modelled": 747.1877281425583,
+      "ratio": 0.37808911681676033,
+      "geh": 33.305984848348345,
+      "by_class": {
+        "car": {
+          "modelled": 492.7987396544388,
+          "observed": 1515.7616604000002,
+          "ratio": 0.3251162452046664
+        },
+        "taxi": {
+          "modelled": 168.8433841264839,
+          "observed": 229.2416592,
+          "ratio": 0.7365301085139062
+        },
+        "goods_light": {
+          "modelled": 15.452134204990285,
+          "observed": 69.167742,
+          "ratio": 0.22340087674092765
+        },
+        "goods_heavy": {
+          "modelled": 0.9028760107579024,
+          "observed": 3.9524424,
+          "ratio": 0.22843495727044685
+        },
+        "coach": {
+          "modelled": 32.19059414588746,
+          "observed": 120.5494932,
+          "ratio": 0.2670321814831774
+        },
+        "bus": {
+          "modelled": 37.0,
+          "observed": 37.548202800000006,
+          "ratio": 0.9854000255905722
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2203,
+      "link": "STUBBS RD (from WAN CHAI GAP RD to WONG NAI CHUNG GAP RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 877.2552000000001,
+      "modelled": 93.36030096829839,
+      "ratio": 0.1064231947195051,
+      "geh": 35.58354602172365,
+      "by_class": {
+        "car": {
+          "modelled": 51.37727485333019,
+          "observed": 657.9414,
+          "ratio": 0.07808791915713191
+        },
+        "taxi": {
+          "modelled": 24.808506684876768,
+          "observed": 105.27062400000001,
+          "ratio": 0.2356640983231634
+        },
+        "goods_light": {
+          "modelled": 2.7041581751083914,
+          "observed": 72.81218160000002,
+          "ratio": 0.037138815452116475
+        },
+        "goods_heavy": {
+          "modelled": 0.611382652142103,
+          "observed": 4.3862760000000005,
+          "ratio": 0.13938535836370144
+        },
+        "coach": {
+          "modelled": 2.858978602840936,
+          "observed": 22.808635200000005,
+          "ratio": 0.125346325098879
+        },
+        "bus": {
+          "modelled": 11.0,
+          "observed": 13.158828000000002,
+          "ratio": 0.8359407083974347
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2204,
+      "link": "YEE KING RD & LAI TAK TSUEN RD (from CLOUD VIEW RD to TAI HANG RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 635.0666,
+      "modelled": 354.62584622002464,
+      "ratio": 0.5584073327427779,
+      "geh": 12.60683288238322,
+      "by_class": {
+        "car": {
+          "modelled": 202.66847804381362,
+          "observed": 391.2010256,
+          "ratio": 0.5180673484507696
+        },
+        "taxi": {
+          "modelled": 80.12308638291324,
+          "observed": 88.909324,
+          "ratio": 0.9011775455959292
+        },
+        "goods_light": {
+          "modelled": 12.784546915729074,
+          "observed": 29.8481302,
+          "ratio": 0.4283198589012143
+        },
+        "goods_heavy": {
+          "modelled": 4.218576013796939,
+          "observed": 7.6207992,
+          "ratio": 0.5535608409413201
+        },
+        "coach": {
+          "modelled": 8.831158863771758,
+          "observed": 66.681993,
+          "ratio": 0.13243693636709025
+        },
+        "bus": {
+          "modelled": 46.0,
+          "observed": 52.07546119999999,
+          "ratio": 0.8833335114082486
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 2205,
+      "link": "MAGAZINE GAP RD (from GARDEN RD to PEAK RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1153.5908,
+      "modelled": 383.0788879357258,
+      "ratio": 0.33207519333174795,
+      "geh": 27.79739464155824,
+      "by_class": {
+        "car": {
+          "modelled": 205.02972125124506,
+          "observed": 734.8373396,
+          "ratio": 0.27901374930518713
+        },
+        "taxi": {
+          "modelled": 105.90171522230274,
+          "observed": 319.54465159999995,
+          "ratio": 0.3314144508194383
+        },
+        "goods_light": {
+          "modelled": 23.303418012487967,
+          "observed": 41.5292688,
+          "ratio": 0.5611323937513671
+        },
+        "goods_heavy": {
+          "modelled": 5.7523225179336555,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 25.09171093175634,
+          "observed": 36.914905600000004,
+          "ratio": 0.6797175971040905
+        },
+        "bus": {
+          "modelled": 18.0,
+          "observed": 23.071816,
+          "ratio": 0.780172657410236
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 2206,
+      "link": "BELCHER'S ST & VICTORIA RD (from SMITHFIELD to MOUNT DAVIS RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 652.9035,
+      "modelled": 135.60267363738566,
+      "ratio": 0.20769175481121738,
+      "geh": 26.052872914825628,
+      "by_class": {
+        "car": {
+          "modelled": 39.78999364297172,
+          "observed": 395.0066175,
+          "ratio": 0.10073247353374205
+        },
+        "taxi": {
+          "modelled": 18.214924695458482,
+          "observed": 46.356148499999996,
+          "ratio": 0.3929343848628512
+        },
+        "goods_light": {
+          "modelled": 1.803928382054524,
+          "observed": 46.356148499999996,
+          "ratio": 0.038914544034099906
+        },
+        "goods_heavy": {
+          "modelled": 0.45376242244459175,
+          "observed": 40.480017000000004,
+          "ratio": 0.01120954130144243
+        },
+        "coach": {
+          "modelled": 5.340064494456345,
+          "observed": 62.678736,
+          "ratio": 0.08519738647021129
+        },
+        "bus": {
+          "modelled": 70.0,
+          "observed": 62.0258325,
+          "ratio": 1.128562039050423
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 2207,
+      "link": "CONNAUGHT RD C (from CLEVERLY ST to GILMAN ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1956.0528,
+      "modelled": 1928.847230030254,
+      "ratio": 0.9860915973384021,
+      "geh": 0.6172809907935937,
+      "by_class": {
+        "car": {
+          "modelled": 734.447503636397,
+          "observed": 688.5305856,
+          "ratio": 1.0666882764494536
+        },
+        "taxi": {
+          "modelled": 315.04821939779373,
+          "observed": 561.3871535999999,
+          "ratio": 0.5611959899286761
+        },
+        "goods_light": {
+          "modelled": 311.78624605132296,
+          "observed": 211.2537024,
+          "ratio": 1.4758853573177564
+        },
+        "goods_heavy": {
+          "modelled": 79.08254871190312,
+          "observed": 27.3847392,
+          "ratio": 2.8878328230309793
+        },
+        "coach": {
+          "modelled": 112.48271223283706,
+          "observed": 97.80264,
+          "ratio": 1.1500989363153904
+        },
+        "bus": {
+          "modelled": 376.0,
+          "observed": 373.60608479999996,
+          "ratio": 1.0064075915714317
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2208,
+      "link": "QUEEN'S RD C (from QUEEN VICTORIA ST to BONHAM STRAND)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 608.4432,
+      "modelled": 1024.5128323566075,
+      "ratio": 1.683826579632425,
+      "geh": 14.56108614609785,
+      "by_class": {
+        "car": {
+          "modelled": 581.2923243716868,
+          "observed": 171.58098239999998,
+          "ratio": 3.387859867922559
+        },
+        "taxi": {
+          "modelled": 147.60524685369978,
+          "observed": 262.84746240000004,
+          "ratio": 0.5615623811086097
+        },
+        "goods_light": {
+          "modelled": 188.946922588887,
+          "observed": 116.8210944,
+          "ratio": 1.617404147421572
+        },
+        "goods_heavy": {
+          "modelled": 46.6116548206562,
+          "observed": 7.3013184,
+          "ratio": 6.384005225776237
+        },
+        "coach": {
+          "modelled": 16.05668372167773,
+          "observed": 18.253296,
+          "ratio": 0.8796594172185522
+        },
+        "bus": {
+          "modelled": 44.0,
+          "observed": 31.0306032,
+          "ratio": 1.4179550335006055
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 2209,
+      "link": "DES VOEUX RD C (from MORRISON ST to QUEEN VICTORIA ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 180.048,
+      "modelled": 332.74527061053124,
+      "ratio": 1.84809201218859,
+      "geh": 9.536194788945963,
+      "by_class": {
+        "car": {
+          "modelled": 159.03393822633083,
+          "observed": 45.732192000000005,
+          "ratio": 3.4775052598906875
+        },
+        "taxi": {
+          "modelled": 49.773761463680636,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "goods_light": {
+          "modelled": 41.133921340996245,
+          "observed": 32.768736,
+          "ratio": 1.2552794633578863
+        },
+        "goods_heavy": {
+          "modelled": 9.3988000085623,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 2.4048495709612445,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "bus": {
+          "modelled": 71.0,
+          "observed": 101.54707200000001,
+          "ratio": 0.6991831335127022
+        }
+      },
+      "worst_class": "bus"
+    },
+    {
+      "station": 2210,
+      "link": "WYNDHAM ST (from QUEEN'S RD C to LOWER ALBERT RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 196.3136,
+      "modelled": 196.93121623246367,
+      "ratio": 1.0031460695156305,
+      "geh": 0.04404556612385343,
+      "by_class": {
+        "car": {
+          "modelled": 59.72205988095993,
+          "observed": 62.03509760000001,
+          "ratio": 0.9627140472325125
+        },
+        "taxi": {
+          "modelled": 46.41109900722847,
+          "observed": 77.54387200000001,
+          "ratio": 0.5985140773887132
+        },
+        "goods_light": {
+          "modelled": 60.22458099048036,
+          "observed": 41.422169600000004,
+          "ratio": 1.4539214524987207
+        },
+        "goods_heavy": {
+          "modelled": 16.75723844328582,
+          "observed": 10.4046208,
+          "ratio": 1.6105573442220809
+        },
+        "coach": {
+          "modelled": 13.816237910509066,
+          "observed": 5.1041536,
+          "ratio": 2.706861703869779
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 2211,
+      "link": "GARDEN RD (from DES VOEUX RD C to UPPER ALBERT RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2927.89,
+      "modelled": 1010.1529400146009,
+      "ratio": 0.3450105502647302,
+      "geh": 43.21791740552862,
+      "by_class": {
+        "car": {
+          "modelled": 650.848520984281,
+          "observed": 1745.02244,
+          "ratio": 0.37297429882006616
+        },
+        "taxi": {
+          "modelled": 193.8540821629312,
+          "observed": 869.5833299999999,
+          "ratio": 0.22292755101794698
+        },
+        "goods_light": {
+          "modelled": 56.33321638991795,
+          "observed": 102.47615,
+          "ratio": 0.5497202655439138
+        },
+        "goods_heavy": {
+          "modelled": 13.333208229234298,
+          "observed": 2.9278899999999997,
+          "ratio": 4.553862416017781
+        },
+        "coach": {
+          "modelled": 17.783912248236415,
+          "observed": 122.97138000000001,
+          "ratio": 0.1446183026346164
+        },
+        "bus": {
+          "modelled": 78.0,
+          "observed": 81.98091999999998,
+          "ratio": 0.9514408962475661
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 2212,
+      "link": "COTTON TREE DRIVE (from QUEENSWAY to SLIP RD TO KENNEDY RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2669.8287,
+      "modelled": 640.306357578738,
+      "ratio": 0.2398305020763085,
+      "geh": 49.88683798417574,
+      "by_class": {
+        "car": {
+          "modelled": 360.61627009861303,
+          "observed": 1358.9428083,
+          "ratio": 0.26536530301060574
+        },
+        "taxi": {
+          "modelled": 118.00659973488926,
+          "observed": 931.7702163,
+          "ratio": 0.1266477482007162
+        },
+        "goods_light": {
+          "modelled": 31.07650941193588,
+          "observed": 184.21818030000003,
+          "ratio": 0.16869404182218967
+        },
+        "goods_heavy": {
+          "modelled": 7.773565808055313,
+          "observed": 18.6888009,
+          "ratio": 0.4159478101163415
+        },
+        "coach": {
+          "modelled": 18.83341252524456,
+          "observed": 104.1233193,
+          "ratio": 0.18087602903804625
+        },
+        "bus": {
+          "modelled": 104.0,
+          "observed": 66.7457175,
+          "ratio": 1.558152401313238
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 2213,
+      "link": "KENNEDY RD (from MACDONNELL RD to QUEEN'S RD E)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 684.0540000000001,
+      "modelled": 6.0,
+      "ratio": 0.008771237358454156,
+      "geh": 36.503771841297414,
+      "by_class": {
+        "car": {
+          "modelled": 0.0,
+          "observed": 497.30725800000005,
+          "ratio": 0.0
+        },
+        "taxi": {
+          "modelled": 0.0,
+          "observed": 97.81972200000001,
+          "ratio": 0.0
+        },
+        "goods_light": {
+          "modelled": 0.0,
+          "observed": 21.205674000000002,
+          "ratio": 0.0
+        },
+        "goods_heavy": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 0.0,
+          "observed": 51.304050000000004,
+          "ratio": 0.0
+        },
+        "bus": {
+          "modelled": 6.0,
+          "observed": 17.101350000000004,
+          "ratio": 0.3508494943381662
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 2214,
+      "link": "CAUSEWAY RD (from SHELTER ST to HING FAT ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2146.6506,
+      "modelled": 2173.2854145699753,
+      "ratio": 1.0124076151796548,
+      "geh": 0.5730942067406515,
+      "by_class": {
+        "car": {
+          "modelled": 1176.0662052114667,
+          "observed": 1107.6717096,
+          "ratio": 1.0617461789614229
+        },
+        "taxi": {
+          "modelled": 380.42980754607333,
+          "observed": 416.4502164,
+          "ratio": 0.9135060868372101
+        },
+        "goods_light": {
+          "modelled": 197.32654727172945,
+          "observed": 94.45262640000001,
+          "ratio": 2.089158923289924
+        },
+        "goods_heavy": {
+          "modelled": 64.43730083967814,
+          "observed": 34.3464096,
+          "ratio": 1.8761000520903979
+        },
+        "coach": {
+          "modelled": 46.025553701027604,
+          "observed": 128.799036,
+          "ratio": 0.3573439299734169
+        },
+        "bus": {
+          "modelled": 309.0,
+          "observed": 364.930602,
+          "ratio": 0.8467363337207878
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2215,
+      "link": "ISLAND EASTERN CORRIDOR (from NAM ON LANE to WING TAI RD INT)",
+      "road_type": "EXPRESSWAY",
+      "observed": 3627.9182,
+      "modelled": 2898.2157502330792,
+      "ratio": 0.7988646905636073,
+      "geh": 12.774173495693711,
+      "by_class": {
+        "car": {
+          "modelled": 1526.8519379721695,
+          "observed": 1672.4702902000001,
+          "ratio": 0.9129321739937054
+        },
+        "taxi": {
+          "modelled": 573.5590632055757,
+          "observed": 533.3039754,
+          "ratio": 1.075482444651538
+        },
+        "goods_light": {
+          "modelled": 458.7617459846979,
+          "observed": 671.1648670000001,
+          "ratio": 0.6835306323992937
+        },
+        "goods_heavy": {
+          "modelled": 117.44237418282,
+          "observed": 355.5359836,
+          "ratio": 0.33032486049274257
+        },
+        "coach": {
+          "modelled": 153.6006288878158,
+          "observed": 257.5821922,
+          "ratio": 0.5963169564476429
+        },
+        "bus": {
+          "modelled": 68.0,
+          "observed": 141.4888098,
+          "ratio": 0.48060337843056755
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 2217,
+      "link": "LUNG WO RD (from MAN YIU ST to LUNG HOP ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 811.4814,
+      "modelled": 1377.743251730178,
+      "ratio": 1.6978124843405873,
+      "geh": 17.115403322722987,
+      "by_class": {
+        "car": {
+          "modelled": 848.9040414530994,
+          "observed": 361.109223,
+          "ratio": 2.3508234832681065
+        },
+        "taxi": {
+          "modelled": 251.78038313725227,
+          "observed": 265.3544178,
+          "ratio": 0.9488456428376534
+        },
+        "goods_light": {
+          "modelled": 186.98564967828688,
+          "observed": 64.1070306,
+          "ratio": 2.9167729019457482
+        },
+        "goods_heavy": {
+          "modelled": 43.18480007118558,
+          "observed": 42.19703280000001,
+          "ratio": 1.0234084532878711
+        },
+        "coach": {
+          "modelled": 44.888377390353796,
+          "observed": 47.8774026,
+          "ratio": 0.9375691861436484
+        },
+        "bus": {
+          "modelled": 2.0,
+          "observed": 30.8362932,
+          "ratio": 0.06485863871601792
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2401,
+      "link": "LIN SHING RD (from WAN TSUI RD to CAPE COLLINSON RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 129.8276,
+      "modelled": 59.416761690052226,
+      "ratio": 0.4576589391627992,
+      "geh": 7.2384076573899785,
+      "by_class": {
+        "car": {
+          "modelled": 25.355800852179527,
+          "observed": 45.5694876,
+          "ratio": 0.5564205828853674
+        },
+        "taxi": {
+          "modelled": 15.526550777256492,
+          "observed": 17.526726,
+          "ratio": 0.885878559250398
+        },
+        "goods_light": {
+          "modelled": 4.642172585241497,
+          "observed": 35.053452,
+          "ratio": 0.13243125342524031
+        },
+        "goods_heavy": {
+          "modelled": 1.12429303326644,
+          "observed": 7.0106904,
+          "ratio": 0.1603683758829858
+        },
+        "coach": {
+          "modelled": 2.767944442108273,
+          "observed": 7.0106904,
+          "ratio": 0.39481766904273413
+        },
+        "bus": {
+          "modelled": 10.0,
+          "observed": 17.526726,
+          "ratio": 0.5705572164476126
+        }
+      },
+      "worst_class": null
+    },
+    {
+      "station": 2402,
+      "link": "WING LOK ST (from MORRISON ST to DES VOEUX RD C)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 180.7471,
+      "modelled": 168.8352284190028,
+      "ratio": 0.9340964719157475,
+      "geh": 0.9009906108037425,
+      "by_class": {
+        "car": {
+          "modelled": 86.96979022086319,
+          "observed": 73.2025755,
+          "ratio": 1.1880700866988374
+        },
+        "taxi": {
+          "modelled": 19.907409617186374,
+          "observed": 77.54050589999999,
+          "ratio": 0.25673561690273133
+        },
+        "goods_light": {
+          "modelled": 48.5739651944387,
+          "observed": 21.508904899999997,
+          "ratio": 2.2583188414412816
+        },
+        "goods_heavy": {
+          "modelled": 12.5265391558581,
+          "observed": 8.675860799999999,
+          "ratio": 1.4438381901952715
+        },
+        "coach": {
+          "modelled": 0.8575242306564165,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 2403,
+      "link": "ICE HOUSE ST (from CONNAUGHT RD C to LOWER ALBERT RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 688.6683,
+      "modelled": 416.4626015331805,
+      "ratio": 0.6047361284571694,
+      "geh": 11.579914401592452,
+      "by_class": {
+        "car": {
+          "modelled": 213.9112730849482,
+          "observed": 214.1758413,
+          "ratio": 0.99876471494896
+        },
+        "taxi": {
+          "modelled": 67.50630474421322,
+          "observed": 288.5520177,
+          "ratio": 0.23394847584950096
+        },
+        "goods_light": {
+          "modelled": 71.12067892871603,
+          "observed": 39.9427614,
+          "ratio": 1.780564899268983
+        },
+        "goods_heavy": {
+          "modelled": 17.382472069667738,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 3.5418727056352637,
+          "observed": 100.5455718,
+          "ratio": 0.03522654098263593
+        },
+        "bus": {
+          "modelled": 43.0,
+          "observed": 44.763439500000004,
+          "ratio": 0.9606053618824353
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 2404,
+      "link": "D'AGUILAR ST (from QUEEN'S RD C to WYNDHAM ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 266.9695,
+      "modelled": 210.49845824250113,
+      "ratio": 0.7884738078413495,
+      "geh": 3.654842623905233,
+      "by_class": {
+        "car": {
+          "modelled": 123.90997145279717,
+          "observed": 92.10447749999999,
+          "ratio": 1.3453197370648695
+        },
+        "taxi": {
+          "modelled": 28.922212083299,
+          "observed": 119.3353665,
+          "ratio": 0.24236077645346654
+        },
+        "goods_light": {
+          "modelled": 36.54076307689046,
+          "observed": 37.909668999999994,
+          "ratio": 0.9638903224633922
+        },
+        "goods_heavy": {
+          "modelled": 9.672121788766205,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 2.4533898407482573,
+          "observed": 5.33939,
+          "ratio": 0.45948878818521544
+        },
+        "bus": {
+          "modelled": 9.0,
+          "observed": 12.0136275,
+          "ratio": 0.7491492473859374
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 2405,
+      "link": "COCHRANE ST (from QUEEN'S RD C to WELLINGTON ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 25.996800000000004,
+      "modelled": 0.0,
+      "ratio": 0.0,
+      "geh": 7.210658777116,
+      "by_class": {
+        "car": {
+          "modelled": 0.0,
+          "observed": 12.010521600000002,
+          "ratio": 0.0
+        },
+        "taxi": {
+          "modelled": 0.0,
+          "observed": 4.0035072000000005,
+          "ratio": 0.0
+        },
+        "goods_light": {
+          "modelled": 0.0,
+          "observed": 10.008768000000002,
+          "ratio": 0.0
+        },
+        "goods_heavy": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        }
+      },
+      "worst_class": null
+    },
+    {
+      "station": 2407,
+      "link": "SMITHFIELD (from POK FU LAM RD to LUNG WAH ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 876.8838000000001,
+      "modelled": 526.4179205010464,
+      "ratio": 0.600328025789787,
+      "geh": 13.23077279234792,
+      "by_class": {
+        "car": {
+          "modelled": 219.09547703009616,
+          "observed": 428.79617820000004,
+          "ratio": 0.5109548269525508
+        },
+        "taxi": {
+          "modelled": 125.73598594639921,
+          "observed": 207.8214606,
+          "ratio": 0.605019258277695
+        },
+        "goods_light": {
+          "modelled": 55.69229825255562,
+          "observed": 116.62554540000001,
+          "ratio": 0.47753087080144635
+        },
+        "goods_heavy": {
+          "modelled": 16.27660292515312,
+          "observed": 21.922095,
+          "ratio": 0.7424747919919662
+        },
+        "coach": {
+          "modelled": 74.61755634684236,
+          "observed": 43.84419,
+          "ratio": 1.7018801429982482
+        },
+        "bus": {
+          "modelled": 35.0,
+          "observed": 57.874330799999996,
+          "ratio": 0.6047586126041219
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 2408,
+      "link": "LUNG WUI RD (from TIM MEI AVE to LUNG KING ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 480.2022,
+      "modelled": 107.87244571095258,
+      "ratio": 0.22463963245264718,
+      "geh": 21.713334045894182,
+      "by_class": {
+        "car": {
+          "modelled": 67.33864625523543,
+          "observed": 251.14575059999999,
+          "ratio": 0.2681257640010232
+        },
+        "taxi": {
+          "modelled": 26.646902936783633,
+          "observed": 87.8770026,
+          "ratio": 0.30322953842742506
+        },
+        "goods_light": {
+          "modelled": 7.838096862850735,
+          "observed": 31.213143,
+          "ratio": 0.251115270988594
+        },
+        "goods_heavy": {
+          "modelled": 1.9408990111458762,
+          "observed": 12.485257200000001,
+          "ratio": 0.15545526856634367
+        },
+        "coach": {
+          "modelled": 4.1079006449369,
+          "observed": 75.3917454,
+          "ratio": 0.054487406056749815
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 22.0893012,
+          "ratio": 0.0
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 3001,
+      "link": "PRINCESS MARGARET RD (from WYLIE RD to PUI CHING RD)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4083.2309999999998,
+      "modelled": 4337.964992930445,
+      "ratio": 1.06238539845785,
+      "geh": 3.925681067061551,
+      "by_class": {
+        "car": {
+          "modelled": 2620.5286469791035,
+          "observed": 2850.095238,
+          "ratio": 0.9194530105660643
+        },
+        "taxi": {
+          "modelled": 843.5018967805369,
+          "observed": 477.73802699999993,
+          "ratio": 1.7656159843029138
+        },
+        "goods_light": {
+          "modelled": 504.02336076041684,
+          "observed": 449.15540999999996,
+          "ratio": 1.1221580538469231
+        },
+        "goods_heavy": {
+          "modelled": 110.6896724388262,
+          "observed": 53.08200299999999,
+          "ratio": 2.0852580193484074
+        },
+        "coach": {
+          "modelled": 245.22141597156167,
+          "observed": 167.41247099999998,
+          "ratio": 1.464773887553226
+        },
+        "bus": {
+          "modelled": 14.0,
+          "observed": 85.747851,
+          "ratio": 0.1632693978534809
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 3002,
+      "link": "LUNG CHEUNG RD (from NAM CHEONG ST to LION ROCK TUNNEL RD)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 7214.304400000001,
+      "modelled": 4923.2755207930695,
+      "ratio": 0.682432463037333,
+      "geh": 29.408949405138202,
+      "by_class": {
+        "car": {
+          "modelled": 2287.857030551768,
+          "observed": 3535.0091560000005,
+          "ratio": 0.6471997467583837
+        },
+        "taxi": {
+          "modelled": 1033.8372323935364,
+          "observed": 1139.8600952000002,
+          "ratio": 0.9069860737708684
+        },
+        "goods_light": {
+          "modelled": 705.1953652812712,
+          "observed": 1659.2900120000004,
+          "ratio": 0.4249982584004556
+        },
+        "goods_heavy": {
+          "modelled": 317.2647985813951,
+          "observed": 288.572176,
+          "ratio": 1.09942962269999
+        },
+        "coach": {
+          "modelled": 319.1210939850993,
+          "observed": 209.21482760000006,
+          "ratio": 1.5253273281147652
+        },
+        "bus": {
+          "modelled": 260.0,
+          "observed": 382.3581332,
+          "ratio": 0.6799907663112317
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 3003,
+      "link": "PRINCE EDWARD RD E & FO <K10A> (from CHOI HUNG RD to NEAR KING TAI COURT)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 7911.3546,
+      "modelled": 6241.624657061591,
+      "ratio": 0.7889451266742097,
+      "geh": 19.848939048036026,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3004,
+      "link": "KAI TAK TUNNEL (from SUNG WONG TOI RD to KAI CHEUNG RD)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4360.6255,
+      "modelled": 4298.312149507372,
+      "ratio": 0.9857099972257126,
+      "geh": 0.9470301265864306,
+      "by_class": {
+        "car": {
+          "modelled": 1964.611626034136,
+          "observed": 2489.9171605,
+          "ratio": 0.7890269030635632
+        },
+        "taxi": {
+          "modelled": 923.827266157909,
+          "observed": 789.2732155000001,
+          "ratio": 1.1704784199127671
+        },
+        "goods_light": {
+          "modelled": 904.2050907687844,
+          "observed": 593.045068,
+          "ratio": 1.5246819163645493
+        },
+        "goods_heavy": {
+          "modelled": 263.84513738926063,
+          "observed": 187.5068965,
+          "ratio": 1.4071223102413228
+        },
+        "coach": {
+          "modelled": 117.82302915728224,
+          "observed": 143.9006415,
+          "ratio": 0.818780430226798
+        },
+        "bus": {
+          "modelled": 124.0,
+          "observed": 156.982518,
+          "ratio": 0.7898968724657608
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 3005,
+      "link": "CHATHAM RD S (from SALISBURY RD to MODY RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 707.7783999999999,
+      "modelled": 800.4698656360691,
+      "ratio": 1.130961139300195,
+      "geh": 3.3753462463609822,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3006,
+      "link": "NATHAN RD (from SHANTUNG ST to DUNDAS ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 954.5445,
+      "modelled": 1195.6452743530915,
+      "ratio": 1.252582016190017,
+      "geh": 7.353180164051849,
+      "by_class": {
+        "car": {
+          "modelled": 362.8214035979961,
+          "observed": 184.22708849999998,
+          "ratio": 1.9694248362286642
+        },
+        "taxi": {
+          "modelled": 262.5531512589997,
+          "observed": 188.0452665,
+          "ratio": 1.396223133641068
+        },
+        "goods_light": {
+          "modelled": 165.36298273433226,
+          "observed": 138.4089525,
+          "ratio": 1.1947419566977235
+        },
+        "goods_heavy": {
+          "modelled": 35.39671746424685,
+          "observed": 20.999979000000003,
+          "ratio": 1.6855596600476048
+        },
+        "coach": {
+          "modelled": 18.51101929751654,
+          "observed": 33.409057499999996,
+          "ratio": 0.5540718799839398
+        },
+        "bus": {
+          "modelled": 351.0,
+          "observed": 389.454156,
+          "ratio": 0.9012614054630861
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 3007,
+      "link": "CANTON RD (from AUSTIN RD to KOWLOON PARK DRIVE)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 3526.4132,
+      "modelled": 3383.667042403234,
+      "ratio": 0.9595208645439605,
+      "geh": 2.428498722707874,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3008,
+      "link": "LAI CHI KOK RD (from TONKIN ST to HING WAH ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 926.0444,
+      "modelled": 1357.9063694314398,
+      "ratio": 1.4663512564099948,
+      "geh": 12.779580251778865,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3009,
+      "link": "TAI PO RD (from NAM CHEONG ST to KWEILIN ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1180.4288999999999,
+      "modelled": 1523.6659935833636,
+      "ratio": 1.2907732042000697,
+      "geh": 9.334654531413742,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3010,
+      "link": "PRINCE EDWARD RD W (from LA SALLE RD to WATERLOO RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2389.4838,
+      "modelled": 2714.942257732891,
+      "ratio": 1.1362045048109934,
+      "geh": 6.4422429869090525,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3011,
+      "link": "SHUN LEE TSUEN RD (from NEW CLEAR WATER BAY RD to SHUN KING ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1378.1396,
+      "modelled": 1229.0232187003685,
+      "ratio": 0.8917987834471693,
+      "geh": 4.130059198635073,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3012,
+      "link": "KWUN TONG RD (from NGAU TAU KOK RD to KWUN TONG RD #330)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 4417.347,
+      "modelled": 3864.8386786998253,
+      "ratio": 0.874923042880676,
+      "geh": 8.585811309539773,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3013,
+      "link": "AUSTIN RD (from COX'S RD to CHATHAM RD S)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1488.058,
+      "modelled": 1808.5550651493131,
+      "ratio": 1.2153794174348802,
+      "geh": 7.894144414182618,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3014,
+      "link": "MA TAU WAI RD & TO KWA WAN RD (from SAN LAU ST & BAILEY ST to CHI KIANG ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1402.3904,
+      "modelled": 1333.316787589742,
+      "ratio": 0.9507458034437073,
+      "geh": 1.8676365364851852,
+      "by_class": {
+        "car": {
+          "modelled": 633.0449978198033,
+          "observed": 396.8764832,
+          "ratio": 1.595068049171333
+        },
+        "taxi": {
+          "modelled": 243.1868666698359,
+          "observed": 335.1713056,
+          "ratio": 0.725559922960887
+        },
+        "goods_light": {
+          "modelled": 219.5283015436929,
+          "observed": 300.1115456,
+          "ratio": 0.7314890238721056
+        },
+        "goods_heavy": {
+          "modelled": 40.38550081144526,
+          "observed": 39.2669312,
+          "ratio": 1.028486300743697
+        },
+        "coach": {
+          "modelled": 29.17112074496484,
+          "observed": 56.095616,
+          "ratio": 0.5200249649627671
+        },
+        "bus": {
+          "modelled": 168.0,
+          "observed": 274.8685184,
+          "ratio": 0.6112013153704254
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 3015,
+      "link": "SHANGHAI ST (from LAI CHI KOK RD to MONG KOK RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 747.6048000000001,
+      "modelled": 123.97986860604358,
+      "ratio": 0.16583610566176618,
+      "geh": 29.873332714148685,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3016,
+      "link": "JUNCTION RD (from NGA TSIN WAI RD to TUNG TAU TSUEN RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 906.8009999999999,
+      "modelled": 1247.0829715001528,
+      "ratio": 1.375255399475908,
+      "geh": 10.369141140513861,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3017,
+      "link": "TONKIN ST (from CHEUNG SHA WAN RD to UN CHAU ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1112.349,
+      "modelled": 795.933272451643,
+      "ratio": 0.715542759018656,
+      "geh": 10.243579729067402,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3018,
+      "link": "HIU KWONG ST (from SAU MING RD to HIP WO ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 752.0211999999999,
+      "modelled": 303.589087665991,
+      "ratio": 0.40369751233873596,
+      "geh": 19.519104796490854,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3019,
+      "link": "CLEAR WATER BAY RD (from NEW CLEAR WATER BAY RD NORTHERN JUNCTION to NEW CLEAR WATER BAY RD SOUTHERN JUNCTION)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1576.6625,
+      "modelled": 2924.393582560771,
+      "ratio": 1.8547999857678934,
+      "geh": 28.409332535246484,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3020,
+      "link": "WAI YIP ST (from LAI YIP ST to HOI YUEN RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1868.3904,
+      "modelled": 2327.7073345080134,
+      "ratio": 1.2458356318401194,
+      "geh": 10.027776780370012,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3021,
+      "link": "MODY RD (from NATHAN RD to CHATHAM RD S)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 454.1154,
+      "modelled": 1622.6271027318742,
+      "ratio": 3.5731602643994766,
+      "geh": 36.26241622023522,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3022,
+      "link": "SHEUNG FUNG ST (from SHUNG WAH ST to FUNG TAK RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 791.9847,
+      "modelled": 266.4558002829583,
+      "ratio": 0.33644059068686344,
+      "geh": 22.844327452019595,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3023,
+      "link": "KWUN TONG BYPASS <K77> (from WAI YIP ST to CHEUNG YIP ST)",
+      "road_type": "EXPRESSWAY",
+      "observed": 7056.3264,
+      "modelled": 8496.669082600805,
+      "ratio": 1.2041207564605863,
+      "geh": 16.33329497990609,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3024,
+      "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
+      "road_type": "EXPRESSWAY",
+      "observed": 6500.394,
+      "modelled": 11329.86880123783,
+      "ratio": 1.7429510890013482,
+      "geh": 51.14886841094618,
+      "by_class": {
+        "car": {
+          "modelled": 5302.9655717505375,
+          "observed": 3438.7084259999997,
+          "ratio": 1.5421387668855346
+        },
+        "taxi": {
+          "modelled": 1786.6358629676781,
+          "observed": 1124.5681620000003,
+          "ratio": 1.5887306108597423
+        },
+        "goods_light": {
+          "modelled": 1690.3248505994388,
+          "observed": 949.057524,
+          "ratio": 1.781056266721551
+        },
+        "goods_heavy": {
+          "modelled": 1004.1472802446484,
+          "observed": 396.524034,
+          "ratio": 2.5323743181848304
+        },
+        "coach": {
+          "modelled": 1323.7952356755263,
+          "observed": 253.51536600000003,
+          "ratio": 5.221755416890692
+        },
+        "bus": {
+          "modelled": 222.0,
+          "observed": 338.02048800000006,
+          "ratio": 0.6567649236693605
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 3025,
+      "link": "LIN CHEUNG RD (from YAU MA TEI INT to CHERRY ST UNDERPASS)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 1049.598,
+      "modelled": 1807.7996442590604,
+      "ratio": 1.722373369860709,
+      "geh": 20.059235567348935,
+      "by_class": {
+        "car": {
+          "modelled": 677.6756729596859,
+          "observed": 556.28694,
+          "ratio": 1.2182124443900948
+        },
+        "taxi": {
+          "modelled": 459.9457954823236,
+          "observed": 278.14347,
+          "ratio": 1.6536278758668095
+        },
+        "goods_light": {
+          "modelled": 419.9885848503066,
+          "observed": 78.71985,
+          "ratio": 5.3352310103526195
+        },
+        "goods_heavy": {
+          "modelled": 144.85097497831873,
+          "observed": 53.529498,
+          "ratio": 2.7060028655288106
+        },
+        "coach": {
+          "modelled": 95.33861598842549,
+          "observed": 53.529498,
+          "ratio": 1.781048198666565
+        },
+        "bus": {
+          "modelled": 10.0,
+          "observed": 30.438342,
+          "ratio": 0.32853300616702447
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 3026,
+      "link": "LIN CHEUNG RD (from CHERRY ST to YAU MA TEI INT)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 2905.5370000000003,
+      "modelled": 4993.602473653731,
+      "ratio": 1.7186504503827453,
+      "geh": 33.225323571118366,
+      "by_class": {
+        "car": {
+          "modelled": 2308.304716728121,
+          "observed": 1412.0909820000002,
+          "ratio": 1.6346713817680345
+        },
+        "taxi": {
+          "modelled": 1086.8061485301382,
+          "observed": 726.3842500000001,
+          "ratio": 1.4961862795485146
+        },
+        "goods_light": {
+          "modelled": 860.6546590806663,
+          "observed": 450.35823500000004,
+          "ratio": 1.9110445689544597
+        },
+        "goods_heavy": {
+          "modelled": 283.71364563495206,
+          "observed": 124.938091,
+          "ratio": 2.270833845499945
+        },
+        "coach": {
+          "modelled": 387.1233036798539,
+          "observed": 113.315943,
+          "ratio": 3.4163180699105498
+        },
+        "bus": {
+          "modelled": 67.0,
+          "observed": 78.449499,
+          "ratio": 0.8540526179778407
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 3027,
+      "link": "LUNG CHEUNG RD (from HAMMER HILL RD to WONG KUK AVE)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 6962.8464,
+      "modelled": 6476.555134263783,
+      "ratio": 0.9301591277762185,
+      "geh": 5.932278101115722,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3101,
+      "link": "CHEUNG SHUN ST (from KOM TSUN ST to TAI NAM WEST ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 826.3062,
+      "modelled": 417.45956238558716,
+      "ratio": 0.5052117028597718,
+      "geh": 16.39480023988184,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3102,
+      "link": "DUNDAS ST (from FERRY ST to SHANGHAI ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 275.1984,
+      "modelled": 187.79490722980884,
+      "ratio": 0.6823982524237381,
+      "geh": 5.744555495010668,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3103,
+      "link": "KO SHAN RD (from PAK KUNG ST to CHI KIANG ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 311.9193,
+      "modelled": 138.6539865341652,
+      "ratio": 0.4445187794861209,
+      "geh": 11.543670093021039,
+      "by_class": {
+        "car": {
+          "modelled": 68.5243127413582,
+          "observed": 165.0053097,
+          "ratio": 0.41528550121171165
+        },
+        "taxi": {
+          "modelled": 33.01015303519387,
+          "observed": 60.82426350000001,
+          "ratio": 0.5427135675090232
+        },
+        "goods_light": {
+          "modelled": 14.125252091792348,
+          "observed": 35.87071950000001,
+          "ratio": 0.3937822348891648
+        },
+        "goods_heavy": {
+          "modelled": 2.3490630778604613,
+          "observed": 3.7430316,
+          "ratio": 0.6275830206350546
+        },
+        "coach": {
+          "modelled": 2.6452055879603242,
+          "observed": 24.953544,
+          "ratio": 0.10600520663358777
+        },
+        "bus": {
+          "modelled": 18.0,
+          "observed": 21.522431700000002,
+          "ratio": 0.8363367230478886
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 3104,
+      "link": "KUNG LOK RD (from HONG NING RD to HONG NING RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 284.8704,
+      "modelled": 280.15897603194855,
+      "ratio": 0.9834611670147145,
+      "geh": 0.2803055333770474,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3105,
+      "link": "TSEUK LUK ST (from CHOI HUNG RD to KING FUK ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 382.1204,
+      "modelled": 644.2716463887588,
+      "ratio": 1.6860435778585983,
+      "geh": 11.572049580836964,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 3106,
+      "link": "TAT CHEE AVE (from BEGONIA RD to CORNWALL ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 730.3752000000001,
+      "modelled": 21.74398564081639,
+      "ratio": 0.029770980231552755,
+      "geh": 36.54196883081849,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 4201,
+      "link": "TAI PO RD (from CALDECOTT RD to TAI PO RD INT)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 3098.3281,
+      "modelled": 1758.0135523593347,
+      "ratio": 0.5674071614169379,
+      "geh": 27.19988782516109,
+      "by_class": {
+        "car": {
+          "modelled": 1093.7665818314279,
+          "observed": 2311.3527626,
+          "ratio": 0.4732149066683655
+        },
+        "taxi": {
+          "modelled": 492.4659705499794,
+          "observed": 219.98129509999998,
+          "ratio": 2.2386720213012303
+        },
+        "goods_light": {
+          "modelled": 44.29731022332052,
+          "observed": 393.4876687,
+          "ratio": 0.1125761078350167
+        },
+        "goods_heavy": {
+          "modelled": 9.431622681279459,
+          "observed": 61.966562,
+          "ratio": 0.1522050340840187
+        },
+        "coach": {
+          "modelled": 92.05206707332744,
+          "observed": 102.2448273,
+          "ratio": 0.9003102602269977
+        },
+        "bus": {
+          "modelled": 26.0,
+          "observed": 12.393312400000003,
+          "ratio": 2.0979056414328743
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 4202,
+      "link": "BOUNDARY ST (from TAI HANG TUNG RD to EMBANKMENT RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2899.69,
+      "modelled": 2303.423821925697,
+      "ratio": 0.794368991832126,
+      "geh": 11.690242231445223,
+      "by_class": {
+        "car": {
+          "modelled": 938.0656784843503,
+          "observed": 1699.2183400000001,
+          "ratio": 0.552057176174517
+        },
+        "taxi": {
+          "modelled": 558.2302062253814,
+          "observed": 519.04451,
+          "ratio": 1.075495830261997
+        },
+        "goods_light": {
+          "modelled": 512.0348282547596,
+          "observed": 374.06001000000003,
+          "ratio": 1.3688574414965118
+        },
+        "goods_heavy": {
+          "modelled": 127.70019052227993,
+          "observed": 26.09721,
+          "ratio": 4.893250677841805
+        },
+        "coach": {
+          "modelled": 89.39291843892629,
+          "observed": 165.28233,
+          "ratio": 0.5408498200559387
+        },
+        "bus": {
+          "modelled": 78.0,
+          "observed": 115.9876,
+          "ratio": 0.6724856795036711
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 4203,
+      "link": "PRINCE EDWARD RD W (from EMBANKMENT RD to YUEN NGAI ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2726.815,
+      "modelled": 2809.0419162238586,
+      "ratio": 1.0301549302845476,
+      "geh": 1.562919366643255,
+      "by_class": {
+        "car": {
+          "modelled": 1500.0688236889193,
+          "observed": 1546.104105,
+          "ratio": 0.9702249795714237
+        },
+        "taxi": {
+          "modelled": 630.1872317221472,
+          "observed": 409.02225,
+          "ratio": 1.540716261088846
+        },
+        "goods_light": {
+          "modelled": 449.5322260600814,
+          "observed": 381.75410000000005,
+          "ratio": 1.1775439374720045
+        },
+        "goods_heavy": {
+          "modelled": 103.14233963331034,
+          "observed": 40.902225,
+          "ratio": 2.521680413065801
+        },
+        "coach": {
+          "modelled": 83.11129511940089,
+          "observed": 103.61896999999999,
+          "ratio": 0.8020857099757014
+        },
+        "bus": {
+          "modelled": 43.0,
+          "observed": 248.14016499999997,
+          "ratio": 0.17328915695691588
+        }
+      },
+      "worst_class": "bus"
+    },
+    {
+      "station": 4204,
+      "link": "ARGYLE ST & FO <K13> (from WATERLOO RD to YIM PO FONG ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2721.5232,
+      "modelled": 3943.2894259169307,
+      "ratio": 1.4489273602065675,
+      "geh": 21.164554983296924,
+      "by_class": {
+        "car": {
+          "modelled": 1844.7808602466566,
+          "observed": 1480.5086208,
+          "ratio": 1.2460453349132274
+        },
+        "taxi": {
+          "modelled": 881.6805963334537,
+          "observed": 555.1907328,
+          "ratio": 1.588067927371308
+        },
+        "goods_light": {
+          "modelled": 755.6633311150828,
+          "observed": 367.405632,
+          "ratio": 2.0567548924102574
+        },
+        "goods_heavy": {
+          "modelled": 134.77933937054812,
+          "observed": 21.772185600000004,
+          "ratio": 6.190436819101344
+        },
+        "coach": {
+          "modelled": 119.38529885118973,
+          "observed": 21.772185600000004,
+          "ratio": 5.483386052486606
+        },
+        "bus": {
+          "modelled": 207.0,
+          "observed": 274.87384320000007,
+          "ratio": 0.7530727463558088
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4205,
+      "link": "WATERLOO RD (from YIM PO FONG ST to PUI CHING RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2488.6368,
+      "modelled": 2180.456408819134,
+      "ratio": 0.8761649786819571,
+      "geh": 6.37828216779269,
+      "by_class": {
+        "car": {
+          "modelled": 953.4801076489641,
+          "observed": 1358.7956928000003,
+          "ratio": 0.7017096924145946
+        },
+        "taxi": {
+          "modelled": 575.5310797214155,
+          "observed": 689.3523936,
+          "ratio": 0.8348866052612419
+        },
+        "goods_light": {
+          "modelled": 399.8369312448047,
+          "observed": 206.55685440000005,
+          "ratio": 1.9357233745945572
+        },
+        "goods_heavy": {
+          "modelled": 83.01215468056805,
+          "observed": 27.375004800000006,
+          "ratio": 3.032406945206016
+        },
+        "coach": {
+          "modelled": 97.59613552338172,
+          "observed": 87.102288,
+          "ratio": 1.1204772889936223
+        },
+        "bus": {
+          "modelled": 71.0,
+          "observed": 116.96592960000002,
+          "ratio": 0.6070143694219824
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4206,
+      "link": "CORNWALL ST (from WATERLOO RD to NAM CHEONG ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1458.5388,
+      "modelled": 526.4583392467425,
+      "ratio": 0.3609491494136066,
+      "geh": 29.586150299692033,
+      "by_class": {
+        "car": {
+          "modelled": 250.18592873255074,
+          "observed": 1070.5674792,
+          "ratio": 0.2336946839815333
+        },
+        "taxi": {
+          "modelled": 105.88319205558274,
+          "observed": 128.3514144,
+          "ratio": 0.8249476061526185
+        },
+        "goods_light": {
+          "modelled": 54.5963968956555,
+          "observed": 100.6391772,
+          "ratio": 0.5424964553034471
+        },
+        "goods_heavy": {
+          "modelled": 29.078441125473965,
+          "observed": 21.878082,
+          "ratio": 1.3291129051200177
+        },
+        "coach": {
+          "modelled": 65.71438043747956,
+          "observed": 118.14164280000003,
+          "ratio": 0.556233846762452
+        },
+        "bus": {
+          "modelled": 21.0,
+          "observed": 20.4195432,
+          "ratio": 1.0284265320881418
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 4207,
+      "link": "CHEONG WAN RD & GILLIES AVE S (from HUNG HOM STATION to WUHU ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 860.7624000000001,
+      "modelled": 428.32076425169925,
+      "ratio": 0.49760626655125645,
+      "geh": 17.03342689965565,
+      "by_class": {
+        "car": {
+          "modelled": 163.78401716830456,
+          "observed": 210.88678800000002,
+          "ratio": 0.7766442778212571
+        },
+        "taxi": {
+          "modelled": 79.23117996138828,
+          "observed": 292.659216,
+          "ratio": 0.27072846378905174
+        },
+        "goods_light": {
+          "modelled": 28.59745916803786,
+          "observed": 117.06368640000001,
+          "ratio": 0.2442897541285515
+        },
+        "goods_heavy": {
+          "modelled": 7.068572127772203,
+          "observed": 8.607624000000001,
+          "ratio": 0.821198989148713
+        },
+        "coach": {
+          "modelled": 5.639535826196348,
+          "observed": 90.38005200000002,
+          "ratio": 0.06239801484288089
+        },
+        "bus": {
+          "modelled": 144.0,
+          "observed": 140.30427120000002,
+          "ratio": 1.0263408146337314
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 4208,
+      "link": "CHATHAM RD N (from WUHU ST to HONG CHONG RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 6603.6243,
+      "modelled": 7617.1258976435765,
+      "ratio": 1.1534765685630504,
+      "geh": 12.019272501732944,
+      "by_class": {
+        "car": {
+          "modelled": 3695.980175647376,
+          "observed": 3460.2991332,
+          "ratio": 1.0681100197916773
+        },
+        "taxi": {
+          "modelled": 1647.3619924901127,
+          "observed": 1314.1212357,
+          "ratio": 1.2535844850057565
+        },
+        "goods_light": {
+          "modelled": 1409.4967340277924,
+          "observed": 937.7146506,
+          "ratio": 1.5031190278683615
+        },
+        "goods_heavy": {
+          "modelled": 363.3734060393375,
+          "observed": 244.33409910000003,
+          "ratio": 1.4871989107448222
+        },
+        "coach": {
+          "modelled": 214.91358943895807,
+          "observed": 231.1268505,
+          "ratio": 0.9298512439123038
+        },
+        "bus": {
+          "modelled": 286.0,
+          "observed": 416.0283309,
+          "ratio": 0.6874531822899949
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4209,
+      "link": "SHANGHAI ST (from ARGYLE ST to DUNDAS ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 541.0684,
+      "modelled": 927.1582730485549,
+      "ratio": 1.7135694360427534,
+      "geh": 14.24973715144096,
+      "by_class": {
+        "car": {
+          "modelled": 282.30788920956564,
+          "observed": 135.2671,
+          "ratio": 2.087040301814452
+        },
+        "taxi": {
+          "modelled": 179.2876886229687,
+          "observed": 78.45491799999999,
+          "ratio": 2.285231993015004
+        },
+        "goods_light": {
+          "modelled": 349.2681770943037,
+          "observed": 187.75073480000003,
+          "ratio": 1.8602759529349318
+        },
+        "goods_heavy": {
+          "modelled": 76.945395242716,
+          "observed": 17.3141888,
+          "ratio": 4.444065854400063
+        },
+        "coach": {
+          "modelled": 14.349122879000786,
+          "observed": 34.6283776,
+          "ratio": 0.4143746797713326
+        },
+        "bus": {
+          "modelled": 25.0,
+          "observed": 87.11201239999998,
+          "ratio": 0.28698682662966474
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 4210,
+      "link": "RECLAMATION ST (from PUBLIC SQUARE ST to ARGYLE ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 250.317,
+      "modelled": 81.50872386811145,
+      "ratio": 0.3256220067678641,
+      "geh": 13.105503401408008,
+      "by_class": {
+        "car": {
+          "modelled": 40.303670984324185,
+          "observed": 99.125532,
+          "ratio": 0.4065922287743604
+        },
+        "taxi": {
+          "modelled": 24.022501275636273,
+          "observed": 34.543746,
+          "ratio": 0.6954225889582524
+        },
+        "goods_light": {
+          "modelled": 11.671269726598382,
+          "observed": 107.886627,
+          "ratio": 0.10818087515701443
+        },
+        "goods_heavy": {
+          "modelled": 4.556667050707696,
+          "observed": 4.255389,
+          "ratio": 1.070799179747773
+        },
+        "coach": {
+          "modelled": 0.9546148308448977,
+          "observed": 4.255389,
+          "ratio": 0.22433080285842205
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4211,
+      "link": "FAT KWONG ST (from CHUNG HAU ST to YAN FUNG ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 2062.8406,
+      "modelled": 1601.997105566043,
+      "ratio": 0.776597622504639,
+      "geh": 10.765670549122866,
+      "by_class": {
+        "car": {
+          "modelled": 777.0952956688975,
+          "observed": 1146.9393736,
+          "ratio": 0.6775382496720466
+        },
+        "taxi": {
+          "modelled": 312.5915407807305,
+          "observed": 478.57901919999995,
+          "ratio": 0.6531659939946037
+        },
+        "goods_light": {
+          "modelled": 301.71209975528876,
+          "observed": 179.46713219999998,
+          "ratio": 1.6811551845552297
+        },
+        "goods_heavy": {
+          "modelled": 54.92991005275967,
+          "observed": 55.696696200000005,
+          "ratio": 0.9862328252920622
+        },
+        "coach": {
+          "modelled": 56.668259308367006,
+          "observed": 63.948058599999996,
+          "ratio": 0.886160745908352
+        },
+        "bus": {
+          "modelled": 99.0,
+          "observed": 136.1474796,
+          "ratio": 0.7271526457255107
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4212,
+      "link": "CHATHAM RD N & MA TAU WAI RD (from SAN LAU ST to CHI KIANG ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1522.2734999999998,
+      "modelled": 1648.5806638542103,
+      "ratio": 1.0829727140715584,
+      "geh": 3.172158266902425,
+      "by_class": {
+        "car": {
+          "modelled": 852.404998530418,
+          "observed": 724.602186,
+          "ratio": 1.1763765207995356
+        },
+        "taxi": {
+          "modelled": 331.5870264935193,
+          "observed": 302.9324264999999,
+          "ratio": 1.0945907320803752
+        },
+        "goods_light": {
+          "modelled": 202.43333284231602,
+          "observed": 225.29647799999998,
+          "ratio": 0.8985197400303614
+        },
+        "goods_heavy": {
+          "modelled": 34.23326240154613,
+          "observed": 44.145931499999996,
+          "ratio": 0.7754567915629129
+        },
+        "coach": {
+          "modelled": 42.9220435864108,
+          "observed": 54.80184599999998,
+          "ratio": 0.7832225868159772
+        },
+        "bus": {
+          "modelled": 185.0,
+          "observed": 167.45008499999997,
+          "ratio": 1.104806844379924
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 4213,
+      "link": "EAST KOWLOON CORRIDOR <FO> (from MA TAU KOK RD to CHATHAM RD N)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4693.5196,
+      "modelled": 4163.344739957383,
+      "ratio": 0.887041089581768,
+      "geh": 7.966987429112129,
+      "by_class": {
+        "car": {
+          "modelled": 1884.0725699546297,
+          "observed": 2661.2256131999998,
+          "ratio": 0.7079717557990584
+        },
+        "taxi": {
+          "modelled": 942.3070211453285,
+          "observed": 882.3816847999999,
+          "ratio": 1.06791316884474
+        },
+        "goods_light": {
+          "modelled": 850.23081864772,
+          "observed": 610.1575479999999,
+          "ratio": 1.3934611174353941
+        },
+        "goods_heavy": {
+          "modelled": 233.26579662354987,
+          "observed": 225.28894079999998,
+          "ratio": 1.0354072232539429
+        },
+        "coach": {
+          "modelled": 107.46853358615576,
+          "observed": 159.57966639999998,
+          "ratio": 0.6734475388410498
+        },
+        "bus": {
+          "modelled": 146.0,
+          "observed": 154.88614679999998,
+          "ratio": 0.9426278787122621
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4214,
+      "link": "FERRY ST & FERRY ST <FO> (from WATERLOO RD to SHANTUNG ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 4033.9953000000005,
+      "modelled": 2517.09159410098,
+      "ratio": 0.6239698876448814,
+      "geh": 26.50429948375057,
+      "by_class": {
+        "car": {
+          "modelled": 1200.9149955590335,
+          "observed": 2214.6634197000003,
+          "ratio": 0.5422562114299564
+        },
+        "taxi": {
+          "modelled": 453.44775015968673,
+          "observed": 564.7593420000001,
+          "ratio": 0.8029043814554319
+        },
+        "goods_light": {
+          "modelled": 596.4300744262189,
+          "observed": 843.1050177000001,
+          "ratio": 0.7074208573129914
+        },
+        "goods_heavy": {
+          "modelled": 194.2454255391456,
+          "observed": 221.86974150000003,
+          "ratio": 0.8754930898909691
+        },
+        "coach": {
+          "modelled": 52.05334841689489,
+          "observed": 80.67990600000002,
+          "ratio": 0.6451835531005066
+        },
+        "bus": {
+          "modelled": 20.0,
+          "observed": 100.84988250000002,
+          "ratio": 0.1983145592658474
+        }
+      },
+      "worst_class": "bus"
+    },
+    {
+      "station": 4215,
+      "link": "YIM PO FONG ST (from SHANTUNG ST to WATERLOO RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1044.8822,
+      "modelled": 1530.6733803098605,
+      "ratio": 1.464924352534535,
+      "geh": 13.537209823954425,
+      "by_class": {
+        "car": {
+          "modelled": 756.6351957159152,
+          "observed": 610.2112048,
+          "ratio": 1.239956247548595
+        },
+        "taxi": {
+          "modelled": 292.94606119926294,
+          "observed": 244.50243479999997,
+          "ratio": 1.1981314682567037
+        },
+        "goods_light": {
+          "modelled": 340.027745876367,
+          "observed": 115.9819242,
+          "ratio": 2.931730510782188
+        },
+        "goods_heavy": {
+          "modelled": 70.46908809498612,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 51.59528942332943,
+          "observed": 4.179528800000001,
+          "ratio": 12.344762266820466
+        },
+        "bus": {
+          "modelled": 19.0,
+          "observed": 71.0519896,
+          "ratio": 0.26740982352449144
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4216,
+      "link": "KWUN TONG RD (from PING SHEK EST EASTERN END to WAI YIP ST FO <K42>)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 9861.4054,
+      "modelled": 7690.671070879467,
+      "ratio": 0.7798757640446936,
+      "geh": 23.171674602288903,
+      "by_class": {
+        "car": {
+          "modelled": 3301.5972815195687,
+          "observed": 4910.9798892,
+          "ratio": 0.6722889028277816
+        },
+        "taxi": {
+          "modelled": 1535.0709577604391,
+          "observed": 1715.8845396,
+          "ratio": 0.8946236896092604
+        },
+        "goods_light": {
+          "modelled": 1264.8837004781185,
+          "observed": 1617.2704855999996,
+          "ratio": 0.7821101737405742
+        },
+        "goods_heavy": {
+          "modelled": 399.26007013477084,
+          "observed": 463.48605380000004,
+          "ratio": 0.8614284439873492
+        },
+        "coach": {
+          "modelled": 270.8590609865706,
+          "observed": 256.39654039999994,
+          "ratio": 1.0564068476275381
+        },
+        "bus": {
+          "modelled": 919.0,
+          "observed": 897.3878914,
+          "ratio": 1.0240833521458412
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 4217,
+      "link": "CLEAR WATER BAY RD (from LUNG CHEUNG RD to NEW CLEAR WATER BAY RD WESTERN JUNCTION)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 5350.67,
+      "modelled": 4947.374202529052,
+      "ratio": 0.9246270471789612,
+      "geh": 5.620323560445212,
+      "by_class": {
+        "car": {
+          "modelled": 2859.794998495162,
+          "observed": 2803.75108,
+          "ratio": 1.01998890660977
+        },
+        "taxi": {
+          "modelled": 927.6698029513323,
+          "observed": 775.8471499999999,
+          "ratio": 1.1956862933005972
+        },
+        "goods_light": {
+          "modelled": 380.7974613121988,
+          "observed": 695.5871000000001,
+          "ratio": 0.5474475609340638
+        },
+        "goods_heavy": {
+          "modelled": 101.29361826517005,
+          "observed": 192.62412,
+          "ratio": 0.5258615497642251
+        },
+        "coach": {
+          "modelled": 239.81832150518903,
+          "observed": 235.42948000000004,
+          "ratio": 1.0186418519260587
+        },
+        "bus": {
+          "modelled": 438.0,
+          "observed": 652.78174,
+          "ratio": 0.6709746507308859
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 4218,
+      "link": "SHING KAI RD (from CONCORDE RD to KAI SHING ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 647.1120000000001,
+      "modelled": 251.05417131983148,
+      "ratio": 0.38796092688720263,
+      "geh": 18.68939544112831,
+      "by_class": {
+        "car": {
+          "modelled": 62.11262015065728,
+          "observed": 291.84751200000005,
+          "ratio": 0.21282559417761035
+        },
+        "taxi": {
+          "modelled": 32.30240232450047,
+          "observed": 139.77619200000004,
+          "ratio": 0.23110088966009648
+        },
+        "goods_light": {
+          "modelled": 25.64241596052977,
+          "observed": 109.361928,
+          "ratio": 0.2344729690622295
+        },
+        "goods_heavy": {
+          "modelled": 6.681824018353453,
+          "observed": 18.119136,
+          "ratio": 0.3687716687127605
+        },
+        "coach": {
+          "modelled": 3.3149088657905215,
+          "observed": 42.70939200000001,
+          "ratio": 0.07761545436634923
+        },
+        "bus": {
+          "modelled": 121.0,
+          "observed": 45.29784000000001,
+          "ratio": 2.671209046612377
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 4219,
+      "link": "KWUN TONG BYPASS (from WANG CHIN ST to TATE'S CAIRN TUNNEL SLIP RD)",
+      "road_type": "EXPRESSWAY",
+      "observed": 4798.5808,
+      "modelled": 3273.1509064375177,
+      "ratio": 0.682108115473958,
+      "geh": 24.011754350390383,
+      "by_class": {
+        "car": {
+          "modelled": 1781.323470641833,
+          "observed": 2955.9257728,
+          "ratio": 0.6026279438520795
+        },
+        "taxi": {
+          "modelled": 519.8268187281689,
+          "observed": 585.4268576,
+          "ratio": 0.8879449447523415
+        },
+        "goods_light": {
+          "modelled": 455.11826284960574,
+          "observed": 705.3913775999999,
+          "ratio": 0.6451996399475209
+        },
+        "goods_heavy": {
+          "modelled": 175.41092329223665,
+          "observed": 263.921944,
+          "ratio": 0.664631824977148
+        },
+        "coach": {
+          "modelled": 196.47143092567387,
+          "observed": 153.5545856,
+          "ratio": 1.2794891807234565
+        },
+        "bus": {
+          "modelled": 145.0,
+          "observed": 139.15884319999998,
+          "ratio": 1.0419747438659366
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 4220,
+      "link": "HOI WANG RD (from HOI TING RD to CHERRY ST RA)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1298.7463,
+      "modelled": 793.3527611449275,
+      "ratio": 0.610860459155824,
+      "geh": 15.62620656370616,
+      "by_class": {
+        "car": {
+          "modelled": 290.11388044564296,
+          "observed": 585.7345813000001,
+          "ratio": 0.49529921863543375
+        },
+        "taxi": {
+          "modelled": 206.61092999848097,
+          "observed": 215.59188580000003,
+          "ratio": 0.9583427930592411
+        },
+        "goods_light": {
+          "modelled": 87.41777069663685,
+          "observed": 237.6705729,
+          "ratio": 0.3678106617491006
+        },
+        "goods_heavy": {
+          "modelled": 22.56353022664704,
+          "observed": 18.1824482,
+          "ratio": 1.2409511622668634
+        },
+        "coach": {
+          "modelled": 30.64664977751967,
+          "observed": 40.2611353,
+          "ratio": 0.7611968601769575
+        },
+        "bus": {
+          "modelled": 156.0,
+          "observed": 202.60442279999998,
+          "ratio": 0.7699733196545008
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4221,
+      "link": "HUNG HOM BYPASS (from SLIP RDS TO/FROM PRINCESS MARGARET RD LINK to SLIP RD FROM CHEONG TUNG RD S)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 1324.5672,
+      "modelled": 641.7382514197573,
+      "ratio": 0.4844890100100299,
+      "geh": 21.777169478059818,
+      "by_class": {
+        "car": {
+          "modelled": 308.494721939592,
+          "observed": 582.809568,
+          "ratio": 0.5293233654317632
+        },
+        "taxi": {
+          "modelled": 120.109266685375,
+          "observed": 392.07189120000004,
+          "ratio": 0.3063450080998181
+        },
+        "goods_light": {
+          "modelled": 145.63335796927475,
+          "observed": 246.36949920000004,
+          "ratio": 0.5911176441977146
+        },
+        "goods_heavy": {
+          "modelled": 26.98809480337914,
+          "observed": 23.8422096,
+          "ratio": 1.1319460425924257
+        },
+        "coach": {
+          "modelled": 6.5128100221364695,
+          "observed": 52.982687999999996,
+          "ratio": 0.1229233598366408
+        },
+        "bus": {
+          "modelled": 34.0,
+          "observed": 27.815911200000002,
+          "ratio": 1.222321992457324
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 4222,
+      "link": "SHING KAI RD (from SUNG WONG TOI RD to KAI SHING ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1676.5430000000001,
+      "modelled": 1878.5800833207315,
+      "ratio": 1.1205081428396,
+      "geh": 4.792021605734183,
+      "by_class": {
+        "car": {
+          "modelled": 913.0762142628655,
+          "observed": 784.622124,
+          "ratio": 1.1637145911818128
+        },
+        "taxi": {
+          "modelled": 531.468235084132,
+          "observed": 516.3752440000001,
+          "ratio": 1.02922872709237
+        },
+        "goods_light": {
+          "modelled": 300.51406229692043,
+          "observed": 177.713558,
+          "ratio": 1.691002451804608
+        },
+        "goods_heavy": {
+          "modelled": 55.82766276705415,
+          "observed": 100.59258000000001,
+          "ratio": 0.5549878804883436
+        },
+        "coach": {
+          "modelled": 51.69390890975964,
+          "observed": 70.41480600000001,
+          "ratio": 0.7341340812578484
+        },
+        "bus": {
+          "modelled": 26.0,
+          "observed": 25.148145000000003,
+          "ratio": 1.0338734725762078
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 4401,
+      "link": "HO MAN TIN ST (from WATERLOO RD to HO MAN TIN HILL RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 198.64079999999998,
+      "modelled": 0.0,
+      "ratio": 0.0,
+      "geh": 19.93192414193873,
+      "by_class": {
+        "car": {
+          "modelled": 0.0,
+          "observed": 149.7751632,
+          "ratio": 0.0
+        },
+        "taxi": {
+          "modelled": 0.0,
+          "observed": 16.2885456,
+          "ratio": 0.0
+        },
+        "goods_light": {
+          "modelled": 0.0,
+          "observed": 19.466798400000002,
+          "ratio": 0.0
+        },
+        "goods_heavy": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 0.0,
+          "observed": 9.733399200000001,
+          "ratio": 0.0
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 3.1782528,
+          "ratio": 0.0
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 4403,
+      "link": "SOY ST (from SAI YEUNG CHOI ST S to YIM PO FONG ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 129.3045,
+      "modelled": 0.0,
+      "ratio": 0.0,
+      "geh": 16.081324572310578,
+      "by_class": {
+        "car": {
+          "modelled": 0.0,
+          "observed": 99.69376949999997,
+          "ratio": 0.0
+        },
+        "taxi": {
+          "modelled": 0.0,
+          "observed": 16.1630625,
+          "ratio": 0.0
+        },
+        "goods_light": {
+          "modelled": 0.0,
+          "observed": 5.430789,
+          "ratio": 0.0
+        },
+        "goods_heavy": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 0.0,
+          "observed": 2.7153945,
+          "ratio": 0.0
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 5.430789,
+          "ratio": 0.0
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 4404,
+      "link": "PORTLAND ST (from WATERLOO RD to ARGYLE ST)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 122.81360000000001,
+      "modelled": 317.94942036973003,
+      "ratio": 2.5888779448670993,
+      "geh": 13.144661938692973,
+      "by_class": {
+        "car": {
+          "modelled": 85.53418684777074,
+          "observed": 45.44103200000001,
+          "ratio": 1.8823117143943986
+        },
+        "taxi": {
+          "modelled": 62.43002862737381,
+          "observed": 40.8969288,
+          "ratio": 1.5265211950921316
+        },
+        "goods_light": {
+          "modelled": 143.43766370928313,
+          "observed": 31.8087224,
+          "ratio": 4.509381480511243
+        },
+        "goods_heavy": {
+          "modelled": 21.508807361914176,
+          "observed": 4.5441032,
+          "ratio": 4.733344824103945
+        },
+        "coach": {
+          "modelled": 5.038733823388166,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "bus": {
+          "modelled": 0.0,
+          "observed": 0.0,
+          "ratio": null
+        }
+      },
+      "worst_class": null
+    },
+    {
+      "station": 5001,
+      "link": "TUEN MUN RD (from PUI TO RD to TSING CHUI PATH)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 8472.6342,
+      "modelled": 8503.834944446227,
+      "ratio": 1.0036825317498337,
+      "geh": 0.33865404705368074,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5002,
+      "link": "SHA TIN RD (from LION ROCK TUNNEL RD to SHA TIN WAI RD)",
+      "road_type": "EXPRESSWAY",
+      "observed": 4716.1308,
+      "modelled": 6319.603874484813,
+      "ratio": 1.3399975832911193,
+      "geh": 21.58619243010473,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5003,
+      "link": "FANLING HIGHWAY (from SO KWUN PO INT to WO HOP SHEK INT)",
+      "road_type": "EXPRESSWAY",
+      "observed": 5772.2175,
+      "modelled": 6000.724744551241,
+      "ratio": 1.039587427977418,
+      "geh": 2.978327589122717,
+      "by_class": {
+        "car": {
+          "modelled": 3371.6613455441466,
+          "observed": 3474.874935,
+          "ratio": 0.9702971786361994
+        },
+        "taxi": {
+          "modelled": 1089.778148219721,
+          "observed": 300.15531,
+          "ratio": 3.6307142066542855
+        },
+        "goods_light": {
+          "modelled": 571.8451207103557,
+          "observed": 1096.721325,
+          "ratio": 0.5214133323343153
+        },
+        "goods_heavy": {
+          "modelled": 271.96736610877974,
+          "observed": 727.299405,
+          "ratio": 0.3739414115274572
+        },
+        "coach": {
+          "modelled": 625.4727639682384,
+          "observed": 150.077655,
+          "ratio": 4.1676608284440375
+        },
+        "bus": {
+          "modelled": 70.0,
+          "observed": 34.63330499999999,
+          "ratio": 2.02117585947977
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5004,
+      "link": "CASTLE PEAK RD - KWAI CHUNG (from TAI WO INT to WO YI HOP RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1877.435,
+      "modelled": 2948.67558869317,
+      "ratio": 1.5705873112481499,
+      "geh": 21.8073745401287,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5005,
+      "link": "MA ON SHAN RD (from MA ON SHAN BYPASS to HANG HONG ST RA)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1539.0086999999999,
+      "modelled": 2297.433370433448,
+      "ratio": 1.4928007687243408,
+      "geh": 17.31662000586856,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5006,
+      "link": "TING KOK RD (from NAM WAN RD to DAI KWAI ST)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2219.1845000000003,
+      "modelled": 2617.5509291355606,
+      "ratio": 1.1795102791748773,
+      "geh": 8.100681639893686,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5007,
+      "link": "KWAI FOO RD (from KWAI CHUNG RD to HING FONG RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1084.68,
+      "modelled": 144.0,
+      "ratio": 0.13275804845668768,
+      "geh": 37.952248746040546,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5008,
+      "link": "KAU YUK RD (from YUEN LONG TAI YUK RD to YUEN LONG HONG LOK RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 610.0861,
+      "modelled": 541.2299806125359,
+      "ratio": 0.8871370460866685,
+      "geh": 2.8698569893354193,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5009,
+      "link": "KWONG FUK RD (from NAM WAN RD to WAN TAU ST)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1008.33,
+      "modelled": 677.4301417113564,
+      "ratio": 0.6718337664369367,
+      "geh": 11.397607273459421,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5010,
+      "link": "KWAI LUEN RD (from KWAI SHING CIRCUIT EASTERN JUNCTION to KWAI SHING CIRCUIT WESTERN JUNCTION)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 373.7888,
+      "modelled": 382.03806197040024,
+      "ratio": 1.022069312859027,
+      "geh": 0.42434484645396364,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5011,
+      "link": "WANG CHAU RD (from YUEN LONG ON NING RD to YUEN LONG ON LOK RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 262.1598,
+      "modelled": 95.23782742768526,
+      "ratio": 0.3632815840860622,
+      "geh": 12.486843640408056,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5012,
+      "link": "TUEN MUN RD (from SHAM TSENG to TSING LONG HIGHWAY - TING KAU BRIDGE)",
+      "road_type": "EXPRESSWAY",
+      "observed": 8964.5028,
+      "modelled": 9628.785221535441,
+      "ratio": 1.0741014238442137,
+      "geh": 6.88953101490542,
+      "by_class": {
+        "car": {
+          "modelled": 6010.159206451664,
+          "observed": 5064.944082,
+          "ratio": 1.1866190641296135
+        },
+        "taxi": {
+          "modelled": 1143.8894246246289,
+          "observed": 510.97665960000006,
+          "ratio": 2.2386334153111456
+        },
+        "goods_light": {
+          "modelled": 712.1397314540895,
+          "observed": 1667.3975208000002,
+          "ratio": 0.42709655170436633
+        },
+        "goods_heavy": {
+          "modelled": 513.0197817932841,
+          "observed": 869.5567715999999,
+          "ratio": 0.5899784793226537
+        },
+        "coach": {
+          "modelled": 980.5770772117748,
+          "observed": 295.8285924,
+          "ratio": 3.3146798599031393
+        },
+        "bus": {
+          "modelled": 269.0,
+          "observed": 573.7281791999999,
+          "ratio": 0.4688631476583398
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5013,
+      "link": "TOLO HIGHWAY (from NORTH OF MA LIU SHUI INT to YUEN SHIN RD INT)",
+      "road_type": "EXPRESSWAY",
+      "observed": 11564.608,
+      "modelled": 14134.727769944486,
+      "ratio": 1.2222401113764068,
+      "geh": 22.672917661316962,
+      "by_class": {
+        "car": {
+          "modelled": 8463.455354584603,
+          "observed": 7042.846272,
+          "ratio": 1.2017095117115462
+        },
+        "taxi": {
+          "modelled": 2029.0787849589838,
+          "observed": 844.216384,
+          "ratio": 2.4035055744179727
+        },
+        "goods_light": {
+          "modelled": 1572.777535281087,
+          "observed": 2000.6771840000001,
+          "ratio": 0.7861225928195955
+        },
+        "goods_heavy": {
+          "modelled": 641.9946127223841,
+          "observed": 1063.943936,
+          "ratio": 0.6034101901421844
+        },
+        "coach": {
+          "modelled": 1219.4214823974303,
+          "observed": 300.67980800000004,
+          "ratio": 4.05554829407577
+        },
+        "bus": {
+          "modelled": 208.0,
+          "observed": 323.809024,
+          "ratio": 0.6423539326686584
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5014,
+      "link": "ROUTE TWISK (from CHUEN LUNG to CHEUNG PEI SHAN RA)",
+      "road_type": "RURAL ROAD",
+      "observed": 545.9188,
+      "modelled": 458.96525794423405,
+      "ratio": 0.8407207407845892,
+      "geh": 3.8792189919652174,
+      "by_class": {
+        "car": {
+          "modelled": 321.8187192888715,
+          "observed": 441.1023904,
+          "ratio": 0.7295782709248984
+        },
+        "taxi": {
+          "modelled": 63.85148299863181,
+          "observed": 20.198995600000003,
+          "ratio": 3.161121684616427
+        },
+        "goods_light": {
+          "modelled": 20.828983185372465,
+          "observed": 73.1531192,
+          "ratio": 0.284731306240356
+        },
+        "goods_heavy": {
+          "modelled": 15.313442264254743,
+          "observed": 2.729594,
+          "ratio": 5.610153841287291
+        },
+        "coach": {
+          "modelled": 30.152630207103623,
+          "observed": 2.729594,
+          "ratio": 11.046562311868954
+        },
+        "bus": {
+          "modelled": 7.0,
+          "observed": 6.005106800000001,
+          "ratio": 1.1656745222249834
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 5015,
+      "link": "SOUTH LANTAU RD (from MUI WO FERRY PIER to CHI MA WAN RD)",
+      "road_type": "RURAL ROAD",
+      "observed": 270.7578,
+      "modelled": 139.56438128584327,
+      "ratio": 0.5154583959754558,
+      "geh": 9.159347785810272,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5017,
+      "link": "CLEAR WATER BAY RD (from ON SAU RD to HIRAM'S HIGHWAY)",
+      "road_type": "RURAL ROAD",
+      "observed": 1844.1835999999998,
+      "modelled": 3475.475188010878,
+      "ratio": 1.8845602943280042,
+      "geh": 31.630401606479325,
+      "by_class": {
+        "car": {
+          "modelled": 2551.5773400038997,
+          "observed": 1244.82393,
+          "ratio": 2.0497495898909173
+        },
+        "taxi": {
+          "modelled": 307.66691164536473,
+          "observed": 140.15795359999998,
+          "ratio": 2.195144148033314
+        },
+        "goods_light": {
+          "modelled": 266.67151129616104,
+          "observed": 178.88580919999995,
+          "ratio": 1.490735975585486
+        },
+        "goods_heavy": {
+          "modelled": 63.86436559698499,
+          "observed": 53.48132439999999,
+          "ratio": 1.1941433072847576
+        },
+        "coach": {
+          "modelled": 99.69505946846819,
+          "observed": 68.2347932,
+          "ratio": 1.461059010998339
+        },
+        "bus": {
+          "modelled": 186.0,
+          "observed": 158.59978959999998,
+          "ratio": 1.1727632203618006
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 5018,
+      "link": "TSING TSUEN RD (from TSUEN TSING INT to TAM KON SHAN INT)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2337.489,
+      "modelled": 1786.6409786011418,
+      "ratio": 0.764341983470785,
+      "geh": 12.130553553969566,
+      "by_class": {
+        "car": {
+          "modelled": 619.6243457465706,
+          "observed": 979.407891,
+          "ratio": 0.6326519843677374
+        },
+        "taxi": {
+          "modelled": 440.2976945084622,
+          "observed": 507.23511299999996,
+          "ratio": 0.8680347302937252
+        },
+        "goods_light": {
+          "modelled": 135.9627634653643,
+          "observed": 352.96083899999996,
+          "ratio": 0.38520636977906864
+        },
+        "goods_heavy": {
+          "modelled": 228.3430721429597,
+          "observed": 51.424758000000004,
+          "ratio": 4.440333431281479
+        },
+        "coach": {
+          "modelled": 70.41310273778491,
+          "observed": 128.561895,
+          "ratio": 0.5476980775507775
+        },
+        "bus": {
+          "modelled": 292.0,
+          "observed": 315.561015,
+          "ratio": 0.9253361033840001
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 5019,
+      "link": "CASTLE PEAK RD - YUEN LONG (from YUEN LONG ON LOK RD to KAM TIN RD)",
+      "road_type": "RURAL TRUNK ROAD",
+      "observed": 4065.413,
+      "modelled": 1983.9348873617214,
+      "ratio": 0.4880032821663436,
+      "geh": 37.84709636490754,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5020,
+      "link": "SHING MUN TUNNEL (from WO YI HOP INTERCHANGE to SHING MUN TUNNEL RD)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 3940.961,
+      "modelled": 5055.65308043151,
+      "ratio": 1.2828477826681133,
+      "geh": 16.61997506064394,
+      "by_class": {
+        "car": {
+          "modelled": 2730.698600900415,
+          "observed": 2108.414135,
+          "ratio": 1.2951433760428734
+        },
+        "taxi": {
+          "modelled": 702.7507110783149,
+          "observed": 516.265891,
+          "ratio": 1.3612185568120652
+        },
+        "goods_light": {
+          "modelled": 722.6832971699941,
+          "observed": 717.254902,
+          "ratio": 1.0075682928828475
+        },
+        "goods_heavy": {
+          "modelled": 374.82982121167163,
+          "observed": 169.46132299999996,
+          "ratio": 2.211890091355369
+        },
+        "coach": {
+          "modelled": 294.6906500711143,
+          "observed": 137.93363499999998,
+          "ratio": 2.1364669326021484
+        },
+        "bus": {
+          "modelled": 230.0,
+          "observed": 299.513036,
+          "ratio": 0.7679131535363288
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 5021,
+      "link": "TSEUNG KWAN O TUNNEL (from TOLL PLAZA to TSEUNG KWAN O TUNNEL RD RA)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 5389.6655,
+      "modelled": 5073.120640345746,
+      "ratio": 0.9412681808074631,
+      "geh": 4.376496536063309,
+      "by_class": {
+        "car": {
+          "modelled": 3076.2879852591527,
+          "observed": 3314.6442825,
+          "ratio": 0.9280899315503406
+        },
+        "taxi": {
+          "modelled": 1001.3856118994363,
+          "observed": 819.2291559999999,
+          "ratio": 1.2223510412994096
+        },
+        "goods_light": {
+          "modelled": 291.2556480754841,
+          "observed": 711.435846,
+          "ratio": 0.4093913031133437
+        },
+        "goods_heavy": {
+          "modelled": 163.80513594700358,
+          "observed": 107.79331,
+          "ratio": 1.519622469585576
+        },
+        "coach": {
+          "modelled": 257.38625916466907,
+          "observed": 183.24862700000003,
+          "ratio": 1.4045740117041587
+        },
+        "bus": {
+          "modelled": 283.0,
+          "observed": 253.3142785,
+          "ratio": 1.11718929416764
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 5022,
+      "link": "TATE'S CAIRN TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4838.651000000001,
+      "modelled": 5976.906229243525,
+      "ratio": 1.2352422667482164,
+      "geh": 15.47854742543719,
+      "by_class": {
+        "car": {
+          "modelled": 3295.0288017354205,
+          "observed": 2903.1906000000004,
+          "ratio": 1.134968128422371
+        },
+        "taxi": {
+          "modelled": 709.0210602253254,
+          "observed": 575.799469,
+          "ratio": 1.231368034181576
+        },
+        "goods_light": {
+          "modelled": 1095.2933180636996,
+          "observed": 735.474952,
+          "ratio": 1.4892326585497362
+        },
+        "goods_heavy": {
+          "modelled": 369.4638599351232,
+          "observed": 227.41659700000002,
+          "ratio": 1.6246125604241768
+        },
+        "coach": {
+          "modelled": 207.09918928395595,
+          "observed": 130.64357700000002,
+          "ratio": 1.585222894532013
+        },
+        "bus": {
+          "modelled": 301.0,
+          "observed": 266.125805,
+          "ratio": 1.1310440188241047
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 5023,
+      "link": "PO LAM RD (from ANDERSON RD to TSUI LAM RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 814.9544999999999,
+      "modelled": 1188.719777174633,
+      "ratio": 1.4586333067363062,
+      "geh": 11.808653772125586,
+      "by_class": {
+        "car": {
+          "modelled": 641.6936606318229,
+          "observed": 418.8866129999999,
+          "ratio": 1.5319030036221832
+        },
+        "taxi": {
+          "modelled": 320.66345723006395,
+          "observed": 160.54603649999999,
+          "ratio": 1.9973302625260636
+        },
+        "goods_light": {
+          "modelled": 30.811330526619187,
+          "observed": 86.38517699999998,
+          "ratio": 0.356673813687031
+        },
+        "goods_heavy": {
+          "modelled": 19.50198914162815,
+          "observed": 33.4131345,
+          "ratio": 0.5836623661161796
+        },
+        "coach": {
+          "modelled": 65.04933964449903,
+          "observed": 18.743953499999996,
+          "ratio": 3.4704172545295227
+        },
+        "bus": {
+          "modelled": 111.0,
+          "observed": 96.16463099999999,
+          "ratio": 1.1542705342466297
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 5024,
+      "link": "LION ROCK TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 5325.7038,
+      "modelled": 8499.52779924942,
+      "ratio": 1.5959445208442533,
+      "geh": 38.17346916448076,
+      "by_class": {
+        "car": {
+          "modelled": 4869.792336548513,
+          "observed": 3269.9821331999997,
+          "ratio": 1.4892412674386515
+        },
+        "taxi": {
+          "modelled": 1633.4385235738014,
+          "observed": 420.7306002,
+          "ratio": 3.8823858373917277
+        },
+        "goods_light": {
+          "modelled": 914.422071143052,
+          "observed": 1022.5351296000001,
+          "ratio": 0.8942695900342903
+        },
+        "goods_heavy": {
+          "modelled": 218.28881841543333,
+          "observed": 218.3538558,
+          "ratio": 0.9997021468463271
+        },
+        "coach": {
+          "modelled": 753.5860495686173,
+          "observed": 186.399633,
+          "ratio": 4.042851573471807
+        },
+        "bus": {
+          "modelled": 110.0,
+          "observed": 207.70244820000005,
+          "ratio": 0.529603771902001
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5025,
+      "link": "YUEN LONG HIGHWAY (from TIN SHUI WAI WEST INT to LAM TEI INT)",
+      "road_type": "EXPRESSWAY",
+      "observed": 8371.65,
+      "modelled": 5764.84204494567,
+      "ratio": 0.6886147945680565,
+      "geh": 31.006533046737967,
+      "by_class": {
+        "car": {
+          "modelled": 3172.4428894358853,
+          "observed": 4127.2234499999995,
+          "ratio": 0.7686627409126311
+        },
+        "taxi": {
+          "modelled": 980.6231341216717,
+          "observed": 627.87375,
+          "ratio": 1.5618157856124288
+        },
+        "goods_light": {
+          "modelled": 598.278844522312,
+          "observed": 1707.8165999999997,
+          "ratio": 0.35031797004567833
+        },
+        "goods_heavy": {
+          "modelled": 501.3932010536189,
+          "observed": 1481.7820499999998,
+          "ratio": 0.33837176057951235
+        },
+        "coach": {
+          "modelled": 416.103975812182,
+          "observed": 234.4062,
+          "ratio": 1.7751406567410843
+        },
+        "bus": {
+          "modelled": 96.0,
+          "observed": 192.54795,
+          "ratio": 0.4985771076762957
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5026,
+      "link": "TSING KWAI HIGHWAY (from CHING LAI COURT SLIP RDS TO & FROM CHING CHEUNG RD to CHO YIU CHUEN SLIP RDS TO & FROM KWAI CHUNG RD & TSUEN WAN RD)",
+      "road_type": "EXPRESSWAY",
+      "observed": 9194.9216,
+      "modelled": 12260.759650387306,
+      "ratio": 1.3334273182261072,
+      "geh": 29.60009149744297,
+      "by_class": {
+        "car": {
+          "modelled": 5467.543555918686,
+          "observed": 4864.1135264,
+          "ratio": 1.1240575546281077
+        },
+        "taxi": {
+          "modelled": 2188.0990403246356,
+          "observed": 1241.314416,
+          "ratio": 1.762727486381368
+        },
+        "goods_light": {
+          "modelled": 2051.185866313807,
+          "observed": 1599.9163583999998,
+          "ratio": 1.2820581873199297
+        },
+        "goods_heavy": {
+          "modelled": 1246.7641614893043,
+          "observed": 781.5683359999999,
+          "ratio": 1.5952081271231342
+        },
+        "coach": {
+          "modelled": 961.1670263408737,
+          "observed": 312.62733439999994,
+          "ratio": 3.0744817249763616
+        },
+        "bus": {
+          "modelled": 346.0,
+          "observed": 395.3816288,
+          "ratio": 0.8751038864656526
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5027,
+      "link": "LANTAU LINK (from TSING MA BRIDGE EASTERN END AT TSING YI to NGONG SHUEN AU)",
+      "road_type": "EXPRESSWAY",
+      "observed": 6197.184399999999,
+      "modelled": 4776.204231810105,
+      "ratio": 0.7707055210121077,
+      "geh": 19.183711494547378,
+      "by_class": {
+        "car": {
+          "modelled": 2285.430918063448,
+          "observed": 3563.3810299999996,
+          "ratio": 0.6413658541768261
+        },
+        "taxi": {
+          "modelled": 814.7033677749723,
+          "observed": 1084.5072699999998,
+          "ratio": 0.7512198307116673
+        },
+        "goods_light": {
+          "modelled": 452.0774327100629,
+          "observed": 477.18319879999996,
+          "ratio": 0.9473875732568289
+        },
+        "goods_heavy": {
+          "modelled": 446.96271567946303,
+          "observed": 619.7184399999999,
+          "ratio": 0.7212351397506634
+        },
+        "coach": {
+          "modelled": 624.029797582158,
+          "observed": 272.6761135999999,
+          "ratio": 2.288538549796018
+        },
+        "bus": {
+          "modelled": 153.0,
+          "observed": 179.7183476,
+          "ratio": 0.851332109621511
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5029,
+      "link": "TSING LONG HIGHWAY - TAI LAM TUNNEL (from AU TAU INT to TUEN MUN RD)",
+      "road_type": "EXPRESSWAY",
+      "observed": 3563.4404999999997,
+      "modelled": 5567.747195278178,
+      "ratio": 1.5624639152185025,
+      "geh": 29.663031985450708,
+      "by_class": {
+        "car": {
+          "modelled": 2310.443351974223,
+          "observed": 1803.1008929999998,
+          "ratio": 1.2813721966107545
+        },
+        "taxi": {
+          "modelled": 778.4273978847577,
+          "observed": 317.1462045,
+          "ratio": 2.454474897821953
+        },
+        "goods_light": {
+          "modelled": 924.8170419976523,
+          "observed": 595.0945634999999,
+          "ratio": 1.5540673679800006
+        },
+        "goods_heavy": {
+          "modelled": 725.5609794673562,
+          "observed": 580.8408015,
+          "ratio": 1.2491563567738728
+        },
+        "coach": {
+          "modelled": 597.4984239541888,
+          "observed": 74.8322505,
+          "ratio": 7.984504274052118
+        },
+        "bus": {
+          "modelled": 231.0,
+          "observed": 188.86234649999997,
+          "ratio": 1.2231130465171893
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5030,
+      "link": "KWAI CHUNG RD (from KWAI CHUNG INT to TSUEN WAN RD)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 8445.235200000001,
+      "modelled": 6550.778318650726,
+      "ratio": 0.7756774279833822,
+      "geh": 21.87821123752436,
+      "by_class": {
+        "car": {
+          "modelled": 3244.5063197501436,
+          "observed": 4079.0486016000004,
+          "ratio": 0.7954076150202013
+        },
+        "taxi": {
+          "modelled": 1085.0257935182133,
+          "observed": 1114.7710464000002,
+          "ratio": 0.9733171641137927
+        },
+        "goods_light": {
+          "modelled": 1252.0498340833924,
+          "observed": 1663.7113344,
+          "ratio": 0.7525643470686163
+        },
+        "goods_heavy": {
+          "modelled": 554.4309077044602,
+          "observed": 895.1949312000002,
+          "ratio": 0.6193409819258593
+        },
+        "coach": {
+          "modelled": 242.76546359451635,
+          "observed": 261.8022912,
+          "ratio": 0.9272854812758656
+        },
+        "bus": {
+          "modelled": 172.0,
+          "observed": 413.8165248,
+          "ratio": 0.41564314059987967
+        }
+      },
+      "worst_class": "bus"
+    },
+    {
+      "station": 5031,
+      "link": "NORTH LANTAU HIGHWAY (from TUNG CHUNG EASTERN INT to WESTERN END AT CHEK LAP KOK)",
+      "road_type": "EXPRESSWAY",
+      "observed": 2940.3948,
+      "modelled": 4373.938236533734,
+      "ratio": 1.487534339447796,
+      "geh": 23.70491973335401,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5032,
+      "link": "CHEK LAP KOK S RD (from EASTERN END AT TUNG CHUNG to WESTERN END AT CHEK LAP KOK)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1969.0080000000003,
+      "modelled": 1799.7075903660855,
+      "ratio": 0.9140174089521653,
+      "geh": 3.9001052263968137,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5033,
+      "link": "TSING LONG HIGHWAY - TING KAU BRIDGE (from NW TSING YI INT SOUTHERN TIP to TUEN MUN RD)",
+      "road_type": "EXPRESSWAY",
+      "observed": 7794.1094,
+      "modelled": 8949.520433646172,
+      "ratio": 1.1482415724939878,
+      "geh": 12.627771110478195,
+      "by_class": {
+        "car": {
+          "modelled": 4909.947421379355,
+          "observed": 4084.1133256000003,
+          "ratio": 1.202206459503185
+        },
+        "taxi": {
+          "modelled": 1121.0278429107657,
+          "observed": 483.2347828,
+          "ratio": 2.319840960982177
+        },
+        "goods_light": {
+          "modelled": 849.0703627615042,
+          "observed": 1363.969145,
+          "ratio": 0.6224996847428717
+        },
+        "goods_heavy": {
+          "modelled": 668.5298215194939,
+          "observed": 1161.3223006,
+          "ratio": 0.5756626056126678
+        },
+        "coach": {
+          "modelled": 1117.944985075053,
+          "observed": 264.99971960000005,
+          "ratio": 4.218664784862862
+        },
+        "bus": {
+          "modelled": 283.0,
+          "observed": 444.26423580000005,
+          "ratio": 0.6370082873999374
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5034,
+      "link": "CHEUNG TSING TUNNEL & CHEUNG TSING BRIDGE (from CHEUNG TSING BRIDGE EASTERN END to WESTERN END OF CHEUNG TSING TUNNEL SLIP RDS TO & FROM TSING YI RD W)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 6031.7719,
+      "modelled": 5115.946281703227,
+      "ratio": 0.8481664039224075,
+      "geh": 12.266899159046073,
+      "by_class": {
+        "car": {
+          "modelled": 2793.8602302343897,
+          "observed": 3432.0782110999994,
+          "ratio": 0.8140432875913228
+        },
+        "taxi": {
+          "modelled": 720.9678329243425,
+          "observed": 669.5266809,
+          "ratio": 1.076832116615866
+        },
+        "goods_light": {
+          "modelled": 504.0680240706036,
+          "observed": 826.3527502999999,
+          "ratio": 0.6099913431492862
+        },
+        "goods_heavy": {
+          "modelled": 241.83529562717987,
+          "observed": 591.1136462,
+          "ratio": 0.4091181064450613
+        },
+        "coach": {
+          "modelled": 600.2148988467114,
+          "observed": 186.98492889999997,
+          "ratio": 3.2099640456462026
+        },
+        "bus": {
+          "modelled": 255.0,
+          "observed": 325.7156826,
+          "ratio": 0.7828913792682085
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5035,
+      "link": "TUEN MUN RD (from CASTLE PEAK RD - TSUEN WAN to TSING LONG HIGHWAY - TING KAU BRIDGE)",
+      "road_type": "EXPRESSWAY",
+      "observed": 5770.6032,
+      "modelled": 6232.05137431535,
+      "ratio": 1.0799653274228507,
+      "geh": 5.956611506140077,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5036,
+      "link": "SHUN TUNG RD (from YU TUNG RD to TAT TUNG RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1522.9396,
+      "modelled": 763.8774992781746,
+      "ratio": 0.5015809551988631,
+      "geh": 22.44794504128395,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5037,
+      "link": "EAGLE'S NEST TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 5686.480800000001,
+      "modelled": 5945.180923890742,
+      "ratio": 1.045493888573534,
+      "geh": 3.3922726650697625,
+      "by_class": {
+        "car": {
+          "modelled": 2904.4455157307725,
+          "observed": 3195.8022096000004,
+          "ratio": 0.9088314373793192
+        },
+        "taxi": {
+          "modelled": 925.8943492017818,
+          "observed": 733.5560232000003,
+          "ratio": 1.262199913733571
+        },
+        "goods_light": {
+          "modelled": 1023.7755189337827,
+          "observed": 943.9558128000003,
+          "ratio": 1.0845587315120375
+        },
+        "goods_heavy": {
+          "modelled": 469.95441130655036,
+          "observed": 489.03734880000013,
+          "ratio": 0.9609785683235126
+        },
+        "coach": {
+          "modelled": 477.11112871785383,
+          "observed": 153.53498160000004,
+          "ratio": 3.107507642530982
+        },
+        "bus": {
+          "modelled": 144.0,
+          "observed": 176.28090480000003,
+          "ratio": 0.8168780399860982
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5038,
+      "link": "NAM WAN TUNNEL (from EAST TSING YI VIADUCT to CHEUNG TSING HIGHWAY)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 4368.3684,
+      "modelled": 5554.636873283534,
+      "ratio": 1.2715587067435827,
+      "geh": 16.841329594790118,
+      "by_class": {
+        "car": {
+          "modelled": 3151.2676388474856,
+          "observed": 2607.9159348000003,
+          "ratio": 1.2083470930933802
+        },
+        "taxi": {
+          "modelled": 721.71225942866,
+          "observed": 580.9929972000001,
+          "ratio": 1.2422047475732636
+        },
+        "goods_light": {
+          "modelled": 468.2524286432557,
+          "observed": 432.46847160000004,
+          "ratio": 1.0827435047712635
+        },
+        "goods_heavy": {
+          "modelled": 226.89419551364574,
+          "observed": 528.5725764,
+          "ratio": 0.42925835664607465
+        },
+        "coach": {
+          "modelled": 927.5103508504881,
+          "observed": 161.6296308,
+          "ratio": 5.7384920466605935
+        },
+        "bus": {
+          "modelled": 59.0,
+          "observed": 56.78878920000001,
+          "ratio": 1.0389374528168316
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5039,
+      "link": "STONECUTTERS BRIDGE (from EAST TSING YI VIADUCT to CONTAINER PORT RD S NR CONTAINER TERMINAL 8)",
+      "road_type": "EXPRESSWAY",
+      "observed": 4488.0544,
+      "modelled": 6095.7715456970145,
+      "ratio": 1.358221403398545,
+      "geh": 22.10056093374025,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5040,
+      "link": "SHENZHEN BAY BRIDGE (from NR DEEP BAY RD to SHENZHEN BAY BRIDGE (CHINA SECTION - END))",
+      "road_type": "EXPRESSWAY",
+      "observed": 1049.8002999999999,
+      "modelled": 941.9631601156248,
+      "ratio": 0.897278425349683,
+      "geh": 3.4171534234278385,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5041,
+      "link": "LUNG SHAN TUNNEL (from FANLING HIGHWAY to SHA TAU KOK ROAD)",
+      "road_type": "RURAL TRUNK ROAD",
+      "observed": 1873.974,
+      "modelled": 1188.5531029934357,
+      "ratio": 0.634242045510469,
+      "geh": 17.515896423055306,
+      "by_class": {
+        "car": {
+          "modelled": 486.52175559508464,
+          "observed": 1019.4418559999999,
+          "ratio": 0.4772432608408465
+        },
+        "taxi": {
+          "modelled": 390.8179269681081,
+          "observed": 56.21921999999999,
+          "ratio": 6.95167821553035
+        },
+        "goods_light": {
+          "modelled": 62.897467763467375,
+          "observed": 281.0961,
+          "ratio": 0.22375788124939258
+        },
+        "goods_heavy": {
+          "modelled": 94.97432804085591,
+          "observed": 427.266072,
+          "ratio": 0.22228380455365504
+        },
+        "coach": {
+          "modelled": 134.34162462591974,
+          "observed": 71.211012,
+          "ratio": 1.88652879453419
+        },
+        "bus": {
+          "modelled": 19.0,
+          "observed": 20.613714,
+          "ratio": 0.9217164844724245
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 5042,
+      "link": "TUEN MUN CHEK LAP KOK TUNNEL (from LUNG FU RD to HONG KONG BOUNDARY  CROSSING FACILITIES (BCF))",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 2386.5968,
+      "modelled": 2999.6371530218175,
+      "ratio": 1.2568680025975976,
+      "geh": 11.813033997763284,
+      "by_class": {
+        "car": {
+          "modelled": 1569.7185953459825,
+          "observed": 1136.0200768,
+          "ratio": 1.3817701178025366
+        },
+        "taxi": {
+          "modelled": 553.3302762787378,
+          "observed": 360.3761167999999,
+          "ratio": 1.535424381593586
+        },
+        "goods_light": {
+          "modelled": 256.34479252017604,
+          "observed": 207.63392159999995,
+          "ratio": 1.2345997732201774
+        },
+        "goods_heavy": {
+          "modelled": 348.7490549876527,
+          "observed": 541.7574735999999,
+          "ratio": 0.6437364909249915
+        },
+        "coach": {
+          "modelled": 217.49443388926827,
+          "observed": 66.8247104,
+          "ratio": 3.254700732519273
+        },
+        "bus": {
+          "modelled": 54.0,
+          "observed": 78.75769439999999,
+          "ratio": 0.6856472934027383
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5043,
+      "link": "TSEUNG KWAN O - LAM TIN TUNNEL (from EASTERN PORTAL to WESTERN PORTAL & SLIP RD TO EHC)",
+      "road_type": "URBAN TRUNK ROAD",
+      "observed": 2432.193,
+      "modelled": 5300.865921781141,
+      "ratio": 2.1794594104091,
+      "geh": 46.13392148798908,
+      "by_class": {
+        "car": {
+          "modelled": 2737.6308464903495,
+          "observed": 1600.3829940000003,
+          "ratio": 1.7106098082484056
+        },
+        "taxi": {
+          "modelled": 934.596295843357,
+          "observed": 238.35491400000004,
+          "ratio": 3.921028017250598
+        },
+        "goods_light": {
+          "modelled": 844.1200766726599,
+          "observed": 136.202808,
+          "ratio": 6.1975233041646245
+        },
+        "goods_heavy": {
+          "modelled": 475.7950693169506,
+          "observed": 245.65149300000002,
+          "ratio": 1.936870252675202
+        },
+        "coach": {
+          "modelled": 260.72363345782423,
+          "observed": 192.143247,
+          "ratio": 1.3569232201942765
+        },
+        "bus": {
+          "modelled": 48.0,
+          "observed": 19.457544000000002,
+          "ratio": 2.4669094927910735
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 5044,
+      "link": "SAN TIN HIGHWAY (from FUNG KAT HEUNG to FAIRVIEW PARK BOULEVARD)",
+      "road_type": "EXPRESSWAY",
+      "observed": 6757.245,
+      "modelled": 9159.6231328229,
+      "ratio": 1.3555262733292786,
+      "geh": 26.929454417258505,
+      "by_class": {
+        "car": {
+          "modelled": 4554.367142302921,
+          "observed": 3696.213015,
+          "ratio": 1.232171177315905
+        },
+        "taxi": {
+          "modelled": 2100.0159014805135,
+          "observed": 554.0940899999999,
+          "ratio": 3.7899987373633848
+        },
+        "goods_light": {
+          "modelled": 823.0035320220809,
+          "observed": 1013.58675,
+          "ratio": 0.8119714785360808
+        },
+        "goods_heavy": {
+          "modelled": 752.0993954149933,
+          "observed": 1081.1592,
+          "ratio": 0.6956416736915279
+        },
+        "coach": {
+          "modelled": 700.1371616023916,
+          "observed": 202.71735,
+          "ratio": 3.4537604285099013
+        },
+        "bus": {
+          "modelled": 230.0,
+          "observed": 216.23184,
+          "ratio": 1.0636731389789773
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 5045,
+      "link": "CASTLE PEAK RD - TAM MI (from KAM TIN RD to FAIRVIEW PARK BOULEVARD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 419.92150000000004,
+      "modelled": 146.63929786021487,
+      "ratio": 0.34920645373055403,
+      "geh": 16.23689887816046,
+      "by_class": {
+        "car": {
+          "modelled": 52.25999134123531,
+          "observed": 250.69313550000004,
+          "ratio": 0.208461995726386
+        },
+        "taxi": {
+          "modelled": 35.28357950296711,
+          "observed": 4.199215000000001,
+          "ratio": 8.402422715428266
+        },
+        "goods_light": {
+          "modelled": 8.413361268829085,
+          "observed": 54.1698735,
+          "ratio": 0.1553143975650799
+        },
+        "goods_heavy": {
+          "modelled": 17.254504799086924,
+          "observed": 33.593720000000005,
+          "ratio": 0.5136229271151549
+        },
+        "coach": {
+          "modelled": 3.4278609480964106,
+          "observed": 25.195290000000004,
+          "ratio": 0.13605165680158515
+        },
+        "bus": {
+          "modelled": 30.0,
+          "observed": 52.07026600000001,
+          "ratio": 0.5761445505194844
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 5046,
+      "link": "SAN TAM RD (from KAM TIN RD to FAIRVIEW PARK BOULEVARD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 867.2991999999999,
+      "modelled": 148.7655001936187,
+      "ratio": 0.17152731167470084,
+      "geh": 31.878762763646144,
+      "by_class": {
+        "car": {
+          "modelled": 60.811061008120674,
+          "observed": 485.687552,
+          "ratio": 0.12520613459766142
+        },
+        "taxi": {
+          "modelled": 38.9698226843061,
+          "observed": 58.1090464,
+          "ratio": 0.6706326312094859
+        },
+        "goods_light": {
+          "modelled": 7.53420549333328,
+          "observed": 79.79152639999998,
+          "ratio": 0.09442362909018472
+        },
+        "goods_heavy": {
+          "modelled": 11.184966634929431,
+          "observed": 93.6683136,
+          "ratio": 0.11941035559467392
+        },
+        "coach": {
+          "modelled": 5.265444372929215,
+          "observed": 93.6683136,
+          "ratio": 0.05621372020654394
+        },
+        "bus": {
+          "modelled": 25.0,
+          "observed": 57.2417472,
+          "ratio": 0.4367441810022179
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 5047,
+      "link": "CHEUNG SHAN TUNNEL (from SHA TAU KOK RD to PING YUEN INTERCHANGE)",
+      "road_type": "RURAL TRUNK ROAD",
+      "observed": 759.507,
+      "modelled": 1150.5433179889083,
+      "ratio": 1.5148554496389215,
+      "geh": 12.65347142200215,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5101,
+      "link": "CHUI TIN ST (from CHE KUNG MIU RD to HUNG MUI KUK RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 774.2973,
+      "modelled": 581.8819356493286,
+      "ratio": 0.7514967902501128,
+      "geh": 7.389179215609692,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5102,
+      "link": "TSENG CHOI ST (from CASTLE PEAK RD NORTHERN JUNCTION to CASTLE PEAK RD SOUTHERN JUNCTION)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 257.0706,
+      "modelled": 9.02323972767158,
+      "ratio": 0.03510023988613081,
+      "geh": 21.504641021470853,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5103,
+      "link": "SHING MUN RD (from TEXACO RD N to CHEUNG SHAN EST RD E)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 242.6528,
+      "modelled": 0.0,
+      "ratio": 0.0,
+      "geh": 22.029652743518223,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5104,
+      "link": "CHAP WAI KON ST (from BUS TERMINUS to SIU LEK YUEN RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 353.856,
+      "modelled": 240.20185394502795,
+      "ratio": 0.6788124376724655,
+      "geh": 6.594561306835722,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5106,
+      "link": "LUNG FU RD (from WONG CHU RD to TUEN MUN CHEK LAP KOK TUNNEL RD & LUNG MUN RD)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2562.5076,
+      "modelled": 1458.2300096337947,
+      "ratio": 0.5690636818535855,
+      "geh": 24.628637728856532,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 5107,
+      "link": "LUNG MUN RD (from WU CHUI RD to TUEN MUN CHEK LAP KOK TUNNEL RD & LUNG FU RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 862.4916000000001,
+      "modelled": 691.8015966278222,
+      "ratio": 0.8020966194080291,
+      "geh": 6.122892178847841,
+      "by_class": null,
+      "worst_class": null
+    },
+    {
+      "station": 6203,
+      "link": "CASTLE PEAK RD - KWAI CHUNG (from CHING CHEUNG RD to TAI WO INT)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 1885.2626,
+      "modelled": 3127.291452698977,
+      "ratio": 1.6588094691418465,
+      "geh": 24.809450664739547,
+      "by_class": {
+        "car": {
+          "modelled": 1105.4989643721844,
+          "observed": 863.4502708000001,
+          "ratio": 1.280327312131042
+        },
+        "taxi": {
+          "modelled": 638.6589142946631,
+          "observed": 409.1019842,
+          "ratio": 1.561123971431139
+        },
+        "goods_light": {
+          "modelled": 701.386233147319,
+          "observed": 328.03569239999996,
+          "ratio": 2.138139993290922
+        },
+        "goods_heavy": {
+          "modelled": 425.9170855561615,
+          "observed": 52.7873528,
+          "ratio": 8.068544129687092
+        },
+        "coach": {
+          "modelled": 104.83025532864895,
+          "observed": 73.5252414,
+          "ratio": 1.425772337942286
+        },
+        "bus": {
+          "modelled": 151.0,
+          "observed": 158.36205839999997,
+          "ratio": 0.953511223115044
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 6204,
+      "link": "LAI KING HILL RD (from KWAI CHUNG INT SLIP RDS to KING CHO RD)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 1298.7962,
+      "modelled": 827.3202056100956,
+      "ratio": 0.6369900109117163,
+      "geh": 14.460425212328111,
+      "by_class": {
+        "car": {
+          "modelled": 319.158210852641,
+          "observed": 387.04126759999997,
+          "ratio": 0.8246102872484521
+        },
+        "taxi": {
+          "modelled": 274.4182886871364,
+          "observed": 559.7811622,
+          "ratio": 0.49022422906952257
+        },
+        "goods_light": {
+          "modelled": 27.139513087395684,
+          "observed": 79.22656819999999,
+          "ratio": 0.3425557070563065
+        },
+        "goods_heavy": {
+          "modelled": 23.006269228628604,
+          "observed": 15.5855544,
+          "ratio": 1.476127742278363
+        },
+        "coach": {
+          "modelled": 43.59792375429387,
+          "observed": 46.756663200000006,
+          "ratio": 0.9324430096263556
+        },
+        "bus": {
+          "modelled": 140.0,
+          "observed": 211.7037806,
+          "ratio": 0.6613013693152724
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 6206,
+      "link": "JOCKEY CLUB RD (from LOK YIP RD to WO HOP SHEK INT)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 2352.2936,
+      "modelled": 1609.8650638791416,
+      "ratio": 0.6843810074895165,
+      "geh": 16.68029482680598,
+      "by_class": {
+        "car": {
+          "modelled": 799.146721752036,
+          "observed": 1310.2275352,
+          "ratio": 0.609929726160159
+        },
+        "taxi": {
+          "modelled": 253.68608914371168,
+          "observed": 291.6844064,
+          "ratio": 0.8697279785187436
+        },
+        "goods_light": {
+          "modelled": 297.22825204310425,
+          "observed": 423.412848,
+          "ratio": 0.7019821279563634
+        },
+        "goods_heavy": {
+          "modelled": 107.62989746244568,
+          "observed": 124.6715608,
+          "ratio": 0.8633075319808275
+        },
+        "coach": {
+          "modelled": 84.17410347784431,
+          "observed": 108.2055056,
+          "ratio": 0.7779096175476335
+        },
+        "bus": {
+          "modelled": 68.0,
+          "observed": 101.1486248,
+          "ratio": 0.67227804762008
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 6207,
+      "link": "KAM TIN RD (from KAM SHEUNG RD WESTERN JUNCTION to FAN KAM RD)",
+      "road_type": "RURAL ROAD",
+      "observed": 1433.3436,
+      "modelled": 606.7238733065533,
+      "ratio": 0.42329269360574345,
+      "geh": 25.882039594644922,
+      "by_class": {
+        "car": {
+          "modelled": 354.0417917569438,
+          "observed": 974.673648,
+          "ratio": 0.3632413705689351
+        },
+        "taxi": {
+          "modelled": 69.22767311473785,
+          "observed": 98.9007084,
+          "ratio": 0.6999714585941009
+        },
+        "goods_light": {
+          "modelled": 54.32182268553365,
+          "observed": 153.36776519999998,
+          "ratio": 0.35419322055514735
+        },
+        "goods_heavy": {
+          "modelled": 88.16466161971682,
+          "observed": 98.9007084,
+          "ratio": 0.8914462094966837
+        },
+        "coach": {
+          "modelled": 13.967924129621194,
+          "observed": 22.9334976,
+          "ratio": 0.6090620965561395
+        },
+        "bus": {
+          "modelled": 27.0,
+          "observed": 84.56727239999998,
+          "ratio": 0.319272447056008
+        }
+      },
+      "worst_class": "bus"
+    },
+    {
+      "station": 6208,
+      "link": "KAM SHEUNG RD (from KAM TIN RD to KAM TIN RD)",
+      "road_type": "RURAL ROAD",
+      "observed": 605.7126000000001,
+      "modelled": 754.2851384142159,
+      "ratio": 1.2452855337898137,
+      "geh": 5.697501500671344,
+      "by_class": {
+        "car": {
+          "modelled": 473.95882230982204,
+          "observed": 361.00470960000007,
+          "ratio": 1.3128881970403579
+        },
+        "taxi": {
+          "modelled": 81.52712712078176,
+          "observed": 48.457008,
+          "ratio": 1.6824630839935837
+        },
+        "goods_light": {
+          "modelled": 53.70508415259787,
+          "observed": 93.27974040000001,
+          "ratio": 0.5757422128567359
+        },
+        "goods_heavy": {
+          "modelled": 86.3724077562479,
+          "observed": 10.902826800000003,
+          "ratio": 7.9220196138718695
+        },
+        "coach": {
+          "modelled": 11.721697074766405,
+          "observed": 40.58274420000001,
+          "ratio": 0.28883451096849194
+        },
+        "bus": {
+          "modelled": 47.0,
+          "observed": 51.48557100000001,
+          "ratio": 0.9128771243500435
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 6209,
+      "link": "CASTLE PEAK RD - TSUEN WAN, TING KAU & SHAM TSENG (from TUEN MUN RD to SHAM TSENG)",
+      "road_type": "RURAL ROAD",
+      "observed": 573.8348,
+      "modelled": 1699.0362051989719,
+      "ratio": 2.9608455346364004,
+      "geh": 33.37781240773977,
+      "by_class": {
+        "car": {
+          "modelled": 1107.3326949401608,
+          "observed": 342.0055408,
+          "ratio": 3.237762441947434
+        },
+        "taxi": {
+          "modelled": 250.31686257649153,
+          "observed": 44.7591144,
+          "ratio": 5.59253385443416
+        },
+        "goods_light": {
+          "modelled": 105.28511855376027,
+          "observed": 67.1386716,
+          "ratio": 1.56817399040943
+        },
+        "goods_heavy": {
+          "modelled": 31.003828058297316,
+          "observed": 0.0,
+          "ratio": null
+        },
+        "coach": {
+          "modelled": 80.09770107026185,
+          "observed": 52.2189668,
+          "ratio": 1.533881384077133
+        },
+        "bus": {
+          "modelled": 125.0,
+          "observed": 68.860176,
+          "ratio": 1.8152727347080846
+        }
+      },
+      "worst_class": "car"
+    },
+    {
+      "station": 6210,
+      "link": "TAI PO RD - MA LIU SHUI (from ENTRANCE TO CHUNG CHI COLLEGE, CUHK to YUEN CHAU TSAI INT)",
+      "road_type": "RURAL ROAD",
+      "observed": 942.1272,
+      "modelled": 214.7157092569749,
+      "ratio": 0.22790522262490126,
+      "geh": 30.245304455743828,
+      "by_class": {
+        "car": {
+          "modelled": 132.63305342012228,
+          "observed": 713.1902904000001,
+          "ratio": 0.18597147942905065
+        },
+        "taxi": {
+          "modelled": 34.35496202912066,
+          "observed": 59.3540136,
+          "ratio": 0.5788144717667527
+        },
+        "goods_light": {
+          "modelled": 4.52852057659638,
+          "observed": 94.21272,
+          "ratio": 0.048066976270257133
+        },
+        "goods_heavy": {
+          "modelled": 1.626358674410751,
+          "observed": 20.726798400000003,
+          "ratio": 0.0784664685314231
+        },
+        "coach": {
+          "modelled": 12.572814556724788,
+          "observed": 16.9582896,
+          "ratio": 0.7413963821401415
+        },
+        "bus": {
+          "modelled": 29.0,
+          "observed": 36.7429608,
+          "ratio": 0.789266824681151
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 6211,
+      "link": "TING KOK RD (from DAI KWAI ST to TAI MEI TUK)",
+      "road_type": "RURAL ROAD",
+      "observed": 1987.1280000000002,
+      "modelled": 2601.5509291355606,
+      "ratio": 1.309201485327347,
+      "geh": 12.827398199148545,
+      "by_class": {
+        "car": {
+          "modelled": 1424.1250776930247,
+          "observed": 1305.5430960000003,
+          "ratio": 1.090829618766583
+        },
+        "taxi": {
+          "modelled": 362.0014937413398,
+          "observed": 278.19792,
+          "ratio": 1.3012372405276782
+        },
+        "goods_light": {
+          "modelled": 371.4071659113397,
+          "observed": 154.99598400000002,
+          "ratio": 2.3962373496808773
+        },
+        "goods_heavy": {
+          "modelled": 161.46951885087765,
+          "observed": 57.626712000000005,
+          "ratio": 2.801990834578201
+        },
+        "coach": {
+          "modelled": 149.54767293897885,
+          "observed": 83.459376,
+          "ratio": 1.791861862698073
+        },
+        "bus": {
+          "modelled": 133.0,
+          "observed": 107.30491200000002,
+          "ratio": 1.2394586372709573
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 6212,
+      "link": "FAN KAM RD (from KAM TIN RD to FANLING HIGHWAY)",
+      "road_type": "RURAL ROAD",
+      "observed": 1044.1341,
+      "modelled": 446.0967576432832,
+      "ratio": 0.42724086651636334,
+      "geh": 21.90869577178224,
+      "by_class": {
+        "car": {
+          "modelled": 255.58297425163184,
+          "observed": 616.039119,
+          "ratio": 0.4148810787641423
+        },
+        "taxi": {
+          "modelled": 54.941471525481404,
+          "observed": 113.8106169,
+          "ratio": 0.4827446948447338
+        },
+        "goods_light": {
+          "modelled": 35.210063803575075,
+          "observed": 199.4296131,
+          "ratio": 0.17655383900243385
+        },
+        "goods_heavy": {
+          "modelled": 70.78716287610058,
+          "observed": 57.4273755,
+          "ratio": 1.2326379581128617
+        },
+        "coach": {
+          "modelled": 8.575085186494242,
+          "observed": 21.9268161,
+          "ratio": 0.39107753480425467
+        },
+        "bus": {
+          "modelled": 21.0,
+          "observed": 35.5005594,
+          "ratio": 0.5915399744376986
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 6213,
+      "link": "CASTLE PEAK RD - HUNG SHUI KIU (from TIN HA RD to LAM TEI INT)",
+      "road_type": "RURAL TRUNK ROAD",
+      "observed": 2231.8173,
+      "modelled": 4362.260025473865,
+      "ratio": 1.954577565768428,
+      "geh": 37.102898921926624,
+      "by_class": {
+        "car": {
+          "modelled": 2508.11130917927,
+          "observed": 1113.6768327,
+          "ratio": 2.252099743422516
+        },
+        "taxi": {
+          "modelled": 721.5231501583777,
+          "observed": 229.87718190000004,
+          "ratio": 3.1387332322189807
+        },
+        "goods_light": {
+          "modelled": 320.4096780157429,
+          "observed": 419.5816524,
+          "ratio": 0.763640822192784
+        },
+        "goods_heavy": {
+          "modelled": 447.244807021337,
+          "observed": 359.32258530000007,
+          "ratio": 1.2446888264703158
+        },
+        "coach": {
+          "modelled": 326.9710810991385,
+          "observed": 55.795432500000004,
+          "ratio": 5.860176477691762
+        },
+        "bus": {
+          "modelled": 38.0,
+          "observed": 60.25906710000001,
+          "ratio": 0.63061049280665
+        }
+      },
+      "worst_class": "coach"
+    },
+    {
+      "station": 6214,
+      "link": "CONTAINER PORT RD S (from NORTH OF KWAI CHUNG INT to SOUTH OF KWAI CHUNG INT)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 1489.5286,
+      "modelled": 141.15701997160556,
+      "ratio": 0.09476623676215788,
+      "geh": 47.22146617512881,
+      "by_class": {
+        "car": {
+          "modelled": 35.191226776729835,
+          "observed": 265.13609080000003,
+          "ratio": 0.132728919214833
+        },
+        "taxi": {
+          "modelled": 20.53370425704531,
+          "observed": 204.06541819999998,
+          "ratio": 0.10062314545093909
+        },
+        "goods_light": {
+          "modelled": 27.412502150490276,
+          "observed": 396.2146076,
+          "ratio": 0.06918599573230443
+        },
+        "goods_heavy": {
+          "modelled": 45.68697068473583,
+          "observed": 573.468511,
+          "ratio": 0.07966779310178346
+        },
+        "coach": {
+          "modelled": 2.3326161026043155,
+          "observed": 41.7068008,
+          "ratio": 0.055928914658069755
+        },
+        "bus": {
+          "modelled": 10.0,
+          "observed": 7.447643,
+          "ratio": 1.3427066791466777
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 6219,
+      "link": "KWAI TSING RD & TSING YI S BRIDGE (from TSING YI RD to KWAI TAI RD INT)",
+      "road_type": "DISTRICT DISTRIBUTOR",
+      "observed": 3193.96,
+      "modelled": 4104.877390954247,
+      "ratio": 1.2851999996725842,
+      "geh": 15.078812720757375,
+      "by_class": {
+        "car": {
+          "modelled": 1143.5346267390253,
+          "observed": 1133.8558,
+          "ratio": 1.0085362060493277
+        },
+        "taxi": {
+          "modelled": 698.2174935442371,
+          "observed": 680.31348,
+          "ratio": 1.0263172994076746
+        },
+        "goods_light": {
+          "modelled": 673.6385968276234,
+          "observed": 702.6712,
+          "ratio": 0.958682520114135
+        },
+        "goods_heavy": {
+          "modelled": 1222.263011308075,
+          "observed": 383.27520000000004,
+          "ratio": 3.1889958215613086
+        },
+        "coach": {
+          "modelled": 129.22366253528648,
+          "observed": 102.20672,
+          "ratio": 1.2643362641447302
+        },
+        "bus": {
+          "modelled": 238.0,
+          "observed": 191.63760000000002,
+          "ratio": 1.241927471435668
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 6221,
+      "link": "TSING YI N COASTAL RD FO (from TSING TSUEN RD to TAM KON SHAN INT W END)",
+      "road_type": "PRIMARY DISTRIBUTOR",
+      "observed": 906.1378,
+      "modelled": 1767.8656849497818,
+      "ratio": 1.9509898880167915,
+      "geh": 23.56699230588338,
+      "by_class": {
+        "car": {
+          "modelled": 858.7492954605884,
+          "observed": 466.660967,
+          "ratio": 1.8401995371097501
+        },
+        "taxi": {
+          "modelled": 346.5998417425938,
+          "observed": 84.2708154,
+          "ratio": 4.112928539939033
+        },
+        "goods_light": {
+          "modelled": 165.94659621365915,
+          "observed": 149.512737,
+          "ratio": 1.1099161151311085
+        },
+        "goods_heavy": {
+          "modelled": 212.91312035901998,
+          "observed": 149.512737,
+          "ratio": 1.424046704188286
+        },
+        "coach": {
+          "modelled": 146.65683117392035,
+          "observed": 38.057787600000005,
+          "ratio": 3.8535301293741084
+        },
+        "bus": {
+          "modelled": 37.0,
+          "observed": 19.935031600000002,
+          "ratio": 1.85602916225124
+        }
+      },
+      "worst_class": "taxi"
+    },
+    {
+      "station": 6222,
+      "link": "SAI SHA RD (from NIN WAH RD to NAI CHUNG)",
+      "road_type": "RURAL ROAD",
+      "observed": 1861.0988,
+      "modelled": 2604.003492217321,
+      "ratio": 1.3991753109600205,
+      "geh": 15.722890609054687,
+      "by_class": {
+        "car": {
+          "modelled": 1711.7864291232613,
+          "observed": 1272.9915792,
+          "ratio": 1.3446957993225832
+        },
+        "taxi": {
+          "modelled": 204.784771710911,
+          "observed": 147.0268052,
+          "ratio": 1.3928397031571422
+        },
+        "goods_light": {
+          "modelled": 339.3498902947935,
+          "observed": 227.05405359999997,
+          "ratio": 1.4945775462464306
+        },
+        "goods_heavy": {
+          "modelled": 201.49023803393965,
+          "observed": 106.0826316,
+          "ratio": 1.8993706603517144
+        },
+        "coach": {
+          "modelled": 79.59216305441518,
+          "observed": 26.0553832,
+          "ratio": 3.054730089497021
+        },
+        "bus": {
+          "modelled": 67.0,
+          "observed": 81.88834720000001,
+          "ratio": 0.8181872304292886
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 6223,
+      "link": "HANG HAU RD (from PO NING RD to CLEAR WATER BAY RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 1454.7959999999998,
+      "modelled": 766.4342807147996,
+      "ratio": 0.526832821038001,
+      "geh": 20.655462120421824,
+      "by_class": {
+        "car": {
+          "modelled": 484.20447251879875,
+          "observed": 1005.264036,
+          "ratio": 0.4816689498268281
+        },
+        "taxi": {
+          "modelled": 74.68380842639723,
+          "observed": 110.56449599999998,
+          "ratio": 0.675477310785166
+        },
+        "goods_light": {
+          "modelled": 51.759344919579014,
+          "observed": 58.19183999999999,
+          "ratio": 0.8894605312287602
+        },
+        "goods_heavy": {
+          "modelled": 26.157126395736974,
+          "observed": 66.920616,
+          "ratio": 0.3908679859691814
+        },
+        "coach": {
+          "modelled": 15.629528454287605,
+          "observed": 48.00826799999999,
+          "ratio": 0.3255590985762621
+        },
+        "bus": {
+          "modelled": 114.0,
+          "observed": 165.846744,
+          "ratio": 0.687381598519655
+        }
+      },
+      "worst_class": "goods_heavy"
+    },
+    {
+      "station": 6224,
+      "link": "YING YIP RD (from PO NING RD to CLEAR WATER BAY RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 1954.3392,
+      "modelled": 1009.8181175151857,
+      "ratio": 0.5167056555562032,
+      "geh": 24.534433203942804,
+      "by_class": {
+        "car": {
+          "modelled": 723.5850656294206,
+          "observed": 1395.3981888,
+          "ratio": 0.5185509565923127
+        },
+        "taxi": {
+          "modelled": 136.59335096905858,
+          "observed": 291.1965408,
+          "ratio": 0.46907614559499117
+        },
+        "goods_light": {
+          "modelled": 53.666253257731874,
+          "observed": 150.4841184,
+          "ratio": 0.35662403334205844
+        },
+        "goods_heavy": {
+          "modelled": 19.096930749851396,
+          "observed": 33.2237664,
+          "ratio": 0.5747972857722535
+        },
+        "coach": {
+          "modelled": 36.87651690912321,
+          "observed": 44.949801599999994,
+          "ratio": 0.8203933186909376
+        },
+        "bus": {
+          "modelled": 40.0,
+          "observed": 39.086783999999994,
+          "ratio": 1.0233638050139915
+        }
+      },
+      "worst_class": "goods_light"
+    },
+    {
+      "station": 6225,
+      "link": "MA ON SHAN RD (from HANG SHUN ST to SAI SHA RD)",
+      "road_type": "RURAL TRUNK ROAD",
+      "observed": 6224.191999999999,
+      "modelled": 8413.382136009914,
+      "ratio": 1.3517227836175225,
+      "geh": 25.589625295290812,
+      "by_class": {
+        "car": {
+          "modelled": 5083.338211907953,
+          "observed": 4207.553791999999,
+          "ratio": 1.208145745295787
+        },
+        "taxi": {
+          "modelled": 1167.0352256964447,
+          "observed": 753.1272319999999,
+          "ratio": 1.549585748741648
+        },
+        "goods_light": {
+          "modelled": 887.4560140386112,
+          "observed": 591.29824,
+          "ratio": 1.500860232627466
+        },
+        "goods_heavy": {
+          "modelled": 364.6870725525652,
+          "observed": 192.94995199999997,
+          "ratio": 1.8900604471389828
+        },
+        "coach": {
+          "modelled": 372.86561181433774,
+          "observed": 267.640256,
+          "ratio": 1.3931596740601597
+        },
+        "bus": {
+          "modelled": 538.0,
+          "observed": 217.84671999999998,
+          "ratio": 2.46962635012361
+        }
+      },
+      "worst_class": "bus"
+    },
+    {
+      "station": 6226,
+      "link": "A KUNG KOK ST (from HANG SHUN ST to A KUNG KOK SHAN RD)",
+      "road_type": "LOCAL DISTRIBUTOR",
+      "observed": 768.4983,
+      "modelled": 623.596503340925,
+      "ratio": 0.8114481233607479,
+      "geh": 5.492301402176737,
+      "by_class": {
+        "car": {
+          "modelled": 303.142117029396,
+          "observed": 288.18686249999996,
+          "ratio": 1.0518942966367735
+        },
+        "taxi": {
+          "modelled": 66.12145473885398,
+          "observed": 72.2388402,
+          "ratio": 0.9153172248584077
+        },
+        "goods_light": {
+          "modelled": 41.747056548534964,
+          "observed": 139.86669059999997,
+          "ratio": 0.2984774742967642
+        },
+        "goods_heavy": {
+          "modelled": 12.96127021941173,
+          "observed": 23.054948999999997,
+          "ratio": 0.5621903661297074
+        },
+        "coach": {
+          "modelled": 20.62460480472827,
+          "observed": 64.5538572,
+          "ratio": 0.31949453834848884
+        },
+        "bus": {
+          "modelled": 179.0,
+          "observed": 182.1340971,
+          "ratio": 0.9827923648020764
+        }
+      },
+      "worst_class": "goods_light"
+    }
+  ],
+  "by_corridor": [
+    {
+      "corridor": "过海",
+      "stations": 3,
+      "observed": 17498.6602,
+      "modelled": 19711.155994754412,
+      "ratio": 1.1264380112229628,
+      "geh_under_5": 0.3333333333333333,
+      "内部分流偏差": 0.19290769776611527,
+      "worst_station": {
+        "station": 1022,
+        "link": "CROSS HARBOUR TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+        "observed": 5319.36,
+        "modelled": 7679.742425965755,
+        "geh": 29.277951526549703
+      }
+    },
+    {
+      "corridor": "沙田－九龙",
+      "stations": 3,
+      "observed": 15850.835600000002,
+      "modelled": 20421.614952383687,
+      "ratio": 1.2883620439785322,
+      "geh_under_5": 0.3333333333333333,
+      "内部分流偏差": 0.20668855664078464,
+      "worst_station": {
+        "station": 5024,
+        "link": "LION ROCK TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+        "observed": 5325.7038,
+        "modelled": 8499.52779924942,
+        "geh": 38.17346916448076
+      }
+    },
+    {
+      "corridor": "屯门－荃湾",
+      "stations": 5,
+      "observed": 34565.290100000006,
+      "modelled": 38881.93916922137,
+      "ratio": 1.1248839242122073,
+      "geh_under_5": 0.2,
+      "内部分流偏差": 0.10075670263079226,
+      "worst_station": {
+        "station": 5029,
+        "link": "TSING LONG HIGHWAY - TAI LAM TUNNEL (from AU TAU INT to TUEN MUN RD)",
+        "observed": 3563.4404999999997,
+        "modelled": 5567.747195278178,
+        "geh": 29.663031985450708
+      }
+    },
+    {
+      "corridor": "将军澳",
+      "stations": 2,
+      "observed": 7821.8585,
+      "modelled": 10373.986562126887,
+      "ratio": 1.3262815432070123,
+      "geh_under_5": 0.5,
+      "内部分流偏差": 0.530588283171793,
+      "worst_station": {
+        "station": 5043,
+        "link": "TSEUNG KWAN O - LAM TIN TUNNEL (from EASTERN PORTAL to WESTERN PORTAL & SLIP RD TO EHC)",
+        "observed": 2432.193,
+        "modelled": 5300.865921781141,
+        "geh": 46.13392148798908
+      }
+    },
+    {
+      "corridor": "大屿山",
+      "stations": 4,
+      "observed": 12008.780399999998,
+      "modelled": 9925.872991093538,
+      "ratio": 0.8265512950085705,
+      "geh_under_5": 0.0,
+      "内部分流偏差": 0.17104026272618109,
+      "worst_station": {
+        "station": 5106,
+        "link": "LUNG FU RD (from WONG CHU RD to TUEN MUN CHEK LAP KOK TUNNEL RD & LUNG MUN RD)",
+        "observed": 2562.5076,
+        "modelled": 1458.2300096337947,
+        "geh": 24.628637728856532
+      }
+    }
+  ],
+  "by_class": {
+    "car": {
+      "modelled": 169743.62445607627,
+      "observed": 180020.5131015,
+      "ratio": 0.9429126799587036,
+      "worst_stations": [
+        {
+          "station": 1001,
+          "link": "HARCOURT RD (from TAMAR ST to ARSENAL ST)",
+          "modelled": 1234.5136822429547,
+          "observed": 4194.754596,
+          "ratio": 0.2942993812844623,
+          "difference": -2960.240913757045
+        },
+        {
+          "station": 3024,
+          "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
+          "modelled": 5302.9655717505375,
+          "observed": 3438.7084259999997,
+          "ratio": 1.5421387668855346,
+          "difference": 1864.2571457505378
+        },
+        {
+          "station": 1026,
+          "link": "WESTERN HARBOUR CROSSING (from TOLL PLAZA to SOUTH PORTAL)",
+          "modelled": 1441.3645374101468,
+          "observed": 3300.2964124000005,
+          "ratio": 0.4367379039029939,
+          "difference": -1858.9318749898537
+        },
+        {
+          "station": 4216,
+          "link": "KWUN TONG RD (from PING SHEK EST EASTERN END to WAI YIP ST FO <K42>)",
+          "modelled": 3301.5972815195687,
+          "observed": 4910.9798892,
+          "ratio": 0.6722889028277816,
+          "difference": -1609.3826076804312
+        },
+        {
+          "station": 5024,
+          "link": "LION ROCK TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+          "modelled": 4869.792336548513,
+          "observed": 3269.9821331999997,
+          "ratio": 1.4892412674386515,
+          "difference": 1599.8102033485134
+        }
+      ]
+    },
+    "taxi": {
+      "modelled": 58831.01101417814,
+      "observed": 51659.9600421,
+      "ratio": 1.1388125535953595,
+      "worst_stations": [
+        {
+          "station": 1001,
+          "link": "HARCOURT RD (from TAMAR ST to ARSENAL ST)",
+          "modelled": 262.81572827896736,
+          "observed": 2628.0390239999997,
+          "ratio": 0.10000449988712473,
+          "difference": -2365.223295721032
+        },
+        {
+          "station": 5044,
+          "link": "SAN TIN HIGHWAY (from FUNG KAT HEUNG to FAIRVIEW PARK BOULEVARD)",
+          "modelled": 2100.0159014805135,
+          "observed": 554.0940899999999,
+          "ratio": 3.7899987373633848,
+          "difference": 1545.9218114805135
+        },
+        {
+          "station": 5024,
+          "link": "LION ROCK TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
+          "modelled": 1633.4385235738014,
+          "observed": 420.7306002,
+          "ratio": 3.8823858373917277,
+          "difference": 1212.7079233738013
+        },
+        {
+          "station": 5013,
+          "link": "TOLO HIGHWAY (from NORTH OF MA LIU SHUI INT to YUEN SHIN RD INT)",
+          "modelled": 2029.0787849589838,
+          "observed": 844.216384,
+          "ratio": 2.4035055744179727,
+          "difference": 1184.862400958984
+        },
+        {
+          "station": 5026,
+          "link": "TSING KWAI HIGHWAY (from CHING LAI COURT SLIP RDS TO & FROM CHING CHEUNG RD to CHO YIU CHUEN SLIP RDS TO & FROM KWAI CHUNG RD & TSUEN WAN RD)",
+          "modelled": 2188.0990403246356,
+          "observed": 1241.314416,
+          "ratio": 1.762727486381368,
+          "difference": 946.7846243246356
+        }
+      ]
+    },
+    "goods_light": {
+      "modelled": 44288.45438218785,
+      "observed": 46267.870515,
+      "ratio": 0.9572183437279563,
+      "worst_stations": [
+        {
+          "station": 5025,
+          "link": "YUEN LONG HIGHWAY (from TIN SHUI WAI WEST INT to LAM TEI INT)",
+          "modelled": 598.278844522312,
+          "observed": 1707.8165999999997,
+          "ratio": 0.35031797004567833,
+          "difference": -1109.5377554776876
+        },
+        {
+          "station": 5012,
+          "link": "TUEN MUN RD (from SHAM TSENG to TSING LONG HIGHWAY - TING KAU BRIDGE)",
+          "modelled": 712.1397314540895,
+          "observed": 1667.3975208000002,
+          "ratio": 0.42709655170436633,
+          "difference": -955.2577893459106
+        },
+        {
+          "station": 3002,
+          "link": "LUNG CHEUNG RD (from NAM CHEONG ST to LION ROCK TUNNEL RD)",
+          "modelled": 705.1953652812712,
+          "observed": 1659.2900120000004,
+          "ratio": 0.4249982584004556,
+          "difference": -954.0946467187292
+        },
+        {
+          "station": 3024,
+          "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
+          "modelled": 1690.3248505994388,
+          "observed": 949.057524,
+          "ratio": 1.781056266721551,
+          "difference": 741.2673265994389
+        },
+        {
+          "station": 5043,
+          "link": "TSEUNG KWAN O - LAM TIN TUNNEL (from EASTERN PORTAL to WESTERN PORTAL & SLIP RD TO EHC)",
+          "modelled": 844.1200766726599,
+          "observed": 136.202808,
+          "ratio": 6.1975233041646245,
+          "difference": 707.9172686726599
+        }
+      ]
+    },
+    "goods_heavy": {
+      "modelled": 20241.93609445115,
+      "observed": 20630.8007527,
+      "ratio": 0.9811512571465284,
+      "worst_stations": [
+        {
+          "station": 5025,
+          "link": "YUEN LONG HIGHWAY (from TIN SHUI WAI WEST INT to LAM TEI INT)",
+          "modelled": 501.3932010536189,
+          "observed": 1481.7820499999998,
+          "ratio": 0.33837176057951235,
+          "difference": -980.3888489463809
+        },
+        {
+          "station": 6219,
+          "link": "KWAI TSING RD & TSING YI S BRIDGE (from TSING YI RD to KWAI TAI RD INT)",
+          "modelled": 1222.263011308075,
+          "observed": 383.27520000000004,
+          "ratio": 3.1889958215613086,
+          "difference": 838.9878113080749
+        },
+        {
+          "station": 3024,
+          "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
+          "modelled": 1004.1472802446484,
+          "observed": 396.524034,
+          "ratio": 2.5323743181848304,
+          "difference": 607.6232462446485
+        },
+        {
+          "station": 6214,
+          "link": "CONTAINER PORT RD S (from NORTH OF KWAI CHUNG INT to SOUTH OF KWAI CHUNG INT)",
+          "modelled": 45.68697068473583,
+          "observed": 573.468511,
+          "ratio": 0.07966779310178346,
+          "difference": -527.7815403152642
+        },
+        {
+          "station": 5033,
+          "link": "TSING LONG HIGHWAY - TING KAU BRIDGE (from NW TSING YI INT SOUTHERN TIP to TUEN MUN RD)",
+          "modelled": 668.5298215194939,
+          "observed": 1161.3223006,
+          "ratio": 0.5756626056126678,
+          "difference": -492.79247908050615
+        }
+      ]
+    },
+    "coach": {
+      "modelled": 21891.204540911513,
+      "observed": 11852.082089900001,
+      "ratio": 1.8470345020278385,
+      "worst_stations": [
+        {
+          "station": 3024,
+          "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
+          "modelled": 1323.7952356755263,
+          "observed": 253.51536600000003,
+          "ratio": 5.221755416890692,
+          "difference": 1070.2798696755262
+        },
+        {
+          "station": 5013,
+          "link": "TOLO HIGHWAY (from NORTH OF MA LIU SHUI INT to YUEN SHIN RD INT)",
+          "modelled": 1219.4214823974303,
+          "observed": 300.67980800000004,
+          "ratio": 4.05554829407577,
+          "difference": 918.7416743974302
+        },
+        {
+          "station": 5033,
+          "link": "TSING LONG HIGHWAY - TING KAU BRIDGE (from NW TSING YI INT SOUTHERN TIP to TUEN MUN RD)",
+          "modelled": 1117.944985075053,
+          "observed": 264.99971960000005,
+          "ratio": 4.218664784862862,
+          "difference": 852.9452654750529
+        },
+        {
+          "station": 1026,
+          "link": "WESTERN HARBOUR CROSSING (from TOLL PLAZA to SOUTH PORTAL)",
+          "modelled": 1081.0891354088183,
+          "observed": 276.175432,
+          "ratio": 3.914501473139067,
+          "difference": 804.9137034088183
+        },
+        {
+          "station": 5038,
+          "link": "NAM WAN TUNNEL (from EAST TSING YI VIADUCT to CHEUNG TSING HIGHWAY)",
+          "modelled": 927.5103508504881,
+          "observed": 161.6296308,
+          "ratio": 5.7384920466605935,
+          "difference": 765.8807200504881
+        }
+      ]
+    },
+    "bus": {
+      "modelled": 14719.0,
+      "observed": 17967.2682779,
+      "ratio": 0.8192119009045233,
+      "worst_stations": [
+        {
+          "station": 6225,
+          "link": "MA ON SHAN RD (from HANG SHUN ST to SAI SHA RD)",
+          "modelled": 538.0,
+          "observed": 217.84671999999998,
+          "ratio": 2.46962635012361,
+          "difference": 320.15328
+        },
+        {
+          "station": 5012,
+          "link": "TUEN MUN RD (from SHAM TSENG to TSING LONG HIGHWAY - TING KAU BRIDGE)",
+          "modelled": 269.0,
+          "observed": 573.7281791999999,
+          "ratio": 0.4688631476583398,
+          "difference": -304.7281791999999
+        },
+        {
+          "station": 5030,
+          "link": "KWAI CHUNG RD (from KWAI CHUNG INT to TSUEN WAN RD)",
+          "modelled": 172.0,
+          "observed": 413.8165248,
+          "ratio": 0.41564314059987967,
+          "difference": -241.81652480000002
+        },
+        {
+          "station": 4217,
+          "link": "CLEAR WATER BAY RD (from LUNG CHEUNG RD to NEW CLEAR WATER BAY RD WESTERN JUNCTION)",
+          "modelled": 438.0,
+          "observed": 652.78174,
+          "ratio": 0.6709746507308859,
+          "difference": -214.78174
+        },
+        {
+          "station": 4203,
+          "link": "PRINCE EDWARD RD W (from EMBANKMENT RD to YUEN NGAI ST)",
+          "modelled": 43.0,
+          "observed": 248.14016499999997,
+          "ratio": 0.17328915695691588,
+          "difference": -205.14016499999997
+        }
+      ]
+    }
+  },
+  "summary": [
+    "全网 191 个 8–9 时为高峰的计数方向，GEH<5 为 17.8%；走廊 17 站，GEH<5 为 23.5%（目标 60%）。",
+    "将军澳走廊的内部分流偏差最大，为 53.1%；模型总量较普查高 32.6%，对齐总量后仍有上述站间偏差。",
+    "核心站偏差最大的车种是 coach（模型/普查 1.85），按车辆数差额主要在 3024 站（+1070 辆）、5013 站（+919 辆）、5033 站（+853 辆）。",
+    "按道路类型，模型/普查为 DISTRICT DISTRIBUTOR 0.84、EXPRESSWAY 1.12、LOCAL DISTRIBUTOR 0.21、PRIMARY DISTRIBUTOR 0.89、RURAL ROAD 1.05、RURAL TRUNK ROAD 0.88、URBAN TRUNK ROAD 0.99。",
+    "支路（LOCAL DISTRIBUTOR）模型/普查 0.21；接驳线抽象了最后一公里，支路偏低是宏观模型的口径限制，不视为分配缺陷。"
+  ]
+}

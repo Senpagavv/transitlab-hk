@@ -1,0 +1,1040 @@
+{
+ "period": "weekday 08:00-09:00",
+ "service_date": 20260916,
+ "bus_km": 82876,
+ "minibus_km": 39879,
+ "census_check": {
+  "stations": 113,
+  "bus_ratio": 0.842,
+  "minibus_ratio": 0.762,
+  "bus_geh_under_5": 0.788,
+  "table": [
+   {
+    "station": 1001,
+    "road": "HARCOURT RD (from TAMAR ST to ARSENAL ST",
+    "flow": 8423,
+    "census_bus": 370.6,
+    "census_plb": 16.8,
+    "preload_bus": 343.0,
+    "preload_minibus": 16.0
+   },
+   {
+    "station": 1002,
+    "road": "VICTORIA PARK RD (from GLOUCESTER RD to ",
+    "flow": 7395,
+    "census_bus": 377.2,
+    "census_plb": 7.4,
+    "preload_bus": 250.0,
+    "preload_minibus": 5.0
+   },
+   {
+    "station": 1004,
+    "road": "ABERDEEN TUNNEL (from TOLL PLAZA to NORT",
+    "flow": 4283,
+    "census_bus": 179.9,
+    "census_plb": 94.2,
+    "preload_bus": 189.0,
+    "preload_minibus": 123.0
+   },
+   {
+    "station": 1007,
+    "road": "QUEENSWAY (from RODNEY ST to QUEEN'S RD ",
+    "flow": 3807,
+    "census_bus": 590.1,
+    "census_plb": 57.1,
+    "preload_bus": 360.0,
+    "preload_minibus": 103.0
+   },
+   {
+    "station": 1009,
+    "road": "CHAI WAN RD (from ISLAND EASTERN CORRIDO",
+    "flow": 1660,
+    "census_bus": 112.9,
+    "census_plb": 88.0,
+    "preload_bus": 133.0,
+    "preload_minibus": 60.0
+   },
+   {
+    "station": 1021,
+    "road": "TAI TAM RD (from CHAI WAN RD to SHEK O R",
+    "flow": 735,
+    "census_bus": 16.9,
+    "census_plb": 19.8,
+    "preload_bus": 13.0,
+    "preload_minibus": 8.0
+   },
+   {
+    "station": 1022,
+    "road": "CROSS HARBOUR TUNNEL (from TOLL PLAZA to",
+    "flow": 5319,
+    "census_bus": 292.6,
+    "census_plb": 10.6,
+    "preload_bus": 196.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 1025,
+    "road": "EASTERN HARBOUR CROSSING (from KAI TIN R",
+    "flow": 5275,
+    "census_bus": 232.1,
+    "census_plb": 26.4,
+    "preload_bus": 236.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 1026,
+    "road": "WESTERN HARBOUR CROSSING (from TOLL PLAZ",
+    "flow": 6904,
+    "census_bus": 441.9,
+    "census_plb": 20.7,
+    "preload_bus": 371.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 1031,
+    "road": "CENTRAL-WANCHAI BYPASS – CENTRAL SECTION",
+    "flow": 3844,
+    "census_bus": 103.8,
+    "census_plb": 0.0,
+    "preload_bus": 42.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 1032,
+    "road": "CENTRAL-WANCHAI BYPASS – CAUSEWAY BAY SE",
+    "flow": 4354,
+    "census_bus": 100.1,
+    "census_plb": 0.0,
+    "preload_bus": 44.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 1107,
+    "road": "TUNG LO WAN RD (from CAUSEWAY RD to MORE",
+    "flow": 785,
+    "census_bus": 25.9,
+    "census_plb": 0.0,
+    "preload_bus": 13.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2201,
+    "road": "POK FU LAM RD (from POKFIELD RD to MOUNT",
+    "flow": 2632,
+    "census_bus": 100.0,
+    "census_plb": 136.8,
+    "preload_bus": 97.0,
+    "preload_minibus": 123.0
+   },
+   {
+    "station": 2202,
+    "road": "WONG NAI CHUNG GAP RD (from STUBBS RD FO",
+    "flow": 1976,
+    "census_bus": 33.6,
+    "census_plb": 4.0,
+    "preload_bus": 30.0,
+    "preload_minibus": 7.0
+   },
+   {
+    "station": 2203,
+    "road": "STUBBS RD (from WAN CHAI GAP RD to WONG ",
+    "flow": 877,
+    "census_bus": 8.8,
+    "census_plb": 4.4,
+    "preload_bus": 8.0,
+    "preload_minibus": 3.0
+   },
+   {
+    "station": 2204,
+    "road": "YEE KING RD & LAI TAK TSUEN RD (from CLO",
+    "flow": 635,
+    "census_bus": 26.0,
+    "census_plb": 26.0,
+    "preload_bus": 31.0,
+    "preload_minibus": 15.0
+   },
+   {
+    "station": 2205,
+    "road": "MAGAZINE GAP RD (from GARDEN RD to PEAK ",
+    "flow": 1154,
+    "census_bus": 0.0,
+    "census_plb": 23.1,
+    "preload_bus": 0.0,
+    "preload_minibus": 18.0
+   },
+   {
+    "station": 2206,
+    "road": "BELCHER'S ST & VICTORIA RD (from SMITHFI",
+    "flow": 653,
+    "census_bus": 15.7,
+    "census_plb": 46.4,
+    "preload_bus": 15.0,
+    "preload_minibus": 55.0
+   },
+   {
+    "station": 2207,
+    "road": "CONNAUGHT RD C (from CLEVERLY ST to GILM",
+    "flow": 1956,
+    "census_bus": 338.4,
+    "census_plb": 35.2,
+    "preload_bus": 361.0,
+    "preload_minibus": 15.0
+   },
+   {
+    "station": 2208,
+    "road": "QUEEN'S RD C (from QUEEN VICTORIA ST to ",
+    "flow": 608,
+    "census_bus": 27.4,
+    "census_plb": 3.7,
+    "preload_bus": 35.0,
+    "preload_minibus": 9.0
+   },
+   {
+    "station": 2209,
+    "road": "DES VOEUX RD C (from MORRISON ST to QUEE",
+    "flow": 180,
+    "census_bus": 101.5,
+    "census_plb": 0.0,
+    "preload_bus": 71.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2210,
+    "road": "WYNDHAM ST (from QUEEN'S RD C to LOWER A",
+    "flow": 196,
+    "census_bus": 0.0,
+    "census_plb": 0.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2211,
+    "road": "GARDEN RD (from DES VOEUX RD C to UPPER ",
+    "flow": 2928,
+    "census_bus": 38.1,
+    "census_plb": 43.9,
+    "preload_bus": 32.0,
+    "preload_minibus": 46.0
+   },
+   {
+    "station": 2212,
+    "road": "COTTON TREE DRIVE (from QUEENSWAY to SLI",
+    "flow": 2670,
+    "census_bus": 16.0,
+    "census_plb": 50.7,
+    "preload_bus": 20.0,
+    "preload_minibus": 84.0
+   },
+   {
+    "station": 2213,
+    "road": "KENNEDY RD (from MACDONNELL RD to QUEEN'",
+    "flow": 684,
+    "census_bus": 0.0,
+    "census_plb": 17.1,
+    "preload_bus": 0.0,
+    "preload_minibus": 6.0
+   },
+   {
+    "station": 2214,
+    "road": "CAUSEWAY RD (from SHELTER ST to HING FAT",
+    "flow": 2147,
+    "census_bus": 326.3,
+    "census_plb": 38.6,
+    "preload_bus": 276.0,
+    "preload_minibus": 33.0
+   },
+   {
+    "station": 2215,
+    "road": "ISLAND EASTERN CORRIDOR (from NAM ON LAN",
+    "flow": 3628,
+    "census_bus": 141.5,
+    "census_plb": 0.0,
+    "preload_bus": 68.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2217,
+    "road": "LUNG WO RD (from MAN YIU ST to LUNG HOP ",
+    "flow": 811,
+    "census_bus": 30.8,
+    "census_plb": 0.0,
+    "preload_bus": 2.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2401,
+    "road": "LIN SHING RD (from WAN TSUI RD to CAPE C",
+    "flow": 130,
+    "census_bus": 0.0,
+    "census_plb": 17.5,
+    "preload_bus": 0.0,
+    "preload_minibus": 10.0
+   },
+   {
+    "station": 2402,
+    "road": "WING LOK ST (from MORRISON ST to DES VOE",
+    "flow": 181,
+    "census_bus": 0.0,
+    "census_plb": 0.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2403,
+    "road": "ICE HOUSE ST (from CONNAUGHT RD C to LOW",
+    "flow": 689,
+    "census_bus": 4.8,
+    "census_plb": 39.9,
+    "preload_bus": 4.0,
+    "preload_minibus": 39.0
+   },
+   {
+    "station": 2404,
+    "road": "D'AGUILAR ST (from QUEEN'S RD C to WYNDH",
+    "flow": 267,
+    "census_bus": 12.0,
+    "census_plb": 0.0,
+    "preload_bus": 9.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2405,
+    "road": "COCHRANE ST (from QUEEN'S RD C to WELLIN",
+    "flow": 26,
+    "census_bus": 0.0,
+    "census_plb": 0.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 2407,
+    "road": "SMITHFIELD (from POK FU LAM RD to LUNG W",
+    "flow": 877,
+    "census_bus": 0.0,
+    "census_plb": 57.9,
+    "preload_bus": 0.0,
+    "preload_minibus": 35.0
+   },
+   {
+    "station": 2408,
+    "road": "LUNG WUI RD (from TIM MEI AVE to LUNG KI",
+    "flow": 480,
+    "census_bus": 22.1,
+    "census_plb": 0.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 3001,
+    "road": "PRINCESS MARGARET RD (from WYLIE RD to P",
+    "flow": 4083,
+    "census_bus": 85.7,
+    "census_plb": 0.0,
+    "preload_bus": 9.0,
+    "preload_minibus": 5.0
+   },
+   {
+    "station": 3002,
+    "road": "LUNG CHEUNG RD (from NAM CHEONG ST to LI",
+    "flow": 7214,
+    "census_bus": 324.6,
+    "census_plb": 57.7,
+    "preload_bus": 230.0,
+    "preload_minibus": 30.0
+   },
+   {
+    "station": 3004,
+    "road": "KAI TAK TUNNEL (from SUNG WONG TOI RD to",
+    "flow": 4361,
+    "census_bus": 157.0,
+    "census_plb": 0.0,
+    "preload_bus": 124.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 3006,
+    "road": "NATHAN RD (from SHANTUNG ST to DUNDAS ST",
+    "flow": 955,
+    "census_bus": 389.5,
+    "census_plb": 0.0,
+    "preload_bus": 351.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 3014,
+    "road": "MA TAU WAI RD & TO KWA WAN RD (from SAN ",
+    "flow": 1402,
+    "census_bus": 206.2,
+    "census_plb": 68.7,
+    "preload_bus": 133.0,
+    "preload_minibus": 35.0
+   },
+   {
+    "station": 3024,
+    "road": "WEST KOWLOON HIGHWAY (from SLIP RDS TO &",
+    "flow": 6500,
+    "census_bus": 338.0,
+    "census_plb": 0.0,
+    "preload_bus": 222.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 3025,
+    "road": "LIN CHEUNG RD (from YAU MA TEI INT to CH",
+    "flow": 1050,
+    "census_bus": 30.4,
+    "census_plb": 0.0,
+    "preload_bus": 10.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 3026,
+    "road": "LIN CHEUNG RD (from CHERRY ST to YAU MA ",
+    "flow": 2906,
+    "census_bus": 66.8,
+    "census_plb": 11.6,
+    "preload_bus": 60.0,
+    "preload_minibus": 7.0
+   },
+   {
+    "station": 3103,
+    "road": "KO SHAN RD (from PAK KUNG ST to CHI KIAN",
+    "flow": 312,
+    "census_bus": 0.0,
+    "census_plb": 21.5,
+    "preload_bus": 0.0,
+    "preload_minibus": 18.0
+   },
+   {
+    "station": 4201,
+    "road": "TAI PO RD (from CALDECOTT RD to TAI PO R",
+    "flow": 3098,
+    "census_bus": 12.4,
+    "census_plb": 0.0,
+    "preload_bus": 26.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 4202,
+    "road": "BOUNDARY ST (from TAI HANG TUNG RD to EM",
+    "flow": 2900,
+    "census_bus": 40.6,
+    "census_plb": 75.4,
+    "preload_bus": 40.0,
+    "preload_minibus": 38.0
+   },
+   {
+    "station": 4203,
+    "road": "PRINCE EDWARD RD W (from EMBANKMENT RD t",
+    "flow": 2727,
+    "census_bus": 84.5,
+    "census_plb": 163.6,
+    "preload_bus": 9.0,
+    "preload_minibus": 34.0
+   },
+   {
+    "station": 4204,
+    "road": "ARGYLE ST & FO <K13> (from WATERLOO RD t",
+    "flow": 2722,
+    "census_bus": 114.3,
+    "census_plb": 160.6,
+    "preload_bus": 118.0,
+    "preload_minibus": 89.0
+   },
+   {
+    "station": 4205,
+    "road": "WATERLOO RD (from YIM PO FONG ST to PUI ",
+    "flow": 2489,
+    "census_bus": 54.8,
+    "census_plb": 62.2,
+    "preload_bus": 57.0,
+    "preload_minibus": 14.0
+   },
+   {
+    "station": 4206,
+    "road": "CORNWALL ST (from WATERLOO RD to NAM CHE",
+    "flow": 1459,
+    "census_bus": 20.4,
+    "census_plb": 0.0,
+    "preload_bus": 13.0,
+    "preload_minibus": 8.0
+   },
+   {
+    "station": 4207,
+    "road": "CHEONG WAN RD & GILLIES AVE S (from HUNG",
+    "flow": 861,
+    "census_bus": 41.3,
+    "census_plb": 99.0,
+    "preload_bus": 36.0,
+    "preload_minibus": 108.0
+   },
+   {
+    "station": 4208,
+    "road": "CHATHAM RD N (from WUHU ST to HONG CHONG",
+    "flow": 6604,
+    "census_bus": 350.0,
+    "census_plb": 66.0,
+    "preload_bus": 273.0,
+    "preload_minibus": 13.0
+   },
+   {
+    "station": 4209,
+    "road": "SHANGHAI ST (from ARGYLE ST to DUNDAS ST",
+    "flow": 541,
+    "census_bus": 13.0,
+    "census_plb": 74.1,
+    "preload_bus": 0.0,
+    "preload_minibus": 25.0
+   },
+   {
+    "station": 4210,
+    "road": "RECLAMATION ST (from PUBLIC SQUARE ST to",
+    "flow": 250,
+    "census_bus": 0.0,
+    "census_plb": 0.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 4211,
+    "road": "FAT KWONG ST (from CHUNG HAU ST to YAN F",
+    "flow": 2063,
+    "census_bus": 41.3,
+    "census_plb": 94.9,
+    "preload_bus": 24.0,
+    "preload_minibus": 75.0
+   },
+   {
+    "station": 4212,
+    "road": "CHATHAM RD N & MA TAU WAI RD (from SAN L",
+    "flow": 1522,
+    "census_bus": 134.0,
+    "census_plb": 33.5,
+    "preload_bus": 157.0,
+    "preload_minibus": 28.0
+   },
+   {
+    "station": 4213,
+    "road": "EAST KOWLOON CORRIDOR <FO> (from MA TAU ",
+    "flow": 4694,
+    "census_bus": 140.8,
+    "census_plb": 14.1,
+    "preload_bus": 146.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 4214,
+    "road": "FERRY ST & FERRY ST <FO> (from WATERLOO ",
+    "flow": 4034,
+    "census_bus": 36.3,
+    "census_plb": 64.5,
+    "preload_bus": 0.0,
+    "preload_minibus": 20.0
+   },
+   {
+    "station": 4215,
+    "road": "YIM PO FONG ST (from SHANTUNG ST to WATE",
+    "flow": 1045,
+    "census_bus": 6.3,
+    "census_plb": 64.8,
+    "preload_bus": 5.0,
+    "preload_minibus": 14.0
+   },
+   {
+    "station": 4216,
+    "road": "KWUN TONG RD (from PING SHEK EST EASTERN",
+    "flow": 9861,
+    "census_bus": 631.1,
+    "census_plb": 266.3,
+    "preload_bus": 757.0,
+    "preload_minibus": 162.0
+   },
+   {
+    "station": 4217,
+    "road": "CLEAR WATER BAY RD (from LUNG CHEUNG RD ",
+    "flow": 5351,
+    "census_bus": 187.3,
+    "census_plb": 465.5,
+    "preload_bus": 150.0,
+    "preload_minibus": 288.0
+   },
+   {
+    "station": 4218,
+    "road": "SHING KAI RD (from CONCORDE RD to KAI SH",
+    "flow": 647,
+    "census_bus": 29.8,
+    "census_plb": 15.5,
+    "preload_bus": 106.0,
+    "preload_minibus": 15.0
+   },
+   {
+    "station": 4219,
+    "road": "KWUN TONG BYPASS (from WANG CHIN ST to T",
+    "flow": 4799,
+    "census_bus": 110.4,
+    "census_plb": 28.8,
+    "preload_bus": 112.0,
+    "preload_minibus": 33.0
+   },
+   {
+    "station": 4220,
+    "road": "HOI WANG RD (from HOI TING RD to CHERRY ",
+    "flow": 1299,
+    "census_bus": 127.3,
+    "census_plb": 75.3,
+    "preload_bus": 105.0,
+    "preload_minibus": 51.0
+   },
+   {
+    "station": 4221,
+    "road": "HUNG HOM BYPASS (from SLIP RDS TO/FROM P",
+    "flow": 1325,
+    "census_bus": 27.8,
+    "census_plb": 0.0,
+    "preload_bus": 34.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 4222,
+    "road": "SHING KAI RD (from SUNG WONG TOI RD to K",
+    "flow": 1677,
+    "census_bus": 25.1,
+    "census_plb": 0.0,
+    "preload_bus": 13.0,
+    "preload_minibus": 13.0
+   },
+   {
+    "station": 4401,
+    "road": "HO MAN TIN ST (from WATERLOO RD to HO MA",
+    "flow": 199,
+    "census_bus": 0.0,
+    "census_plb": 3.2,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 4403,
+    "road": "SOY ST (from SAI YEUNG CHOI ST S to YIM ",
+    "flow": 129,
+    "census_bus": 0.0,
+    "census_plb": 5.4,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 4404,
+    "road": "PORTLAND ST (from WATERLOO RD to ARGYLE ",
+    "flow": 123,
+    "census_bus": 0.0,
+    "census_plb": 0.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5003,
+    "road": "FANLING HIGHWAY (from SO KWUN PO INT to ",
+    "flow": 5772,
+    "census_bus": 34.6,
+    "census_plb": 0.0,
+    "preload_bus": 59.0,
+    "preload_minibus": 11.0
+   },
+   {
+    "station": 5012,
+    "road": "TUEN MUN RD (from SHAM TSENG to TSING LO",
+    "flow": 8965,
+    "census_bus": 528.9,
+    "census_plb": 44.8,
+    "preload_bus": 245.0,
+    "preload_minibus": 24.0
+   },
+   {
+    "station": 5013,
+    "road": "TOLO HIGHWAY (from NORTH OF MA LIU SHUI ",
+    "flow": 11565,
+    "census_bus": 254.4,
+    "census_plb": 69.4,
+    "preload_bus": 155.0,
+    "preload_minibus": 53.0
+   },
+   {
+    "station": 5014,
+    "road": "ROUTE TWISK (from CHUEN LUNG to CHEUNG P",
+    "flow": 546,
+    "census_bus": 1.1,
+    "census_plb": 4.9,
+    "preload_bus": 2.0,
+    "preload_minibus": 5.0
+   },
+   {
+    "station": 5017,
+    "road": "CLEAR WATER BAY RD (from ON SAU RD to HI",
+    "flow": 1844,
+    "census_bus": 22.1,
+    "census_plb": 136.5,
+    "preload_bus": 40.0,
+    "preload_minibus": 146.0
+   },
+   {
+    "station": 5018,
+    "road": "TSING TSUEN RD (from TSUEN TSING INT to ",
+    "flow": 2337,
+    "census_bus": 142.6,
+    "census_plb": 173.0,
+    "preload_bus": 124.0,
+    "preload_minibus": 168.0
+   },
+   {
+    "station": 5020,
+    "road": "SHING MUN TUNNEL (from WO YI HOP INTERCH",
+    "flow": 3941,
+    "census_bus": 212.8,
+    "census_plb": 86.7,
+    "preload_bus": 155.0,
+    "preload_minibus": 75.0
+   },
+   {
+    "station": 5021,
+    "road": "TSEUNG KWAN O TUNNEL (from TOLL PLAZA to",
+    "flow": 5390,
+    "census_bus": 145.5,
+    "census_plb": 107.8,
+    "preload_bus": 180.0,
+    "preload_minibus": 103.0
+   },
+   {
+    "station": 5022,
+    "road": "TATE'S CAIRN TUNNEL (from TOLL PLAZA to ",
+    "flow": 4839,
+    "census_bus": 266.1,
+    "census_plb": 0.0,
+    "preload_bus": 301.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5023,
+    "road": "PO LAM RD (from ANDERSON RD to TSUI LAM ",
+    "flow": 815,
+    "census_bus": 55.4,
+    "census_plb": 40.7,
+    "preload_bus": 58.0,
+    "preload_minibus": 53.0
+   },
+   {
+    "station": 5024,
+    "road": "LION ROCK TUNNEL (from TOLL PLAZA to SOU",
+    "flow": 5326,
+    "census_bus": 202.4,
+    "census_plb": 5.3,
+    "preload_bus": 106.0,
+    "preload_minibus": 4.0
+   },
+   {
+    "station": 5025,
+    "road": "YUEN LONG HIGHWAY (from TIN SHUI WAI WES",
+    "flow": 8372,
+    "census_bus": 133.9,
+    "census_plb": 58.6,
+    "preload_bus": 43.0,
+    "preload_minibus": 53.0
+   },
+   {
+    "station": 5026,
+    "road": "TSING KWAI HIGHWAY (from CHING LAI COURT",
+    "flow": 9195,
+    "census_bus": 395.4,
+    "census_plb": 0.0,
+    "preload_bus": 346.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5027,
+    "road": "LANTAU LINK (from TSING MA BRIDGE EASTER",
+    "flow": 6197,
+    "census_bus": 179.7,
+    "census_plb": 0.0,
+    "preload_bus": 153.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5029,
+    "road": "TSING LONG HIGHWAY - TAI LAM TUNNEL (fro",
+    "flow": 3563,
+    "census_bus": 188.9,
+    "census_plb": 0.0,
+    "preload_bus": 231.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5030,
+    "road": "KWAI CHUNG RD (from KWAI CHUNG INT to TS",
+    "flow": 8445,
+    "census_bus": 312.5,
+    "census_plb": 101.3,
+    "preload_bus": 172.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5033,
+    "road": "TSING LONG HIGHWAY - TING KAU BRIDGE (fr",
+    "flow": 7794,
+    "census_bus": 405.3,
+    "census_plb": 39.0,
+    "preload_bus": 259.0,
+    "preload_minibus": 24.0
+   },
+   {
+    "station": 5034,
+    "road": "CHEUNG TSING TUNNEL & CHEUNG TSING BRIDG",
+    "flow": 6032,
+    "census_bus": 325.7,
+    "census_plb": 0.0,
+    "preload_bus": 255.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5037,
+    "road": "EAGLE'S NEST TUNNEL (from TOLL PLAZA to ",
+    "flow": 5686,
+    "census_bus": 176.3,
+    "census_plb": 0.0,
+    "preload_bus": 144.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5038,
+    "road": "NAM WAN TUNNEL (from EAST TSING YI VIADU",
+    "flow": 4368,
+    "census_bus": 56.8,
+    "census_plb": 0.0,
+    "preload_bus": 59.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5041,
+    "road": "LUNG SHAN TUNNEL (from FANLING HIGHWAY t",
+    "flow": 1874,
+    "census_bus": 20.6,
+    "census_plb": 0.0,
+    "preload_bus": 19.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5042,
+    "road": "TUEN MUN CHEK LAP KOK TUNNEL (from LUNG ",
+    "flow": 2387,
+    "census_bus": 78.8,
+    "census_plb": 0.0,
+    "preload_bus": 54.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5043,
+    "road": "TSEUNG KWAN O - LAM TIN TUNNEL (from EAS",
+    "flow": 2432,
+    "census_bus": 19.5,
+    "census_plb": 0.0,
+    "preload_bus": 48.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 5044,
+    "road": "SAN TIN HIGHWAY (from FUNG KAT HEUNG to ",
+    "flow": 6757,
+    "census_bus": 108.1,
+    "census_plb": 108.1,
+    "preload_bus": 114.0,
+    "preload_minibus": 116.0
+   },
+   {
+    "station": 5045,
+    "road": "CASTLE PEAK RD - TAM MI (from KAM TIN RD",
+    "flow": 420,
+    "census_bus": 2.1,
+    "census_plb": 50.0,
+    "preload_bus": 0.0,
+    "preload_minibus": 30.0
+   },
+   {
+    "station": 5046,
+    "road": "SAN TAM RD (from KAM TIN RD to FAIRVIEW ",
+    "flow": 867,
+    "census_bus": 3.5,
+    "census_plb": 53.8,
+    "preload_bus": 5.0,
+    "preload_minibus": 20.0
+   },
+   {
+    "station": 6203,
+    "road": "CASTLE PEAK RD - KWAI CHUNG (from CHING ",
+    "flow": 1885,
+    "census_bus": 77.3,
+    "census_plb": 81.1,
+    "preload_bus": 116.0,
+    "preload_minibus": 35.0
+   },
+   {
+    "station": 6204,
+    "road": "LAI KING HILL RD (from KWAI CHUNG INT SL",
+    "flow": 1299,
+    "census_bus": 33.8,
+    "census_plb": 177.9,
+    "preload_bus": 32.0,
+    "preload_minibus": 108.0
+   },
+   {
+    "station": 6206,
+    "road": "JOCKEY CLUB RD (from LOK YIP RD to WO HO",
+    "flow": 2352,
+    "census_bus": 51.8,
+    "census_plb": 49.4,
+    "preload_bus": 45.0,
+    "preload_minibus": 23.0
+   },
+   {
+    "station": 6207,
+    "road": "KAM TIN RD (from KAM SHEUNG RD WESTERN J",
+    "flow": 1433,
+    "census_bus": 15.8,
+    "census_plb": 68.8,
+    "preload_bus": 9.0,
+    "preload_minibus": 18.0
+   },
+   {
+    "station": 6208,
+    "road": "KAM SHEUNG RD (from KAM TIN RD to KAM TI",
+    "flow": 606,
+    "census_bus": 10.3,
+    "census_plb": 41.2,
+    "preload_bus": 14.0,
+    "preload_minibus": 33.0
+   },
+   {
+    "station": 6209,
+    "road": "CASTLE PEAK RD - TSUEN WAN, TING KAU & S",
+    "flow": 574,
+    "census_bus": 13.2,
+    "census_plb": 55.7,
+    "preload_bus": 83.0,
+    "preload_minibus": 42.0
+   },
+   {
+    "station": 6210,
+    "road": "TAI PO RD - MA LIU SHUI (from ENTRANCE T",
+    "flow": 942,
+    "census_bus": 16.0,
+    "census_plb": 20.7,
+    "preload_bus": 17.0,
+    "preload_minibus": 12.0
+   },
+   {
+    "station": 6211,
+    "road": "TING KOK RD (from DAI KWAI ST to TAI MEI",
+    "flow": 1987,
+    "census_bus": 21.9,
+    "census_plb": 85.4,
+    "preload_bus": 22.0,
+    "preload_minibus": 111.0
+   },
+   {
+    "station": 6212,
+    "road": "FAN KAM RD (from KAM TIN RD to FANLING H",
+    "flow": 1044,
+    "census_bus": 7.3,
+    "census_plb": 28.2,
+    "preload_bus": 7.0,
+    "preload_minibus": 14.0
+   },
+   {
+    "station": 6213,
+    "road": "CASTLE PEAK RD - HUNG SHUI KIU (from TIN",
+    "flow": 2232,
+    "census_bus": 40.2,
+    "census_plb": 20.1,
+    "preload_bus": 38.0,
+    "preload_minibus": 0.0
+   },
+   {
+    "station": 6214,
+    "road": "CONTAINER PORT RD S (from NORTH OF KWAI ",
+    "flow": 1490,
+    "census_bus": 0.0,
+    "census_plb": 7.4,
+    "preload_bus": 0.0,
+    "preload_minibus": 10.0
+   },
+   {
+    "station": 6219,
+    "road": "KWAI TSING RD & TSING YI S BRIDGE (from ",
+    "flow": 3194,
+    "census_bus": 89.4,
+    "census_plb": 102.2,
+    "preload_bus": 98.0,
+    "preload_minibus": 140.0
+   },
+   {
+    "station": 6221,
+    "road": "TSING YI N COASTAL RD FO (from TSING TSU",
+    "flow": 906,
+    "census_bus": 19.9,
+    "census_plb": 0.0,
+    "preload_bus": 27.0,
+    "preload_minibus": 10.0
+   },
+   {
+    "station": 6222,
+    "road": "SAI SHA RD (from NIN WAH RD to NAI CHUNG",
+    "flow": 1861,
+    "census_bus": 29.8,
+    "census_plb": 52.1,
+    "preload_bus": 29.0,
+    "preload_minibus": 38.0
+   },
+   {
+    "station": 6223,
+    "road": "HANG HAU RD (from PO NING RD to CLEAR WA",
+    "flow": 1455,
+    "census_bus": 20.4,
+    "census_plb": 145.5,
+    "preload_bus": 6.0,
+    "preload_minibus": 108.0
+   },
+   {
+    "station": 6224,
+    "road": "YING YIP RD (from PO NING RD to CLEAR WA",
+    "flow": 1954,
+    "census_bus": 0.0,
+    "census_plb": 39.1,
+    "preload_bus": 2.0,
+    "preload_minibus": 38.0
+   },
+   {
+    "station": 6225,
+    "road": "MA ON SHAN RD (from HANG SHUN ST to SAI ",
+    "flow": 6224,
+    "census_bus": 118.3,
+    "census_plb": 99.6,
+    "preload_bus": 305.0,
+    "preload_minibus": 233.0
+   },
+   {
+    "station": 6226,
+    "road": "A KUNG KOK ST (from HANG SHUN ST to A KU",
+    "flow": 768,
+    "census_bus": 121.4,
+    "census_plb": 60.7,
+    "preload_bus": 91.0,
+    "preload_minibus": 88.0
+   }
+  ]
+ },
+ "report": [
+  "工作日（20260916，wednesday）8-9 时行驶的巴士/小巴线路 1709 条（不含居民巴士、电车）；站到站路段 14,465 个；发车：巴士 88,432、专线小巴 57,338（站次）",
+  "车站落到路网：8,693/8,777（7,661 个在路边 25 米内，其余在 150 米内，多为巴士总站）",
+  "站间路径铺好的发车占 99.4%",
+  "8-9 时车公里：巴士 82,876、专线小巴 39,879；有巴士的路段 21,983 段",
+  "巴士最多的路段：KWUN TONG ROAD 185/334；KWUN TONG ROAD 164/341；QUEENSWAY 485/0；NATHAN ROAD 164/283；KWUN TONG ROAD 444/0",
+  "普查核对（113 个核心站，8-9 时两方向）：专营巴士 模型/普查 = 0.84，GEH<5 的站 79%；小巴 模型（仅专线）/普查（专线 + 红色）= 0.76  ← 需复核",
+  "  差距最大的站：5012 TUEN MUN RD (from SHAM T 模型 245 / 普查 529；6225 MA ON SHAN RD (from HANG 模型 305 / 普查 118；3001 PRINCESS MARGARET RD (fr 模型 9 / 普查 86；4203 PRINCE EDWARD RD W (from 模型 9 / 普查 85；1007 QUEENSWAY (from RODNEY S 模型 360 / 普查 590"
+ ]
+}

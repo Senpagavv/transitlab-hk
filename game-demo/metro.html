@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>修地铁试算</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="map"></div>
+
+<aside class="panel" id="panel">
+  <nav class="tabs"><a href="index.html">修桥</a><a class="on" href="metro.html">修地铁</a></nav>
+  <div>
+    <h1>修地铁试算</h1>
+    <p class="sub">在地图上<b>双击并按住</b>，拖出一条线，松开。车站会自动排好，可以拖着调整。弄完点「开始算」。</p>
+  </div>
+
+  <div class="step" id="step">在地图上双击并按住，拖出线路</div>
+  <div class="row">
+    <button type="button" class="btn" id="drawMode" aria-pressed="false">画线模式（按住直接画）</button>
+  </div>
+  <div class="examples" id="examples">看例子：</div>
+
+  <section id="edit" hidden>
+    <dl class="nums compact" id="lineInfo"></dl>
+    <label class="slider">站距 <input type="range" id="spacing" min="0.8" max="3" step="0.1" value="1.2"> <span id="spacingOut"></span></label>
+    <p class="note">拖动车站可以沿线挪；点线上空白处加一个站；右键点车站删掉它。</p>
+    <p class="note warn" id="wetNote"></p>
+    <div class="row">
+      <button type="button" class="btn" id="redraw">重画</button>
+      <button type="button" class="btn main" id="go">我弄完了，开始算</button>
+    </div>
+  </section>
+
+  <section id="progress" hidden>
+    <h3 class="h3" id="progTitle">正在算</h3>
+    <ol class="steps" id="steps">
+      <li data-s="1">① 新线让公交快了多少（太挤会变慢）</li>
+      <li data-s="2">② 去哪、坐公交还是开车，重新分</li>
+      <li data-s="4">③ 人口按「去上班方便了多少」慢慢搬</li>
+      <li data-s="3">④ 少开的车从路上拿掉，路变顺，开车时间重算</li>
+    </ol>
+    <div class="spark" id="spark"></div>
+    <p class="note" id="progNote"></p>
+  </section>
+
+  <div id="result" hidden></div>
+
+  <fieldset class="layers" id="layers">
+    <legend>地图上显示</legend>
+    <label><input type="radio" name="layer" value="dens0" checked> 人口密度（现在）</label>
+    <label><input type="radio" name="layer" value="dens1" disabled> 人口密度（开线后）</label>
+    <label><input type="radio" name="layer" value="change" disabled> 人口变化</label>
+    <label><input type="radio" name="layer" value="riders" disabled> 坐新线的人</label>
+    <label><input type="radio" name="layer" value="none"> 不显示</label>
+  </fieldset>
+
+  <details>
+    <summary>这个试算用了什么、没算什么</summary>
+    <p><b>每一轮算四件事</b>，和原来的四阶段模型对应，但只算「跟现状比变了多少」，所以几秒一轮：</p>
+    <ul>
+      <li>① 公交时间：原来坐公交的时间 vs「走路或坐车到站 + 等 1.5 分钟 + 坐新线 + 出站」取小（走路进站最远 1.5 公里，而且不能穿过海面）；新线时速 75 公里，每过一站多 1 分钟；某段超过运力的 80% 就开始变慢</li>
+      <li>② 去哪：按公交时间的变化重新摊（距离衰减取原模型第二步拟合的数）；怎么去：按公交、开车两边时间的变化重新分（敏感度取原模型第三步）</li>
+      <li>③ 人口：每个区去各区岗位方便了多少（可达性），人口按它的变化搬一点：可达性多 1%，人口多 0.5%（这个弹性是估的），每轮只走剩下差距的一半</li>
+      <li>④ 路：少开的车从真实路网上拿掉，按原模型的拥堵公式重算每段路，再重算全港开车时间</li>
+    </ul>
+    <p>每轮和上一轮平均，前后两轮差不到 0.5% 就停。</p>
+    <p><b>没算：</b>站旁新开发的土地和上盖物业（只在现有城区里微调人口）、别的地铁线变松、巴士重组、新增出行、晚高峰。</p>
+    <p><b>原始数据不会被动：</b>网页只在浏览器内存里算，不写任何文件。数据文件是从模型结果只读复制出来的，指纹记在 data-sources.json。</p>
+    <p>造价粗估：地下每公里 35 亿，过海每公里 60 亿，每个站 20 亿。</p>
+  </details>
+</aside>
+
+<div class="legend" id="legend"></div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="data-metro.js"></script>
+<script src="data-road.js"></script>
+<script src="data-land.js"></script>
+<script src="land.js"></script>
+<script src="engine.js"></script>
+<script src="road.js"></script>
+<script src="sim.js"></script>
+<script src="metro.js"></script>
+</body>
+</html>

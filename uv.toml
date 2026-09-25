@@ -1,0 +1,4 @@
+# If your Windows user folder has non-ASCII characters (it breaks some native tools), point uv's cache and
+# managed Pythons at an ASCII path with user env vars, e.g. UV_CACHE_DIR=F:\tools\uv-cache and
+# UV_PYTHON_INSTALL_DIR=F:\tools\uv-python. (Not set here: a fixed drive letter breaks other machines.)
+python-preference = "managed"

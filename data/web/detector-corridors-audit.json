@@ -1,0 +1,24 @@
+{
+ "lanes": {
+  "detectors": 761,
+  "exact": 0.8003,
+  "within_one": 0.9461,
+  "by_source": {
+   "osm class": {
+    "detectors": 3,
+    "exact": 0.333
+   },
+   "osm lanes": {
+    "detectors": 750,
+    "exact": 0.808
+   },
+   "osm lanes split": {
+    "detectors": 8,
+    "exact": 0.25
+   }
+  }
+ },
+ "report": [
+  "车道核对：761 个探测器实测车道数 vs 路网车道数，完全一致 80%，相差不超过 1 条 95%（路网偏少 14%、偏多 6%）；按来源完全一致：osm class 33%（3 个）、osm lanes 81%（750 个）、osm lanes split 25%（8 个）"
+ ]
+}

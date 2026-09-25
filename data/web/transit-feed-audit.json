@@ -1,0 +1,20 @@
+{
+ "sources": {
+  "official": "Transport Department, Headway information of public transport services (GTFS), 2026-09-11",
+  "community": "wheelstransit/hongkong-community-gtfs, MTR and light rail only (ODbL, OpenStreetMap contributors)"
+ },
+ "report": [
+  "巴士逐站时间：补齐 1,103,130 个中途站，站间按路网自由流车程分配的 1,178,159 段、路网走不通按 20 km/h 估算的 1,692 段；离最近路口超过 150 米的站 503 个",
+  "仍由 R5 按直线距离插值的站：电车/轻铁 101,034、渡轮 548（电车站距均匀、渡轮中途停靠少，插值合适）；巴士已全部补齐",
+  "960 屯门市中心→中环车上时间 38 分钟（全程 66；社区版逐站时间为 35，直线插值为 53）",
+  "引用完整：全部 id 都能对上",
+  "网址格式：全部可被 R5 解析",
+  "id 唯一：站点、班次、线路均无重复",
+  "20260922 早高峰（07:30-08:30）有班次的线路/班次组：电车/轻铁 17 条线/105；港铁 10 条线/24；巴士/小巴 2316 条线/6163；渡轮 41 条线/87；山顶缆车 1 条线/2",
+  "港铁：10 条线当天运营，其中 10 条早高峰有车（应为 10）",
+  "渡轮：41 条航线当天运营，8 条只有单一起点（多为单程或循环航线，逐条核实）：MUI WO - CHEUNG CHAU, PENG CHAU - MUI WO, TAI SHUI HANG - LAI CHI , ABERDEEN/STANLEY - PO TO, TSIM SHA TSUI EAST - WES, WEST KOWLOON / TSIM SHA ",
+  "   CENTRAL - CHEUNG CHAU：早高峰两端都有开船",
+  "   CENTRAL - PENG CHAU：早高峰两端都有开船",
+  "来源：官方 2,452 条线全部采用；社区 1,623 条线中只取港铁与轻铁 21 条"
+ ]
+}

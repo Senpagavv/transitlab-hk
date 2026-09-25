@@ -1,0 +1,25 @@
+{
+ "sources": {
+  "locations": "Education Bureau, School Location and Information (CSDI, 16 layers)",
+  "enrolment": "Education Bureau, tab0307 / tab0407 student enrolment by district and grade"
+ },
+ "official_totals": {
+  "primary": 317233.0,
+  "secondary": 347820.0,
+  "kindergarten": 115300.0
+ },
+ "allocated": {
+  "primary": 317233.0,
+  "secondary": 347820.0,
+  "kindergarten": 115299.99999999997
+ },
+ "schools": 3063,
+ "schools_in_zones": 3063,
+ "report": [
+  "总量比对：primary 官方 317,233 / 已落区 317,233（100.0%），secondary 官方 347,820 / 已落区 347,820（100.0%），kindergarten 官方 115,300 / 已落区 115,300（100.0%）",
+  "空间覆盖：385/455 个小区有学校，0 所学校落在小区外",
+  "缺失值语义：学额非逐校公布，按区内学校平均分摊；区总量准确，区内分布为估算",
+  "粒度：单区最多 84 所学校、22,205 个学额",
+  "实测vs估算：学校位置与类别为实测（教育局），学额为估算"
+ ]
+}

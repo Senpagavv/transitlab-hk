@@ -1,0 +1,25 @@
+{
+ "sources": {
+  "projection": "Planning Department, Projections of Population Distribution 2023-2031, Tables 1, 7, 15",
+  "census": "2021 Population Census via pipeline/08 and pipeline/14"
+ },
+ "base_year": "2021",
+ "target_year": "2026",
+ "population_2026": 7517309,
+ "planning_department_land_total": 7595800.0,
+ "csd_mid_2026_whole_territory": 7518300.0,
+ "csd_status": "provisional",
+ "projection_before_calibration": 7595652,
+ "report": [
+  "总量比对：2026 人口 7,517,309 vs 统计处 2026 年中估计（临时数，扣除水上人口）7,517,310（差 0.00%）",
+  "推算回测：规划署 2026 推算（陆上 7,595,800）比统计处实际高 +1.04%，已按统计处校准；规划署只决定人住在哪里",
+  "分区比对（按占全港比例）：18 区对规划署表 1，最大偏差 Sai Kung 1.16%",
+  "老龄化：2026 年 65 岁以上 1,833,860 vs 统计处 1,833,859（差 0.0%；规划署当年推算 1,855,900）；占比 24.4%（2021 为 19.6%）",
+  "工作人口：3,680,407 → 3,558,121（跟随 15-64 岁人口，总人口 +1.4%）",
+  "守恒：每个普查小区的 2026 数值拆到模型小区后逐字段合计不变",
+  "自洽：住宅楼面(2026-08)与人口的相关系数 2021 0.835 → 2026 0.882（同期数据更吻合，基准年选择一致）",
+  "增长热点（带最大的命名建筑，便于核实）：545（North，×4.00：Park Silicon Tower 1A, Tower 2B）；741S（Tai Po，×3.06：Aqua Avenue Tower 5, Aqua Avenue Tower 3）；286（Kowloon City，×2.84：Kai Tak Stadium, Kai Tak Cruise Terminal）；634（North，×2.65：Queens Hill Estate Wong Yet House, Queens Hill Estate Wong Shun House）；525（Yuen Long，×2.41：Pok Oi Hospital, Pok Oi Hospital）",
+  "缺失值语义：零人口的模型小区保持零；学额/楼面缺失按零处理（该小区确无此类设施）",
+  "实测vs估算：2026 全港及各年龄段总数为统计处年中估计（临时数）；各小区分布依规划署推算与住宅楼面估算；户均人数与通勤去向沿用 2021 普查，属假设"
+ ]
+}

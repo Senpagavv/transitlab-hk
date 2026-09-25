@@ -1,0 +1,140 @@
+{
+ "source": "Transport Department, Road Network (2nd Generation), via CSDI",
+ "links": 36471,
+ "nodes": 27319,
+ "turns": 11051,
+ "strongly_connected_components": 579,
+ "road_isolated_zones": [
+  "911S",
+  "920",
+  "976"
+ ],
+ "connector_water_check": {
+  "grid": true,
+  "candidates_skipped": 867,
+  "zones_without_dry_connector": []
+ },
+ "flags": [],
+ "largest_component_share": 0.9775,
+ "tolls": {
+  "tolls_applied": {
+   "Aberdeen Tunnel": 8.0,
+   "Lion Rock Tunnel": 8.0,
+   "Shing Mun Tunnels": 8.0,
+   "Tate's Cairn Tunnel": 20.0,
+   "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 8.0,
+   "Cross Harbour Tunnel": 40.0,
+   "Eastern Harbour Crossing": 40.0,
+   "Tai Lam Tunnel": 45.0,
+   "Western Harbour Crossing": 60.0,
+   "Western Harbour Crossing (Backup Toll Point)": 60.0
+  },
+  "by_class": {
+   "car": {
+    "Aberdeen Tunnel": 8.0,
+    "Lion Rock Tunnel": 8.0,
+    "Shing Mun Tunnels": 8.0,
+    "Tate's Cairn Tunnel": 20.0,
+    "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 8.0,
+    "Cross Harbour Tunnel": 40.0,
+    "Eastern Harbour Crossing": 40.0,
+    "Tai Lam Tunnel": 45.0,
+    "Western Harbour Crossing": 60.0,
+    "Western Harbour Crossing (Backup Toll Point)": 60.0
+   },
+   "taxi": {
+    "Aberdeen Tunnel": 8.0,
+    "Lion Rock Tunnel": 8.0,
+    "Shing Mun Tunnels": 8.0,
+    "Tate's Cairn Tunnel": 20.0,
+    "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 8.0,
+    "Cross Harbour Tunnel": 50.0,
+    "Eastern Harbour Crossing": 50.0,
+    "Tai Lam Tunnel": 28.0,
+    "Western Harbour Crossing": 50.0,
+    "Western Harbour Crossing (Backup Toll Point)": 50.0
+   },
+   "goods_light": {
+    "Aberdeen Tunnel": 8.0,
+    "Lion Rock Tunnel": 8.0,
+    "Shing Mun Tunnels": 8.0,
+    "Tate's Cairn Tunnel": 24.0,
+    "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 8.0,
+    "Cross Harbour Tunnel": 50.0,
+    "Eastern Harbour Crossing": 50.0,
+    "Tai Lam Tunnel": 43.0,
+    "Western Harbour Crossing": 50.0,
+    "Western Harbour Crossing (Backup Toll Point)": 50.0
+   },
+   "goods_heavy": {
+    "Aberdeen Tunnel": 8.0,
+    "Lion Rock Tunnel": 8.0,
+    "Shing Mun Tunnels": 8.0,
+    "Tate's Cairn Tunnel": 28.0,
+    "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 8.0,
+    "Cross Harbour Tunnel": 50.0,
+    "Eastern Harbour Crossing": 50.0,
+    "Tai Lam Tunnel": 43.0,
+    "Western Harbour Crossing": 50.0,
+    "Western Harbour Crossing (Backup Toll Point)": 50.0
+   },
+   "coach": {
+    "Aberdeen Tunnel": 8.0,
+    "Lion Rock Tunnel": 8.0,
+    "Shing Mun Tunnels": 8.0,
+    "Tate's Cairn Tunnel": 29.48,
+    "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 8.0,
+    "Cross Harbour Tunnel": 50.0,
+    "Eastern Harbour Crossing": 50.0,
+    "Tai Lam Tunnel": 43.0,
+    "Western Harbour Crossing": 50.0,
+    "Western Harbour Crossing (Backup Toll Point)": 50.0
+   }
+  },
+  "unmatched_facilities": [],
+  "charged_links": {
+   "Cross Harbour Tunnel": 2,
+   "Eastern Harbour Crossing": 2,
+   "Western Harbour Crossing": 2,
+   "Aberdeen Tunnel": 2,
+   "Lion Rock Tunnel": 2,
+   "Shing Mun Tunnels": 2,
+   "Tate's Cairn Tunnel": 2,
+   "Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)": 2,
+   "Tai Lam Tunnel": 2
+  }
+ },
+ "lanes": {
+  "matched_share_by_length": 0.9842,
+  "lanes_source_share_by_length": {
+   "osm class": 0.1626,
+   "osm lanes": 0.6238,
+   "osm lanes split": 0.1977,
+   "speed limit": 0.0158
+  },
+  "direction_conflicts": 227,
+  "osm_ways": 76805,
+  "class_corrected": {
+   "by_network": 1069,
+   "by_street": 1536,
+   "length_km": 306.0,
+   "lanes_reset": 676
+  }
+ },
+ "capacity_source": "TPDM Volume 2 Table 2.4.1.1 design flows (veh/hour, one direction)",
+ "report": [
+  "规模：36,471 条路段，27,319 个节点，3,887 公里；单向路段 24,916 条；闭环支路 331 条（28 公里）不参与路由",
+  "连通性：强连通分量 579 个，最大的含 26,703 个节点（97.7%）",
+  "接驳：1,266 个接驳点覆盖 452/455 个小区，其中 452 个接到最大连通分量；接驳距离（从出行端点加权的小区中心起）中位 232 米，90% 分位 382 米",
+  "小区中心（出行端点加权中位点）与上次相比：0 个移动，超过 500 米的 0 个",
+  "接驳不跨水：跳过直线跨海或水塘超过 30 米的候选路口 867 个；找不到陆路路口、只能保留跨水接驳的小区 0 个（无）",
+  "无公路连接：3 个小区（911S, 920, 976），共 31,122 人，小汽车不可达，靠渡轮进出（由公交矩阵处理）",
+  "限速：3,404 条有公布限速（9.3%），其余按香港法定默认 50 km/h（SPEED_LIMIT 图层不含 50，即只记录例外）",
+  "转向限制：11,051 条可挂到路段（原始 11,051 条），其中禁止掉头 5,064 条",
+  "收费：9 个收费设施、18 个收费路段（每个设施两个方向都收费），Aberdeen Tunnel 8 元；Cross Harbour Tunnel 40 元；Eastern Harbour Crossing 40 元；Lion Rock Tunnel 8 元；Shing Mun Tunnels 8 元；Tai Lam Tunnel 45 元；Tate's Cairn Tunnel 20 元；Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel) 8 元；Western Harbour Crossing 60 元；Western Harbour Crossing (Backup Toll Point) 60 元",
+  "分车种收费（8:30 时点，元）：Aberdeen Tunnel：car 8、taxi 8、goods_light 8、goods_heavy 8、coach 8；Cross Harbour Tunnel：car 40、taxi 50、goods_light 50、goods_heavy 50、coach 50；Eastern Harbour Crossing：car 40、taxi 50、goods_light 50、goods_heavy 50、coach 50；Lion Rock Tunnel：car 8、taxi 8、goods_light 8、goods_heavy 8、coach 8；Shing Mun Tunnels：car 8、taxi 8、goods_light 8、goods_heavy 8、coach 8；Tai Lam Tunnel：car 45、taxi 28、goods_light 43、goods_heavy 43、coach 43；Tate's Cairn Tunnel：car 20、taxi 20、goods_light 24、goods_heavy 28、coach 29；Tsing Sha Control Area (Eagle's Nest Tunnel and Sha Tin Heights Tunnel)：car 8、taxi 8、goods_light 8、goods_heavy 8、coach 8；Western Harbour Crossing：car 60、taxi 50、goods_light 50、goods_heavy 50、coach 50。的士过海是「隧道费 + 回程费」（运输署的士车资表），货车与旅游巴在分时段收费的隧道按 OTH 计",
+  "车道：98.4% 的路网长度匹配到 OpenStreetMap 道路；车道数来源（按长度）osm lanes 62.4%、osm lanes split 19.8%、osm class 16.3%、speed limit 1.6%；两图单行方向相反 227 段；按运输署资料纠正等级 1069 段（限速 ≥70 为快速公路，策略性干道/路名的支路升主干路）+ 1536 段（同名道路），共 306.0 公里；道路等级（按长度）district 36%、expressway 28%、local 28%、primary 8%",
+  "通行能力（TPDM 第二册表 2.4.1.1，辆/小时/方向）：快速公路中位 3,000，主要干路 2,800，区内干路 1,950，地方道路 400",
+  "实测vs估算：几何、方向、限速、转向限制、收费为实测（运输署）；车道数与道路等级取自 OpenStreetMap（主干道 97% 有标注，缺标注者按等级默认），通行能力按 TPDM 第二册设计流量表计算，仍是模型最大的供给端假设，待用普查站校准"
+ ]
+}

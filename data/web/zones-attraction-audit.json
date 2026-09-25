@@ -1,0 +1,391 @@
+{
+ "totals_vs_rvd": {
+  "office": {
+   "districts": [
+    {
+     "district": "Central and Western",
+     "ours_gfa_m2": 5768972,
+     "rvd_ifa_m2": 3320600,
+     "ratio": 1.74
+    },
+    {
+     "district": "Wan Chai",
+     "ours_gfa_m2": 3361712,
+     "rvd_ifa_m2": 1954900,
+     "ratio": 1.72
+    },
+    {
+     "district": "Eastern",
+     "ours_gfa_m2": 1416015,
+     "rvd_ifa_m2": 1137300,
+     "ratio": 1.25
+    },
+    {
+     "district": "Southern",
+     "ours_gfa_m2": 1116798,
+     "rvd_ifa_m2": 377700,
+     "ratio": 2.96
+    },
+    {
+     "district": "Yau Tsim Mong",
+     "ours_gfa_m2": 4028554,
+     "rvd_ifa_m2": 2227000,
+     "ratio": 1.81
+    },
+    {
+     "district": "Sham Shui Po",
+     "ours_gfa_m2": 475953,
+     "rvd_ifa_m2": 453900,
+     "ratio": 1.05
+    },
+    {
+     "district": "Kowloon City",
+     "ours_gfa_m2": 393998,
+     "rvd_ifa_m2": 326000,
+     "ratio": 1.21
+    },
+    {
+     "district": "Wong Tai Sin",
+     "ours_gfa_m2": 118657,
+     "rvd_ifa_m2": 98400,
+     "ratio": 1.21
+    },
+    {
+     "district": "Kwun Tong",
+     "ours_gfa_m2": 2979946,
+     "rvd_ifa_m2": 1980600,
+     "ratio": 1.5
+    },
+    {
+     "district": "Kwai Tsing",
+     "ours_gfa_m2": 395918,
+     "rvd_ifa_m2": 278200,
+     "ratio": 1.42
+    },
+    {
+     "district": "Tsuen Wan",
+     "ours_gfa_m2": 292107,
+     "rvd_ifa_m2": 268800,
+     "ratio": 1.09
+    },
+    {
+     "district": "Tuen Mun",
+     "ours_gfa_m2": 41828,
+     "rvd_ifa_m2": 58900,
+     "ratio": 0.71
+    },
+    {
+     "district": "Yuen Long",
+     "ours_gfa_m2": 94501,
+     "rvd_ifa_m2": 71400,
+     "ratio": 1.32
+    },
+    {
+     "district": "North",
+     "ours_gfa_m2": 43849,
+     "rvd_ifa_m2": 32500,
+     "ratio": 1.35
+    },
+    {
+     "district": "Tai Po",
+     "ours_gfa_m2": 49453,
+     "rvd_ifa_m2": 6400,
+     "ratio": 7.73
+    },
+    {
+     "district": "Sha Tin",
+     "ours_gfa_m2": 529520,
+     "rvd_ifa_m2": 532400,
+     "ratio": 0.99
+    },
+    {
+     "district": "Sai Kung",
+     "ours_gfa_m2": 214445,
+     "rvd_ifa_m2": 28400,
+     "ratio": 7.55
+    },
+    {
+     "district": "Islands",
+     "ours_gfa_m2": 624108,
+     "rvd_ifa_m2": 152000,
+     "ratio": 4.11
+    }
+   ],
+   "median_ratio": 1.39
+  },
+  "retail": {
+   "districts": [
+    {
+     "district": "Central and Western",
+     "ours_gfa_m2": 1978623,
+     "rvd_ifa_m2": 1143200,
+     "ratio": 1.73
+    },
+    {
+     "district": "Wan Chai",
+     "ours_gfa_m2": 2058608,
+     "rvd_ifa_m2": 1205600,
+     "ratio": 1.71
+    },
+    {
+     "district": "Eastern",
+     "ours_gfa_m2": 867425,
+     "rvd_ifa_m2": 731400,
+     "ratio": 1.19
+    },
+    {
+     "district": "Southern",
+     "ours_gfa_m2": 762941,
+     "rvd_ifa_m2": 273800,
+     "ratio": 2.79
+    },
+    {
+     "district": "Yau Tsim Mong",
+     "ours_gfa_m2": 3919621,
+     "rvd_ifa_m2": 2198200,
+     "ratio": 1.78
+    },
+    {
+     "district": "Sham Shui Po",
+     "ours_gfa_m2": 727840,
+     "rvd_ifa_m2": 747100,
+     "ratio": 0.97
+    },
+    {
+     "district": "Kowloon City",
+     "ours_gfa_m2": 882190,
+     "rvd_ifa_m2": 821900,
+     "ratio": 1.07
+    },
+    {
+     "district": "Wong Tai Sin",
+     "ours_gfa_m2": 251608,
+     "rvd_ifa_m2": 328000,
+     "ratio": 0.77
+    },
+    {
+     "district": "Kwun Tong",
+     "ours_gfa_m2": 1134655,
+     "rvd_ifa_m2": 757800,
+     "ratio": 1.5
+    },
+    {
+     "district": "Kwai Tsing",
+     "ours_gfa_m2": 543503,
+     "rvd_ifa_m2": 384500,
+     "ratio": 1.41
+    },
+    {
+     "district": "Tsuen Wan",
+     "ours_gfa_m2": 607705,
+     "rvd_ifa_m2": 576400,
+     "ratio": 1.05
+    },
+    {
+     "district": "Tuen Mun",
+     "ours_gfa_m2": 214122,
+     "rvd_ifa_m2": 436200,
+     "ratio": 0.49
+    },
+    {
+     "district": "Yuen Long",
+     "ours_gfa_m2": 375600,
+     "rvd_ifa_m2": 529900,
+     "ratio": 0.71
+    },
+    {
+     "district": "North",
+     "ours_gfa_m2": 177362,
+     "rvd_ifa_m2": 245400,
+     "ratio": 0.72
+    },
+    {
+     "district": "Tai Po",
+     "ours_gfa_m2": 148613,
+     "rvd_ifa_m2": 239200,
+     "ratio": 0.62
+    },
+    {
+     "district": "Sha Tin",
+     "ours_gfa_m2": 501107,
+     "rvd_ifa_m2": 542400,
+     "ratio": 0.92
+    },
+    {
+     "district": "Sai Kung",
+     "ours_gfa_m2": 694186,
+     "rvd_ifa_m2": 364900,
+     "ratio": 1.9
+    },
+    {
+     "district": "Islands",
+     "ours_gfa_m2": 1160245,
+     "rvd_ifa_m2": 309000,
+     "ratio": 3.75
+    }
+   ],
+   "median_ratio": 1.13
+  },
+  "industrial": {
+   "districts": [
+    {
+     "district": "Central and Western",
+     "ours_gfa_m2": 143701,
+     "rvd_ifa_m2": 105700,
+     "ratio": 1.36
+    },
+    {
+     "district": "Eastern",
+     "ours_gfa_m2": 1993225,
+     "rvd_ifa_m2": 1277400,
+     "ratio": 1.56
+    },
+    {
+     "district": "Southern",
+     "ours_gfa_m2": 1341203,
+     "rvd_ifa_m2": 752400,
+     "ratio": 1.78
+    },
+    {
+     "district": "Yau Tsim Mong",
+     "ours_gfa_m2": 490455,
+     "rvd_ifa_m2": 287000,
+     "ratio": 1.71
+    },
+    {
+     "district": "Sham Shui Po",
+     "ours_gfa_m2": 2004978,
+     "rvd_ifa_m2": 1195900,
+     "ratio": 1.68
+    },
+    {
+     "district": "Kowloon City",
+     "ours_gfa_m2": 1454914,
+     "rvd_ifa_m2": 935300,
+     "ratio": 1.56
+    },
+    {
+     "district": "Wong Tai Sin",
+     "ours_gfa_m2": 1203627,
+     "rvd_ifa_m2": 821800,
+     "ratio": 1.46
+    },
+    {
+     "district": "Kwun Tong",
+     "ours_gfa_m2": 5312422,
+     "rvd_ifa_m2": 3370900,
+     "ratio": 1.58
+    },
+    {
+     "district": "Kwai Tsing",
+     "ours_gfa_m2": 9506373,
+     "rvd_ifa_m2": 5203000,
+     "ratio": 1.83
+    },
+    {
+     "district": "Tsuen Wan",
+     "ours_gfa_m2": 4695069,
+     "rvd_ifa_m2": 2864900,
+     "ratio": 1.64
+    },
+    {
+     "district": "Tuen Mun",
+     "ours_gfa_m2": 2971900,
+     "rvd_ifa_m2": 1814800,
+     "ratio": 1.64
+    },
+    {
+     "district": "Yuen Long",
+     "ours_gfa_m2": 1407628,
+     "rvd_ifa_m2": 968300,
+     "ratio": 1.45
+    },
+    {
+     "district": "North",
+     "ours_gfa_m2": 806108,
+     "rvd_ifa_m2": 556900,
+     "ratio": 1.45
+    },
+    {
+     "district": "Tai Po",
+     "ours_gfa_m2": 1537548,
+     "rvd_ifa_m2": 944800,
+     "ratio": 1.63
+    },
+    {
+     "district": "Sha Tin",
+     "ours_gfa_m2": 3108625,
+     "rvd_ifa_m2": 1652300,
+     "ratio": 1.88
+    },
+    {
+     "district": "Sai Kung",
+     "ours_gfa_m2": 1135071,
+     "rvd_ifa_m2": 807500,
+     "ratio": 1.41
+    },
+    {
+     "district": "Islands",
+     "ours_gfa_m2": 1149687,
+     "rvd_ifa_m2": 194100,
+     "ratio": 5.92
+    }
+   ],
+   "median_ratio": 1.63
+  }
+ },
+ "hotels_vs_official": {
+  "year": "2026",
+  "official_rooms": 93456,
+  "our_gfa_m2": 5897065,
+  "m2_per_room": 63.1
+ },
+ "coverage": {
+  "zones": 455,
+  "zones_with_buildings": 455
+ },
+ "unclassified": {
+  "gfa_m2": 135576847,
+  "share": 0.338,
+  "meaning": "未在屋宇署私人楼宇纪录中，主要为公营房屋、学校、医院、政府建筑及乡村屋宇"
+ },
+ "granularity": {
+  "largest_zone": "121S",
+  "gfa_m2": 7057071.0
+ },
+ "outliers": {
+  "negative_zones": 0
+ },
+ "measured_vs_modelled": {
+  "footprint": "实测（地政总署建筑物图层）",
+  "storeys_published_share": 0.251,
+  "storeys_rest": "按建筑物自身高度推算",
+  "use": "实测（屋宇署登记用途），未覆盖部分标为 unclassified"
+ },
+ "report": [
+  "总量比对 office: 我们的毛楼面 / RVD 内部楼面 中位 1.39 倍（18 个区；毛楼面本就大于内部楼面，合理区间约 1.2-1.5）",
+  "总量比对 retail: 我们的毛楼面 / RVD 内部楼面 中位 1.13 倍（18 个区；毛楼面本就大于内部楼面，合理区间约 1.2-1.5）",
+  "总量比对 industrial: 我们的毛楼面 / RVD 内部楼面 中位 1.63 倍（17 个区；毛楼面本就大于内部楼面，合理区间约 1.2-1.5）",
+  "总量比对 hotel: 官方 2026 年 93,456 间客房，我们 5.90 百万 m2 = 每间 63.1 m2（酒店业常见 60-70）",
+  "空间覆盖：455/455 个小区有建筑物",
+  "缺失值语义：33.8% 的楼面面积无用途（非缺漏，是屋宇署只登记私人楼宇）",
+  "粒度：单区最大楼面 7.1 百万 m2（小区 121S）",
+  "异常值：楼面为负的小区 0 个",
+  "实测vs估算：占地与高度为实测；层数 25% 为公布值，其余按高度推算",
+  "住宅判定：132,807 栋、203.6 百万 m²；比旧规则多认村屋 18,783 栋（2.3 百万 m²），按名称剔除设施 1,111 栋（7.0 百万 m²）"
+ ],
+ "sources": {
+  "buildings": "Lands Department, Building (CSDI landsd_rcd_1637211194312_35158)",
+  "usage": "Buildings Department, Building information and age records (CSDI)",
+  "rvd": "Rating and Valuation Department, stock by district at 2024 year-end",
+  "districts": "Home Affairs Department, 18 district boundaries"
+ },
+ "homes": {
+  "dwelling_buildings": 132807,
+  "dwelling_gfa_m2": 203639061,
+  "village_houses_added": 18783,
+  "village_gfa_added_m2": 2309094,
+  "facilities_removed": 1111,
+  "facility_gfa_removed_m2": 6971463
+ }
+}

@@ -1,0 +1,671 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  z-index: 2;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.map-area {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Lands Department logo required on the map face by the Map API terms */
+.landsd-logo {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1;
+  line-height: 0;
+}
+
+.landsd-logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+}
+
+.maplibregl-ctrl-bottom-left {
+  left: 44px;
+}
+
+/* ---------- Search ---------- */
+.search {
+  position: relative;
+  flex: 1;
+  max-width: 520px;
+}
+
+.search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 9px 36px 9px 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  font: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-input input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--panel);
+  box-shadow: 0 0 0 3px rgb(15 118 110 / 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 11px;
+  color: var(--muted);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.search-clear:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+/* The dropdown stays mounted and fades in/out instead of popping. */
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.1);
+  opacity: 0;
+  transform: translateY(-4px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease,
+    visibility 0s linear 0.16s;
+}
+
+.search-dropdown.open {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease,
+    visibility 0s;
+}
+
+.search-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-dropdown li.active {
+  background: var(--bg);
+}
+
+.option-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.option-text strong,
+.option-text small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.option-text small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.kind {
+  flex: none;
+  min-width: 48px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  text-align: center;
+  background: #eef0f2;
+  color: #4b5563;
+}
+
+.kind-mtr {
+  background: #fde8e8;
+  color: #b42318;
+}
+
+.kind-light_rail {
+  background: #fff1e0;
+  color: #b45309;
+}
+
+.kind-ferry {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.kind-place {
+  background: #e6f4f1;
+  color: var(--accent);
+}
+
+.search-status {
+  padding: 8px 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- Map legends (bottom right, stacked) ---------- */
+.map-legends {
+  position: absolute;
+  right: 10px;
+  bottom: 34px;
+  z-index: 3; /* above the deck.gl traffic canvas */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 212px;
+  max-height: calc(100% - 90px);
+  overflow-y: auto;
+}
+
+.map-legend {
+  padding: 10px 12px;
+  background: rgb(255 255 255 / 0.94);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.08);
+  font-size: 12px;
+}
+
+.map-legend-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.legend-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-legend-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ---------- Zone legend ---------- */
+.zone-metric {
+  width: 100%;
+  margin-top: 8px;
+  padding: 5px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+  font: inherit;
+  color: var(--text);
+}
+
+.zone-metric:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.zone-unit {
+  margin: 6px 0 4px;
+  color: var(--muted);
+}
+
+.zone-classes {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.zone-classes li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zone-swatch {
+  flex: none;
+  width: 22px;
+  height: 11px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+}
+
+/* ---------- Zone hover tip (follows the cursor) ---------- */
+.zone-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3; /* above the deck.gl traffic canvas */
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 9px;
+  background: rgb(31 35 40 / 0.9);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  pointer-events: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.zone-tip[hidden] {
+  display: none;
+}
+
+/* ---------- Zone panel (top left) ---------- */
+.zone-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3; /* above the deck.gl traffic canvas */
+  width: min(320px, calc(100% - 20px));
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  padding: 14px 16px 12px;
+  background: rgb(255 255 255 / 0.97);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.12);
+  font-size: 13px;
+}
+
+.zone-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.zone-panel h2 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.zone-panel-head p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.zone-close {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.zone-close:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.zone-close:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.zone-flag {
+  margin: 10px 0 0;
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: #fff4e5;
+  color: #8a5a12;
+  font-size: 12px;
+}
+
+.zone-panel section {
+  margin-top: 12px;
+}
+
+.zone-panel h3 {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.zone-panel dl {
+  margin: 0;
+}
+
+.zone-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.zone-row dt {
+  color: var(--text);
+}
+
+.zone-row dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 2px 6px;
+  margin: 0;
+  text-align: right;
+}
+
+.zone-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.zone-sub {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The basis tag is read as text; the outline style only echoes it. */
+.basis {
+  order: -1;
+  padding: 0 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.basis-实测 {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.basis-估算 {
+  border-style: dashed;
+}
+
+.zone-foot {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* ---------- Live traffic legend ---------- */
+.traffic-ramp {
+  display: flex;
+  height: 8px;
+  margin: 8px 0 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.traffic-ramp span {
+  flex: 1;
+}
+
+.traffic-scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+}
+
+.traffic-note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.traffic-error {
+  color: var(--danger);
+}
+
+/* 车队沙盘：调度模拟的结果（pipeline/31），浮在地图右上角 */
+.fleet-panel {
+  /* Left side: the zone and traffic legends own the right, and pushing them off the screen would
+     hide the key to the colours this panel is talking about. */
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  width: 332px;
+  max-height: calc(100% - 24px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  font-size: 13px;
+}
+.fleet-panel.fleet-closed { width: auto; }
+.fleet-empty { padding: 10px 12px; color: var(--muted); max-width: 300px; }
+.fleet-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+}
+.fleet-body { padding: 0 12px 12px; }
+.fleet-lead { margin: 0 0 8px; color: var(--muted); line-height: 1.5; }
+.fleet-curve, .fleet-hours { width: 100%; height: auto; display: block; }
+.fleet-line { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+.fleet-target { stroke: #d1d5db; stroke-dasharray: 3 3; }
+.fleet-axis { font-size: 8px; fill: var(--muted); }
+.fleet-dot-hit { cursor: pointer; }
+.fleet-dot { stroke: #fff; stroke-width: 1.5; }
+.fleet-ok { fill: #0f766e; }
+.fleet-tight { fill: #d97706; }
+.fleet-broken { fill: #b91c1c; }
+.fleet-ok-text { color: #0f766e; }
+.fleet-tight-text { color: #d97706; }
+.fleet-broken-text { color: #b91c1c; }
+.fleet-bar { fill: #99c9c4; }
+.fleet-figures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 8px 0;
+  text-align: center;
+}
+.fleet-value { display: block; font-size: 17px; font-weight: 700; }
+.fleet-label { display: block; font-size: 11px; color: var(--muted); }
+.fleet-headline {
+  margin: 8px 0 4px;
+  padding: 8px 10px;
+  background: var(--bg);
+  border-radius: 6px;
+  line-height: 1.6;
+}
+.fleet-sub { margin: 12px 0 2px; font-size: 12px; color: var(--muted); font-weight: 600; }
+.fleet-limits { margin-top: 10px; color: var(--muted); }
+.fleet-limits summary { cursor: pointer; }
+.fleet-limits ul { margin: 6px 0 0; padding-left: 18px; line-height: 1.6; }
+
+/* Area deployment scenarios sit beside the map legends at the lower right. */
+.deploy-panel {
+  position: absolute;
+  right: 234px;
+  bottom: 12px;
+  z-index: 3;
+  width: min(360px, calc(100% - 250px));
+  max-height: calc(100% - 24px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.08);
+  font-size: 13px;
+}
+.deploy-panel.deploy-closed { width: auto; }
+.deploy-empty { padding: 10px 12px; color: var(--muted); }
+.deploy-toggle {
+  width: 100%;
+  padding: 9px 12px;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.deploy-toggle:focus-visible, .deploy-option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.deploy-body { padding: 0 12px 12px; }
+.deploy-lead { margin: 0 0 9px; color: var(--muted); line-height: 1.5; }
+.deploy-picker { margin: 8px 0; }
+.deploy-picker-label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 11px; }
+.deploy-options { display: flex; flex-wrap: wrap; gap: 5px; }
+.deploy-option {
+  padding: 4px 7px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.deploy-option[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: #e6f4f1;
+  color: var(--accent);
+  font-weight: 600;
+}
+.deploy-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 12px 0;
+}
+.deploy-metric { min-width: 0; padding: 8px; border-radius: 6px; background: var(--bg); }
+.deploy-metric strong { display: block; font-size: 17px; font-variant-numeric: tabular-nums; }
+.deploy-metric span { display: block; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.deploy-decrease { color: #0f766e; }
+.deploy-increase { color: var(--danger); }
+.deploy-utilization {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-left: 4px solid #b45309;
+  border-radius: 6px;
+  background: #fff4e5;
+}
+.deploy-utilization-label { display: block; color: #8a5a12; font-size: 11px; font-weight: 600; }
+.deploy-utilization strong { display: block; margin: 3px 0 8px; font-size: 18px; line-height: 1.3; }
+.deploy-utilization-track { height: 9px; border-radius: 5px; background: #eadac4; overflow: hidden; }
+.deploy-utilization-track span { display: block; height: 100%; border-radius: inherit; background: #b45309; }
+.deploy-sub { margin: 12px 0 4px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.deploy-chart-key { display: flex; gap: 12px; color: var(--muted); font-size: 11px; }
+.deploy-chart-key span::before { content: ''; display: inline-block; width: 12px; height: 3px; margin: 0 4px 3px 0; }
+.deploy-key-served::before { background: var(--accent); }
+.deploy-key-busy::before { background: #b45309; }
+.deploy-chart { display: block; width: 100%; height: auto; }
+.deploy-grid { stroke: #e3e3df; stroke-width: 1; }
+.deploy-chart-served, .deploy-chart-busy { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.deploy-chart-served { stroke: var(--accent); }
+.deploy-chart-busy { stroke: #b45309; }
+.deploy-axis { fill: var(--muted); font-size: 9px; }
+.deploy-drift { margin: 8px 0; padding: 8px; border-radius: 6px; background: var(--bg); line-height: 1.5; }
+.deploy-limits { margin-top: 10px; color: var(--muted); }
+.deploy-limits summary { cursor: pointer; }
+.deploy-limits ul { margin: 6px 0 0; padding-left: 18px; line-height: 1.6; }
+
+@media (max-width: 520px) {
+  .deploy-panel { right: 10px; bottom: 240px; width: min(360px, calc(100% - 20px)); max-height: calc(100% - 300px); }
+}
+
+/* The hourly deployment chart uses a separate, colour matched axis for each series. */
+.deploy-axis-served { fill: var(--accent); }
+.deploy-axis-busy { fill: #b45309; }
+.deploy-axis-line-served { stroke: var(--accent); stroke-width: 1; }
+.deploy-axis-line-busy { stroke: #b45309; stroke-width: 1; }
+.deploy-chart-throughput { margin: 4px 0 8px; font-size: 12px; line-height: 1.5; }
+.deploy-chart-tick { display: block; width: 100%; font-size: 9px; line-height: 14px; font-variant-numeric: tabular-nums; }
+.deploy-chart-tick-left { text-align: right; }
+.deploy-chart-tick.deploy-axis-served { color: var(--accent); }
+.deploy-chart-tick.deploy-axis-busy { color: #b45309; }

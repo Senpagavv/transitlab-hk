@@ -1,0 +1,244 @@
+{
+ "checks": {
+  "1_taxi_annual_2021_2025": {
+   "actual": {
+    "2021": 762.3280520547945,
+    "2022": 711.1126383561643,
+    "2023": 727.9475753424657,
+    "2024": 682.6457950819671,
+    "2025": 676.1053315068493
+   },
+   "expected": {
+    "2021": 762.328052,
+    "2022": 711.112638,
+    "2023": 727.947575,
+    "2024": 682.645795,
+    "2025": 676.105332
+   },
+   "comparison": "equal after rounding source values to 6 decimal places",
+   "pass": true
+  },
+  "2_taxi_licensed_2025": {
+   "actual": {
+    "urban": 14941.0,
+    "new_territories": 2679.0,
+    "lantau": 75.0,
+    "total": 17695.0
+   },
+   "expected": {
+    "urban": 14941.0,
+    "new_territories": 2679.0,
+    "lantau": 75.0,
+    "total": 17695.0
+   },
+   "pass": true
+  },
+  "3_annual_mode_sum_vs_total": {
+   "by_year": {
+    "2021": {
+     "mode_sum": 10552.162386301368,
+     "reported_total": 10552.162386301368,
+     "relative_error": 0.0
+    },
+    "2022": {
+     "mode_sum": 9669.261246575341,
+     "reported_total": 9669.261246575341,
+     "relative_error": 0.0
+    },
+    "2023": {
+     "mode_sum": 11479.411356164383,
+     "reported_total": 11479.411356164384,
+     "relative_error": 1.5845667927642202e-16
+    },
+    "2024": {
+     "mode_sum": 11697.56549726776,
+     "reported_total": 11697.56549726776,
+     "relative_error": 0.0
+    },
+    "2025": {
+     "mode_sum": 11718.662202739728,
+     "reported_total": 11718.662202739728,
+     "relative_error": 0.0
+    }
+   },
+   "threshold_exclusive": 0.005,
+   "pass": true
+  },
+  "4_monthly_mean_vs_annual": {
+   "calculation": "unweighted arithmetic mean of 12 monthly daily averages",
+   "full_years": [
+    "2025"
+   ],
+   "by_year_and_metric": {
+    "2025": {
+     "KMB": {
+      "monthly_arithmetic_mean": 2528.993752707373,
+      "annual": 2528.8372273972604,
+      "relative_error": 6.18961586047418e-05
+     },
+     "Citybus": {
+      "monthly_arithmetic_mean": 985.718284389401,
+      "annual": 985.7125589041095,
+      "relative_error": 5.808473514661651e-06
+     },
+     "NWFB": {
+      "monthly_arithmetic_mean": 0.0,
+      "annual": 0.0,
+      "relative_error": 0.0
+     },
+     "LWB": {
+      "monthly_arithmetic_mean": 135.5468343894009,
+      "annual": 135.56165479452054,
+      "relative_error": 0.0001093259383863816
+     },
+     "NLB": {
+      "monthly_arithmetic_mean": 101.1143297299027,
+      "annual": 101.11511506849315,
+      "relative_error": 7.766777399351776e-06
+     },
+     "MTR Lines": {
+      "monthly_arithmetic_mean": 4745.675426632104,
+      "annual": 4745.684528767124,
+      "relative_error": 1.91798147659311e-06
+     },
+     "AEL": {
+      "monthly_arithmetic_mean": 36.42674247311828,
+      "annual": 36.449326027397255,
+      "relative_error": 0.0006195877054626153
+     },
+     "Light Rail": {
+      "monthly_arithmetic_mean": 422.8831141705069,
+      "annual": 422.9064876712329,
+      "relative_error": 5.5268721117900134e-05
+     },
+     "Hongkong Tramways": {
+      "monthly_arithmetic_mean": 138.31626853558626,
+      "annual": 138.3111726027397,
+      "relative_error": 3.6843971102715744e-05
+     },
+     "Franchised Buses": {
+      "monthly_arithmetic_mean": 3751.373201216078,
+      "annual": 3751.2265561643835,
+      "relative_error": 3.909256065955159e-05
+     },
+     "Railways": {
+      "monthly_arithmetic_mean": 5343.301551811316,
+      "annual": 5343.351515068494,
+      "relative_error": 9.350546569378256e-06
+     },
+     "GMB": {
+      "monthly_arithmetic_mean": 1358.3573683307732,
+      "annual": 1358.3627780821917,
+      "relative_error": 3.982552750835078e-06
+     },
+     "RMB": {
+      "monthly_arithmetic_mean": 139.0363489439324,
+      "annual": 139.02114520547946,
+      "relative_error": 0.00010936277665157862
+     },
+     "Sun Ferry": {
+      "monthly_arithmetic_mean": 30.33475805811572,
+      "annual": 30.333402739726026,
+      "relative_error": 4.468072379892556e-05
+     },
+     "Star Ferry": {
+      "monthly_arithmetic_mean": 44.23812571684588,
+      "annual": 44.28911780821918,
+      "relative_error": 0.0011513458361060312
+     },
+     "Other Licensed Ferries": {
+      "monthly_arithmetic_mean": 32.02060604198669,
+      "annual": 32.01506027397261,
+      "relative_error": 0.0001732237255411019
+     },
+     "Taxis": {
+      "monthly_arithmetic_mean": 676.0803011264721,
+      "annual": 676.1053315068493,
+      "relative_error": 3.702142138326704e-05
+     },
+     "Residents' Services": {
+      "monthly_arithmetic_mean": 183.25358566948285,
+      "annual": 183.244002739726,
+      "relative_error": 5.229600758316225e-05
+     },
+     "MTR Buses (Northwest New Territories)": {
+      "monthly_arithmetic_mean": 160.69876161034307,
+      "annual": 160.71329315068493,
+      "relative_error": 9.041903166179764e-05
+     },
+     "Total": {
+      "monthly_arithmetic_mean": 11718.694608525346,
+      "annual": 11718.662202739728,
+      "relative_error": 2.765314423879825e-06
+     },
+     "Public Light Buses": {
+      "monthly_arithmetic_mean": 1497.3937172747055,
+      "annual": 1497.3839232876715,
+      "relative_error": 6.540732060598485e-06
+     },
+     "Ferries": {
+      "monthly_arithmetic_mean": 106.59348981694829,
+      "annual": 106.63758082191782,
+      "relative_error": 0.00041346591539019774
+     }
+    }
+   },
+   "threshold_exclusive": 0.02,
+   "pass": true
+  },
+  "5_total_registration_quota": {
+   "actual": {
+    "2021": 18163.0,
+    "2022": 18163.0,
+    "2023": 18163.0,
+    "2024": 18163.0,
+    "2025": 18163.0
+   },
+   "expected_each_year": 18163.0,
+   "pass": true
+  },
+  "6_period_coverage": {
+   "annual_periods": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "monthly_periods": [
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06"
+   ],
+   "annual_count": 5,
+   "monthly_count": 18,
+   "minimum_annual": 5,
+   "minimum_monthly": 12,
+   "pass": true
+  }
+ },
+ "flags": [],
+ "report": [
+  "1. 2021–2025 的士年度值：实测 2021 762.328052、2022 711.112638、2023 727.947575、2024 682.645795、2025 676.105332；期望 2021 762.328052、2022 711.112638、2023 727.947575、2024 682.645795、2025 676.105332；阈值小数点后 6 位完全相等；通过",
+  "2. 2025 的士领牌数（市区/新界/大屿山/合计）：实测 14941/2679/75/17695；期望 14941/2679/75/17695；阈值完全相等；通过",
+  "3. 年度各方式之和 vs Total：实测 2021–2025 最大相对误差 0.000000%；期望每年 <0.5%；通过",
+  "4. 完整年度的逐月算术平均 vs 年度值：实测 2025 最大相对误差 0.115135%；期望每年每列 <2%；通过",
+  "5. 2021–2025 合计登记数：实测 2021 18163、2022 18163、2023 18163、2024 18163、2025 18163；期望每年 18,163；阈值完全相等；通过",
+  "6. 解析期数：实测年度 5 个、月份 18 个；期望年度 ≥5、月份 ≥12；通过"
+ ]
+}

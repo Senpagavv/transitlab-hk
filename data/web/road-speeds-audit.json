@@ -1,0 +1,1361 @@
+{
+ "detectors_placed": 800,
+ "rows": 1144632,
+ "coverage_by_length": 0.0711,
+ "factors": [
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 0,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 1,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 2,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 3,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 4,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 5,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 6,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 7,
+   "ratio": 0.95,
+   "detectors": 19,
+   "class_ratio": 0.95
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 8,
+   "ratio": 0.94,
+   "detectors": 19,
+   "class_ratio": 0.94
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 9,
+   "ratio": 0.94,
+   "detectors": 19,
+   "class_ratio": 0.94
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 10,
+   "ratio": 0.93,
+   "detectors": 19,
+   "class_ratio": 0.93
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 11,
+   "ratio": 0.97,
+   "detectors": 21,
+   "class_ratio": 0.97
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 12,
+   "ratio": 0.94,
+   "detectors": 21,
+   "class_ratio": 0.94
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 13,
+   "ratio": 1.0,
+   "detectors": 21,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 14,
+   "ratio": 0.96,
+   "detectors": 21,
+   "class_ratio": 0.96
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 15,
+   "ratio": 0.96,
+   "detectors": 20,
+   "class_ratio": 0.96
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 16,
+   "ratio": 0.93,
+   "detectors": 19,
+   "class_ratio": 0.93
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 17,
+   "ratio": 0.94,
+   "detectors": 21,
+   "class_ratio": 0.94
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 18,
+   "ratio": 0.9,
+   "detectors": 19,
+   "class_ratio": 0.9
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 19,
+   "ratio": 0.955,
+   "detectors": 20,
+   "class_ratio": 0.955
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 20,
+   "ratio": 0.96,
+   "detectors": 19,
+   "class_ratio": 0.96
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 21,
+   "ratio": 0.96,
+   "detectors": 21,
+   "class_ratio": 0.96
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 22,
+   "ratio": 1.0,
+   "detectors": 22,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "district",
+   "speed_kph": 50.0,
+   "hour": 23,
+   "ratio": 0.985,
+   "detectors": 22,
+   "class_ratio": 0.985
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 0,
+   "ratio": 1.05,
+   "detectors": 32,
+   "class_ratio": 0.985
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 1,
+   "ratio": 1.08,
+   "detectors": 34,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 2,
+   "ratio": 1.08,
+   "detectors": 37,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 3,
+   "ratio": 1.06,
+   "detectors": 37,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 4,
+   "ratio": 1.08,
+   "detectors": 39,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 5,
+   "ratio": 1.08,
+   "detectors": 35,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 6,
+   "ratio": 1.04,
+   "detectors": 29,
+   "class_ratio": 0.993
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 7,
+   "ratio": 1.01,
+   "detectors": 30,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 8,
+   "ratio": 0.97,
+   "detectors": 36,
+   "class_ratio": 0.9
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 9,
+   "ratio": 0.955,
+   "detectors": 34,
+   "class_ratio": 0.907
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 10,
+   "ratio": 0.95,
+   "detectors": 33,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 11,
+   "ratio": 0.99,
+   "detectors": 31,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 12,
+   "ratio": 0.99,
+   "detectors": 31,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 13,
+   "ratio": 1.0,
+   "detectors": 31,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 14,
+   "ratio": 0.99,
+   "detectors": 31,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 15,
+   "ratio": 0.96,
+   "detectors": 31,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 16,
+   "ratio": 0.965,
+   "detectors": 32,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 17,
+   "ratio": 0.97,
+   "detectors": 32,
+   "class_ratio": 0.912
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 18,
+   "ratio": 0.92,
+   "detectors": 35,
+   "class_ratio": 0.888
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 19,
+   "ratio": 0.9,
+   "detectors": 34,
+   "class_ratio": 0.894
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 20,
+   "ratio": 0.98,
+   "detectors": 29,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 21,
+   "ratio": 1.0,
+   "detectors": 30,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 22,
+   "ratio": 1.02,
+   "detectors": 29,
+   "class_ratio": 0.95
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 50.0,
+   "hour": 23,
+   "ratio": 1.04,
+   "detectors": 30,
+   "class_ratio": 0.962
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 0,
+   "ratio": 1.0,
+   "detectors": 258,
+   "class_ratio": 0.985
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 1,
+   "ratio": 1.0,
+   "detectors": 260,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 2,
+   "ratio": 1.0,
+   "detectors": 262,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 3,
+   "ratio": 1.0,
+   "detectors": 263,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 4,
+   "ratio": 1.0,
+   "detectors": 263,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 5,
+   "ratio": 1.0,
+   "detectors": 263,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 6,
+   "ratio": 1.007,
+   "detectors": 261,
+   "class_ratio": 0.993
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 7,
+   "ratio": 0.964,
+   "detectors": 258,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 8,
+   "ratio": 0.929,
+   "detectors": 264,
+   "class_ratio": 0.9
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 9,
+   "ratio": 0.943,
+   "detectors": 262,
+   "class_ratio": 0.907
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 10,
+   "ratio": 0.964,
+   "detectors": 263,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 11,
+   "ratio": 0.961,
+   "detectors": 262,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 12,
+   "ratio": 0.971,
+   "detectors": 261,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 13,
+   "ratio": 0.971,
+   "detectors": 262,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 14,
+   "ratio": 0.964,
+   "detectors": 261,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 15,
+   "ratio": 0.957,
+   "detectors": 261,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 16,
+   "ratio": 0.95,
+   "detectors": 260,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 17,
+   "ratio": 0.954,
+   "detectors": 260,
+   "class_ratio": 0.912
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 18,
+   "ratio": 0.929,
+   "detectors": 260,
+   "class_ratio": 0.888
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 19,
+   "ratio": 0.929,
+   "detectors": 262,
+   "class_ratio": 0.894
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 20,
+   "ratio": 0.957,
+   "detectors": 259,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 21,
+   "ratio": 0.957,
+   "detectors": 259,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 22,
+   "ratio": 0.971,
+   "detectors": 259,
+   "class_ratio": 0.95
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 70.0,
+   "hour": 23,
+   "ratio": 0.989,
+   "detectors": 258,
+   "class_ratio": 0.962
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 0,
+   "ratio": 1.0,
+   "detectors": 183,
+   "class_ratio": 0.985
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 1,
+   "ratio": 1.0,
+   "detectors": 183,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 2,
+   "ratio": 1.0,
+   "detectors": 183,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 3,
+   "ratio": 1.006,
+   "detectors": 183,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 4,
+   "ratio": 1.0,
+   "detectors": 183,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 5,
+   "ratio": 1.006,
+   "detectors": 183,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 6,
+   "ratio": 1.012,
+   "detectors": 183,
+   "class_ratio": 0.993
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 7,
+   "ratio": 0.962,
+   "detectors": 179,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 8,
+   "ratio": 0.919,
+   "detectors": 179,
+   "class_ratio": 0.9
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 9,
+   "ratio": 0.938,
+   "detectors": 179,
+   "class_ratio": 0.907
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 10,
+   "ratio": 0.95,
+   "detectors": 179,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 11,
+   "ratio": 0.962,
+   "detectors": 180,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 12,
+   "ratio": 0.962,
+   "detectors": 181,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 13,
+   "ratio": 0.962,
+   "detectors": 181,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 14,
+   "ratio": 0.956,
+   "detectors": 181,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 15,
+   "ratio": 0.956,
+   "detectors": 181,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 16,
+   "ratio": 0.95,
+   "detectors": 181,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 17,
+   "ratio": 0.925,
+   "detectors": 181,
+   "class_ratio": 0.912
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 18,
+   "ratio": 0.9,
+   "detectors": 182,
+   "class_ratio": 0.888
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 19,
+   "ratio": 0.912,
+   "detectors": 184,
+   "class_ratio": 0.894
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 20,
+   "ratio": 0.972,
+   "detectors": 184,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 21,
+   "ratio": 0.975,
+   "detectors": 184,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 22,
+   "ratio": 0.975,
+   "detectors": 183,
+   "class_ratio": 0.95
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 80.0,
+   "hour": 23,
+   "ratio": 0.988,
+   "detectors": 182,
+   "class_ratio": 0.962
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 0,
+   "ratio": 0.94,
+   "detectors": 99,
+   "class_ratio": 0.985
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 1,
+   "ratio": 0.95,
+   "detectors": 99,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 2,
+   "ratio": 0.97,
+   "detectors": 99,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 3,
+   "ratio": 0.96,
+   "detectors": 99,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 4,
+   "ratio": 0.97,
+   "detectors": 99,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 5,
+   "ratio": 0.96,
+   "detectors": 99,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 6,
+   "ratio": 0.935,
+   "detectors": 99,
+   "class_ratio": 0.993
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 7,
+   "ratio": 0.865,
+   "detectors": 99,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 8,
+   "ratio": 0.83,
+   "detectors": 99,
+   "class_ratio": 0.9
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 9,
+   "ratio": 0.84,
+   "detectors": 99,
+   "class_ratio": 0.907
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 10,
+   "ratio": 0.85,
+   "detectors": 98,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 11,
+   "ratio": 0.85,
+   "detectors": 98,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 12,
+   "ratio": 0.86,
+   "detectors": 98,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 13,
+   "ratio": 0.86,
+   "detectors": 98,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 14,
+   "ratio": 0.855,
+   "detectors": 98,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 15,
+   "ratio": 0.847,
+   "detectors": 98,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 16,
+   "ratio": 0.847,
+   "detectors": 98,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 17,
+   "ratio": 0.84,
+   "detectors": 98,
+   "class_ratio": 0.912
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 18,
+   "ratio": 0.82,
+   "detectors": 98,
+   "class_ratio": 0.888
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 19,
+   "ratio": 0.83,
+   "detectors": 98,
+   "class_ratio": 0.894
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 20,
+   "ratio": 0.87,
+   "detectors": 98,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 21,
+   "ratio": 0.88,
+   "detectors": 98,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 22,
+   "ratio": 0.895,
+   "detectors": 98,
+   "class_ratio": 0.95
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 100.0,
+   "hour": 23,
+   "ratio": 0.91,
+   "detectors": 98,
+   "class_ratio": 0.962
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 0,
+   "ratio": 0.911,
+   "detectors": 44,
+   "class_ratio": 0.985
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 1,
+   "ratio": 0.93,
+   "detectors": 44,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 2,
+   "ratio": 0.948,
+   "detectors": 44,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 3,
+   "ratio": 0.952,
+   "detectors": 44,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 4,
+   "ratio": 0.941,
+   "detectors": 44,
+   "class_ratio": 1.0
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 5,
+   "ratio": 0.936,
+   "detectors": 44,
+   "class_ratio": 0.994
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 6,
+   "ratio": 0.902,
+   "detectors": 44,
+   "class_ratio": 0.993
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 7,
+   "ratio": 0.882,
+   "detectors": 44,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 8,
+   "ratio": 0.873,
+   "detectors": 44,
+   "class_ratio": 0.9
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 9,
+   "ratio": 0.873,
+   "detectors": 44,
+   "class_ratio": 0.907
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 10,
+   "ratio": 0.859,
+   "detectors": 44,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 11,
+   "ratio": 0.864,
+   "detectors": 44,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 12,
+   "ratio": 0.864,
+   "detectors": 44,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 13,
+   "ratio": 0.864,
+   "detectors": 44,
+   "class_ratio": 0.936
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 14,
+   "ratio": 0.864,
+   "detectors": 44,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 15,
+   "ratio": 0.864,
+   "detectors": 44,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 16,
+   "ratio": 0.868,
+   "detectors": 44,
+   "class_ratio": 0.925
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 17,
+   "ratio": 0.864,
+   "detectors": 44,
+   "class_ratio": 0.912
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 18,
+   "ratio": 0.845,
+   "detectors": 44,
+   "class_ratio": 0.888
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 19,
+   "ratio": 0.859,
+   "detectors": 44,
+   "class_ratio": 0.894
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 20,
+   "ratio": 0.873,
+   "detectors": 44,
+   "class_ratio": 0.929
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 21,
+   "ratio": 0.882,
+   "detectors": 44,
+   "class_ratio": 0.938
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 22,
+   "ratio": 0.884,
+   "detectors": 44,
+   "class_ratio": 0.95
+  },
+  {
+   "road_class": "expressway",
+   "speed_kph": 110.0,
+   "hour": 23,
+   "ratio": 0.891,
+   "detectors": 44,
+   "class_ratio": 0.962
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 0,
+   "ratio": 1.12,
+   "detectors": 15,
+   "class_ratio": 1.12
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 1,
+   "ratio": 1.055,
+   "detectors": 10,
+   "class_ratio": 1.055
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 2,
+   "ratio": 1.035,
+   "detectors": 10,
+   "class_ratio": 1.035
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 3,
+   "ratio": 1.02,
+   "detectors": 10,
+   "class_ratio": 1.02
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 4,
+   "ratio": 1.03,
+   "detectors": 10,
+   "class_ratio": 1.03
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 5,
+   "ratio": 1.05,
+   "detectors": 11,
+   "class_ratio": 1.05
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 6,
+   "ratio": 1.1,
+   "detectors": 14,
+   "class_ratio": 1.1
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 7,
+   "ratio": 1.08,
+   "detectors": 17,
+   "class_ratio": 1.08
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 8,
+   "ratio": 1.08,
+   "detectors": 19,
+   "class_ratio": 1.08
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 9,
+   "ratio": 1.1,
+   "detectors": 19,
+   "class_ratio": 1.1
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 10,
+   "ratio": 1.1,
+   "detectors": 19,
+   "class_ratio": 1.1
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 11,
+   "ratio": 1.1,
+   "detectors": 19,
+   "class_ratio": 1.1
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 12,
+   "ratio": 1.08,
+   "detectors": 18,
+   "class_ratio": 1.08
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 13,
+   "ratio": 1.08,
+   "detectors": 19,
+   "class_ratio": 1.08
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 14,
+   "ratio": 1.09,
+   "detectors": 19,
+   "class_ratio": 1.09
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 15,
+   "ratio": 1.1,
+   "detectors": 19,
+   "class_ratio": 1.1
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 16,
+   "ratio": 1.08,
+   "detectors": 20,
+   "class_ratio": 1.08
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 17,
+   "ratio": 1.065,
+   "detectors": 20,
+   "class_ratio": 1.065
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 18,
+   "ratio": 1.03,
+   "detectors": 20,
+   "class_ratio": 1.03
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 19,
+   "ratio": 1.045,
+   "detectors": 20,
+   "class_ratio": 1.045
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 20,
+   "ratio": 1.08,
+   "detectors": 18,
+   "class_ratio": 1.08
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 21,
+   "ratio": 1.09,
+   "detectors": 18,
+   "class_ratio": 1.09
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 22,
+   "ratio": 1.12,
+   "detectors": 18,
+   "class_ratio": 1.12
+  },
+  {
+   "road_class": "primary",
+   "speed_kph": 50.0,
+   "hour": 23,
+   "ratio": 1.12,
+   "detectors": 16,
+   "class_ratio": 1.12
+  }
+ ],
+ "flags": [],
+ "report": [
+  "探测器实测：22 天（工作日 20 天）、778 个探测器、18,563 个「探测器 × 小时」中位数（至少 5 天才采用）",
+  "探测器落到路段：800/807（30 米内、走向一致）；未能落位 7 个；其中路名也对得上的 706 个——只有这些用来推算同类道路的车速比例",
+  "实测车速 ÷ 法定限速（中位，探测器 ≥3 个）：district 限速 50：3 时 1.00、8 时 0.94；expressway 限速 50：3 时 1.06、8 时 0.97；expressway 限速 70：3 时 1.00、8 时 0.93；expressway 限速 80：3 时 1.01、8 时 0.92；expressway 限速 100：3 时 0.96、8 时 0.83；expressway 限速 110：3 时 0.95、8 时 0.87；primary 限速 50：3 时 1.02、8 时 1.08",
+  "覆盖：7.1% 的路网长度有自己的探测器，其余按同类道路的比例推算；输出 1,144,632 行（路段方向 × 24 小时）",
+  "各限速下的中位车速（公里/小时）：限速 30：8 时 30、3 时 30；限速 50：8 时 50、3 时 50；限速 70：8 时 65、3 时 70；限速 80：8 时 74、3 时 80；限速 100：8 时 83、3 时 96；限速 110：8 时 96、3 时 105",
+  "核对：凌晨车速 ÷ 限速 = 30：1.00、50：1.00、70：1.00、80：1.01、100：0.96、110：0.95；早高峰全网中位车速 50 公里/小时",
+  "⚠️ 已知局限：探测器测的是路段中间的点速，不含路口延误，所以市区街道（限速 50，早高峰中位 50 公里/小时）偏乐观；路口延误由分配步骤的流量-延误曲线补上"
+ ]
+}

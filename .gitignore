@@ -1,0 +1,32 @@
+# Secrets
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/map-check/
+
+# Large or regenerable data (re-create with the pipeline scripts)
+data/raw/
+data/processed/
+data/cache/
+data/build/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Read-only snapshots of the base data (scripts/snapshot_base_data.py) - local safety copies, not for upload
+data/snapshots/
+
+# Stray debug output (live traffic API response, 2026-09-16), not used by any script
+/live.json.gz

@@ -1,0 +1,842 @@
+<title>新线试算台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --paper:#EDF1EF; --panel:#F9FBFA; --panel-2:#E2E8E5; --ink:#15201B; --muted:#56645E; --rule:#C6D0CB;
+  --line:#3346C8; --line-ink:#FFFFFF; --bus:#C68810; --bus-ink:#1C1403; --car:#66727B; --water:#CFE2EC; --hill:#D8E6CD;
+  --good:#1D7A4F; --warn:#B87400; --bad:#BD3829; --real:#0E7468;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono","Noto Sans SC",ui-monospace,Consolas,monospace;
+  --num:"Barlow Condensed","Noto Sans SC",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101513; --panel:#171E1B; --panel-2:#212a26; --ink:#E3EAE6; --muted:#98A69F; --rule:#2E3a34;
+    --line:#8A99FF; --line-ink:#0E1330; --bus:#E2A63A; --bus-ink:#1C1403; --car:#9FA9B1; --water:#172A34; --hill:#1C2918;
+    --good:#4BC088; --warn:#E3A03A; --bad:#F06E5E; --real:#3DBFB1;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101513; --panel:#171E1B; --panel-2:#212a26; --ink:#E3EAE6; --muted:#98A69F; --rule:#2E3a34;
+  --line:#8A99FF; --line-ink:#0E1330; --bus:#E2A63A; --bus-ink:#1C1403; --car:#9FA9B1; --water:#172A34; --hill:#1C2918;
+  --good:#4BC088; --warn:#E3A03A; --bad:#F06E5E; --real:#3DBFB1;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:15px/1.65 var(--sans)}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:16px;padding-block:28px 72px;display:grid;gap:28px}
+@media (min-width:720px){.wrap{padding-inline:28px}}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--line);outline-offset:2px}
+.tabnum{font-variant-numeric:tabular-nums}
+
+/* 标签 */
+.tag{display:inline-block;font-size:11.5px;line-height:1;padding:4px 7px;border-radius:3px;letter-spacing:.04em;white-space:nowrap;vertical-align:1px}
+.tag.real{background:var(--real);color:var(--panel)}
+.tag.toy{border:1px dashed var(--muted);color:var(--muted);padding:3px 6px}
+.tag.method{background:var(--panel-2);color:var(--muted)}
+
+/* 头部 */
+.top{display:grid;gap:10px;max-width:820px}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--muted)}
+h1{font-size:clamp(30px,5vw,44px);font-weight:900;letter-spacing:.02em}
+h1 .bar{display:inline-block;width:.9em;height:.22em;background:var(--line);border-radius:2px;margin-right:.35em;vertical-align:.28em}
+.lede{font-size:16px;max-width:65ch}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:13px;color:var(--muted)}
+.legend span.item{display:inline-flex;gap:6px;align-items:center}
+
+/* 主演示区 */
+.demo{display:grid;gap:18px;align-items:start}
+@media (min-width:960px){.demo{grid-template-columns:300px minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.controls{padding:16px;display:grid;gap:18px}
+@media (min-width:960px){.controls{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}}
+.ctl{display:grid;gap:8px}
+.ctl-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ctl-head h3{font-size:14px;font-weight:700}
+.ctl-head .lv{font-family:var(--num);color:var(--line);font-size:15px;margin-right:4px}
+.ctl-note{font-size:12.5px;color:var(--muted);line-height:1.5}
+.ctl-out{font-size:13px;font-variant-numeric:tabular-nums}
+.stations{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.stbtn{display:grid;justify-items:center;gap:0;padding:6px 2px 5px;border:1px solid var(--rule);background:var(--panel-2);border-radius:5px;cursor:pointer;line-height:1.2}
+.stbtn b{font-family:var(--num);font-size:19px;font-weight:700}
+.stbtn span{font-size:10.5px;color:var(--muted)}
+.stbtn[aria-pressed="true"]{background:var(--line);border-color:var(--line);color:var(--line-ink)}
+.stbtn[aria-pressed="true"] span{color:var(--line-ink);opacity:.85}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);border-radius:5px;overflow:hidden}
+.seg button{border:0;background:var(--panel-2);padding:7px 2px;font-size:13px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+input[type=range]{width:100%;accent-color:var(--line)}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{border:1px solid var(--rule);background:transparent;border-radius:999px;padding:3px 10px;font-size:12.5px;cursor:pointer}
+.presets button:hover{border-color:var(--line);color:var(--line)}
+.hint{font-size:12.5px;color:var(--bad);min-height:1em}
+
+.stage{display:grid;gap:18px;min-width:0}
+
+/* 记分牌 */
+.score{padding:16px 18px;display:grid;gap:14px 26px}
+@media (min-width:720px){.score{grid-template-columns:auto 1fr}}
+.sc-label{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+.sc-num{font-family:var(--num);font-weight:700;font-size:54px;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.sc-num small{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted)}
+.sc-num.neg{color:var(--bad)}
+.sc-verdict{margin-top:8px;font-size:13px;font-weight:700;display:inline-block;padding:3px 9px;border-radius:3px}
+.sc-verdict.pass{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.sc-verdict.fail{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.sc-right{display:grid;gap:12px;align-content:start}
+.gates{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.gates li{display:flex;gap:7px;align-items:center;border:1px solid var(--rule);border-radius:4px;padding:4px 9px;font-size:13px}
+.gates li i{font-style:normal;font-weight:700}
+.gates li.ok i{color:var(--good)}
+.gates li.no{border-color:var(--bad)}
+.gates li.no i{color:var(--bad)}
+.gates li em{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:0}
+.stats div{display:grid;gap:0}
+.stats dt{font-size:12px;color:var(--muted)}
+.stats dd{margin:0;font-family:var(--num);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* 纵断面 */
+.fig{padding:14px 14px 10px;display:grid;gap:8px;margin:0}
+.fig-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;align-items:baseline}
+.fig-head h2{font-size:16px}
+.fig-head p{font-size:12.5px;color:var(--muted)}
+.scroll-x{overflow-x:auto}
+#section{display:block;width:100%;min-width:720px;height:auto;font-family:var(--sans)}
+.fig-legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted)}
+.fig-legend b{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.sv-guide{stroke:var(--rule);stroke-dasharray:2 4}
+.sv-hill{fill:var(--hill)}
+.sv-harbour{fill:var(--water)}
+.sv-terrain{font-size:11px;fill:var(--muted);text-anchor:middle}
+.sv-side{font-size:11px;fill:var(--muted)}
+.sv-ok{fill:var(--line)}
+.sv-warn{fill:var(--warn)}
+.sv-bad{fill:var(--bad)}
+.sv-cap{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:4 3;opacity:.7}
+.sv-caplab{font-size:10.5px;fill:var(--ink);opacity:.75}
+.sv-lf{font-family:var(--num);font-weight:600;font-size:13.5px;fill:var(--ink);text-anchor:middle}
+.sv-track{stroke:var(--line);stroke-width:6;fill:none;stroke-linecap:butt}
+.sv-track.tunnel{stroke-dasharray:11 6}
+.sv-track.grade{stroke-width:3.5}
+.sv-pier{stroke:var(--line);stroke-width:2}
+.sv-len{font-size:10px;fill:var(--muted);text-anchor:middle;font-family:var(--mono)}
+.sv-hit{cursor:pointer}
+.sv-hit rect{fill:transparent}
+.sv-st{fill:var(--panel);stroke:var(--line);stroke-width:3}
+.sv-st-t{font-family:var(--num);font-weight:700;font-size:15px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.sv-no{fill:var(--panel-2);stroke:var(--rule);stroke-width:1.5}
+.sv-no-t{font-family:var(--num);font-size:12px;fill:var(--muted);text-anchor:middle;dominant-baseline:central}
+.sv-hit:hover .sv-no{stroke:var(--line)}
+.sv-rb{fill:var(--car);opacity:.22}
+.sv-ra{fill:var(--car)}
+.sv-drop{font-size:10.5px;fill:var(--car);text-anchor:middle;font-family:var(--mono)}
+.sv-name{font-size:12.5px;fill:var(--ink);text-anchor:middle;font-weight:500}
+.sv-meta{font-size:10.5px;fill:var(--muted);text-anchor:middle}
+
+/* 结果卡片 */
+.sec-title{display:grid;gap:4px;max-width:760px}
+.sec-title h2{font-size:21px;font-weight:900}
+.sec-title p{color:var(--muted);font-size:14px}
+.grid3{display:grid;gap:18px}
+@media (min-width:1000px){.grid3{grid-template-columns:1.1fr 1fr 1fr}}
+.grid2{display:grid;gap:18px}
+@media (min-width:1000px){.grid2{grid-template-columns:1fr 1fr}}
+.card{padding:16px;display:grid;gap:12px;align-content:start;min-width:0}
+.card h3{font-size:15px}
+.card .sub{font-size:12.5px;color:var(--muted);line-height:1.55}
+.fcode{font-family:var(--mono);font-size:11px;color:var(--line);letter-spacing:.02em;margin-right:6px}
+
+.share{display:grid;gap:8px}
+.share-row{display:grid;grid-template-columns:48px 1fr;gap:8px;align-items:center;font-size:12.5px}
+.share-bar{display:flex;height:28px;border-radius:4px;overflow:hidden;background:var(--panel-2)}
+.share-bar i{display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;white-space:nowrap;overflow:hidden;transition:width .25s}
+.s-bus{background:var(--bus);color:var(--bus-ink)}
+.s-mtr{background:var(--line);color:var(--line-ink)}
+.s-car{background:var(--car);color:var(--panel)}
+.src{display:grid;gap:6px;font-size:13px}
+.src-bar{display:flex;height:10px;border-radius:3px;overflow:hidden}
+.src-bar i{display:block}
+.kv{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:13px;margin:0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-variant-numeric:tabular-nums;text-align:right}
+
+.od{display:grid;grid-template-columns:22px repeat(8,minmax(0,1fr));gap:2px;font-size:11.5px}
+.od .h{display:grid;place-items:center;font-family:var(--num);font-weight:700;color:var(--muted);font-size:13px}
+.odc{border:0;border-radius:2px;aspect-ratio:1;display:grid;place-items:center;padding:0;cursor:pointer;font-variant-numeric:tabular-nums;font-size:11px;background:color-mix(in srgb,var(--line) var(--a),var(--panel-2));color:var(--ink);max-width:100%}
+.odc.hot{color:var(--line-ink)}
+.odc.diag{background:transparent;cursor:default}
+.odc.sel{outline:2px solid var(--ink);outline-offset:1px}
+.od-axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+
+.iter{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.iter svg{width:100%;height:auto;display:block;font-family:var(--sans)}
+.ch-axis{stroke:var(--rule)}
+.ch-t{font-size:10px;fill:var(--muted)}
+.ch-line{fill:none;stroke:var(--line);stroke-width:2}
+.ch-dot{fill:var(--line)}
+.ch-end{fill:var(--panel);stroke:var(--line);stroke-width:2}
+.ch-ref{stroke-dasharray:3 3;stroke-width:1}
+.ch-ref.warn{stroke:var(--warn)}
+.ch-ref.bad{stroke:var(--bad)}
+.ch-title{font-size:11px;fill:var(--ink);font-weight:500}
+
+.wf{display:grid;gap:5px}
+.wf-row{display:grid;grid-template-columns:118px 1fr 74px;gap:8px;align-items:center;font-size:13px}
+.wf-track{position:relative;height:18px}
+.wf-track .zero{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--muted)}
+.wf-track i{position:absolute;top:2px;bottom:2px;border-radius:2px;transition:left .25s,width .25s}
+.wf-row.plus i{background:var(--good)}
+.wf-row.minus i{background:var(--bad)}
+.wf-row.total{border-top:1px solid var(--rule);padding-top:6px;font-weight:700}
+.wf-row.total i{background:var(--ink)}
+.wf-row .v{text-align:right;font-variant-numeric:tabular-nums}
+.fin{display:grid;gap:6px}
+.fin-row{display:grid;grid-template-columns:70px 1fr 64px;gap:8px;align-items:center;font-size:13px}
+.fin-row .b{height:14px;border-radius:2px;transition:width .25s}
+.fin-row .v{text-align:right;font-variant-numeric:tabular-nums}
+.callout{border-left:3px solid var(--warn);background:color-mix(in srgb,var(--warn) 9%,transparent);padding:10px 12px;font-size:13px;line-height:1.6;border-radius:0 4px 4px 0}
+.callout b{font-variant-numeric:tabular-nums}
+
+.tn{display:grid;gap:4px}
+.tn-row{display:grid;grid-template-columns:22px minmax(0,1.2fr) minmax(0,1fr) 70px;gap:8px;align-items:center;border:0;background:transparent;text-align:left;padding:5px 4px;border-radius:4px;cursor:pointer;font-size:13px}
+.tn-row:hover{background:var(--panel-2)}
+.tn-lv{font-family:var(--num);color:var(--line);font-size:15px;text-align:center}
+.tn-lab small{display:block;font-size:11.5px;color:var(--bad)}
+.tn-track{position:relative;height:16px}
+.tn-track .zero{position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--muted)}
+.tn-track i{position:absolute;top:2px;bottom:2px;border-radius:2px}
+.tn-track i.pos{background:var(--good)}
+.tn-track i.neg{background:var(--bad)}
+.tn-val{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+
+/* 变量地图 */
+.levers{display:flex;flex-wrap:wrap;gap:8px}
+.lever{display:grid;gap:2px;text-align:left;border:1px solid var(--rule);background:var(--panel);border-radius:5px;padding:8px 11px;cursor:pointer;max-width:260px}
+.lever b{font-size:14px}
+.lever b span{font-family:var(--num);color:var(--line);margin-right:5px;font-size:16px}
+.lever small{font-size:12px;color:var(--muted);line-height:1.45}
+.lever[aria-pressed="true"]{border-color:var(--line);box-shadow:inset 0 0 0 1px var(--line)}
+.flow{display:grid;gap:14px}
+@media (min-width:1000px){.flow{grid-template-columns:1.35fr .8fr 1fr 1.2fr}}
+.stage-col{display:grid;gap:8px;align-content:start}
+.stage-col>header{display:grid;gap:0;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.stage-col>header h3{font-size:15px}
+.stage-col>header p{font-size:12px;color:var(--muted)}
+.fn{padding:10px 12px;display:grid;gap:5px;transition:opacity .2s}
+.fn header{display:flex;gap:7px;align-items:baseline;flex-wrap:wrap}
+.fn .fid{font-family:var(--mono);font-size:12px;color:var(--line);font-weight:500}
+.fn h4{font-size:14px}
+.fn header .tag{margin-left:auto}
+.fn code{font-family:var(--mono);font-size:11.5px;line-height:1.55;color:var(--muted);white-space:normal}
+.fn .live{font-size:13px;font-variant-numeric:tabular-nums;border-top:1px dotted var(--rule);padding-top:5px}
+.flow.lit .fn{opacity:.32}
+.flow.lit .fn.hit{opacity:1;border-color:var(--line);box-shadow:inset 3px 0 0 var(--line)}
+.ex{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.ex select{font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--rule);border-radius:4px;background:var(--panel);color:var(--ink)}
+.later{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px;color:var(--muted);align-items:center}
+.later span.c{border:1px dashed var(--rule);border-radius:3px;padding:2px 8px}
+
+/* 参数表 */
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:500}
+td.v{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.notes{display:grid;gap:6px;font-size:13.5px;margin:0;padding-left:1.2em}
+footer{font-size:12.5px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">TRANSITLAB HK · 游戏第一版 · 给组员看的变量演示</div>
+    <h1><span class="bar"></span>新线试算台</h1>
+    <p class="lede">第一版游戏里玩家能动的 6 个变量、模型里的 13 个函数，放在一条 8 个区的玩具走廊上跑给你看。点 A–H 设站、拖班距和票价，看乘客怎么在巴士、新线、小汽车之间重新分配，钱怎么算成分数。</p>
+    <div class="legend">
+      <span class="item"><span class="tag real">真实参数</span>沿用现有四阶段模型</span>
+      <span class="item"><span class="tag toy">占位数</span>玩具走廊编的，人数和造价都不是真的，之后由算法同学标定</span>
+    </div>
+  </header>
+
+  <section class="demo" aria-label="试算">
+    <aside class="controls panel" aria-label="你的方案">
+      <div class="ctl">
+        <div class="ctl-head"><h3><span class="lv">①②</span>车站</h3><span class="ctl-out" id="stCount"></span></div>
+        <div class="stations" id="stations"></div>
+        <p class="ctl-note">点区名设站或拆站。站多好上车，但每停一站多 1 分钟，还要多付一个站的钱。</p>
+        <p class="hint" id="hint" aria-live="polite"></p>
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><h3><span class="lv">③</span>建造方式</h3></div>
+        <div class="seg" id="build" role="group" aria-label="建造方式">
+          <button type="button" id="b-tunnel" data-b="tunnel">地下</button>
+          <button type="button" id="b-elevated" data-b="elevated">高架</button>
+          <button type="button" id="b-grade" data-b="grade">地面轻铁</button>
+        </div>
+        <p class="ctl-note" id="buildNote"></p>
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><h3><span class="lv">④</span>高峰班距</h3><span class="ctl-out" id="hwOut"></span></div>
+        <input type="range" id="headway" min="2" max="12" step="0.5" aria-label="高峰班距（分钟）">
+        <p class="ctl-note" id="hwNote"></p>
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><h3><span class="lv">⑤</span>票价倍数</h3><span class="ctl-out" id="fareOut"></span></div>
+        <input type="range" id="fare" min="0.5" max="2" step="0.05" aria-label="票价倍数">
+        <p class="ctl-note" id="fareNote"></p>
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><h3><span class="lv">⑥</span>线路长度与过海</h3></div>
+        <p class="ctl-out" id="lenOut"></p>
+        <p class="ctl-note">由首末站决定，不单独调。H 在维港对面，要到 H 就得修沉管隧道。</p>
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><h3>现成方案</h3></div>
+        <div class="presets" id="presets"></div>
+      </div>
+    </aside>
+
+    <div class="stage">
+      <div class="score panel" id="score" aria-live="polite"></div>
+      <figure class="fig panel">
+        <div class="fig-head">
+          <h2>走廊纵断面 · 早高峰一小时</h2>
+          <p>点图上的圆圈也能设站或拆站</p>
+        </div>
+        <div class="scroll-x"><svg id="section" viewBox="0 0 1000 412" role="img" aria-label="走廊纵断面：新线断面客流、运力和主干道车流"></svg></div>
+        <div class="fig-legend">
+          <span><b style="background:var(--line)"></b>断面客流，满载 ≤ 80%</span>
+          <span><b style="background:var(--warn)"></b>80–120%，开始变慢</span>
+          <span><b style="background:var(--bad)"></b>&gt; 120%，过度拥挤</span>
+          <span>黑虚线 = 每小时运力</span>
+          <span>线型：虚线 = 地下（工程图的隐藏线），带墩 = 高架，细线 = 地面</span>
+          <span><b style="background:var(--car);opacity:.3"></b>主干道车流 开线前</span>
+          <span><b style="background:var(--car)"></b>开线后</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="grid3" aria-label="出行重新分配">
+    <div class="card panel">
+      <h3><span class="fcode">F4 F6</span>出行怎么重新分配</h3>
+      <p class="sub">走廊里每天跨区出行的人，开线前后各坐什么。小汽车包括私家车和的士。</p>
+      <div class="share" id="share"></div>
+      <div class="src" id="src"></div>
+      <dl class="kv" id="shareKv"></dl>
+    </div>
+    <div class="card panel">
+      <h3><span class="fcode">F7</span>谁在坐这条线</h3>
+      <p class="sub">行 = 住在哪，列 = 去哪上班，格子里是坐新线的比例。点一格，下面「变量地图」的 F1–F6 就换成这趟出行。</p>
+      <div class="od" id="od"></div>
+    </div>
+    <div class="card panel">
+      <h3><span class="fcode">F8 F9</span>挤了就变慢，来回算到稳</h3>
+      <p class="sub">车一挤，乘车时间乘上拥挤系数，一部分人退回巴士或小汽车；人一少又不挤了。每轮只走一半、三分之一……直到前后两轮相差不到 0.5%。</p>
+      <div class="iter" id="iter"></div>
+      <p class="sub" id="iterNote"></p>
+    </div>
+  </section>
+
+  <section class="grid2" aria-label="账本与敏感度">
+    <div class="card panel">
+      <h3><span class="fcode">F10–F13</span>两本账</h3>
+      <p class="sub">社会账（亿港元）：50 年折现后，社会得到的减去花掉的，就是分数。</p>
+      <div class="wf" id="wf"></div>
+      <p class="sub" style="margin-top:6px">财务账：每年票务收入能不能养活运营。</p>
+      <div class="fin" id="fin"></div>
+      <div class="callout" id="bcrNote"></div>
+    </div>
+    <div class="card panel">
+      <h3>每个变量推一格，分数变多少</h3>
+      <p class="sub">以你现在的方案为基准，每行只改一个变量。绿色 = 分数涨，红色 = 分数跌。点一行就采用这个改动，可以一路点下去找更好的方案。</p>
+      <div class="tn" id="tn"></div>
+    </div>
+  </section>
+
+  <section class="card panel" aria-label="变量地图" style="gap:16px">
+    <div class="sec-title">
+      <h2>变量地图：6 个旋钮怎么流到 13 个函数</h2>
+      <p>点一个旋钮，只亮它直接影响的函数。所有函数最后都流进 F13 的分数。每张卡片下面的数字跟着上面的方案实时变。</p>
+    </div>
+    <div class="levers" id="levers"></div>
+    <div class="ex">
+      <span>F1–F6 看一趟出行：</span>
+      <label>从 <select id="exFrom" aria-label="出发区"></select></label>
+      <label>到 <select id="exTo" aria-label="到达区"></select></label>
+      <span style="color:var(--muted)">F7–F13 看整条线</span>
+    </div>
+    <div class="flow" id="flow"></div>
+    <div class="later"><span>第二版再加：</span>
+      <span class="c">可达性（按时间折扣的岗位总数）</span>
+      <span class="c">站旁土地升值</span>
+      <span class="c">路变顺后车流回流（重跑道路分配）</span>
+      <span class="c">巴士线路重组</span>
+      <span class="c">分时段</span>
+    </div>
+  </section>
+
+  <section class="grid2" aria-label="参数">
+    <div class="card panel">
+      <h3>哪些数是真的，哪些是编的</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>参数</th><th>值</th><th>来源 / 正式版怎么定</th></tr></thead>
+        <tbody id="params"></tbody>
+      </table></div>
+    </div>
+    <div class="card panel">
+      <h3>做这个演示时发现的三件事</h3>
+      <ol class="notes">
+        <li><b>分数不能用 BCR。</b>英国 TAG 的算法把票务收入从成本里扣掉，票价一高分母就接近零，比值会冲上天，但社会其实变差了。所以分数改用社会净现值，BCR 只作参考。右上「两本账」里有实时对比。</li>
+        <li><b>巴士和新线之间不能全有全无地选。</b>如果谁快就全坐谁，一挤就全体倒戈、下一轮又全回来，迭代来回跳。演示里改成按时间差平滑分配（敏感度 0.25），2–8 轮就稳。算法同学写 F4 和 F9 时要注意这一点。</li>
+        <li><b>巴士少收的票钱怎么算，会明显改变分数。</b>从巴士抢来的乘客，票钱只是从巴士公司挪到地铁公司。演示假设巴士砍班能省回 70%，只把剩下 30% 算成损失。这个比例要组里定。</li>
+      </ol>
+      <p class="sub">演示比正式第一版简化的地方：全线一种建造方式（正式版逐段选）；有车和没车的人合成一组；接驳时间用直线距离乘系数，不是现有公交网络的真实时间。</p>
+    </div>
+  </section>
+
+  <footer>模型全文在同目录的 model.js，函数编号和页面上的 F1–F13 一一对应。人数、造价、速度都是占位数，只用来看清因果关系。</footer>
+</div>
+
+<script src="model.js"></script>
+<script>
+(function () {
+  'use strict';
+  const TL = window.TL, Z = TL.ZONES, TOY = TL.TOY, REAL = TL.REAL;
+  const $ = s => document.querySelector(s);
+  const nf = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 });
+  const f1 = x => x.toFixed(1);
+  const wan = x => (x / 1e4).toFixed(1) + ' 万';
+  const yi = x => (Math.abs(x) >= 100 ? nf.format(x) : x.toFixed(1)) + ' 亿';
+  const pct = x => Math.round(x * 100) + '%';
+  const sgn = x => (x > 0.5 ? '+' : x < -0.5 ? '−' : '') + nf.format(Math.abs(Math.round(x)));
+  const kmTxt = x => (x % 1 ? x.toFixed(1) : String(x));
+
+  const PRESETS = [
+    { name: '起点方案', d: { stations: [0, 2, 4, 5, 6, 7], build: 'elevated', headway: 3, fareMult: 1 } },
+    { name: '全地下、站站停', d: { stations: [0, 1, 2, 3, 4, 5, 6, 7], build: 'tunnel', headway: 3, fareMult: 1 } },
+    { name: '高架不过海', d: { stations: [0, 2, 4, 5, 6], build: 'elevated', headway: 4, fareMult: 1 } },
+    { name: '地面轻铁', d: { stations: [0, 1, 2, 3, 4, 5, 6, 7], build: 'grade', headway: 3, fareMult: 1 } },
+    { name: '班距拉到 10 分钟', d: { stations: [0, 2, 4, 5, 6, 7], build: 'elevated', headway: 10, fareMult: 1 } },
+    { name: '票价翻倍', d: { stations: [0, 2, 4, 5, 6, 7], build: 'elevated', headway: 3, fareMult: 2 } },
+  ];
+
+  const LEVERS = [
+    { id: 'L1', n: '①', name: '车站位置', what: '在哪几个区设站：决定谁走几步就能上车', fs: ['F1', 'F4', 'F7'] },
+    { id: 'L2', n: '②', name: '站数与站距', what: '站多好上车，但每站停 1 分钟、多一个站的造价', fs: ['F1', 'F2', 'F11'] },
+    { id: 'L3', n: '③', name: '建造方式', what: '地下 / 高架 / 地面：速度、每列载客、造价、居民反对', fs: ['F2', 'F8', 'F11'] },
+    { id: 'L4', n: '④', name: '班距', what: '几分钟一班：候车多久、运力多大、运营费多少', fs: ['F3', 'F8', 'F11'] },
+    { id: 'L5', n: '⑤', name: '票价倍数', what: '在拟合票价上乘一个倍数：影响谁愿意坐、收多少钱', fs: ['F5', 'F6', 'F12'] },
+    { id: 'L6', n: '⑥', name: '线路长度与过海', what: '首末站决定；过海要沉管，穿郊野公园要打隧道', fs: ['F2', 'F4', 'F11'] },
+  ];
+
+  const state = Object.assign({ ex: [0, 7], lever: null }, clone(PRESETS[0].d));
+  function clone(d) { return { stations: d.stations.slice(), build: d.build, headway: d.headway, fareMult: d.fareMult }; }
+  const design = () => clone(state);
+  let R = null;
+
+  // ---------- 控件 ----------
+  $('#stations').innerHTML = Z.map((z, k) =>
+    `<button type="button" class="stbtn" id="st-${z.id}" data-z="${k}" aria-pressed="false"><b>${z.id}</b><span>${z.name}</span></button>`).join('');
+  $('#presets').innerHTML = PRESETS.map((p, k) => `<button type="button" data-p="${k}">${p.name}</button>`).join('');
+  const zoneOpts = Z.map((z, k) => `<option value="${k}">${z.id} ${z.name}</option>`).join('');
+  $('#exFrom').innerHTML = zoneOpts; $('#exTo').innerHTML = zoneOpts;
+
+  function toggleStation(k) {
+    const has = state.stations.includes(k);
+    if (has && state.stations.length <= 2) { $('#hint').textContent = '至少留两个站。'; return; }
+    $('#hint').textContent = '';
+    state.stations = has ? state.stations.filter(s => s !== k) : state.stations.concat(k).sort((a, b) => a - b);
+    state.lever = 'L1';
+    update();
+  }
+  $('#stations').addEventListener('click', e => { const b = e.target.closest('[data-z]'); if (b) toggleStation(+b.dataset.z); });
+  $('#section').addEventListener('click', e => { const g = e.target.closest('[data-z]'); if (g) toggleStation(+g.dataset.z); });
+  $('#build').addEventListener('click', e => { const b = e.target.closest('[data-b]'); if (!b) return; state.build = b.dataset.b; state.lever = 'L3'; update(); });
+  $('#headway').addEventListener('input', e => { state.headway = +e.target.value; state.lever = 'L4'; update(); });
+  $('#fare').addEventListener('input', e => { state.fareMult = +e.target.value; state.lever = 'L5'; update(); });
+  $('#presets').addEventListener('click', e => {
+    const b = e.target.closest('[data-p]'); if (!b) return;
+    Object.assign(state, clone(PRESETS[+b.dataset.p].d)); state.lever = null; $('#hint').textContent = ''; update();
+  });
+  $('#exFrom').addEventListener('change', e => { setEx(+e.target.value, state.ex[1]); });
+  $('#exTo').addEventListener('change', e => { setEx(state.ex[0], +e.target.value); });
+  $('#od').addEventListener('click', e => { const c = e.target.closest('[data-i]'); if (c) setEx(+c.dataset.i, +c.dataset.j); });
+  function setEx(i, j) {
+    if (i === j) j = i === 7 ? 0 : 7;
+    state.ex = [i, j]; renderOD(R); renderMap(R);
+  }
+
+  function renderControls(r) {
+    Z.forEach((z, k) => $('#st-' + z.id).setAttribute('aria-pressed', state.stations.includes(k)));
+    $('#stCount').textContent = state.stations.length + ' 个站';
+    ['tunnel', 'elevated', 'grade'].forEach(b => $('#b-' + b).setAttribute('aria-pressed', state.build === b));
+    const bt = TL.BUILD[state.build];
+    let note = `每列 ${nf.format(bt.cap)} 人 · 时速 ${bt.speed} 公里 · ${bt.perKm} 亿/公里 · 每站 ${bt.station} 亿。`;
+    if (state.build === 'elevated') {
+      const nk = r.line.segs.filter(g => g.nimby > 0).reduce((s, g) => s + g.len, 0);
+      note += nk ? ` 贴着密集区的 ${kmTxt(nk)} 公里要加隔音罩，多 ${yi(r.money.capexNimby)}。` : ' 这条线没经过密集区，不用加隔音罩。';
+    }
+    if (state.build === 'grade') note += ' 在街上跑，慢，车也小。';
+    note += ' 穿郊野公园和过海的段不管选什么都只能打隧道。';
+    $('#buildNote').textContent = note;
+    $('#headway').value = state.headway; $('#fare').value = state.fareMult;
+    const perHour = 60 / state.headway;
+    $('#hwOut').textContent = `${state.headway} 分钟`;
+    $('#hwNote').textContent = `每小时 ${perHour % 1 ? perHour.toFixed(1) : perHour} 班，运力 ${nf.format(r.line.capHour)} 人/时。平均等 ${f1(state.headway / 2)} 分钟，按 2 倍计进时间。班越密越贵。`;
+    $('#fareOut').textContent = '×' + state.fareMult.toFixed(2);
+    $('#fareNote').textContent = `A→H 全程 ${TL.fare(0, 7, state.fareMult).toFixed(1)} 元，A→C ${TL.fare(0, 2, state.fareMult).toFixed(1)} 元。巴士 A→H 约 ${(TOY.busFareBase + TOY.busFarePerKm * TL.roadKm(0, 7)).toFixed(1)} 元。`;
+    const st = r.line.st, a = Z[st[0]], b = Z[st[st.length - 1]];
+    const hill = r.line.segs.some(g => g.terr === 'hill'), harb = r.line.segs.some(g => g.terr === 'harbour');
+    $('#lenOut').textContent = `${a.id} → ${b.id}，${kmTxt(r.line.length)} 公里 · ${harb ? '过海' : '不过海'}${hill ? ' · 穿郊野公园' : ''}`;
+  }
+
+  // ---------- 记分牌 ----------
+  function renderScore(r) {
+    const m = r.money;
+    const gates = [
+      [!r.overBudget, `建造费 ≤ ${TOY.budget} 亿`, yi(m.capex)],
+      [!r.overCrowd, '最挤一段 ≤ 120%', pct(r.maxLF)],
+      [!r.underFunded, '票务养得起运营', '票务 ÷ 运营 = ' + m.finRatio.toFixed(2)],
+    ];
+    const fails = gates.filter(g => !g[0]).length;
+    $('#score').innerHTML = `
+      <div>
+        <div class="sc-label">分数 · 社会净现值（50 年）</div>
+        <div class="sc-num ${m.npv < 0 ? 'neg' : ''}">${sgn(m.npv)}<small> 亿港元</small></div>
+        <div class="sc-verdict ${fails ? 'fail' : 'pass'}">${fails ? `不合格：${fails} 道关卡没过` : '三道关卡都过了'}</div>
+      </div>
+      <div class="sc-right">
+        <ul class="gates">${gates.map(g => `<li class="${g[0] ? 'ok' : 'no'}"><i>${g[0] ? '✓' : '✗'}</i>${g[1]}<em>${g[2]}</em></li>`).join('')}</ul>
+        <dl class="stats">
+          <div><dt>新线每日乘客</dt><dd>${wan(r.mtrDay)}</dd></div>
+          <div><dt>其中原来开车或打车</dt><dd>${wan(r.fromCar)}</dd></div>
+          <div><dt>运力利用率（全天）</dt><dd>${pct(r.utilization)}</dd></div>
+          <div><dt>拥挤迭代</dt><dd>${r.history.length} 轮</dd></div>
+        </dl>
+      </div>`;
+  }
+
+  // ---------- 纵断面 ----------
+  const PX = x => 70 + x * (860 / 27.5);
+  function barCls(lf) { return lf > 1.2 ? 'sv-bad' : lf > 0.8 ? 'sv-warn' : 'sv-ok'; }
+  function renderSection(r) {
+    const L = r.line, W = [];
+    const top = 130, bot = 170, HH = 104, lineY = 150, roadY = 330;
+    const vmax = Math.max(L.capHour, ...r.loads[0], ...r.loads[1]) * 1.08;
+    const sc = v => v / vmax * HH;
+    TL.SEG_TERRAIN.forEach((t, k) => {
+      if (!t) return;
+      const x0 = PX(Z[k].x), x1 = PX(Z[k + 1].x);
+      W.push(`<rect class="sv-${t}" x="${x0}" y="20" width="${x1 - x0}" height="332"/>`);
+      W.push(`<text class="sv-terrain" x="${(x0 + x1) / 2}" y="14">${t === 'hill' ? '郊野公园 · 只能隧道' : '维港 · 只能沉管'}</text>`);
+    });
+    Z.forEach(z => W.push(`<line class="sv-guide" x1="${PX(z.x)}" x2="${PX(z.x)}" y1="20" y2="370"/>`));
+    W.push(`<text class="sv-side" x="6" y="66">往 H</text><text class="sv-side" x="6" y="80">早高峰</text><text class="sv-side" x="6" y="94">人/时</text>`);
+    W.push(`<text class="sv-side" x="6" y="212">往 A</text><text class="sv-side" x="6" y="226">人/时</text>`);
+    W.push(`<text class="sv-side" x="6" y="326">主干道</text><text class="sv-side" x="6" y="340">往 H</text><text class="sv-side" x="6" y="354">车/时</text>`);
+
+    let capLabelled = false;
+    L.segs.forEach(g => {
+      const k = g.k, x0 = PX(Z[k].x) + 4, x1 = PX(Z[k + 1].x) - 4, w = x1 - x0, mid = (x0 + x1) / 2;
+      const name = `${Z[k].id}–${Z[k + 1].id}`;
+      for (const dir of [0, 1]) {
+        const v = r.loads[dir][k], lf = r.lf[dir][k], h = sc(v);
+        const y = dir === 0 ? top - h : bot;
+        W.push(`<rect class="${barCls(lf)}" x="${x0}" y="${y}" width="${w}" height="${Math.max(h, 0.5)}"><title>${name} ${dir === 0 ? '往 H' : '往 A'}：${nf.format(v)} 人/时，满载 ${pct(lf)}</title></rect>`);
+        const ly = dir === 0 ? top - h - 5 : bot + h + 14;
+        W.push(`<text class="sv-lf" x="${mid}" y="${ly}">${pct(lf)}</text>`);
+      }
+      const cy0 = top - sc(L.capHour), cy1 = bot + sc(L.capHour);
+      W.push(`<line class="sv-cap" x1="${x0}" x2="${x1}" y1="${cy0}" y2="${cy0}"/><line class="sv-cap" x1="${x0}" x2="${x1}" y1="${cy1}" y2="${cy1}"/>`);
+      if (!capLabelled) { W.push(`<text class="sv-caplab" x="${x0 + 2}" y="${cy0 - 4}">运力 ${nf.format(L.capHour)}</text>`); capLabelled = true; }
+      const b = g.terr ? 'tunnel' : state.build;
+      const tx0 = PX(Z[k].x), tx1 = PX(Z[k + 1].x);
+      W.push(`<line class="sv-track ${b}" x1="${tx0}" x2="${tx1}" y1="${lineY}" y2="${lineY}"/>`);
+      if (b === 'elevated') for (let x = tx0 + 10; x < tx1 - 4; x += 16) W.push(`<line class="sv-pier" x1="${x}" x2="${x}" y1="${lineY + 3}" y2="${lineY + 12}"/>`);
+      W.push(`<text class="sv-len" x="${(tx0 + tx1) / 2}" y="143">${kmTxt(g.len)} km</text>`);
+    });
+
+    const rmax = Math.max(...r.roadBefore[0]);
+    for (let k = 0; k < Z.length - 1; k++) {
+      const x0 = PX(Z[k].x) + 2, x1 = PX(Z[k + 1].x) - 2;
+      const rb = r.roadBefore[0][k], ra = r.roadAfter[0][k];
+      const tb = rb / rmax * 40, ta = ra / rmax * 40;
+      W.push(`<rect class="sv-rb" x="${x0}" y="${roadY - tb / 2}" width="${x1 - x0}" height="${tb}"><title>${Z[k].id}–${Z[k + 1].id} 开线前 ${nf.format(rb)} 车/时</title></rect>`);
+      W.push(`<rect class="sv-ra" x="${x0}" y="${roadY - ta / 2}" width="${x1 - x0}" height="${ta}"><title>${Z[k].id}–${Z[k + 1].id} 开线后 ${nf.format(ra)} 车/时</title></rect>`);
+      if (rb - ra >= 1) W.push(`<text class="sv-drop" x="${(x0 + x1) / 2}" y="366">−${nf.format(rb - ra)}</text>`);
+    }
+
+    Z.forEach((z, k) => {
+      const x = PX(z.x), on = state.stations.includes(k);
+      W.push(`<g class="sv-hit" data-z="${k}"><rect x="${x - 24}" y="${lineY - 17}" width="48" height="34"/>`
+        + (on ? `<circle class="sv-st" cx="${x}" cy="${lineY}" r="12"/><text class="sv-st-t" x="${x}" y="${lineY}">${z.id}</text>`
+              : `<circle class="sv-no" cx="${x}" cy="${lineY}" r="8"/><text class="sv-no-t" x="${x}" y="${lineY}">${z.id}</text>`)
+        + `<title>${z.id} ${z.name}：点一下${on ? '拆站' : '设站'}</title></g>`);
+      W.push(`<g class="sv-hit" data-z="${k}"><rect x="${x - 34}" y="374" width="68" height="36"/>`
+        + `<text class="sv-name" x="${x}" y="389">${z.id} ${z.name}</text>`
+        + `<text class="sv-meta" x="${x}" y="404">住 ${Math.round(z.pop / 1e4)} 万 · 岗 ${Math.round(z.jobs / 1e4)} 万</text></g>`);
+    });
+    $('#section').innerHTML = W.join('');
+  }
+
+  // ---------- 出行重新分配 ----------
+  function seg(cls, share, label) {
+    const w = share * 100;
+    return `<i class="${cls}" style="width:${w}%">${w >= 11 ? `${label} ${Math.round(w)}%` : ''}</i>`;
+  }
+  function renderShare(r) {
+    const T = r.trips;
+    $('#share').innerHTML = `
+      <div class="share-row"><span>开线前</span><div class="share-bar">${seg('s-bus', r.bus0 / T, '巴士')}${seg('s-car', r.car0 / T, '小汽车')}</div></div>
+      <div class="share-row"><span>开线后</span><div class="share-bar">${seg('s-bus', r.bus1 / T, '巴士')}${seg('s-mtr', r.mtrDay / T, '新线')}${seg('s-car', (T - r.bus1 - r.mtrDay) / T, '小汽车')}</div></div>`;
+    const fb = r.fromBus / r.mtrDay;
+    $('#src').innerHTML = `<div>新线 ${wan(r.mtrDay)} 人次/日从哪来</div>
+      <div class="src-bar"><i style="width:${fb * 100}%;background:var(--bus)"></i><i style="width:${(1 - fb) * 100}%;background:var(--car)"></i></div>
+      <div style="color:var(--muted);font-size:12.5px">从巴士转来 ${wan(r.fromBus)}（${pct(fb)}）· 从小汽车转来 ${wan(r.fromCar)}（${pct(1 - fb)}）</div>`;
+    $('#shareKv').innerHTML = `
+      <dt>走廊跨区出行</dt><dd>${wan(r.trips)} 人次/日</dd>
+      <dt>主干道每日少跑</dt><dd>${wan(r.dVkmDay)} 车公里</dd>
+      <dt>每年少排二氧化碳</dt><dd>${nf.format(r.co2TonYr)} 吨</dd>
+      <dt>空着跑的运力（浪费）</dt><dd>${pct(1 - r.utilization)}</dd>`;
+  }
+
+  function renderOD(r) {
+    const byKey = {};
+    r.ods.forEach(o => { byKey[o.i + '-' + o.j] = o; });
+    let h = `<span></span>` + Z.map(z => `<span class="h">${z.id}</span>`).join('');
+    Z.forEach((zi, i) => {
+      h += `<span class="h">${zi.id}</span>`;
+      Z.forEach((zj, j) => {
+        if (i === j) { h += `<span class="odc diag"></span>`; return; }
+        const o = byKey[i + '-' + j], s = o.mtr, sel = state.ex[0] === i && state.ex[1] === j;
+        const tip = `${zi.id}→${zj.id}：每日 ${nf.format(2 * o.H)} 人次，坐新线 ${pct(s)}（开线前坐公交 ${pct(o.p0)}）`;
+        h += `<button type="button" class="odc${s > 0.55 ? ' hot' : ''}${sel ? ' sel' : ''}" style="--a:${Math.round(s * 100)}%" data-i="${i}" data-j="${j}" title="${tip}" aria-label="${tip}">${s < 0.005 ? '·' : Math.round(s * 100)}</button>`;
+      });
+    });
+    $('#od').innerHTML = h;
+  }
+
+  // ---------- 迭代 ----------
+  function chart(vals, o) {
+    const W = 240, H = 140, l = 38, rr = 8, t = 22, b = 22, n = vals.length;
+    let lo = o.lo !== undefined ? o.lo : Math.min(...vals), hi = o.hi !== undefined ? o.hi : Math.max(...vals);
+    if (hi - lo < 1e-9) { lo -= Math.abs(lo) * 0.05 + 1; hi += Math.abs(hi) * 0.05 + 1; }
+    const pad = (hi - lo) * 0.08; lo -= o.lo !== undefined ? 0 : pad; hi += pad;
+    const X = i => l + (n === 1 ? 0 : i / (n - 1) * (W - l - rr));
+    const Y = v => t + (1 - (v - lo) / (hi - lo)) * (H - t - b);
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.title}"><text class="ch-title" x="0" y="11">${o.title}</text>`;
+    for (let q = 0; q <= 2; q++) {
+      const v = lo + (hi - lo) * q / 2;
+      s += `<line class="ch-axis" x1="${l}" x2="${W - rr}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ch-t" x="${l - 4}" y="${Y(v) + 3}" text-anchor="end">${o.fmt(v)}</text>`;
+    }
+    (o.refs || []).forEach(ref => { if (ref.v > lo && ref.v < hi) s += `<line class="ch-ref ${ref.cls}" x1="${l}" x2="${W - rr}" y1="${Y(ref.v)}" y2="${Y(ref.v)}"/>`; });
+    const step = n > 12 ? 5 : 1;
+    vals.forEach((v, i) => { if (i % step === 0 || i === n - 1) s += `<text class="ch-t" x="${X(i)}" y="${H - 6}" text-anchor="middle">${i + 1}</text>`; });
+    s += `<polyline class="ch-line" points="${vals.map((v, i) => X(i) + ',' + Y(v)).join(' ')}"/>`;
+    vals.forEach((v, i) => { s += i === n - 1 ? `<circle class="ch-end" cx="${X(i)}" cy="${Y(v)}" r="3.5"/>` : `<circle class="ch-dot" cx="${X(i)}" cy="${Y(v)}" r="2.2"/>`; });
+    return s + '</svg>';
+  }
+  function renderIter(r) {
+    const hs = r.history;
+    $('#iter').innerHTML =
+      chart(hs.map(h => h.riders / 1e4), { title: '新线日乘客（万）· 第几轮', fmt: v => v.toFixed(1) }) +
+      chart(hs.map(h => h.maxLF * 100), { title: '最挤一段满载率（%）', fmt: v => Math.round(v), lo: 0,
+        hi: Math.max(130, ...hs.map(h => h.maxLF * 100)) * 1.02, refs: [{ v: 80, cls: 'warn' }, { v: 120, cls: 'bad' }] });
+    const last = hs[hs.length - 1];
+    let note;
+    if (r.maxLF <= 0.8 && hs.length <= 2) note = '最挤一段没到 80%，拥挤系数一直是 1，第 2 轮就和第 1 轮一样，直接稳了。';
+    else if (!r.converged) note = `跑满 ${hs.length} 轮还差 ${(last.change * 100).toFixed(1)}%，这个方案在拥挤边缘来回摆。`;
+    else note = `第 ${hs.length} 轮前后只差 ${(last.change * 100).toFixed(2)}%，稳了。橙虚线 80% 开始变慢，红虚线 120% 算过度拥挤。`;
+    $('#iterNote').textContent = note;
+  }
+
+  // ---------- 两本账 ----------
+  function renderLedger(r) {
+    const m = r.money, AF = r.AF;
+    const items = [
+      ['省下的时间', m.timeYr * AF, 'F12'], ['路上少堵', m.decongYr * AF, 'F10'], ['少排碳', m.emissionYr * AF, 'F12'],
+      ['巴士公司净损失', -m.busLostYr * AF, ''], ['建造费', -m.capex, 'F11'], ['运营费', -m.opexYr * AF, 'F11'],
+      ['票务收入', m.revenueYr * AF, 'F12'],
+    ];
+    let run = 0; const rows = [];
+    items.forEach(([lab, v]) => { rows.push({ lab, from: run, to: run + v, v }); run += v; });
+    const lo = Math.min(0, ...rows.map(x => Math.min(x.from, x.to))), hi = Math.max(0, ...rows.map(x => Math.max(x.from, x.to)));
+    const P = v => (v - lo) / (hi - lo) * 100;
+    const zero = `<span class="zero" style="left:${P(0)}%"></span>`;
+    $('#wf').innerHTML = rows.map(x => `<div class="wf-row ${x.v >= 0 ? 'plus' : 'minus'}"><span>${x.lab}</span>
+        <span class="wf-track">${zero}<i style="left:${P(Math.min(x.from, x.to))}%;width:${Math.abs(P(x.to) - P(x.from))}%"></i></span>
+        <span class="v">${sgn(x.v)}</span></div>`).join('')
+      + `<div class="wf-row total"><span>社会净现值</span><span class="wf-track">${zero}<i style="left:${P(Math.min(0, run))}%;width:${Math.abs(P(run) - P(0))}%"></i></span><span class="v">${sgn(run)} 亿</span></div>`;
+    const fmax = Math.max(m.revenueYr, m.opexYr);
+    $('#fin').innerHTML = `
+      <div class="fin-row"><span>票务/年</span><span><span class="b" style="display:block;width:${m.revenueYr / fmax * 100}%;background:var(--good)"></span></span><span class="v">${yi(m.revenueYr)}</span></div>
+      <div class="fin-row"><span>运营/年</span><span><span class="b" style="display:block;width:${m.opexYr / fmax * 100}%;background:var(--bad)"></span></span><span class="v">${yi(m.opexYr)}</span></div>`;
+    const d1 = TL.evaluate(Object.assign(design(), { fareMult: 1 })).money;
+    const d2 = TL.evaluate(Object.assign(design(), { fareMult: 2 })).money;
+    const bcrTxt = x => (Number.isFinite(x) && x < 1000 ? x.toFixed(2) : '无穷大');
+    $('#bcrNote').innerHTML = `现在的 BCR（英国 TAG 算法）是 <b>${bcrTxt(m.bcr)}</b>，只作参考。同一条线，票价 ×1 时 BCR <b>${bcrTxt(d1.bcr)}</b>、净现值 <b>${sgn(d1.npv)} 亿</b>；票价 ×2 时 BCR 变成 <b>${bcrTxt(d2.bcr)}</b>，净现值却是 <b>${sgn(d2.npv)} 亿</b>。票务收入记在 BCR 的分母里抵成本，票价一高分母就接近零，所以分数用净现值。`;
+  }
+
+  // ---------- 推一格 ----------
+  const key = d => [d.stations.join(''), d.build, d.headway, d.fareMult].join('|');
+  function variants() {
+    const d = design(), out = [];
+    const push = (lv, label, nd) => out.push({ lv, label, d: nd });
+    if (d.headway - 1 >= 2) push('④', `班距 ${d.headway} → ${d.headway - 1} 分钟`, Object.assign(design(), { headway: d.headway - 1 }));
+    if (d.headway + 1 <= 12) push('④', `班距 ${d.headway} → ${d.headway + 1} 分钟`, Object.assign(design(), { headway: d.headway + 1 }));
+    const fm = x => '×' + x.toFixed(2);
+    if (d.fareMult - 0.25 >= 0.5 - 1e-9) push('⑤', `票价 ${fm(d.fareMult)} → ${fm(d.fareMult - 0.25)}`, Object.assign(design(), { fareMult: +(d.fareMult - 0.25).toFixed(2) }));
+    if (d.fareMult + 0.25 <= 2 + 1e-9) push('⑤', `票价 ${fm(d.fareMult)} → ${fm(d.fareMult + 0.25)}`, Object.assign(design(), { fareMult: +(d.fareMult + 0.25).toFixed(2) }));
+    ['tunnel', 'elevated', 'grade'].filter(b => b !== d.build).forEach(b => push('③', `全线改成${TL.BUILD[b].label}`, Object.assign(design(), { build: b })));
+    const hasH = d.stations.includes(7);
+    if (hasH && d.stations.length > 2) push('⑥', '不过海：拆掉 H 站', Object.assign(design(), { stations: d.stations.filter(s => s !== 7) }));
+    if (!hasH) push('⑥', '延伸过海到 H', Object.assign(design(), { stations: d.stations.concat(7).sort((a, b) => a - b) }));
+    let bestAdd = null, bestDel = null;
+    Z.forEach((z, k) => {
+      if (k === 7) return;
+      if (!d.stations.includes(k)) {
+        const nd = Object.assign(design(), { stations: d.stations.concat(k).sort((a, b) => a - b) });
+        const s = TL.evaluate(nd).money.npv;
+        if (!bestAdd || s > bestAdd.s) bestAdd = { s, k, nd };
+      } else if (d.stations.length > 2) {
+        const nd = Object.assign(design(), { stations: d.stations.filter(x => x !== k) });
+        const s = TL.evaluate(nd).money.npv;
+        if (!bestDel || s > bestDel.s) bestDel = { s, k, nd };
+      }
+    });
+    if (bestAdd) push('①', `加 ${Z[bestAdd.k].id} 站（试遍后最划算的）`, bestAdd.nd);
+    if (bestDel) push('②', `拆 ${Z[bestDel.k].id} 站（试遍后最不亏的）`, bestDel.nd);
+    const seen = new Set();
+    return out.filter(v => { const kk = key(v.d); if (seen.has(kk)) return false; seen.add(kk); return true; });
+  }
+  let TN = [];
+  function renderTornado(r) {
+    TN = variants().map(v => {
+      const e = TL.evaluate(v.d);
+      const flags = [e.overBudget && '超预算', e.overCrowd && '过度拥挤', e.underFunded && '票务不够运营'].filter(Boolean);
+      return Object.assign(v, { delta: e.money.npv - r.money.npv, score: e.money.npv, flags });
+    }).sort((a, b) => b.delta - a.delta);
+    const mx = Math.max(1, ...TN.map(t => Math.abs(t.delta)));
+    $('#tn').innerHTML = TN.map((t, i) => {
+      const w = Math.abs(t.delta) / mx * 50;
+      const bar = t.delta >= 0 ? `<i class="pos" style="left:50%;width:${w}%"></i>` : `<i class="neg" style="left:${50 - w}%;width:${w}%"></i>`;
+      return `<button type="button" class="tn-row" data-t="${i}" title="采用：${t.label}（采用后 ${sgn(t.score)} 亿）">
+        <span class="tn-lv">${t.lv}</span>
+        <span class="tn-lab">${t.label}${t.flags.length ? `<small>${t.flags.join(' · ')}</small>` : ''}</span>
+        <span class="tn-track"><span class="zero"></span>${bar}</span>
+        <span class="tn-val">${sgn(t.delta)} 亿</span></button>`;
+    }).join('');
+  }
+  $('#tn').addEventListener('click', e => {
+    const b = e.target.closest('[data-t]'); if (!b) return;
+    const t = TN[+b.dataset.t]; Object.assign(state, clone(t.d));
+    state.lever = { '①': 'L1', '②': 'L2', '③': 'L3', '④': 'L4', '⑤': 'L5', '⑥': 'L6' }[t.lv];
+    $('#hint').textContent = ''; update();
+  });
+
+  // ---------- 变量地图 ----------
+  const zid = k => Z[k].id;
+  const FN = {
+    F1: { name: '接驳', tag: 'toy', f: '同区步行 4 分钟；否则 步行 + 等巴士×2 + 坐巴士 + 换乘惩罚 5',
+      live: (r, o) => { const b = o.best;
+        const on = o.i === b.a ? `在 ${zid(b.a)} 站步行上车 ${f1(b.acc)}` : `从 ${zid(o.i)} 坐接驳巴士到 ${zid(b.a)} 站 ${f1(b.acc)}`;
+        const off = o.j === b.b ? `在 ${zid(b.b)} 站下车步行 ${f1(b.egr)}` : `从 ${zid(b.b)} 站坐接驳巴士到 ${zid(o.j)} ${f1(b.egr)}`;
+        return `${on} · ${off}（广义分钟）`; } },
+    F2: { name: '乘车', tag: 'toy', f: 'Σ 段长 ÷ 速度 × 拥挤系数 + 中途停站 × 1 分钟',
+      live: (r, o) => { const b = o.best, extra = b.ride - b.rideFree;
+        return `${zid(b.a)}→${zid(b.b)} ${f1(b.ride)} 分钟，中途停 ${b.stops} 站${extra > 0.05 ? `，其中拥挤多了 ${f1(extra)}` : ''}`; } },
+    F3: { name: '候车', tag: 'toy', f: '班距 ÷ 2，按 2 倍计进时间',
+      live: (r, o) => `平均等 ${f1(o.best.waitMin)} 分钟，计 ${f1(2 * o.best.waitMin)}` },
+    F4: { name: '新的公交时间', tag: 'method', f: 'min(巴士, 接驳 + 候车 + 乘车 + 接驳 + 票价 ÷ 时间价值)',
+      live: (r, o) => `巴士 ${Math.round(o.gcBus)} · 新线 ${Math.round(o.best.gc)} → 取 ${Math.round(o.gcPT1)} 广义分钟` },
+    F5: { name: '票价', tag: 'real', f: '(5.68 + 0.84 × 直线公里) × 倍数',
+      live: (r, o) => `${zid(o.best.a)}→${zid(o.best.b)} ${kmTxt(TL.straightKm(o.best.a, o.best.b))} 公里：${o.best.fare.toFixed(1)} 元` },
+    F6: { name: '换不换方式', tag: 'real', f: 'P₁ = P₀·e^ΔV ÷ (P₀·e^ΔV + 1 − P₀)，ΔV = −0.060 × 省下的广义分钟',
+      live: (r, o) => `坐公交 ${pct(o.p0)} → ${pct(o.p1)}（新线 ${pct(o.mtr)} + 巴士 ${pct(o.p1 - o.mtr)}）` },
+    F7: { name: '断面客流', tag: 'toy', f: 'Σ 经过这一段的出行 × 高峰系数 0.20',
+      live: r => { let best = { v: -1 }; [0, 1].forEach(d => r.loads[d].forEach((v, k) => { if (v > best.v) best = { v, k, d }; }));
+        return `最挤：${zid(best.k)}–${zid(best.k + 1)} ${best.d === 0 ? '往 H' : '往 A'} ${nf.format(best.v)} 人/时`; } },
+    F8: { name: '满载率与拥挤', tag: 'toy', f: '满载率 = 断面 ÷ (每列载客 × 每小时班数)；超 80% 起乘车变慢',
+      live: r => `最高满载 ${pct(r.maxLF)}，拥挤系数 ${TL.crowdFactor(r.maxLF).toFixed(2)}` },
+    F9: { name: '迭代到稳', tag: 'method', f: '本轮 = 上轮 + (新算的 − 上轮) ÷ 轮次，前后差 < 0.5% 停',
+      live: r => `${r.history.length} 轮${r.converged ? '稳了' : '还没稳'}` },
+    F10: { name: '少跑的车公里', tag: 'toy', f: '转走的小汽车出行 ÷ 1.31 人/车 × 路程；× 拥堵成本 2.5 元/车公里',
+      live: r => `每日少 ${wan(r.dVkmDay)} 车公里，每年 ${yi(r.money.decongYr)}` },
+    F11: { name: '建造费与运营费', tag: 'toy', f: 'Σ 段长 × 单价 + 站数 × 站价 + 隔音罩；运营 = 列车公里 × 单价',
+      live: r => { const m = r.money; return `建造 ${yi(m.capex)}（轨道 ${yi(m.capexTrack)} · 车站 ${yi(m.capexStations)}${m.capexNimby ? ` · 隔音罩 ${yi(m.capexNimby)}` : ''}）· 运营 ${yi(m.opexYr)}/年`; } },
+    F12: { name: '收入、时间效益、减排', tag: 'real', f: '票务 = 乘客 × 票价；时间效益 = ½(前 + 后) × 省下的分钟 × 1.26 元',
+      live: r => { const m = r.money; return `每年票务 ${yi(m.revenueYr)} · 时间 ${yi(m.timeYr)} · 减排 ${yi(m.emissionYr)}`; } },
+    F13: { name: '两本账与分数', tag: 'method', f: '净现值 = 50 年效益现值 − 建造 − (运营 − 票务)现值',
+      live: r => { const m = r.money; return `净现值 ${sgn(m.npv)} 亿 · 票务 ÷ 运营 ${m.finRatio.toFixed(2)}`; } },
+  };
+  const STAGES = [
+    { name: '算时间', note: '一趟出行坐新线要多久（F1–F5）', fs: ['F1', 'F2', 'F3', 'F4', 'F5'] },
+    { name: '选方式', note: '谁会改坐新线（F6）', fs: ['F6'] },
+    { name: '挤不挤', note: '挤了变慢，回到 F2 重算（F7–F9）', fs: ['F7', 'F8', 'F9'] },
+    { name: '算钱', note: '两本账和分数（F10–F13）', fs: ['F10', 'F11', 'F12', 'F13'] },
+  ];
+  const TAGS = { real: '<span class="tag real">真实</span>', toy: '<span class="tag toy">占位</span>', method: '<span class="tag method">方法</span>' };
+  $('#levers').innerHTML = LEVERS.map(l => `<button type="button" class="lever" data-l="${l.id}" aria-pressed="false"><b><span>${l.n}</span>${l.name}</b><small>${l.what}</small><small>→ ${l.fs.join(' ')}</small></button>`).join('');
+  $('#levers').addEventListener('click', e => {
+    const b = e.target.closest('[data-l]'); if (!b) return;
+    state.lever = state.lever === b.dataset.l ? null : b.dataset.l; renderMap(R);
+  });
+  $('#flow').innerHTML = STAGES.map(s => `<div class="stage-col"><header><h3>${s.name}</h3><p>${s.note}</p></header>`
+    + s.fs.map(id => `<article class="fn panel" id="fn-${id}"><header><span class="fid">${id}</span><h4>${FN[id].name}</h4>${TAGS[FN[id].tag]}</header><code>${FN[id].f}</code><p class="live" id="live-${id}"></p></article>`).join('')
+    + `</div>`).join('');
+
+  function renderMap(r) {
+    const o = r.ods.find(x => x.i === state.ex[0] && x.j === state.ex[1]);
+    $('#exFrom').value = state.ex[0]; $('#exTo').value = state.ex[1];
+    Object.keys(FN).forEach(id => { $('#live-' + id).textContent = FN[id].live(r, o); });
+    const lv = LEVERS.find(l => l.id === state.lever);
+    $('#flow').classList.toggle('lit', !!lv);
+    Object.keys(FN).forEach(id => $('#fn-' + id).classList.toggle('hit', !!lv && lv.fs.includes(id)));
+    document.querySelectorAll('.lever').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === state.lever));
+  }
+
+  // ---------- 参数表 ----------
+  const PARAMS = [
+    ['方式选择敏感度 θ', '0.060 / 广义分钟', '真实：对出行特性调查表 5.2 拟合'],
+    ['港铁票价', '5.68 + 0.84 × 公里', '真实：现有模型的票价拟合'],
+    ['时间价值', '1.26 元 / 分钟', '真实：私家车的值；演示里公交乘客也用它（简化）'],
+    ['私家车每车人数', '1.31', '真实：现有模型'],
+    ['分区、人口、岗位', '8 个区', '编的 → 换成现有 455 个分区和 OD'],
+    ['建造单价（亿/公里）', '地下 35 · 高架 14 · 地面 5 · 穿山 25 · 过海 60', '编的 → 查近年港铁项目的公开造价'],
+    ['车站单价（亿）', '15 · 5 · 0.8', '同上'],
+    ['隔音罩', '6 亿 / 公里', '同上'],
+    ['每列载客', '2,000 · 轻铁 600', '编的 → 港铁公布的列车容量'],
+    ['运营费（元/列车公里）', '300 · 轻铁 120', '编的 → 港铁年报'],
+    ['候车权重 · 换乘惩罚', '2.0 · 5 分钟', '编的 → 用现有公交数据标定'],
+    ['拥挤曲线', '80% 起变慢，120% 算过挤', '编的 → 文献加港铁满载数据'],
+    ['高峰系数', '0.20', '编的 → 用现有模型里的高峰比例'],
+    ['拥堵成本', '2.5 元 / 车公里', '编的 → 让道路分配跑"小汽车少 1%"反推'],
+    ['碳价', '0.8 元 / 公斤', '编的 → 取公开碳价'],
+    ['巴士砍班省回', '70%', '编的 → 组里定'],
+    ['年化 · 年限 · 折现率', '300 天 · 50 年 · 4%', '编的 → 组里定'],
+    ['预算关卡', '800 亿', '关卡设定'],
+  ];
+  $('#params').innerHTML = PARAMS.map(p => `<tr><td>${p[0]}</td><td class="v">${p[1]}</td><td>${p[2]}</td></tr>`).join('');
+
+  // ---------- 刷新 ----------
+  let slowTimer = 0;
+  function update() {
+    R = TL.evaluate(design());
+    renderControls(R); renderScore(R); renderSection(R); renderShare(R); renderOD(R); renderIter(R); renderMap(R);
+    clearTimeout(slowTimer);
+    slowTimer = setTimeout(() => { renderLedger(R); renderTornado(R); }, 60);
+  }
+  update();
+  renderLedger(R); renderTornado(R);
+})();
+</script>

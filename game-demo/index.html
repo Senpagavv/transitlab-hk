@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>修桥试算</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="map"></div>
+
+<aside class="panel" id="panel">
+  <nav class="tabs"><a class="on" href="index.html">修桥</a><a href="metro.html">修地铁</a></nav>
+  <div>
+    <h1>修桥试算</h1>
+    <p class="sub">在地图上点两下修一座桥，看谁会走、省多少时间、要花多少钱。</p>
+  </div>
+  <div class="step" id="step">① 在地图上点桥的一头</div>
+  <div class="examples" id="examples">看例子：</div>
+  <div id="result" hidden></div>
+  <div class="row" id="actions" hidden>
+    <button type="button" class="btn main" id="reset">拆掉重修</button>
+  </div>
+  <details>
+    <summary>这个试算用了什么、没算什么</summary>
+    <p><b>用了现有模型的：</b></p>
+    <ul>
+      <li>全港 455 个交通分区，早高峰 8–9 点谁开车从哪到哪（私家车、的士、货车）</li>
+      <li>早高峰开车时间（按每段路的拥堵算）；桥头接到最近的真实路口，谁开到桥头都沿真实道路走，不会隔海直线过去</li>
+      <li>时间价值：私家车每人每分钟 1.26 元、的士 0.87 元，货车每车 2.74 / 4.06 元</li>
+      <li>全天 ≈ 早高峰 × 15.2（运输署普查站实测：8–9 点占全天 6.6%）</li>
+    </ul>
+    <p><b>没算（大工程要补）：</b></p>
+    <ul>
+      <li>车分到新桥以后，老隧道、老路变顺，留在老路上的人也省时间</li>
+      <li>模型里高峰塞车偏轻（红隧高峰只比畅通慢 2 分多钟），真实排队更久，所以省的时间算少了</li>
+      <li>有了桥以后新多出来的出行、搬家和开发</li>
+      <li>巴士、地铁，收费，利息</li>
+    </ul>
+    <p>造价是粗估：海上每车道每公里 5 亿，陆上 2 亿，两头接驳 6 亿；车道数按高峰车流自动定。</p>
+  </details>
+</aside>
+
+<div class="legend" id="legend" hidden>
+  <div>每天走这座桥的车次（起点或终点在这个区）</div>
+  <div class="ramp"></div>
+  <div class="ends"><span>少</span><span>多</span></div>
+  <div><span class="ln"></span>新桥（流动的点 = 车流）</div>
+  <div><span class="ln thin"></span>受益最多的几条出行（车真实开的路线）</div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="data-road.js"></script>
+<script src="data-land.js"></script>
+<script src="land.js"></script>
+<script src="road.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

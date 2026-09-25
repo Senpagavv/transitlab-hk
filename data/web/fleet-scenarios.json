@@ -1,0 +1,5776 @@
+{
+ "note": "pipeline/31_fleet_simulator.py; 需求来自 pipeline/28，车队来自 pipeline/29",
+ "base_fleet": 17695,
+ "max_wait_min": 15.0,
+ "hourly": [
+  {
+   "hour": 0,
+   "requests": 13648.0,
+   "served": 13647.0,
+   "gave_up": 1.0,
+   "mean_wait_min": 0.89,
+   "max_wait_min": 21.76,
+   "empty_km": 8414.95,
+   "paid_km": 122075.19,
+   "vehicles_busy": 2319.62,
+   "empty_share": 0.06
+  },
+  {
+   "hour": 1,
+   "requests": 9239.0,
+   "served": 9239.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 0.9,
+   "max_wait_min": 8.7,
+   "empty_km": 5811.28,
+   "paid_km": 81259.92,
+   "vehicles_busy": 1849.33,
+   "empty_share": 0.07
+  },
+  {
+   "hour": 2,
+   "requests": 7009.0,
+   "served": 7009.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 0.92,
+   "max_wait_min": 8.69,
+   "empty_km": 4511.22,
+   "paid_km": 62010.83,
+   "vehicles_busy": 1384.67,
+   "empty_share": 0.07
+  },
+  {
+   "hour": 3,
+   "requests": 5564.0,
+   "served": 5560.0,
+   "gave_up": 1.0,
+   "mean_wait_min": 0.77,
+   "max_wait_min": 16.03,
+   "empty_km": 2984.97,
+   "paid_km": 62079.94,
+   "vehicles_busy": 1217.7,
+   "empty_share": 0.05
+  },
+  {
+   "hour": 4,
+   "requests": 5432.0,
+   "served": 5431.0,
+   "gave_up": 4.0,
+   "mean_wait_min": 0.79,
+   "max_wait_min": 20.84,
+   "empty_km": 2980.03,
+   "paid_km": 48647.37,
+   "vehicles_busy": 1063.5,
+   "empty_share": 0.06
+  },
+  {
+   "hour": 5,
+   "requests": 8058.0,
+   "served": 8057.0,
+   "gave_up": 1.0,
+   "mean_wait_min": 0.92,
+   "max_wait_min": 13.74,
+   "empty_km": 5164.62,
+   "paid_km": 75767.69,
+   "vehicles_busy": 1527.05,
+   "empty_share": 0.06
+  },
+  {
+   "hour": 6,
+   "requests": 18679.0,
+   "served": 18671.0,
+   "gave_up": 5.0,
+   "mean_wait_min": 1.27,
+   "max_wait_min": 16.16,
+   "empty_km": 17152.32,
+   "paid_km": 173235.76,
+   "vehicles_busy": 3511.6,
+   "empty_share": 0.09
+  },
+  {
+   "hour": 7,
+   "requests": 42506.0,
+   "served": 42494.0,
+   "gave_up": 7.0,
+   "mean_wait_min": 2.34,
+   "max_wait_min": 24.46,
+   "empty_km": 74993.24,
+   "paid_km": 379418.59,
+   "vehicles_busy": 8819.18,
+   "empty_share": 0.17
+  },
+  {
+   "hour": 8,
+   "requests": 43137.0,
+   "served": 43047.0,
+   "gave_up": 12.0,
+   "mean_wait_min": 3.85,
+   "max_wait_min": 25.51,
+   "empty_km": 123468.39,
+   "paid_km": 414604.58,
+   "vehicles_busy": 11267.85,
+   "empty_share": 0.23
+  },
+  {
+   "hour": 9,
+   "requests": 42654.0,
+   "served": 42724.0,
+   "gave_up": 13.0,
+   "mean_wait_min": 2.82,
+   "max_wait_min": 24.99,
+   "empty_km": 90790.0,
+   "paid_km": 394449.05,
+   "vehicles_busy": 11327.28,
+   "empty_share": 0.19
+  },
+  {
+   "hour": 10,
+   "requests": 40059.0,
+   "served": 40057.0,
+   "gave_up": 3.0,
+   "mean_wait_min": 2.07,
+   "max_wait_min": 23.77,
+   "empty_km": 61148.0,
+   "paid_km": 347689.85,
+   "vehicles_busy": 9106.1,
+   "empty_share": 0.15
+  },
+  {
+   "hour": 11,
+   "requests": 38686.0,
+   "served": 38678.0,
+   "gave_up": 9.0,
+   "mean_wait_min": 2.21,
+   "max_wait_min": 19.48,
+   "empty_km": 64517.18,
+   "paid_km": 331344.18,
+   "vehicles_busy": 8523.55,
+   "empty_share": 0.16
+  },
+  {
+   "hour": 12,
+   "requests": 35809.0,
+   "served": 35807.0,
+   "gave_up": 3.0,
+   "mean_wait_min": 2.03,
+   "max_wait_min": 22.32,
+   "empty_km": 54108.94,
+   "paid_km": 300408.22,
+   "vehicles_busy": 7798.05,
+   "empty_share": 0.15
+  },
+  {
+   "hour": 13,
+   "requests": 37561.0,
+   "served": 37559.0,
+   "gave_up": 1.0,
+   "mean_wait_min": 3.01,
+   "max_wait_min": 20.26,
+   "empty_km": 93456.67,
+   "paid_km": 315885.88,
+   "vehicles_busy": 8337.8,
+   "empty_share": 0.23
+  },
+  {
+   "hour": 14,
+   "requests": 38690.0,
+   "served": 38690.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 2.01,
+   "max_wait_min": 22.6,
+   "empty_km": 57426.87,
+   "paid_km": 326703.77,
+   "vehicles_busy": 8407.38,
+   "empty_share": 0.15
+  },
+  {
+   "hour": 15,
+   "requests": 36912.0,
+   "served": 36910.0,
+   "gave_up": 1.0,
+   "mean_wait_min": 2.18,
+   "max_wait_min": 20.65,
+   "empty_km": 60464.14,
+   "paid_km": 311816.15,
+   "vehicles_busy": 8081.75,
+   "empty_share": 0.16
+  },
+  {
+   "hour": 16,
+   "requests": 36113.0,
+   "served": 36073.0,
+   "gave_up": 2.0,
+   "mean_wait_min": 2.39,
+   "max_wait_min": 20.0,
+   "empty_km": 66430.56,
+   "paid_km": 308176.8,
+   "vehicles_busy": 7889.3,
+   "empty_share": 0.18
+  },
+  {
+   "hour": 17,
+   "requests": 39537.0,
+   "served": 39577.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 2.7,
+   "max_wait_min": 20.07,
+   "empty_km": 85175.05,
+   "paid_km": 358366.99,
+   "vehicles_busy": 9367.82,
+   "empty_share": 0.19
+  },
+  {
+   "hour": 18,
+   "requests": 41490.0,
+   "served": 41488.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 1.7,
+   "max_wait_min": 23.62,
+   "empty_km": 46444.9,
+   "paid_km": 388241.69,
+   "vehicles_busy": 9518.95,
+   "empty_share": 0.11
+  },
+  {
+   "hour": 19,
+   "requests": 38563.0,
+   "served": 38565.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 1.33,
+   "max_wait_min": 17.36,
+   "empty_km": 33115.98,
+   "paid_km": 364183.32,
+   "vehicles_busy": 8854.78,
+   "empty_share": 0.08
+  },
+  {
+   "hour": 20,
+   "requests": 35217.0,
+   "served": 35217.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 1.22,
+   "max_wait_min": 17.14,
+   "empty_km": 29630.63,
+   "paid_km": 321294.97,
+   "vehicles_busy": 7598.85,
+   "empty_share": 0.08
+  },
+  {
+   "hour": 21,
+   "requests": 39168.0,
+   "served": 39168.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 1.54,
+   "max_wait_min": 17.27,
+   "empty_km": 43271.4,
+   "paid_km": 349463.45,
+   "vehicles_busy": 8110.85,
+   "empty_share": 0.11
+  },
+  {
+   "hour": 22,
+   "requests": 36214.0,
+   "served": 36214.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 1.51,
+   "max_wait_min": 16.01,
+   "empty_km": 39687.26,
+   "paid_km": 323098.84,
+   "vehicles_busy": 7578.23,
+   "empty_share": 0.11
+  },
+  {
+   "hour": 23,
+   "requests": 27253.0,
+   "served": 27253.0,
+   "gave_up": 0.0,
+   "mean_wait_min": 1.32,
+   "max_wait_min": 10.97,
+   "empty_km": 25853.19,
+   "paid_km": 247385.27,
+   "vehicles_busy": 5717.2,
+   "empty_share": 0.09
+  }
+ ],
+ "sweep": [
+  {
+   "fleet": 17695,
+   "served_share": 0.9999121581487957,
+   "mean_wait_min": 2.053218702727689,
+   "empty_share": 0.1461770525931823,
+   "peak_busy": 11327.283333333333
+  },
+  {
+   "fleet": 14000,
+   "served_share": 0.9999177354091896,
+   "mean_wait_min": 2.1626335675280233,
+   "empty_share": 0.15407730949334653,
+   "peak_busy": 11919.833333333334
+  },
+  {
+   "fleet": 12000,
+   "served_share": 0.9999121581487957,
+   "mean_wait_min": 2.3670753487170684,
+   "empty_share": 0.16187754328089465,
+   "peak_busy": 11982.85
+  },
+  {
+   "fleet": 10000,
+   "served_share": 0.9908881508314301,
+   "mean_wait_min": 6.046115592603451,
+   "empty_share": 0.18749501036447297,
+   "peak_busy": 10000.0
+  },
+  {
+   "fleet": 8000,
+   "served_share": 0.8791533160995987,
+   "mean_wait_min": 15.794238752576547,
+   "empty_share": 0.22132078392580978,
+   "peak_busy": 8000.0
+  },
+  {
+   "fleet": 6000,
+   "served_share": 0.6805289473757595,
+   "mean_wait_min": 15.886868274926774,
+   "empty_share": 0.23418954196944586,
+   "peak_busy": 6000.0
+  }
+ ],
+ "zones": {
+  "base": [
+   {
+    "zone": "111.1",
+    "requests": 2752,
+    "served_share": 1.0,
+    "mean_wait_min": 1.83
+   },
+   {
+    "zone": "111.2",
+    "requests": 265,
+    "served_share": 1.0,
+    "mean_wait_min": 3.51
+   },
+   {
+    "zone": "111.3",
+    "requests": 1918,
+    "served_share": 1.0,
+    "mean_wait_min": 1.55
+   },
+   {
+    "zone": "112.1",
+    "requests": 1381,
+    "served_share": 1.0,
+    "mean_wait_min": 1.29
+   },
+   {
+    "zone": "112.2",
+    "requests": 1685,
+    "served_share": 1.0,
+    "mean_wait_min": 1.32
+   },
+   {
+    "zone": "112.3",
+    "requests": 1152,
+    "served_share": 1.0,
+    "mean_wait_min": 1.24
+   },
+   {
+    "zone": "113",
+    "requests": 3209,
+    "served_share": 1.0,
+    "mean_wait_min": 0.9
+   },
+   {
+    "zone": "114",
+    "requests": 2728,
+    "served_share": 1.0,
+    "mean_wait_min": 0.65
+   },
+   {
+    "zone": "115",
+    "requests": 445,
+    "served_share": 1.0,
+    "mean_wait_min": 1.17
+   },
+   {
+    "zone": "116",
+    "requests": 999,
+    "served_share": 1.0,
+    "mean_wait_min": 1.45
+   },
+   {
+    "zone": "121S",
+    "requests": 4189,
+    "served_share": 1.0,
+    "mean_wait_min": 0.73
+   },
+   {
+    "zone": "122",
+    "requests": 1204,
+    "served_share": 1.0,
+    "mean_wait_min": 0.97
+   },
+   {
+    "zone": "131",
+    "requests": 4577,
+    "served_share": 1.0,
+    "mean_wait_min": 0.61
+   },
+   {
+    "zone": "132",
+    "requests": 3691,
+    "served_share": 1.0,
+    "mean_wait_min": 0.58
+   },
+   {
+    "zone": "133",
+    "requests": 2745,
+    "served_share": 1.0,
+    "mean_wait_min": 0.57
+   },
+   {
+    "zone": "134S",
+    "requests": 1038,
+    "served_share": 1.0,
+    "mean_wait_min": 0.66
+   },
+   {
+    "zone": "140",
+    "requests": 806,
+    "served_share": 1.0,
+    "mean_wait_min": 0.94
+   },
+   {
+    "zone": "141",
+    "requests": 1728,
+    "served_share": 1.0,
+    "mean_wait_min": 1.46
+   },
+   {
+    "zone": "142.1",
+    "requests": 1691,
+    "served_share": 1.0,
+    "mean_wait_min": 1.31
+   },
+   {
+    "zone": "142.2",
+    "requests": 1738,
+    "served_share": 1.0,
+    "mean_wait_min": 1.35
+   },
+   {
+    "zone": "143",
+    "requests": 1355,
+    "served_share": 1.0,
+    "mean_wait_min": 1.21
+   },
+   {
+    "zone": "144.1",
+    "requests": 1604,
+    "served_share": 1.0,
+    "mean_wait_min": 0.55
+   },
+   {
+    "zone": "144.2",
+    "requests": 2184,
+    "served_share": 1.0,
+    "mean_wait_min": 1.08
+   },
+   {
+    "zone": "145",
+    "requests": 1222,
+    "served_share": 1.0,
+    "mean_wait_min": 1.02
+   },
+   {
+    "zone": "146S",
+    "requests": 3718,
+    "served_share": 1.0,
+    "mean_wait_min": 0.63
+   },
+   {
+    "zone": "148",
+    "requests": 931,
+    "served_share": 1.0,
+    "mean_wait_min": 1.29
+   },
+   {
+    "zone": "149",
+    "requests": 928,
+    "served_share": 1.0,
+    "mean_wait_min": 1.31
+   },
+   {
+    "zone": "151.1",
+    "requests": 1786,
+    "served_share": 1.0,
+    "mean_wait_min": 0.95
+   },
+   {
+    "zone": "151.2",
+    "requests": 1102,
+    "served_share": 1.0,
+    "mean_wait_min": 1.11
+   },
+   {
+    "zone": "151.3",
+    "requests": 1187,
+    "served_share": 1.0,
+    "mean_wait_min": 0.99
+   },
+   {
+    "zone": "152",
+    "requests": 1376,
+    "served_share": 1.0,
+    "mean_wait_min": 1.55
+   },
+   {
+    "zone": "153.1",
+    "requests": 1041,
+    "served_share": 1.0,
+    "mean_wait_min": 1.32
+   },
+   {
+    "zone": "153.2",
+    "requests": 1681,
+    "served_share": 1.0,
+    "mean_wait_min": 1.14
+   },
+   {
+    "zone": "153.3",
+    "requests": 690,
+    "served_share": 1.0,
+    "mean_wait_min": 1.33
+   },
+   {
+    "zone": "153.4",
+    "requests": 992,
+    "served_share": 1.0,
+    "mean_wait_min": 1.24
+   },
+   {
+    "zone": "154",
+    "requests": 1122,
+    "served_share": 1.0,
+    "mean_wait_min": 1.52
+   },
+   {
+    "zone": "155",
+    "requests": 1854,
+    "served_share": 1.0,
+    "mean_wait_min": 1.7
+   },
+   {
+    "zone": "156S",
+    "requests": 2816,
+    "served_share": 1.0,
+    "mean_wait_min": 2.02
+   },
+   {
+    "zone": "157.1",
+    "requests": 879,
+    "served_share": 1.0,
+    "mean_wait_min": 2.0
+   },
+   {
+    "zone": "157.2",
+    "requests": 872,
+    "served_share": 1.0,
+    "mean_wait_min": 2.31
+   },
+   {
+    "zone": "157.3",
+    "requests": 1183,
+    "served_share": 1.0,
+    "mean_wait_min": 2.03
+   },
+   {
+    "zone": "161.1",
+    "requests": 865,
+    "served_share": 1.0,
+    "mean_wait_min": 2.29
+   },
+   {
+    "zone": "161.2",
+    "requests": 815,
+    "served_share": 1.0,
+    "mean_wait_min": 2.19
+   },
+   {
+    "zone": "161.3",
+    "requests": 600,
+    "served_share": 1.0,
+    "mean_wait_min": 2.5
+   },
+   {
+    "zone": "161.4",
+    "requests": 1726,
+    "served_share": 1.0,
+    "mean_wait_min": 2.41
+   },
+   {
+    "zone": "161.5",
+    "requests": 1170,
+    "served_share": 1.0,
+    "mean_wait_min": 2.49
+   },
+   {
+    "zone": "162",
+    "requests": 997,
+    "served_share": 1.0,
+    "mean_wait_min": 3.14
+   },
+   {
+    "zone": "163.1",
+    "requests": 1499,
+    "served_share": 1.0,
+    "mean_wait_min": 2.77
+   },
+   {
+    "zone": "163.2",
+    "requests": 1698,
+    "served_share": 1.0,
+    "mean_wait_min": 2.62
+   },
+   {
+    "zone": "164S.1",
+    "requests": 1039,
+    "served_share": 1.0,
+    "mean_wait_min": 2.79
+   },
+   {
+    "zone": "164S.2",
+    "requests": 2131,
+    "served_share": 1.0,
+    "mean_wait_min": 2.82
+   },
+   {
+    "zone": "164S.3",
+    "requests": 775,
+    "served_share": 1.0,
+    "mean_wait_min": 3.33
+   },
+   {
+    "zone": "166.1",
+    "requests": 1023,
+    "served_share": 1.0,
+    "mean_wait_min": 2.52
+   },
+   {
+    "zone": "166.2",
+    "requests": 1050,
+    "served_share": 1.0,
+    "mean_wait_min": 2.83
+   },
+   {
+    "zone": "167.1",
+    "requests": 1350,
+    "served_share": 1.0,
+    "mean_wait_min": 2.85
+   },
+   {
+    "zone": "167.2",
+    "requests": 1358,
+    "served_share": 1.0,
+    "mean_wait_min": 2.63
+   },
+   {
+    "zone": "167.3",
+    "requests": 1148,
+    "served_share": 1.0,
+    "mean_wait_min": 2.93
+   },
+   {
+    "zone": "171",
+    "requests": 1665,
+    "served_share": 1.0,
+    "mean_wait_min": 1.97
+   },
+   {
+    "zone": "172.1",
+    "requests": 1048,
+    "served_share": 1.0,
+    "mean_wait_min": 2.42
+   },
+   {
+    "zone": "172.2",
+    "requests": 1034,
+    "served_share": 1.0,
+    "mean_wait_min": 2.37
+   },
+   {
+    "zone": "172.3",
+    "requests": 997,
+    "served_share": 1.0,
+    "mean_wait_min": 2.07
+   },
+   {
+    "zone": "173.1",
+    "requests": 338,
+    "served_share": 1.0,
+    "mean_wait_min": 1.67
+   },
+   {
+    "zone": "173.2",
+    "requests": 1908,
+    "served_share": 1.0,
+    "mean_wait_min": 1.91
+   },
+   {
+    "zone": "173.3",
+    "requests": 663,
+    "served_share": 1.0,
+    "mean_wait_min": 2.21
+   },
+   {
+    "zone": "174.1",
+    "requests": 898,
+    "served_share": 1.0,
+    "mean_wait_min": 2.02
+   },
+   {
+    "zone": "174.2",
+    "requests": 1056,
+    "served_share": 1.0,
+    "mean_wait_min": 1.94
+   },
+   {
+    "zone": "174.3",
+    "requests": 676,
+    "served_share": 1.0,
+    "mean_wait_min": 1.99
+   },
+   {
+    "zone": "174.4",
+    "requests": 832,
+    "served_share": 1.0,
+    "mean_wait_min": 2.09
+   },
+   {
+    "zone": "175S",
+    "requests": 2263,
+    "served_share": 1.0,
+    "mean_wait_min": 1.61
+   },
+   {
+    "zone": "181S",
+    "requests": 889,
+    "served_share": 1.0,
+    "mean_wait_min": 3.0
+   },
+   {
+    "zone": "183S",
+    "requests": 952,
+    "served_share": 1.0,
+    "mean_wait_min": 1.49
+   },
+   {
+    "zone": "190S",
+    "requests": 836,
+    "served_share": 1.0,
+    "mean_wait_min": 2.43
+   },
+   {
+    "zone": "191",
+    "requests": 338,
+    "served_share": 1.0,
+    "mean_wait_min": 2.18
+   },
+   {
+    "zone": "193S",
+    "requests": 885,
+    "served_share": 1.0,
+    "mean_wait_min": 2.56
+   },
+   {
+    "zone": "196",
+    "requests": 353,
+    "served_share": 1.0,
+    "mean_wait_min": 3.4
+   },
+   {
+    "zone": "197",
+    "requests": 210,
+    "served_share": 1.0,
+    "mean_wait_min": 8.37
+   },
+   {
+    "zone": "211",
+    "requests": 7243,
+    "served_share": 1.0,
+    "mean_wait_min": 0.84
+   },
+   {
+    "zone": "212",
+    "requests": 6177,
+    "served_share": 1.0,
+    "mean_wait_min": 0.71
+   },
+   {
+    "zone": "213S",
+    "requests": 5817,
+    "served_share": 1.0,
+    "mean_wait_min": 0.7
+   },
+   {
+    "zone": "214",
+    "requests": 2241,
+    "served_share": 1.0,
+    "mean_wait_min": 0.44
+   },
+   {
+    "zone": "217",
+    "requests": 1602,
+    "served_share": 1.0,
+    "mean_wait_min": 0.77
+   },
+   {
+    "zone": "220S",
+    "requests": 2144,
+    "served_share": 1.0,
+    "mean_wait_min": 0.69
+   },
+   {
+    "zone": "221.1",
+    "requests": 1764,
+    "served_share": 1.0,
+    "mean_wait_min": 0.99
+   },
+   {
+    "zone": "221.2",
+    "requests": 2719,
+    "served_share": 1.0,
+    "mean_wait_min": 0.63
+   },
+   {
+    "zone": "221.3",
+    "requests": 2808,
+    "served_share": 1.0,
+    "mean_wait_min": 0.9
+   },
+   {
+    "zone": "221.4",
+    "requests": 1973,
+    "served_share": 1.0,
+    "mean_wait_min": 0.92
+   },
+   {
+    "zone": "222",
+    "requests": 3696,
+    "served_share": 1.0,
+    "mean_wait_min": 0.78
+   },
+   {
+    "zone": "225.1",
+    "requests": 1123,
+    "served_share": 1.0,
+    "mean_wait_min": 0.69
+   },
+   {
+    "zone": "225.2",
+    "requests": 2721,
+    "served_share": 1.0,
+    "mean_wait_min": 0.72
+   },
+   {
+    "zone": "227",
+    "requests": 3472,
+    "served_share": 1.0,
+    "mean_wait_min": 0.71
+   },
+   {
+    "zone": "228",
+    "requests": 1395,
+    "served_share": 1.0,
+    "mean_wait_min": 0.59
+   },
+   {
+    "zone": "229",
+    "requests": 3523,
+    "served_share": 1.0,
+    "mean_wait_min": 0.52
+   },
+   {
+    "zone": "231",
+    "requests": 422,
+    "served_share": 1.0,
+    "mean_wait_min": 1.7
+   },
+   {
+    "zone": "232",
+    "requests": 496,
+    "served_share": 1.0,
+    "mean_wait_min": 1.11
+   },
+   {
+    "zone": "233",
+    "requests": 237,
+    "served_share": 1.0,
+    "mean_wait_min": 1.81
+   },
+   {
+    "zone": "234",
+    "requests": 1239,
+    "served_share": 1.0,
+    "mean_wait_min": 1.19
+   },
+   {
+    "zone": "235",
+    "requests": 1048,
+    "served_share": 1.0,
+    "mean_wait_min": 1.0
+   },
+   {
+    "zone": "236.1",
+    "requests": 910,
+    "served_share": 1.0,
+    "mean_wait_min": 1.51
+   },
+   {
+    "zone": "236.2",
+    "requests": 1657,
+    "served_share": 1.0,
+    "mean_wait_min": 1.4
+   },
+   {
+    "zone": "237",
+    "requests": 2019,
+    "served_share": 1.0,
+    "mean_wait_min": 1.44
+   },
+   {
+    "zone": "241.1",
+    "requests": 1454,
+    "served_share": 1.0,
+    "mean_wait_min": 1.5
+   },
+   {
+    "zone": "241.2",
+    "requests": 1267,
+    "served_share": 1.0,
+    "mean_wait_min": 1.44
+   },
+   {
+    "zone": "242.1",
+    "requests": 1175,
+    "served_share": 1.0,
+    "mean_wait_min": 1.62
+   },
+   {
+    "zone": "242.2",
+    "requests": 949,
+    "served_share": 1.0,
+    "mean_wait_min": 1.39
+   },
+   {
+    "zone": "242.3",
+    "requests": 898,
+    "served_share": 1.0,
+    "mean_wait_min": 1.48
+   },
+   {
+    "zone": "243.1",
+    "requests": 1548,
+    "served_share": 1.0,
+    "mean_wait_min": 1.3
+   },
+   {
+    "zone": "243.2",
+    "requests": 865,
+    "served_share": 1.0,
+    "mean_wait_min": 1.03
+   },
+   {
+    "zone": "244",
+    "requests": 2725,
+    "served_share": 1.0,
+    "mean_wait_min": 1.13
+   },
+   {
+    "zone": "245.1",
+    "requests": 1402,
+    "served_share": 1.0,
+    "mean_wait_min": 0.97
+   },
+   {
+    "zone": "245.2",
+    "requests": 821,
+    "served_share": 1.0,
+    "mean_wait_min": 1.18
+   },
+   {
+    "zone": "245.3",
+    "requests": 1388,
+    "served_share": 1.0,
+    "mean_wait_min": 0.83
+   },
+   {
+    "zone": "246",
+    "requests": 1278,
+    "served_share": 1.0,
+    "mean_wait_min": 1.6
+   },
+   {
+    "zone": "247",
+    "requests": 447,
+    "served_share": 1.0,
+    "mean_wait_min": 1.84
+   },
+   {
+    "zone": "251S",
+    "requests": 7411,
+    "served_share": 1.0,
+    "mean_wait_min": 1.3
+   },
+   {
+    "zone": "252",
+    "requests": 141,
+    "served_share": 1.0,
+    "mean_wait_min": 1.1
+   },
+   {
+    "zone": "253.1",
+    "requests": 1887,
+    "served_share": 1.0,
+    "mean_wait_min": 0.87
+   },
+   {
+    "zone": "253.2",
+    "requests": 1092,
+    "served_share": 1.0,
+    "mean_wait_min": 0.91
+   },
+   {
+    "zone": "254",
+    "requests": 3117,
+    "served_share": 1.0,
+    "mean_wait_min": 0.96
+   },
+   {
+    "zone": "255.1",
+    "requests": 785,
+    "served_share": 1.0,
+    "mean_wait_min": 1.26
+   },
+   {
+    "zone": "255.2",
+    "requests": 3084,
+    "served_share": 1.0,
+    "mean_wait_min": 1.04
+   },
+   {
+    "zone": "255.3",
+    "requests": 956,
+    "served_share": 1.0,
+    "mean_wait_min": 1.23
+   },
+   {
+    "zone": "255.4",
+    "requests": 1388,
+    "served_share": 1.0,
+    "mean_wait_min": 1.48
+   },
+   {
+    "zone": "260.1",
+    "requests": 1332,
+    "served_share": 1.0,
+    "mean_wait_min": 1.25
+   },
+   {
+    "zone": "260.2",
+    "requests": 1457,
+    "served_share": 1.0,
+    "mean_wait_min": 1.2
+   },
+   {
+    "zone": "261",
+    "requests": 3349,
+    "served_share": 1.0,
+    "mean_wait_min": 0.97
+   },
+   {
+    "zone": "262.1",
+    "requests": 1883,
+    "served_share": 1.0,
+    "mean_wait_min": 1.16
+   },
+   {
+    "zone": "262.2",
+    "requests": 1250,
+    "served_share": 1.0,
+    "mean_wait_min": 1.04
+   },
+   {
+    "zone": "263.1",
+    "requests": 3501,
+    "served_share": 1.0,
+    "mean_wait_min": 1.25
+   },
+   {
+    "zone": "263.2",
+    "requests": 1167,
+    "served_share": 1.0,
+    "mean_wait_min": 2.16
+   },
+   {
+    "zone": "263.3",
+    "requests": 495,
+    "served_share": 1.0,
+    "mean_wait_min": 2.08
+   },
+   {
+    "zone": "264.1",
+    "requests": 2603,
+    "served_share": 1.0,
+    "mean_wait_min": 1.01
+   },
+   {
+    "zone": "264.2",
+    "requests": 1019,
+    "served_share": 1.0,
+    "mean_wait_min": 0.96
+   },
+   {
+    "zone": "264.3",
+    "requests": 2410,
+    "served_share": 1.0,
+    "mean_wait_min": 0.95
+   },
+   {
+    "zone": "264.4",
+    "requests": 1731,
+    "served_share": 1.0,
+    "mean_wait_min": 1.04
+   },
+   {
+    "zone": "265",
+    "requests": 1904,
+    "served_share": 1.0,
+    "mean_wait_min": 1.14
+   },
+   {
+    "zone": "266.1",
+    "requests": 1425,
+    "served_share": 1.0,
+    "mean_wait_min": 1.15
+   },
+   {
+    "zone": "266.2",
+    "requests": 380,
+    "served_share": 1.0,
+    "mean_wait_min": 1.33
+   },
+   {
+    "zone": "266.3",
+    "requests": 1406,
+    "served_share": 1.0,
+    "mean_wait_min": 1.11
+   },
+   {
+    "zone": "267.1",
+    "requests": 1578,
+    "served_share": 1.0,
+    "mean_wait_min": 1.12
+   },
+   {
+    "zone": "267.2",
+    "requests": 892,
+    "served_share": 1.0,
+    "mean_wait_min": 1.1
+   },
+   {
+    "zone": "268",
+    "requests": 2567,
+    "served_share": 1.0,
+    "mean_wait_min": 1.3
+   },
+   {
+    "zone": "269",
+    "requests": 1425,
+    "served_share": 1.0,
+    "mean_wait_min": 1.54
+   },
+   {
+    "zone": "271",
+    "requests": 1565,
+    "served_share": 1.0,
+    "mean_wait_min": 1.62
+   },
+   {
+    "zone": "272",
+    "requests": 816,
+    "served_share": 1.0,
+    "mean_wait_min": 1.82
+   },
+   {
+    "zone": "280.1",
+    "requests": 4433,
+    "served_share": 1.0,
+    "mean_wait_min": 1.88
+   },
+   {
+    "zone": "280.2",
+    "requests": 2100,
+    "served_share": 1.0,
+    "mean_wait_min": 2.18
+   },
+   {
+    "zone": "281.1",
+    "requests": 1742,
+    "served_share": 1.0,
+    "mean_wait_min": 2.2
+   },
+   {
+    "zone": "281.2",
+    "requests": 1104,
+    "served_share": 1.0,
+    "mean_wait_min": 2.2
+   },
+   {
+    "zone": "281.3",
+    "requests": 1252,
+    "served_share": 1.0,
+    "mean_wait_min": 2.38
+   },
+   {
+    "zone": "281.4",
+    "requests": 272,
+    "served_share": 1.0,
+    "mean_wait_min": 2.65
+   },
+   {
+    "zone": "281.5",
+    "requests": 2060,
+    "served_share": 1.0,
+    "mean_wait_min": 2.16
+   },
+   {
+    "zone": "281.6",
+    "requests": 571,
+    "served_share": 1.0,
+    "mean_wait_min": 2.27
+   },
+   {
+    "zone": "281.7",
+    "requests": 1110,
+    "served_share": 1.0,
+    "mean_wait_min": 2.13
+   },
+   {
+    "zone": "281.8",
+    "requests": 1770,
+    "served_share": 1.0,
+    "mean_wait_min": 2.2
+   },
+   {
+    "zone": "281.9",
+    "requests": 2245,
+    "served_share": 1.0,
+    "mean_wait_min": 2.29
+   },
+   {
+    "zone": "281.10",
+    "requests": 698,
+    "served_share": 1.0,
+    "mean_wait_min": 2.47
+   },
+   {
+    "zone": "281.11",
+    "requests": 2058,
+    "served_share": 1.0,
+    "mean_wait_min": 2.39
+   },
+   {
+    "zone": "282.1",
+    "requests": 1101,
+    "served_share": 1.0,
+    "mean_wait_min": 1.9
+   },
+   {
+    "zone": "282.2",
+    "requests": 1142,
+    "served_share": 1.0,
+    "mean_wait_min": 2.21
+   },
+   {
+    "zone": "282.3",
+    "requests": 1717,
+    "served_share": 1.0,
+    "mean_wait_min": 1.86
+   },
+   {
+    "zone": "283.1",
+    "requests": 434,
+    "served_share": 1.0,
+    "mean_wait_min": 1.88
+   },
+   {
+    "zone": "283.2",
+    "requests": 2338,
+    "served_share": 1.0,
+    "mean_wait_min": 2.02
+   },
+   {
+    "zone": "283.3",
+    "requests": 1671,
+    "served_share": 1.0,
+    "mean_wait_min": 1.96
+   },
+   {
+    "zone": "284",
+    "requests": 2763,
+    "served_share": 1.0,
+    "mean_wait_min": 1.89
+   },
+   {
+    "zone": "285",
+    "requests": 1444,
+    "served_share": 1.0,
+    "mean_wait_min": 1.77
+   },
+   {
+    "zone": "286.1",
+    "requests": 3495,
+    "served_share": 1.0,
+    "mean_wait_min": 2.84
+   },
+   {
+    "zone": "286.2",
+    "requests": 7218,
+    "served_share": 1.0,
+    "mean_wait_min": 2.01
+   },
+   {
+    "zone": "287",
+    "requests": 1027,
+    "served_share": 1.0,
+    "mean_wait_min": 2.06
+   },
+   {
+    "zone": "288S.1",
+    "requests": 848,
+    "served_share": 1.0,
+    "mean_wait_min": 2.17
+   },
+   {
+    "zone": "288S.2",
+    "requests": 1811,
+    "served_share": 1.0,
+    "mean_wait_min": 2.4
+   },
+   {
+    "zone": "288S.3",
+    "requests": 1818,
+    "served_share": 1.0,
+    "mean_wait_min": 2.3
+   },
+   {
+    "zone": "288S.4",
+    "requests": 772,
+    "served_share": 1.0,
+    "mean_wait_min": 2.86
+   },
+   {
+    "zone": "290.1",
+    "requests": 529,
+    "served_share": 1.0,
+    "mean_wait_min": 2.45
+   },
+   {
+    "zone": "290.2",
+    "requests": 1071,
+    "served_share": 1.0,
+    "mean_wait_min": 2.28
+   },
+   {
+    "zone": "290.3",
+    "requests": 1605,
+    "served_share": 1.0,
+    "mean_wait_min": 2.1
+   },
+   {
+    "zone": "291.1",
+    "requests": 1041,
+    "served_share": 1.0,
+    "mean_wait_min": 2.37
+   },
+   {
+    "zone": "291.2",
+    "requests": 658,
+    "served_share": 1.0,
+    "mean_wait_min": 2.34
+   },
+   {
+    "zone": "291.3",
+    "requests": 1294,
+    "served_share": 1.0,
+    "mean_wait_min": 2.2
+   },
+   {
+    "zone": "291.4",
+    "requests": 850,
+    "served_share": 1.0,
+    "mean_wait_min": 2.36
+   },
+   {
+    "zone": "291.5",
+    "requests": 2006,
+    "served_share": 1.0,
+    "mean_wait_min": 2.05
+   },
+   {
+    "zone": "292.1",
+    "requests": 872,
+    "served_share": 1.0,
+    "mean_wait_min": 2.88
+   },
+   {
+    "zone": "292.2",
+    "requests": 1710,
+    "served_share": 1.0,
+    "mean_wait_min": 2.91
+   },
+   {
+    "zone": "292.3",
+    "requests": 896,
+    "served_share": 1.0,
+    "mean_wait_min": 2.56
+   },
+   {
+    "zone": "292.4",
+    "requests": 1141,
+    "served_share": 1.0,
+    "mean_wait_min": 2.65
+   },
+   {
+    "zone": "293S.1",
+    "requests": 1387,
+    "served_share": 1.0,
+    "mean_wait_min": 2.82
+   },
+   {
+    "zone": "293S.2",
+    "requests": 1744,
+    "served_share": 1.0,
+    "mean_wait_min": 2.7
+   },
+   {
+    "zone": "293S.3",
+    "requests": 664,
+    "served_share": 1.0,
+    "mean_wait_min": 3.95
+   },
+   {
+    "zone": "293S.4",
+    "requests": 2107,
+    "served_share": 1.0,
+    "mean_wait_min": 2.91
+   },
+   {
+    "zone": "293S.5",
+    "requests": 407,
+    "served_share": 1.0,
+    "mean_wait_min": 3.92
+   },
+   {
+    "zone": "293S.6",
+    "requests": 1180,
+    "served_share": 1.0,
+    "mean_wait_min": 3.42
+   },
+   {
+    "zone": "294.1",
+    "requests": 1088,
+    "served_share": 1.0,
+    "mean_wait_min": 2.08
+   },
+   {
+    "zone": "294.2",
+    "requests": 725,
+    "served_share": 1.0,
+    "mean_wait_min": 2.45
+   },
+   {
+    "zone": "294.3",
+    "requests": 355,
+    "served_share": 1.0,
+    "mean_wait_min": 2.57
+   },
+   {
+    "zone": "294.4",
+    "requests": 885,
+    "served_share": 1.0,
+    "mean_wait_min": 2.49
+   },
+   {
+    "zone": "294.5",
+    "requests": 1384,
+    "served_share": 1.0,
+    "mean_wait_min": 2.13
+   },
+   {
+    "zone": "294.6",
+    "requests": 1073,
+    "served_share": 1.0,
+    "mean_wait_min": 2.46
+   },
+   {
+    "zone": "294.7",
+    "requests": 1307,
+    "served_share": 1.0,
+    "mean_wait_min": 2.28
+   },
+   {
+    "zone": "294.8",
+    "requests": 1133,
+    "served_share": 1.0,
+    "mean_wait_min": 2.4
+   },
+   {
+    "zone": "294.9",
+    "requests": 1196,
+    "served_share": 1.0,
+    "mean_wait_min": 2.47
+   },
+   {
+    "zone": "295",
+    "requests": 6058,
+    "served_share": 1.0,
+    "mean_wait_min": 2.03
+   },
+   {
+    "zone": "297.1",
+    "requests": 811,
+    "served_share": 1.0,
+    "mean_wait_min": 3.1
+   },
+   {
+    "zone": "297.2",
+    "requests": 727,
+    "served_share": 1.0,
+    "mean_wait_min": 2.44
+   },
+   {
+    "zone": "297.3",
+    "requests": 1769,
+    "served_share": 1.0,
+    "mean_wait_min": 2.29
+   },
+   {
+    "zone": "297.4",
+    "requests": 846,
+    "served_share": 1.0,
+    "mean_wait_min": 2.85
+   },
+   {
+    "zone": "297.5",
+    "requests": 1517,
+    "served_share": 1.0,
+    "mean_wait_min": 2.28
+   },
+   {
+    "zone": "298.1",
+    "requests": 989,
+    "served_share": 1.0,
+    "mean_wait_min": 2.36
+   },
+   {
+    "zone": "298.2",
+    "requests": 1474,
+    "served_share": 1.0,
+    "mean_wait_min": 2.74
+   },
+   {
+    "zone": "298.3",
+    "requests": 1338,
+    "served_share": 1.0,
+    "mean_wait_min": 2.73
+   },
+   {
+    "zone": "310S",
+    "requests": 585,
+    "served_share": 1.0,
+    "mean_wait_min": 2.11
+   },
+   {
+    "zone": "320S.1",
+    "requests": 2041,
+    "served_share": 1.0,
+    "mean_wait_min": 1.72
+   },
+   {
+    "zone": "320S.2",
+    "requests": 4805,
+    "served_share": 1.0,
+    "mean_wait_min": 1.5
+   },
+   {
+    "zone": "320S.3",
+    "requests": 107,
+    "served_share": 1.0,
+    "mean_wait_min": 3.83
+   },
+   {
+    "zone": "320S.4",
+    "requests": 1050,
+    "served_share": 1.0,
+    "mean_wait_min": 1.74
+   },
+   {
+    "zone": "320S.5",
+    "requests": 438,
+    "served_share": 1.0,
+    "mean_wait_min": 1.83
+   },
+   {
+    "zone": "320S.6",
+    "requests": 3471,
+    "served_share": 1.0,
+    "mean_wait_min": 1.43
+   },
+   {
+    "zone": "320S.7",
+    "requests": 2517,
+    "served_share": 1.0,
+    "mean_wait_min": 1.7
+   },
+   {
+    "zone": "322",
+    "requests": 506,
+    "served_share": 1.0,
+    "mean_wait_min": 3.18
+   },
+   {
+    "zone": "323.1",
+    "requests": 1157,
+    "served_share": 1.0,
+    "mean_wait_min": 1.68
+   },
+   {
+    "zone": "323.2",
+    "requests": 667,
+    "served_share": 1.0,
+    "mean_wait_min": 2.02
+   },
+   {
+    "zone": "323.3",
+    "requests": 1813,
+    "served_share": 1.0,
+    "mean_wait_min": 1.72
+   },
+   {
+    "zone": "323.4",
+    "requests": 1494,
+    "served_share": 1.0,
+    "mean_wait_min": 1.79
+   },
+   {
+    "zone": "325.1",
+    "requests": 564,
+    "served_share": 1.0,
+    "mean_wait_min": 2.17
+   },
+   {
+    "zone": "325.2",
+    "requests": 2319,
+    "served_share": 1.0,
+    "mean_wait_min": 2.32
+   },
+   {
+    "zone": "325.3",
+    "requests": 1285,
+    "served_share": 1.0,
+    "mean_wait_min": 1.85
+   },
+   {
+    "zone": "326.1",
+    "requests": 844,
+    "served_share": 1.0,
+    "mean_wait_min": 1.58
+   },
+   {
+    "zone": "326.2",
+    "requests": 686,
+    "served_share": 1.0,
+    "mean_wait_min": 1.68
+   },
+   {
+    "zone": "326.3",
+    "requests": 1451,
+    "served_share": 1.0,
+    "mean_wait_min": 1.6
+   },
+   {
+    "zone": "326.4",
+    "requests": 1204,
+    "served_share": 1.0,
+    "mean_wait_min": 1.88
+   },
+   {
+    "zone": "326.5",
+    "requests": 1129,
+    "served_share": 1.0,
+    "mean_wait_min": 1.7
+   },
+   {
+    "zone": "326.6",
+    "requests": 1441,
+    "served_share": 1.0,
+    "mean_wait_min": 2.01
+   },
+   {
+    "zone": "326.7",
+    "requests": 1162,
+    "served_share": 1.0,
+    "mean_wait_min": 1.84
+   },
+   {
+    "zone": "326.8",
+    "requests": 1396,
+    "served_share": 1.0,
+    "mean_wait_min": 1.59
+   },
+   {
+    "zone": "326.9",
+    "requests": 1036,
+    "served_share": 1.0,
+    "mean_wait_min": 1.81
+   },
+   {
+    "zone": "327.1",
+    "requests": 44,
+    "served_share": 1.0,
+    "mean_wait_min": 2.5
+   },
+   {
+    "zone": "327.2",
+    "requests": 2098,
+    "served_share": 1.0,
+    "mean_wait_min": 1.79
+   },
+   {
+    "zone": "327.3",
+    "requests": 1000,
+    "served_share": 1.0,
+    "mean_wait_min": 2.48
+   },
+   {
+    "zone": "327.4",
+    "requests": 2571,
+    "served_share": 1.0,
+    "mean_wait_min": 1.93
+   },
+   {
+    "zone": "327.5",
+    "requests": 1901,
+    "served_share": 1.0,
+    "mean_wait_min": 1.85
+   },
+   {
+    "zone": "328.1",
+    "requests": 3009,
+    "served_share": 1.0,
+    "mean_wait_min": 1.93
+   },
+   {
+    "zone": "328.2",
+    "requests": 1190,
+    "served_share": 1.0,
+    "mean_wait_min": 1.76
+   },
+   {
+    "zone": "328.3",
+    "requests": 2194,
+    "served_share": 1.0,
+    "mean_wait_min": 1.74
+   },
+   {
+    "zone": "331S",
+    "requests": 956,
+    "served_share": 1.0,
+    "mean_wait_min": 2.55
+   },
+   {
+    "zone": "335",
+    "requests": 1532,
+    "served_share": 1.0,
+    "mean_wait_min": 2.42
+   },
+   {
+    "zone": "350.1",
+    "requests": 2100,
+    "served_share": 1.0,
+    "mean_wait_min": 2.13
+   },
+   {
+    "zone": "350.2",
+    "requests": 150,
+    "served_share": 1.0,
+    "mean_wait_min": 3.26
+   },
+   {
+    "zone": "350.3",
+    "requests": 1637,
+    "served_share": 1.0,
+    "mean_wait_min": 2.14
+   },
+   {
+    "zone": "350.4",
+    "requests": 1723,
+    "served_share": 1.0,
+    "mean_wait_min": 2.39
+   },
+   {
+    "zone": "350.5",
+    "requests": 399,
+    "served_share": 1.0,
+    "mean_wait_min": 3.09
+   },
+   {
+    "zone": "350.6",
+    "requests": 2231,
+    "served_share": 1.0,
+    "mean_wait_min": 2.09
+   },
+   {
+    "zone": "351.1",
+    "requests": 175,
+    "served_share": 1.0,
+    "mean_wait_min": 4.23
+   },
+   {
+    "zone": "351.2",
+    "requests": 3180,
+    "served_share": 1.0,
+    "mean_wait_min": 2.17
+   },
+   {
+    "zone": "351.3",
+    "requests": 2174,
+    "served_share": 1.0,
+    "mean_wait_min": 2.97
+   },
+   {
+    "zone": "351.4",
+    "requests": 379,
+    "served_share": 1.0,
+    "mean_wait_min": 4.02
+   },
+   {
+    "zone": "411S",
+    "requests": 432,
+    "served_share": 1.0,
+    "mean_wait_min": 3.17
+   },
+   {
+    "zone": "421S.1",
+    "requests": 684,
+    "served_share": 1.0,
+    "mean_wait_min": 1.96
+   },
+   {
+    "zone": "421S.2",
+    "requests": 1100,
+    "served_share": 1.0,
+    "mean_wait_min": 2.11
+   },
+   {
+    "zone": "421S.3",
+    "requests": 570,
+    "served_share": 1.0,
+    "mean_wait_min": 4.37
+   },
+   {
+    "zone": "421S.4",
+    "requests": 1183,
+    "served_share": 1.0,
+    "mean_wait_min": 1.92
+   },
+   {
+    "zone": "421S.5",
+    "requests": 1810,
+    "served_share": 1.0,
+    "mean_wait_min": 2.04
+   },
+   {
+    "zone": "423S.1",
+    "requests": 764,
+    "served_share": 1.0,
+    "mean_wait_min": 1.91
+   },
+   {
+    "zone": "423S.2",
+    "requests": 2055,
+    "served_share": 1.0,
+    "mean_wait_min": 1.76
+   },
+   {
+    "zone": "423S.3",
+    "requests": 974,
+    "served_share": 1.0,
+    "mean_wait_min": 1.86
+   },
+   {
+    "zone": "423S.4",
+    "requests": 1334,
+    "served_share": 1.0,
+    "mean_wait_min": 1.66
+   },
+   {
+    "zone": "423S.5",
+    "requests": 912,
+    "served_share": 1.0,
+    "mean_wait_min": 2.03
+   },
+   {
+    "zone": "423S.6",
+    "requests": 2065,
+    "served_share": 1.0,
+    "mean_wait_min": 1.87
+   },
+   {
+    "zone": "423S.7",
+    "requests": 2203,
+    "served_share": 1.0,
+    "mean_wait_min": 1.82
+   },
+   {
+    "zone": "423S.8",
+    "requests": 2854,
+    "served_share": 1.0,
+    "mean_wait_min": 2.0
+   },
+   {
+    "zone": "423S.9",
+    "requests": 1919,
+    "served_share": 1.0,
+    "mean_wait_min": 1.91
+   },
+   {
+    "zone": "423S.10",
+    "requests": 1991,
+    "served_share": 1.0,
+    "mean_wait_min": 2.04
+   },
+   {
+    "zone": "424.1",
+    "requests": 921,
+    "served_share": 1.0,
+    "mean_wait_min": 1.85
+   },
+   {
+    "zone": "424.2",
+    "requests": 1060,
+    "served_share": 1.0,
+    "mean_wait_min": 2.04
+   },
+   {
+    "zone": "424.3",
+    "requests": 1180,
+    "served_share": 1.0,
+    "mean_wait_min": 1.77
+   },
+   {
+    "zone": "424.4",
+    "requests": 1450,
+    "served_share": 1.0,
+    "mean_wait_min": 1.56
+   },
+   {
+    "zone": "424.5",
+    "requests": 1450,
+    "served_share": 1.0,
+    "mean_wait_min": 1.53
+   },
+   {
+    "zone": "424.6",
+    "requests": 967,
+    "served_share": 1.0,
+    "mean_wait_min": 1.83
+   },
+   {
+    "zone": "425.1",
+    "requests": 1572,
+    "served_share": 1.0,
+    "mean_wait_min": 2.27
+   },
+   {
+    "zone": "425.2",
+    "requests": 544,
+    "served_share": 1.0,
+    "mean_wait_min": 2.01
+   },
+   {
+    "zone": "425.3",
+    "requests": 1252,
+    "served_share": 1.0,
+    "mean_wait_min": 2.06
+   },
+   {
+    "zone": "425.4",
+    "requests": 1313,
+    "served_share": 1.0,
+    "mean_wait_min": 2.34
+   },
+   {
+    "zone": "426",
+    "requests": 2279,
+    "served_share": 1.0,
+    "mean_wait_min": 2.55
+   },
+   {
+    "zone": "431S",
+    "requests": 154,
+    "served_share": 1.0,
+    "mean_wait_min": 5.14
+   },
+   {
+    "zone": "441",
+    "requests": 1351,
+    "served_share": 1.0,
+    "mean_wait_min": 2.05
+   },
+   {
+    "zone": "442",
+    "requests": 539,
+    "served_share": 1.0,
+    "mean_wait_min": 2.56
+   },
+   {
+    "zone": "510.1",
+    "requests": 1694,
+    "served_share": 1.0,
+    "mean_wait_min": 1.68
+   },
+   {
+    "zone": "510.2",
+    "requests": 1127,
+    "served_share": 1.0,
+    "mean_wait_min": 1.94
+   },
+   {
+    "zone": "510.3",
+    "requests": 764,
+    "served_share": 1.0,
+    "mean_wait_min": 1.71
+   },
+   {
+    "zone": "510.4",
+    "requests": 1208,
+    "served_share": 1.0,
+    "mean_wait_min": 1.78
+   },
+   {
+    "zone": "510.5",
+    "requests": 1592,
+    "served_share": 1.0,
+    "mean_wait_min": 1.91
+   },
+   {
+    "zone": "510.6",
+    "requests": 547,
+    "served_share": 1.0,
+    "mean_wait_min": 2.06
+   },
+   {
+    "zone": "510.7",
+    "requests": 1478,
+    "served_share": 1.0,
+    "mean_wait_min": 1.65
+   },
+   {
+    "zone": "510.8",
+    "requests": 1311,
+    "served_share": 1.0,
+    "mean_wait_min": 1.81
+   },
+   {
+    "zone": "510.9",
+    "requests": 356,
+    "served_share": 1.0,
+    "mean_wait_min": 1.75
+   },
+   {
+    "zone": "510.10",
+    "requests": 1126,
+    "served_share": 1.0,
+    "mean_wait_min": 1.81
+   },
+   {
+    "zone": "510.11",
+    "requests": 1680,
+    "served_share": 1.0,
+    "mean_wait_min": 1.86
+   },
+   {
+    "zone": "510.12",
+    "requests": 1187,
+    "served_share": 1.0,
+    "mean_wait_min": 1.76
+   },
+   {
+    "zone": "510.13",
+    "requests": 692,
+    "served_share": 1.0,
+    "mean_wait_min": 2.14
+   },
+   {
+    "zone": "510.14",
+    "requests": 947,
+    "served_share": 1.0,
+    "mean_wait_min": 1.98
+   },
+   {
+    "zone": "510.15",
+    "requests": 1045,
+    "served_share": 1.0,
+    "mean_wait_min": 2.18
+   },
+   {
+    "zone": "511",
+    "requests": 608,
+    "served_share": 1.0,
+    "mean_wait_min": 2.55
+   },
+   {
+    "zone": "512",
+    "requests": 890,
+    "served_share": 1.0,
+    "mean_wait_min": 2.37
+   },
+   {
+    "zone": "513",
+    "requests": 5611,
+    "served_share": 1.0,
+    "mean_wait_min": 2.25
+   },
+   {
+    "zone": "514",
+    "requests": 302,
+    "served_share": 1.0,
+    "mean_wait_min": 2.98
+   },
+   {
+    "zone": "515",
+    "requests": 2832,
+    "served_share": 1.0,
+    "mean_wait_min": 2.02
+   },
+   {
+    "zone": "516",
+    "requests": 241,
+    "served_share": 1.0,
+    "mean_wait_min": 2.69
+   },
+   {
+    "zone": "517",
+    "requests": 624,
+    "served_share": 1.0,
+    "mean_wait_min": 2.23
+   },
+   {
+    "zone": "518",
+    "requests": 237,
+    "served_share": 1.0,
+    "mean_wait_min": 2.37
+   },
+   {
+    "zone": "519",
+    "requests": 1824,
+    "served_share": 1.0,
+    "mean_wait_min": 2.16
+   },
+   {
+    "zone": "521",
+    "requests": 819,
+    "served_share": 1.0,
+    "mean_wait_min": 3.05
+   },
+   {
+    "zone": "522",
+    "requests": 1853,
+    "served_share": 1.0,
+    "mean_wait_min": 2.53
+   },
+   {
+    "zone": "523",
+    "requests": 1118,
+    "served_share": 1.0,
+    "mean_wait_min": 1.87
+   },
+   {
+    "zone": "524.1",
+    "requests": 2022,
+    "served_share": 1.0,
+    "mean_wait_min": 1.26
+   },
+   {
+    "zone": "524.2",
+    "requests": 3347,
+    "served_share": 1.0,
+    "mean_wait_min": 1.6
+   },
+   {
+    "zone": "524.3",
+    "requests": 2767,
+    "served_share": 1.0,
+    "mean_wait_min": 1.34
+   },
+   {
+    "zone": "524.4",
+    "requests": 2255,
+    "served_share": 1.0,
+    "mean_wait_min": 1.44
+   },
+   {
+    "zone": "525",
+    "requests": 456,
+    "served_share": 1.0,
+    "mean_wait_min": 2.85
+   },
+   {
+    "zone": "526",
+    "requests": 1068,
+    "served_share": 1.0,
+    "mean_wait_min": 2.65
+   },
+   {
+    "zone": "527.1",
+    "requests": 1109,
+    "served_share": 1.0,
+    "mean_wait_min": 1.4
+   },
+   {
+    "zone": "527.2",
+    "requests": 1705,
+    "served_share": 1.0,
+    "mean_wait_min": 1.65
+   },
+   {
+    "zone": "527.3",
+    "requests": 1253,
+    "served_share": 1.0,
+    "mean_wait_min": 1.55
+   },
+   {
+    "zone": "527.4",
+    "requests": 1258,
+    "served_share": 1.0,
+    "mean_wait_min": 1.45
+   },
+   {
+    "zone": "528",
+    "requests": 1402,
+    "served_share": 1.0,
+    "mean_wait_min": 2.34
+   },
+   {
+    "zone": "529",
+    "requests": 2429,
+    "served_share": 1.0,
+    "mean_wait_min": 1.39
+   },
+   {
+    "zone": "531",
+    "requests": 1509,
+    "served_share": 1.0,
+    "mean_wait_min": 2.98
+   },
+   {
+    "zone": "532",
+    "requests": 881,
+    "served_share": 1.0,
+    "mean_wait_min": 3.82
+   },
+   {
+    "zone": "533",
+    "requests": 356,
+    "served_share": 1.0,
+    "mean_wait_min": 4.24
+   },
+   {
+    "zone": "541",
+    "requests": 2096,
+    "served_share": 1.0,
+    "mean_wait_min": 3.03
+   },
+   {
+    "zone": "542",
+    "requests": 21641,
+    "served_share": 1.0,
+    "mean_wait_min": 2.47
+   },
+   {
+    "zone": "543S",
+    "requests": 657,
+    "served_share": 1.0,
+    "mean_wait_min": 2.95
+   },
+   {
+    "zone": "544",
+    "requests": 366,
+    "served_share": 1.0,
+    "mean_wait_min": 3.19
+   },
+   {
+    "zone": "545",
+    "requests": 405,
+    "served_share": 1.0,
+    "mean_wait_min": 3.2
+   },
+   {
+    "zone": "547",
+    "requests": 1060,
+    "served_share": 1.0,
+    "mean_wait_min": 3.57
+   },
+   {
+    "zone": "548S",
+    "requests": 105,
+    "served_share": 1.0,
+    "mean_wait_min": 3.67
+   },
+   {
+    "zone": "610S",
+    "requests": 356,
+    "served_share": 1.0,
+    "mean_wait_min": 2.03
+   },
+   {
+    "zone": "620S",
+    "requests": 18564,
+    "served_share": 1.0,
+    "mean_wait_min": 3.64
+   },
+   {
+    "zone": "623",
+    "requests": 310,
+    "served_share": 1.0,
+    "mean_wait_min": 3.7
+   },
+   {
+    "zone": "624S.1",
+    "requests": 2842,
+    "served_share": 1.0,
+    "mean_wait_min": 1.71
+   },
+   {
+    "zone": "624S.2",
+    "requests": 955,
+    "served_share": 1.0,
+    "mean_wait_min": 2.03
+   },
+   {
+    "zone": "624S.3",
+    "requests": 2803,
+    "served_share": 1.0,
+    "mean_wait_min": 1.67
+   },
+   {
+    "zone": "625.1",
+    "requests": 1867,
+    "served_share": 1.0,
+    "mean_wait_min": 1.92
+   },
+   {
+    "zone": "625.2",
+    "requests": 2368,
+    "served_share": 1.0,
+    "mean_wait_min": 1.89
+   },
+   {
+    "zone": "625.3",
+    "requests": 1693,
+    "served_share": 1.0,
+    "mean_wait_min": 1.73
+   },
+   {
+    "zone": "626",
+    "requests": 3778,
+    "served_share": 1.0,
+    "mean_wait_min": 1.73
+   },
+   {
+    "zone": "627.1",
+    "requests": 2153,
+    "served_share": 1.0,
+    "mean_wait_min": 1.94
+   },
+   {
+    "zone": "627.2",
+    "requests": 614,
+    "served_share": 1.0,
+    "mean_wait_min": 1.67
+   },
+   {
+    "zone": "628.1",
+    "requests": 776,
+    "served_share": 1.0,
+    "mean_wait_min": 2.15
+   },
+   {
+    "zone": "628.2",
+    "requests": 1470,
+    "served_share": 1.0,
+    "mean_wait_min": 2.14
+   },
+   {
+    "zone": "628.3",
+    "requests": 1168,
+    "served_share": 1.0,
+    "mean_wait_min": 1.75
+   },
+   {
+    "zone": "628.4",
+    "requests": 1410,
+    "served_share": 1.0,
+    "mean_wait_min": 1.96
+   },
+   {
+    "zone": "628.5",
+    "requests": 1127,
+    "served_share": 1.0,
+    "mean_wait_min": 1.76
+   },
+   {
+    "zone": "631S",
+    "requests": 715,
+    "served_share": 1.0,
+    "mean_wait_min": 3.55
+   },
+   {
+    "zone": "634",
+    "requests": 3619,
+    "served_share": 1.0,
+    "mean_wait_min": 3.15
+   },
+   {
+    "zone": "642",
+    "requests": 9426,
+    "served_share": 1.0,
+    "mean_wait_min": 4.88
+   },
+   {
+    "zone": "651S",
+    "requests": 524,
+    "served_share": 1.0,
+    "mean_wait_min": 7.41
+   },
+   {
+    "zone": "711S",
+    "requests": 1171,
+    "served_share": 1.0,
+    "mean_wait_min": 2.95
+   },
+   {
+    "zone": "720",
+    "requests": 200,
+    "served_share": 1.0,
+    "mean_wait_min": 2.29
+   },
+   {
+    "zone": "722S.1",
+    "requests": 1775,
+    "served_share": 1.0,
+    "mean_wait_min": 2.51
+   },
+   {
+    "zone": "722S.2",
+    "requests": 2281,
+    "served_share": 1.0,
+    "mean_wait_min": 2.28
+   },
+   {
+    "zone": "722S.3",
+    "requests": 1813,
+    "served_share": 1.0,
+    "mean_wait_min": 2.94
+   },
+   {
+    "zone": "723.1",
+    "requests": 1740,
+    "served_share": 1.0,
+    "mean_wait_min": 2.14
+   },
+   {
+    "zone": "723.2",
+    "requests": 794,
+    "served_share": 1.0,
+    "mean_wait_min": 2.53
+   },
+   {
+    "zone": "723.3",
+    "requests": 922,
+    "served_share": 1.0,
+    "mean_wait_min": 2.52
+   },
+   {
+    "zone": "723.4",
+    "requests": 1205,
+    "served_share": 1.0,
+    "mean_wait_min": 2.15
+   },
+   {
+    "zone": "724",
+    "requests": 671,
+    "served_share": 1.0,
+    "mean_wait_min": 3.96
+   },
+   {
+    "zone": "725",
+    "requests": 785,
+    "served_share": 1.0,
+    "mean_wait_min": 2.81
+   },
+   {
+    "zone": "726.1",
+    "requests": 1794,
+    "served_share": 1.0,
+    "mean_wait_min": 2.11
+   },
+   {
+    "zone": "726.2",
+    "requests": 994,
+    "served_share": 1.0,
+    "mean_wait_min": 2.08
+   },
+   {
+    "zone": "726.3",
+    "requests": 1032,
+    "served_share": 1.0,
+    "mean_wait_min": 1.99
+   },
+   {
+    "zone": "726.4",
+    "requests": 951,
+    "served_share": 1.0,
+    "mean_wait_min": 2.14
+   },
+   {
+    "zone": "726.5",
+    "requests": 1205,
+    "served_share": 1.0,
+    "mean_wait_min": 2.0
+   },
+   {
+    "zone": "729.1",
+    "requests": 3366,
+    "served_share": 1.0,
+    "mean_wait_min": 3.2
+   },
+   {
+    "zone": "729.2",
+    "requests": 620,
+    "served_share": 1.0,
+    "mean_wait_min": 3.05
+   },
+   {
+    "zone": "731S.1",
+    "requests": 363,
+    "served_share": 1.0,
+    "mean_wait_min": 3.14
+   },
+   {
+    "zone": "731S.2",
+    "requests": 1775,
+    "served_share": 1.0,
+    "mean_wait_min": 2.21
+   },
+   {
+    "zone": "731S.3",
+    "requests": 2358,
+    "served_share": 1.0,
+    "mean_wait_min": 2.4
+   },
+   {
+    "zone": "732S.1",
+    "requests": 2417,
+    "served_share": 1.0,
+    "mean_wait_min": 2.13
+   },
+   {
+    "zone": "732S.2",
+    "requests": 2049,
+    "served_share": 1.0,
+    "mean_wait_min": 2.99
+   },
+   {
+    "zone": "732S.3",
+    "requests": 1950,
+    "served_share": 1.0,
+    "mean_wait_min": 2.42
+   },
+   {
+    "zone": "741S",
+    "requests": 1313,
+    "served_share": 1.0,
+    "mean_wait_min": 4.49
+   },
+   {
+    "zone": "755.1",
+    "requests": 834,
+    "served_share": 1.0,
+    "mean_wait_min": 2.2
+   },
+   {
+    "zone": "755.2",
+    "requests": 750,
+    "served_share": 1.0,
+    "mean_wait_min": 2.41
+   },
+   {
+    "zone": "755.3",
+    "requests": 2188,
+    "served_share": 1.0,
+    "mean_wait_min": 2.72
+   },
+   {
+    "zone": "755.4",
+    "requests": 1452,
+    "served_share": 1.0,
+    "mean_wait_min": 2.19
+   },
+   {
+    "zone": "755.5",
+    "requests": 1145,
+    "served_share": 1.0,
+    "mean_wait_min": 2.23
+   },
+   {
+    "zone": "756S.1",
+    "requests": 2753,
+    "served_share": 1.0,
+    "mean_wait_min": 2.23
+   },
+   {
+    "zone": "756S.2",
+    "requests": 3486,
+    "served_share": 1.0,
+    "mean_wait_min": 2.01
+   },
+   {
+    "zone": "756S.3",
+    "requests": 94,
+    "served_share": 1.0,
+    "mean_wait_min": 4.02
+   },
+   {
+    "zone": "756S.4",
+    "requests": 2526,
+    "served_share": 1.0,
+    "mean_wait_min": 2.44
+   },
+   {
+    "zone": "757.1",
+    "requests": 1759,
+    "served_share": 1.0,
+    "mean_wait_min": 2.51
+   },
+   {
+    "zone": "757.2",
+    "requests": 967,
+    "served_share": 1.0,
+    "mean_wait_min": 2.58
+   },
+   {
+    "zone": "757.3",
+    "requests": 1219,
+    "served_share": 1.0,
+    "mean_wait_min": 2.4
+   },
+   {
+    "zone": "757.4",
+    "requests": 1700,
+    "served_share": 1.0,
+    "mean_wait_min": 3.06
+   },
+   {
+    "zone": "757.5",
+    "requests": 442,
+    "served_share": 1.0,
+    "mean_wait_min": 3.72
+   },
+   {
+    "zone": "757.6",
+    "requests": 1133,
+    "served_share": 1.0,
+    "mean_wait_min": 2.78
+   },
+   {
+    "zone": "757.7",
+    "requests": 1555,
+    "served_share": 1.0,
+    "mean_wait_min": 2.48
+   },
+   {
+    "zone": "757.8",
+    "requests": 1386,
+    "served_share": 1.0,
+    "mean_wait_min": 2.99
+   },
+   {
+    "zone": "758.1",
+    "requests": 1472,
+    "served_share": 1.0,
+    "mean_wait_min": 2.24
+   },
+   {
+    "zone": "758.2",
+    "requests": 718,
+    "served_share": 1.0,
+    "mean_wait_min": 2.4
+   },
+   {
+    "zone": "758.3",
+    "requests": 1126,
+    "served_share": 1.0,
+    "mean_wait_min": 2.27
+   },
+   {
+    "zone": "759.1",
+    "requests": 961,
+    "served_share": 1.0,
+    "mean_wait_min": 2.44
+   },
+   {
+    "zone": "759.2",
+    "requests": 1480,
+    "served_share": 1.0,
+    "mean_wait_min": 2.61
+   },
+   {
+    "zone": "759.3",
+    "requests": 1214,
+    "served_share": 1.0,
+    "mean_wait_min": 2.2
+   },
+   {
+    "zone": "759.4",
+    "requests": 100,
+    "served_share": 1.0,
+    "mean_wait_min": 3.37
+   },
+   {
+    "zone": "759.5",
+    "requests": 1462,
+    "served_share": 1.0,
+    "mean_wait_min": 2.29
+   },
+   {
+    "zone": "759.6",
+    "requests": 1478,
+    "served_share": 1.0,
+    "mean_wait_min": 2.39
+   },
+   {
+    "zone": "759.7",
+    "requests": 1640,
+    "served_share": 1.0,
+    "mean_wait_min": 2.36
+   },
+   {
+    "zone": "811S",
+    "requests": 224,
+    "served_share": 1.0,
+    "mean_wait_min": 7.37
+   },
+   {
+    "zone": "820",
+    "requests": 300,
+    "served_share": 1.0,
+    "mean_wait_min": 4.38
+   },
+   {
+    "zone": "821",
+    "requests": 95,
+    "served_share": 1.0,
+    "mean_wait_min": 4.67
+   },
+   {
+    "zone": "822",
+    "requests": 337,
+    "served_share": 1.0,
+    "mean_wait_min": 4.87
+   },
+   {
+    "zone": "823",
+    "requests": 482,
+    "served_share": 1.0,
+    "mean_wait_min": 5.34
+   },
+   {
+    "zone": "824S",
+    "requests": 144,
+    "served_share": 1.0,
+    "mean_wait_min": 4.44
+   },
+   {
+    "zone": "825",
+    "requests": 146,
+    "served_share": 1.0,
+    "mean_wait_min": 4.66
+   },
+   {
+    "zone": "826S",
+    "requests": 487,
+    "served_share": 1.0,
+    "mean_wait_min": 4.18
+   },
+   {
+    "zone": "827",
+    "requests": 225,
+    "served_share": 1.0,
+    "mean_wait_min": 4.45
+   },
+   {
+    "zone": "831",
+    "requests": 1136,
+    "served_share": 1.0,
+    "mean_wait_min": 4.04
+   },
+   {
+    "zone": "832S",
+    "requests": 342,
+    "served_share": 1.0,
+    "mean_wait_min": 7.33
+   },
+   {
+    "zone": "833.1",
+    "requests": 1154,
+    "served_share": 1.0,
+    "mean_wait_min": 2.98
+   },
+   {
+    "zone": "833.2",
+    "requests": 603,
+    "served_share": 1.0,
+    "mean_wait_min": 2.92
+   },
+   {
+    "zone": "833.3",
+    "requests": 649,
+    "served_share": 1.0,
+    "mean_wait_min": 3.71
+   },
+   {
+    "zone": "833.4",
+    "requests": 768,
+    "served_share": 1.0,
+    "mean_wait_min": 3.14
+   },
+   {
+    "zone": "835",
+    "requests": 1479,
+    "served_share": 1.0,
+    "mean_wait_min": 3.98
+   },
+   {
+    "zone": "836.1",
+    "requests": 1210,
+    "served_share": 1.0,
+    "mean_wait_min": 2.95
+   },
+   {
+    "zone": "836.2",
+    "requests": 368,
+    "served_share": 1.0,
+    "mean_wait_min": 3.8
+   },
+   {
+    "zone": "836.3",
+    "requests": 754,
+    "served_share": 1.0,
+    "mean_wait_min": 3.17
+   },
+   {
+    "zone": "836.4",
+    "requests": 792,
+    "served_share": 1.0,
+    "mean_wait_min": 3.15
+   },
+   {
+    "zone": "836.5",
+    "requests": 955,
+    "served_share": 1.0,
+    "mean_wait_min": 3.02
+   },
+   {
+    "zone": "837.1",
+    "requests": 865,
+    "served_share": 1.0,
+    "mean_wait_min": 3.2
+   },
+   {
+    "zone": "837.2",
+    "requests": 1142,
+    "served_share": 1.0,
+    "mean_wait_min": 2.85
+   },
+   {
+    "zone": "837.3",
+    "requests": 558,
+    "served_share": 1.0,
+    "mean_wait_min": 3.34
+   },
+   {
+    "zone": "837.4",
+    "requests": 722,
+    "served_share": 1.0,
+    "mean_wait_min": 3.12
+   },
+   {
+    "zone": "838.1",
+    "requests": 812,
+    "served_share": 1.0,
+    "mean_wait_min": 2.75
+   },
+   {
+    "zone": "838.2",
+    "requests": 1141,
+    "served_share": 1.0,
+    "mean_wait_min": 2.99
+   },
+   {
+    "zone": "838.3",
+    "requests": 287,
+    "served_share": 1.0,
+    "mean_wait_min": 3.22
+   },
+   {
+    "zone": "838.4",
+    "requests": 1209,
+    "served_share": 1.0,
+    "mean_wait_min": 3.14
+   },
+   {
+    "zone": "838.5",
+    "requests": 787,
+    "served_share": 1.0,
+    "mean_wait_min": 2.96
+   },
+   {
+    "zone": "838.6",
+    "requests": 960,
+    "served_share": 1.0,
+    "mean_wait_min": 3.1
+   },
+   {
+    "zone": "838.7",
+    "requests": 1089,
+    "served_share": 1.0,
+    "mean_wait_min": 3.05
+   },
+   {
+    "zone": "839.1",
+    "requests": 6178,
+    "served_share": 1.0,
+    "mean_wait_min": 2.6
+   },
+   {
+    "zone": "839.2",
+    "requests": 516,
+    "served_share": 1.0,
+    "mean_wait_min": 3.19
+   },
+   {
+    "zone": "839.3",
+    "requests": 312,
+    "served_share": 1.0,
+    "mean_wait_min": 2.9
+   },
+   {
+    "zone": "931S",
+    "requests": 103,
+    "served_share": 1.0,
+    "mean_wait_min": 12.78
+   },
+   {
+    "zone": "932S",
+    "requests": 55,
+    "served_share": 1.0,
+    "mean_wait_min": 13.87
+   },
+   {
+    "zone": "944",
+    "requests": 71,
+    "served_share": 0.6479,
+    "mean_wait_min": 12.18
+   },
+   {
+    "zone": "950S.1",
+    "requests": 6719,
+    "served_share": 1.0,
+    "mean_wait_min": 2.45
+   },
+   {
+    "zone": "950S.2",
+    "requests": 156,
+    "served_share": 1.0,
+    "mean_wait_min": 3.19
+   },
+   {
+    "zone": "950S.3",
+    "requests": 6371,
+    "served_share": 1.0,
+    "mean_wait_min": 2.16
+   },
+   {
+    "zone": "950S.4",
+    "requests": 3103,
+    "served_share": 1.0,
+    "mean_wait_min": 2.74
+   },
+   {
+    "zone": "950S.5",
+    "requests": 11429,
+    "served_share": 1.0,
+    "mean_wait_min": 2.9
+   },
+   {
+    "zone": "950S.6",
+    "requests": 3369,
+    "served_share": 1.0,
+    "mean_wait_min": 2.6
+   },
+   {
+    "zone": "961S",
+    "requests": 147,
+    "served_share": 0.7415,
+    "mean_wait_min": 10.73
+   },
+   {
+    "zone": "971S",
+    "requests": 905,
+    "served_share": 1.0,
+    "mean_wait_min": 8.46
+   },
+   {
+    "zone": "975",
+    "requests": 788,
+    "served_share": 1.0,
+    "mean_wait_min": 5.33
+   }
+  ],
+  "small": [
+   {
+    "zone": "111.1",
+    "requests": 2752,
+    "served_share": 0.8826,
+    "mean_wait_min": 15.22
+   },
+   {
+    "zone": "111.2",
+    "requests": 265,
+    "served_share": 0.8566,
+    "mean_wait_min": 17.09
+   },
+   {
+    "zone": "111.3",
+    "requests": 1918,
+    "served_share": 0.9025,
+    "mean_wait_min": 15.31
+   },
+   {
+    "zone": "112.1",
+    "requests": 1381,
+    "served_share": 0.9088,
+    "mean_wait_min": 14.86
+   },
+   {
+    "zone": "112.2",
+    "requests": 1685,
+    "served_share": 0.8932,
+    "mean_wait_min": 14.78
+   },
+   {
+    "zone": "112.3",
+    "requests": 1152,
+    "served_share": 0.8811,
+    "mean_wait_min": 15.02
+   },
+   {
+    "zone": "113",
+    "requests": 3209,
+    "served_share": 0.8813,
+    "mean_wait_min": 14.68
+   },
+   {
+    "zone": "114",
+    "requests": 2728,
+    "served_share": 0.8875,
+    "mean_wait_min": 14.79
+   },
+   {
+    "zone": "115",
+    "requests": 445,
+    "served_share": 0.9146,
+    "mean_wait_min": 14.86
+   },
+   {
+    "zone": "116",
+    "requests": 999,
+    "served_share": 0.9029,
+    "mean_wait_min": 14.98
+   },
+   {
+    "zone": "121S",
+    "requests": 4189,
+    "served_share": 0.8723,
+    "mean_wait_min": 15.07
+   },
+   {
+    "zone": "122",
+    "requests": 1204,
+    "served_share": 0.8821,
+    "mean_wait_min": 15.07
+   },
+   {
+    "zone": "131",
+    "requests": 4577,
+    "served_share": 0.889,
+    "mean_wait_min": 14.5
+   },
+   {
+    "zone": "132",
+    "requests": 3691,
+    "served_share": 0.8968,
+    "mean_wait_min": 14.35
+   },
+   {
+    "zone": "133",
+    "requests": 2745,
+    "served_share": 0.8852,
+    "mean_wait_min": 14.25
+   },
+   {
+    "zone": "134S",
+    "requests": 1038,
+    "served_share": 0.8834,
+    "mean_wait_min": 14.98
+   },
+   {
+    "zone": "140",
+    "requests": 806,
+    "served_share": 0.8747,
+    "mean_wait_min": 14.48
+   },
+   {
+    "zone": "141",
+    "requests": 1728,
+    "served_share": 0.8848,
+    "mean_wait_min": 15.01
+   },
+   {
+    "zone": "142.1",
+    "requests": 1691,
+    "served_share": 0.8959,
+    "mean_wait_min": 14.91
+   },
+   {
+    "zone": "142.2",
+    "requests": 1738,
+    "served_share": 0.8987,
+    "mean_wait_min": 15.21
+   },
+   {
+    "zone": "143",
+    "requests": 1355,
+    "served_share": 0.9041,
+    "mean_wait_min": 15.08
+   },
+   {
+    "zone": "144.1",
+    "requests": 1604,
+    "served_share": 0.8971,
+    "mean_wait_min": 14.8
+   },
+   {
+    "zone": "144.2",
+    "requests": 2184,
+    "served_share": 0.8938,
+    "mean_wait_min": 14.86
+   },
+   {
+    "zone": "145",
+    "requests": 1222,
+    "served_share": 0.9026,
+    "mean_wait_min": 14.37
+   },
+   {
+    "zone": "146S",
+    "requests": 3718,
+    "served_share": 0.8946,
+    "mean_wait_min": 14.46
+   },
+   {
+    "zone": "148",
+    "requests": 931,
+    "served_share": 0.8851,
+    "mean_wait_min": 14.98
+   },
+   {
+    "zone": "149",
+    "requests": 928,
+    "served_share": 0.8998,
+    "mean_wait_min": 15.53
+   },
+   {
+    "zone": "151.1",
+    "requests": 1786,
+    "served_share": 0.9009,
+    "mean_wait_min": 14.5
+   },
+   {
+    "zone": "151.2",
+    "requests": 1102,
+    "served_share": 0.9056,
+    "mean_wait_min": 14.86
+   },
+   {
+    "zone": "151.3",
+    "requests": 1187,
+    "served_share": 0.8981,
+    "mean_wait_min": 14.3
+   },
+   {
+    "zone": "152",
+    "requests": 1376,
+    "served_share": 0.8961,
+    "mean_wait_min": 15.37
+   },
+   {
+    "zone": "153.1",
+    "requests": 1041,
+    "served_share": 0.8943,
+    "mean_wait_min": 14.8
+   },
+   {
+    "zone": "153.2",
+    "requests": 1681,
+    "served_share": 0.8959,
+    "mean_wait_min": 14.73
+   },
+   {
+    "zone": "153.3",
+    "requests": 690,
+    "served_share": 0.8826,
+    "mean_wait_min": 15.07
+   },
+   {
+    "zone": "153.4",
+    "requests": 992,
+    "served_share": 0.879,
+    "mean_wait_min": 14.6
+   },
+   {
+    "zone": "154",
+    "requests": 1122,
+    "served_share": 0.8841,
+    "mean_wait_min": 15.02
+   },
+   {
+    "zone": "155",
+    "requests": 1854,
+    "served_share": 0.8846,
+    "mean_wait_min": 15.23
+   },
+   {
+    "zone": "156S",
+    "requests": 2816,
+    "served_share": 0.8878,
+    "mean_wait_min": 15.27
+   },
+   {
+    "zone": "157.1",
+    "requests": 879,
+    "served_share": 0.8942,
+    "mean_wait_min": 15.5
+   },
+   {
+    "zone": "157.2",
+    "requests": 872,
+    "served_share": 0.8865,
+    "mean_wait_min": 15.91
+   },
+   {
+    "zone": "157.3",
+    "requests": 1183,
+    "served_share": 0.8715,
+    "mean_wait_min": 15.3
+   },
+   {
+    "zone": "161.1",
+    "requests": 865,
+    "served_share": 0.8809,
+    "mean_wait_min": 16.02
+   },
+   {
+    "zone": "161.2",
+    "requests": 815,
+    "served_share": 0.8834,
+    "mean_wait_min": 15.78
+   },
+   {
+    "zone": "161.3",
+    "requests": 600,
+    "served_share": 0.8767,
+    "mean_wait_min": 15.84
+   },
+   {
+    "zone": "161.4",
+    "requests": 1726,
+    "served_share": 0.8917,
+    "mean_wait_min": 16.1
+   },
+   {
+    "zone": "161.5",
+    "requests": 1170,
+    "served_share": 0.8966,
+    "mean_wait_min": 16.03
+   },
+   {
+    "zone": "162",
+    "requests": 997,
+    "served_share": 0.8977,
+    "mean_wait_min": 16.81
+   },
+   {
+    "zone": "163.1",
+    "requests": 1499,
+    "served_share": 0.8966,
+    "mean_wait_min": 16.53
+   },
+   {
+    "zone": "163.2",
+    "requests": 1698,
+    "served_share": 0.8869,
+    "mean_wait_min": 16.25
+   },
+   {
+    "zone": "164S.1",
+    "requests": 1039,
+    "served_share": 0.9057,
+    "mean_wait_min": 16.65
+   },
+   {
+    "zone": "164S.2",
+    "requests": 2131,
+    "served_share": 0.8935,
+    "mean_wait_min": 16.44
+   },
+   {
+    "zone": "164S.3",
+    "requests": 775,
+    "served_share": 0.8877,
+    "mean_wait_min": 17.4
+   },
+   {
+    "zone": "166.1",
+    "requests": 1023,
+    "served_share": 0.9062,
+    "mean_wait_min": 16.38
+   },
+   {
+    "zone": "166.2",
+    "requests": 1050,
+    "served_share": 0.8924,
+    "mean_wait_min": 16.28
+   },
+   {
+    "zone": "167.1",
+    "requests": 1350,
+    "served_share": 0.8993,
+    "mean_wait_min": 16.87
+   },
+   {
+    "zone": "167.2",
+    "requests": 1358,
+    "served_share": 0.891,
+    "mean_wait_min": 16.99
+   },
+   {
+    "zone": "167.3",
+    "requests": 1148,
+    "served_share": 0.8885,
+    "mean_wait_min": 16.64
+   },
+   {
+    "zone": "171",
+    "requests": 1665,
+    "served_share": 0.8739,
+    "mean_wait_min": 16.58
+   },
+   {
+    "zone": "172.1",
+    "requests": 1048,
+    "served_share": 0.8922,
+    "mean_wait_min": 16.49
+   },
+   {
+    "zone": "172.2",
+    "requests": 1034,
+    "served_share": 0.8868,
+    "mean_wait_min": 16.54
+   },
+   {
+    "zone": "172.3",
+    "requests": 997,
+    "served_share": 0.8837,
+    "mean_wait_min": 16.13
+   },
+   {
+    "zone": "173.1",
+    "requests": 338,
+    "served_share": 0.8609,
+    "mean_wait_min": 15.66
+   },
+   {
+    "zone": "173.2",
+    "requests": 1908,
+    "served_share": 0.88,
+    "mean_wait_min": 15.74
+   },
+   {
+    "zone": "173.3",
+    "requests": 663,
+    "served_share": 0.8914,
+    "mean_wait_min": 16.05
+   },
+   {
+    "zone": "174.1",
+    "requests": 898,
+    "served_share": 0.8976,
+    "mean_wait_min": 16.12
+   },
+   {
+    "zone": "174.2",
+    "requests": 1056,
+    "served_share": 0.8958,
+    "mean_wait_min": 16.42
+   },
+   {
+    "zone": "174.3",
+    "requests": 676,
+    "served_share": 0.8861,
+    "mean_wait_min": 16.31
+   },
+   {
+    "zone": "174.4",
+    "requests": 832,
+    "served_share": 0.8786,
+    "mean_wait_min": 16.23
+   },
+   {
+    "zone": "175S",
+    "requests": 2263,
+    "served_share": 0.8802,
+    "mean_wait_min": 15.78
+   },
+   {
+    "zone": "181S",
+    "requests": 889,
+    "served_share": 0.8931,
+    "mean_wait_min": 18.42
+   },
+   {
+    "zone": "183S",
+    "requests": 952,
+    "served_share": 0.9002,
+    "mean_wait_min": 15.31
+   },
+   {
+    "zone": "190S",
+    "requests": 836,
+    "served_share": 0.8792,
+    "mean_wait_min": 17.43
+   },
+   {
+    "zone": "191",
+    "requests": 338,
+    "served_share": 0.8846,
+    "mean_wait_min": 15.96
+   },
+   {
+    "zone": "193S",
+    "requests": 885,
+    "served_share": 0.8814,
+    "mean_wait_min": 19.05
+   },
+   {
+    "zone": "196",
+    "requests": 353,
+    "served_share": 0.8839,
+    "mean_wait_min": 19.12
+   },
+   {
+    "zone": "197",
+    "requests": 210,
+    "served_share": 0.8286,
+    "mean_wait_min": 24.43
+   },
+   {
+    "zone": "211",
+    "requests": 7243,
+    "served_share": 0.8922,
+    "mean_wait_min": 14.47
+   },
+   {
+    "zone": "212",
+    "requests": 6177,
+    "served_share": 0.8842,
+    "mean_wait_min": 14.19
+   },
+   {
+    "zone": "213S",
+    "requests": 5817,
+    "served_share": 0.8769,
+    "mean_wait_min": 14.38
+   },
+   {
+    "zone": "214",
+    "requests": 2241,
+    "served_share": 0.8876,
+    "mean_wait_min": 14.29
+   },
+   {
+    "zone": "217",
+    "requests": 1602,
+    "served_share": 0.9051,
+    "mean_wait_min": 14.38
+   },
+   {
+    "zone": "220S",
+    "requests": 2144,
+    "served_share": 0.8913,
+    "mean_wait_min": 14.33
+   },
+   {
+    "zone": "221.1",
+    "requests": 1764,
+    "served_share": 0.8838,
+    "mean_wait_min": 14.68
+   },
+   {
+    "zone": "221.2",
+    "requests": 2719,
+    "served_share": 0.8911,
+    "mean_wait_min": 14.26
+   },
+   {
+    "zone": "221.3",
+    "requests": 2808,
+    "served_share": 0.8868,
+    "mean_wait_min": 14.55
+   },
+   {
+    "zone": "221.4",
+    "requests": 1973,
+    "served_share": 0.8915,
+    "mean_wait_min": 14.25
+   },
+   {
+    "zone": "222",
+    "requests": 3696,
+    "served_share": 0.8964,
+    "mean_wait_min": 14.27
+   },
+   {
+    "zone": "225.1",
+    "requests": 1123,
+    "served_share": 0.9083,
+    "mean_wait_min": 14.18
+   },
+   {
+    "zone": "225.2",
+    "requests": 2721,
+    "served_share": 0.8894,
+    "mean_wait_min": 14.2
+   },
+   {
+    "zone": "227",
+    "requests": 3472,
+    "served_share": 0.8966,
+    "mean_wait_min": 14.22
+   },
+   {
+    "zone": "228",
+    "requests": 1395,
+    "served_share": 0.8796,
+    "mean_wait_min": 14.07
+   },
+   {
+    "zone": "229",
+    "requests": 3523,
+    "served_share": 0.8899,
+    "mean_wait_min": 14.0
+   },
+   {
+    "zone": "231",
+    "requests": 422,
+    "served_share": 0.9052,
+    "mean_wait_min": 14.72
+   },
+   {
+    "zone": "232",
+    "requests": 496,
+    "served_share": 0.8831,
+    "mean_wait_min": 14.66
+   },
+   {
+    "zone": "233",
+    "requests": 237,
+    "served_share": 0.9283,
+    "mean_wait_min": 14.26
+   },
+   {
+    "zone": "234",
+    "requests": 1239,
+    "served_share": 0.9007,
+    "mean_wait_min": 14.46
+   },
+   {
+    "zone": "235",
+    "requests": 1048,
+    "served_share": 0.874,
+    "mean_wait_min": 14.24
+   },
+   {
+    "zone": "236.1",
+    "requests": 910,
+    "served_share": 0.8802,
+    "mean_wait_min": 14.66
+   },
+   {
+    "zone": "236.2",
+    "requests": 1657,
+    "served_share": 0.9016,
+    "mean_wait_min": 14.71
+   },
+   {
+    "zone": "237",
+    "requests": 2019,
+    "served_share": 0.8876,
+    "mean_wait_min": 14.55
+   },
+   {
+    "zone": "241.1",
+    "requests": 1454,
+    "served_share": 0.8934,
+    "mean_wait_min": 14.78
+   },
+   {
+    "zone": "241.2",
+    "requests": 1267,
+    "served_share": 0.8879,
+    "mean_wait_min": 14.8
+   },
+   {
+    "zone": "242.1",
+    "requests": 1175,
+    "served_share": 0.8809,
+    "mean_wait_min": 15.12
+   },
+   {
+    "zone": "242.2",
+    "requests": 949,
+    "served_share": 0.882,
+    "mean_wait_min": 14.92
+   },
+   {
+    "zone": "242.3",
+    "requests": 898,
+    "served_share": 0.8909,
+    "mean_wait_min": 15.06
+   },
+   {
+    "zone": "243.1",
+    "requests": 1548,
+    "served_share": 0.8986,
+    "mean_wait_min": 14.67
+   },
+   {
+    "zone": "243.2",
+    "requests": 865,
+    "served_share": 0.8983,
+    "mean_wait_min": 14.48
+   },
+   {
+    "zone": "244",
+    "requests": 2725,
+    "served_share": 0.8943,
+    "mean_wait_min": 14.59
+   },
+   {
+    "zone": "245.1",
+    "requests": 1402,
+    "served_share": 0.8909,
+    "mean_wait_min": 14.27
+   },
+   {
+    "zone": "245.2",
+    "requests": 821,
+    "served_share": 0.894,
+    "mean_wait_min": 14.48
+   },
+   {
+    "zone": "245.3",
+    "requests": 1388,
+    "served_share": 0.8905,
+    "mean_wait_min": 14.39
+   },
+   {
+    "zone": "246",
+    "requests": 1278,
+    "served_share": 0.8959,
+    "mean_wait_min": 14.63
+   },
+   {
+    "zone": "247",
+    "requests": 447,
+    "served_share": 0.8926,
+    "mean_wait_min": 14.99
+   },
+   {
+    "zone": "251S",
+    "requests": 7411,
+    "served_share": 0.8867,
+    "mean_wait_min": 14.83
+   },
+   {
+    "zone": "252",
+    "requests": 141,
+    "served_share": 0.9078,
+    "mean_wait_min": 14.48
+   },
+   {
+    "zone": "253.1",
+    "requests": 1887,
+    "served_share": 0.893,
+    "mean_wait_min": 14.46
+   },
+   {
+    "zone": "253.2",
+    "requests": 1092,
+    "served_share": 0.8846,
+    "mean_wait_min": 14.1
+   },
+   {
+    "zone": "254",
+    "requests": 3117,
+    "served_share": 0.8893,
+    "mean_wait_min": 14.56
+   },
+   {
+    "zone": "255.1",
+    "requests": 785,
+    "served_share": 0.907,
+    "mean_wait_min": 14.97
+   },
+   {
+    "zone": "255.2",
+    "requests": 3084,
+    "served_share": 0.8885,
+    "mean_wait_min": 14.53
+   },
+   {
+    "zone": "255.3",
+    "requests": 956,
+    "served_share": 0.9059,
+    "mean_wait_min": 14.87
+   },
+   {
+    "zone": "255.4",
+    "requests": 1388,
+    "served_share": 0.8883,
+    "mean_wait_min": 15.05
+   },
+   {
+    "zone": "260.1",
+    "requests": 1332,
+    "served_share": 0.8994,
+    "mean_wait_min": 14.68
+   },
+   {
+    "zone": "260.2",
+    "requests": 1457,
+    "served_share": 0.8881,
+    "mean_wait_min": 14.94
+   },
+   {
+    "zone": "261",
+    "requests": 3349,
+    "served_share": 0.8818,
+    "mean_wait_min": 14.68
+   },
+   {
+    "zone": "262.1",
+    "requests": 1883,
+    "served_share": 0.897,
+    "mean_wait_min": 14.7
+   },
+   {
+    "zone": "262.2",
+    "requests": 1250,
+    "served_share": 0.8808,
+    "mean_wait_min": 14.47
+   },
+   {
+    "zone": "263.1",
+    "requests": 3501,
+    "served_share": 0.8926,
+    "mean_wait_min": 14.7
+   },
+   {
+    "zone": "263.2",
+    "requests": 1167,
+    "served_share": 0.8929,
+    "mean_wait_min": 15.53
+   },
+   {
+    "zone": "263.3",
+    "requests": 495,
+    "served_share": 0.8727,
+    "mean_wait_min": 15.6
+   },
+   {
+    "zone": "264.1",
+    "requests": 2603,
+    "served_share": 0.884,
+    "mean_wait_min": 14.8
+   },
+   {
+    "zone": "264.2",
+    "requests": 1019,
+    "served_share": 0.8862,
+    "mean_wait_min": 15.03
+   },
+   {
+    "zone": "264.3",
+    "requests": 2410,
+    "served_share": 0.8851,
+    "mean_wait_min": 14.35
+   },
+   {
+    "zone": "264.4",
+    "requests": 1731,
+    "served_share": 0.8804,
+    "mean_wait_min": 14.71
+   },
+   {
+    "zone": "265",
+    "requests": 1904,
+    "served_share": 0.8955,
+    "mean_wait_min": 14.57
+   },
+   {
+    "zone": "266.1",
+    "requests": 1425,
+    "served_share": 0.8842,
+    "mean_wait_min": 14.37
+   },
+   {
+    "zone": "266.2",
+    "requests": 380,
+    "served_share": 0.8816,
+    "mean_wait_min": 14.87
+   },
+   {
+    "zone": "266.3",
+    "requests": 1406,
+    "served_share": 0.8869,
+    "mean_wait_min": 14.57
+   },
+   {
+    "zone": "267.1",
+    "requests": 1578,
+    "served_share": 0.8847,
+    "mean_wait_min": 14.31
+   },
+   {
+    "zone": "267.2",
+    "requests": 892,
+    "served_share": 0.8924,
+    "mean_wait_min": 14.28
+   },
+   {
+    "zone": "268",
+    "requests": 2567,
+    "served_share": 0.8972,
+    "mean_wait_min": 14.89
+   },
+   {
+    "zone": "269",
+    "requests": 1425,
+    "served_share": 0.8779,
+    "mean_wait_min": 15.26
+   },
+   {
+    "zone": "271",
+    "requests": 1565,
+    "served_share": 0.885,
+    "mean_wait_min": 15.02
+   },
+   {
+    "zone": "272",
+    "requests": 816,
+    "served_share": 0.8934,
+    "mean_wait_min": 15.26
+   },
+   {
+    "zone": "280.1",
+    "requests": 4433,
+    "served_share": 0.8879,
+    "mean_wait_min": 15.38
+   },
+   {
+    "zone": "280.2",
+    "requests": 2100,
+    "served_share": 0.8752,
+    "mean_wait_min": 15.29
+   },
+   {
+    "zone": "281.1",
+    "requests": 1742,
+    "served_share": 0.8921,
+    "mean_wait_min": 15.59
+   },
+   {
+    "zone": "281.2",
+    "requests": 1104,
+    "served_share": 0.8859,
+    "mean_wait_min": 15.63
+   },
+   {
+    "zone": "281.3",
+    "requests": 1252,
+    "served_share": 0.8954,
+    "mean_wait_min": 15.98
+   },
+   {
+    "zone": "281.4",
+    "requests": 272,
+    "served_share": 0.8713,
+    "mean_wait_min": 16.42
+   },
+   {
+    "zone": "281.5",
+    "requests": 2060,
+    "served_share": 0.9019,
+    "mean_wait_min": 15.57
+   },
+   {
+    "zone": "281.6",
+    "requests": 571,
+    "served_share": 0.8809,
+    "mean_wait_min": 15.88
+   },
+   {
+    "zone": "281.7",
+    "requests": 1110,
+    "served_share": 0.8982,
+    "mean_wait_min": 15.29
+   },
+   {
+    "zone": "281.8",
+    "requests": 1770,
+    "served_share": 0.8949,
+    "mean_wait_min": 15.45
+   },
+   {
+    "zone": "281.9",
+    "requests": 2245,
+    "served_share": 0.8842,
+    "mean_wait_min": 15.45
+   },
+   {
+    "zone": "281.10",
+    "requests": 698,
+    "served_share": 0.8854,
+    "mean_wait_min": 15.48
+   },
+   {
+    "zone": "281.11",
+    "requests": 2058,
+    "served_share": 0.8926,
+    "mean_wait_min": 15.73
+   },
+   {
+    "zone": "282.1",
+    "requests": 1101,
+    "served_share": 0.8965,
+    "mean_wait_min": 15.26
+   },
+   {
+    "zone": "282.2",
+    "requests": 1142,
+    "served_share": 0.8958,
+    "mean_wait_min": 15.66
+   },
+   {
+    "zone": "282.3",
+    "requests": 1717,
+    "served_share": 0.8824,
+    "mean_wait_min": 15.29
+   },
+   {
+    "zone": "283.1",
+    "requests": 434,
+    "served_share": 0.8802,
+    "mean_wait_min": 14.6
+   },
+   {
+    "zone": "283.2",
+    "requests": 2338,
+    "served_share": 0.8986,
+    "mean_wait_min": 15.29
+   },
+   {
+    "zone": "283.3",
+    "requests": 1671,
+    "served_share": 0.8959,
+    "mean_wait_min": 15.33
+   },
+   {
+    "zone": "284",
+    "requests": 2763,
+    "served_share": 0.8958,
+    "mean_wait_min": 15.42
+   },
+   {
+    "zone": "285",
+    "requests": 1444,
+    "served_share": 0.883,
+    "mean_wait_min": 15.18
+   },
+   {
+    "zone": "286.1",
+    "requests": 3495,
+    "served_share": 0.8918,
+    "mean_wait_min": 16.11
+   },
+   {
+    "zone": "286.2",
+    "requests": 7218,
+    "served_share": 0.8883,
+    "mean_wait_min": 15.16
+   },
+   {
+    "zone": "287",
+    "requests": 1027,
+    "served_share": 0.8968,
+    "mean_wait_min": 15.17
+   },
+   {
+    "zone": "288S.1",
+    "requests": 848,
+    "served_share": 0.8962,
+    "mean_wait_min": 15.23
+   },
+   {
+    "zone": "288S.2",
+    "requests": 1811,
+    "served_share": 0.8929,
+    "mean_wait_min": 15.83
+   },
+   {
+    "zone": "288S.3",
+    "requests": 1818,
+    "served_share": 0.8911,
+    "mean_wait_min": 15.56
+   },
+   {
+    "zone": "288S.4",
+    "requests": 772,
+    "served_share": 0.8873,
+    "mean_wait_min": 16.54
+   },
+   {
+    "zone": "290.1",
+    "requests": 529,
+    "served_share": 0.8922,
+    "mean_wait_min": 15.72
+   },
+   {
+    "zone": "290.2",
+    "requests": 1071,
+    "served_share": 0.8814,
+    "mean_wait_min": 15.51
+   },
+   {
+    "zone": "290.3",
+    "requests": 1605,
+    "served_share": 0.8841,
+    "mean_wait_min": 15.39
+   },
+   {
+    "zone": "291.1",
+    "requests": 1041,
+    "served_share": 0.8751,
+    "mean_wait_min": 15.63
+   },
+   {
+    "zone": "291.2",
+    "requests": 658,
+    "served_share": 0.8556,
+    "mean_wait_min": 15.32
+   },
+   {
+    "zone": "291.3",
+    "requests": 1294,
+    "served_share": 0.8895,
+    "mean_wait_min": 15.49
+   },
+   {
+    "zone": "291.4",
+    "requests": 850,
+    "served_share": 0.8694,
+    "mean_wait_min": 15.48
+   },
+   {
+    "zone": "291.5",
+    "requests": 2006,
+    "served_share": 0.8863,
+    "mean_wait_min": 15.01
+   },
+   {
+    "zone": "292.1",
+    "requests": 872,
+    "served_share": 0.8807,
+    "mean_wait_min": 16.06
+   },
+   {
+    "zone": "292.2",
+    "requests": 1710,
+    "served_share": 0.8813,
+    "mean_wait_min": 15.96
+   },
+   {
+    "zone": "292.3",
+    "requests": 896,
+    "served_share": 0.8862,
+    "mean_wait_min": 16.09
+   },
+   {
+    "zone": "292.4",
+    "requests": 1141,
+    "served_share": 0.8826,
+    "mean_wait_min": 16.03
+   },
+   {
+    "zone": "293S.1",
+    "requests": 1387,
+    "served_share": 0.8911,
+    "mean_wait_min": 16.19
+   },
+   {
+    "zone": "293S.2",
+    "requests": 1744,
+    "served_share": 0.8624,
+    "mean_wait_min": 15.77
+   },
+   {
+    "zone": "293S.3",
+    "requests": 664,
+    "served_share": 0.9051,
+    "mean_wait_min": 17.67
+   },
+   {
+    "zone": "293S.4",
+    "requests": 2107,
+    "served_share": 0.8742,
+    "mean_wait_min": 15.79
+   },
+   {
+    "zone": "293S.5",
+    "requests": 407,
+    "served_share": 0.8477,
+    "mean_wait_min": 17.28
+   },
+   {
+    "zone": "293S.6",
+    "requests": 1180,
+    "served_share": 0.8746,
+    "mean_wait_min": 16.26
+   },
+   {
+    "zone": "294.1",
+    "requests": 1088,
+    "served_share": 0.8943,
+    "mean_wait_min": 15.35
+   },
+   {
+    "zone": "294.2",
+    "requests": 725,
+    "served_share": 0.869,
+    "mean_wait_min": 15.46
+   },
+   {
+    "zone": "294.3",
+    "requests": 355,
+    "served_share": 0.8648,
+    "mean_wait_min": 15.88
+   },
+   {
+    "zone": "294.4",
+    "requests": 885,
+    "served_share": 0.8836,
+    "mean_wait_min": 15.74
+   },
+   {
+    "zone": "294.5",
+    "requests": 1384,
+    "served_share": 0.8671,
+    "mean_wait_min": 15.19
+   },
+   {
+    "zone": "294.6",
+    "requests": 1073,
+    "served_share": 0.891,
+    "mean_wait_min": 15.91
+   },
+   {
+    "zone": "294.7",
+    "requests": 1307,
+    "served_share": 0.8814,
+    "mean_wait_min": 15.78
+   },
+   {
+    "zone": "294.8",
+    "requests": 1133,
+    "served_share": 0.8861,
+    "mean_wait_min": 15.66
+   },
+   {
+    "zone": "294.9",
+    "requests": 1196,
+    "served_share": 0.8838,
+    "mean_wait_min": 15.48
+   },
+   {
+    "zone": "295",
+    "requests": 6058,
+    "served_share": 0.8709,
+    "mean_wait_min": 15.53
+   },
+   {
+    "zone": "297.1",
+    "requests": 811,
+    "served_share": 0.8779,
+    "mean_wait_min": 16.19
+   },
+   {
+    "zone": "297.2",
+    "requests": 727,
+    "served_share": 0.8886,
+    "mean_wait_min": 15.7
+   },
+   {
+    "zone": "297.3",
+    "requests": 1769,
+    "served_share": 0.8892,
+    "mean_wait_min": 15.49
+   },
+   {
+    "zone": "297.4",
+    "requests": 846,
+    "served_share": 0.8546,
+    "mean_wait_min": 15.92
+   },
+   {
+    "zone": "297.5",
+    "requests": 1517,
+    "served_share": 0.8998,
+    "mean_wait_min": 15.28
+   },
+   {
+    "zone": "298.1",
+    "requests": 989,
+    "served_share": 0.8827,
+    "mean_wait_min": 16.01
+   },
+   {
+    "zone": "298.2",
+    "requests": 1474,
+    "served_share": 0.8765,
+    "mean_wait_min": 16.37
+   },
+   {
+    "zone": "298.3",
+    "requests": 1338,
+    "served_share": 0.8759,
+    "mean_wait_min": 15.87
+   },
+   {
+    "zone": "310S",
+    "requests": 585,
+    "served_share": 0.8923,
+    "mean_wait_min": 15.73
+   },
+   {
+    "zone": "320S.1",
+    "requests": 2041,
+    "served_share": 0.9098,
+    "mean_wait_min": 15.72
+   },
+   {
+    "zone": "320S.2",
+    "requests": 4805,
+    "served_share": 0.9039,
+    "mean_wait_min": 15.71
+   },
+   {
+    "zone": "320S.3",
+    "requests": 107,
+    "served_share": 0.8785,
+    "mean_wait_min": 16.13
+   },
+   {
+    "zone": "320S.4",
+    "requests": 1050,
+    "served_share": 0.8857,
+    "mean_wait_min": 16.05
+   },
+   {
+    "zone": "320S.5",
+    "requests": 438,
+    "served_share": 0.8881,
+    "mean_wait_min": 15.97
+   },
+   {
+    "zone": "320S.6",
+    "requests": 3471,
+    "served_share": 0.896,
+    "mean_wait_min": 15.42
+   },
+   {
+    "zone": "320S.7",
+    "requests": 2517,
+    "served_share": 0.8991,
+    "mean_wait_min": 15.64
+   },
+   {
+    "zone": "322",
+    "requests": 506,
+    "served_share": 0.8893,
+    "mean_wait_min": 17.78
+   },
+   {
+    "zone": "323.1",
+    "requests": 1157,
+    "served_share": 0.8946,
+    "mean_wait_min": 15.9
+   },
+   {
+    "zone": "323.2",
+    "requests": 667,
+    "served_share": 0.8756,
+    "mean_wait_min": 16.14
+   },
+   {
+    "zone": "323.3",
+    "requests": 1813,
+    "served_share": 0.8924,
+    "mean_wait_min": 15.54
+   },
+   {
+    "zone": "323.4",
+    "requests": 1494,
+    "served_share": 0.8976,
+    "mean_wait_min": 15.86
+   },
+   {
+    "zone": "325.1",
+    "requests": 564,
+    "served_share": 0.9202,
+    "mean_wait_min": 16.37
+   },
+   {
+    "zone": "325.2",
+    "requests": 2319,
+    "served_share": 0.887,
+    "mean_wait_min": 16.01
+   },
+   {
+    "zone": "325.3",
+    "requests": 1285,
+    "served_share": 0.8856,
+    "mean_wait_min": 15.78
+   },
+   {
+    "zone": "326.1",
+    "requests": 844,
+    "served_share": 0.8839,
+    "mean_wait_min": 15.83
+   },
+   {
+    "zone": "326.2",
+    "requests": 686,
+    "served_share": 0.8921,
+    "mean_wait_min": 15.54
+   },
+   {
+    "zone": "326.3",
+    "requests": 1451,
+    "served_share": 0.9035,
+    "mean_wait_min": 15.36
+   },
+   {
+    "zone": "326.4",
+    "requests": 1204,
+    "served_share": 0.897,
+    "mean_wait_min": 16.1
+   },
+   {
+    "zone": "326.5",
+    "requests": 1129,
+    "served_share": 0.8937,
+    "mean_wait_min": 15.46
+   },
+   {
+    "zone": "326.6",
+    "requests": 1441,
+    "served_share": 0.8862,
+    "mean_wait_min": 15.81
+   },
+   {
+    "zone": "326.7",
+    "requests": 1162,
+    "served_share": 0.8941,
+    "mean_wait_min": 15.67
+   },
+   {
+    "zone": "326.8",
+    "requests": 1396,
+    "served_share": 0.8933,
+    "mean_wait_min": 15.29
+   },
+   {
+    "zone": "326.9",
+    "requests": 1036,
+    "served_share": 0.8958,
+    "mean_wait_min": 15.59
+   },
+   {
+    "zone": "327.1",
+    "requests": 44,
+    "served_share": 0.75,
+    "mean_wait_min": 15.08
+   },
+   {
+    "zone": "327.2",
+    "requests": 2098,
+    "served_share": 0.8832,
+    "mean_wait_min": 15.52
+   },
+   {
+    "zone": "327.3",
+    "requests": 1000,
+    "served_share": 0.888,
+    "mean_wait_min": 16.13
+   },
+   {
+    "zone": "327.4",
+    "requests": 2571,
+    "served_share": 0.874,
+    "mean_wait_min": 15.53
+   },
+   {
+    "zone": "327.5",
+    "requests": 1901,
+    "served_share": 0.8811,
+    "mean_wait_min": 15.69
+   },
+   {
+    "zone": "328.1",
+    "requests": 3009,
+    "served_share": 0.8903,
+    "mean_wait_min": 15.52
+   },
+   {
+    "zone": "328.2",
+    "requests": 1190,
+    "served_share": 0.8714,
+    "mean_wait_min": 15.15
+   },
+   {
+    "zone": "328.3",
+    "requests": 2194,
+    "served_share": 0.8806,
+    "mean_wait_min": 15.48
+   },
+   {
+    "zone": "331S",
+    "requests": 956,
+    "served_share": 0.8975,
+    "mean_wait_min": 18.02
+   },
+   {
+    "zone": "335",
+    "requests": 1532,
+    "served_share": 0.9008,
+    "mean_wait_min": 17.01
+   },
+   {
+    "zone": "350.1",
+    "requests": 2100,
+    "served_share": 0.8981,
+    "mean_wait_min": 16.08
+   },
+   {
+    "zone": "350.2",
+    "requests": 150,
+    "served_share": 0.84,
+    "mean_wait_min": 17.35
+   },
+   {
+    "zone": "350.3",
+    "requests": 1637,
+    "served_share": 0.92,
+    "mean_wait_min": 16.3
+   },
+   {
+    "zone": "350.4",
+    "requests": 1723,
+    "served_share": 0.9135,
+    "mean_wait_min": 16.61
+   },
+   {
+    "zone": "350.5",
+    "requests": 399,
+    "served_share": 0.8546,
+    "mean_wait_min": 17.14
+   },
+   {
+    "zone": "350.6",
+    "requests": 2231,
+    "served_share": 0.9009,
+    "mean_wait_min": 15.96
+   },
+   {
+    "zone": "351.1",
+    "requests": 175,
+    "served_share": 0.8914,
+    "mean_wait_min": 18.35
+   },
+   {
+    "zone": "351.2",
+    "requests": 3180,
+    "served_share": 0.9022,
+    "mean_wait_min": 16.24
+   },
+   {
+    "zone": "351.3",
+    "requests": 2174,
+    "served_share": 0.9011,
+    "mean_wait_min": 16.88
+   },
+   {
+    "zone": "351.4",
+    "requests": 379,
+    "served_share": 0.9077,
+    "mean_wait_min": 18.56
+   },
+   {
+    "zone": "411S",
+    "requests": 432,
+    "served_share": 0.8727,
+    "mean_wait_min": 17.68
+   },
+   {
+    "zone": "421S.1",
+    "requests": 684,
+    "served_share": 0.867,
+    "mean_wait_min": 16.49
+   },
+   {
+    "zone": "421S.2",
+    "requests": 1100,
+    "served_share": 0.8864,
+    "mean_wait_min": 16.32
+   },
+   {
+    "zone": "421S.3",
+    "requests": 570,
+    "served_share": 0.8509,
+    "mean_wait_min": 18.53
+   },
+   {
+    "zone": "421S.4",
+    "requests": 1183,
+    "served_share": 0.88,
+    "mean_wait_min": 15.83
+   },
+   {
+    "zone": "421S.5",
+    "requests": 1810,
+    "served_share": 0.8746,
+    "mean_wait_min": 16.11
+   },
+   {
+    "zone": "423S.1",
+    "requests": 764,
+    "served_share": 0.856,
+    "mean_wait_min": 15.97
+   },
+   {
+    "zone": "423S.2",
+    "requests": 2055,
+    "served_share": 0.8608,
+    "mean_wait_min": 15.37
+   },
+   {
+    "zone": "423S.3",
+    "requests": 974,
+    "served_share": 0.846,
+    "mean_wait_min": 15.93
+   },
+   {
+    "zone": "423S.4",
+    "requests": 1334,
+    "served_share": 0.8883,
+    "mean_wait_min": 15.94
+   },
+   {
+    "zone": "423S.5",
+    "requests": 912,
+    "served_share": 0.8509,
+    "mean_wait_min": 15.67
+   },
+   {
+    "zone": "423S.6",
+    "requests": 2065,
+    "served_share": 0.8688,
+    "mean_wait_min": 16.15
+   },
+   {
+    "zone": "423S.7",
+    "requests": 2203,
+    "served_share": 0.8566,
+    "mean_wait_min": 15.68
+   },
+   {
+    "zone": "423S.8",
+    "requests": 2854,
+    "served_share": 0.8598,
+    "mean_wait_min": 15.9
+   },
+   {
+    "zone": "423S.9",
+    "requests": 1919,
+    "served_share": 0.89,
+    "mean_wait_min": 16.02
+   },
+   {
+    "zone": "423S.10",
+    "requests": 1991,
+    "served_share": 0.8589,
+    "mean_wait_min": 15.76
+   },
+   {
+    "zone": "424.1",
+    "requests": 921,
+    "served_share": 0.8827,
+    "mean_wait_min": 15.7
+   },
+   {
+    "zone": "424.2",
+    "requests": 1060,
+    "served_share": 0.8764,
+    "mean_wait_min": 16.24
+   },
+   {
+    "zone": "424.3",
+    "requests": 1180,
+    "served_share": 0.8644,
+    "mean_wait_min": 15.47
+   },
+   {
+    "zone": "424.4",
+    "requests": 1450,
+    "served_share": 0.8876,
+    "mean_wait_min": 15.4
+   },
+   {
+    "zone": "424.5",
+    "requests": 1450,
+    "served_share": 0.8697,
+    "mean_wait_min": 16.06
+   },
+   {
+    "zone": "424.6",
+    "requests": 967,
+    "served_share": 0.8594,
+    "mean_wait_min": 15.27
+   },
+   {
+    "zone": "425.1",
+    "requests": 1572,
+    "served_share": 0.8416,
+    "mean_wait_min": 16.03
+   },
+   {
+    "zone": "425.2",
+    "requests": 544,
+    "served_share": 0.8732,
+    "mean_wait_min": 16.08
+   },
+   {
+    "zone": "425.3",
+    "requests": 1252,
+    "served_share": 0.8666,
+    "mean_wait_min": 16.14
+   },
+   {
+    "zone": "425.4",
+    "requests": 1313,
+    "served_share": 0.8515,
+    "mean_wait_min": 16.47
+   },
+   {
+    "zone": "426",
+    "requests": 2279,
+    "served_share": 0.8697,
+    "mean_wait_min": 16.88
+   },
+   {
+    "zone": "431S",
+    "requests": 154,
+    "served_share": 0.8247,
+    "mean_wait_min": 19.82
+   },
+   {
+    "zone": "441",
+    "requests": 1351,
+    "served_share": 0.8638,
+    "mean_wait_min": 16.34
+   },
+   {
+    "zone": "442",
+    "requests": 539,
+    "served_share": 0.8293,
+    "mean_wait_min": 15.76
+   },
+   {
+    "zone": "510.1",
+    "requests": 1694,
+    "served_share": 0.8377,
+    "mean_wait_min": 15.31
+   },
+   {
+    "zone": "510.2",
+    "requests": 1127,
+    "served_share": 0.858,
+    "mean_wait_min": 15.19
+   },
+   {
+    "zone": "510.3",
+    "requests": 764,
+    "served_share": 0.8207,
+    "mean_wait_min": 15.3
+   },
+   {
+    "zone": "510.4",
+    "requests": 1208,
+    "served_share": 0.832,
+    "mean_wait_min": 15.55
+   },
+   {
+    "zone": "510.5",
+    "requests": 1592,
+    "served_share": 0.8386,
+    "mean_wait_min": 15.43
+   },
+   {
+    "zone": "510.6",
+    "requests": 547,
+    "served_share": 0.8318,
+    "mean_wait_min": 15.31
+   },
+   {
+    "zone": "510.7",
+    "requests": 1478,
+    "served_share": 0.8552,
+    "mean_wait_min": 15.28
+   },
+   {
+    "zone": "510.8",
+    "requests": 1311,
+    "served_share": 0.8337,
+    "mean_wait_min": 15.52
+   },
+   {
+    "zone": "510.9",
+    "requests": 356,
+    "served_share": 0.8343,
+    "mean_wait_min": 15.29
+   },
+   {
+    "zone": "510.10",
+    "requests": 1126,
+    "served_share": 0.8197,
+    "mean_wait_min": 15.31
+   },
+   {
+    "zone": "510.11",
+    "requests": 1680,
+    "served_share": 0.8357,
+    "mean_wait_min": 15.14
+   },
+   {
+    "zone": "510.12",
+    "requests": 1187,
+    "served_share": 0.8484,
+    "mean_wait_min": 15.19
+   },
+   {
+    "zone": "510.13",
+    "requests": 692,
+    "served_share": 0.8367,
+    "mean_wait_min": 15.52
+   },
+   {
+    "zone": "510.14",
+    "requests": 947,
+    "served_share": 0.8374,
+    "mean_wait_min": 15.13
+   },
+   {
+    "zone": "510.15",
+    "requests": 1045,
+    "served_share": 0.8316,
+    "mean_wait_min": 15.5
+   },
+   {
+    "zone": "511",
+    "requests": 608,
+    "served_share": 0.8635,
+    "mean_wait_min": 15.83
+   },
+   {
+    "zone": "512",
+    "requests": 890,
+    "served_share": 0.8315,
+    "mean_wait_min": 15.92
+   },
+   {
+    "zone": "513",
+    "requests": 5611,
+    "served_share": 0.848,
+    "mean_wait_min": 16.02
+   },
+   {
+    "zone": "514",
+    "requests": 302,
+    "served_share": 0.8377,
+    "mean_wait_min": 16.32
+   },
+   {
+    "zone": "515",
+    "requests": 2832,
+    "served_share": 0.8651,
+    "mean_wait_min": 15.67
+   },
+   {
+    "zone": "516",
+    "requests": 241,
+    "served_share": 0.8423,
+    "mean_wait_min": 16.64
+   },
+   {
+    "zone": "517",
+    "requests": 624,
+    "served_share": 0.8526,
+    "mean_wait_min": 15.79
+   },
+   {
+    "zone": "518",
+    "requests": 237,
+    "served_share": 0.8481,
+    "mean_wait_min": 15.89
+   },
+   {
+    "zone": "519",
+    "requests": 1824,
+    "served_share": 0.8712,
+    "mean_wait_min": 15.76
+   },
+   {
+    "zone": "521",
+    "requests": 819,
+    "served_share": 0.8816,
+    "mean_wait_min": 17.5
+   },
+   {
+    "zone": "522",
+    "requests": 1853,
+    "served_share": 0.844,
+    "mean_wait_min": 16.33
+   },
+   {
+    "zone": "523",
+    "requests": 1118,
+    "served_share": 0.8712,
+    "mean_wait_min": 15.75
+   },
+   {
+    "zone": "524.1",
+    "requests": 2022,
+    "served_share": 0.8764,
+    "mean_wait_min": 15.08
+   },
+   {
+    "zone": "524.2",
+    "requests": 3347,
+    "served_share": 0.8775,
+    "mean_wait_min": 15.6
+   },
+   {
+    "zone": "524.3",
+    "requests": 2767,
+    "served_share": 0.858,
+    "mean_wait_min": 15.39
+   },
+   {
+    "zone": "524.4",
+    "requests": 2255,
+    "served_share": 0.8767,
+    "mean_wait_min": 15.61
+   },
+   {
+    "zone": "525",
+    "requests": 456,
+    "served_share": 0.8487,
+    "mean_wait_min": 17.67
+   },
+   {
+    "zone": "526",
+    "requests": 1068,
+    "served_share": 0.8717,
+    "mean_wait_min": 17.26
+   },
+   {
+    "zone": "527.1",
+    "requests": 1109,
+    "served_share": 0.8683,
+    "mean_wait_min": 15.53
+   },
+   {
+    "zone": "527.2",
+    "requests": 1705,
+    "served_share": 0.8686,
+    "mean_wait_min": 15.72
+   },
+   {
+    "zone": "527.3",
+    "requests": 1253,
+    "served_share": 0.8651,
+    "mean_wait_min": 15.4
+   },
+   {
+    "zone": "527.4",
+    "requests": 1258,
+    "served_share": 0.849,
+    "mean_wait_min": 15.55
+   },
+   {
+    "zone": "528",
+    "requests": 1402,
+    "served_share": 0.8666,
+    "mean_wait_min": 16.68
+   },
+   {
+    "zone": "529",
+    "requests": 2429,
+    "served_share": 0.872,
+    "mean_wait_min": 15.7
+   },
+   {
+    "zone": "531",
+    "requests": 1509,
+    "served_share": 0.89,
+    "mean_wait_min": 17.72
+   },
+   {
+    "zone": "532",
+    "requests": 881,
+    "served_share": 0.8774,
+    "mean_wait_min": 18.74
+   },
+   {
+    "zone": "533",
+    "requests": 356,
+    "served_share": 0.8399,
+    "mean_wait_min": 18.77
+   },
+   {
+    "zone": "541",
+    "requests": 2096,
+    "served_share": 0.8669,
+    "mean_wait_min": 16.99
+   },
+   {
+    "zone": "542",
+    "requests": 21641,
+    "served_share": 0.8672,
+    "mean_wait_min": 16.5
+   },
+   {
+    "zone": "543S",
+    "requests": 657,
+    "served_share": 0.8691,
+    "mean_wait_min": 17.42
+   },
+   {
+    "zone": "544",
+    "requests": 366,
+    "served_share": 0.8552,
+    "mean_wait_min": 17.52
+   },
+   {
+    "zone": "545",
+    "requests": 405,
+    "served_share": 0.921,
+    "mean_wait_min": 17.56
+   },
+   {
+    "zone": "547",
+    "requests": 1060,
+    "served_share": 0.8585,
+    "mean_wait_min": 17.95
+   },
+   {
+    "zone": "548S",
+    "requests": 105,
+    "served_share": 0.9143,
+    "mean_wait_min": 19.28
+   },
+   {
+    "zone": "610S",
+    "requests": 356,
+    "served_share": 0.8989,
+    "mean_wait_min": 16.28
+   },
+   {
+    "zone": "620S",
+    "requests": 18564,
+    "served_share": 0.8501,
+    "mean_wait_min": 17.26
+   },
+   {
+    "zone": "623",
+    "requests": 310,
+    "served_share": 0.871,
+    "mean_wait_min": 17.72
+   },
+   {
+    "zone": "624S.1",
+    "requests": 2842,
+    "served_share": 0.8751,
+    "mean_wait_min": 15.66
+   },
+   {
+    "zone": "624S.2",
+    "requests": 955,
+    "served_share": 0.8911,
+    "mean_wait_min": 16.13
+   },
+   {
+    "zone": "624S.3",
+    "requests": 2803,
+    "served_share": 0.8794,
+    "mean_wait_min": 15.81
+   },
+   {
+    "zone": "625.1",
+    "requests": 1867,
+    "served_share": 0.8666,
+    "mean_wait_min": 16.02
+   },
+   {
+    "zone": "625.2",
+    "requests": 2368,
+    "served_share": 0.8716,
+    "mean_wait_min": 15.95
+   },
+   {
+    "zone": "625.3",
+    "requests": 1693,
+    "served_share": 0.8718,
+    "mean_wait_min": 15.66
+   },
+   {
+    "zone": "626",
+    "requests": 3778,
+    "served_share": 0.8719,
+    "mean_wait_min": 15.76
+   },
+   {
+    "zone": "627.1",
+    "requests": 2153,
+    "served_share": 0.8528,
+    "mean_wait_min": 15.74
+   },
+   {
+    "zone": "627.2",
+    "requests": 614,
+    "served_share": 0.8811,
+    "mean_wait_min": 15.96
+   },
+   {
+    "zone": "628.1",
+    "requests": 776,
+    "served_share": 0.8531,
+    "mean_wait_min": 16.0
+   },
+   {
+    "zone": "628.2",
+    "requests": 1470,
+    "served_share": 0.8551,
+    "mean_wait_min": 16.35
+   },
+   {
+    "zone": "628.3",
+    "requests": 1168,
+    "served_share": 0.8827,
+    "mean_wait_min": 16.25
+   },
+   {
+    "zone": "628.4",
+    "requests": 1410,
+    "served_share": 0.8624,
+    "mean_wait_min": 16.1
+   },
+   {
+    "zone": "628.5",
+    "requests": 1127,
+    "served_share": 0.8678,
+    "mean_wait_min": 16.22
+   },
+   {
+    "zone": "631S",
+    "requests": 715,
+    "served_share": 0.8573,
+    "mean_wait_min": 17.75
+   },
+   {
+    "zone": "634",
+    "requests": 3619,
+    "served_share": 0.8544,
+    "mean_wait_min": 17.12
+   },
+   {
+    "zone": "642",
+    "requests": 9426,
+    "served_share": 0.8479,
+    "mean_wait_min": 18.5
+   },
+   {
+    "zone": "651S",
+    "requests": 524,
+    "served_share": 0.8282,
+    "mean_wait_min": 22.06
+   },
+   {
+    "zone": "711S",
+    "requests": 1171,
+    "served_share": 0.8301,
+    "mean_wait_min": 17.28
+   },
+   {
+    "zone": "720",
+    "requests": 200,
+    "served_share": 0.825,
+    "mean_wait_min": 16.25
+   },
+   {
+    "zone": "722S.1",
+    "requests": 1775,
+    "served_share": 0.8546,
+    "mean_wait_min": 16.85
+   },
+   {
+    "zone": "722S.2",
+    "requests": 2281,
+    "served_share": 0.8689,
+    "mean_wait_min": 16.43
+   },
+   {
+    "zone": "722S.3",
+    "requests": 1813,
+    "served_share": 0.8555,
+    "mean_wait_min": 16.79
+   },
+   {
+    "zone": "723.1",
+    "requests": 1740,
+    "served_share": 0.8747,
+    "mean_wait_min": 16.61
+   },
+   {
+    "zone": "723.2",
+    "requests": 794,
+    "served_share": 0.8829,
+    "mean_wait_min": 16.95
+   },
+   {
+    "zone": "723.3",
+    "requests": 922,
+    "served_share": 0.8666,
+    "mean_wait_min": 16.25
+   },
+   {
+    "zone": "723.4",
+    "requests": 1205,
+    "served_share": 0.8888,
+    "mean_wait_min": 16.49
+   },
+   {
+    "zone": "724",
+    "requests": 671,
+    "served_share": 0.848,
+    "mean_wait_min": 18.06
+   },
+   {
+    "zone": "725",
+    "requests": 785,
+    "served_share": 0.8764,
+    "mean_wait_min": 17.19
+   },
+   {
+    "zone": "726.1",
+    "requests": 1794,
+    "served_share": 0.8924,
+    "mean_wait_min": 16.27
+   },
+   {
+    "zone": "726.2",
+    "requests": 994,
+    "served_share": 0.8672,
+    "mean_wait_min": 16.4
+   },
+   {
+    "zone": "726.3",
+    "requests": 1032,
+    "served_share": 0.8837,
+    "mean_wait_min": 16.34
+   },
+   {
+    "zone": "726.4",
+    "requests": 951,
+    "served_share": 0.8549,
+    "mean_wait_min": 16.45
+   },
+   {
+    "zone": "726.5",
+    "requests": 1205,
+    "served_share": 0.9021,
+    "mean_wait_min": 16.28
+   },
+   {
+    "zone": "729.1",
+    "requests": 3366,
+    "served_share": 0.8969,
+    "mean_wait_min": 17.3
+   },
+   {
+    "zone": "729.2",
+    "requests": 620,
+    "served_share": 0.8839,
+    "mean_wait_min": 17.12
+   },
+   {
+    "zone": "731S.1",
+    "requests": 363,
+    "served_share": 0.9174,
+    "mean_wait_min": 17.68
+   },
+   {
+    "zone": "731S.2",
+    "requests": 1775,
+    "served_share": 0.8839,
+    "mean_wait_min": 15.68
+   },
+   {
+    "zone": "731S.3",
+    "requests": 2358,
+    "served_share": 0.8969,
+    "mean_wait_min": 16.27
+   },
+   {
+    "zone": "732S.1",
+    "requests": 2417,
+    "served_share": 0.8858,
+    "mean_wait_min": 16.21
+   },
+   {
+    "zone": "732S.2",
+    "requests": 2049,
+    "served_share": 0.8917,
+    "mean_wait_min": 17.03
+   },
+   {
+    "zone": "732S.3",
+    "requests": 1950,
+    "served_share": 0.8903,
+    "mean_wait_min": 16.38
+   },
+   {
+    "zone": "741S",
+    "requests": 1313,
+    "served_share": 0.8477,
+    "mean_wait_min": 18.14
+   },
+   {
+    "zone": "755.1",
+    "requests": 834,
+    "served_share": 0.8825,
+    "mean_wait_min": 16.09
+   },
+   {
+    "zone": "755.2",
+    "requests": 750,
+    "served_share": 0.8827,
+    "mean_wait_min": 15.98
+   },
+   {
+    "zone": "755.3",
+    "requests": 2188,
+    "served_share": 0.8784,
+    "mean_wait_min": 16.46
+   },
+   {
+    "zone": "755.4",
+    "requests": 1452,
+    "served_share": 0.8809,
+    "mean_wait_min": 16.02
+   },
+   {
+    "zone": "755.5",
+    "requests": 1145,
+    "served_share": 0.8856,
+    "mean_wait_min": 16.23
+   },
+   {
+    "zone": "756S.1",
+    "requests": 2753,
+    "served_share": 0.8867,
+    "mean_wait_min": 15.95
+   },
+   {
+    "zone": "756S.2",
+    "requests": 3486,
+    "served_share": 0.8835,
+    "mean_wait_min": 15.98
+   },
+   {
+    "zone": "756S.3",
+    "requests": 94,
+    "served_share": 0.8404,
+    "mean_wait_min": 17.21
+   },
+   {
+    "zone": "756S.4",
+    "requests": 2526,
+    "served_share": 0.8907,
+    "mean_wait_min": 16.32
+   },
+   {
+    "zone": "757.1",
+    "requests": 1759,
+    "served_share": 0.8908,
+    "mean_wait_min": 16.14
+   },
+   {
+    "zone": "757.2",
+    "requests": 967,
+    "served_share": 0.8945,
+    "mean_wait_min": 16.34
+   },
+   {
+    "zone": "757.3",
+    "requests": 1219,
+    "served_share": 0.895,
+    "mean_wait_min": 16.85
+   },
+   {
+    "zone": "757.4",
+    "requests": 1700,
+    "served_share": 0.8747,
+    "mean_wait_min": 16.63
+   },
+   {
+    "zone": "757.5",
+    "requests": 442,
+    "served_share": 0.8756,
+    "mean_wait_min": 17.69
+   },
+   {
+    "zone": "757.6",
+    "requests": 1133,
+    "served_share": 0.88,
+    "mean_wait_min": 16.64
+   },
+   {
+    "zone": "757.7",
+    "requests": 1555,
+    "served_share": 0.9035,
+    "mean_wait_min": 16.47
+   },
+   {
+    "zone": "757.8",
+    "requests": 1386,
+    "served_share": 0.8795,
+    "mean_wait_min": 17.04
+   },
+   {
+    "zone": "758.1",
+    "requests": 1472,
+    "served_share": 0.8933,
+    "mean_wait_min": 16.19
+   },
+   {
+    "zone": "758.2",
+    "requests": 718,
+    "served_share": 0.876,
+    "mean_wait_min": 16.18
+   },
+   {
+    "zone": "758.3",
+    "requests": 1126,
+    "served_share": 0.8925,
+    "mean_wait_min": 15.93
+   },
+   {
+    "zone": "759.1",
+    "requests": 961,
+    "served_share": 0.8835,
+    "mean_wait_min": 16.36
+   },
+   {
+    "zone": "759.2",
+    "requests": 1480,
+    "served_share": 0.8919,
+    "mean_wait_min": 16.42
+   },
+   {
+    "zone": "759.3",
+    "requests": 1214,
+    "served_share": 0.8764,
+    "mean_wait_min": 15.59
+   },
+   {
+    "zone": "759.4",
+    "requests": 100,
+    "served_share": 0.88,
+    "mean_wait_min": 17.02
+   },
+   {
+    "zone": "759.5",
+    "requests": 1462,
+    "served_share": 0.8776,
+    "mean_wait_min": 15.88
+   },
+   {
+    "zone": "759.6",
+    "requests": 1478,
+    "served_share": 0.889,
+    "mean_wait_min": 15.8
+   },
+   {
+    "zone": "759.7",
+    "requests": 1640,
+    "served_share": 0.8835,
+    "mean_wait_min": 16.31
+   },
+   {
+    "zone": "811S",
+    "requests": 224,
+    "served_share": 0.7634,
+    "mean_wait_min": 22.41
+   },
+   {
+    "zone": "820",
+    "requests": 300,
+    "served_share": 0.8867,
+    "mean_wait_min": 18.75
+   },
+   {
+    "zone": "821",
+    "requests": 95,
+    "served_share": 0.8421,
+    "mean_wait_min": 19.89
+   },
+   {
+    "zone": "822",
+    "requests": 337,
+    "served_share": 0.8368,
+    "mean_wait_min": 19.97
+   },
+   {
+    "zone": "823",
+    "requests": 482,
+    "served_share": 0.8693,
+    "mean_wait_min": 19.81
+   },
+   {
+    "zone": "824S",
+    "requests": 144,
+    "served_share": 0.8819,
+    "mean_wait_min": 19.3
+   },
+   {
+    "zone": "825",
+    "requests": 146,
+    "served_share": 0.8356,
+    "mean_wait_min": 20.29
+   },
+   {
+    "zone": "826S",
+    "requests": 487,
+    "served_share": 0.8316,
+    "mean_wait_min": 19.49
+   },
+   {
+    "zone": "827",
+    "requests": 225,
+    "served_share": 0.8222,
+    "mean_wait_min": 20.08
+   },
+   {
+    "zone": "831",
+    "requests": 1136,
+    "served_share": 0.8741,
+    "mean_wait_min": 18.08
+   },
+   {
+    "zone": "832S",
+    "requests": 342,
+    "served_share": 0.8392,
+    "mean_wait_min": 21.32
+   },
+   {
+    "zone": "833.1",
+    "requests": 1154,
+    "served_share": 0.8735,
+    "mean_wait_min": 16.51
+   },
+   {
+    "zone": "833.2",
+    "requests": 603,
+    "served_share": 0.8806,
+    "mean_wait_min": 15.97
+   },
+   {
+    "zone": "833.3",
+    "requests": 649,
+    "served_share": 0.8937,
+    "mean_wait_min": 17.11
+   },
+   {
+    "zone": "833.4",
+    "requests": 768,
+    "served_share": 0.8802,
+    "mean_wait_min": 16.38
+   },
+   {
+    "zone": "835",
+    "requests": 1479,
+    "served_share": 0.8702,
+    "mean_wait_min": 17.5
+   },
+   {
+    "zone": "836.1",
+    "requests": 1210,
+    "served_share": 0.8868,
+    "mean_wait_min": 16.43
+   },
+   {
+    "zone": "836.2",
+    "requests": 368,
+    "served_share": 0.856,
+    "mean_wait_min": 16.96
+   },
+   {
+    "zone": "836.3",
+    "requests": 754,
+    "served_share": 0.8939,
+    "mean_wait_min": 16.94
+   },
+   {
+    "zone": "836.4",
+    "requests": 792,
+    "served_share": 0.8662,
+    "mean_wait_min": 16.44
+   },
+   {
+    "zone": "836.5",
+    "requests": 955,
+    "served_share": 0.8796,
+    "mean_wait_min": 16.45
+   },
+   {
+    "zone": "837.1",
+    "requests": 865,
+    "served_share": 0.8844,
+    "mean_wait_min": 16.91
+   },
+   {
+    "zone": "837.2",
+    "requests": 1142,
+    "served_share": 0.8844,
+    "mean_wait_min": 16.62
+   },
+   {
+    "zone": "837.3",
+    "requests": 558,
+    "served_share": 0.8889,
+    "mean_wait_min": 17.16
+   },
+   {
+    "zone": "837.4",
+    "requests": 722,
+    "served_share": 0.8809,
+    "mean_wait_min": 16.22
+   },
+   {
+    "zone": "838.1",
+    "requests": 812,
+    "served_share": 0.8695,
+    "mean_wait_min": 16.21
+   },
+   {
+    "zone": "838.2",
+    "requests": 1141,
+    "served_share": 0.8904,
+    "mean_wait_min": 16.51
+   },
+   {
+    "zone": "838.3",
+    "requests": 287,
+    "served_share": 0.8153,
+    "mean_wait_min": 15.88
+   },
+   {
+    "zone": "838.4",
+    "requests": 1209,
+    "served_share": 0.8825,
+    "mean_wait_min": 16.67
+   },
+   {
+    "zone": "838.5",
+    "requests": 787,
+    "served_share": 0.9009,
+    "mean_wait_min": 16.36
+   },
+   {
+    "zone": "838.6",
+    "requests": 960,
+    "served_share": 0.8667,
+    "mean_wait_min": 16.31
+   },
+   {
+    "zone": "838.7",
+    "requests": 1089,
+    "served_share": 0.8788,
+    "mean_wait_min": 16.4
+   },
+   {
+    "zone": "839.1",
+    "requests": 6178,
+    "served_share": 0.8809,
+    "mean_wait_min": 16.14
+   },
+   {
+    "zone": "839.2",
+    "requests": 516,
+    "served_share": 0.874,
+    "mean_wait_min": 17.75
+   },
+   {
+    "zone": "839.3",
+    "requests": 312,
+    "served_share": 0.891,
+    "mean_wait_min": 17.07
+   },
+   {
+    "zone": "931S",
+    "requests": 103,
+    "served_share": 0.7864,
+    "mean_wait_min": 22.35
+   },
+   {
+    "zone": "932S",
+    "requests": 55,
+    "served_share": 0.7273,
+    "mean_wait_min": 24.48
+   },
+   {
+    "zone": "944",
+    "requests": 71,
+    "served_share": 0.3803,
+    "mean_wait_min": 12.55
+   },
+   {
+    "zone": "950S.1",
+    "requests": 6719,
+    "served_share": 0.8665,
+    "mean_wait_min": 16.78
+   },
+   {
+    "zone": "950S.2",
+    "requests": 156,
+    "served_share": 0.8397,
+    "mean_wait_min": 18.69
+   },
+   {
+    "zone": "950S.3",
+    "requests": 6371,
+    "served_share": 0.8649,
+    "mean_wait_min": 16.39
+   },
+   {
+    "zone": "950S.4",
+    "requests": 3103,
+    "served_share": 0.8569,
+    "mean_wait_min": 17.04
+   },
+   {
+    "zone": "950S.5",
+    "requests": 11429,
+    "served_share": 0.8474,
+    "mean_wait_min": 16.76
+   },
+   {
+    "zone": "950S.6",
+    "requests": 3369,
+    "served_share": 0.8691,
+    "mean_wait_min": 16.83
+   },
+   {
+    "zone": "961S",
+    "requests": 147,
+    "served_share": 0.3673,
+    "mean_wait_min": 10.16
+   },
+   {
+    "zone": "971S",
+    "requests": 905,
+    "served_share": 0.7878,
+    "mean_wait_min": 23.0
+   },
+   {
+    "zone": "975",
+    "requests": 788,
+    "served_share": 0.868,
+    "mean_wait_min": 20.22
+   }
+  ],
+  "small_fleet": 8000
+ },
+ "limits": [
+  "没有空车再平衡：车送完客在原地等",
+  "这一版的车不休息也不充电；两者的代价已由 pipeline/35 量化：司机换更要多 17% 的车（12,000 → 14,000），电动充电在这个规模上不占额外车辆",
+  "需求固定，等待变短会拉来的新需求没有建模",
+  "分区级派单，同区内接客距离算 0"
+ ]
+}

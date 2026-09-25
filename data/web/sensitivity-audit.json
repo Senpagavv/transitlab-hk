@@ -1,0 +1,368 @@
+{
+  "method": "one parameter at a time, ±20%; four serial step-27 perturbations",
+  "baseline": {
+    "assignment": {
+      "corridor_geh_under_5": 0.29411764705882354,
+      "max_class_ratio_deviation": 0.8533050543280352,
+      "worst_class": "coach",
+      "worst_class_ratio": 1.8533050543280352,
+      "per_class_ratio": {
+        "car": 0.9467668028295932,
+        "taxi": 1.1404307583520543,
+        "goods_light": 0.7569541359557612,
+        "goods_heavy": 0.9929381026364232,
+        "coach": 1.8533050543280352,
+        "bus": 0.8192119009045239
+      }
+    },
+    "fleet_by_rule": {
+      "不休息": 12000,
+      "司机换更": 14000,
+      "电动充电": 12000
+    }
+  },
+  "perturbations": [
+    {
+      "parameter": "AV_RANGE_KM",
+      "default": 300.0,
+      "perturbed": 240.0,
+      "change_pct": -19.999999999999996,
+      "fleet_rule": "电动充电",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": 0.0,
+        "fleet_vehicles": 0
+      }
+    },
+    {
+      "parameter": "AV_RANGE_KM",
+      "default": 300.0,
+      "perturbed": 360.0,
+      "change_pct": 19.999999999999996,
+      "fleet_rule": "电动充电",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": 0.0,
+        "fleet_vehicles": 0
+      }
+    },
+    {
+      "parameter": "TAXI_BREAK_MIN",
+      "default": 240.0,
+      "perturbed": 192.0,
+      "change_pct": -19.999999999999996,
+      "fleet_rule": "司机换更",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 14000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": 0.0,
+        "fleet_vehicles": -2000
+      }
+    },
+    {
+      "parameter": "TAXI_BREAK_MIN",
+      "default": 240.0,
+      "perturbed": 288.0,
+      "change_pct": 19.999999999999996,
+      "fleet_rule": "司机换更",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 14000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280345,
+        "worst_class": "coach",
+        "fleet_min": 14000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": 0.0,
+        "fleet_vehicles": 0
+      }
+    },
+    {
+      "parameter": "TOLL_WEIGHT",
+      "default": 0.2,
+      "perturbed": 0.16,
+      "change_pct": -20.000000000000007,
+      "fleet_rule": "不休息",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280352,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8519352064459449,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": -0.0013698478820902693,
+        "fleet_vehicles": 0
+      }
+    },
+    {
+      "parameter": "TOLL_WEIGHT",
+      "default": 0.2,
+      "perturbed": 0.24,
+      "change_pct": 19.999999999999996,
+      "fleet_rule": "不休息",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280352,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.23529411764705882,
+        "max_class_ratio_deviation": 0.856894939586921,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": -5.882352941176472,
+        "max_class_ratio_deviation": 0.0035898852588858166,
+        "fleet_vehicles": 0
+      }
+    },
+    {
+      "parameter": "TAXI_TOLL_WEIGHT",
+      "default": 0.2,
+      "perturbed": 0.16,
+      "change_pct": -20.000000000000007,
+      "fleet_rule": "不休息",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280352,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8509714973562204,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": -0.0023335569718148097,
+        "fleet_vehicles": 0
+      }
+    },
+    {
+      "parameter": "TAXI_TOLL_WEIGHT",
+      "default": 0.2,
+      "perturbed": 0.24,
+      "change_pct": 19.999999999999996,
+      "fleet_rule": "不休息",
+      "before": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8533050543280352,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "after": {
+        "corridor_geh_under_5": 0.29411764705882354,
+        "max_class_ratio_deviation": 0.8507458301430624,
+        "worst_class": "coach",
+        "fleet_min": 12000
+      },
+      "delta": {
+        "corridor_geh_percentage_points": 0.0,
+        "max_class_ratio_deviation": -0.002559224184972786,
+        "fleet_vehicles": 0
+      }
+    }
+  ],
+  "red_flags": [
+    {
+      "marker": "🔴",
+      "parameter": "TAXI_BREAK_MIN",
+      "perturbed": 192.0,
+      "reasons": [
+        "最小达标车队跨档"
+      ]
+    }
+  ],
+  "untested_parameters": [
+    {
+      "parameter": "mode-choice time sensitivity",
+      "source": "pipeline/23_mode_choice.py",
+      "reason": "fitted within step 23; perturbing requires rebuilding mode choice and downstream steps"
+    },
+    {
+      "parameter": "taxi fare weight",
+      "source": "pipeline/23_mode_choice.py",
+      "reason": "fitted within step 23; perturbing requires rebuilding mode choice and downstream steps"
+    },
+    {
+      "parameter": "time scale r",
+      "source": "pipeline/22_trip_distribution.py",
+      "reason": "fitted within step 22; perturbing requires rebuilding trip distribution and downstream steps"
+    },
+    {
+      "parameter": "harbour factor K",
+      "source": "pipeline/22_trip_distribution.py",
+      "reason": "fitted within step 22; perturbing requires rebuilding trip distribution and downstream steps"
+    },
+    {
+      "parameter": "goods time scale rho",
+      "source": "pipeline/26_goods_and_boundary_vehicles.py",
+      "reason": "fitted within step 26; perturbing requires rebuilding goods demand and assignment"
+    },
+    {
+      "parameter": "goods harbour factor",
+      "source": "pipeline/26_goods_and_boundary_vehicles.py",
+      "reason": "fitted within step 26; perturbing requires rebuilding goods demand and assignment"
+    }
+  ],
+  "caveats": [
+    "17 corridor stations: one station is 5.88 percentage points; a one-station movement alone is not sensitivity evidence",
+    "step 35 uses fixed requests and measured speeds independent of step 27",
+    "12,000 vehicles is the no-break floor; the default 240-minute driver-break rule already requires 14,000"
+  ],
+  "checks": {
+    "1_final_corridor_exact_reset": true,
+    "2_backups_nonempty": true,
+    "3_all_eight_rows_three_metrics": true,
+    "4_at_least_five_untested": true,
+    "5_red_flags_separate": true
+  },
+  "restore": {
+    "before": 0.29411764705882354,
+    "after": 0.29411764705882354,
+    "parquet_sha256_equal": true,
+    "audit_sha256_equal": true,
+    "default_run_parquet_sha256_equal": false,
+    "default_run_audit_sha256_equal": false,
+    "original_bytes_restored_after_default": true
+  },
+  "backups": {
+    "00-original": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\00-original\\assignment-am-2026.parquet",
+        "bytes": 2280947,
+        "sha256": "6d599ba355c2c2de7b8aa6b508b6d19bfe6587a08182f1e68e921cd5db7f6aa3"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\00-original\\assignment-audit.json",
+        "bytes": 50051,
+        "sha256": "0f8ca6ed0610be834a9aa20f087d11404cebda2057a14889382f83fa68d2bb2d"
+      }
+    },
+    "01-preflight-default": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\01-preflight-default\\assignment-am-2026.parquet",
+        "bytes": 2280947,
+        "sha256": "6d599ba355c2c2de7b8aa6b508b6d19bfe6587a08182f1e68e921cd5db7f6aa3"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\01-preflight-default\\assignment-audit.json",
+        "bytes": 50051,
+        "sha256": "0f8ca6ed0610be834a9aa20f087d11404cebda2057a14889382f83fa68d2bb2d"
+      }
+    },
+    "02-toll_weight-0.16": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\02-toll_weight-0.16\\assignment-am-2026.parquet",
+        "bytes": 2280957,
+        "sha256": "ee60f3b5e267094df5adeb2714b0e858a13289788fe040199990bad37290d058"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\02-toll_weight-0.16\\assignment-audit.json",
+        "bytes": 50050,
+        "sha256": "d67c97f4876d5efd6e0b3556c88eb4156de5981a2e5bdc30d8be5c23afee429c"
+      }
+    },
+    "03-toll_weight-0.24": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\03-toll_weight-0.24\\assignment-am-2026.parquet",
+        "bytes": 2280768,
+        "sha256": "4057827a0b11673d484db319cfeadc8866acd81fbf6e7f3fd9d237a837137733"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\03-toll_weight-0.24\\assignment-audit.json",
+        "bytes": 50047,
+        "sha256": "fab3280aea4d59887dc36debd2b52ee664aef471db32d34ecb6bde85b42b2216"
+      }
+    },
+    "04-taxi_toll_weight-0.16": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\04-taxi_toll_weight-0.16\\assignment-am-2026.parquet",
+        "bytes": 2280149,
+        "sha256": "a576afbb321b9e70ebdcc787c4aa77cf75906745959aca8746170c87fafea6ba"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\04-taxi_toll_weight-0.16\\assignment-audit.json",
+        "bytes": 50047,
+        "sha256": "8d86baa240564fb3e1e6f361a969be0fe7d87434f65488297abedb61901651e6"
+      }
+    },
+    "05-taxi_toll_weight-0.24": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\05-taxi_toll_weight-0.24\\assignment-am-2026.parquet",
+        "bytes": 2280219,
+        "sha256": "b6ca69c00f3d5338097ba8b4253fab5d0720f054cd4d6be66bc1c3757d0bda42"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\05-taxi_toll_weight-0.24\\assignment-audit.json",
+        "bytes": 50078,
+        "sha256": "338b447f85ccbf679a18b133f202d8160fc5a79ef37718b6a6918c94874f9491"
+      }
+    },
+    "99-final-default": {
+      "assignment-am-2026.parquet": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\99-final-default\\assignment-am-2026.parquet",
+        "bytes": 2280768,
+        "sha256": "2cb5c97dc2642f5376a773f9b3c16a2855b6f6beb81300ac27d7b6f56a683a8b"
+      },
+      "assignment-audit.json": {
+        "path": "data\\cache\\sensitivity\\20260925-091017-753961\\99-final-default\\assignment-audit.json",
+        "bytes": 50081,
+        "sha256": "6b75af1cdda80779d8ea4aa45a0b37b07beae5879b45477c4f4278f5122e546e"
+      }
+    }
+  },
+  "completion_note": "The required final default step-27 run matched corridor GEH exactly. Its files differed bytewise due to tiny numerical differences, so the two original calibrated files were then copied back from 00-original and SHA-256 verified. The terminal relay failed on an emoji after the audit was written; the missing summary is replayed from this audit without rerunning step 27."
+}

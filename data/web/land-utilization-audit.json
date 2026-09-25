@@ -1,0 +1,265 @@
+{
+ "source": "规划署《香港土地利用》2024（10 米格网，卫星影像 2024 年 12 月）",
+ "gray_to_code": {
+  "0": 0,
+  "11": 3,
+  "33": 11,
+  "60": 21,
+  "63": 22,
+  "66": 23,
+  "88": 31,
+  "90": 32,
+  "115": 41,
+  "118": 42,
+  "121": 43,
+  "123": 44,
+  "143": 51,
+  "145": 52,
+  "148": 53,
+  "151": 54,
+  "170": 61,
+  "173": 62,
+  "198": 71,
+  "200": 72,
+  "203": 73,
+  "206": 74,
+  "225": 81,
+  "231": 83,
+  "253": 91,
+  "255": 92
+ },
+ "categories": [
+  {
+   "code": 1,
+   "class": "Residential",
+   "category": "Private Residential",
+   "name": "私人住宅",
+   "grid_km2": 29.07,
+   "official_km2": 28.0
+  },
+  {
+   "code": 2,
+   "class": "Residential",
+   "category": "Public Residential",
+   "name": "公营房屋",
+   "grid_km2": 17.67,
+   "official_km2": 18.0
+  },
+  {
+   "code": 3,
+   "class": "Residential",
+   "category": "Rural Settlement",
+   "name": "乡郊居所",
+   "grid_km2": 34.56,
+   "official_km2": 35.0
+  },
+  {
+   "code": 11,
+   "class": "Commercial",
+   "category": "Commercial/Business and Office",
+   "name": "商业／商贸和办公室",
+   "grid_km2": 4.74,
+   "official_km2": 5.0
+  },
+  {
+   "code": 21,
+   "class": "Industrial",
+   "category": "Industrial Land",
+   "name": "工业用地",
+   "grid_km2": 6.34,
+   "official_km2": 6.0
+  },
+  {
+   "code": 22,
+   "class": "Industrial",
+   "category": "Industrial Estates/Science and Technology Parks",
+   "name": "工业邨／科技园",
+   "grid_km2": 3.35,
+   "official_km2": 3.0
+  },
+  {
+   "code": 23,
+   "class": "Industrial",
+   "category": "Warehouse and Open Storage",
+   "name": "货仓和露天贮物",
+   "grid_km2": 17.19,
+   "official_km2": 17.0
+  },
+  {
+   "code": 31,
+   "class": "Institutional/Open Space",
+   "category": "Government/Institutional and Community Facilities",
+   "name": "政府、机构和社区设施",
+   "grid_km2": 26.28,
+   "official_km2": 26.0
+  },
+  {
+   "code": 32,
+   "class": "Institutional/Open Space",
+   "category": "Open Space and Recreation",
+   "name": "休憩和康乐",
+   "grid_km2": 28.34,
+   "official_km2": 28.0
+  },
+  {
+   "code": 41,
+   "class": "Transportation",
+   "category": "Roads and Transport Facilities",
+   "name": "道路和运输设施",
+   "grid_km2": 47.02,
+   "official_km2": 47.0
+  },
+  {
+   "code": 42,
+   "class": "Transportation",
+   "category": "Railways",
+   "name": "铁路",
+   "grid_km2": 3.86,
+   "official_km2": 4.0
+  },
+  {
+   "code": 43,
+   "class": "Transportation",
+   "category": "Airport",
+   "name": "机场",
+   "grid_km2": 16.91,
+   "official_km2": 17.0
+  },
+  {
+   "code": 44,
+   "class": "Transportation",
+   "category": "Port Facilities",
+   "name": "港口设施",
+   "grid_km2": 4.46,
+   "official_km2": 4.0
+  },
+  {
+   "code": 51,
+   "class": "Other Urban or Built-up Land",
+   "category": "Cemeteries/Funeral Facilities",
+   "name": "坟场／殡殓设施",
+   "grid_km2": 8.92,
+   "official_km2": 9.0
+  },
+  {
+   "code": 52,
+   "class": "Other Urban or Built-up Land",
+   "category": "Utilities",
+   "name": "公用事业设施",
+   "grid_km2": 9.27,
+   "official_km2": 9.0
+  },
+  {
+   "code": 53,
+   "class": "Other Urban or Built-up Land",
+   "category": "Vacant land/Construction in Progress",
+   "name": "空置／正在施工",
+   "grid_km2": 19.96,
+   "official_km2": 20.0
+  },
+  {
+   "code": 54,
+   "class": "Other Urban or Built-up Land",
+   "category": "Others",
+   "name": "其他都市用地",
+   "grid_km2": 12.05,
+   "official_km2": 12.0
+  },
+  {
+   "code": 61,
+   "class": "Agriculture",
+   "category": "Agricultural land",
+   "name": "农地",
+   "grid_km2": 47.23,
+   "official_km2": 47.0
+  },
+  {
+   "code": 62,
+   "class": "Agriculture",
+   "category": "Fish Ponds/Gei Wais",
+   "name": "鱼塘／基围",
+   "grid_km2": 16.07,
+   "official_km2": 16.0
+  },
+  {
+   "code": 71,
+   "class": "Woodland/Shrubland/Grassland/Wetland",
+   "category": "Woodland",
+   "name": "林地",
+   "grid_km2": 333.35,
+   "official_km2": 334.0
+  },
+  {
+   "code": 72,
+   "class": "Woodland/Shrubland/Grassland/Wetland",
+   "category": "Shrubland",
+   "name": "灌丛",
+   "grid_km2": 183.82,
+   "official_km2": 184.0
+  },
+  {
+   "code": 73,
+   "class": "Woodland/Shrubland/Grassland/Wetland",
+   "category": "Grassland",
+   "name": "草地",
+   "grid_km2": 206.11,
+   "official_km2": 206.0
+  },
+  {
+   "code": 74,
+   "class": "Woodland/Shrubland/Grassland/Wetland",
+   "category": "Mangrove/Swamp",
+   "name": "红树林／沼泽",
+   "grid_km2": 6.59,
+   "official_km2": 6.0
+  },
+  {
+   "code": 81,
+   "class": "Barren Land",
+   "category": "Badland",
+   "name": "劣地",
+   "grid_km2": 2.54,
+   "official_km2": 3.0
+  },
+  {
+   "code": 83,
+   "class": "Barren Land",
+   "category": "Rocky Shore",
+   "name": "岩岸",
+   "grid_km2": 3.71,
+   "official_km2": 4.0
+  },
+  {
+   "code": 91,
+   "class": "Water Bodies",
+   "category": "Reservoirs",
+   "name": "水塘",
+   "grid_km2": 24.58,
+   "official_km2": 25.0
+  },
+  {
+   "code": 92,
+   "class": "Water Bodies",
+   "category": "Streams and nullahs",
+   "name": "河道和明渠",
+   "grid_km2": 5.93,
+   "official_km2": 6.0
+  }
+ ],
+ "zone_check": {
+  "land_outside_zones_km2": 13.513199999999998,
+  "median_zone_area_gap": 0.0023116042533516947
+ },
+ "residential_split": {
+  "residential_km2": 46.7359,
+  "coastal_recovered_km2": 2.7754,
+  "far_share": 0.015452788969507381
+ },
+ "flags": [],
+ "report": [
+  "灰度格网和灰度→编号对照表取自缓存（data/cache/luhk2024，不重复请求政府服务）",
+  "纯黑里的住宅 46.7 平方公里（其中海边与海面连成一片、按楼找回的 2.8）；按最近的三层以上住宅楼分：私人 29.1、公营 17.7；1.5% 的住宅格子 200 米内没有楼（按更远的楼算）",
+  "25 类读出来的用途与统计表最大相差 0.65 平方公里、推算的私人/公营住宅最大相差 1.07（统计表只到整数）；格网陆地合计 1119.9，统计表 1119",
+  "陆地 1119.9 平方公里中 13.5 落在 455 个分区以外（多为海边、小岛）；分区陆地面积与分区面积相差中位 0.2%"
+ ]
+}

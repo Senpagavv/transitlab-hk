@@ -1,0 +1,19 @@
+{
+ "sources": {
+  "campuses": "Education Bureau, Higher Education Institutions (CSDI)",
+  "health": "Hospital Authority open data, hospital and clinic lists",
+  "enrolment": "Education Bureau, student enrolment by level of education"
+ },
+ "post_secondary_students": 354700.0,
+ "gfa_tertiary_m2": 2400369,
+ "gfa_hospital_m2": 4965162,
+ "m2_per_student": 6.8,
+ "m2_per_bed": 165.5,
+ "report": [
+  "总量比对 专上：官方 354,700 名学生已全部落区（354,698）。校园范围无法实测（院校多为租用商业楼层），此处 2.4 百万 m2 只作分配权重，不代表校园楼面",
+  "总量比对 医院：医管局约 30,000 张床位，医疗楼面 5.0 百万 m2 = 每床 166 m2（规划常见 60-200）",
+  "空间覆盖：62 个小区有专上院校，62 个小区有医疗设施",
+  "缺失值语义：只认定原本无用途的建筑，已登记用途的私人楼宇不会被改写",
+  "实测vs估算：设施位置与建筑楼面为实测；哪栋楼属于校园、以及学额如何分配为估算"
+ ]
+}

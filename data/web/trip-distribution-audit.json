@@ -1,0 +1,133 @@
+{
+ "method": "doubly constrained gravity per purpose, exponential decay on public transport time, one harbour factor; cross-boundary singly constrained at the control point",
+ "time_scale_r": 1.2803,
+ "harbour_factor_k": 0.6174,
+ "misfit_pts": 4.108,
+ "search": [
+  {
+   "scale": 1.1416,
+   "harbour": 0.442,
+   "misfit_pts": 7.718
+  },
+  {
+   "scale": 1.2292,
+   "harbour": 0.5494,
+   "misfit_pts": 4.79
+  },
+  {
+   "scale": 1.2626,
+   "harbour": 0.5939,
+   "misfit_pts": 4.197
+  },
+  {
+   "scale": 1.2754,
+   "harbour": 0.6107,
+   "misfit_pts": 4.117
+  },
+  {
+   "scale": 1.2803,
+   "harbour": 0.6174,
+   "misfit_pts": 4.108
+  },
+  {
+   "scale": 1.2833,
+   "harbour": 0.6225,
+   "misfit_pts": 4.111
+  },
+  {
+   "scale": 1.2882,
+   "harbour": 0.6283,
+   "misfit_pts": 4.125
+  },
+  {
+   "scale": 1.2961,
+   "harbour": 0.6404,
+   "misfit_pts": 4.174
+  },
+  {
+   "scale": 1.3167,
+   "harbour": 0.6693,
+   "misfit_pts": 4.441
+  },
+  {
+   "scale": 1.3708,
+   "harbour": 0.7533,
+   "misfit_pts": 5.922
+  }
+ ],
+ "purposes": {
+  "HBW": {
+   "beta": 0.04811,
+   "target_min": 40.2,
+   "modelled_min": 40.2,
+   "harbour_penalty_min": 10.0,
+   "balance_error": 3.1038808330854966e-05,
+   "intrazonal_share": 0.0196
+  },
+  "HBS": {
+   "beta": 0.08383,
+   "target_min": 32.6,
+   "modelled_min": 32.7,
+   "harbour_penalty_min": 5.8,
+   "balance_error": 7.966529576905992e-05,
+   "intrazonal_share": 0.0622
+  },
+  "HBO": {
+   "beta": 0.08747,
+   "target_min": 30.1,
+   "modelled_min": 30.1,
+   "harbour_penalty_min": 5.5,
+   "balance_error": 9.338190849795435e-05,
+   "intrazonal_share": 0.0602
+  },
+  "NHB": {
+   "beta": 0.07181,
+   "target_min": 30.1,
+   "modelled_min": 30.1,
+   "harbour_penalty_min": 6.7,
+   "balance_error": 5.890160777213736e-05,
+   "intrazonal_share": 0.0672
+  }
+ },
+ "regional_movements_share": {
+  "within_hong_kong_island": 0.1458,
+  "cross_harbour": 0.1594,
+  "within_kowloon": 0.1911,
+  "kowloon_nt": 0.2033,
+  "within_nt": 0.3005
+ },
+ "self_containment": {
+  "Hong Kong Island": 0.4779,
+  "Kowloon": 0.3949,
+  "Tsuen Wan/Kwai Tsing": 0.2425,
+  "Tuen Mun": 0.3053,
+  "Yuen Long/Tin Shui Wai": 0.242,
+  "Fanling/Sheung Shui": 0.1588,
+  "Tai Po": 0.1735,
+  "Sha Tin/Ma On Shan": 0.2077,
+  "Tseung Kwan O": 0.1684,
+  "North Lantau": 0.1783
+ },
+ "journey_time_shares": {
+  "up_to_30": 0.2939,
+  "30_to_60": 0.4785,
+  "over_60": 0.2276
+ },
+ "flags": [
+  "containment"
+ ],
+ "report": [
+  "拟合：自报 ÷ 引擎时间 r = 1.280，过海系数 K = 0.617（过海出行吸引力再乘 K）；表 3.4 其余四项与表 3.5 十区的均方根误差 4.1 个百分点",
+  "HBW：β = 0.0481/分钟，公交平均 40.2 分钟（调查自报 48 × 1.071 ÷ r）；过海相当于多 10 分钟；区内 2.0%；配平误差 3.1e-05",
+  "HBS：β = 0.0838/分钟，公交平均 32.7 分钟（调查自报 39 × 1.071 ÷ r）；过海相当于多 6 分钟；区内 6.2%；配平误差 8.0e-05",
+  "HBO：β = 0.0875/分钟，公交平均 30.1 分钟（调查自报 36 × 1.071 ÷ r）；过海相当于多 6 分钟；区内 6.0%；配平误差 9.3e-05",
+  "NHB：β = 0.0718/分钟，公交平均 30.1 分钟（调查自报 36 × 1.071 ÷ r）；过海相当于多 7 分钟；区内 6.7%；配平误差 5.9e-05",
+  "CBS：33,310 人次从口岸分到全港，公交平均 55 分钟",
+  "CBR：592,952 人次从口岸分到全港，公交平均 52 分钟",
+  "CBV：279,458 人次从口岸分到全港，公交平均 47 分钟",
+  "地域间出行占比（表 3.4；过海一项用于定 K）：within_hong_kong_island 14.6%（调查 15.4%，-6%）；cross_harbour 15.9%（调查 15.9%，+0%）；within_kowloon 19.1%（调查 19.4%，-1%）；kowloon_nt 20.3%（调查 19.7%，+3%）；within_nt 30.0%（调查 29.6%，+2%）",
+  "自给率（表 3.5）：Hong Kong Island 48%（调查 49%）；Kowloon 39%（调查 41%）；Tsuen Wan/Kwai Tsing 24%（调查 28%）；Tuen Mun 31%（调查 31%）；Yuen Long/Tin Shui Wai 24%（调查 17%）；Fanling/Sheung Shui 16%（调查 13%）；Tai Po 17%（调查 21%）；Sha Tin/Ma On Shan 21%（调查 31%）；Tseung Kwan O 17%（调查 19%）；North Lantau 18%（调查 12%）；相差超过 10%：['Sha Tin/Ma On Shan']  ← 需复核",
+  "出行时间分布（公交时间 × r，换回自报尺度；调查为全部方式，仅作参考）：up_to_30 29%（调查 48%）、30_to_60 48%（调查 41%）、over_60 23%（调查 10%）",
+  "不可达的小区对上分到的出行 0"
+ ]
+}
