@@ -5,6 +5,7 @@ Input : data/model/trip-distribution-2026.npz     trips by purpose between every
         data/model/trip-ends-2026.parquet         zone order, districts, control points (pipeline/21)
         data/model/landuse-2026.parquet           households by type of housing (pipeline/16)
         data/model/skim-car-freeflow.npz          car minutes, kilometres and tolls (pipeline/17)
+        data/model/skim-car-am-delay.npz          congestion fed back from the assignment, if present (pipeline/27b)
         data/model/skim-active-transit.npz        public transport door-to-door minutes (pipeline/18)
         data/model/parameters-tcs2022.json        TCS 2022: values of time, car availability, boardings by
                                                   mode and purpose, stated mode switching (pipeline/20)
@@ -100,6 +101,7 @@ DISTRIBUTION = MODEL / "trip-distribution-2026.npz"
 TRIP_ENDS = MODEL / "trip-ends-2026.parquet"
 LANDUSE = MODEL / "landuse-2026.parquet"
 CAR = MODEL / "skim-car-freeflow.npz"
+DELAY = MODEL / "skim-car-am-delay.npz"   # pipeline/27b: car minutes = free-flow + weight(purpose) x AM-peak delay
 TRANSIT = MODEL / "skim-active-transit.npz"
 PARAMETERS = MODEL / "parameters-tcs2022.json"
 INCOME = RAW / "socioeconomic" / "csd_130-06606.json"
@@ -319,6 +321,17 @@ class Choice:
         self.car_km = expand(car["distance_km"].astype(float), order, self.ids, hosts, km)
         self.toll = expand(car["toll_hkd"].astype(float), order, self.ids, hosts, zero)
         self.pt_min = expand(transit["transit_min"].astype(float), order, self.ids, hosts, minutes)
+        # Congestion fed back from the assignment (pipeline/27b); without it, free-flow car times.
+        self.car_delay, self.delay_weight = np.zeros_like(self.car_min), {}
+        if DELAY.exists():
+            fed = np.load(DELAY)
+            if [str(z) for z in fed["zones"]] != order:
+                raise RuntimeError("skim-car-am-delay.npz is in another zone order: rerun pipeline/27b --reset")
+            self.car_delay = expand(fed["delay_min"].astype(float), order, self.ids, hosts, zero)
+            self.delay_weight = json.loads(str(fed["weights"]))
+            rounds = len(json.loads(str(fed["history"])))
+            report.append(f"开车时间含塞车（pipeline/27b，第 {rounds} 轮回代）：空路时间 + 权重 × 早高峰延误，权重 "
+                          + "、".join(f"{p} {w:.2f}" for p, w in self.delay_weight.items()))
 
         self.walk_end = self.params["access_walk_min"]["per_trip_end"]
         self.vot = values_of_time(self.params, report)
@@ -374,11 +387,12 @@ class Choice:
     def costs(self, purpose: str, group: str) -> dict[str, np.ndarray]:
         """Generalised minutes by mode for one purpose and car-availability group."""
         vot = self.vot[(purpose, group)]
+        car = self.car_min + self.delay_weight.get(purpose, 0.0) * self.car_delay
         return {
-            "PV": self.car_min + 2 * self.walk_end + self.toll / vot,
-            "TAXI": self.car_min + self.taxi_weight * (self.taxi_fare + self.toll) / vot,
+            "PV": car + 2 * self.walk_end + self.toll / vot,
+            "TAXI": car + self.taxi_weight * (self.taxi_fare + self.toll) / vot,
             "PT": self.pt_min + self.pt_fare / vot,
-            "SPB": self.car_min,
+            "SPB": car,
         }
 
     def probabilities(self, costs: dict, constants: dict, sensitivity: float, group: str,

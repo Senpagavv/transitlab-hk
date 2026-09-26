@@ -8,7 +8,7 @@
 >
 > **接手这个项目？先读 [`docs/handoff.md`](docs/handoff.md)** —— 完整交接简报：
 > 现在做到哪一步、每个数字从哪来、踩过哪些坑、自审方法怎么用。
-> 做任何改动前先跑 `uv run python pipeline/audit.py`（118 项检查，失败退出码 1）。
+> 做任何改动前先跑 `uv run python pipeline/audit.py`（120 项检查，失败退出码 1）。
 
 ## 这个工程算出了什么（2026-09-23）
 
@@ -79,7 +79,7 @@ npm run dev
 
 ```powershell
 uv run python pipeline/00_check_env.py   # 环境自检（Python、地理库、坐标转换、Java、r5py）
-uv run python pipeline/audit.py          # 全量数据自审（118 项，失败退出码 1）
+uv run python pipeline/audit.py          # 全量数据自审（120 项，失败退出码 1）
 uv run pytest                            # 后端和模型测试
 cd frontend; node scripts/check-fleet.mjs map-check/fleet   # 车队沙盘截图自检（需先起服务）
 cd frontend; npm run build               # 前端类型检查 + 打包

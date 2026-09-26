@@ -79,7 +79,11 @@ PEAK_BAND = "0800-0900"
 GOODS_VOT_2011 = {"light": (1.83 * 316_000 + 2.11 * 211_000) / 527_000,  # GVTCS 2011 Table 6.1, HK$/min, 2011
                   "heavy": (2.75 * 164_000 + 3.21 * 28_000 + 3.04 * 67_000) / 259_000}  # prices, by type, trip-weighted
 HEAVY_REDUCTION = [(0.25, 0.10), (0.20, 0.10), (0.15, 0.07)]  # TPDM Vol 2 Table 2.4.1.2 (share above -> cut)
-BPR = {"alpha": 0.15, "beta": 4.0}
+# Congestion curve fitted to the detectors (pipeline/15e: alpha 0.378, beta 2; the textbook 0.15/4 had the
+# morning peak 6% slower than the night on the detector roads, against 20% measured).
+_BPR_FILE = ROOT / "data" / "model" / "bpr-parameters.json"
+BPR = ({k: float(v) for k, v in json.loads(_BPR_FILE.read_text(encoding="utf-8")).items() if k in ("alpha", "beta")}
+       if _BPR_FILE.exists() else {"alpha": 0.15, "beta": 4.0})
 # Queue time scale for tunnel chains (see tunnel_queue). Fitted to the tunnel counts; overridable for sweeps.
 TUNNEL_QUEUE_MIN = float(os.environ.get("TUNNEL_QUEUE_MIN", "6"))
 MAX_ITERATIONS = 100
@@ -373,7 +377,7 @@ def main() -> None:
     table = flows.assign(road_link=rows["road_link"].to_numpy(), side=rows["side"].to_numpy(),
                          capacity=rows["capacity"].to_numpy(), free_time=rows["time"].to_numpy(),
                          distance=rows["distance"].to_numpy(), heavy_share=share,
-                         alpha=rows["alpha"].to_numpy())   # BPR alpha per link (tunnel chains boosted, see tunnel_queue)
+                         alpha=rows["alpha"].to_numpy(), beta=rows["beta"].to_numpy())   # BPR alpha per link (tunnel chains boosted, see tunnel_queue)
     table["vc"] = table["total"] / table["capacity"]
     table = table[table["road_link"] > 0]
     table.to_parquet(OUTPUT)

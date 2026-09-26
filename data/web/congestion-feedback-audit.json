@@ -1,0 +1,26 @@
+{
+ "method": "拥堵开车时间回代方式选择（逐次平均）",
+ "weights": {
+  "HBW": 0.701,
+  "HBS": 0.657,
+  "HBO": 0.591,
+  "NHB": 0.681
+ },
+ "history": [
+  {
+   "round": 1,
+   "delay_from_assignment": 1.937,
+   "delay_in_use_before": 0.0,
+   "delay_averaged": 1.937,
+   "disagreement": 1.0
+  }
+ ],
+ "last_disagreement": 0.0321,
+ "settled": true,
+ "settled_gap": 0.05,
+ "flags": [],
+ "report": [
+  "各目的一天里遇到的塞车（早高峰 8-9 时延误的倍数）：HBW 0.70、HBS 0.66、HBO 0.59、NHB 0.68；各小时塞车 = (该小时车流 / 8-9 时车流)^4，车流取 2024 年普查站中位（中午约为早高峰的 0.5）",
+  "核对（1 轮后）：这次分配的早高峰延误每车次 1.84 分钟，方式选择用的 1.90 分钟，相差 3.2%（已稳定）"
+ ]
+}

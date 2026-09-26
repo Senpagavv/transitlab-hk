@@ -63,24 +63,31 @@ async def fetch_snapshot(client: httpx.AsyncClient, stamp: str) -> bytes | None:
     return resp.content
 
 
-def parse_snapshot(xml_bytes: bytes) -> dict[str, tuple[int, float]]:
-    """detector id -> (vehicles counted in the snapshot, mean speed) using valid lanes only."""
+def parse_snapshot(xml_bytes: bytes) -> dict[str, tuple[float, float]]:
+    """detector id -> (vehicles per 30-second period, mean speed) using valid lanes only.
+
+    A snapshot holds two 30-second periods and every detector appears once in each. Until 2026-09-26
+    the two periods' vehicles were added together and then multiplied by 120 as if they were one
+    period, which doubled every hourly flow; now they are averaged over the periods the detector
+    reported in.
+    """
     root = ET.fromstring(xml_bytes)
-    readings: dict[str, tuple[int, list[float]]] = {}
+    readings: dict[str, tuple[int, int, list[float]]] = {}
     for detector in root.findall(".//detector"):
         det_id = detector.findtext("detector_id")
         if not det_id:
             continue
-        volume, speeds = readings.get(det_id, (0, []))
-        for lane in detector.findall(".//lane"):
-            if lane.findtext("valid") != "Y":
-                continue
+        volume, periods, speeds = readings.get(det_id, (0, 0, []))
+        valid = [lane for lane in detector.findall(".//lane") if lane.findtext("valid") == "Y"]
+        if valid:
+            periods += 1
+        for lane in valid:
             volume += int(lane.findtext("volume") or 0)
             speed = lane.findtext("speed")
             if speed:
                 speeds.append(float(speed))
-        readings[det_id] = (volume, speeds)
-    return {k: (v, statistics.mean(s) if s else 0.0) for k, (v, s) in readings.items()}
+        readings[det_id] = (volume, periods, speeds)
+    return {k: (v / n if n else 0.0, statistics.mean(sp) if sp else 0.0) for k, (v, n, sp) in readings.items()}
 
 
 def load_detectors() -> list[dict]:
@@ -185,6 +192,10 @@ async def collect(day: date, every_minutes: int) -> dict:
 
         await asyncio.gather(*(worker() for _ in range(CONCURRENCY)))
 
+    return summarise(day, every_minutes, volumes, speeds, len(targets) - missing)
+
+
+def summarise(day: date, every_minutes: int, volumes: dict, speeds: dict, used: int) -> dict:
     detectors = []
     for det_id, by_hour in volumes.items():
         hourly = [round(statistics.mean(by_hour[h]) * 120) if by_hour.get(h) else None for h in HOURS]
@@ -198,17 +209,34 @@ async def collect(day: date, every_minutes: int) -> dict:
         "date": day.isoformat(),
         "weekday": day.strftime("%A"),
         "sampled_every_minutes": every_minutes,
-        "snapshots_used": len(targets) - missing,
+        "snapshots_used": used,
         "source": "Transport Department, Traffic Data of Strategic / Major Roads (DATA.GOV.HK)",
         "note": "Measured vehicle counts at detectors; hourly flow = mean vehicles per 30 s x 120.",
         "detectors": sorted(detectors, key=lambda d: d["id"]),
     }
 
 
+def from_cache(day: date, every_minutes: int) -> dict:
+    """Rebuild a day from the snapshots already downloaded (data/cache/td-traffic) - no network."""
+    volumes: dict[str, dict[int, list[float]]] = defaultdict(lambda: defaultdict(list))
+    speeds: dict[str, dict[int, list[float]]] = defaultdict(lambda: defaultdict(list))
+    files = sorted(CACHE.glob(f"{day:%Y%m%d}-*.xml"))
+    for path in files:
+        hour = int(path.stem[9:11])
+        for det_id, (volume, speed) in parse_snapshot(path.read_bytes()).items():
+            volumes[det_id][hour].append(volume)
+            if speed:
+                speeds[det_id][hour].append(speed)
+    if not files:
+        sys.exit(f"No cached snapshots for {day}.")
+    return summarise(day, every_minutes, volumes, speeds, len(files))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("day", help="date to sample, e.g. 2026-09-09 (pick a normal weekday)")
     parser.add_argument("--every", type=int, default=30, help="minutes between snapshots (default 30)")
+    parser.add_argument("--from-cache", action="store_true", help="rebuild from downloaded snapshots only (no network)")
     args = parser.parse_args()
     day = datetime.strptime(args.day, "%Y-%m-%d").date()
     if day >= date.today():
@@ -222,7 +250,7 @@ def main() -> None:
         print(f"{len(detectors)} detector locations -> {detectors_path.relative_to(ROOT)}")
 
     print(f"Sampling {day} every {args.every} min ...", flush=True)
-    result = asyncio.run(collect(day, args.every))
+    result = from_cache(day, args.every) if args.from_cache else asyncio.run(collect(day, args.every))
     target = OUT / f"observed-{day:%Y-%m-%d}.json"
     target.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
