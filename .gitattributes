@@ -1,0 +1,4 @@
+# Data files must stay byte-identical on every machine: the snapshot and fingerprint checks compare SHA-256.
+# No line-ending conversion, no diffs of huge JSON.
+data/** -text -diff
+game-demo/data*.js -text -diff
