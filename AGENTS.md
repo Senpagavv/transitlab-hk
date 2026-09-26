@@ -1,5 +1,7 @@
 # AGENTS.md — 给 AI 编程助手的项目说明
 
+> **English note**: this file is written in Chinese on purpose (the project lead reads Chinese; AI assistants read it without trouble). Agents: follow every rule below; reply to the project lead in Chinese, and to other teammates in the language they write to you in. Human readers who need English: see [`docs/onboarding.en.md`](docs/onboarding.en.md).
+
 > 读者：在这个仓库里干活的 AI 助手（Claude Code、Codex、Cursor、Copilot 等）。人类组员请看 [`docs/onboarding.md`](docs/onboarding.md)（同一套规矩的人话版）。
 > 最新进度、已知局限、下一步：[`docs/handoff.md`](docs/handoff.md) **顶部**。开始任何任务前先读那里。
 
@@ -30,7 +32,7 @@ Python 3.12（uv 管理）+ AequilibraE（道路/公交分配）+ r5py（公交�
 6. **改了需求（20–26）或路网（15–17）任何一步，必须收尾**：`… → 26 → pipeline/feedback_loop.py → 39 → diagnose_corridors → audit`。
    只重跑 23 或 27 而不跑回代，方式选择用的塞车时间就和分配结果对不上。
 7. 不引入没有出处的数字。每个参数要么来自数据（写明文件/表号），要么明确标「估算」并写理由。
-8. 与人类沟通一律**中文、白话**（项目负责人是土木背景，非计算机专业）；用土木类比解释；不要让他选工程细节，给推荐方案。
+8. 与项目负责人沟通用**中文、白话**（土木背景，非计算机专业），用土木类比解释，不要让他选工程细节、给推荐方案；组员里有不会中文的，**对方用英文就用英文回答**；给全组看的文档要中英双语（例：`docs/team-quickstart.md` / `.en.md`）。
 
 ## 4. 常用命令（项目根目录）
 ```powershell

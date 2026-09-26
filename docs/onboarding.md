@@ -2,6 +2,7 @@
 
 > 写给第一次打开这个项目的组员。读完你应该知道：项目是什么、电脑要装什么、你这个角色该看哪里、怎么改东西才不会弄坏底座。
 > 用 AI 助手（Claude Code、Codex、Cursor 等）干活的，让它先读根目录的 [`AGENTS.md`](../AGENTS.md)——那是同一套规矩的"AI 版"。
+> English version: [`onboarding.en.md`](onboarding.en.md)。第一次用 GitHub 的，先看 [`team-quickstart.md`](team-quickstart.md)（English: [`team-quickstart.en.md`](team-quickstart.en.md)）。
 
 ## 0. 这个项目是什么（一分钟版）
 
@@ -28,7 +29,7 @@
 ### 1.2 拿到项目
 1. 接受邀请：GitHub 会发邮件「invited you to collaborate on transitlab-hk」，点 **Accept invitation**（仓库是私有的，只有组员能看）。
 2. 登录：终端里 `gh auth login`，选 GitHub.com → HTTPS → Login with a web browser，按提示在浏览器里输入一次性代码。
-3. 下载：`gh repo clone <仓库主人的用户名>/transitlab-hk`（约 450 MB，含代码、文档、模型结果和除法定图则外的全部原始数据）。
+3. 下载：`gh repo clone Senpagavv/transitlab-hk`（约 450 MB，含代码、文档、模型结果和除法定图则外的全部原始数据）。
 4. 装环境：项目根目录 `uv sync`；然后 `cd frontend` → `npm install`。
 5. 自检：`uv run python pipeline/00_check_env.py`，全部 `[OK]` 即可（Java 只有重算公交时间矩阵的第 18 步才需要）。
 
@@ -37,7 +38,7 @@
 - `data/raw/zoning/`：城规会法定图则（153 张图的用途地带边界 + 152 份注释 PDF，约 510 MB）——重跑 `pipeline/37_statutory_zoning.py` 才需要；
 - `data/cache/luhk2024/`：规划署土地用途格网的下载缓存——重跑 `pipeline/36_land_utilization.py` 才需要，**有了它就不必去请求政府服务器**（频繁请求会被封 IP）。
 
-下载后**在项目根目录解压**（压缩包里的路径已经是 `data/...`）。命令行：`gh release download --repo <主人>/transitlab-hk --pattern "*.zip"`。
+下载后**在项目根目录解压**（压缩包里的路径已经是 `data/...`）。命令行：`gh release download base-2026-09-26 --repo Senpagavv/transitlab-hk --pattern "*.zip"`。
 
 ## 2. 按角色看哪里
 
@@ -89,6 +90,7 @@ main（主分支，只放审核过的）
 5. **不要提交** `.env`（放密钥）、`data/cache/`、`data/snapshots/`、单个超过 50 MB 的文件。
 6. **不要高频请求政府接口**（CSDI、DATA.GOV.HK 等）——被封过一次 IP；能用缓存就用缓存。
 7. 改了数字，文档里引用它的地方也要改（`check_docs.py` 会查）。
+8. **永远不要强制推送（force push）**。
 
 ## 5. 常见问题
 - **`uv sync` 很慢或报路径错**：多半是中文用户名路径，见 1.1 的提示。

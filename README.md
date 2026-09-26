@@ -2,7 +2,9 @@
 
 香港交通情景模拟平台 · Hack for SDGs 2026（Green Transport & Smart Mobility 赛道）
 
-> ### 新组员从这里开始
+> ### New teammates start here · 新组员从这里开始
+> - **English**: joining & GitHub basics → [`docs/team-quickstart.en.md`](docs/team-quickstart.en.md); getting started by role → [`docs/onboarding.en.md`](docs/onboarding.en.md); AI assistants → [`AGENTS.md`](AGENTS.md). Most other documents are in Chinese — use browser translation or ask your AI assistant.
+> - **第一次用 GitHub**：[`docs/team-quickstart.md`](docs/team-quickstart.md)（注册、接受邀请、下载、日常怎么提交）
 > - **人**：读 [`docs/onboarding.md`](docs/onboarding.md)——装什么、怎么拿到项目、按角色（看结果 / 前端 / 调模型 / 画新线）看哪里、怎么在 GitHub 上协作、哪些东西不能动。
 > - **AI 助手**（Claude Code、Codex、Cursor…）：让它先读 [`AGENTS.md`](AGENTS.md)。
 > - **数据从哪来**：[`docs/data-sources.md`](docs/data-sources.md)（43 个来源的总目录）。
