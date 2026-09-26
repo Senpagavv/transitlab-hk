@@ -1,0 +1,4836 @@
+
+##### PAGE 1
+Travel Characteristics
+Survey 2022
+Final Report
+ 2025 version
+##### PAGE 2
+i
+CONTENTS
+Page
+ACRONYMS V
+EXECUTIVE SUMMARY 1
+1. INTRODUCTION 1
+1.1 Background 1
+1.2 Study Objectives 1
+1.3 Study Approach and Process 1
+2. SURVEY DATA COLLECTION AND ASSIMILATION 3
+2.1 Data Requirements 3
+2.2 Design of Surveys 4
+2.3 Survey Fieldwork Implementation 5
+2.4 Data Processing and Expansion 6
+2.5 TCS 2022 Database 7
+3. CHARACTERISTICS OF TRIPS MADE WITHIN THE HKSAR BY HONG KONG
+RESIDENTS 8
+3.1 Underlying Household and Demographic Characteristics 8
+3.2 Average Number of Mechanised Trips Made on a Weekday 9
+3.3 Mechanised Trips 9
+3.4 Walk-Only Trips 16
+3.5 Cycling Trips 18
+4. AVAILABILITY AND USAGE OF PRIVATE VEHICLES 19
+4.1 Availability of Private Vehicles 19
+4.2 Factors Affecting Private Vehicle Availability and Decision to Purchase Private Vehicles 20
+4.3 Private Vehicle Usage 20
+4.4 Costs for Operating Private Vehicles 21
+4.5 Electric Vehicle (EV) Usage 22
+5. MAJOR VIEWS AND OPINIONS RELATING TO TRAVELLING 23
+5.1 Factors Affecting the Use of Environmentally-friendly Vehicles 23
+5.2 Major Factors Affecting the Choice of Public Transport Mode 23
+5.3 Impact of Changes in Journey Time have on Peak Period Travel Patterns 24
+5.4 Opinions about Walking and Use of Travellators 25
+5.5 Availability and Usage of Bicycles 25
+5.6 Opinions about Possible Law and Enforcement Measures on Cycling 26
+5.7 Opinions on the Use of Electric Mobility Devices 27
+5.8 Opinions about Dissemination of Transport Information 28
+5.9 Opinions on Measures to Relieve Traffic Congestion and to Improve Pedestrian Facilities30
+5.10 Views of Elderly on Transport Services 31
+5.11 Changes brought about by the pandemic and the popularisation of technology 33
+6. BEHAVIOURAL VALUES OF TIME 35
+6.1 General 35
+6.2 Behavioural Values of Time 35
+7. CHARACTERISTICS OF TRIPS MADE BY VISITORS STAYING IN
+HOTELS/GUESTHOUSES AND SAME-DAY VISITORS 37
+##### PAGE 3
+ii
+7.1 Demographic Characteristics of Inbound Visitors 37
+7.2 Average Number of Mechanised Trips Made by Visitors 38
+7.3 Characteristics of Mechanised Trips Made by Visitors Staying in Hotels/Guesthouses 38
+7.4 Characteristics of Mechanised Trips Made by Same-day Visitors 41
+7.5 Most Popular Sightseeing and Shopping Spots for Visitors Staying in
+Hotels/Guesthouses 42
+8. NEXT STEP 43
+8.1 Application of Data for Transport Model Enhancement 43
+APPENDIX : TABULATIONS
+##### PAGE 4
+iii
+LIST OF TABLES
+Page
+Table E.1 Summary of Demographic Information 2
+Table E.2 Summary of Mechanised Trips Made on a Weekday 3
+Table E.3 Comparison of Private Vehicle Availability in 2011 and 2022 5
+Table E.4 Impact of Assumed Increases in Journey Time have on Travel Behaviour during Peak Periods 6
+Table E.5 Change in Travel Characteristics among JoyYou Card Holders 8
+Table E.6 Behavioural Values of Time by Private Vehicle- Available Household and Trip Purpose 9
+Table 2.1 Fieldwork Period and Enumeration 6
+Table 2.2 Key Data Items in the TCS 2022 Database 7
+Table 3.1 Comparison of Household Population Distribution in 2011 and 2022 8
+Table 3.2 Comparison of Monthly Household Income Distribution in 2011 and 2022 9
+Table 3.3 Comparison of Weekday Mechanised Trips by Trip Purpose in 2011 and 2022 10
+Table 3.4 Major Trip Movements of Mechanised Trips 12
+Table 3.5 Comparison of the Degree of Self-Containment by Area in 2011 and 2022 13
+Table 3.6 Distribution of Boardings by Transport Mode 13
+Table 3.7 Average Number of Boardings per Trip in 2011 and 2022 14
+Table 3.8 Proportion of Boardings Involving Interchanges 14
+Table 3.9 Proportion of Interchanges between Transport Modes 15
+Table 3.10 Proportions of Cycling Trips by Trip Purpose and categorised by Cycling-only Trips and Cycling Trip
+Legs Connecting with Other Modes 18
+Table 4.1 Comparison of PV Availability in 2011 and 2022 19
+Table 4.2 PV Availability by Household Characteristics 20
+Table 4.3 Average Monthly Expenses Incurred in Operating Private Vehicles 21
+Table 5.1 Stated Maximum Acceptable Waiting Time for Public Transport Services 24
+Table 5.2 Impact of Assumed Increases in Journey Time have on the Choice of Transport Mode during Peak
+Periods 24
+Table 5.3 Parking Arrangements of Bicycles 26
+Table 5.4 Respondent’s Usage Pattern (by Using their own Bicycles) within the 3 months preceding the day of
+interview 26
+Table 5.5 Respondent’s Usage Pattern (by Renting Bicycles) within the 3 months preceding the day of interview
+26
+Table 5.6 Support Rates towards Possible Law & Enforcement Measures on Cycling by Whether Respondents
+Knew How to Ride a Bicycle 27
+Table 5.7 Opinions of Respondents on the Adequacy of Transport Information Currently Provided by Public
+Transport Service Operators 28
+Table 5.8 Travel Characteristics among JoyYou Card Holders 32
+Table 5.9 Experience of Using Priority Seats on Public Transport 32
+Table 6.1 Behavioural Values of Time by Private Vehicle Available Household and Trip Purpose 35
+Table 7.1 Proportion of Surveyed Visitors Staying in Hotels/Guesthouses by Country/Region of Primary
+Residence 37
+Table 7.2 Proportion of Surveyed Same-day Visitors by Country/Region of Primary Residence 37
+Table 7.3 Mechanised Trip Rates of Visitors Staying in Hotels/Guesthouses by Trip Purpose in 2011 and 2023 39
+Table 7.4 Mean Journey Time of Mechanised Trips Made by Visitors Staying in Hotels/Guesthouses by Trip
+Purpose in 2011 and 2023 40
+Table 7.5 Proportions of Mechanised Transport Modes Taken by Visitors Staying in Hotels/Guesthouses in 2011
+and 2023 40
+Table 7.6 Same-day Visitors’ Mechanised Trip Rates by Trip Purpose in 2023 41
+Table 7.7 Proportions of Mechanised Transport Modes Taken by Same-day Visitors in 2023 42
+##### PAGE 5
+iv
+LIST OF FIGURES
+Page
+Figure E.1 Most Supported Measures for Relieving Traffic Congestion 8
+Figure E.2 Most Supported Measures for Improving Pedestrian Facilities 8
+Figure 3.1 Comparison of Age Distribution in 2011 and 2022 8
+Figure 3.2 Weekday Mechanised Trips (in ’000) by Trip Purpose 9
+Figure 3.3 Hourly Profiles of Mechanised Trips 11
+Figure 3.4 Distribution of Journey Time of Mechanised Trips 12
+Figure 3.5 Walking Time for Accessing Mechanised Transport Modes 15
+Figure 3.6 Proportions of Walk-Only Trips by Trip Purpose 16
+Figure 3.7 Distribution of Trip-making Time for Walk-Only Trips 17
+Figure 3.8 Journey Time Distribution of Walk-Only Trips 18
+Figure 3.9 Journey Time Distribution of Cycling-Only Trips 18
+Figure 4.1 PV Availability versus Household Income 20
+Figure 4.2 Main Purposes for Private Vehicle Usage 21
+Figure 4.3 Main Reasons for Electric Vehicle Usage 22
+Figure 4.4 Charging Locations for Electric Vehicles 22
+Figure 4.5 Distribution of Electric Vehicles Charging Time 22
+Figure 5.1 Main Reasons for Not Buying Environmentally-friendly Vehicles 23
+Figure 5.2 Interest in Participation in the “One-for-One Replacement” Scheme for Electric Car Purchases 23
+Figure 5.3 Factors Affecting the Choice of Public Transport Mode 23
+Figure 5.4 Maximum Acceptable Walking Time to Access Various Public Transport Facilities 25
+Figure 5.5 Support Rates for Possible Law & Enforcement Measures on Cycling 27
+Figure 5.6 Factors for Consideration in the Legalisation of EMDs 28
+Figure 5.7 Most Essential Facilities Required for Using EMDs 28
+Figure 5.8 Likelihood of Using EMDs upon Legalisation 28
+Figure 5.9 Public Transport Information Considered Most Useful by Respondents 29
+Figure 5.10 Information Considered Most Useful by Motorists 29
+Figure 5.11 Opinions on Information Provided by HKeMobility 30
+Figure 5.12 Most Supported Measures for Relieving Traffic Congestion 30
+Figure 5.13 Most Supported Measures for Improving Pedestrian Facilities 31
+Figure 5.14 Average Monthly Public Transport Expense of the Elderly 31
+Figure 5.15 Changes in the Most Frequently Used Mode of Transport  Before and After Becoming Eligible for the
+Public Transport Fare Concessions 32
+Figure 5.16 Proportion of Respondents Able/Unable to Perform Job Duties at Home 33
+Figure 5.17 Proportion of Working Respondents with Work-from-home Arrangements Before, During and After the
+COVID-19 Pandemic 33
+Figure 5.18 Proportion of respondents engaged in activities online at least once a week before and during the
+COVID-19 pandemic 33
+Figure 5.19 Changes in respondents’ frequencies of conducting online activities 34
+Figure 7.1 Age Distribution of Visitor Respondents 37
+Figure 7.2 Main Purposes of Visit by Hotel/ Guesthouse Visitor Respondents 38
+Figure 7.3 Main Purposes of Visit by Same-day Visitor Respondents 38
+Figure 7.4 Proportions of Visitors’ Mechanised Trips by Trip Purpose 38
+Figure 7.5 Hourly Profiles of Mechanised Trips Made by Visitors Staying in Hotels/Guesthouses 39
+Figure 7.6 Proportions of Same-day Visitors’ Mechanised Trips by Trip Purpose 41
+##### PAGE 6
+v
+ACRONYMS
+AS Attachment Survey
+BCP Boundary Control Point
+C&SD Census & Statistics Department
+CAPI Computer-Assisted Personal Interviewing
+CBTS Cross Boundary Travel Survey
+CTS Comprehensive Transport Study
+EB Employers’ Business
+EMD Electric Mobility Device
+HBO Home-Based Others
+HBS Home-Based School
+HBW Home-Based Work
+HIS Household Interview Survey
+HKSAR Hong Kong Special Administrative Region
+LRT Light Rail Transit
+MTR Mass Transit Railway
+NHB Non-Home Based
+NT New Territories
+PlanD Planning Department
+PLB Public Light Bus
+RDS Railway Development Study
+SP Stated Preference
+SPB Special Purpose Bus
+TCS 2011 Travel Characteristics Survey 2011
+TCS 2022 Travel Characteristics Survey 2022
+TS Tourists Survey
+VoT Value of Time
+##### PAGE 7
+Page E-1
+EXECUTIVE SUMMARY
+E.1 Background
+E.1.1 To drive Hong Kong’s development, the
+Government has continued investing in transport
+infrastructure and transport services, enhancing
+connectivity and accessibility of the transport
+network, refining service quality and passenger
+experience of public transport services,improving
+walking environment as well asstrengthening the
+dissemination of transport information to offer
+more convenient and diversified travel options to
+the public. These measures, coupled with r apid
+social development and continued technological
+advancement, have gradually changed residents’
+travel patterns and choices. Through the travel
+characteristics survey s, the Government has
+gained an in-depth understanding of theimpact of
+these changes on their travel behaviour , which
+paves the way for future transport policies and
+development, such that the measures to be
+implemented can meet the needs of the public.
+E.1.2 The Travel Characteristics Survey 2022
+(TCS 2022) aimed to col lect residents’ travel
+characteristics data for compilation into a
+database. The database will be used for
+subsequent updating and enhancement of the
+Comprehensive Transport Study (CTS) Model
+and other government departments’ transport
+models, as well as providing references for future
+transport planning.  The last TCS was conduct ed
+in 2011 (TCS 2011).
+E.1.3 TCS 2022 comprised 3 main surveys:
+ Household Interview Survey (HIS) – to
+obtain comprehensive household, personal and
+trip data, essential for enhancing the
+CTS Model and providing important
+1 Population figures as at end -2022 were estimated
+based on the 2021 Population Census data.
+information for transport planning. In addition,
+HIS also included 6 attachment surveys on:
+private vehicle usage and expenses; travel
+propensity and walking; usage of bicycles and
+electric mobility devices; transport telematics
+and dissemination of transport information ;
+views of elderly on transport services; and
+emerging lifestyle patterns.
+ Stated Preference (SP) Survey – to assess the
+impact that related parameters have on trip-
+making characteristics (including transport
+mode and route choice) with reference to the
+trip purposes, as well as to derive the
+behavioural values of time.
+ Tourists Survey (TS) – to collect the travel
+characteristics and trip information of visitors
+who stayed in hotels/guesthouses as well as
+same-day visitors.
+To reflect the travel situation upon resumption of
+normalcy of social and economic activities , the
+fieldworks for the HIS and SP surveys were
+conducted between September 2022 and January
+2023. With the progressive recovery of inbound
+tourism, the fieldwork for TS was conducted
+between June and September 2023. All fieldwork
+was suspended during long holidays, such as
+Christmas and New Year. The data collected in
+the surveys were then processed, expanded and
+adjusted based on independent control data.
+E.1.4 Some of the major findings of the surveys
+are summarised in the following paragraphs.
+E.2 Demographic Structure,
+Changes in Transport Facilities
+and Characteristics of Trips
+Made by Hong Kong Residents
+Demographic Information
+E.2.1 The demographic information 1 of Hong
+Kong residents obtained from TCS 2011 and
+TCS 2022 are summarised in Table E.1.
+
+##### PAGE 8
+Page E-2
+Table E.1 Summary of Demographic Information
+Parameter TCS
+2011
+TCS
+2022
+Number of Domestic Households ('000) 2 363 2 695
+Population of Domestic Households
+('000) 6 882 7 334
+Average Domestic Household Size 2.9 2.7
+E.2.2 In total, there were approximately
+2 695 000 domestic households in Hong Kong
+and a population of 7 334 000 persons living in
+these domestic households (hereafter referred to
+as “household population 2 ”) as at end -2022
+according to the data of TCS 2022, representing
+an increase of 14% and 7% respectively as
+compared to 2 011. The average household size
+decreased from 2.9 persons in 2011 to2.7 persons
+in 2022.
+E.2.3 With the continuous new town
+development in the New Territories (NT) ,
+population in the region has increased
+significantly. Between 2011 and 2022,household
+population in NT grew by about 10% (or 349 000
+persons); household population in Kowloon
+increased by about 7% (or 149 000 person s);
+while household population on Hong Kong Island
+decreased by about 4% (or 47 000 persons). The
+proportion of household population in NT
+increased from 52% in 2011 to 54% in 2022.
+E.2.4 With rapid population growth outside the
+urban areas, residents wouldgenerally face longer
+travel distance and time for commuting on
+average. Different age groups would have
+different views on transport and commuting
+demands, which creates new considerations for
+formulating transport policies.
+Relation between Transport Development and
+Changes in Travel Behaviours
+Commissioning of Transport Infrastructure and
+Services
+E.2.5 Since 2011 , a number of large-scale
+transport infrastructure projects have been
+2 This refers to the land -based non -institutional
+population of the HKSAR living in domestic
+households and staying in Hong Kong for at least 1
+month during the 6 months before or after the time of
+enumeration. It covers about 98% of the Hong Kong
+resident population and excludes the population in
+non-domestic households (collective households
+residing in ordinary livi ng quarters and mobile
+households), institutional population, marine
+population and population in hotels/hostels/holiday
+camps.
+completed, including the East Rail Line Cross -
+harbour Extension, Tuen Ma Line, South Island
+Line, Tuen Mun- Chek Lap Kok Tunnel, Central-
+Wan Chai Bypass, Tseung Kwan O - Lam Tin
+Tunnel and Tseng Kwa n O Cross Bay Bridge.
+These facilities have significantly expanded the
+transport network and enhanced the coverage and
+operation efficiency of public transport services.
+The public now has more direct route choices and
+better travel ling experience. With a reduced
+number of interchanges required, travelling has
+become faster and more efficient. Moreover,
+better travelling experience on public transport
+has improved the public’s perceptions of journey
+time and waiting time, leading to a decrease in the
+behavioural value of time , which reflects the
+travel cost of the passengers.
+Improvement of Transport Ancillary Facilities
+E.2.6 According to statistics, the incidence of
+fatal and serious traffic accidents has
+continuously declined, which translates into not
+only greater protection of road users ’ safety but
+also assurance of smooth road traffic , a reliable
+road network and a stable level of vehicle
+insurance premium.
+Improvement of Walking Environment
+E.2.7 Apart from mechanised transport, the
+Government strives to improve walkability and
+promote walking in order to provide more
+comfortable and diverse travel options. Over the
+years since 2011, a host of escalator and elevator
+systems as well as covered walkways have been
+completed, significantly improving the walki ng
+environment and providing the public with a
+stronger incentive to walk longer distances .  In
+2022, about 15% of walk-only trips took more
+than 15 minutes, a marked increase from 8% in
+2011. These findings indicate d increased
+willingness of the public toadopt active transport,
+probably with some mechanised trips already
+switched to walking.
+##### PAGE 9
+Page E-3
+More Transport Information
+E.2.8 The Government disseminat es transport
+information through various means, such as the
+“HKeMobility” mobile application, real-time
+arrival information system, pedestrian wayfinding
+signage, etc. Such information allows the public
+to plan their journeys and choose their modes of
+transport more efficiently, thus making better use
+of their time by reducing the waiting time or in-
+vehicle time. This may affect their decisions on
+trade-offs among travel time /cost and other
+factors (such as level of comfort) made by the
+public.
+Mechanised Trips
+Table E.2 Summary of Mechanised Trips Made on a Weekday
+Item TCS 2011 TCS 2022
+Number of Mechanised Trips ('000)
+Home-Based Work (HBW) 5 022 5 103
+Home-Based School (HBS) 1 351 1 162
+Home-Based Others (HBO) 4 706 5 139
+Non-Home Based (NHB) +
+Employers’ Business (EB) 1 526 959
+Total 12 606 12 363
+Mechanised Trip Rate per Person 1.83 1.69
+Average No. of Boardings per Trip 1.17 1.12
+Mean Journey Time (minutes)
+Private Vehicle and Taxi 26 31
+Public Transport (excluding Taxi) 43 45
+E.2.9 The average total number of mechanised
+trips made by Hong Kong residentson a weekday
+was estimated to be 12 363 000 after adjustments
+to account for trip under -reporting3.  Some of
+these trips involved more than one transport
+mode.
+E.2.10 The average mechanised trip rate on a
+weekday for Hong Kong residents was estimated
+at 1.69 trips per person,representing a decrease of
+8% compared with the 1.83 trips per person
+recorded in TCS 2011. Such reduction in
+3 As some of the trips made, typically those irregular
+or more trivial in nature, would inevitably be forgotten
+or not reported by the respondents during interview,
+according to statistical methods, the expanded trip data
+collected from the survey were compared against
+independent observed data and transport statistics
+available and then adjusted accordingly.
+mechanised trip rate might be attributed to the
+continuous upgrading and evolution of
+information technol ogy development and
+application, with some travel needs gradually
+replaced by online activitie s. In addition, the
+Government’s efforts to improve walking
+environment and connectivity have encouraged
+the public to adopt walking as a mode oftravel, as
+reflected by a drop in average daily public
+transport4 passenger journeys between 2011 and
+2022.
+E.2.11 As regards to trip purposes, the trip rates
+of Home-Based Work (HBW)trips (from home to
+workplace for work or vice versa), and the Home-
+Based School (HBS) trips (from home to school
+for attending lectures/lessons or vice versa) have
+remained relatively stablefor the pasttwo decades.
+These trips in aggregate accounted for about 51%
+of the total mechanised trips made in 2022. HBS
+trips dropped by about 14% between 2011 and
+2022, which might be attributed to the decrease in
+the student population and the emergence of
+online class arrangements.
+E.2.12 Home-Based Others (HBO) trips (trips
+from home to places that are not workplace s (for
+work) or schools (for attendi ng lectures/lessons)
+or vice versa ) increased by about 9% between
+2011 and 2022, slightly higher than the growth in
+household population over that period.  On the
+other hand, the aggregate number of Non -Home
+Based (NHB)trips (not originating from or ending
+at home) and Employers’ Business (EB) trips
+(originating from and ending at workplace)
+decreased by over 37%.  This could be due to
+changes in people’s lifestyles and entertainment
+habits, as well as in the mode of bus iness
+operations in society in recent years.For example,
+emergence of work -from-home arrangement s,
+online meeting s, home-based entertainment and
+food delivery services.
+4 Throughout this report, public transport includes taxi
+unless otherwise stated.
+##### PAGE 10
+Page E-4
+E.2.13 The overall peak hours for mechanised
+trips were 8:00 – 9:00 a.m. and 6:00 – 7:00 p.m.,
+with the two periods re spectively accounting for
+about 13% and 14% of the daily trips made on a
+weekday. Similar peak hours were identified in
+TCS 2011.  42% of the home -to-work trips
+occurred in the morning peak hour at 8:00 – 9:00
+a.m., which was similar to the results in 2011 .
+40% of the work -to-home trips occurred in the
+evening peak hour at 6:00 – 7:00 p.m., which was
+higher than the 34% recorded in 2011.
+E.2.14 With the continuous development of new
+towns in the New Territories ( NT), the average
+travel distance and time for commuting is
+supposed to increase with the growing population
+migrating away from urban areas. However,
+ongoing improvement in tra nsport network and
+services has played an important role inoffsetting
+the increase in overall journey time in the
+territory. In 2022, 48% of the mechanised trips
+were completed within half an hour and 90% were
+completed within an hour for people to travel
+from their trip origins to destinations.  The mean
+journey time was 42 minutes, similar to the 40
+minutes in 2011. The mean journey time for
+public transport (excluding taxi) trips was 45
+minutes, broadly similar to the 43 minutes
+recorded in 2011.
+E.2.15 There has been modest change in cross-
+region trip movements. Between 2011 and 2022,
+only the numbers of trips made between Kowloon
+and NT and within NT showed a marginal growth
+at 1% and 2% respectively.
+E.2.16 New transport connections and services
+have made journeys more direct , with t he East
+Rail Line Cross -harbour Extension standing out
+as an obvious example in recent years.The survey
+revealed that the majority (89%) of the
+mechanised trips made did not require an
+interchange. Thus, the average number of
+boardings per trip decreased from 1.17 in 2011 to
+1.12 in 2022 . The m ore direct public transport
+trips contributed to a slight drop (from 88% to
+86%) in the proportion of boardings by public
+transport.
+E.2.17 As a result of the continuousexpansion of
+the railway network, the proportion of boardings
+by railway , among various public transport
+modes, has increased , with rail remaining the
+most popular transport mode. In 2022, rail
+(including MTR and LRT , excluding tram) and
+franchised bus accounted for 35% and 26%
+respectively of thetotal number ofdaily boardings
+made by Hong Kong residents during weekdays.
+The corresponding figures in TCS 2011 were
+30% and 27% respectively.
+E.2.18 Among various modes of transport,
+boardings by ferry had the highest proportion
+(69%) of involvement of interchanging with other
+modes owing to their catchment areas of services
+being restricted by the coastline and coastal
+waters. On the other side, private vehicle and taxi
+had the lowest percentagesof boardings involving
+interchanges (2% and 4% respectively)because of
+their point-to-point trip nature.
+E.2.19 The mean walking time from trip origin
+to access a mechanised transport mode, or from
+the alighting point of a mechanised transport
+mode to trip destinationwas 5 minutes, withabout
+70% of Hong Kong residents walking 5 minutes
+or less. Over 94% of the interchanges from one
+mode or routeservice to another involved walking
+of 5 minutes or less when transferring between
+modes or service routes , a higher proportion
+compared with 2011. The mean walking time was
+3 minutes, same as the TCS 2011 figure.
+Walk-Only Trips
+E.2.20 In the absence of independent observed
+data on walking movements for control ,
+adjustment to account for the under-reporting of
+walk-only trips could not be made. The
+information on walk-only trips should therefore
+be interpreted with caution and considered
+suitable only for analysing the changes in walking
+behaviour.
+
+##### PAGE 11
+Page E-5
+E.2.21 The average journey time for walk -only
+trips was 12 minutes, representing an increase of
+50% compared with 2011. Some short -to-
+medium distance journeys previously by
+mechanised transport modes might have been
+replaced by walk ing. Among different trip
+purposes, the average journey time for HBW
+walk-only trips was the longest (15 minutes).
+E.2.22 The peak hours for walk -only trips
+occurred at 7:00 – 8:00 a.m. and 1:00 – 2:00 p.m.,
+which accounted for 11% and 13% respectively of
+the daily walk-only trips.
+Cycling Trips
+E.2.23 In the absence of independent statistics
+for control, accurate adjustment to account for the
+under-reporting of cycling trips could not be
+made. The results below should therefore be
+interpreted with extra caution and used as
+indicative reference only.
+E.2.24 88% of the cycling trips were cycling -
+only. In other words, 12% were cycling trips
+involving interchange with other mechanised
+transport modes.  In general, HBO trips accounted
+for the largest proportion ( 56%) of all daily
+cycling trips, followed by HBW trips (35%).
+E.2.25 The majority (8 6%) of the cycling -only
+trips took 30 minutes or less from origin to
+destination.  The mean cycling time was 2 4
+minutes, which was similar to the 25 minutes in
+2011.
+E.2.26 70% of the cycling-only trips and 73% of
+the cycling trip legs connecting with other
+mechanised modes were made within the same
+district.  The highest concentrations of cycling
+trips were found in new towns.
+E.3 Usage of Private Vehicles
+E.3.1 16.3% of the households in Hong Kong
+(or 438 000 households) had private cars
+available for use, with a mean availability of 1.18
+cars per household . 12.9% of these households
+had more th an 1 car. Together, they made up a
+total of 515 000 private cars for local households.
+E.3.2 1.3% of the households in Hong Kong (or
+35 000 households) had motorcycles available for
+use, with a mean availability of 1.15 motorcycles
+per household. Together, they made up a total of
+40 000 motorcycles for local households.
+E.3.3 Overall, 17.2% of households across the
+territory had private vehicles ( including private
+cars and motorcycles) available for use (“ private
+vehicle-available households” or “PV -available
+households”), a higher proportion compared with
+the 15.1% in 2011. The increase could be
+attributed to the rising average household income,
+which enabled more households to consider
+private vehicles as a transport option.
+Table E.3 Comparison of Private Vehicle Availability in 2011
+and 2022
+Area
+Number of
+Private Vehicle-
+Available
+Households
+Proportion of
+Private Vehicle
+Available
+Households
+TCS
+2011
+TCS
+2022
+TCS
+2011
+TCS
+2022
+Hong Kong
+Island 79 000 89 000 18.7% 20.7%
+Kowloon 82 000 104 000 11.3% 12.4%
+New
+Territories 195 000 269 000 16.1% 18.9%
+Total 356 000 463 000 15.1% 17.2%
+E.3.4 According to data observation,
+availability of private vehicles (“ private vehicle
+availability”) was correlated with the travel
+distance or journey time between household
+locations and the urban areas, type of housing
+(which had implications on the availability of
+parking spaces), household income and household
+size.
+E.3.5 Despite the increase in proportion of
+private car -available households, there was a
+decrease in the use of private cars to meet daily
+travel needs due to the expansion of the transport
+network and the increase in various alternative
+transport options . Among the private cars
+available for use by households,42% were mainly
+for recreational and social purposes , while the
+proportion for commuting to/from workwas 25%.
+As for motorcycles, the largest proportion was
+mainly for recreational and social purposes
+
+##### PAGE 12
+Page E-6
+(49%), followed by that for commuting to/from
+work (33%).
+E.3.6 The average total monthly expenses in
+operating a private car and a motorcycle were
+$6,800 and $2,200 respectively (at 2022 prices) ,
+while the corresponding figures obtained from
+TCS 2011 were $5,400 and $1,600 (at 2011
+prices). The increase was consistent with
+economic development and inflationrate.  For the
+monthly expenses incurred in operating private
+cars, parking fee ($ 2,700) constituted the largest
+portion ( around 40%). The relatively small
+increase in fuel and insurance expenses might be
+attributed to the increasing popularity of electric
+vehicles (EVs) and improvement of road safety
+respectively. In addition, as the tunnel toll levels
+remained largely stable between 2011 and 2022 ,
+the averag e toll expenses of motorists were
+basically unchanged.
+E.4 Major Views and Opinions
+Related to Travelling
+E.4.1 As sub-samples of HIS, information was
+also obtained from respondents who were Hong
+Kong residents aged 15 or above, with respect to
+their views and opinions on the transport system
+and factors affecting their travel behaviour. Key
+findings are presented below.
+Environmentally-friendly Vehicles
+E.4.2 Among the sampled households who
+intended to purchase private cars in the next 12
+months after the interview, 56% intended to
+purchase environmentally-friendly vehicles,
+including 46% for electric vehicles and 10% for
+hybrid vehicles. Of those PV -available
+households intending to purchase electric private
+cars within 12 months, 80% would apply for the
+“One-for-One Replacement” (OfO) Scheme.
+E.4.3 Slightly more than half (51%) of the EV-
+available households charged their vehicles with
+facilities at public car parks.
+Factors Affecting the Choice of Public
+Transport Mode
+E.4.4 Topping the list of major factors
+considered by respondents in choosing among
+different public transport modes were travel time,
+convenience of stops and pick-up/drop-off points,
+and travel distance.
+E.4.5 The average time respondents were
+prepared to wait for different types of public
+transport services ranged from 8 to 16 minutes.  In
+general, passengers were prepared to wait the
+longest for ferry services and the shortest for rail
+(including MTR and LRT) and tram services.
+Impact of Changes in Journey Time have on
+Peak Period Travel Patterns
+E.4.6 Respondents were inclined to switch to
+another transport modein the case that the journey
+time of their trips during peak periods (7:00 –
+10:00 a.m. and 5:00 – 8:00 p.m.) was lengthened.
+The survey revealed that 24% of the respondents
+would consider switching to another transport
+mode if the journey time increased by 15 minutes,
+while 59% of respondents would do so when the
+journey time increased by 45 minutes.
+Table E.4 Impact of Assumed Increase s in Journey Time
+have on Travel Behaviour during Peak Periods
+Possible changes
+Assumed Increase in
+Journey Time
+15 min. 30 min. 45 min.
+Make changes to trips 38% 75% 81%
+Switch to other
+transport modes 24% 56% 59%
+Avoid starting trip
+during peak hours 12% 15% 15%
+Change trip origin /
+destination 1% 3% 4%
+Cancel the trip ~0% 1% 3%
+Make no change 62% 25% 19%
+Total 100% 100% 100%
+Walking, Cycling and Electric Mobility
+Devices
+E.4.7 Respondents were generally more willing
+to walk than before. In general, people would be
+willing to walk for a maximum of 12 to 13
+minutes to access various public transport
+facilities and other destinations (e.g. shopping
+malls and restaurants) under outdoor and
+sheltered condition. This represented an increase
+of about 2 minutes compared with the previous
+survey. Also, respondents would be prepared to
+
+##### PAGE 13
+Page E-7
+walk about 1 to 2 minutes longer under air -
+conditioned situation or with the provision of
+travellators/escalators as compared with walking
+under outdoor and sheltered condition. The
+maximum time that respondents were prepared to
+walk showed a general increase compared with
+the previous survey, reflecting that they were
+more willing to consider active transport modes
+than in the past.
+E.4.8 5.1% of the households in Hong Kong (or
+139 000 households) had bicycles available for
+use. As compared with TCS 2011 figures, the
+decrease in households with bicycles available
+might be partially due to the introduction of
+bicycle-sharing services. The percentage of
+households with bicycles available was higher in
+the New Territories.
+E.4.9 65% of Hong Kong residents aged 15 or
+above knew how to cycle.  Of these respondents
+who knew how to ride a bicycle and had bicycles
+available for use, about 38% had used their
+bicycles on weekdays and about 49% on
+weekends or public holidays within the 3 months
+preceding the day of interview.
+E.4.10 Among the surveyed Hong Kong
+residents aged 15 or above who knew how to ride
+a bicycle (regardless of whether they were
+bicycle-available households or not ), about 1%
+had rented a bicycle for recreation/leisure purpose
+on weekdays within the 3 months preceding the
+day of interview, while about 2% had done so on
+weekends or public holidays.
+E.4.11 Among the respondents who had cycled
+within the 3 months preceding the day of
+interview, 83% indicated that they would usually
+cycle on cycle tracks while 10% stated that they
+would usually cycle on carriageways.
+E.4.12 The use of electric mobility devices
+(EMDs) on roads was still prohibited at the time
+of the survey . 56% of respondents had no
+objection to allowing such devices to be used
+legally on cycle tracks at least.
+E.4.13 Majority (80%) of respondents
+considered that sa fety was the most important
+factor for consideration if the use of EMDs was
+permitted and regulated in future.  The remaining
+small portion of respondents opined that factors
+such as “available space on roads”, “compatibility
+among pedestrians, bicycles an d EMDs”, and
+“monitoring of users’ behaviour” were more
+worthy of consideration.
+Dissemination of Transport Information
+E.4.14 Regarding the transport information
+provided by the public transport operators, users
+were generally most satisfied with the routingand
+travel time information and considered that the
+information on fare/concession and interchange
+required improvements.
+E.4.15 The type of public transport service
+information considered most useful by
+respondents for their decision -making in mode
+choice was service frequency/timetable (33%) ,
+whereas motorists saw the information on real-
+time queue length at major congested locationsas
+the most useful (33%).
+E.4.16 The Transport Department’s
+HKeMobility was the third most commonly used
+digital source of transport information following
+Google Maps and public transport operators’
+websites or mobile applications . Overall, users
+gave positive comments on the various types of
+information provided by the HKeMobility
+website or its mobile application. Regular routing
+(e.g. between home and workplace) was the most
+accurate and comprehensive information
+provided by HKeMobility.
+Views on Measures to Relieve Traffic
+Congestion and to Improve Pedestrian
+Facilities
+E.4.17 Assuming that the existing level of
+congestion was to worsen, the measure most
+supported by respondents for relieving traffic
+congestion was to build more roads or railways
+(30%). This is consistent with the Government’s
+strategy of continuing to develop road and railway
+infrastructure to alleviate new travel demands.
+
+##### PAGE 14
+Page E-8
+Figure E.1 Most Supported Measures for Relieving
+Traffic Congestion
+E.4.18 The most supported measure for
+improving pedestrian facilities was the provision
+of covers for walkways (29%).
+Figure E.2 Most Supported Measures for Improving
+Pedestrian Facilities
+Views of the Elderly on Transport Services
+E.4.19 About 30% of the household population
+in Hong Kong were aged 60 or above.  Among
+them, 66% were retire d; 25% were still in the
+5 “Others” include persons of independent means (i.e.
+those who do not have to work for a living) and other
+economically inactive persons (e.g. unpaid religious
+workers and persons who cannot work or do not seek
+work because of permanent sickness or disablement).
+work force ; 8% were homemakers ; and the
+remaining 2% were others5.
+E.4.20 97% of the respondents aged 60 or above
+possessed an Elder Octopus Card or a JoyYou
+Card6. Among them, 50% held Elder Octopus
+Card only, 37% held JoyYou Card only, while
+13% owned both cards.
+E.4.21 10% of the respondents who possessed a
+JoyYou Card said that their average daily number
+of trips made had increased after becoming
+eligible for the public transport fare concessions.
+Table E.5 Change in Travel Characteristics among JoyYou
+Card Holders
+Change in Travel Characteristics
+Proportion of
+JoyYou Card
+Holders
+Increase in average daily number of trips 10%
+Mode choice 4%
+Destination choice 9%
+Route choice 6%
+E.4.22 More than half (61%) of the respondents
+aged 60 or above were satisfied with the comfort
+of priority seats. Moreover, 91% of them
+considered the priority seats easy to locate. 49%
+expressed that they could often find vacant
+priority seats, while 14% indicated that those seats
+were o n many occasions taken up by people
+without a genuine need.
+Emerging Lifestyles
+E.4.23 With the advancement of information
+technology, 31% of employed respondents stated
+that they were able to perform some or all of their
+job duties at home. Of th ose employed
+respondents who were able to perform their job
+duties remotely, 34% reported that they have
+already had a work -from-home arrangement in
+place before the pandemic. During the pandemic
+period, the proportion of having work-from-home
+arrangement stood high at 71%. As for post -
+pandemic, about 61% of respondents stated that
+they would definitely or probably have work-
+from-home arrangements.
+6 From 25 August 2024 onwards, Hong Kong residents
+aged 60 or abovewere required touse the JoyYouCard
+to enjoy the $2 transport fare concession.
+Build more
+roads or
+railways
+30%
+Limit the
+number of
+licences issued
+21%
+Increase car price and usage costs
+13%
+Give more priority to
+road-based public
+transport
+12%
+Restrict
+vehicle entry
+into
+congested
+areas
+5%
+Reorganize franchised
+bus routes
+5%
+Impose peak hour congestion
+charging
+5%
+Others
+9%
+Provide
+covers for
+walkways
+29%
+Widen
+walkways
+17%
+beautifying/greening of walkways
+15%
+Build more footbridges
+and subways
+11%
+Provide more
+escalators or
+elevators at uphill
+districts
+8%
+Provide more air-
+conditioned walkways
+7%
+Pedestrianise more areas
+7%
+Others
+6%
+##### PAGE 15
+Page E-9
+E.4.24 During the pandemic, the respondents
+engaged in various activities online (including
+shopping, patronising food delivery service,
+entertainment, classes/tutorial classes/online
+sports or interest classes and video conferencing)
+more often as compared to pre-pandemic.  In
+particular, the frequencies of online video
+conferencing and patronage of food delivery
+service increased the most.
+E.4.25 Some r espondents would continue to
+conduct the above activities online after the
+pandemic. Around 10% of respondents expressed
+that they expected their frequencies of online
+shopping, patronage of food delivery service and
+video conferencing to continue to increase, which
+would impact on their travel characteristics and
+transport demands.
+E.5 Behavioural Values of Time7
+E.5.1 To assess the preferences of Hong Kong
+residents for time and monetary cost, respondents
+were asked to ans wer multiple-choice questions
+on transport modes based on various
+combinations of monetary cost and travel time.
+Table E.6 Behavioural Values of Time by Private Vehicle -
+Available Household and Trip Purpose
+Trip Purpose
+Behavioural VoT (in Cents/Minute)
+TCS 2011
+(at 2011 Prices)
+TCS 2022
+(at 2022 Prices)
+Private Vehicle-Available Household Member
+HBW 103
+88
+132
+113HBS 72 103
+HBO/NHB 83 101
+Non-Private Vehicle-Available Household Member
+HBW 68
+67
+87
+82HBS 57 68
+HBO/NHB 68 79
+Overall 72 (1) 90
+Note: (1) Based on the Composite Consumer Price Index growth
+(+33%) between 2011 and 2022 , this is equivalent to
+95 cents/minute at 2022 price.
+E.5.2 Comparison between the 2011 and 2022
+results shows an overall increase in the
+behavioural VoT by about 25% in nominal terms,
+7 The behavioural value of time is a quantitative
+measure of the amount of money that trip -makers are
+willing to trade off for unit time saving.
+which fell short of the inflation rate during the
+same period (about 33%).  This implies a 5%
+decrease in real terms in the behaviou ral VoT
+taking into account the real Gross Domestic
+Product (GDP) growth per capita of 9% between
+2011 and 2022.  As some international studies
+found out, this might be attributed to
+improvements of travel conditions (such as
+travelling experience) and peo ple’s ability to
+engage in various activities during travel (e.g.
+work or entertainment through mobile
+communication devices), which indirectly
+changed the willingness and preferences of trip -
+makers to pay extra to shorten the travelling time.
+More compre hensive traffic information also
+enhanced commuters’ ability to plan trips, which
+might in turn impact on their decisions in trading
+off between money and time.  Overall, the
+behavioural VoTs for trips of different purposes
+and different private vehicle av ailability
+categories showed similar trends. The nominal
+growth of behavioural VoTs was marginally
+higher for PV-available household members than
+non-PV-available household members, which
+was particularly evident for HBS trips.
+E.5.3 It should be noted, however, that the
+behavioural VoTs derived from the SP Survey
+could be different from the behaviour of trip -
+makers in reality. The actual values to be adopted
+for transport planning purpose would be subject
+to further review in the calibration of transport
+models under individual research projects in
+future.
+E.6 Characteristics of Trips Made
+on Weekday s by Visitors Staying in
+Hotels/Guesthouses and Same -day
+Visitors
+E.6.1 The highest proportion of visitors staying
+in hotels/guesthouses covered by the TS were
+from the Chinese Mainland/Macau (over 70%).
+Over 90% of same-day visitors covered by the TS
+conducted at the 6 surveyed boundary control
+points (BCPs) were from the Chinese
+Mainland/Macau, among which the highest
+proportion were from Shenzhen, followed by
+Guangzhou and Dongguan.
+##### PAGE 16
+Page E-10
+E.6.2 The main purpose of the visitors staying
+in hotels/guesthouses was sightseeing (39%).
+Entertainment and leisure came second (20%).
+For same-day visitors, their main purpose of visit
+was shopping (25%), followed by sightseeing
+(20%).
+Characteristics of Mechanised Trips Made by
+Visitors Staying in Hotels/ Guesthouses
+E.6.3 The average number of mechanised trips
+made per visitor staying in hotels/guesthouses
+(mechanised trip rate) was 2.48 trips/day, slightly
+higher than the 2.30 trips/day in 2011. This was
+also higher than the average mechanised trip rate
+of Hong Kong residents (1.69 trips/day). It should
+be noted that in the absence of suitable
+independent data for control, no adjustment to
+account for under -reporting was made. The
+results should therefore be interpreted with extra
+caution.
+E.6.4 The peak hours for the mechanised trips
+made by visitors staying in hotels/guesthouses
+occurred at 10:00 – 11:00 a.m. and 8:00 – 9:00
+p.m.  These respectively accounted for about 8%
+and 10% of the total number of their daily trips.
+While these periods did not coincide with the
+Hong Kong residents’ commuting peaks, a
+considerable percentage (8%) of mechanised
+trips made by the visitors staying in
+hotels/guesthouses were record ed during the
+residents’ evening commuting peak at 6:00– 7:00
+p.m.
+E.6.5 The average journey time for mechanised
+trips made by visitors staying in
+hotels/guesthouses was 41 minutes, slightly
+shorter than the 43 minutes in 2011 , and
+comparable to the average journey time for
+mechanised trips made by Hong Kong residents
+(42 minutes).
+E.6.6 Frequency of visitors using public
+transport was higher than that recorded in the
+previous survey . The most popular transport
+mode among visitors staying in
+hotels/guesthouses was MTR (including Airport
+Express) (47%), followed by franchised bus
+(14%) and taxi/ hired car (12%).
+Most Popular Sightseeing and Shopping Spots
+for Visitors staying in Hotels/ Guesthouses
+E.6.7 The three sightseeing spots most visited
+(whether by mechanised transport or walking) by
+tourists staying in hotels/guesthouses were Hong
+Kong Disneyland, Avenue of Stars and The Peak.
+E.6.8 Regarding popular shopping
+centres/malls visited by visitors staying in
+hotels/guesthouses, the districts most visited by
+them was Yau Ma Tei/ Tsim Sha Tsui/ Mong Kok
+(Yau T sim Mong), followed by Wan Chai
+(including Causeway Bay) and Central & Western,
+where some of the major shopping centres/malls
+were located.
+Characteristics of Mechanised Trips Made by
+Same-day Visitors
+E.6.9 The average number of mechanised trips
+made by same-day visitors was 2.51 trips per
+visitor per day. Survey results showed that the
+rates for sightseeing and shopping trips were
+significantly higher than those for other purposes.
+E.6.10 Over 90% ofsame-day visitors arrived at
+their trip destinations in the period between 10:00
+a.m. and 7:00 p.m., while the peak periods for
+their trips occurred during lunchtime (12:00 noon
+– 3:00 p.m.).
+E.6.11 The most popular transport mode among
+same-day visitors was MTR (including Airport
+Express) (52%), followed by franchised bus
+(25%) and taxi/hired car (11%).
+E.6.12 Yau Tsim Mong District generated/
+attracted the most mechanised trips made by
+same-day visitors, followed by Islands and Yuen
+Long Districts.
+
+##### PAGE 17
+Page E-11
+E.7 Way Forward and
+Recommendations
+E.7.1 One of the key objectives of TCS 2022 is
+to provide the latest travel characteristics data and
+information to facilitate future transport planning,
+and to update the CTS Model for forecasting
+traffic conditions.
+E.7.2 With continuous social and economic
+development, people’s travel characteristics as
+identified by TCS 2022 will keep evolving. The
+Government needs to monitor the traffic and
+transport situation on an ongoingbasis and review
+its transport planning and forecast in the light of
+the latest statistical data. The Government has
+observed that as of the first half of 2025, the
+overall usage of roads and transport modes has
+slightly increased when compared to the
+TCS 2022. Taking into account changes in the
+population and visitor numbers during the same
+period, the increase and its distribution were
+generally consistent with expectations, while
+noting that there has been no significant change
+on the residents’ travel behaviour.
+##### PAGE 18
+Page 1
+1. INTRODUCTION
+1.1 Background
+1.1.1 To drive Hong Kong’s development, the
+Government has continued investing in transport
+infrastructure and transport services, enhancing
+connectivity and accessibility of the transport
+network, refining service quality and passenger
+experience of public transport services,improving
+walking environment as well as strengthening the
+dissemination of transport information to offer
+more convenient and diversified travel options to
+the public.  These measures, coupled with rapid
+social development and continued technological
+advancement, have gradually changed residents’
+travel patterns and choices.
+1.1.2 Aiming for an in-depth understanding of
+the impact that these changes have on residents’
+travel characteristics to serve as reference for
+future transport policies and developments, the
+Government has been conducting aterritory-wide
+travel characteristics survey (TCS) about once
+every ten years. Such efforts are to ensure that the
+measures to be implemented can meet the needs
+of the public.  The previous TCS was started in
+2011 (TCS 2011) and completed in 2012.  It
+collected comprehensive information on the
+travel characteristics of Hong Kong residents and
+provided a basis for updating the Government’s
+Comprehensive Transport Study (CTS) Model,
+which has been widely applied in various
+transport and planning studies.
+1.1.3 The Transport Department (TD)
+commissioned Arup (the Consultant) in May 2021
+to undertake the “Enhancement of the
+Comprehensive Transport Study Model –
+Feasibility Study” (the Consultancy Study) under
+Agreement No. CE 76/2020 (TT). The
+Consultancy Study defin ed the scope and data
+requirements of the Travel Characteristics Survey
+2022 (TCS 2022), underpinning future transport
+planning and transport modelling enhancement.
+1.1.4 The planning, organisation and fieldwork
+execution of TCS 2022 were then undertaken
+under service contract TD(T) 5/2021 - “Provision
+of Services for Conducting the Travel
+Characteristics Survey 2022” (the Service
+Contract), which was awarded to MOV Data
+Collection Centre in February 2022.
+1.2 Study Objectives
+1.2.1 TCS 2022 formed an integral part of t he
+Consultancy Study.  It was primarily a data
+collection exercise, the ultimate aim of which was
+to collect relevant up-to-date travel characteristics
+data and develop them into a database for
+subsequent updating and enhancement of the
+CTS Model and other government departments’
+transport models, such as the Highways
+Department’s Railway Development Study
+Model.  Furthermore, the TCS 2022 database will
+facilitate the planning of transport facilities and
+services in future territory-wide and sub-regional
+transport and planning studies.
+1.2.2 The key objectives of TCS 2022 were:
+ To collect up -to-date travel characteristics
+data and informationof Hong Kong residents;
+ To develop a database for transport planning
+and forecast;
+ To assess changes and trends in travel
+characteristics; and
+ To review and make recommendations on the
+approach to conduct future survey updates.
+1.3 Study Approach and Process
+1.3.1 The Consultancy Study consists of four
+phases of work , covering design, tender, data
+collection and data analysis/ reportin g (see key
+tasks below):
+Design Phase
+ Review the parameters of the existing
+CTS Model
+ Identification of data requirements for
+CTS Model and transport planning
+ Outline design of interview surveys
+Tender Phase
+ Preparation of tender documents for the
+Service Contract
+ Determination of evaluation criteria and
+marking scheme
+ Tender assessment and recommendation
+##### PAGE 19
+Page 2
+Data Collection Phase
+(Primary responsibility of the Service Contractor,
+under the supervision and management of the
+Consultant)
+ Establishment of quest ionnaires and
+fieldwork procedures
+ Pilot and main survey fieldwork
+ Quality control
+ Data processing
+ Data checking and verification
+Data Analysis / Reporting Phase
+ Trip data expansion
+ Data analysis and tabulations
+ Recommendations on future survey updating
+strategies
+ Development of TCS 2022 database.
+1.3.2 Following this introductory section, the
+remainder of this Report is structured as follows:
+ Section 2 summarises the processes of survey
+design, fieldwork implementation, data
+processing and database development.
+ Section 3 details the characteristics and
+patterns of the trips made within the Hong
+Kong Special Administrative Region
+(HKSAR) by Hong Kong residents on a
+weekday.
+ Section 4 summarises the private vehicle
+usage patterns of households.
+ Section 5 presents the public’s views and
+attitudes related to travelling.
+ Section 6 summarises the survey results on
+the behavioural value of time of the
+population.
+ Section 7 discusses the characteristics and
+patterns of the trips made within the HKSAR
+by visitors.
+ Section 8 discusses the way forward for the
+use of survey data.
+##### PAGE 20
+Page 3
+2. SURVEY DATA COLLECTION
+AND ASSIMILATION
+2.1 Data Requirements
+2.1.1 The first step of the survey design process
+was to establish what data items were to be
+collected in TCS 2022.  The key objectives were
+to ensure that the data collected will fulfil the
+purposes of future CTS Model re-calibration and
+enhancement, and to facilitate transport planning.
+2.1.2 A thorough review of the existing
+CTS Model structure was undertaken , and the
+possibility of incorporating new features or
+enhancements was also explored, with a view to
+determining data items necessary for the
+derivation of relevant parameters.
+2.1.3 Other transport-related topical data items
+were also reviewed for better understanding the
+public’s views and attitudes towards the transport
+system and their trip -making behaviour.  Having
+regard to factors such as an affordable number of
+questions for respondents, time taken for the
+survey and the budgeted cost, etc., priority for
+questions in this survey was given to those which
+could more effectively collect the required data
+only through TCS 2022.
+2.1.4 Given the possible impact of the pandemic
+and with the aim of facilitating responses by the
+surveyed households, an online survey platform
+was established to provide an alternative channel
+in addition to face -to-face and telephone
+interviews for the selected households to respond.
+1 Private vehicles include private cars and motorcycles.
+2 Mechanised trips refer to any trips involving
+mechanised transport excluding trips made by some
+minor mechanical modes such as goods vehicle for
+personal use, bicycle, golf cart and cable car.
+2.1.5 Resulting from the above review, the data
+items to be collected in TCS 2022 were  as follows:
+ Household and personal characteristics
+ Availability of private vehicles among
+households1
+ Mechanised t rip 2 records on a normal
+weekday which was not a public holiday
+(including locations and activities at
+origin/destination, time, mode, trip purpose,
+interchange locations, etc.)
+ Private vehicle ownership and usage patterns,
+costs and expenses incurred in operating
+private vehicles
+ Parameters affecting the use of park-and-ride
+facilities and environmentally-friendly
+vehicles
+ Potential changes in and factors affecting trip-
+making patterns
+ Factors af fecting walking and use of
+escalators, travellators and elevated walkway
+systems
+ Bicycle ownership, parking and usage patterns
+ Views on legislation and enforcement
+measures on cycling
+ Views on the use of electric mobility devices
+ Views on the d issemination of transport
+information
+ Views of the elderly on transport services
+ The changes in trip-making patterns due to the
+pandemic
+ The changes in trip-making patterns due to the
+emerging lifestyles
+ Views on the development of autonomous
+vehicles
+ Behavioural values of time3 (VoT) in making
+transport-related choices
+ Personal characteristics and trip records of
+visitors staying in hotels/guesthouses and
+same-day visitors
+3 The behavioural value of time is a measure of the
+amount of money that trip-makers are willing to trade
+off with unit time saving.
+
+##### PAGE 21
+Page 4
+2.2 Design of Surveys
+2.2.1 In accordance with the data requirements
+defined above, TCS 2022 comprised the following
+3 main types of surveys:
+ Household Interview Survey (HIS)
+ Stated Preference (SP) Survey
+ Tourists Survey (TS).
+Household Interview Survey (HIS)
+2.2.2 This formed the major part of the data
+collection and would serve as the mainstay of the
+transport model development. The survey
+provided essential information on the travel
+patterns of Hong Kong residents living in domestic
+households, which account for an important part in
+the overall travel demand in Hong Kong.
+2.2.3 A random sample of quarters or segments
+was selected from the data maintained by the
+Census & Statistics Department (C&SD ). A ll
+households within the sampled quarters or
+segments were invited to participate in the survey.
+2.2.4 General trip information and trip -making
+characteristics of all household members and live-
+in visitors aged 2 or above on a reference weekday
+(defined as the last weekday preceding the day of
+interview (Mondays to Fridays, excluding public
+holidays)) were collected as a main part of the HIS.
+Those members aged below2 were excluded as the
+majority of their trips were accompanied by adults
+and had no purpose of their own. Furthermore,
+their trips would not normally be reflected inother
+independent transport statistics.
+2.2.5 Apart from the above trip information,
+household and personal information were also
+collected in order to establish their relations to the
+trip-making characteristics.
+2.2.6 In addition, attitudinal surveys on one of
+the following 6 topics were conducted on sub -
+samples of the HIS in the form of attached
+supplementary surveys ( Attachment Surveys
+(ASs)):
+1. Private vehicle usage and expenses
+2. Travel propensity and walking
+3. Cycling and usage of electric mobility devices
+4. Transport telematics and dissemination of
+transport information
+5. Views of the elderly on transport services
+6. Emerging lifestyles
+2.2.7 With the exception of AS5 , only one
+eligible member within each sub -sampled
+household was enumerated in the ASs.  For AS1,
+the target respondent was the household member
+who was most informed on the household vehicle
+usage and expenses.  For AS2,3, 4 and 6, the target
+respondents were randomly selected household
+members aged 15 or above (excluding domestic
+helpers) and staying in Hong Kong for at least 1
+month during the 6 months before or after the time
+of enumeration.
+
+##### PAGE 22
+Page 5
+2.2.8 In the case of AS5, as the survey focused
+specifically on the aged population, the target
+respondents were all members of the sub-sampled
+households aged 60 or above and staying in Hong
+Kong for at least 1 month during the 6 months
+before or after the time of enumeration (excluding
+domestic helpers).
+Stated Preference (SP) Survey
+2.2.9 The SP Survey was conducted on selected
+HIS sampled household members who se travel
+characteristics matched the SP survey
+stratifications. It involved the application of SP
+technique to assess the impact of various
+parameters affectingthe choices of commuters and
+thus derive the behavioural VoT.
+Tourists Survey (TS) with Visitors Staying in
+Hotels/Guesthouses and Same-day Visitors
+2.2.10 The survey was carried out with visitors
+staying in hotels/guesthouses and with same-day
+visitors at Boundary Control Points(BCPs), with a
+view to collecting their trip-making characteristics
+and trip informationon a weekday, so as to provide
+supplementary information for the tourism model
+and to better understand the transport needs of
+these visitors.
+2.2.11 Regarding the visitors staying in
+hotels/guesthouses, 52 hotels and 20 guesthouses
+out of a list of 287 hotels and 207 guesthouses
+(with more than 10 rooms) compiled from the
+information provided by Hong Kong Tourism
+Board were selected for survey . The sample
+selection was stratified by geographical location,
+tariff group and number of rooms, as appropriate.
+2.2.12 A random sample of visitors were
+approached at the lobby of each of the selected
+hotels/guesthouses for face -to-face interviews
+with the assistance from the hotel management.
+The sample size in each hotel/guesthouse
+depended on the number of rooms therein.
+2.2.13 As for same-day visitors, a random sample
+of same-day visitors were approached for
+interviews at 6 surveyed BCPs4 covering a variety
+of cross-boundary transport modes and catchment
+areas. 1 800 and 400 visitors were successfully
+4 The 6 BCPs selected for same -day visitors survey
+were (1) Hong Kong-Zhuhai-Macao Bridge (HKZMB)
+(2) Hong Kong-Macau Ferry Terminal (3) Express Rail
+Link West Kowloon (4) Shenzhen Bay (5) Lok Ma
+Chau (6) Lo Wu.
+interviewed on weekday s and weekend s
+respectively. The sample size at each BCP
+depended on its flow of same-day visitors.
+2.3 Survey Fieldwork
+Implementation
+2.3.1 The operation, procedures and designed
+questionnaires of theinterview surveys were tested
+through pilot surveys, with necessary refinements
+made, before actual application. The interview
+surveys were suspended during the
+Christmas/New Year holiday period to avoid the
+skewed effect of travel patterns during long
+holidays.
+2.3.2 Web-based Computer-Assisted Personal
+Interviewing (CAPI)technology was employed for
+data collection in the HIS .  During household
+visits, the enumerators brought with them a tablet
+PC and conducted interviews using CAPI
+technology on an online platform , which enabled
+real-time logic checks of answers provided by the
+respondents as well as geo-coding of location s
+through the Digital Map provided by the Lands
+Department. Respondents could also complete
+electronic questionnaires online by themselves via
+the CAPI platform using account information
+provided in t he invitation letters to log in , or
+complete the interview over the telephone with an
+enumerator
+2.3.3 The fieldwork period and enumeration of
+the respective surveys are summarised in
+Table 2.1. In particular, t he TS was conducted
+when visitor numbers had largely returned to
+normal.
+Computer-Assisted Personal Interviewing (CAPI)
+technology was employed in the Household
+Interview Survey
+
+##### PAGE 23
+Page 6
+2.3.4 Strict measures were applied during
+fieldwork to ensure the quality of data. Quality
+control was implemented jointly by the Consultant
+and an independent team of the Service
+Contractor. Apart from thetraining and day-to-day
+supervision of the interviewers, 17% of the
+completed questionnaires were randomly selected
+by independent checkers for back -checking to
+ensure the accuracy of survey data.
+Table 2.1 Fieldwork Period and Enumeration
+Survey
+Enumeration
+(Household/
+Respondent)
+Fieldwork
+Period
+Household Interview
+Survey (HIS)
+(Response Rate: 70%)
+35 325
+households
+Sep 2022 –
+Jan 2023
+Attachment Survey
+(AS)
+1 – Private Vehicle
+Usage & Expenses
+10 112
+respondents
+2 – Travel Propensity
+and Walking
+5 053
+respondents
+3 – Cycling and Usage
+of Electric Mobility
+Devices
+5 104
+respondents
+4 – Transport
+Telematics and
+Dissemination of
+Transport Information
+5 004
+respondents
+5 –Views of the Elderly
+on Transport Services
+5 043
+respondents
+6 – Emerging Lifestyles 5 009
+respondents
+Stated Preference
+(SP) Survey
+3 100
+respondents
+Tourists Survey (TS)
+Jun – Sep
+2023
+Visitors Staying in
+Hotels/Guesthouses
+(Response Rate: 83%)
+2 757
+visitors
+Same-day Visitors
+(Response Rate: 80%)
+2 200
+visitors
+2.4 Data Processing and Expansion
+2.4.1 All the data collected in the interview
+surveys were audited, coded andinput in computer
+format by the Service Contractor. The addresses
+given for fields involving locations such as trip
+origin, destination and interchange locations were
+coded to the Tertiary Planning Unit Street Block
+level.  To ensure the correctness of data entry, all
+data were entered twice into the computer, each by
+different staff member, for verification.
+2.4.2 The input data went through a series of
+validity checks with the computer to identify any
+duplications, omissions, out -of-range values and
+inconsistencies in the data for further verification.
+2.4.3 The data collected from the HIS and from
+the TS with visitors staying in hotels/guesthouses
+were expanded to represent the overall local
+population and the total number of visitors staying
+in hotels/guesthouses .  For the HIS data, two
+stages of expansion were involved , namely
+demographical expansion followed by trip
+expansion.
+2.4.4 Demographical expansion was controlled
+expansion of the data conducted at the household
+and person levels in order to match the total
+population during the survey period. As TCS 2022
+was carried out about one year after the Population
+Census, the refined 2021 Population Census data
+obtained from C&SD andthe total population as at
+end-2022 were adopted as controls for data
+expansion. Household data was stratified by
+district, housing type and household income
+group, while stratification for person data was by
+district, housing type, gender and age group.
+2.4.5 Regarding trip expansion, t he trip data
+records of individuals were expanded according to
+the demographical expansion factors. As there
+might be u nder-reporting of trips by the
+respondents, these expanded results were
+compared against independent observed data or
+transport statistics and then adjusted accordingly.
+In this second stage of expansion, independent
+transport statistics available from various sources
+including traffic counts and oc cupancy data from
+the Annual Traffic Census, ridership statistics for
+individual public transport modes, franchised bus
+and public light bus passenger boarding/alighting
+data, and station-to-station rail passenger matrices,
+were adopted as reference for data adjustment.
+##### PAGE 24
+Page 7
+Independent transport statistics obtained from
+various sources including the Annual Traffic
+Census were adopted for trip data expansion.
+2.4.6 The expanded results suggested that
+overall, in TCS 2022,40% of mechanised trips had
+been under-reported, slightly higher than the 36%
+estimated in TCS 2011. As usual , compared to
+regular trips between home and work or school
+places, other more casual or irregular trips were
+more likely to be forgotten or not reported by the
+respondents.
+2.4.7 It should be noted that the above trip
+under-reporting adjustments could only be made
+for mechanised trips with relevant statistics
+available as controls.  The same approach could
+not be applied to cycling trips or trips made with
+other auxiliary mechanised modes in the absence
+of valid basis for adjustments. These, however,
+constituted only a relatively small proportion of
+the mechanised trips and therefore had no
+significant impact on the overall results.
+2.4.8 For the TS with visitors staying in
+hotels/guesthouses, the data collected were first
+weighted according to the estimated number of
+visitors staying in the sampled hotel s/guesthouses
+during the survey period.  The data were then
+further expanded to represent the territory -wide
+total according to the estimated total number of
+visitors in each sampling stratum, deduced from
+the sampling fraction of hotel/guesthouse rooms in
+the corresponding stratum.
+2.4.9 For the TS withsame-day visitors, the data
+collected wereexpanded torepresent theBCP total
+according to thefigures of total passenger traffic at
+each of the 6 selected BCPs obtained from the
+Immigration Department.
+2.5 TCS 2022 Database
+2.5.1 The adjusted data of the HIS has been
+developed into a comprehensive travel
+characteristics database comprising the following
+key data items of household, personal and trip
+information:
+Table 2.2 Key Data Items in the TCS 2022 Database
+Data Type Key Data Items
+Household
+ Type of Housing
+ Residential Location (in Tertiary Planning Unit
+Street Block)
+ Monthly Household Income
+ Availability of Private Vehicles and Parking
+Details
+Person
+ Gender and Age
+ Economic Activity Status
+ Education Level (for Students)
+ Industry Engaged (for Employed Person)
+ Regular/Mobile Resident Status
+All
+mechanised
+trips made
+on a
+weekday
+ Locations of Trip Origins/Destinations (in
+Tertiary Planning Unit Street Block)
+ Trip Purpose
+ Trip Starting and Ending Time, and Journey
+Time
+ Transport Modes Taken
+ Trip Legs and Interchange Locations
+ Walking Time to Access Mechanised
+Transport and Interchange
+ Waiting Time and Fare for Taxis
+ Occupancy of Private Vehicle/Taxi Journeys
+ Use of Tolled Roads/Tunnels during Private
+Vehicle/Taxi Journeys
+2.5.2 The TCS 2022 database will be adopted as
+the basis for the re-calibration and updating of the
+CTS Model and other government departments’
+transport models and will provide useful reference
+for transport planning in future territory-wide and
+sub-regional studies.
+
+##### PAGE 25
+Page 8
+3. CHARACTERISTICS OF TRIPS
+MADE WITHIN THE HKSAR BY
+HONG KONG RESIDENTS
+3.1 Underlying Household and
+Demographic Characteristics
+3.1.1 Household and person inform ation was
+collected as part of the TCS 2022 HIS mainly for
+deriving the relationship between travel and
+demographic characteristics. The following
+summarises the main demographic data collected
+in the HIS for better understanding the
+respondents’ characteristics and their relations to
+the travel data collected.
+3.1.2 According to the 2021 Population Census
+data provided by C&SDand the total population in
+the territory as at end-2022, there were
+approximately 2 695 000 domestic households
+(households) and a total population of 7 334 000
+therein (household population 5 ).  The average
+household size was 2.7 persons, a drop from the
+figure of 2.9 in 2011.
+3.1.3 A comparison of thehousehold population
+and its geographical distribution by main region
+between 2011 and 2022 is provided in Table 3.1.
+In summary, the household population increased
+by about 7% between 2011 and 2022. Given the
+continuous development of new towns, the main
+population growth during the period occurred in
+the New Territories (NT) , where the h ousehold
+population increased by about 10% (or 349 000
+person). Meanwhile, household population in
+Kowloon grew by about 7% (or 149 000 persons);
+while that on Hong Kong Island decreased by
+about 4% (or 47 000 persons). The proportion of
+household population in NT increased from 52%
+in 2011 to 54% in 2022, leading to an increased
+demand for long-distance commuting.
+5 This refers to the land -based non -institutional
+population of the HKSAR living in domestic
+households and staying in Hong Kong for at least 1
+month during the 6 months before or after the time of
+enumeration. It covers about 98% of the Hong Kong
+resident population and excludes the population in non-
+domestic households (collective households residing in
+ordinary living quarters and mobile households),
+institutional population, mar ine population and
+population in hotels/hostels/holiday camps.
+Table 3.1 Comparison of Household Population Distribution
+in 2011 and 2022
+Area TCS 2011 TCS 2022
+No. (‘000) % No. (‘000) %
+Hong Kong Island 1 231 18 1 184 16
+Kowloon 2 063 30 2 212 30
+New Territories 3 588 52 3 937 54
+Total 6 882 100 7 334 100
+Note: Household p opulation distributions were based on data
+collected in TCS 2011 and TCS 2022.
+3.1.4 Of the total household population of
+7 334 000 persons in 2022, the size of labour force
+increased by about 6%, while the population of
+retirees increased by 45% and that of students
+decreased by 10%, as compared to 2011.
+3.1.5 The key demographic characteristics are
+summarised in Table A.1 in the Appendix by 26
+broad districts commonly adopted for transport
+planning and modelling analysis (see Figure A.1
+in the Appendix for definition of these districts).
+3.1.6 The age distribution of household
+population is one of the key parameters that would
+have a major bearing on the trip -making
+characteristics.  The territory-wide age distribution
+as derived from TCS 2011 and TCS 2022 are
+compared inFigure 3.1, whichshows a shift of the
+peak age group from 45-54 in 2011 to over 64 in
+2022.
+Figure 3.1 Comparison of Age Distribution in 2011 and
+2022
+0%
+5%
+10%
+15%
+20%
+25%
+<8 8-
+11
+12-
+17
+18-
+24
+25-
+34
+35-
+44
+45-
+54
+55-
+64
+> 64
+Proportion of Residents
+Age Group
+TCS 2011
+TCS 2022
+##### PAGE 26
+Page 9
+3.1.7 The comparison of household income in
+TCS 2011 and TCS 2022 is shown in Table 3.2.
+Household incomes generally increased, leading to
+a higher demand for private vehicles. Meanwhile,
+different age groups would have different views on
+travel and commuting demands, raising new
+concerns in formulating transport policies.
+Table 3.2 Comparison of Monthly Household Income
+Distribution in 2011 and 2022
+Item TCS 2011 TCS 2022
+Household Income
+(HK$/month at current prices) % of households
+Less than $10,000 24% 20%
+$10,000 - $19,999 24% 18%
+$20,000 - $29,999 18% 15%
+$30,000 - $39,999 12% 12%
+$40,000 - $49,999 7% 9%
+$50,000 or more 16% 27%
+Overall 100% 100%
+3.2 Average Number of Mechanised
+Trips Made on a Weekday
+3.2.1 The average total number of mechanised
+trips made by Hong Kong residents on a weekday
+was estimated to be 12 363 000 6 after under -
+reporting adjustments.
+On average, 12.363 million mechanised trips were
+made by Hong Kong residents on a weekday in
+2022.
+6 In TCS 2022,as the figures oftourist/visitor trips were
+extremely low as a result of the temporary service
+suspension at some boundary control points during the
+survey period, they were basically excluded from the
+estimated 12 363 000 mechanised trips.
+3.3 Mechanised Trips
+Purpose of Trips
+3.3.1 Trips are categorised into the following
+five trip purposes, based on the nature of the place
+and activity performed at the trip
+origin/destination:
+ Home-Based Work (HBW) – Between home
+and workplace (usual or others) for work.
+ Home-Based School (HBS) – Between home
+and school for attending lectures/lessons.
+ Home-Based Others (HBO) – Between home
+and places other than those for work or for
+attending lectures/lessons. For example, trips
+to/from shopping places , food premise s,
+entertainment/recreational places, trips for
+social visits, etc.
+ Non-Home Based (NHB) – Not start ing or
+ending at home, and not between work places.
+For example, trips from work place or school
+to shopping or other social and recreational
+places.
+ Employers’ Business (EB) – Between work
+places, including trips between different
+offices of the same company; between office
+and other work-related places for such
+purposes as meeting, site visit and fieldwork;
+and between different places to do outdoor
+work or to meet with clients or perform other
+duties as required for some occupations.
+Figure 3.2 Weekday Mechanised Trips (in ’000) by Trip
+Purpose
+HBW 5 103
+(41%)
+HBS 1 162
+(9%)
+HBO 5 139
+(42%)
+NHB+EB  959
+(8%)
+##### PAGE 27
+Page 10
+3.3.2 Among the estimated total of 12 363 000
+mechanised trips made on a weekday, HBW and
+HBO trips accounted for 41% and 42%
+respectively. Regular trips, including HBW and
+HBS, formed the largest proportion , with high
+concentration during peak periods, especially in
+the morning, imposing significant implication for
+transport planners. Together, they totalled
+6 265 000 trips, accounting for 51% of the
+weekday mechanised trip total. The mechanised
+trip productions and attractions by 2 6 broad
+districts and by trip purpose are summarised in
+Table A.2 in the Appendix.
+3.3.3 A comparison of t he trip -making
+characteristics of Hong Kong residents by trip
+purpose in TCS 2011 and TCS 2022 is shown in
+Table 3.3.
+Table 3.3 Comparison of Weekday Mechanised Trips by Trip
+Purpose in 2011 and 2022
+Item TCS 2011 TCS 2022
+Number of Mechanised Trips
+Home-Based Work (HBW) 5 022 000 5 103 000
+Home-Based School (HBS) 1 351 000 1 162 000
+Home-Based Others (HBO) 4 706 000 5 139 000
+Non-Home Based (NHB) +
+Employers’ Business (EB) 1 526 000 959 000
+Total 12 606 000 12 363 000
+Mechanised Trip Rates
+HBW Trips per employed person 1.41 1.36
+HBS Trips per student 1.10 1.05
+HBO Trips per person 0.68 0.70
+NHB+EB Trips per person 0.22 0.13
+Average Daily Mechanised
+Trips per person 1.83 1.69
+7 Throughout this report, public transport includes taxi
+unless otherwise stated.
+3.3.4 Numbers of work (HBW) and school
+(HBS) trips were in line with changes in the
+working and student populations respectively. In
+terms of trip rate, figures for HBW and HBS
+remained relatively stable between 2011 and 2022.
+3.3.5 The HBO trip rate per personregistered an
+increase by some 2% between 2011 and 2022. On
+the other hand, the most notable changes over this
+period were observed for the NHB and EB trips,
+with their combinedtrip rate per person reduced by
+40% between 2011 and 2022. This could be due
+to transformation of economic activities and
+changes in lifestyles, for example, emergence of
+work-from-home arrangement s, online meeting,
+home-based entertainment and patronage of food
+delivery services.
+3.3.6 Overall, the total mechanised trip rate on a
+weekday reduced from 1.83 trips/person in 2011 to
+1.69 trips/person in 2022. The average daily public
+transport7 passenger journeys alsodecreased in the
+same period. The reduction in the mechanised trip
+rate could be attributed to the continuous
+upgrading and transformation of development and
+application of information technology , leading to
+the gradual replacement of some travel needs by
+online activities .  In addition, the G overnment’s
+continuous efforts to improve the walking
+environment and connectivity has encouraged
+residents to adopt walking more as their mode of
+transport.
+In 2022, Hong Kong residents made an average of
+1.69 trips per person on a weekday.
+
+##### PAGE 28
+Page 11
+Trip-making Time8
+3.3.7 Figure 3.3 illustrates the profiles of
+mechanised trips made against different times of a
+weekday for various trip purposes.  The overall
+peak hours for mechanised trips were found to be
+8:00 – 9:00 a.m. and 6:00 – 7:00 p.m., with a large
+proportion of HBW trips. The two peak hours
+accounted for about 13% and 14% of the daily trip
+total respectively . These peak hours remained
+unchanged as compared with TCS 2011.
+3.3.8 Upon further investigation of the trip -
+making time, it was obse rved that 42% of the
+home-to-work trips were made during the morning
+peak hour (8:00 – 9:00 a.m.) while 40% of the
+work-to-home trips were made during the evening
+peak hour (6:00 – 7:00 p.m.), compared to the
+corresponding figures of 41% and 34% in TCS
+2011. While peak spreading for commuters’ travel
+was not evident, the proportion of work-to-home
+trips in the hours after the evening peak period
+slightly increased.
+8 Trip-making time is defined as the mid-point between
+the time of departure at origin and tim e of arrival at
+destination, as cited by the respondent.
+3.3.9 The HBS trips showed a different pattern
+from the HBW trips, with the morning peak hour
+occurring earlier, namely between 7:00 and 8:00
+a.m., and two afternoon peak hours respectively
+lasting from 1:00 to 2:00 p.m. and from 4:00 to
+5:00 p.m.  For the home to school direction, 64%
+of the trips were made during 7:00 – 8:00 a.m.  In
+the opposite direction, 22% and 23%of the school-
+to-home trips were made during 1:00 – 2:00 p.m.
+and 4:00 – 5:00 p.m. respectively.
+3.3.10 Distribution of t he HBO trips was fairly
+even throughout the day from 7:00 a.m. to 1 0:00
+p.m. As for NHB trips, frequency was relatively
+high during 5:00 – 7:00 p.m., reflect ing the peak
+period for after-work and after-school activities.
+Figure 3.3 Hourly Profiles of Mechanised Trips
+0%
+2%
+4%
+6%
+8%
+10%
+12%
+14%
+0000
+0100
+0200
+0300
+0400
+0500
+0600
+0700
+0800
+0900
+1000
+1100
+1200
+1300
+1400
+1500
+1600
+1700
+1800
+1900
+2000
+2100
+2200
+2300
+Proportion of Daily Mechanised Trips
+Trip-making Time (Starting Hour)
+HBW HBS
+HBO NHB+EB
+##### PAGE 29
+Page 12
+Journey Time
+3.3.11 Survey results revealed that about half
+(48%) of the mechanised trips were completed
+within half an hour,41% tookbetween half an hour
+and one hour, while the remaining 10% exceeded
+one hour in duration.  The mean journey time was
+estimated to be 42 minutes, comparable to the 40
+minutes in 2011. With the continuously growing
+population in NT, one would expect the average
+travel distance and time for commuting to increase
+accordingly. However, given the Government’s
+commitment to improving the transport network
+and public transport services, in particular the
+completion of various railway projects over the
+past decade or so, including the extension of Island
+Line to Western District, Kwun Tong Line
+Extension, South Island Line, Tuen Ma Line and
+East Rail Line Cross -harbour Extension ,
+accessibility was significantly enhanced in areas
+along the railway lines, and thus the shortened
+commuting time. As such, the overall journey time
+for commuters was generally maintained at the
+2011 level.
+3.3.12 The journey time distribution categorised
+by the transport modes of private vehicles/taxis
+and public transport (excluding taxis) is presented
+in Figure 3.4. The mean journey time for private
+vehicle/taxi trips was 31 minutes, which was
+longer than the corresponding figure of26 minutes
+in TCS 2011. The mean journey time for public
+transport (excluding taxi) trips w as 45 minutes,
+comparable to the 43 minutes in 2011.
+Figure 3.4 Distribution of Journey Time of Mechanised
+Trips
+3.3.13 Subgroup analysis by trip purpose further
+revealed that HBW trips on average took the
+longest journey time with a mean of 48 minutes.
+In second place was HBS trips with a mean
+journey time of 39 minutes.  Trips for other
+purposes generally had a shorter journey time with
+a mean of about 36 minutes.
+Trip Movements
+3.3.14 The daily number s of trips grouped by
+main regional movements are depicted in
+Table 3.4.
+Table 3.4 Major Trip Movements of Mechanised Trips
+Movement Daily Trips
+(’000)
+% of
+Total
+Growth
+from 2011
+Within Hong Kong Island 1 909 15% -11%
+Between Hong Kong
+Island and Kowloon
+(Cross harbour)
+1 970 16% -4%
+Within Kowloon 2 393 19% -1%
+Between Kowloon and
+NT 2 431 20% 1%
+Within NT 3 658 30% 2%
+Total 12 363 100% -2%
+3.3.15 Between 2011 and 2022, the total numbers
+of trips made between Kowloon and NT and those
+within NTshowed a growth of1% (or 16 000 trips)
+and 2% ( or 70 000 trips) respectively.
+Correspondingly, other regional movements
+decreased by an average of 5% in the same period,
+which was consistent with the changes in
+population distribution.  This could be attributed to
+the continuous development in NT, especially the
+new towns , coupled with their improved
+accessibility resulting from the transport system
+expansion.
+3.3.16 From the perspective of transportation, the
+degree of self-containment refers to the proportion
+of intra-district movements among all trips to/from
+a district and serves as an indicator of trip
+movements. In analysing the degree of s elf-
+containment, the boundaries of main areas are
+defined in the same way as TCS 2011 to facilitate
+comparison.  The TCS 2022 results are presented
+in Table 3.5 and compared against the TCS 2011
+figures.
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+<=15 16-30 31-45 46-60 61-90 91-120 > 120
+Proportion of Total
+Journey Time (minutes)
+Public Transport (excl. Taxi)
+Private Vehicle / Taxi
+##### PAGE 30
+Page 13
+Table 3.5 Comparison of the Degree of Self-Containment by
+Area in 2011 and 2022
+Main Areas 2011 2022
+Hong Kong Island 51% 49%
+Kowloon 41% 41%
+Tsuen Wan/Kwai Tsing 29% 28%
+Tuen Mun 32% 31%
+Yuen Long/Tin Shui Wai 22% 17%
+Fanling/Sheung Shui 19% 13%
+Tai Po 24% 21%
+Sha Tin/Ma On Shan 28% 31%
+Tseung Kwan O 15% 19%
+North Lantau 10% 12%
+3.3.17 Degree of self-containment for Sha
+Tin/Ma On Shan, North Lantau and Tseung Kwan
+O stood at a higher level than in 2011 , as a result
+of the increased provision of facilities in these new
+town developments to support the local
+population.
+3.3.18 In general, HBW trips were likely to
+involve more cross -district travel with
+correspondingly lower degree of self-containment
+as compared with trips for other purposes.  HBS
+trips tended to have considerably higher degree of
+self-containment as schooling f acilities were in
+most cases provided locally within the district to
+serve residents.
+Transport Modes Taken
+3.3.19 Some mechanised trips involved more
+than one boarding, with the use of more than one
+transport mode and/or route service. Table 3.6
+illustrates the distribution of boardings by different
+mechanised transport modes. More detailed
+breakdown of the number of boardings by
+transport mode and by trip purpose are given in
+Table A.3 of the Appendix.
+9 Special Purpose Bus (SPB) includes company bus,
+school bus, resident bus, tourist bus, shuttle bus, cross -
+boundary bus, etc., but excludes public light bus (red or
+green).
+Table 3.6 Distribution of Boardings by Transport Mode
+Mode All
+Purposes HBW HBS
+Rail 35% 40% 32%
+MTR 32% 37% 26%
+LRT 3% 3% 5%
+Franchised Bus 26% 29% 23%
+PLB 11% 10% 11%
+Private Vehicle 14% 10% 6%
+SPB 6% 5% 24%
+Taxi 6% 3% 3%
+Tram 1% 1% 1%
+Ferry 1% 1% 1%
+Total 100% 100% 100%
+3.3.20 The most popular transport mode wasrail,
+accounting for 35% of the total boardings for all
+trip purposes. In second place was franchised bus
+(26%). Compared to 30% (rail) and 27%
+(franchised bus) respectively in 2011 , the 2022
+figures indicated a significant increase in mode
+share of rail as a result of the expansion of the
+railway network.
+3.3.21 Around 40% of boardings for HBW trips
+were by rail, followed by franchised bus at 29%.
+For HBS trips, the most popular mode used was
+also rail (32%), followed by franchised bus (23%)
+and Special Purpose Bus (SPB) 9 (24%) which
+included school buses.
+Rail patronage increasing considerably over the
+recent years.
+
+##### PAGE 31
+Page 14
+3.3.22 Private vehicle boardings accounted for
+14% of the overall totalboardings.  In other words,
+the remaining 86% pertained to public transport,
+close to the 88% in 2011. The more direct public
+transport trips reduced the need for interchanges ,
+resulting in a drop in the proportion of total
+boardings by public transport modes to some
+extent. An obvious example in recent years wasthe
+East Rail Line – Cross- harbour Extension, which
+provided more direct cross -harbour public
+transport services to residents.
+Interchanges between Transport Modes
+3.3.23 For a mechanised trip involving the use of
+more than one mode of transport or route service
+from origin to destination , each mechanised
+segment of the trip is referred as a “mechanised
+trip leg” 10. The survey found that the majority
+(89%) of mechanised trips made daily involved
+only one mechanised trip leg. About 11%
+comprised two mechanised trip legs and less than
+1% comprised three or more mechanised trip legs.
+3.3.24 The average number of mechanised trip
+legs per trip (or average number of boardings per
+trip) is a measure of the actual frequency of
+interchanges made between modes or different
+route services of the same mode.  These figures as
+distinguished by trip purpose are presented in
+Table 3.7, with the TCS 2011 figures alongside
+for comparison.
+Table 3.7 Average Number of Boardings per Trip in 2011 and
+2022
+Trip Purpose 2011 2022
+HBW 1.23 1.16
+HBS 1.17 1.11
+HBO 1.14 1.09
+NHB + EB 1.10 1.08
+Total 1.17 1.12
+3.3.25 Overall, the average number of boardings
+per trip was 1.12 in 2022, representing a dropfrom
+the value of 1.17 in 2011. With the exclusion of
+private vehicle and taxi trips, the average number
+of boardings per public transport trip was 1.15,
+compared to 1.22 in 2011, indicating that residents
+10 A trip leg is a segment of a trip, in which only one
+mode or route service of transport is involved, including
+walking.  A mechanised trip leg is a trip leg made by
+means of mechanised transport.  It generally involves
+one boarding and one alighting, exce pt for interchange
+between MTR lines within the MTR fare zone , where
+the whole MTR journey is treated as one mechanised
+trip leg.
+could take more direct routes to the destination
+than before.
+3.3.26 Among different trip purposes, HBW trips
+had the highest average number of 1.16 boardings
+per trip.  This could be attributed to the generally
+longer distance involved in such trips.
+3.3.27 Table 3. 8 shows the number s and
+proportions of boardings by individual modes that
+involved transfer/interchanges to other modes or
+route services. Ferry was found to be the mode
+having the highest proportion (69%) of boardings
+involving interchange, followed by LRT ( 35%)
+and PLB ( 35%). The private vehicle and taxi
+modes, on the other hand, involved the smallest
+proportion of interchanging trips due to theirpoint-
+to-point transport nature.
+Table 3.8 Proportion of Boardings Involving Interchanges
+Mode
+Total
+Boardings
+(’000)
+Boardings Involving
+Interchanges
+Number
+(’000) Proportion
+Rail 4 805 1 228 26%
+MTR 4 375 1 077 25%
+LRT 430 151 35%
+Tram 137 17 13%
+Ferry 98 67 69%
+PLB 1 575 556 35%
+Franchised Bus 3 657 692 19%
+Private Vehicle 1 932 38 2%
+Taxi 838 37 4%
+SPB 780 208 27%
+3.3.28 Among the approximately 1 475 000
+interchanges made on a weekday, the proportion s
+of different combinations of interchanges varied,
+as presented in Table 3.9.  The largest proportion
+of interchanges were made between MTR and
+public light bus (PLB) (28%), followed by that
+between MTR and franchised bus (23%).
+Interchange between MTR and special purpose
+bus (SPB) and that between different franchised
+bus routes accounted for 12% and 7% of the daily
+total number of interchanges respectively.
+##### PAGE 32
+Page 15
+Table 3.9 Proportion of Interchanges between Transport
+Modes
+From Mode To Mode
+1 2 3 4 5 6 Total
+1. MTR - 5% 14% 11% 6% 3% 39%
+2. LRT 4% - - - - - 5%
+3. PLB 14% - 1% 3% - - 19%
+4. Franchised Bus 12% - 3% 7% 1% 1% 25%
+5. SPB 6% - - - - - 7%
+6. Others 2% - - 1% - 2% 6%
+Total 39% 5% 19% 23% 7% 7% 100%
+Note:
+1. “-” denotes percentage less than 0.5% or no interchange
+record.
+2. “Others” include tram, ferry, private vehicle, taxi and other
+minor modes.
+3. Due to rounding, the percentages may not add up to 100%.
+Walking time to Access and Interchange
+between Mechanised Modes
+3.3.29 The following summarises the findings on
+the walking time taken for a trip leg starting at the
+origin (from trip origin to the location where the
+first mechanised transport was taken) or ending at
+the destination (from the location where
+passengers alighted from the last mechanis ed
+transport to trip destination) as well as that taken
+for interchang ing (between different modes or
+route services , when more than one mechanised
+trip leg was involved).
+3.3.30 The walking time involved in such
+walking trip legs to access or interchange between
+mechanised modes of transport is depicted in
+Figure 3.5.  In general, walking duration of trip
+legs starting at the origin was very close to that of
+trip legs ending at the destination, with about 70%
+of these walking trip legs taking only 5 minutes or
+less.  The mean walking time was 5 minutes.
+Figure 3.5 Walking Time for Accessing Mechanised
+Transport Modes
+3.3.31 Survey results revealed that the walk ing
+trip legs for interchanging between mechanised
+transport modes had a shorter duration, with over
+94% completed within 5 minutes , a higher
+proportion compared with 2011.  The mean
+walking time for interchanging between
+mechanised transport services was 3 m inutes,
+unchanged from the 2011 figure.
+3.3.32 Among various transport modes, f erry
+generally involved the longest walking time for
+access (mean walking timeat 8 minutes), followed
+by MTR (mean walking time at 7 minutes).  The
+shortest walking time involved was for private
+vehicles and taxis (mean walking time at 3
+minutes).
+3.3.33 Survey results also showed that
+interchanges between transport modes were
+generally convenient , with the average walking
+time involved well below the range of 12 to 1 3
+minutes, which was the maximum acceptable
+walking time to access various transport facilities
+(under outdoor and sheltered condition) as
+indicated by respondents in AS2 (see Paragraph
+5.4.1).
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+< 3 3-5 6-10 11-15 16-20 > 20
+Proportion of Total
+Origin End
+Destination End
+Interchange
+Walking Time (minutes)
+##### PAGE 33
+Page 16
+3.4 Walk-Only Trips
+3.4.1 Since 2011 , the Government has been
+striving to improve walkability, promoting
+walking and mak ing travel options more
+diversified. As a result of the progressive
+completion of various escalator/elevator systems
+and covered walkways , the walking environment
+has been notably improved . In order to have a
+more comprehensive u nderstanding on the walk -
+only trip patterns in the territory, relevant data
+were collected in the HIS main surveyduring TCS
+2022. The data of walk-only trips and mechanised
+trips with walking trip legs made by respondents
+within a period of 24 hours were captured in the
+HIS main survey.
+3.4.2 Walk-only trips referto trips during which
+respondents travelled from the origin to the
+destination solely by walking.  For the segments of
+a trip where the trip -maker walked between the
+origin/destination and other mechanised modes of
+transport or between mechanised trip legs for
+interchange, they were considered as walk ing trip
+legs (see Paragraph 3.3.29 to 3.3.33) rather than
+walk-only trips.
+Heavy pedestrian movements in Causeway Bay
+3.4.3 The walk-only trip records collected from
+the HIS main survey were expanded based on
+demographic data only . In the absence of
+independent observation data for control , no
+under-reporting adjustments were made. The
+results presented for the walk -only trips sho uld
+therefore be used and interpreted with care,
+recognising that they could be subject torelatively
+high rate of under-reporting given their nature.
+Purpose of Walk-only Trips
+3.4.4 It was estimated from the survey results
+that HBO trips accounted for thelargest proportion
+(54%) of the daily walk-only trips.  It was followed
+by NHB and EB trips combined which accounted
+for 17% of the daily total, slightly higher than their
+contribution to mechanised trips. These trips
+constituted the majority of the walk-only trip total
+as they were usually short-distance trips, e.g. those
+for shopping or dining out etc., which were likely
+to be within walking distance.
+Figure 3.6 Proportions of Walk-Only Trips by Trip
+Purpose
+3.4.5 In contrast, HBW and HBS trips
+constituted a relatively small proportions of the
+total walk-only trips (each accounted for 15%).
+HBW (15%)
+HBS (15%)
+HBO
+(54%)
+NHB+EB (17%)
+##### PAGE 34
+Page 17
+Trip making Time11 of Walk-only Trip
+3.4.6 The survey collected data on trip-making
+time and origin/destination locations for all walk-
+only trips . Figure 3.7 shows the distribution of
+trip-making time for walk -only trips by trip
+purpose.
+3.4.7 Unlike mechanised trips, t he peak hours
+for walk-only trips occurred earlier at 7:00 – 8:00
+a.m. (11%) and 1:00 – 2:00 p.m. (13%)
+respectively. A relatively large proportion of
+walk-only trips (46%) were HBS trips during the
+morning peak hour.
+3.4.8 For the afternoon peak hour, about half of
+walk-only trips (48%) were NHB and EB trips.
+This could be due to theheavy pedestrian activities
+around lunchtime when the working population
+and students went out for lunch or other activities.
+11 Trip-making time is defined as the mid-point
+between the time of departure at origin and time of
+arrival at destination, as cited by the respondent.
+3.4.9 Analysed by trip purpose, p eak hours for
+HBW walk -only trips were the same as th at for
+mechanised trips, i.e. at 8:00 – 9:00 a.m. and 6:00
+– 7:00 p.m. The HBS walk-only trips showed two
+distinct peak hours at 7:00 – 8:00 a.m. and 1:00 –
+2:00 p.m., which coincided with the overall peak
+hours of walk-only trips.
+3.4.10 HBO walk-only trips generally spread out
+evenly throughout the day , with higher
+concentration observed between 7:00 a .m. and
+4:00 p.m.
+Figure 3.7 Distribution of Trip-making Time for Walk-Only Trips
+0%
+2%
+4%
+6%
+8%
+10%
+12%
+14%
+0000
+0100
+0200
+0300
+0400
+0500
+0600
+0700
+0800
+0900
+1000
+1100
+1200
+1300
+1400
+1500
+1600
+1700
+1800
+1900
+2000
+2100
+2200
+2300
+Proportion of Daily Walk-Only Trips
+Trip-making Time (Starting Hour)
+HBW HBS
+HBO NHB+EB
+##### PAGE 35
+Page 18
+Walk-only Trip Journey Time
+3.4.11 About 64% of the walk-only trips took 10
+minutes or less , while the remaining 36% took
+more than 10 minutes . Journey time distribution
+of walk-only trips is illustrated in Figure 3.8. The
+mean journey time for all walk -only trips was
+about 12 minutes. About 15% of the trips took
+more than 15 minutes, showing a significant
+increase as compared tothe 8% in 2011. Such data
+indicate an increased willingness among the public
+to adopt walking as the mode of transport ,
+probably with some short -to-medium distance
+trips already switched from mechanised transport
+modes to walking.
+Figure 3.8 Journey Time Distribution of Walk-Only Trips
+3.5 Cycling Trips
+3.5.1 As with mechanised trips, data on cycling
+trips made by respondents on a reference weekday
+were collected in the HIS.  Theseincluded cycling-
+only12 trips and cycling trip legs connecting with
+other mechanised modes of transport.
+3.5.2 It should be noted that in the absence of
+independent statistics for control, the survey data
+on cycling trips were expanded assuming thesame
+extent of under -reporting as that for mechanised
+trips.  Such an approach was likely to under -
+estimate the extent of under -reporting, given the
+mostly leisurely nature of the cycling trips.
+Furthermore, the number of daily cycling trips
+could be subject to significant variation due to
+such factors as weather conditions . The results
+presented herein on cycling trips should therefore
+be used and interpreted with care.
+3.5.3 Table 3.10 shows the proportions of
+cycling trips by trip purpose and categorised by
+cycling-only trips and cycling trip legs. 88% of the
+12 A cycling -only trip is one where the respondent
+travelled from the origin to the destination only by
+cycling, without involving any other mechanised
+transport mode.
+cycling trips were cycling -only while only 12%
+were cycling trip legs connecting with other
+mechanised transport modes.  Overall, HBO trips
+accounted for the largest proportion (56%) of the
+daily cycling trips, followed by HBW trips (35%).
+Table 3.10 Proportions of Cycling Trips by Trip Purpose and
+categorised by Cycling-only Trips and Cycling Trip
+Legs Connecting with Other Modes
+Type HBW HBS HBO NHB +
+EB Total
+Cycling-Only
+Trips 27% 4% 52% 5% 88%
+Cycling Trip
+Legs 8% 1% 4% 0% 12%
+Total 35% 4% 56% 5% 100%
+3.5.4 The journey time distribution of cycling -
+only trips is shown in Figure 3.9. Journey time
+information for cycling trip legs was not available
+as the survey did not require respondents to
+provide breakdown of journey time into individual
+trip legs. The majority (86%) of the cycling-only
+trips took 30 minutes or less from origin to
+destination.  The average cycling time was 24
+minutes, comparable to the 25 minutes in 2011.
+Figure 3.9 Journey Time Distribution of Cycling-Only Trips
+3.5.5 Cycling trips were usually short. 70% of
+the cycling-only trips and 73% of the cycling trip
+legs connecting with other mechanised modes
+started and ended within the same district.  The
+highest concentrations of cycling trips were found
+in new towns like Fa nling/Sheung Shui, Tai Po,
+Tuen Mun, Tseng Kwan O, Southwest NT (oth er
+areas), Sha Tin and Yuen Long, given the general
+availability of more comprehensive cycling
+facilities there.
+0%
+20%
+40%
+60%
+80%
+<=10 11-15 16-20 21-30 >30
+Porportion of Total
+Journey Time (minutes)
+0%
+10%
+20%
+30%
+40%
+<=10 11-20 21-30 31-45 46-60 >60
+Porportion of Total
+Journey Time (minutes)
+##### PAGE 36
+Page 19
+4. AVAILABILITY AND USAGE OF
+PRIVATE VEHICLES
+4.1 Availability of Private Vehicles
+4.1.1 Availability of private vehicles 13 (PV
+availability14) for household s was one of the key
+data items collected in the HIS, as it is a major
+factor affecting the travel characteristics of the
+household members.  The survey recorded the
+number of private vehicles available for use by the
+sampled households.
+4.1.2 In 2022, 17.2% (or 463 000) of the
+households in the territory had private vehicles
+available for use (PV -available households).
+Among these PV-available households, the
+majority (85%) had 1 private vehicle and the
+remaining 15% had 2 or more private vehicles.
+4.1.3 Comparison of the results of TCS 2022
+against those of TCS 2011 in Table 4.1 revealed
+an increase in the number of PV-available
+households in the territory by 30% (or 106 000
+households). Meanwhile, the total number of
+households increased by about 14% (from
+2 363 000 to 2 695 000) over the same period.The
+proportion of PV-available households increased
+from 15.1% in 2011 to 17.2% in 2022. This may
+be due to the increase in average household
+income, which enabled more households to
+consider private vehicle as a transport mode
+option.  Among the PV -available households, the
+proportion of those with more than 1 private
+vehicle also increased as compared with 2011.
+17.2% of households in Hong Kong had private
+vehicles available for use.
+13 Private vehicles include private cars and motorcycles.
+Table 4.1 Comparison of PV Availability in 2011 and 2022
+Area
+Number of
+PV-Available
+Households
+Proportion of PV-
+Available
+Households in
+the Total Number
+of Households
+2011 2022 2011 2022
+Hong Kong
+Island 79 000 89 000 18.7% 20.7%
+Kowloon 82 000 104 000 11.3% 12.4%
+New Territories 195 000 269 000 16.1% 18.9%
+Total 356 000 463 000 15.1% 17.2%
+With 1 private
+vehicle 315 000 396 000 13.3% 14.7%
+With >1 private
+vehicles 42 000 67 000 1.8% 2.5%
+4.1.4 Comparison of PV availability by the
+three main areas shows that the percentage of PV
+availability increased across the territory between
+2011 and 2022, with the proportion growth in NT
+being the greatest. PV availability in Kowloon
+remained the lowest among the 3 areas while that
+on Hong Kong Island was the highest , probably
+due to the higher household income there.
+4.1.5 Breaking down the figures by vehicle
+type, the survey found that 16.3% (or 438 000) of
+the households had private cars availabl e for use,
+among which the mean availability was 1.18 cars
+per household. It could therefore be inferred that
+a total of 5 15 000 private cars were available for
+use by households in Hong Kong. This inferred
+figure was seen to be in close alignment with th e
+number of private cars licensed(about 570 000) as
+at the fourth quarter of 2022, given that some of
+the private cars were licensed under company
+names for business purpose.
+14 PV availability refers to the number of private
+vehicles available for the use by one or more members
+of the household most of the time.  These vehicles are
+not necessarily owned by the household or its member(s)
+and can be privately owned or company - owned.
+However, company-owned vehicles solely for company
+use and not for work commute and/or personal purpose
+by household members are not included.
+
+##### PAGE 37
+Page 20
+4.1.6 As for motorcycles, 1.3% (or 35 000) of
+households had motorcycles available for use, with
+an average availability of 1.15 motorcycles per
+household.  A total of 40 000 motorcycles were
+estimated to be available for household use
+territory-wide.  This was lower than the number of
+motorcycles licensed (about 75 000) but was
+deemed reasonable, given that a good proportion
+of the motorcycles were primarily used for
+commercial purpose and not available for
+household use.
+4.1.7 A summary of PV availability by vehicle
+type across the 26 broad districts is provided in
+Table A.4 of the Appendix.  It indicates that
+private vehicle availability was highest in
+Southeast NT (Other Area) (52%), Northeast NT
+(Other Area) (40%), Northwest NT (Other Area)
+(39%), Wan Ch ai (including Happy Valley,
+Jardine’s Lookout and Stubbs Road areas) (28%),
+Ma On Shan (22%), Central and Western District
+(21%) and Southern District (21%), which could
+be attributed to the remoteness or the higher
+household income in these districts.
+4.2 Factors Affecting Private
+Vehicle Availability and
+Decision to Purchase Private
+Vehicles
+4.2.1 It can be deduced from the above
+paragraph and the analysis in Figure 4.1 and
+Table 4.2 that PV availability has a strong
+relationship with the following household
+characteristics:
+ Remoteness of residence from urban areas and
+the availability of convenient public transport
+modes (see Table A.4 of the Appendix)
+ Household income
+ Housing type
+ Household size
+Figure 4.1 PV Availability versus Household Income
+Table 4.2 PV Availability by Household Characteristics
+Household
+Characteristics
+Private
+Car
+Motor-
+cycle
+Private
+Vehicle (1)
+Housing Type
+Public Rental Housing 4.5% 1.2% 5.5%
+Subsidised Sale Housing 10.8% 1.7% 12.1%
+Private Housing 24.4% 1.3% 25.1%
+Household Size (Persons)
+One 6.4% 0.7% 7.0%
+Two 13.1% 1.2% 13.9%
+Three 17.1% 1.6% 18.2%
+Four 23.9% 1.6% 25.0%
+Five or more 33.5% 1.7% 34.7%
+Monthly Household Income
+Less than $10,000 3.5% 0.3% 3.7%
+$10,000 - $19,999 5.1% 0.8% 5.9%
+$20,000 - $29,999 9.4% 1.5% 10.6%
+$30,000 - $49,999 15.6% 1.8% 17.0%
+$50,000 or more 37.1% 1.9% 38.1%
+Overall 16.3% 1.3% 17.2%
+Note: (1) Private vehicles include private cars and motorcycles.
+4.3 Private Vehicle Usage
+4.3.1 The AS1 looked into the main purposes of
+private vehicle usage by PV-available households.
+The results by vehicle type are set out in
+Figure 4.2, which indicate that the usage of
+private vehicles was primarily for recreational and
+social purposes , and for travell ing to and from
+work.
+0%
+5%
+10%
+15%
+20%
+25%
+30%
+35%
+40%
+< $10,000 $10,000 -
+$19,999
+$20,000 -
+$29,999
+$30,000 -
+$49,999
+$50,000
+or more
+Proportion of Households
+Household Income
+with Motorcycle(s) Only
+with 1 Private Car
+with 2+ Private Cars
+##### PAGE 38
+Page 21
+4.3.2 Despite the increase in proprotion of PV-
+availabe households, there was a decrease in the
+use of private cars to meet daily travel needs due
+to the expansion of the transport network and the
+increase in various alternative transport options.
+Between 2011 and 2022, there was a 10% increase
+in the use of private cars for “recreational and
+social purposes” (from 32% to 42%), while the use
+for “commuting to and from work” decreased by
+6% (from 31% to 25%).  The proportion of usa ge
+for other purposes remained relativly stable.
+4.3.3 Over 82% of motorcycle were mainly
+used for “recreational and social purposes” and
+“commuting to and from work” . The main
+purpose of motorcycle usage in 2011 was
+“commuting to and from work” (54%) . It shifted
+to “recreational and social purpose s” (49%) in
+2022.
+Figure 4.2 Main Purposes for Private Vehicle Usage
+4.4 Costs for Operating Private
+Vehicles
+4.4.1 Detailed information was obtained from
+PV-available households about the average
+monthly expenses incurred in operating their
+vehicles. Table 4.3 summarises the average
+monthly expenses, categorised by expense item
+and vehicle type.
+Table 4.3 Average Monthly Expenses Incurred in Operating
+Private Vehicles
+Average Monthly Expenses Private
+Car Motorcycle
+Parking Fee $2,700 $700
+Fuel Cost $2,200 $830
+Repair/Maintenance Cost $560 $280
+Toll Expenses $440 $150
+Insurance Premium $320 $130
+License Fee $570 $110
+Total Monthly Expenses (2022) $6,780 $2,180
+Total Monthly Expenses (2011) $5,370 $1,570
+Note: Monetary values above are expressed in nominal terms (i.e.
+money-of-the-day).  Between 2011 and 2022, the Composite
+Consumer Price Index increased by 33%.
+4.4.2 In 2022 , the average total monthly cost
+incurred by a private car wasabout $6,780, almost
+3 times the $2,180 for a motorcycle. There was an
+increase by 26% in the private car operating cost
+between 2011 and 2022, and a 39% increase in the
+case of motorcycles. Taking into account inflation
+rate and economic development , such rates of
+increase were reasonable.
+4.4.3 Among the expense items for private cars,
+parking fee constituted the largest portion (40%)
+of the total expenses, followed by fuel cost (32%).
+As for motorcycles, fuel cost constituted the
+largest portion (38%) of the total expenses,
+followed by parking fee (32%). In spite of the
+small proportion of electric vehicle (EV) samples
+captured in this survey, responses from EV users
+indicated that their fuel expenses were
+significantly lower than those for other vehicles.
+4.4.4 Compared with the survey results in
+2011, parking fee saw the most notable increase,
+following a trend similar to that of the rental index
+for the Hong Kong property market.The relatively
+small increase in fuel and insurance expenses
+might be attributed to the increasing popularity of
+EVs and improvement of road safety respectively.
+In addition, as the tunnel toll levels remained
+largely stable between 2011 and 2022, the average
+toll expenses of motorists were basically
+unchanged.
+4.4.5 The survey found that the majority (over
+85%) of the vehicles available for household use
+were not entitled to any company subsidy on the
+related expenses. Overall, company subsidy
+covered about 6% of the average total expensesfor
+private cars, and even less (about 2%) f or
+motorcycles.
+10%
+25%
+2%
+5%
+42%
+16%
+15%
+33%
+1%
+~0%
+49%
+1%
+0% 10% 20% 30% 40% 50% 60%
+For work-related
+purpose
+Commuting to and
+from work
+Transporting
+personal items
+Shopping
+Recreational and
+social purposes
+Providing transport
+for family/friends
+Proportion of VehiclesPrivate car
+Motorcycle
+##### PAGE 39
+Page 22
+4.5 Electric Vehicle (EV) Usage
+4.5.1 7% (or around 32000) of the PV-available
+households had EVs. Nearly half (47%) ofthe EV-
+available households stated that the main reason
+for using EVs was to be environmentally friendly
+(47%).  Other major re asons included lower fuel
+and licencing costs (18%) and households’
+aspiration to try new technology (1 5%).  Detailed
+results are presented in Figure 4.3.
+Figure 4.3 Main Reasons for Electric Vehicle Usage
+4.5.2 Slightly more than half (51%) of EV -
+available households charged their vehicles at
+facilities provided in public car parks. The other
+half (49%) used the facilities provided in
+residential car parks, with 39% in car parks of their
+private residential buildings or housing estates and
+10% at self -installed facilit ies at their village
+houses. Relevant survey results are illustrated in
+Figure 4.4.
+Figure 4.4 Charging Locations for Electric Vehicles
+4.5.3 The distribution of average charging
+time (i.e. average time spent at a charging facility
+each time, not necessarily the time required for a
+full charge) is depicted in Figure 4.5. About half
+of the respondents charged their EVs for less than
+2 hours each time.
+Figure 4.5 Distribution of Electric Vehicles Charging Time
+4.5.4 More than half (54%) of EV -available
+households expressed that they would only be
+assured to drive when their EVs were sufficiently
+charged to sustain driving for 100 kilometres or
+more.
+Car park in
+private
+residential
+building/housing
+estate
+39%
+Self-installed
+facility at
+village house
+10%
+Public car park
+51%
+8%
+10%
+29%
+30%
+19%
+4%
+0% 10% 20% 30% 40%
+15 mins. to < 30 mins.
+30 mins. to < 1 hour
+1 hour to < 2 hours
+2 hours to < 5 hours
+5 hours to < 10 hours
+10 hours +
+Proportion of EV-Available Households
+Environmentally
+friendly
+47%
+Lower fuel
+and licence
+costs
+18%
+Attempt to
+try new
+technology
+15%
+Ability to
+idle
+9%
+Lower
+registration
+tax or
+vehicle
+price
+6%
+Others
+5%
+##### PAGE 40
+Page 23
+5. MAJOR VIEWS AND OPINIONS
+RELATING TO TRAVELLING
+5.1 Factors Affecting the Use of
+Environmentally-friendly
+Vehicles
+5.1.1 2% of the households had intention to buy
+private cars or motorcycles in the next 12 months
+after the interview. Among the sampled
+households who intended to purchase private cars,
+44% would choose petrol - or diesel -fuelled
+vehicles, while 56% would go for
+environmentally-friendly vehicles, including 46%
+for electric vehicles and 10% for hybrid vehicles.
+On the other hand, all (100%) of the sampled
+households who intended to purchase motorcycles
+would opt for petrol-fuelled ones.
+5.1.2 As illustrated in Figure 5.1, the major
+reasons cited for not buying environmentally -
+friendly vehicles were “inadequate charging
+stations/facilities” (28%) and “ lack of
+experience/confidence in environmentally-
+friendly vehicles” (22%).
+Figure 5.1 Main Reasons for Not Buying Environmentally-
+friendly Vehicles15
+5.1.3 Of the PV-available households intending
+to purchase electric private cars within 12 months,
+80% would apply for the “One -for-One
+Replacement” Scheme (Figure 5.2).
+15 Environmentally-friendly vehicle s include hybrid
+(petrol/diesel and electric) and electric vehicles.
+Figure 5.2 Interest in Participation in the “One-for-One
+Replacement” Scheme for Electric Car
+Purchases
+5.2 Major Factors Affecting the
+Choice of Public Transport
+Mode
+5.2.1 As indicated in Figure 5.3, the major
+factors considered by respondents aged 15 or
+above in choosing public transport modes were
+travel time (29%), convenience of stops and pick-
+up/drop-off points (28%), and travel distance
+(20%). These top 3 factors reflect the importance
+that respondents attached to the efficiency and
+convenience of public transport service. Relatively
+small proportions of respondents cited theneed for
+interchanging, fare, or service punctuality as their
+major factors for consideration.
+Figure 5.3 Factors Affecting the Choice of Public
+Transport Mode
+Higher vehicle price
+10%
+Inadequate
+charging
+stations /
+facilities
+28%
+Lack of
+experience /
+confidence
+22%
+Trouble in
+battery
+charging
+20%
+Few choices for
+vehicle models
+13% High cost for
+battery
+replacement
+4%
+Lack of second-
+hand vehicles
+available
+1%
+Others
+2%
+Certainly
+63%
+Likely
+17%
+Don't know/ unsure
+17%
+Unlikely
+1%
+Certainly not
+2%
+0% 20% 40% 60% 80% 100%
+Travel time,
+29%
+Convenience of
+stops and pick-
+up/drop-off points
+, 28%
+Travel
+distance,
+20%
+Need for
+interchanging,
+9%
+Fare, 5%
+Headway and
+Punctuality, 4%
+Others, 5%
+##### PAGE 41
+Page 24
+5.2.2 The above results were similar to those
+in TCS 2011, where the most cited factors in
+descending order were “walking distance to pick-
+up/drop-off points” (26%), “travel time” (26%),
+and “ travel distance” (16%).  However, “fares”
+became a less significant factor than it was in 2011.
+15% of the respondents cited “fares” as the major
+factor affecting their public transport mode choice
+in 2011, while only 5% of the respondents held the
+same view in 2022.
+5.2.3 Information was also obtained in the
+survey on how long respondents were prepared to
+wait for various public transport services .  The
+results are presented in Table 5.1.
+Table 5.1 Stated Maximum Acceptable Waiting Time for
+Public Transport Services
+Public Transport Services Waiting Time (minutes)
+2011 2022
+Taxi 6 9
+Public Light Bus 10 11
+Franchised Bus 12 12
+Rail (MTR/LRT) and Tram 6 8
+Ferry 16 16
+5.2.4 The time that respondents were prepared
+to wait for different types of public transport
+services ranged from 6 to 16 minutes and from 8
+to 16 minutes in 2011 and 2022 respectively.  In
+2022, respondents were willing to wait slightly
+longer for public transport services than they were
+in 2011. This could be related to improvements in
+waiting facilities, bet ter interchanging facilities
+and arrangements, and adequate transport service
+information.
+5.2.5 In 2022, for 5 modes of public transport
+services, the average maximum acceptable waiting
+time as perceived by respondents in ascending
+order were: rail (MTR / LRT) and tram, taxi, PLB,
+franchised bus and ferry.  In other words,
+passengers were generally prepared to wait the
+longest for ferry services and the shortest for taxi
+and rail/tram services.
+5.3 Impact of Changes in Journey
+Time have on Peak Period
+Travel Patterns
+5.3.1 To understandthe effects of journey time
+on residents’ travel behaviour, respondents aged
+15 or above were asked how they might change
+their travel patterns with an assumed increase of
+15, 30 and 45 minutes respectively on top of the
+existing journey time during the weekday peak
+periods (7:00 – 10:00 a.m. and 5:00 – 8:00 p.m.).
+The results are summarised in Table 5.2.
+5.3.2 Results show ed that, if the journey time
+increased by 15 minutes over the usual duration ,
+only around 62% of the respondents would stick to
+their trip plans, while around 24% would switch to
+other transport mode s. When the extra journey
+time increased from 15 to 45 minutes, the
+proportion of respondents who would go ahead
+with their original trip plans would decreas e
+significantly to 19% , while the proportion of
+respondents who would switch to other transport
+modes would jump up to 59%.
+5.3.3 However, only around 15% of
+respondents would avoid making their trips during
+peak periods if the journey time increased by 45
+minutes, reflecting the solid demand for travelling
+during peak periods.
+Table 5.2 Impact of Assumed Increases in Journey Time have
+on the Choice of Transport Mode during Peak
+Periods
+Possible changes
+Assumed Increase in
+Journey Time
+15 min. 30 min. 45 min.
+Make changes to trips 38% 75% 81%
+Switch to other
+transport modes 24% 56% 59%
+Avoid starting trip
+during peak hours 12% 15% 15%
+Change trip origin /
+destination 1% 3% 4%
+Cancel the trip ~0% 1% 3%
+No change would be made 62% 25% 19%
+Total 100% 100% 100%
+##### PAGE 42
+Page 25
+5.4 Opinions about Walking and
+Use of Travellators
+5.4.1 As shown in Figure 5.4, the overall
+average of maximum acceptable walking time to
+access public transport facilities (under outdoor
+and sheltered condition ) as perceived by
+respondents aged 15 or above ranged from 12 to
+13 minutes.  People were prepared to walk longer
+to ferry piers than to rail statio ns or tram, bus or
+PLB stops.
+5.4.2 Respondents were also asked about the ir
+maximum acceptable walking time to places other
+than public transport facilities. The survey
+revealed that the maximum acceptable walking
+time to other destinations via outdoor covered
+walkways was 13 minutes, comparable to that for
+accessing public transport facilities.
+Figure 5.4 Maximum Acceptable Walking Time to Access
+Various Public Transport Facilities
+5.4.3 Comparison of survey results across
+different prescribed walking conditions showed
+that respondents would generally be prepared to
+walk longer to access various public transport
+facilities or other destinations under better
+conditions. Relative to walking via outdoor
+covered walkways, respondents would be willing
+to walk about 2 minutes longer in air -conditioned
+areas and an additional minute i f
+travellators/escalators were provided.
+5.4.4 Compared to the results of TCS 2011, the
+maximum walking time that respo ndents could
+accept in outdoor covered walkways and air -
+conditioned walkways increased by 1 to 2 minutes
+in 2022.  The maximum acceptable walking time
+of respondents generally increased as compared to
+16 The results might not be appropriate to be compared
+directly with those of the previous survey , given the
+higher rate of under-reporting comparing to 2011.
+the previous survey, reflecting that respondents
+were m ore willing to consider walking as a
+transport mode.
+5.5 Availability and Usage of
+Bicycles
+5.5.1 The survey estimated that 5.1% (or
+139 000) of households had bicycles available for
+use16. The proportions of households with bicycles
+available, broken down by broad district, are set
+out in Table A.5 in the Appendix. As compared
+with TCS 2011 figures, the decrease in bicycle -
+available households might be partly due to the
+introduction of bike -sharing services. The
+proportion of households with b icycles available
+was larger in other areas outside the New Towns
+in NT, and in Fanling/Sheung Shui and Tai Po.
+This was likely related to the better provision of
+cycling facilities e.g. cycle tracks and bicycle
+parking spaces in these districts.
+5.5.2 Of all bicycles available fo r use by
+households, the majority (97%) were parked near
+home, with 71% parked at home, 14% at
+designated bicycle parking spaces within housing
+court/estate and 8% at the
+corridor/lobby/rooftop/storage room of the
+building of residence (see Table 5.3).
+Designated bicycle parking spaces within
+housing estate
+12
+14 15
+12
+14 1513
+16 16
+13
+15 16
+0
+5
+10
+15
+20
+Outdoor Covered
+Walkway
+Air-conditioned
+(A/C) Walkway
+A/C Walkway
+with Travellator /
+Escalator
+Walking Time (minutes)
+Bus/PLB Stop Rail (MTR/LRT)/Tram Station
+Ferry Pier Other destinations
+
+##### PAGE 43
+Page 26
+Table 5.3 Parking Arrangements of Bicycles
+Parking Location Proportion
+of Bicycles
+Near home 97%
+At home 71%
+Other places within the building of residence
+(e.g. corridor/lobby/rooftop/storage room) 8%
+Designated bicycle parking spaces within
+housing court/estate 14%
+Non-designated bicycle parking spaces
+within housing court/estate 2%
+Other bicycle parking spaces near home 2%
+Not near home 3%
+Total 100%
+5.5.3 The survey results revealed that 65% of
+Hong Kong residents aged 15 or above knew how
+to cycle.  Among the households with bicycles
+available for use, 95% knew how to ride a bicycle.
+5.5.4 Of the surveyed Hong Kong residents
+aged 15 or above who knew how to ride a bicycle
+and had bicycles available for use, 38% had used
+bicycles in public places on weekdays and 49% on
+weekends or public holidays within the 3 months
+preceding the day of inter view. These
+respondents’ usage pattern by using their own
+bicycles are summarised in Table 5.4.
+Table 5.4 Respondent’s Usage Pattern (by Using their own
+Bicycles) within the 3 months preceding the day of
+interview
+Frequency of Using Bicycles
+Proportion of Persons
+For
+Business,
+Commuting,
+or School
+Trips
+For Other
+Purposes
+On Weekdays
+5 days a week 11% 3%
+3-4 days a week 3% 11%
+1-2 days a week 1% 36%
+Less than once a week 5% 31%
+Total 18% 82%
+On Weekends/Public Holidays
+2 days a week 4% 5%
+Once a week 2% 42%
+Less than once a week 6% 41%
+Total 13% 87%
+Note: Due to rounding, the percentages may not add up to the total.
+5.5.5 Among the surveyed Hong Kong residents
+aged 15 or above who knew how to ride a bicycle
+(regardless of whether they were bicycle-available
+households or not), about 1% had rented a bicycle
+for recreation/leisure purpose on weekdays , and
+2% on weekends or pu blic holidays, within the 3
+months preceding the day of interview.  The
+respondents’ usage pattern by renting bicycles are
+summarised in Table 5.5.
+Table 5.5 Respondent’s Usage Pattern (by Renting Bicycles)
+within the 3 months preceding the day of interview
+Frequency of Renting Bicycles Proportion of
+Persons
+On Weekdays
+Once or more a week 10%
+Once every 1 to 2 weeks 9%
+Once every 2 weeks to 1 month 18%
+Once every 1 to 3 months 64%
+Total 100%
+On Weekends/Public Holidays
+Once or more a week 8%
+Once every 1 to 2 weeks 3%
+Once every 2 weeks to 1 month 13%
+Once every 1 to 3 months 76%
+Total 100%
+Target respondents: Hong Kong residents aged 15 or above who
+knew how to ride a bicycle (excluding domestic helpers).
+5.5.6 Among all the respondents who had used
+bicycles, either using household-owned bicycles
+or rented bicycles, within the 3 months preceding
+the day of interview 83% indicated that they
+usually cycled on cycle tracks, 10% usually cycled
+on carriageways, and the remaining 7% expressed
+that they did not usually cycle on any road
+facilities.  Comparison of survey results across
+different districts of residence revealed that a
+larger proportion (29%) of respondents cycling on
+carriageways in areas outside the New Towns in
+NT.
+5.6 Opinions about Possible Law
+and Enforcement Measures on
+Cycling
+5.6.1 As regards law and enforcement relating
+to cycling, 77% of the respondents aged 15 or
+above (excluding domestic helpers) were aware
+that cyclists are to abide by the Road Users’ Code.
+Such awareness was higher among those with
+bicycles available in their household s and those
+who had cycling experience.
+##### PAGE 44
+Page 27
+5.6.2 In the survey, respondents were asked
+whether they supported the following potential
+measures for enhancing cycling safety:
+ Registration of bicycles for use on
+carriageways or cycle tracks,
+ Persons aged 11 or above to apply for “cycling
+licence” in order to cycle on carriageways or
+cycle tracks;
+ Compulsory wearing of safety helmets when
+cycling on carriageways or cycle tracks; and
+ Taking-out of third-party insurance for cycling
+in public places.
+5.6.3 Survey results are shown in Figure 5.5.
+In general, the most supported measure among the
+respondents w as compulsory wearing of safety
+helmets (77%) , followed by registration of
+bicycles (35%), compulsory taking out of third -
+party insurance (30%)and application for “cycling
+licence” (25%).
+Figure 5.5 Support Rates for Possible Law & Enforcement
+Measures on Cycling
+5.6.4 Support rates for the above possible
+measures on cycling varied between respondents
+who did and did not know how to ride a bicycleas
+shown in Table 5.6. Those who knew how to ride
+a bicycle were less supportive of the measures than
+those who did not . Nevertheless, their relative
+proportions of support for various measures were
+generally comparable.
+Table 5.6 Support Rates towards Possible Law &
+Enforcement Measures on Cycling by Whether
+Respondents Knew How to Ride a Bicycle
+Measure
+Support Rate
+Those
+Who Knew
+How to
+Ride a
+Bicycle
+Those Who
+Did Not
+Know How
+to Ride a
+Bicycle
+Compulsory wearing of safety
+helmets when cycling on
+carriageways or cycle tracks
+77% 78%
+Registration of bicycles 33% 39%
+Application for "Cycling
+Licence" for cyclists aged 11+ 22% 31%
+Compulsory taking-out of third-
+party insurance for cycling in
+public places
+29% 33%
+5.6.5 Of the respondents who knew how to ride
+a bicycle, 67% thought that a mandatory
+requirement for cyclists to wear safety helmets
+would have no effect on their cycling enthusiasm
+and frequency, 31% expressed that they would
+cycle less frequently as a result, while the
+remaining 2% stated that they would, on the
+contrary, cycle more frequently.
+5.7 Opinions on the Use of Electric
+Mobility Devices
+5.7.1 The use of electric mobility devices
+(EMDs) on roads was still prohibited at the time of
+the survey. Regarding the support for use of
+EMDs legally on carriageways, footpaths or cycle
+tracks, 56% of respondents had no objection to
+allowing such use on cycle tracks at least.
+Meanwhile, respondents were less supportive of
+legalising the use of EMDs on carriageways (14%)
+and footpaths (13%).
+5.7.2 The survey found that the majority
+(80%) of respondents agreed that safety was the
+most important factor for consideration if EMDs
+were allowed to be used on carriageways,
+footpaths or cycle tracks. Respondents also
+mentioned other factors, including “available
+space on road s” (6%), “compatibility among
+pedestrians, bicycles, and EMDs (e.g. speed and
+size)” (5%), and “monitoring of users’ behaviour”
+(4%).
+77%
+35%
+25%
+30%
+12%
+46%
+56%
+45%
+11%
+19%
+19%
+25%
+0% 20% 40% 60% 80% 100
+Compulsory wearing of
+safety helmets
+Registration of bicycles
+Application for “Cycling
+Licence”
+Compulsory taking-out of
+third party insurance
+Proportion of Respondents
+Support Do not support No Comment
+%
+##### PAGE 45
+Page 28
+Figure 5.6 Factors for Consideration in the Legalisation of
+EMDs
+5.7.3 When the respondents who had bicycles
+available for household use were asked whether
+they thought EMDs would replace bicycles, 53%
+answered yes, 39% said no, and 9% were uncertain.
+5.7.4 Respondents cited that the most essential
+facilities for using EMDs in descending order of
+importance were adequate parking space (3 6%),
+adequate charging locations (23%), flat roads
+(17%), and dedicated tracks wider than normal
+cycle tracks (16%).
+Figure 5.7 Most Essential Facilities Required for Using
+EMDs
+5.7.5 Nevertheless, only 14% of respondents
+stated that if the use of EMDs was permitted and
+regulated in future, they would certainly or likely
+use such devices.
+Figure 5.8 Likelihood of Using EMDs upon Legalisation
+5.7.6 81% of respondents considered that
+legislation was necessary to ensure the safety of
+EMD users and pedestrians while 6% thought
+otherwise.
+5.8 Opinions about Dissemination
+of Transport Information
+5.8.1 The survey collected opinions of
+respondents aged 15 or above on the adequacy of
+transport information currently provided by
+operators of public transpo rt services, including
+MTR, franchised bus, PLB, LRT, tram/peak tram
+and ferry.  The findings are summarised in
+Table 5.7.
+Table 5.7 Opinions of Respondents on the Adequacy of
+Transport Information Currently Provided by Public
+Transport Service Operators
+Public Transport
+Mode
+Adequacy by Information Type
+Routing Headway/
+Timetable
+Fare/
+Discount
+MTR 83% 78% 65%
+Franchised Bus 81% 75% 68%
+PLB 48% 32% 44%
+LRT 81% 63% 69%
+Tram/Peak Tram 68% 50% 60%
+Ferry 78% 80% 72%
+Public Transport
+Mode
+Adequacy by Information Type
+Journey
+Time
+Estimated
+Time of
+Arrival
+Interchange
+Info.
+MTR 80% 79% 74%
+Franchised Bus 75% 77% 63%
+PLB 43% 28% 28%
+LRT 68% 53% 61%
+Tram/Peak Tram 50% 35% 42%
+Ferry 83% 80% 71%
+Safety
+80%
+Available space
+on roads
+6%
+Compatibility
+among pedestrians,
+bicycles and EMDs
+5%
+Monitoring of
+users' behaviour
+4%
+Others
+5%
+Adequate
+parking space
+36%
+Adequate
+charging
+location
+23%
+Flat roads with
+minimal incline
+17%
+Dedicated track
+wider than normal
+cycle track
+16%
+Dedicated track with cover
+5%
+Other
+4%
+Certainly
+3%
+Likely
+11%
+Don’t know/uncertain
+14%
+Likely not
+27%
+Certainly
+not
+46%
+0% 20% 40% 60% 80% 100%
+##### PAGE 46
+Page 29
+Dissemination of transport information on board
+5.8.2 Comparison of survey results for 6 public
+transport modes reflected that users were generally
+most satisfied with the information provided by
+ferry operators, with the highest percentage
+(ranging from 71% to 83%) of users giving them a
+“satisfactory” rating for all the 6 types of
+information17. Ranked immediately below were
+MTR (65% to 83%) and franchised bus operators
+(63% to 81%).  Among the 6 public transport
+modes, the information provided by PLB operators
+was considered less adequate (28% to 48%).
+5.8.3 Regarding the adequacy of various
+public transport information, users were most
+satisfied with the routing and journey time
+information provided by operators of the above 6
+public transport services.
+5.8.4 Information on “service frequency/
+timetable” was considered the most useful for
+decision-making in mode choice, cited by 33% of
+all respondents. This was followed by “ real-time
+estimate of arrival time of next train/bus/ ferry ”
+(28%) and “routing and midway stops ” (18%).
+Detailed results are depicted in Figure 5.9.
+17 6 types of information: routing, headway/timetable,
+fare/ discount, journey time, estimated time of arrival
+and interchange information.
+Figure 5.9 Public Transport Information Considered Most
+Useful by Respondents
+5.8.5 As for dissemination of information to
+motorists, the types of transport information
+considered most useful by the surveyed motorists
+are presented in Figure 5.10. The largest
+proportions of motorists (33%) considered the
+information on “real-time queue length at major
+congested locations ” as the most important,
+followed by those citing the “choice of route in
+case of congestion” (27%) and “estimated journey
+time” (19%).
+Figure 5.10 Information Considered Most Useful by
+Motorists
+Service
+frequency and
+timetable
+33%
+Real-time
+estimate of arrival
+time of next
+train/bus/ ferry
+28%
+Routing and
+midway stops
+18%
+Real-time
+traffic
+condition
+12%
+Real-time estimated
+travel time
+4%
+Fare / concession
+2%
+Others
+3%
+Real-time
+queue length
+at major
+congested
+locations
+33%
+Choice of route in
+case of congestion
+27%
+Estimated journey
+time
+19%
+Route
+guidance to
+destination
+12%
+Location/fee/type
+of car park/parking
+space
+3%
+Accident/incident
+information
+2%
+Others
+4%
+##### PAGE 47
+Page 30
+5.8.6 Respondents aged 15 or above were
+asked about their experience of using
+HKeMobility, a website and mobile application
+launched by the Transport Department to
+disseminate traffic and transport information.
+Survey results showed that HKeMobility was the
+third most common ly used digital source of
+transport information , following Google Maps
+and public transport operators’ websites or mobile
+applications.
+5.8.7 For those respondents who had used
+HKeMobility to obtain transport information
+within t he 3 months preceding the day of
+interview, Figure 5.11 illustrated their opinions on
+the usefulness of 4 types of information they
+obtained in aiding their decision-making: (a) real-
+time traffic condition, (b) estimated time of arrival
+of public transport services, (c) remaining parking
+spaces in car park near the destination and (d)
+regular routing (e.g. between home and
+workplace).
+5.8.8 Overall, a mong the respondents who
+commented on the accuracy and
+comprehensiveness of information disseminated,
+at least 85% rated the various types of information
+provided by HKeMobility as excellent, good or
+fair.
+5.8.9 Comparing the various types of
+information provided by HKeMobility, users
+found the information on “regular routing” and
+“real-time traffic condition” more useful than
+“estimated time of arrival of public transport
+services” and “remaining parking spaces in car
+parks near the destination ” for their decision -
+making.
+Figure 5.11 Opinions on Information Provided by
+HKeMobility
+“HKeMobility” – an all -in-one traffic and
+transport mobile application launched by the
+Transport Department
+5.9 Opinions on Measures to
+Relieve Traffic Congestion and
+to Improve Pedestrian Facilities
+5.9.1 The measure most supported by
+respondents for relieving traffic congestion was to
+“build more roads or railways” (30%), which was
+consistent with the Government's strategy of
+continuing to develop road and rail way
+infrastructure to help meet new traffic demands. It
+was followed by “limit the number of licences
+issued to vehicles” (21%), “increase car price and
+usage costs” (13%) and “ give more priority to
+public transport” (12%).
+Figure 5.12 Most Supported Measures for Relieving Traffic
+Congestion
+47%
+43%
+41%
+49%
+46%
+47%
+44%
+40%
+6%
+10%
+15%
+11%
+0% 20% 40% 60% 80% 100%
+Regular routing
+Remaining parking spaces
+in car parks
+near the destination
+Estimated time of arrival
+of public transport services
+Real-time traffic condition
+Proportion of Respondents
+Excellent or good Fair Poor or very poor
+Build more
+roads or
+railways
+30%
+Limit the
+number of
+licences issued
+21%
+Increase car price and usage costs
+13%
+Give more priority to
+road-based public
+transport
+12%
+Restrict
+vehicle entry
+into
+congested
+areas
+5%
+Reorganize franchised
+bus routes
+5%
+Impose peak hour congestion
+charging
+5%
+Others
+9%
+##### PAGE 48
+Page 31
+Building more roads or railways was the most
+supported measure among respondents for
+relieving traffic congestion
+5.9.2 It is worth noting that PV-available
+households were slightly more supportive of some
+measures affecting vehicle usage such as “impose
+peak hour congestion charging” (7%), and “restrict
+vehicle entry into con gested areas ” (6%), as
+compared to non -PV-available households,
+notwithstanding that the former were likely to be
+directly affected by such measures.
+5.9.3 As for measures to improve pedestrian
+facilities, survey results are summarised in
+Figure 5.13. Overall, the measure most supported
+by respondents was “provide covers for
+walkways” (29%), followed by “widen walkways”
+(17%), and “ beautifying/greening of walkways ”
+(15%).
+Figure 5.13 Most Supported Measures for Improving
+Pedestrian Facilities
+18 “Others” include persons of independent means (i.e.
+those who do not have to work for a living) and other
+economically inactive persons (e.g. unpaid religious
+workers and persons who cannot work or do not seek
+work because of permanent sickness or disablement).
+5.10 Views of Elderly on Transport
+Services
+Increasing proportion of elderly
+population in Hong Kong
+5.10.1 The survey estimated that as at 2022,
+nearly 30% of the household population wereaged
+60 or above. Among them, 66% were retired, 25%
+were still in the work force, 8% were homemakers
+and the remaining 2% were others18.
+5.10.2 97% of the respondents aged 60 or above
+possessed an Elderly Octopus Card or a JoyYou
+Card. Among them, 50% held an Elderly Octopus
+Card only, 37% held a JoyYou Card only, while
+13% owned both.
+5.10.3 As visualised in Figure 5.14, the
+average monthly public transport expense of the
+majority of respondents aged 60 and above was
+$60 or less (58%). 22% of elderly respondents
+spent between $61 and $100, 15% spent $10 1 to
+$200 and only 5% spent $201 or more.
+Figure 5.14 Average Monthly Public Transport Expense of
+the Elderly
+5.10.4 In the light of the introduction of JoyYou
+Card in 2022, respondents aged 60 or above who
+possessed a JoyYou Card were asked how their
+eligibility for public transport fare concessionshad
+Provide
+covers for
+walkways
+29%
+Widen
+walkways
+17%
+beautifying/greening of walkways
+15%
+Build more footbridges
+and subways
+11%
+Provide more
+escalators or
+elevators at
+uphill districts
+8%
+Provide more air-
+conditioned walkways
+7%
+Pedestrianise more areas
+7%
+Others
+6%
+$60 or less
+58%$61 - $100
+22%
+$101 - $200
+15%
+$201 or more
+5%
+##### PAGE 49
+Page 32
+impacted their travel characteristics. Among them,
+10% had increased their average daily number of
+trips made, 4% had changed their choice of
+transport mode, 9% had adjusted their choice of
+destination, and 6% had changed their choice of
+route (e.g. among bus routes or rail lines).
+Table 5.8 Travel Characteristics among JoyYou Card Holders
+Change in Travel Characteristics
+Proportion of
+JoyYou Card
+Holders
+Increase in average daily number of trips 10%
+Mode choice 4%
+Destination choice 9%
+Route choice 6%
+5.10.5 A 4% increase in average daily number
+of trips made was noted among the respondents,
+including those who did not alter their daily trips
+after becoming eligible for the public transport fare
+concessions.  Upon acquiring such eligibility,
+respondents were m ore inclined to use rail,
+franchised bus, and PLB frequently. Meanwhile,
+there was a decrease in the percentage of
+respondents who used taxi and private car (as
+driver or passenger) as their most frequent
+transport mode.  Detailed findings are set out in
+Figure 5.15.
+Figure 5.15 Changes in the Most Frequently Used Mode of
+Transport  Before and After Becoming Eligible
+for the Public Transport Fare Concessions
+Note: Other transport modes include residents’ bus service and
+ferry.  The percentage of respondents using taxi, residents’
+bus service and ferry as their most frequent transport mode
+after becoming eligible for the Public Transport Fare
+Concessions is less than 0.5%.
+5.10.6 The survey collected views from
+respondents aged 60 or above on the pedestrian
+facilities they considered most in need of
+improvement in Hong Kong. Among the se
+respondents, 25% highlighted “inadequate
+elevators/escalators at pedestrian
+footbridges/subways”, while 21% mentioned
+“green light/flashing green light time at pedestrian
+crossings too short”.  A small proportion of
+respondents pointed out “insufficient covers for
+pedestrian facilities” (14%), “unclear road signs or
+small font size on road sig ns” (11%) and “road
+signs inadequate or difficult to find” (10%).
+5.10.7 Respondents were asked about their
+frequency of using priority seats on public
+transport. The modes of transport with priority
+seats often used by respondents aged 60 or above
+were franchised bus (35%) and MTR (31%). A
+small proportion of respondents had used priority
+seats on LRT, tram and ferry , while 28% had not
+used priority seats on these 5 public transport
+modes.
+5.10.8 When asked about their experience of
+using priority seats on public transport , the
+majority (91%) of respondents aged 60 or above
+considered the priority seats easy to locate. 61%
+of the respondents were satisfied with the comfort
+of priority seats, commenting that these seats had
+well met the needs of the elderly.
+5.10.9 Although most of the surveyed elderly
+persons could easily locate the priority seats, only
+49% expressed that they could often find vacant
+seats available, while 14% indicated that those
+seats were on many occasions taken up by people
+without a genuine need.
+Table 5.9 Experience of Using Priority Seats on Public
+Transport
+Priority Seat Experience Proportion of
+Respondents
+Usage
+Vacant seats often found 49%
+Seats often taken up by those with a
+genuine need, leaving no vacant ones 37%
+Seats often taken up by those without a
+genuine need, leaving no vacant ones 14%
+Seat Location
+Easy to find 91%
+Difficult to find 9%
+Comfort
+Satisfied 61%
+No comment 30%
+Not satisfied 8%
+Note: Due to rounding, the percentages may not add up to 100%.
+20%
+1%
+29%
+4%
+32%
+9%
+4%
+6%
+~0%
+38%
+2%
+38%
+16%
+~0%
+0% 10% 20% 30% 40% 50%
+Private car
+Taxi
+MTR
+LRT
+Franchised bus
+PLB
+Others
+Proportion of JoyYou Card Holders
+Before
+After
+##### PAGE 50
+Page 33
+5.11 Changes brought about by the
+pandemic and the
+popularisation of technology
+5.11.1 It was already mentioned in TCS 2011
+that with the popularisation of technology,
+commuting and activity patterns are likely to
+change, thus influencing transport demands . On
+another front , isolation and quarantine measures
+during the pandemic catalysed the replacement of
+travelling by work-from-home arrangements and
+online activities. After the pandemic, activities
+such as remote working, learning, entertainment,
+shopping, etc. continue d to change the residents’
+travel characteristics fundamentally.
+Travelling replaced by work-from-home
+5.11.2 Working people aged 15 or above were
+asked whether they could perform their job duties
+at home. 31% of the employed respondents stated
+that they could work from home, with 25% able to
+perform some of their job duties remotely while
+6% managed to do all the tasks in such manner.
+Figure 5.16 Proportion of Respondents Able/Unable to
+Perform Job Duties at Home
+5.11.3 Respondents who were able to work
+remotely were asked about their work-from-home
+arrangement before the COVID-19 pandemic (i.e.
+in 2018), as well as during that period and
+afterwards. 34% of respondents reportedthat they
+had already having a work -from-home
+arrangement in place prior to the pandemic. The
+proportion stood high at 71% during the pandemic
+period. 39% of respondents did not rule out the
+possibility of work -from-home arrangement s in
+future (i.e. after the pandemic ), while 22%
+mentioned that they couldstill work remotely after
+the pandemic. The average number of daysthat the
+applicable respondents were permitted to work
+remotely was 2 days per week before as well as
+after the pandemic. The figure was up at3 days per
+week during the pandemic period.
+Figure 5.17 Proportion of Working Respondents with Work-
+from-home Arrangements Before, During and
+After the COVID-19 Pandemic
+Travelling replaced by conducting online
+activities
+5.11.4 Respondents were asked about their
+frequencies of conducting the following activities
+online before, during, and after the pandemic: (a)
+shopping, (b) patronising food delivery service, (c)
+entertainment, (d) classes/tutorial classes/online
+sports or interest classes and (e) video
+conferencing. As shown in Figure 5.18, the
+frequencies of all 5 types of online activities
+increased during the pandemic, among which the
+frequencies of video conferencing and patronising
+food delivery service increased by 7% and 5%
+respectively.
+Figure 5.18 Proportion of respondentsengaged in activities
+online at least once a week before and during
+the COVID-19 pandemic
+Yes
+(all duties)
+6%
+Yes
+(some duties)
+25%
+No
+69%
+34%
+71%
+22%
+39%
+0%
+20%
+40%
+60%
+80%
+Before
+COVID-19
+Pandemic
+During
+COVID-19
+Pandemic
+After
+COVID-19
+Pandemic
+Proportion of Respondens
+Possible work-from-home arrangements
+Definite work-from-home arrangements
+11% 13%
+30%
+4%
+8%
+14%
+18%
+32%
+7%
+15%
+0%
+10%
+20%
+30%
+40%
+Shopping Patronage
+of
+food
+delivery
+service
+Entertain-
+ment
+Classes/
+Tutorial
+classes/
+Online
+sports
+or
+interest
+classes
+Video
+conferenc-
+ing
+Proportion of Respondents
+Before COVID-19
+Pandemic
+During COVID-19
+Pandemic
+##### PAGE 51
+Page 34
+5.11.5 Some r espondents would continue to
+conduct the above activities online a fter the
+pandemic. Around 10% of the respondents
+expressed that they had increased their frequencies
+of online activities , except for attending
+classes/tutorial classes/online sports or interest
+classes. These would impact on their travel
+characteristics and transport demands.
+Figure 5.19 Changes in respondents’ frequencies of
+conducting online activities
+11% 12%
+9%
+5%
+11%
+6% 6% 5% 3%
+5%
+0%
+4%
+8%
+12%
+16%
+20%
+Shopping Patronage
+of
+food
+delivery
+service
+Entertain-
+ment
+Classes/
+Tutorial
+classes/
+Online
+sports
+or
+interest
+Video
+conferenc-
+ing
+Proportion of Respondents
+Up from pre-pandemic
+Down from pre-pandemic
+classes
+##### PAGE 52
+Page 35
+6. BEHAVIOURAL VALUES OF
+TIME
+6.1 General
+6.1.1 The SP Surveyof TCS 2022 aimed to look
+into the behavioural value of time (VoT) of Hong
+Kong residents, with a view to reflecting the travel
+characteristics and behaviour of respondents. The
+behavioural VoT indicates the amount of money
+that trip-makers are willing to trade off for unit
+time saving.  It serves as a key parameter in the
+transport model for simulating the behaviour of
+trip-makers in making choices when they are faced
+with different transport modes usually
+characterized by different journey time and cost.
+6.2 Behavioural Values of Time
+Behavioural VoT indicates the amount of money
+that trip makers are willing to trade off for unit
+time saving
+6.2.1 VoT varies considerably among
+individuals because of their different
+characteristics as well as trip purposes. For that
+reason, the survey was conducted on various
+population sectors categorised by PV availability,
+trip purpose and transport mode taken.
+6.2.2 The behavioural VoTs of different
+population sectors were analysed using logistic
+regression models based on a logit formulation.
+The regression model output results were then
+weighted according to the HIS -derived daily trip
+totals, categorised by PV availability, trip purpose
+and transport mode group s, to give the weighted -
+average behavioural VoTs as presented in
+Table 6.1. Corresponding TCS 2011 values are
+also provided in the table for comparison.
+Table 6.1 Behavioural Values of Time by Private Vehicle
+Available Household and Trip Purpose
+Trip Purpose
+Behavioural VoT (in Cents/Minute)
+TCS 2011
+(at 2011 Prices)
+TCS 2022
+(at 2022 Prices)
+Private Vehicle-Available Household Member
+HBW 103
+88
+132
+113HBS 72 103
+HBO/NHB 83 101
+Non-Private Vehicle-Available Household Member
+HBW 68
+67
+87
+82HBS 57 68
+HBO/NHB 68 79
+Overall 72 (1) 90
+Note: (1) Based on the Composite Consumer Price Index growth
+(+33%) between 2011 and 2022, the value pertaining to
+2011 is equivalent to 95 cents/minute at 2022 price.
+6.2.3 Comparison between the 2011 and 2022
+results showed that the increases in behavioural
+VoT varied across different trip purpose s and PV
+availability categories. For HBW trips,
+behavioural VoT increased by 28% among PV -
+available households as well as non -PV available
+households. As regards HBS trips, the increase in
+behavioural VoT was 19% for non-PV-available
+households and 43% for PV-available households.
+Regarding HBO/NHB trips , PV-available
+households and non -PV-available households
+displayed increases in behavioural VoT by 22%
+and 16% respectively.
+6.2.4 Overall, there was an increase in
+behavioural VoT by about 25% in nominal terms,
+which fell short of the inflation rate during the
+same period (about 33%). However, if calculated
+based on same 2022 price level, the behavioural
+VoT decreased by about 5% in real terms from
+95 cents/minute in 2011 to 90 cents/minute in
+2022. Despite the Gross Domestic Product (GDP)
+growth per capita between 2011 and 2022, which
+would usually be expected to increase t he VoT
+among trip-makers, people’s willingness to pay
+extra to shorten their travelling time actually
+declined. As some international studies have
+found, this might be attributed to improvements of
+travel conditions (such as travelling experience)
+and people’s ability to engage in various activities
+during travel (e.g. work or entertainment through
+
+##### PAGE 53
+Page 36
+mobile communication devices), which indirectly
+changed the willingness and preferences of trip
+makers to pay extra to shorten the travelling time.
+More comprehensive traffic information also
+enhanced commuters’ ability to plan trips, which
+might in turn impact on their decisions in trading
+off between money and time.
+6.2.5 PV-available households continued to
+show higher behavioural VoTs than non -PV-
+available households.  The behavioural VoTs of
+PV-available trip -makers were 28%-52% higher
+than those of the non-PV-available ones in 2022.
+6.2.6 It should be noted that the SP Survey
+results were based on respondents’ perception and
+might be different from the beha viour of trip -
+makers in reality. As such, the behavioural VoTs
+derived from theSP Survey ofTCS 2022 would be
+subject to further review and verification against
+trip-makers’ actual trip data before the final values
+could be adopted for transport planning purpose.
+##### PAGE 54
+Page 37
+7. CHARACTERISTICS OF TRIPS
+MADE BY VISITORS STAYING
+IN HOTELS/GUESTHOUSES
+AND SAME-DAY VISITORS
+7.1 Demographic Characteristics of
+Inbound Visitors
+7.1.1 The major demographic characteristics of
+visitors, collected through the TS conducted with
+visitors staying in hotels/guesthouses and with
+same-day visitors at the 6 surveyed Boundary
+Control Points (BCPs), are primarily used to gain
+an understanding of th e relationship between
+visitors’ demographic and travel characteristics .
+Against this background, the following
+summarises the main demographic data of the
+surveyed visitors.
+7.1.2 The survey revealed that there was a daily
+average of 118 000 visitors aged 2 or above
+staying in hotels/guesthouses and a daily average
+of 31 000 same-day visitors departing Hong Kong
+through the 6 surveyed BCPs.
+7.1.3 Among the visitors staying in
+hotels/guesthouses, the largest proportion (26%)
+aged between 30 and 39.Among same-day visitors,
+the largest proportion (29%) aged between 20 and
+29.
+Figure 7.1 Age Distribution of Visitor Respondents
+7.1.4 The countries/regions of residence of the
+surveyed visitors stayingin hotels/guesthouses and
+same-day visitors are summarised in Table 7.1
+and Table 7.2 respectively.
+7.1.5 Among the surveyed visitors staying in
+hotels/guesthouses, the highest proportion (74%)
+were from the Chinese Mainland/Macau, which
+aligned closely with the Hong Kong Tourism
+Board’s visitor arrival statistics by country /region
+of residence.  It is worth noting that the increase in
+the proportion of Chinese Mainland visitors from
+48% in 2011 to 74% in 2023 might be due to the
+fact that the number of visitors from other
+countries/regions had not yet stabilised after the
+resumption of passenger clearance services at
+BCPs in January 2023.
+7.1.6 Over 90% of same-day visitors were from
+the Chinese Mainland/Macau, among which the
+highest proportion (44%) was from Shenzhen.
+Table 7.1 Proportion of Surveyed Visitors Staying in
+Hotels/Guesthouses by Country/Region of Primary
+Residence
+Country/region of primary
+residence 2023(1) Hong Kong
+Tourism Board (2)
+The Chinese Mainland/Macau 74.2% 77.9%
+Taiwan 3.8% 2.4%
+Philippines 3.2% 3.5%
+Singapore /Malaysia/Thailand 4.3% 4.1%
+Japan/South Korea 3.2% 2.9%
+North America 4.1% 2.9%
+U.K. 1.7% 0.7%
+Australia 1.5% 0.8%
+Others Counties/Regions 4.1% 4.8%
+Total 100.0% 100.0%
+Note: (1) The survey only included the visitors staying in
+hotels/guesthouses. The results could be different from
+the immigration records due to the difference in coverage.
+(2) Jun-Sep 2023 figures extracted from the Hong Kong
+Tourism Board’s Overnight Visitor Arrival Statistics.
+Table 7.2 Proportion of Surveyed Same-day Visitors by
+Country/Region of Primary Residence
+Country/region of primary
+residence 2023(1) Hong Kong
+Tourism Board (2)
+The Chinese Mainland (Greater
+Bay Area cities): 70.5%
+86.5%
+- Shenzhen 43.9%
+- Guangzhou 9.6%
+- Dongguan 5.3%
+- Zhuhai 4.8%
+- Foshan 2.6%
+- Other GBA cities 4.3%
+The Chinese Mainland (Non-
+Greater Bay Area cities)
+9.0%
+Macau 18.2%
+13.5%Southeast Asian Countries 1.6%
+Other Counties/Regions 0.7%
+Total 100.0% 100.0%
+Note (1) This survey only covered same -day visitors at the
+selected 6 BCPs.
+(2) Jun-Sep 2023 figures extracted from the Hong Kong
+Tourism Board’s Same-day Visitor Arrival Statistics
+0%
+10%
+20%
+30%
+40%
+<20 20-29 30-39 40-49 50-59 60+
+Proportion of Respondents
+Age Group
+Visitors Staying in
+Hotels/Guesthouses
+Same-day Visitors
+##### PAGE 55
+Page 38
+7.1.7 Among the visitors staying in
+hotels/guesthouses, the largest proportion named
+sightseeing (39%) as the main purpose of their
+visits, followed by entertainment & leisure (20%)
+and work/business (12%). On the other hand, f or
+same-day visitors , the largest proportion cited
+shopping (25%) as their main purpose , followed
+by sightseeing (20%) and entertainment & leisure
+(17%).
+Figure 7.2 Main Purposes of Visit by Hotel/ Guesthouse
+Visitor Respondents
+Figure 7.3 Main Purposes of Visit by Same-day Visitor
+Respondents
+7.2 Average Number of Mechanised
+Trips Made by Visitors
+7.2.1 In 2023, t he average daily number of
+mechanised trips made per visitor staying in
+hotels/guesthouses was 2.48 and the total number
+of trips was estimated to be 293 000, equivalent to
+about 2% of the total number of mechanised trips
+made by Hong Kong residents on a working day.
+This is higher than the 229 000 mechanised trips
+estimated in the 2011 survey.
+7.2.2 It was estimated that most same-day
+visitors (78%) made 2to 3 mechanised trips during
+their stay in Hong Kong.  The total number of
+mechanised trips made by these visitors was
+estimated to be 79 000 per day on average.  The
+average number of mechanised trips mad e per
+same-day visitor was 2.51.
+7.3 Characteristics of Mechanised
+Trips Made by Visitors Staying
+in Hotels/Guesthouses
+Purpose of Trips
+7.3.1 For visitors staying in hotels or
+guesthouses, their base would be the
+hotel/guesthouse where they stayed. This is similar
+to the concept of “home” in the analysis of travel
+characteristics of Hong Kong residents. On that
+basis, trips made by visitors were categorised into
+“hotel-based” and “non -hotel-based”, with the
+“hotel-based” trips further classified by the
+following 5 trip purposes according to the visitors’
+major activities at the trip destination:
+ Sightseeing
+ Shopping
+ Work
+ Dining
+ Others
+7.3.2 The proportions of daily trips made by
+visitors staying in hotels/guesthouses for the 6 trip
+purposes are illustrated inFigure 7.4.  Mechanised
+trip rate of visitors is defined as the average daily
+number of mechanised trips made per visitor.  The
+number of trips made by visitors categorised by the
+above 6 trip purposes are summarised inTable 7.3
+and compared against the 2011 survey results.
+Figure 7.4 Proportions of Visitors’ Mechanised Trips by Trip
+Purpose
+Sightseeing
+39%
+Entertainment
+& Leisure
+20%
+Work/Business
+12%
+Shopping
+11%
+Visit
+relatives/friends
+10%
+Transit
+2%
+Others
+6%
+20%
+17%
+14%
+25%
+11%
+5% 8%
+Sightseeing
+Entertainment & leisure
+Work / business
+Shopping
+Visit relatives / friends
+Transit
+Others
+Non-Hotel-
+based
+36%
+Hotel-based
+Sightseeing
+19%
+Hotel-based
+Shopping
+11%
+Hotel-based
+Work
+3%
+Hotel-based
+Dining
+14%
+Hotel-based
+Others
+17%
+##### PAGE 56
+Page 39
+Table 7.3 Mechanised Trip Rates of Visitors Staying in
+Hotels/Guesthouses by Trip Purpose in 2011 and 2023
+Trip purpose
+Daily Mechanised Trips
+per visitor
+2011 2023
+Hotel-based
+- Sightseeing 0.54 0.47
+- Shopping 0.43 0.26
+- Work 0.18 0.08
+- Dining 0.13 0.36
+- Others 0.40 0.43
+Non-hotel-based 0.62 0.88
+Total 2.30 2.48
+7.3.3 Overall, the average daily number of
+mechanised trips per visitor staying in
+hotels/guesthouses was 2.48, higher than the figure
+of 2.30 in 2011. This was mainly due to the
+significant increases in the number of “hotel-based
+dining” and “non -hotel-based” trips, which went
+up from 0.13 in 2011 to 0.36 in 2023 and from 0.62
+in 2011 to 0.88 in 2023 respectively.  These
+increases outweighed the reduction in the numbers
+of trips for other purposes (es pecially shopping
+and work).
+Trip-making Time
+7.3.4 Figure 7.5 illustrates the profiles of
+mechanised trips made by visitors staying in
+hotels/guesthouses against different times of day
+for the 6 trip purposes. Distribution of the
+mechanised trips made by visitors staying in
+hotels/guesthouses was fairly even from 9:00 a.m.
+to 10:00 p.m.  The peak periods,although not very
+distinctive, occurred at 10:00- 11:00 a.m. and 8:00
+- 9:00 p.m. These accounted for about 8%and 10%
+of the total number of their daily mechanised trips
+respectively.
+7.3.5 The morning peak hour for these visitors’
+trips occurred later than that for Hong Kong
+residents (8:00 – 9:00 a.m .). While the evening
+peak hour for these visitors’ trips did not coincide
+with that of Hong Kong residents at 6:00 – 7:00
+p.m., a considerable percentage (about 8%) of
+mechanised trips made by the visitors staying in
+hotels/guesthouses were recorded during the
+residents’ evening commuting peak.
+0%
+2%
+4%
+6%
+8%
+10%
+12%
+0000
+0100
+0200
+0300
+0400
+0500
+0600
+0700
+0800
+0900
+1000
+1100
+1200
+1300
+1400
+1500
+1600
+1700
+1800
+1900
+2000
+2100
+2200
+2300
+Proportion of Daily Mechanised Trips
+Trip-making Time (Starting Hour)
+Hotel-based Sightseeing
+Hotel-based Dining
+Hotel-based Shopping
+Hotel-based Work
+Hotel-based Others
+Non-Hotel-based
+Figure 7.5 Hourly Profiles of Mechanised Trips Made by Visitors Staying in Hotels/Guesthouses
+##### PAGE 57
+Page 40
+Journey Time
+7.3.6 Survey results revealed that 19% of the
+mechanised trips made by visitors staying in
+hotels/guesthouses were completed in less than
+half an hour, 56% took half an hour to less than
+one hour, while the remaining 25% took one hour
+or more to complete.  The mean journey time was
+41 minutes, slightly shorter than the 43 minutes in
+the 2011 survey and the 42 minutes forHong Kong
+residents.
+7.3.7 Comparison of mean journey time by trip
+purpose in Table 7.4 showed that “hotel-based
+sightseeing” and “ hotel-based others” trips took
+longer journey time on average.  In 2023, the mean
+journey time of trips for these two purposes were
+50 and 47 minutes respectively, while that of trips
+for other purposes ranged between 31 – 39
+minutes.
+Table 7.4 Mean Journey Time of Mechanised Trips Made by
+Visitors Staying in Hotels/Guesthouses by Trip
+Purpose in 2011 and 2023
+Trip Purpose
+Mean Journey Time
+(minutes)
+2011 2023
+Hotel-based
+- Sightseeing 53 50
+- Shopping 36 37
+- Work 29 31
+- Dining 30 35
+- Others 51 47
+Non-hotel-based 41 39
+Overall 43 41
+7.3.8 As indicated in the above table, the mean
+journey times of “hotel-based sightseeing”, “hotel-
+based others” and “non-hotel-based” trips made by
+visitors staying in hotels/guesthousesin 2023 were
+shorter than what they were in 2011 .  The most
+notable decrease in journey time w as observed
+among “hotel-based others” trips.
+Trip Movements
+7.3.9 Around 26% of the mechanised trips made
+by visitors staying in hotels/guesthouses started
+and ended within the same district, with 11% made
+within Yau Ma Tei/Tsim Sha Tsui/Mong Kok
+(Yau Tsim Mong) District, 5% withi n Central &
+Western District (including the Peak), and 4%
+within Islands District (including North Lantau).
+For cross-district trips, the most frequent
+movements were observed between Yau Tsim
+Mong and Central & Western, and between Yau
+Tsim Mong and Wan Chai Districts, each
+accounting for 7% - 11% of the total number of
+their daily mechanised trips , followed by those
+between Yau Tsim Mong and Islands (including
+North Lantau) Districts, which accounted for 7%
+of the total number of their daily mechanised trips.
+7.3.10 Overall, similar to 2011, Yau Tsim Mong
+District generated/attracted the most mechanised
+trips made by visitors staying in
+hotels/guesthouses, followed by Central &
+Western and Wan Chai Districts. Many
+hotels/guesthouses were located in these districts,
+where most of the tourist activities such as
+shopping and dining also took place.
+Yau Ma Tei/Tsim Sha Tsui /Mong Kok District
+attracted the most trips of visito rs staying in
+hotels/guesthouses in both 2011 and 2023
+Mechanised Transport Modes Taken
+7.3.11 As shown in Table 7.5, the most popular
+transport mode taken by the visitors staying in
+hotels/guesthouses was MTR ( excluding LRT )
+(47%), followed by franchised bus (14%) and
+taxi/hired car (12%).
+Table 7.5 Proportions of Mechanised Transport Modes Taken
+by Visitors Staying in Hotels/Guesthouses in 2011
+and 2023
+Transport Mode
+Distribution of Boardings
+2011 2023
+MTR (excluding LRT) 35% 47%
+Tour Coach/Shuttle Bus (including
+shuttle bus provided by hotel and
+cross-boundary shuttle bus)
+25% 10%
+Taxi/Hired car 20% 12%
+Franchised Bus 8% 14%
+Private Vehicle 4% 3%
+Ferry/Other Sea Transport 3% 9%
+Others 5% 5%
+Total 100% 100%
+
+##### PAGE 58
+Page 41
+7.3.12 As compared with the 2011 survey results,
+the mode share of MTR increased significantly,
+which was largely attributed to the continuous
+expansion ofthe railway network. Moreover, most
+new tourist attractions commissioned after 2011
+are easily accessible by M TR, thus encouraging
+more rail use. As for the marked decrease in the
+use of tour coaches, it might be due to changes in
+visitor composition. In particular, with the
+Chinese Mainland visitors already familiar with
+the transportation system in Hong Kong and
+having access to abundant travel information, they
+might prefer to follow their own travel plan rather
+than to join a tour group.
+7.3.13 The majority (88%) of the mechanised
+trips made by visitors staying in
+hotels/guesthouses involved only 1 mechanised
+trip leg; 12% comprised of 2 legs, and only 1%
+comprised 3 legs.  The average number of
+boardings per trip was 1.13, marginally higher than
+the 1.12 for Hong Kong residents.  Among the 6
+trip purposes, “hotel-based sightseeing” and “non-
+hotel-based” trips involved higher average number
+of boardings per trip, estimated at 1.27 and 1.12
+respectively.
+7.4 Characteristics of Mechanised
+Trips Made by Same-day Visitors
+Purpose of Trips
+7.4.1 For same-day visitors, their trip purposes
+were defined according to the nature of the place
+and their major activities in Hong Kong:
+ Sightseeing
+ Shopping
+ Work
+ Dining
+ Others
+ Departure (from HKSAR)
+Figure 7.6 Proportions of Same-day Visitors’ Mechanised
+Trips by Trip Purpose
+Table 7.6 Same-day Visitors’ Mechanised Trip Rates by Trip
+Purpose in 2023
+Trip purpose Daily Mechanised Trips
+per visitor
+Sightseeing 0.43
+Shopping 0.42
+Work 0.16
+Dining 0.20
+Others 0.39
+Departure (from HKSAR) 0.91
+Total 2.51
+7.4.2 The average total number of mechanised
+trips made per same-day visitor was 2.51. The
+major purposes of their trips during the Hong
+Kong visit (excluding departure from HKSAR)
+were sightseeing and shopping.
+Trip Arrival Time
+7.4.3 Over 90% of same-day visitors arrived at
+their destinations during the period between 10:00
+a.m. and 7:00 p.m.  A high proportion of trips were
+made by visitors around lunchtime, with an even
+distribution between 12:00 p.m. and 3:00 pm.
+7.4.4 It is worth noting that the peak hour of
+mechanised trips for made by same-day visitors
+occurred during lunchtime, unlike Hong Kong
+residents whose commuting peak hours occurred
+at 8:00– 9:00 a.m. and 6:00– 7:00 p.m.
+Trip Movements
+7.4.5 Approximately 26% of the mechanised
+trips made by same-day visitors started and ended
+within the same district, among which 13% were
+within Yau Ma Tei/Tsim Sha Tsui/Mong Kok
+(Yau Tsim Mong) District, 6% within Islands
+District (including North Lantau),3% within Yuen
+Long District, and 2% within North District.
+7.4.6 For cross-district trips, the most frequent
+movements were observed between Yau Tsim
+Mong and Central & Western Districts (9%) and
+between Yau Tsim Mong and North Districts
+(6%), followed by those between Yau Tsim Mong
+and Yuen Long Districts (6%).
+17%
+17%
+7%
+8%15%
+36%
+Sightseeing
+Shopping
+Work
+Dining
+Others
+Departure (from HKSAR)
+##### PAGE 59
+Page 42
+7.4.7 Overall, Yau Tsim Mong District
+generated/attracted the most mechanised trips
+made by same-day visitors , followed by Islands
+and Yuen LongDistricts.  These districtsare where
+most of the tourist activities such as shopping and
+dining took place.
+Mechanised Transport Modes Taken
+7.4.8 As shown in Table 7.7, the most popular
+transport mode among same-day visitors was
+MTR (excluding LRT) (around 52%), followed by
+franchised bus ( around 25%), taxi/hired car
+(around 11%) andtour coach/shuttle bus providing
+local and cross-boundary services (around 7%).
+Table 7.7 Proportions of Mechanised Transport Modes Taken
+by Same-day Visitors in 2023
+Transport Mode Distribution of Boardings
+MTR (excluding LRT) 52%
+Franchised Bus 25%
+Taxi/Hired Car 11%
+Coach / Shuttle Bus 7%
+Ferry/Other Sea transport 2%
+Private Vehicle 1%
+Others 2%
+Total 100.0%
+7.5 Most Popular Sightseeing and
+Shopping Spots for Visitors
+Staying in Hotels/Guesthouses
+7.5.1 Another objective of the
+Hotel/Guesthouse TS is to find out the most
+popular sightseeing and shoppingspots for visitors
+to estimate the traffic demand for travelling to and
+from these spots.
+7.5.2 The 3 sightseeing spots most visited
+(whether by mechanised trips or walking ) by
+visitors staying in hotels/guesthouses were Hong
+Kong Disneyland, Avenue of Stars and The Peak,
+accounting for about 1 1%, 10% and 10% of the
+total number of trips respectively.  They were
+followed by Tsim Sha Tsui Pier /Tsim Sha Tsui
+Waterfront (6%), Hong Kong Observation Wheel
+(5%) and Ladies’ Market/Sneakers Street in Mong
+Kok (5%) . See Table A.6 in the Appendix for
+details.
+Hong Kong Disneyland was the most popular
+sightseeing spot for visitors staying in
+hotels/guesthouses.
+7.5.3 Survey results also revealed thatregarding
+the shopping centres/ malls visited (whether by
+mechanised trips or walking) by tourists staying in
+hotels/guesthouses, the most popular shopping
+district was Yau Tsim Mong, which accounted for
+48% of the total number of trips to shopping
+centres/malls, followed by Wan Chai ( including
+Causeway Bay) (17%) and Central & Western
+(6%). See Table A.7 in the Appendix for details.
+
+##### PAGE 60
+Page 43
+8. NEXT STEP
+8.1 Application of Data for
+Transport Model Enhancement
+8.1.1 One of the key objectives of TCS 2022 is
+to obtain the latest travel characteristics data and
+information to continuous ly update the
+CTS Model for facilitating future transport
+planning and forecasting traffic conditions.
+8.1.2 With continuous social and economic
+development, people’s travel characteristics as
+identified by TCS 2022 will keep evolving. The
+Government will monitor the traffic and transport
+situation on an ongoing basis and review its
+transport planning and forecast in the light of the
+latest statistical data.
+The latest travel characteristics data collected by
+TCS 2022 will be applied in the review of
+transport planning and forecast.

@@ -1,0 +1,726 @@
+                                LC Paper No. CB(3)1119/2025(03)
+
+For discussion
+on 18 July 2025
+
+       Legislative Council Panel on Transport
+    Implementation of Smart Mobility Initiatives
+
+PURPOSE
+
+               This paper provides Members with an update on the latest
+developments in various smart mobility initiatives, focusing on "Smart
+Transport Infrastructure", "Data Sharing and Analytics", and "Technology
+Application and Services".
+
+BACKGROUND
+
+2.  In December 2017, the HKSAR Government released the first
+
+"Smart City Blueprint for Hong Kong", introducing a range of measures
+
+across six smart domains - "Smart Mobility", "Smart Living", "Smart
+
+Environment", "Smart People", "Smart Government", and "Smart
+
+Economy" - to address urban management challenges and enhance citizens'
+
+lives through innovative technology. Subsequently, the Government
+
+published the "Smart Mobility Roadmap for Hong Kong" in July 2019,
+
+followed by the "Smart City Blueprint for Hong Kong 2.0" in December
+
+2020. In these updates, the Transport Department (TD) expanded the
+
+Smart Mobility section by introducing new measures, such as establishing
+
+the Smart Traffic Fund (the Fund) and promoting the trial and application
+
+of autonomous vehicles (AV). These initiatives aim to optimize traffic
+
+management, improve efficiency, and advance research and innovation in
+
+vehicle-related technology.
+
+UPDATE ON SMART MOBILITY INITIATIVES
+
+3.  The Government has been actively advancing various smart
+
+mobility initiatives by leveraging technologies such as innovative sensing
+
+and detection, artificial intelligence, and big data analytics. These efforts
+
+aim to address the growing demands of transportation and traffic, optimize
+
+road use efficiency, and provide citizens with a more convenient and
+
+seamless travel experience. Through the integration of "Smart Transport
+
+                             1
+Infrastructure", "Data Sharing and Analytics", and "Technology
+Application and Services", significant progress has been made across
+multiple projects. Key focus areas include AV technologies, advanced
+vehicle technologies, automated parking systems, and electronic licensing
+initiatives. The latest developments and work plans for these smart
+mobility measures are outlined in the following paragraphs.
+
+(I) Smart Transport Infrastructure
+
+4.       Smart transport infrastructure is a fundamental pillar of smart
+
+mobility. It enhances road facilities through innovative technologies and
+
+strengthens technical frameworks to collect, analyse, and process real-time
+
+traffic data. This enables the dissemination of traffic information to road
+
+users, optimising travel planning. The Government has been actively
+
+advancing Hong Kong's smart transport infrastructure through various
+
+initiatives, including promoting AV trials and applications, implementing
+
+real-time adaptive traffic signal systems, advancing smart motorways, and
+
+upgrading traffic control and surveillance systems.
+
+Trial and Application of Autonomous Vehicles
+
+5.       One of the key smart mobility measures outlined in the "Smart
+
+Mobility Roadmap" and "Smart City Blueprint 2.0" is to keep pace with
+
+the technological and industry advancements in vehicle-to-everything
+
+(V2X) and AV. The Government completed the legislative amendment
+
+process for the "Road Traffic (Amendment) (Autonomous Vehicles)
+
+Ordinance 2023" and the "Road Traffic (Autonomous Vehicles) Regulation"
+
+(Cap. 374AA) (AV Regulation) in May 2023 and January 2024,
+
+respectively. The new AV regulatory framework was subsequently
+
+implemented in March 2024, alongside the TD's release of the "Code of
+
+Practice for Trial and Pilot Use of Autonomous Vehicles". Under this
+
+framework, TD will issue "Pilot Licence" and "AV Certificate" to "Pilot
+
+Proprietor" participating in the AV "Pilot Scheme". Based on the local
+
+traffic conditions and input from key stakeholders, pilot proprietors will be
+
+permitted to trial or operate one or more approved AVs in designated areas.
+
+This approach provides the industry with greater flexibility to test and
+
+deploy AV under more complex road conditions while maintaining road
+
+safety.
+
+6.       Several AV projects are currently in progress. As of the end of
+
+June 2025, the TD has issued "Movement Permits" for 21 AV to undergo
+
+trials at 12 different locations. At present, six AV are being trialed at four
+
+         2
+locations, including Tai Po Science Park, Fairview Park, the Hong Kong
+Productivity Council, and Tuen Mun Lung Mun Road EcoPark. These
+projects have demonstrated that trained autonomous driving systems can
+adapt to Hong Kong's traffic patterns, with relevant technologies proving
+extendable for AV trials on public roads. TD will actively engage with
+project stakeholders regarding post-trial implementation. Additionally,
+under the new AV Regulation enacted in 2024, TD has issued two AV Pilot
+Licences - approving 30 AV for trial in North Lantau and two autonomous
+light buses for trial in the West Kowloon Cultural District (WKCD).
+
+7.  The North Lantau project, launched in December 2024, has
+
+made significant progress. Under the new regulatory framework, the TD
+
+has streamlined the approval process while maintaining rigorous oversight,
+
+actively facilitating licencees and granting approvals. Within months,
+
+several technical advancements have been achieved, including scaling the
+
+trial from a single vehicle to 10 vehicles operating simultaneously to
+
+collect multi-vehicle data, conducting passenger-carrying trials on specific
+
+routes following safety assessments, expanding the trial scope to more
+
+complex roads, and increasing the speed limit to 50 km/h based on the trial
+
+route's maximum speed limit. Meanwhile, the WKCD project will trial
+
+autonomous light buses equipped with an autonomous driving system
+
+designed to comply with Hong Kong's left-hand traffic rule. The
+
+research institute plans to conduct passenger-carrying trials on public roads
+
+within WKCD by the end of this year.
+
+8.  Looking ahead, the Government remains committed to
+
+prioritizing safety while leveraging project insights to refine technical
+
+standards and steadily advance AV development. In addition to the
+
+aforementioned initiatives, we are actively progressing other projects,
+
+including autonomous light buses operating between Hong Kong Science
+
+Park in Sha Tin and MTR University Station, as well as an autonomous
+
+transportation system connecting SKYCITY at Hong Kong International
+
+Airport with the Hong Kong Port Island of the Hong Kong-Zhuhai-Macao
+
+Bridge. The goal is to implement autonomous driving services in local
+
+communities within the next one to two years.
+
+Real-time Adaptive Traffic Signal System
+
+9.  As real-time adaptive traffic signal technology continues to
+
+mature, its applications have expanded globally. Many cities in the
+
+Mainland are actively integrating this technology, using artificial
+
+intelligence to analyze traffic conditions and adjust signals in real time to
+
+optimize timing for signalised junctions, effectively reducing road
+
+    3
+congestion. The TD successfully completed the pilot scheme for the
+"Real-time Adaptive Traffic Signal System" at five independent signalised
+junctions as early as 2021. Additionally, in 2022, TD began installing and
+trialing the system at eight linked signalised junctions in Tung Chung town
+center. The trial was completed in 2024 and is currently operating
+smoothly. Data indicates that following the installation of the system at
+the tested junctions, the average waiting time for vehicles passing through
+was reduced by approximately 5-10%, significantly improving the
+operational efficiency of the junctions.
+
+10.  Building on previous successes, the TD is expanding the system
+
+to approximately 50 suitable independent signalised junctions across Hong
+
+Kong. The project secured funding approval from the Finance
+
+Committee in June 2024, and the related consultancy study commenced in
+
+July 2024. System installation is expected to begin in 2026, followed by
+
+testing and gradual deployment. The entire project is anticipated to be
+
+completed by 2027.
+
+11.  Meanwhile, the TD is conducting further trials of the system at
+
+busier linked signalised junctions (such as Wan Chai North and Causeway
+
+Bay). At the same time, it is exploring the use of other relevant
+
+technologies (including those from the Mainland), to support the broader
+
+application of the system at suitable junctions. As part of the
+
+Government's development of new urban areas, TD will collaborate with
+
+the relevant departments overseeing infrastructure projects to integrate the
+
+system into signalised junctions from the outset. For instance, the first
+
+batch of systems in the Tung Chung New Town Extension is expected to
+
+be installed by 2026.
+
+Traffic Control and Surveillance Systems
+
+12.  To ensure the safe and efficient operation of Hong Kong's
+
+strategic roads, all government tunnels and major trunk roads are equipped
+
+with Traffic Control and Surveillance Systems (TCSS), which operate
+
+continuously. These systems include lane control signals, variable
+
+message signs, closed-circuit televisions (CCTVs), and automatic incident
+
+detection systems to support real-time traffic management and monitoring.
+
+Government departments rely on TCSS for 24-hour surveillance of road
+
+traffic in tunnels and major trunk roads, enabling swift response to
+
+incidents by notifying tunnel staff and the Police. Meanwhile, lane
+
+control signals and variable message signs help direct motorists to reduce
+
+speed or take alternative routes, ensuring road user safety and minimizing
+
+the broader impact of traffic disruptions.
+
+                       4
+13.  Several tunnels and major roads' TCSS have been in operation
+
+for many years and have exceeded their serviceable lifespan. To mitigate
+
+the risk of malfunction, the Government consulted the Panel on Transport
+
+in May this year and is now preparing to seek funding approval from the
+
+Legislative Council for the replacement and renewal of these systems.
+
+The upgraded and renewed TCSS will incorporate advanced technologies
+
+and new features, including active warning systems (installed at the
+
+Western Harbour Crossing and Cross-Harbour Tunnel); CCTVs and
+
+automatic incident detection systems with higher resolution digital cameras;
+
+and Building Information Modelling data repository1 to enhance smart
+
+tunnel management.
+
+14.  These new features will significantly enhance the efficiency of
+
+traffic monitoring and management. They will also support dedicated
+
+pilot projects (see paragraph 15 below) aimed at accelerating the
+
+innovative development of smart motorway management.
+
+Smart Motorway Pilot Scheme at Ting Kau Bridge
+
+15.  "Moving Towards the Application of Smart Motorway
+
+Management" is one of the key initial recommendations of the "Traffic and
+
+Transport Strategy Study". This initiative aims to leverage technology to
+
+maximize the use of limited road resources and strengthen the resilience of
+
+transport infrastructure in responding to incidents. To support this effort,
+
+the TD launched a Pilot Scheme on 29 December 2024, at Ting Kau Bridge
+
+southbound to test smart motorway technology and refine detailed
+
+operational arrangements.
+
+16.  From the commencement of the Pilot Scheme until the end of
+
+June this year, a total of 19 minor traffic incidents occurred in the
+
+designated road section. Of these, 13 were successfully detected within
+
+10 seconds 2 by the automatic incident detection system, which
+
+simultaneously issued alerts to the operational staff of the Tsing Ma
+
+Control Area. This enhancement has significantly improved the
+
+efficiency of traffic incident management and eased traffic flow.
+
+1 The Building Information Modelling (BIM) data repository allows maintenance staff to efficiently
+    and comprehensively understand the configurations of various new equipment and systems using
+    computer support. It helps trace the causes of facility damage, identify other potentially affected
+    equipment, and accelerate repairs while optimizing maintenance programs.
+
+2 For the remaining six incidents, detection times were prolonged due to external environmental factors
+    affecting individual equipment. A video analysis of these cases has been conducted to fine-tune
+    system parameters accordingly. Moving forward, we will continue monitoring and optimising system
+    performance to enhance detection accuracy and response efficiency.
+
+                                                   5
+Compared to the previous operation mode, which primarily relied on
+periodic inspections by operational staff using CCTV, the implementation
+of the Pilot Scheme has reduced the time required for staff to identify traffic
+incidents by nearly 90%. The TD will continue monitoring the scheme
+and conduct an interim review based on data collected in the first half of
+2025 to assess its effectiveness. The insights gathered from the Pilot
+Scheme will also inform strategies for the future implementation of smart
+motorways, including further trials on other suitable major trunk roads.
+Additionally, the Government will integrate smart motorway elements and
+requirements into related projects, such as road widening initiatives or the
+replacement of TCSS on existing major trunk roads.
+
+(II) Data Sharing and Analytics
+
+17.  As smart transport infrastructure projects advance, the resulting
+
+traffic data has become essential for enhancing transport system planning,
+
+management efficiency, and operational resilience. The Government
+
+actively leverages data analytics to gain insights into citizens' travel habits
+
+and transport mode trends, supporting more effective transport planning
+
+and traffic management. Additionally, traffic data is made accessible
+
+through various platforms, including the TD's "HKeMobility" mobile
+
+application and the "Traffic Data Analytics System", which provide real-
+
+time and forecast traffic data alongside public transport information.
+
+These initiatives foster the development of more innovative and
+
+personalized services, facilitate citizens' journey planning and public
+
+transport use, and promote cross-sector applications in smart mobility.
+
+"HKeMobility" Mobile Application
+
+18.  Since its 2021 update, the TD has enhanced the "HKeMobility"
+
+mobile application to provide personalized traffic and public transport
+
+information, including expanded real-time arrival data. These features
+
+help citizens estimate journey times, make informed travel decisions, and
+
+choose optimal departure times. TD has continuously improved the app's
+
+functionality by integrating real-time toll information for Tai Lam Tunnel
+
+and road harbor crossings, queue ticket distribution and calling status for
+
+TD's licensing offices, and an enhanced user interface. Most of the data
+
+available on "HKeMobility" is also shared via the Government's "Open
+
+Data Portal" (data.gov.hk) and the "Common Spatial Data Infrastructure
+
+Portal" (portal.csdi.gov.hk). Since its launch, the mobile application has
+
+gained widespread adoption, with over 2.84 million downloads and an
+
+average daily hit rate of 190 000 as of June 2025. Moving forward, we
+
+                                  6
+will actively explore the feasibility of integrating electronic services and
+collaborate with the Digital Policy Office to advance the Government's
+goal of establishing "single-portal access" for public services.
+
+Installation of Information Display Panels at Sheltered Bus Stops and
+Covered Public Transport Interchanges
+
+19.  To enhance passenger convenience and help them better manage
+
+waiting times and travel plans, the Government has been subsidising
+
+franchised bus companies on a matching basis since 2016 to accelerate the
+
+installation of real-time bus arrival information display panels at sheltered
+
+bus stops where technically feasible (including locations with power
+
+supply and sufficient space). As of June 2025, franchised bus companies
+
+have installed information display panels at 1 114 sheltered bus stops and
+
+Government-owned covered public transport interchanges. The TD and
+
+franchised bus companies will continue to assess the feasibility of
+
+expanding the installation of real-time bus arrival information display
+
+panels at additional sheltered bus stops as appropriate.
+
+(III) Technology Application and Services
+
+20.  By integrating smart transport infrastructure with relevant data,
+
+the Government leverages technology to enhance traffic management
+
+measures and policies. These initiatives aim to improve transport
+
+efficiency, promote road safety, and provide greater convenience to citizens.
+
+Key projects include the adoption of automated parking systems, the
+
+expansion of advanced vehicle technology applications, the
+
+implementation of traffic e-enforcement system, and the introduction of
+
+electronic licensing initiatives to digitize transport services and enhance
+
+the overall travel experience.
+
+Automated Parking System
+
+21.  The adoption of automated parking systems enhances space
+
+utilization and increases parking density, helping to address public demand
+
+for parking spaces. The Government is actively promoting these systems
+
+in suitable public and short-term tenancy car parks while encouraging their
+
+adoption in private car parks. Regarding short-term tenancy car parks,
+
+the Government has launched three automated parking system projects3,
+
+providing approximately 180 automated parking spaces. The automated
+
+3 Located at Hoi Shing Road in Tsuen Wan, Pak Shek Kok in Tai Po, and Tung Chau Street in Sham
+    Shui Po respectively.
+
+                                                   7
+parking system at Hoi Wang Road short-term tenancy car park in Yau Ma
+Tei is expected to be operational in 2025. Additionally, short-term
+tenancy car parks at Po Tai Street in Ma On Shan and Lok Wah Street in
+Tsz Wan Shan will also be equipped with automated parking systems, with
+the tender process scheduled for 2025.
+
+22.        The Government plans to provide at least 3 000 automated
+
+parking spaces by 2026. Currently, five public automated car park
+
+projects are under construction, incorporating various types of automated
+
+parking systems (including puzzle stacking, vertical lifting and horizontal
+
+sliding)4. These projects are expected to be completed between the end
+
+of this year and 2029. Additionally, the Hong Kong Airport Authority is
+
+gradually completing automated car parks on the Hong Kong Port Island
+
+of the Hong Kong-Zhuhai-Macao Bridge to accommodate transit and
+
+visiting travelers from Guangdong and Macau. To promote wider
+
+adoption of automated parking systems in Hong Kong, private developers'
+
+participation is crucial. The Electrical and Mechanical Services
+
+Department and the TD have issued industry guidelines on automated
+
+parking systems. Moving forward, TD will actively encourage
+
+developers to implement these systems and explore additional incentive
+
+measures.
+
+Advanced Vehicle Technologies
+
+23.        The TD regularly reviews and updates regulations and guidelines,
+
+referencing international standards to align with the latest automotive
+
+market developments. Earlier this year, the Government introduced
+
+legislative amendments to optimize vehicle design and construction
+
+standards, facilitating the adoption of new automotive technologies in
+
+Hong Kong to enhance road safety and convenience. Since March 2025,
+
+drivers have been permitted to use remote control parking functions and
+
+access non-driving-related information on in-vehicle visual display units.
+
+24.        Existing regulations and approvals from the TD allow vehicle
+
+manufacturers to equip vehicles with Level 2 advanced driver assistance
+
+systems (ADAS), which are widely used in the market. These systems
+
+include remote control parking, non-driving-related information in visual
+
+display units, automatic parking, vehicle side collision warning, automatic
+
+anti-skid, assisted direction guidance, automatic lane changing, lane
+
+4 They are Joint-user Government Office Building in Area 67 of Tseung Kwan O, the District Open
+    Space, Sports Centre cum Public Vehicle Park at Sze Mei Street in San Po Kong, the Open Space
+    with Public Vehicle Park at Yen Chow Street West in Sham Shui Po, and the Amenity Complex in
+    Area 103 of Ma On Shan and Town Park with Public Vehicle Park in Area 66 of Tseung Kwan O.
+
+                                                   8
+keeping, cruise control, and automatic emergency braking, etc..
+Manufacturers must ensure these features comply with recognized national
+or international standards and are used within specified driving
+environments. TD will continue working with the industry to facilitate
+the introduction of more advanced vehicle technologies.
+
+Traffic e-Enforcement System
+
+25.  To enhance the efficiency of traffic enforcement through
+
+technology and provide more convenient public services, the Government
+
+completed legislative amendments for electronic traffic enforcement in
+
+2024. These amendments enable the Hong Kong Police Force to issue
+
+fixed penalty notices (e-tickets) for traffic violations electronically. Since
+
+November 18, 2024, the TD has been collecting verified electronic contact
+
+details from registered vehicle owners, driving licence holders, and permit
+
+holders to facilitate the issuance of e-tickets. Beginning 15 June 2025,
+
+the Police will progressively implement the e-ticket system and
+
+simultaneously launch the "Electronic Traffic Ticket Platform" website
+
+(www.etrafficticket.gov.hk) and mobile application. These platforms
+
+will allow citizens to access their e-tickets and conveniently pay fines using
+
+newly introduced electronic payment methods.
+
+Electronic Licensing Initiatives
+
+26.  To support the Government's "Be the Smart Regulator" initiative
+
+and address the growing demand for licensing services, the TD has
+
+introduced electronic licensing measures and simplified application
+
+processes. Currently, TD offers over 20 online services (including high-
+
+demand services such as vehicle licence renewals, full driving licence
+
+renewals, and international driving permit (IDP) applications) allowing
+
+citizens to submit applications via mobile devices or computers using
+
+"iAM Smart" digital signatures and/or e-Form functions, eliminating the
+
+need to visit licensing offices and wait for counter services. TD plans to
+
+further expand these services by adding an additional 20 licensing options,
+
+including applications for excess dimension permits and Certificates of
+
+Driving Licence Particulars.
+
+27.  The TD has been progressively rolling out various electronic
+
+licensing initiatives to improve operational efficiency, enhance public
+
+convenience, and reduce congestion and wait times at licensing offices.
+
+These initiatives include the enhanced Vehicle Licence (eVL), the "E-
+
+                                  9
+Licensing Portal" one-stop platform 5 , IDP Self-Service Kiosks 6 , "e-
+Auction" 7 and the electronic driving licence (eDL). Launched in
+December 2024, the eVL benefits over 800,000 vehicle owners by
+eliminating the need to replace the paper vehicle licence upon renewal after
+initially obtaining a new licence without a printed expiry date.
+Additionally, TD has simplified the required application documents and
+implemented artificial intelligence technology to assist in processing
+online vehicle licence renewals, aiming to reduce processing times of
+applications that do not require manual verification of supporting
+documents from 10 working days to just 3. As application and processing
+procedures become increasingly automated, more citizens are expected to
+apply for vehicle licences online, avoiding the need for in-person visits to
+TD licensing offices. Furthermore, following the passage of relevant
+amendment regulations by the Legislative Council on 12 June, TD will
+introduce eDL in September this year, allowing licence holders to choose
+to display their eDL on smartphones. This measure is expected to provide
+convenience to approximately 2.5 million licence holders. Meanwhile,
+the Government plans to submit legislative amendments regarding the
+International Circulation Permit to the Legislative Council within this year
+to streamline application and processing procedures, facilitating electronic
+applications for the applicants.
+
+Smart Traffic Fund
+
+28.  To support the three pillars of smart mobility, the Government
+
+established the Smart Traffic Fund, earmarking HK$1 billion to subsidise
+
+local enterprises and organizations conducting research and applying
+
+vehicle-related innovations and technologies. The initiative aims to
+
+enhance commuting convenience, optimize road network efficiency, and
+
+improve driving safety. Launched in March 2021, the Fund began
+
+5 Launched in December 2024, the "e-Licensing Portal" provides a one-stop platform for licence
+    applications and inquiries. It features a user-friendly dashboard that clearly displays information
+    about registered users' licences, expiry dates, and the status of applications. This online portal enables
+    members of the public to conveniently manage their licences and vehicles while offering the option
+    to receive email reminders for driving licence and vehicle licence renewals.
+
+6 Since January 2025, "IDP Self-Service Kiosks" have been installed at the Hong Kong Licensing
+    Office and the Kowloon Licensing Office to provide the public with a convenient option for applying
+    for an International Driving Permit (IDP). These kiosks support online booking and allow applicants
+    to collect their permits within half an hour after completing the application process, provided they
+    have all the necessary documents.
+
+7 Launched in December 2024, the "e-Auction" platform enables bidders to participate in auctions for
+    Ordinary Vehicle Registration Marks remotely using computers or mobile devices. This one-stop
+    platform supports electronic payments and streamlines follow-up procedures, providing a convenient
+    and efficient bidding experience.
+
+                                                  10
+accepting applications and fostered collaboration among the Government,
+industry, academia, and research sectors to drive long-term smart mobility
+development in Hong Kong. The Fund's Management Committee has
+been overseeing applications and monitoring its overall operations. As of
+June 2025, the Management Committee has approved 76 project
+applications, with total funding of approximately HK$541 million. This
+includes HK$170 million allocated to five AV testing projects and nine
+V2X and related technology initiatives, HK$138 million for 21 projects
+focused on enhancing road safety and improving driving behavior, and
+HK$102 million for 16 projects aimed at improving public transport safety
+and scheduling.
+
+WAY FORWARD
+
+29.  Looking ahead, the Government will continue to actively
+
+promote smart mobility by consolidating existing strategies, drawing on
+
+global experiences, adopting appropriate new technologies, and launching
+
+projects that enhance convenience for road users. The TD initiated the
+
+Traffic and Transport Strategy Study at the end of 2021 to develop a long-
+
+term Transport Strategy Blueprint for Hong Kong. Nine initial
+
+recommendations were introduced in December 2023, and TD has been
+
+progressively implementing smart mobility pilot schemes since 2024. In
+
+collaboration with relevant policy bureaux and departments, we aim to
+
+deepen various studies and finalize the Transport Strategy Blueprint this
+
+year to maintain a reliable, safe, smart, environmentally friendly, and
+
+highly efficient transport system for Hong Kong.
+
+ADVICE SOUGHT
+
+30.  Members are invited to note the above updates on smart mobility
+
+initiatives.
+
+Transport and Logistics Bureau
+Transport Department
+July 2025
+
+                                11
+

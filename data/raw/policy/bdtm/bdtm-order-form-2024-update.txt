@@ -1,0 +1,69 @@
+Transport Department             For Official Use  TP/LA/
+The Government of the Hong Kong  License No.
+Special Administrative Region    File Ref.         ( ) in 010-100-062-TP-
+
+                                                   001-001
+
+                  Base District Traffic Model (BDTM) Data Order Form
+(for Non-Government Organisations or Private Companies' T&T Consultants only)
+
+1. Non-Government Organisations or Private Companies' T&T Consultants
+         a. Name of Company
+         b. Address
+
+c. Name of Contact Person
+
+d. Telephone No.                 Fax No.
+         E-mail address
+
+2. Intended Uses of the Licensed Materials (as defined in the Licence Agreement), in relation
+         to traffic impact assessment for the proposed development project set out in clause 3 of the
+         BDTM Order Form.
+         (If the following space is not enough, please complete the description on separate sheets)
+
+3. Description of the agreement for the proposed development project for which the traffic
+         impact assessment is required, including locations, the proposed development project and
+         the completion date of the traffic impact assessment for the proposed development project.
+
+4. Description of the Software for using the Licensed Materials
+5. BDTM Data at 2019 and at 2031, 2036, 2041 and 2046 forecast years
+
+Description                 Model   Unit Price             Put a `' in this
+                            No.                            column
+Island North                HK1     HK$ 9,910              for the required
+Island East                 HK2     HK$ 9,910
+Island South                HK3     H11K1$189,,3961008888
+Kowloon West                K1      HK$ 9,910
+Kowloon East                K2      HK$ 9,910
+Tuen Mun and Yuen Long      NTW1    HK$ 9,910
+Kwai Tsing and Tsuen Wan    NTW2    HK$ 9,910
+Lantau Island               NTW3    HK$ 9,910
+Shatin & North District     NTE1    HK$ 9,910
+Sai Kung and Tseung Kwan O  NTE2    HK$ 9,910
+                            Total:
+
+6. Dispatch and Payment Method
+
+         T&T Consultants are to (1) complete & return the BDTM Data Order Form and the
+         Licence Agreement, (2) collect a General Demand Note at the office of Transport Planning
+         Division (TPD) at 12/F, South Tower, West Kowloon Government Offices, 11 Hoi Ting
+         Road, Yau Ma Tei, Kowloon (3) pay the required fees and (4) present the payment receipt
+         to TPD for collection of purchased BDTM data.
+
+                                    Signed for and on behalf of the T&T
+                                    Consultants
+
+                                    Signature
+
+                                    Name
+
+                                    Job Title
+
+                                    Company chop
+                                    Tel No.
+                                    Fax No.
+                                    Date
+                                    Address
+
+Encl. Licence Agreement
+

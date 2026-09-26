@@ -1,0 +1,28 @@
+﻿Class,Category,Area,Percent,Remarks
+Residential,Private Residential,28,2.5,"Including residential area developed by private developers(excluding rural settlements, subsidised housing and transitional housing)"
+Residential,Public Residential,18,1.6,Including subsidised housing and transitional housing
+Residential,Rural Settlement,35,3.1,Including village houses and temporary structures
+Commercial,Commercial/Business and Office,5,0.5,
+Industrial,Industrial Land,6,0.5,
+Industrial,Industrial Estates/Science and Technology Parks,3,0.3,
+Industrial,Warehouse and Open Storage,17,1.5,
+Institutional/Open Space,Government/Institutional and Community Facilities,26,2.3,
+Institutional/Open Space,Open Space and Recreation,28,2.5,Including parks，stadiums，playgrounds and recreational facilities
+Transportation,Roads and Transport Facilities,47,4.2,
+Transportation,Railways,4,0.4,
+Transportation,Airport,17,1.5,
+Transportation,Port Facilities,4,0.4,
+Other Urban or Built-up Land,Cemeteries/Funeral Facilities,9,0.8,
+Other Urban or Built-up Land,Utilities,9,0.8,
+Other Urban or Built-up Land,Vacant land/Construction in Progress,20,1.8,
+Other Urban or Built-up Land,Others,12,1.1,
+Agriculture,Agricultural land,47,4.2,
+Agriculture,Fish Ponds/Gei Wais,16,1.4,
+Woodland/Shrubland/Grassland/Wetland,Woodland,334,29.8,
+Woodland/Shrubland/Grassland/Wetland,Shrubland,184,16.4,
+Woodland/Shrubland/Grassland/Wetland,Grassland,206,18.4,
+Woodland/Shrubland/Grassland/Wetland,Mangrove/Swamp,6,0.6,Including about 4 sq. km of Mangrove and Swamp below the High Water Mark
+Barren Land,Badland,3,0.3,
+Barren Land,Rocky Shore,4,0.4,
+Water Bodies,Reservoirs,25,2.2,
+Water Bodies,Streams and nullahs,6,0.5,

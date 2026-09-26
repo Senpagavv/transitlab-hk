@@ -1,0 +1,2819 @@
+##### PAGE 1
+Survey on Goods Vehicle Trip Characteristics 2011
+(GVTCS 2011)
+Final Report
+December 2014
+##### PAGE 2
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 i  
+ 
+CONTENTS 
+ Page 
+Acronyms v 
+ 
+ 
+EXECUTIVE SUMMARY E-1 
+ 
+ 
+1. INTRODUCTION 1 
+ 
+1.1 Background 1 
+1.2 Study Objectives 1 
+1.3 Study Approach and Process 1 
+1.4 Structure of this Report 2 
+ 
+ 
+2. SURVEY DATA COLLECTION AND ASSIMILATION 3 
+ 
+2.1 Survey Scope and Data Requirements 3 
+2.2 Design of Surveys 3 
+2.3 Survey Fieldwork Implementation 6 
+2.4 Data Processing and Expansion 7 
+2.5 GVTCS 2011 Database 7 
+ 
+ 
+3. GOODS VEHICLE OWNER AND VEHICLE USAGE 9 
+ 
+3.1 Profile of Goods Vehicle Owners 9 
+3.2 Goods Vehicle Usage 9 
+3.3 Overnight Parking of Goods Vehicles 10 
+3.4 Costs for Operating Goods Vehicles 12 
+ 
+ 
+4. CHARACTERISTICS OF GOODS VEHICLE TRIPS MADE ON A 
+WEEKDAY 13 
+ 
+4.1 Total Goods Vehicle Trips Made 13 
+4.2 Trip-making Time 14 
+4.3 Trip Journey Time 15 
+4.4 Trip Movements 15 
+4.5 Loading Conditions 16 
+4.6 Usage of Toll Roads/Tunnels 16 
+ 
+ 
+ 
+ 
+ 
+ 
+##### PAGE 3
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 ii  
+ 
+ 
+ 
+ 
+5. OTHER SURVEY RESULTS 17 
+ 
+5.1 Goods Vehicle Trip Generation Survey 17 
+5.2 Goods Vehicle Composition Survey 17 
+ 
+ 
+6. COMPARISON OF GVTCS 2011 RESULTS WITH PREVIOUS 
+RECORDS 18 
+ 
+6.1 Comparison of Key Findings 18 
+ 
+ 
+7. NEXT STEP 21 
+ 
+7.1 Application of Data for Model Enhancement 21 
+ 
+ 
+ 
+ 
+APPENDIX : TABULATIONS 
+  
+##### PAGE 4
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 iii  
+ 
+LIST OF TABLES  
+ Page 
+ 
+Table E.1 Goods Vehicle Classifications E-1 
+Table E.2 Fieldwork Period and Enumeration E-2 
+Table E.3 Average Numbers of Working Hours of Goods Vehicle Drivers            
+and Delivery Staff Per Week E-2 
+Table E.4 Average Annual Kilometrage Travelled by Goods Vehicle Type in     
+2003 and 2011 E-3 
+Table E.5 Overnight Parking Arrangement in Hong Kong E-3 
+Table E.6 Annual Expenses Incurred in Operating Goods Vehicles E-4 
+Table E.7 Weekday Daily Goods Vehicle Trip Rates by Vehicle Type in            
+2003 and 2011 E-5 
+Table E.8 Major Trip Movements E-5 
+ 
+Table 2.1 Goods Vehicle Classifications 4 
+Table 2.2 Fieldwork Period and Enumeration 6 
+Table 2.3 SGIS Enumeration by Type of Special Generator 6 
+Table 2.4 Key Data Items in the GVTCS 2011 Database 8 
+ 
+Table 3.1 Average Numbers of Working Hours of Goods Vehicle Drivers            
+and Delivery Staff Per Week 10 
+Table 3.2 Average Annual Kilometrage Travelled by Goods Vehicle Type in     
+2003 and 2011 10 
+Table 3.3 Overnight Parking Arrangement in Hong Kong 11 
+Table 3.4 Annual Expenses Incurred in Operating Goods Vehicles 12 
+ 
+Table 4.1 Daily SG-related and Non-SG-related Goods Vehicle Trips by       
+Vehicle Type 13 
+Table 4.2 Weekday Daily Goods Vehicle Trip Rates by Vehicle Type in              
+2003 and 2011 14 
+Table 4.3 Major Trip Movements 15 
+ 
+Table 5.1 Weekday Daily Goods Vehicle Trip Production and Attraction Rates 17 
+ 
+Table 6.1 Comparison of Key Goods Vehicle Trip-making Characteristics in          
+2003 and 2011 19 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+##### PAGE 5
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 iv  
+ 
+LIST OF FIGURES  
+   PAGE 
+ 
+Figure E.1   Goods Vehicle Fleet by Vehicle Type E-2 
+Figure E.2  Average Overnight Parking Costs Paid for Goods Vehicles E-3 
+Figure E.3   Daily Goods Vehicle Trips by Vehicle Type E-4 
+Figure E.4   Loading Conditions by Vehicle Type E-6 
+ 
+Figure 1.1   Study Process 2 
+ 
+Figure 3.1   Industry Goods Vehicle Owners Engaged In 9 
+Figure 3.2  Goods Vehicle Fleet by Vehicle Type 9 
+Figure 3.3   Average Overnight Parking Costs Paid for Goods Vehicles 11 
+ 
+Figure 4.1   Daily Goods Vehicle Trips by Vehicle Type 13 
+Figure 4.2   Hourly Profiles of Goods Vehicle Trips 14 
+Figure 4.3  Distribution of Trip Journey Time 15 
+Figure 4.4   Loading Conditions by Vehicle Type 16 
+ 
+ 
+  
+##### PAGE 6
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 v  
+ 
+Acronyms 
+ 
+ 
+CBTS Cross Boundary Travel Survey 
+CPI Consumer Price Index 
+CTS Comprehensive Transport Study 
+GDP Gross Domestic Product 
+GV Goods Vehicle 
+GVCS Goods Vehicle Composition Survey 
+GVIS Goods Vehicle Owner and Driver Interview Survey 
+GVTCS 2003 Survey on Goods Vehicle Trip Characteristics 2003 
+GVTCS 2011 Survey on Goods Vehicle Trip Characteristics 2011 
+GVTGS Goods Vehicle Trip Generation Survey 
+GVW Gross Vehicle Weight 
+HGV Heavy Goods Vehicle 
+HKSAR Hong Kong Special Administrative Region 
+LGV Light Goods Vehicle 
+MGV Medium Goods Vehicle 
+NT New Territories 
+PlanD Planning Department 
+SG Special Generator 
+SGIS Special Generator Interview Survey 
+TD Transport Department 
+VALID Vehicles and Drivers Licensing Integrated Data System 
+VJTS Vehicle Journey Time Survey 
+VOC Vehicle Operating Cost 
+VoT Value of Time 
+ 
+ 
+ 
+  
+##### PAGE 7
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 vi  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Blank Page 
+##### PAGE 8
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page E-1  
+ 
+EXECUTIVE SUMMARY 
+E.1 Background 
+E.1.1 The Comprehensive Transport Study 
+Model Enhancement – Feasibility Study (the 
+Consultancy Study) was commissioned by 
+Transport Department in July 2010, an integral 
+part of which was the Survey on Goods Vehicle 
+Trip Characteristics 2011 (GVTCS  2011) to 
+collect up -to-date goods vehicle trip 
+characteristics data and archive such data into a 
+database.  The database was subsequently  used 
+for subsequent re-calibration and enhancement of 
+the goods vehicle trip model within the 
+Comprehensive Transport Study (CTS) Mo del, 
+for future transport planning.  The last GVTCS 
+was conducted in 2003 (GVTCS 2003). 
+E.1.2 The Consultancy Study defined the 
+scope, data requirements and outline design of 
+the GVTCS 2011.  The planning, organisation 
+and execution of the GVTCS 2011 surveys 
+proposed by the Consultancy Study were 
+undertaken under a separate service contract 
+“Provision of Services for Conducting the 
+Survey on Goods Vehicle Trip Characteristics 
+2011” (the Service Contract).   
+E.1.3 The GVTCS 2011 comprised five 
+surveys: 
+ Goods Vehicle Own er and Driver Interview 
+Survey (GVIS) – to obtain comprehensive 
+information on the trip patterns of goods 
+vehicles operating within the HKSAR. This 
+is essential for re -calibrating and enhancing 
+the goods vehicle trip model of the CTS 
+Model and providing in formation for 
+transport planning. 
+ Special Generator Interview Survey (SGIS) 
+– to supplement the GVIS by collecting trip 
+generation and characteristics data on goods 
+vehicle movements to and from the “special 
+generator”1 (SG) sites. 
+ 
+                                                      
+1      This refers to sites that generate significant goods 
+vehicle movements with specific trip characteristics. 
+For the purpose of GVTCS 2011, SG sites were 
+defined to cover: Kwai Tsing Container Terminal, 
+River Trade Terminal/ Mid -stream Site/ Private 
+Wharf, Public Cargo Working Area, Wholesale 
+Market, Air Cargo Terminal, Freight Forwarding 
+Centre/ Logistic Centre/ Warehouse, Open Storage 
+and Port Back -up Facility, Landfill Site, Barging 
+Point and Hospital. 
+ Goods Vehicle Trip Generation Survey 
+(GVTGS) – to establish trip generation of 
+different types of goods vehicles generated 
+by different land use developments for 
+various time periods on a normal weekday.   
+ Goods Vehicle Composition Survey (GVCS) 
+– to colle ct traffic flow data for estimating 
+the composition of goods vehicle traffic by 
+vehicle type on major roads in Hong Kong at 
+different time s of a normal weekday.  The 
+data was used as a basis for validating the 
+goods vehicle matrices developed from the 
+GVIS and SGIS data. 
+ Vehicle Journey Time Survey (VJTS) – to 
+obtain supplementary information on the 
+average journey time taken by vehicles to 
+traverse selected road links for reviewing the 
+average operating speed of traffic in the road 
+network.  
+E.1.4 For all the su rveys, the classification of 
+goods vehicles into five vehicle types as shown 
+in Table E.1 was adopted.  Such classification is 
+also consistent with those of the transport model 
+setup. 
+Table E.1    Goods Vehicle Classifications 
+Vehicle Type Description 
+Permitted Gross 
+Vehicle Weight 
+(tonnes) 
+Van-type LGV# 
+ LGV constructed with a fully 
+enclosed body which is an 
+integral part of the vehicle 
+≤ 5.5 
+Light Goods 
+Vehicle (LGV)* 
+ Usually shorter than 6m 
+ 2-axled light goods vehicle 
+other than van-type LGV 
+≤ 5.5 
+Medium Goods 
+Vehicle (MGV)* 
+ Usually longer than 6m 
+ 2-axled with double rear 
+tyres or 3-axled 
+> 5.5 to 24 
+Heavy Goods 
+Vehicle (HGV)* 
+ Usually longer than 7m 
+ Usually 4-axled > 24 to 38 
+Container 
+Vehicle#  All articulated vehicles  ≤ 44 
+* Cap 374 - Road Traffic Ordinance  
+# Cap 374A - Road Traffic (Construction and Maintenance of 
+Vehicles) Regulations 
+E.1.5 The fieldwork period and enumeration 
+results of the respective surveys are summarised 
+in Table E.2 .  All fieldwork was suspended 
+during the Christmas and New Year holiday 
+period.   
+##### PAGE 9
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page E-2  
+ 
+Table E.2    Fieldwork Period and Enumeration 
+Survey Fieldwork 
+Period Enumeration 
+Goods Vehicle Owner 
+and Driver Interview 
+Survey (GVIS) 
+(Response Rate: 70%) 
+10 Oct 2011 – 
+22 Feb 2012 
+4,470 Non-government 
+vehicles + 121 
+government vehicles 
+Special Generator 
+Interview Survey (SGIS) 
+27 Oct 2011 – 
+13 Jan 2012 
+80 sites involving 
+27,220 trip records 
+ (2-way) 
+Goods Vehicle Trip 
+Generation Survey 
+(GVTGS) 
+6 Oct 2011 – 
+20 Dec 2011* 219 sites 
+Goods Vehicle 
+Composition Survey 
+(GVCS) 
+6 Oct 2011 – 
+20 Dec 2011# 104 stations 
+Vehicle Journey Time 
+Survey (VJTS) 
+6 Oct 2011 – 
+16 Jan 2012 29 routes 
+* Supplementary surveys were conducted at two sites on 17 April  
+2012. 
+# Re-surveys were conducted at three sites on 7-8 February 2012. 
+ 
+E.1.6 The data collected in the surveys were 
+then processed, expanded and adjusted based on 
+independent control data. 
+ 
+E.1.7 The major findings of the surveys are 
+summarised in the following paragraphs. 
+ 
+E.2 Goods Vehicle Owner and 
+Vehicle Usage 
+Profile of Goods Vehicle Owners 
+E.2.1 The GVIS covered goods vehicles 
+licensed with the Transport Department (“non -
+government vehicles”) by random sampling as 
+well as goods vehicles owned by the Hong Kong 
+Government (“government vehicles”). 
+ 
+E.2.2 Among the non -government goods 
+vehicles, the largest proportion of their owners 
+were engaged in the “Transportation, Storage, 
+Postal and Courier Services” sector (55%).  It 
+was followed by “Construction” (15%) and 
+“Wholesale, Retail and Import/Export Trade” 
+(13%).  “Manufacturing” industry accounted for 
+only 4% of the goods vehicles, which dropped 
+from 8% in 2003.  About 2% of the goods 
+vehicles were for  non-commercial use, most of 
+them being goods vans.    
+ 
+ 
+ 
+Goods Vehicle Usage 
+E.2.3 As at September 2011, the total goods 
+vehicle fleet size in Hong Kong was 111,946 
+vehicles, comprising 110,660 non -government 
+vehicles and 1,286 government vehicles.  This 
+was ab out 1% less than the total fleet size of 
+113,380 goods vehicles in GVTCS 2003. 
+ 
+E.2.4 The proportions of goods vehicles by 
+vehicle type are illustrated in Figure E.1.  Van-
+type LGV s accounted for the largest proportion 
+of the goods vehicle fleet (39%) which increased 
+from 34% in GVTCS 2003.   
+ 
+Figure E.1 : Goods Vehicle Fleet by 
+Vehicle Type 
+ 
+E.2.5 The average numbers of working hours 
+of drivers and delivery staff deployed for each 
+goods vehicle per week are given in Table E.3.  
+On average, 48 hours of drivers’ and 39 hours of 
+delivery staff’s time were deployed in a week for 
+each goods vehicle. 
+Table E.3 Average Numbers of Working Hours of 
+Goods Vehicle Drivers and Delivery 
+Staff Per Week  
+Vehicle Type 
+Average Number of  
+Working Hours (1) Per Week 
+Driver Delivery Staff 
+Van-type LGV 45.0 34.7 
+LGV 46.8 42.7 
+MGV 50.0 43.0 
+HGV 51.8 39.0 
+Container Vehicle 54.7 13.0 
+Overall 48.0 39.3 
+Note: (1) All goods vehicles excluding non-commercial use. 
+Van-type 
+LGV 
+43,697 
+(39%) 
+LGV 
+27,276 
+(25%) 
+MGV 
+27,128 
+(24%) 
+HGV 
+3,473  
+(3%) 
+Container 
+Vehicle 
+10,372 (9%) 
+##### PAGE 10
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page E-3  
+ 
+E.2.6 The average operating hours of the 
+goods vehicles was estimated to be about 2,500 
+hours per year.  This was marginally more than 
+the 2,420 hours estimated in GVTCS 2003.   
+ 
+E.2.7 The overall average annual distance 
+travelled by a goods vehicle including cross -
+boundary trips  was 38,300 km, notably higher 
+than the 31,800 km estimated in GVTCS 2003  
+which was confined to travel distances  within 
+HKSAR territory only .  Refer to Table E.4  
+below. 
+ 
+Table E.4 Average Annual Kilometrage  Travelled 
+by Goods Vehicle Type  in 2003 and 
+2011 
+Note: (1) The GVTCS 2011 covered the distances travelled 
+outside the HKSAR for cross -boundary trips while the 
+GVTCS 2003 were confined to that within the HKSAR 
+territory only.  
+ 
+Overnight Parking of Goods Vehicles 
+E.2.8 The majority (95%) of goods vehicles 
+were parked within Hong Kong.  Only 5% of 
+goods vehicles were parked in the Mainland, as 
+compared to 10% in 2003.  
+ 
+E.2.9 When the goods vehicles were parked 
+overnight in Hong Kong, most (71%) of them 
+were parked in the New T erritories, including 
+rural Northwest NT (13%) and Kwai Chung 
+(11%).  
+ 
+E.2.10 Referring to Table E.5, the vast majority 
+(90%) of the goods vehicles were parked off -
+street, with monthly rental space (57%) being the 
+most common type of parking, followed by 
+designated rent-free space (18%) and self -owned 
+space (8%).  
+ 
+ 
+Table E.5 Overnight Parking Arrangement in 
+Hong Kong  
+Type of Parking Space Proportion of 
+Goods Vehicles 
+Off-
+street 
+Self-owned space  8% 
+Rent-free space (designated) 18% 
+Monthly rental space  57% 
+Hourly/daily rental space 3% 
+Designated loading/unloading space * 
+Non-designated  4% 
+On-
+street 
+Metered 4% 
+Designated non-metered * 
+Non-designated 5% 
+  Total 100% 
+* Less than 0.5% 
+ 
+E.2.11 The average monthly costs paid for 
+parking different types of goods vehicles 
+(excluding government vehicles) overnight in 
+Hong Kong are illustrated in Figure E.2 .  
+Average overnight parking cost was 
+$1,160/month. 
+ 
+ 
+(Base: Non-government goods vehicles) 
+ 
+Figure E.2 : Average Overnight Parking Costs 
+Paid for Goods Vehicles  
+ 
+E.2.12 The lowest parking cost ($910/month) 
+for HGVs could be attributed to the larger 
+proportion of HGVs parked at non -designated 
+parking spaces as compared to other vehicle 
+types.  All government goods vehicles were 
+parked at designated off -street rent -free spa ces, 
+therefore they did not incur any parking cost. 
+ 
+ 
+ 
+ 
+Vehicle Type 
+Annual Kilometres Travelled (km) (1) 
+  2003   2011 
+Van-type LGV 30,300 27,700 
+LGV 29,900 31,200 
+MGV 32,500 46,400 
+HGV 39,800 46,900 
+Container Vehicle 36,900 78,900 
+Overall 31,800 38,300 
+Van-type      LGV          MGV         HGV     Container    Overall 
+    LGV                    Vehicle 
+Vehicle Type  
+ 
+##### PAGE 11
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page E-4  
+ 
+Costs for Operating Goods Vehicles 
+E.2.13 Table E.6  summarises the annual 
+expenses, itemised by type of expenses and 
+vehicle type. 
+ 
+Table E.6 Annual Expenses Incurred in 
+Operating Goods Vehicles 
+Expenses GVan LGV MGV HGV CV 
+Parking Fee 20,370 
+(15,000) 
+19,770 
+(16,300) 
+23,270 
+(18,800) 
+15,660 
+(17,700) 
+28,300 
+(19,000) 
+Fuel Cost 40,510 
+(30,500) 
+60,390 
+(35,900) 
+112,270 
+(73,600) 
+171,070 
+(99,000) 
+194,070 
+(115,300) 
+Tyre Replacement/ 
+Repair/ 
+Maintenance Cost 
+10,810 
+(9,900) 
+16,680 
+(11,100) 
+30,130 
+(21,800) 
+51,710 
+(32,200) 
+44,550 
+(26,900) 
+Insurance Premium 5,390 
+(5,100) 
+6,150 
+(5,400) 
+9,070 
+(9,300) 
+13,080 
+(13,600) 
+13,990 
+(9,200) 
+Licence Fee 4,160 
+(4,300) 
+2,390 
+(2,400) 
+$4,670 
+(4,700) 
+4,690 
+(4,700) 
+4,690 
+(4,700) 
+Sub-total 
+Operational Cost 
+81,240  
+(64,800) 
+105,380 
+(71,100) 
+179,410 
+(128,200) 
+256,210 
+(167,200) 
+285,600 
+(175,100) 
+Salary Costs 157,000 
+(211,800) 
+178,500 
+(202,700) 
+208,260 
+(243,900) 
+199,270 
+(264,800) 
+185,940 
+(273,900) 
+Annualised  
+Vehicle Cost 
+20,160 
+(18,700) 
+24,360 
+(25,200) 
+41,790 
+(42,400) 
+64,230 
+(63,000) 
+46,430 
+(62,700) 
+Legend: “GVan” denotes “ Van-type LGV”; CV denotes “Container 
+Vehicle” 
+Note: 2003 figures are shown in (    ). 
+ Monetary values above are expressed in nominal terms 
+(i.e. money -of-the-day).  Between 2003 and 2011, the 
+Composite Consumer Price Index has increased by 
+18.2%. 
+E.2.14 Amongst the operating expenses of 
+goods vehicles, salary costs constituted the 
+highest proportion of the total, varying between 
+40% and 60% for different vehicle types.  Fuel 
+cost came second (17% - 41%).  As compared to 
+2003, the most notable increase had been on fuel 
+cost due to the rise in oil price over the period.  
+In contrast, salary costs had gone down 
+considerably which could be resulted from some 
+structural changes in the trade and the way goods 
+vehicles were operated.   
+E.2.15 Generally, there were marginal increases 
+of 4 - 5% in the annual total expenses from 2003 
+to 2011 in nominal terms except van-type LGV.  
+The annual total expenses incurr ed by van-type 
+LGVs had dropped by 14% over that period and 
+it could be due to some major changes in their 
+usage (e.g. increased non -commercial use) and 
+operation.  In real terms, the operating costs for 
+all vehicle types had dropped between 11% and 
+27% from 2003 to 2011. 
+E.2.16 As a result of this drop in annual 
+expenses in real terms, coupled with the increase 
+in average daily distance travelled as earlier 
+mentioned, the average goods vehicle operating 
+cost (inclusive of all costs including capital cost 
+of vehicle) per kilometre travelled had dropped 
+from HK$13.1/km (in 2011 prices) in 2003 to 
+HK$9.2/km (in 2011 prices) in 2011, a notable 
+30% reduction in real terms among all goods 
+vehicles. 
+ 
+E.3 Characteristics of Goods Vehicle 
+Trips Made on a Weekday 
+Total Goods Vehicle Trips Made 
+E.3.1 It is estimated that a total of 785,500 
+goods vehicle trips were made within the 
+HKSAR territory (including trips from a place 
+within the HKSAR to any Hong Kong boundary 
+control point and vice versa) on a normal 
+weekday, decreased from the 833,000 daily trips 
+in 2003.  27% of these daily goods vehicle trips 
+were SG-related, i.e. to and/or from the SG sites. 
+ 
+E.3.2 The distribution of goods vehicle trips 
+by vehicle type is shown in Figure E.3 .  Van-
+type LGV trips constituted the largest pr oportion 
+(40%) of the daily goods vehicle trips.   
+ 
+ 
+Figure E.3 : Daily Goods Vehicle Trips 
+   by Vehicle Type 
+ 
+ 
+ 
+Van-type 
+LGV 
+316,000 
+(40%) 
+LGV 
+211,000 
+(27%) 
+MGV 
+164,000 
+(21%) 
+HGV 
+28,000 
+(3%) 
+Container 
+Vehicle 
+67,000  
+(9%) 
+##### PAGE 12
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page E-5  
+ 
+E.3.3 Table E.7  compares the 2003 and 2011 
+goods vehicle trip rates 2 by vehicle type.  The 
+overall goods vehicle trip rate on a weekday had 
+decreased slightly from 7.40 trips/vehicle in 
+2003 to 7.02 trips/vehicle in 2011.  In 
+comparison, the decrease in trip rate was more 
+noticeable for van-type LGV  and MGV for 
+which close to 10% reductions were observed.  
+ 
+Table E.7 Weekday Daily Goods Vehicle Trip 
+Rates by Vehicle Type  in 2003 and 
+2011 
+Vehicle Type Trip Rate (Daily Trips Per Vehicle) 
+2003 2011 
+Van-type LGV 7.90 7.23 
+LGV 7.80 7.73 
+MGV 6.70 6.03 
+HGV 7.90 7.95 
+Container Vehicle 6.40 6.48 
+Overall 7.40 7.02 
+ 
+Trip-making Time 
+E.3.4 As compared to person trips, goods 
+vehicle trips stayed generally flat from 9:00 a.m. 
+to 6:00 p.m. with a trough around lunch hour at 
+1:00 – 2:00 p.m.  The peak periods occurred 
+during 10:00 a.m. – 12:00 noon in the morning 
+and 2:00 – 4:00 p.m. in the afternoon.  These two 
+peak periods accounted for 20% and 17% of the 
+daily trip total respectively.  This pattern was 
+generally consistent across all types of goods 
+vehicles, and was also similar to that in GVTCS 
+2003. 
+ 
+Trip Journey Time 
+E.3.5 The survey results revealed that close to 
+74% of the trips took 30 minutes or less to 
+complete; 22% took more than 30 minutes to an 
+hour; and about 4% took more than an hour.  The 
+mean journey time was 27 minutes. 
+ 
+E.3.6 Among different vehicle types, trips 
+made by van-type LGV s and LGVs were 
+generally shorter with a mean journey time of 24 
+to 25 minutes.  HGV and container vehicle trips 
+were longest with mean journey times of 34 and 
+41 minutes respectively. 
+                                                      
+2    Goods vehicle trip rate refer s to the averag e 
+number of trips made on a daily basis per vehicle. 
+Trip Movements 
+E.3.7 The estimated daily goods vehicle trip 
+movements on a normal weekday are 
+summarised in Table E.8 by main geographical 
+region. 
+ 
+Table E.8 Major Trip Movements 
+To/ 
+From HKI Kowloon NT BCP Total 
+HKI 77,500 21,500 10,200 100 109,300 
+Kowloon 19,400 166,900 72,200 500 259,000 
+NT 8,500 71,000 317,200 10,800 407,500 
+BCP 100 800 8,700 N/A 9,700 
+Total 105,500 260,300 408,400 11,400 785,500 
+Legend: “HKI” denotes “Hong Kong Island”; “NT” denotes “New 
+Territories”; “BCP” denotes “Boundary Control Point” 
+ 
+ 
+E.3.8 Intra-NT movement accounted for the 
+largest proportion (40%) of the total number of 
+daily trips.  Analysis of the goods vehicle trip 
+origin and destination locations indicates that the 
+most common origin/destination district for 
+goods vehicle trips was Kwa i Chung which 
+accounted for about 9% of both origin and 
+destination trip ends. 
+ 
+E.3.9 This was attributed to the frequent 
+activities of container vehicles and other heavy 
+goods vehicles to serve the Container Terminal 
+and other backup facilities located in the d istrict.  
+For van-type LGVs and LGVs, their trip ends 
+were more dispersed. 
+ 
+E.3.10 Cross-boundary trips constituted less 
+than 3% of the daily goods vehicle trip total.  
+This was decreased from the close to 4% in the 
+GVTCS 2003. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+##### PAGE 13
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page E-6  
+ 
+Loading Conditions 
+E.3.11 The loading conditions of goods vehicles 
+by vehicle type are illustrated in Figure E.4. 
+HGV trips showed the largest proportion (36%) 
+of “full” loading (defined as carrying more than 
+80% of the loading capacity), while Container 
+vehicle trips showed the largest p roportion (66%) 
+of “empty” loaded (defined as carrying less than 
+10% of the loading capacity). 
+ 
+ 
+ 
+Figure E.4 : Loading Conditions by 
+Vehicle Type  
+ 
+Usage of Toll Roads/Tunnels 
+E.3.12 Most (76%) of the trips reported did not 
+involve the use of any toll road/tunnel.  Among 
+the various tunnels, Cross Harbour Tunnel was 
+the most frequently used.  5% of the surveyed 
+trips included the use of Cross Harbour Tunnel, 
+followed by Tseung Kwan O Tunnel (3%), Lion 
+Rock Tunnel (3%) and Shing Mun Tunnel (3%).   
+The remaining (10%) of the surveyed trips used 
+other toll roads/tunnels.      
+ 
+E.4 Next Step 
+E.4.1 One of the prime objectives of the 
+GVTCS 2011 is to collect up-to-date goods 
+vehicle trip characteristics data and information 
+to facilitate the continuous enhancement of the 
+CTS model.  The data collected will be used in 
+the re-calibration and enhancement of the goods 
+vehicle trip model within the CTS model as th e 
+next stage of work for the Consultancy Study.  
+ 
+Van-type           LGV             MGV              HGV          Container     
+LGV                                                                   Vehicle 
+Vehicle Type 
+##### PAGE 14
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 1  
+ 
+1. INTRODUCTION 
+1.1 Background 
+1.1.1 The last Survey on Goods Vehicle Trip 
+Characteristics (GVTCS 2003) was conducted in 
+2003 and completed in 2004.  GVTCS  2003 
+collected information on the trip -making 
+characteristics of goods vehicles in Hong Kong, 
+and archived a database for updating the go ods 
+vehicle trip model within the Government’s 
+comprehensive transport model, which has been 
+widely applied in various major territorial and 
+sub-regional transport studies in Hong Kong. 
+1.1.2 In order to keep the transport model up -
+to-date, the Transport Department commissioned 
+Arup (the Consultant) in July 2010 to undertake 
+the “Comprehensive Transport Study Model 
+Enhancement – Feasibility Study” (the 
+Consultancy Study) under Agreement No. 
+CE 67/2009.  The Consultancy Study defined the 
+scope and data requirements of the GVTCS 2011 
+for transport planning and modelling purposes; 
+and will apply the collected data in subsequent 
+enhancement of the Comprehensive Transport 
+Study (CTS) model for better  simulation of the 
+latest patterns of goods vehicle movements in 
+Hong Kong.   
+1.1.3 The planning, organisation and 
+execution of the GVTCS 2011 surveys proposed 
+by the Consultancy Study were undertaken under 
+a separate service contract “TD 3/2011 – 
+Provision of Services for Conducting the Survey 
+on Goods Vehicle Trip Characteristics 2011” 
+(the Service Contract).  The Service Contract 
+was awarded to MVA Hong Kong Ltd (MVA) in 
+July 2011. 
+1.2 Study Objectives 
+1.2.1 The GVTCS 2011 formed an integral 
+part of the Consultancy Stud y.  Its aim was to 
+collect up -to-date goods vehicle operation and 
+trip-making characteristics data for enhancing 
+the Goods Vehicle Sub-model of the CTS Model.  
+Furthermore, the collected data was archived into 
+a database which allows transport planners to 
+better understand the characteristics of goods 
+vehicle movements and to facilitate future 
+planning for goods vehicles traffic.   
+1.2.2 Specific objectives of the GVTCS 2011 
+are: 
+ To define the scope and data requirements of 
+the surveys; 
+ To collect up-to-date trip characteristics data 
+of goods vehicles for modelling and planning 
+purposes; 
+ To archive a database from the survey data 
+and develop procedures for analysing the 
+data; 
+ To assess changes in goods vehicle trip 
+characteristics against the previous GVTCS 
+or relevant surveys; and 
+ To review and make recommendations on 
+the approach to conduct future survey 
+updates. 
+1.2.3 GVTCS 2011 did not include any re -
+calibration and enhancement work of the CTS 
+Model.  Such work is being carried out as the 
+next phase of the Consultancy Study.  
+1.3 Study Approach and Process  
+1.3.1 Figure 1.1  illustrates the GVTCS 2011 
+process.  The work was carried out in 4 phases 
+involving the following key tasks. 
+ 
+Design Phase 
+ Review of CTS Goods Vehicle Trip Model 
+parameters 
+ Establishment of scope and dat a 
+requirements of surveys 
+ Outline design of interview surveys 
+ 
+Tender Phase 
+ Preparation of tender documents for the 
+Service Contract 
+ Determination of evaluation criteria and 
+marking scheme 
+ Tender assessment and recommendation 
+ 
+Data Collection Phase 
+(Primary responsibility of the Service Contractor, 
+under the supervision and management of the 
+Consultant as required by the Consultancy Study)  
+ Establishment of questionnaires and 
+fieldwork procedures 
+ Pilot and main survey fieldwork 
+ Quality control 
+ Data processing  
+ Data checking and verification 
+ 
+##### PAGE 15
+Survey on Goods Vehicle Trip Characteristics 2011  Final Repor t 
+ 
+12.2014 Page 2 
+ 
+Data Analysis / Reporting Phase 
+ Trip data expansion 
+ Data analysis and tabulations 
+ Recommendations on future survey update 
+strategies 
+ Archive goods vehicle trip database, 
+handover and training 
+ 
+1.4 Structure of this Report 
+1.4.1 Following this introductory section, the 
+remainder of this Report is structured as follows: 
+ Section 2 summarises the survey design, 
+fieldwork implementation, data processing 
+and database development for the GVTCS 
+2011.  
+ Section 3 presents some  key findings with 
+respect to the profile of the goods vehicle 
+owners and the usage of goods vehicles.  
+ Section 4 details the characteristics and 
+patterns of the goods vehicle trips made 
+within the Hong Kong Special 
+Administrative Region (HKSAR) on a 
+weekday.  
+ Section 5 summarises some key results 
+obtained from the goods vehicle trip 
+generation and composition surveys.  
+ Section 6 provides a summary comparison of 
+the GVTCS 2011 results with the previous 
+surveys.  
+ Section 7 discusses the next step with respect 
+to the use of the GVTCS 2011 data. 
+ 
+ 
+Tender Documents & 
+Calling for Tender 
+Tender Assessment
+Commissioning of Service 
+Contract 
+Questionnaire Design & 
+Fieldwork Procedures 
+Brain-storming Workshops 
+Design 
+Tender 
+Data Collection 
+Data Analysis/ 
+Reporting 
+Establish Study Methodology  
+& Programme 
+Establish Data Requirements 
+Review Socio-economic &  
+Other Independent Data 
+Survey Outline Design & 
+Sampling
+Establish Service Contract 
+Management Strategies & 
+Tendering Procedures 
+Pilot Surveys & 
+Finalise Survey Design 
+Conduct of Main Surveys
+Data Coding / Entry / Processing
+Data Checking & Verification
+Data Expansion
+Analysis of Survey Results
+Compilation of 
+Socio-economic & 
+Other Independent Data 
+Establish GVTCS 2011 
+Database
+Final Reporting 
+Database Handover, 
+Training & 
+Operation Manual 
+Recommendations on Future 
+Survey Update Strategies 
+PROJECT PHASE 
+Legend :         Under the Consultancy Study                        Under the Service Contract 
+Review GV Model & 
+Parameters
+Quality Control Checking 
+Figure 1.1 : Study Process 
+Review GV Trip Model & 
+Parameters 
+Consultancy Study Service Contract 
+##### PAGE 16
+Survey on Goods Vehicle Trip Characteristics 2011  Final Repor t 
+ 
+12.2014 Page 3 
+ 
+2. SURVEY DATA COLLECTION 
+AND ASSIMILATION 
+2.1 Survey Scope and Data 
+Requirements 
+2.1.1 The GVTCS 2011 surveys were devised 
+to collect updated and comprehensive goods 
+vehicle trip characteristics data, firstly for the re-
+calibration and enhancement of the Goods 
+Vehicle Trip Model within the CTS Model, and 
+secondly for better appreciation of the goods 
+vehicle operating and trip characteristics to 
+facilitate future transport planning.  The key of 
+the survey design process was to establish what 
+data had to be collected in the GVTCS 2011 in 
+order to fulfil the above purposes.  
+ 
+2.1.2 An in-depth review of the existing CTS 
+Goods Vehicle Trip Model was undertaken to 
+determine the type of data necessary for 
+derivation of relevant para meters.  In addition to 
+the data collected in the previous GVTCS 2003, 
+some extra types of data were proposed to obtain 
+additional information fo r enhancement of the 
+model capability, or to provide more insights 
+into specific goods vehicle operation and trip 
+characteristics. 
+ 
+2.1.3 In addition, a series of brain-storming 
+workshops were conducted with academics and 
+representatives from various government 
+bureaux/departments to identify potential 
+improvements to the existing CTS Model as well 
+as to discuss their specific data needs. 
+ 
+2.1.4 Resulting from the above review, the 
+scope of the GVTCS 2011 was defined to cover 
+the following five surveys: 
+ Goods Vehicle Owner and Driver Interview 
+Survey (GVIS) 
+ Special Generator Interview Survey (SGIS) 
+ Goods Vehicle Trip Generation Survey 
+(GVTGS) 
+ Goods Vehicle Composition Survey (GVCS)  
+ Vehicle Journey Time Survey (VJTS) 
+ 
+ 
+ 
+ 
+2.1.5 Detailed information on the goods 
+vehicle trips made within the HKSAR on a 
+normal weekday, which was the mainstay of the 
+Goods Vehicle Trip Model development, were 
+collected through the GVIS and SGIS.  Besides 
+the trip information, general information on the 
+owner and vehicle characteristics as well as 
+specific information related to vehicle operating 
+costs were also collected through interviews with 
+good vehicle owners in the GVIS. 
+ 
+2.1.6 Moreover, other supplementary 
+information related to goods vehicles or their 
+traffic movements were collected through the 
+other surveys (GVTGS, GVCS and VJTS) either 
+to provide additional in formation for general 
+transport planning purposes or to provide 
+independent data for su bsequent GVTCS data 
+processing or model validation purposes. 
+ 
+GVTCS 2011 was conducted to collect up-to-
+date goods vehicle trip characteristics data 
+ 
+ 
+2.2 Design of Surveys 
+Goods Vehicle Owner and Driver Interview 
+Survey (GVIS) 
+ 
+2.2.1 This formed a major part of the GVTCS 
+2011 data collection and provided essential 
+information on the trip patterns of goods vehicles 
+operating within the HKSAR.  The survey 
+covered goods vehicles licensed with the 
+Transport Department by random sampling, as 
+well as goods vehicles owned by the Hong Kong 
+Government.  Goods vehicles were classified 
+into five vehicle types as shown in Table 2.1 and 
+was consistent with the types of vehicles adopted 
+in the transport model setup.   
+
+##### PAGE 17
+Survey on Goods Vehicle Trip Characteristics 2011  Final Repor t 
+ 
+12.2014 Page 4 
+ 
+Table 2.1 Goods Vehicle Classifications  
+Vehicle Type Description 
+Permitted Gross 
+Vehicle Weight 
+(tonnes) 
+Van-type LGV# 
+ LGV constructed with a fully 
+enclosed body which is an 
+integral part of the vehicle 
+≤ 5.5 
+Light Goods 
+Vehicle (LGV)* 
+ Usually shorter than 6m 
+ 2-axled light goods vehicle 
+other than van-type LGV 
+≤ 5.5 
+Medium Goods 
+Vehicle (MGV)* 
+ Usually longer than 6m 
+ 2-axled with double rear 
+tyres or 3-axled 
+> 5.5 to 24 
+Heavy Goods 
+Vehicle (HGV)* 
+ Usually longer than 7m 
+ Usually 4-axled > 24 to 38 
+Container 
+Vehicle#  All articulated vehicles  ≤ 44 
+* Cap 374 - Road Traffic Ordinance  
+# Cap 374A - Road Traffic (Construction and Maintenance of 
+Vehicles) Regulations 
+ 
+2.2.2 A random sample of goods vehicles was 
+selected from the goods vehicle licensing records 
+in the Vehicles and Drivers Licensing Integrated 
+Data System (VALID) database maintained by 
+the Transport Department (TD) as at September 
+2011.  The licensed goods vehicles were 
+stratified by vehicle type and geographical area 
+of the vehicle registration address and then 
+sampled by disproportionate stratified random 
+sampling with an aim to achieve a minimum 
+sample size for each stratum.   
+ 
+2.2.3 With the assistance of TD, a list of 
+government departments which own goods 
+vehicles was complied.  The list included the 
+numbers and types of goods vehicles owned by 
+each of these departments, from which a sample 
+of government goods vehicles was selected for 
+survey.   
+ 
+2.2.4 Both the owners and drivers of the 
+sampled goods vehicles were approached for 
+face-to-face interviews.  In  general, information 
+related to the business nature, usage, overnight 
+parking location and operating costs of the 
+sampled vehicles were obtained from the vehicle 
+owners.  Also, details of all the trips made using 
+the sampled goods vehicles on a reference 
+weekday (defined as the previous or last 
+operating weekday within the two weeks before 
+interview which was not a public holiday) 
+including locations and land use types at trip 
+origin and destination, trip purpose, trip starting 
+and ending time, parking at trip ends, loading 
+condition, number of delivery workers in the 
+vehicle, use of toll facilities etc., were collected 
+from the goods vehicle drivers. 
+ 
+Special Generator Interview Survey (SGIS) 
+2.2.5 Special generators (SGs) refer to sites as 
+shown in Figure A.1  in the Appendix that 
+generate significant goods vehicle movements 
+with specific trip characteristics.  The main 
+purpose of the SGIS was to supplement the 
+GVIS by collecting trip generation and 
+characteristics data on goods vehicle movements 
+to and from these SGs; the GVIS alone, as a 
+sample survey, would not be able to capture 
+sufficient number of SG trip records for effective 
+analysis. 
+ 
+ 
+2.2.6 For the purpose of this survey, the 
+following types of SGs were defined: 
+ Kwai Tsing Container Terminal 
+ River Trade Terminal/ Mid-stream Site/ 
+Private Wharf 
+ Public Cargo Working Area 
+ Wholesale Market 
+ Air Cargo Terminal 
+ Freight Forwarding Centre/ Logistic Centre/ 
+Warehouse 
+ Open Storage and Port Back-up Facility 
+ Landfill Site and Barging Point 
+ Hospital 
+ 
+ 
+2.2.7 The frames for each SG type were 
+compiled by the Consultant based on a 
+combination of independent sources.  A total of 
+80 sites were then randomly selected from 
+individual frames and then verified by the 
+Contractor through site visits before conducting 
+the surveys.   
+##### PAGE 18
+Survey on Goods Vehicle Trip Characteristics 2011  Final Repor t 
+ 
+12.2014 Page 5 
+ 
+2.2.8 For each surveyed site, two kinds of 
+surveys were conducted to obtain data for 
+subsequent derivation of goods vehicle trip 
+matrices by vehicle type to and from the SGs: 
+(i) Intercept interviews with the goods vehicle 
+drivers for collecting information on the trip 
+characteristics (such as location and land use 
+type at the other end of the trip, trip purpose, 
+arrival/departure time at site, loading 
+condition, number of delivery workers in the 
+vehicle, use of toll facilities) of goods 
+vehicle entering or leaving the site; 
+(ii) Classified vehicle counts at the entrances/ 
+exits for collecting goods vehicle flows by 
+vehicle type into and out of the site to 
+expand the sample data obtained from 
+interviews in (i) above.   
+2.2.9 Surveys were conducted at each selected 
+SG site during their operating hours for at least 
+two weekdays (excluding public holidays). 
+ 
+Goods Vehicle Trip Generation Survey 
+(GVTGS) 
+2.2.10 The survey was carried out to establish 
+trip generation of different types of goods 
+vehicles generated by different land use 
+developments for various time periods on a 
+normal weekday. 
+2.2.11 The sampling frame was compiled based 
+on a combination of information from the 
+Education Bureau (for educational 
+establishments), Rating and Valuation 
+Department (domestic and non-domestic 
+developments) and other independent sources.  A 
+total of 219 sites stratified by land use type and 
+geographical sector were randomly selected from 
+the frame and then verified by the Contractor 
+through site visits to c onfirm the practicality of 
+conducting the survey with a view to capturing 
+all goods vehicle traffic generated by the subject 
+sites including the associated on-street loading/ 
+unloading activities. 
+2.2.12 Classified traffic counts were conducted 
+at each surveyed site for 24 hours (or such 
+duration when traffic could be generated by the 
+site) of at least one weekday, excluding public 
+holiday.  All goods vehicles generated by the 
+surveyed sites, including those loading/ 
+unloading on-street, were counted and recorded 
+at 15-minute intervals by direction (arrival/ 
+departure).   
+Goods Vehicle Composition Survey (GVCS) 
+2.2.13 The survey was to collect traffic flow 
+data for estimating the composition of goods 
+vehicle traffic by vehicle type on major roads in 
+Hong Kong at different times of a normal 
+weekday.  The data was used as basis for 
+validating the goods vehicl e matrices developed 
+from the GVIS and SGIS data. 
+ 
+2.2.14 The survey was conducted at all the 104 
+traffic count stations forming the cordons and 
+screenlines defined in the Annual Traffic Census 
+(including the four cordons: Hong Kong External, 
+Hong Kong Internal, Kowloon External and 
+Tsing Yi External; and eleven screenlines: A-A, 
+C-C, F-F, G-G, H-H, I-I, K-K, R-R, S-S, T-T, Y-
+Y) and the screenline formed by the three cross-
+harbour tunnels, as well as three additional 
+cordons defined by the Study for future model 
+validation purpose, namely: Shatin External, Ma 
+On Shan External and Tseung Kwan O External.  
+Refer to Figures A2-A4 in the Appendix for the 
+locations of these screenlines/cordons. 
+ 
+2.2.15 At each count station, classified goods 
+vehicle counts were undertaken from 7:00 a.m. 
+to 9:00 p.m. for at least one normal weekday, 
+excluding public holiday.  Goods vehicle traffic 
+flows distinguished by the five vehicle types in 
+Table 2.1 were recorded at 15-minute intervals 
+by direction. 
+ 
+Vehicle Journey Time Survey (VJTS) 
+2.2.16 The purpose of this survey was to obtain 
+supplementary information on the average 
+journey time taken by vehicles to traverse 
+selected road links for reviewing the average 
+operating speed of traffic in the road network. 
+ 
+2.2.17 Besides reference made to TD’s “Car 
+Journey Time Survey for Monitoring Traffic 
+Congestion 2010 and 2011”, the vehicle journey 
+time survey was conducted for 29 routes. 
+ 
+2.2.18 The survey was conducted during the 
+morning (7:15 – 9:30 a.m.) and evening (5:00 –
+7:30 p.m.) peak periods. 
+ 
+ 
+##### PAGE 19
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 6  
+ 
+2.2.19 The Moving Car (Modified) Method as 
+stipulated in the Transport Planning and Design 
+Manual was adopted for this survey, which was 
+also consistent with TD’s “Car Journey Time 
+Survey for Monitoring Traffic Congestion 2010 
+and 2011”.  At least four runs were conducted 
+for each survey route for each peak period 
+concerned.  In case of incidents which might 
+affect the journey time, including traffic accident 
+before or during the survey, roadwork s, 
+temporary traffic diversion and inclement 
+weather, additional re -runs were conducted to 
+replace the affected survey results.  In case of 
+roadworks and temporary traffic diversion, 
+additional re -runs for replacement were 
+conducted after completion of the concerned 
+roadworks.   
+2.3 Survey Fieldwork Implementation 
+2.3.1 The operation , procedures and 
+questionnaires including the design of data 
+record forms of the respective surveys were 
+tested through pilot surveys, with necessary 
+refinements made for final adoption in the main 
+fieldwork.  The surveys were suspended during 
+the Christmas/New Year holiday period to avoid 
+skewed effect of travel patterns during holidays.   
+2.3.2 The fieldwork period and enumeration of 
+the respective surveys are summarised in    
+Table 2.2.   
+ 
+Table 2.2 Fieldwork Period and Enumeration 
+Survey Fieldwork 
+Period Enumeration 
+Goods Vehicle Owner 
+and Driver Interview 
+Survey (GVIS) 
+(Response Rate: 70%) 
+10 Oct 2011 – 
+22 Feb 2012 
+4,470 Non-government 
+vehicles + 121 
+government vehicles 
+Special Generator 
+Interview Survey (SGIS) 
+27 Oct 2011 – 
+13 Jan 2012 
+80 sites involving 
+27,220 trip records   
+(2-way) 
+Goods Vehicle Trip 
+Generation Survey 
+(GVTGS) 
+6 Oct 2011 – 
+20 Dec 2011* 219 sites 
+Goods Vehicle 
+Composition Survey 
+(GVCS) 
+6 Oct 2011 – 
+20 Dec 2011# 104 stations 
+Vehicle Journey Time 
+Survey (VJTS) 
+6 Oct 2011 – 
+16 Jan 2012 29 routes 
+* Supplementary surveys were conducted at two sites on 17 April  
+2012. 
+# Re-surveys were conducted at three sites on 7-8 February 2012. 
+ 
+ 
+2.3.3 The number of surveyed sites and trip 
+records enumerated by the SGIS broken down by 
+the type of special generator are given in 
+Table 2.3. 
+Table 2.3 SGIS Enumeration by Type of Special 
+Generator 
+SG Type 
+Number of 
+Surveyed 
+Sites 
+Number of Trip 
+Records (2-way) 
+Enumerated  
+Kwai Tsing Container 
+Terminal 4 2,170 
+River Trade Terminal/ Mid-
+stream Site/ Private Wharf 4 2,300 
+Public Cargo Working Area 3 2,130 
+Wholesale Market 5 960 
+Air Cargo Terminal 2 2,540 
+Freight Forwarding Centre/ 
+Logistic Centre/ Warehouse 30 9,500 
+Open Storage and Port 
+Back-up Facility 17 2,080 
+Landfill Site and Barging 
+Point 5 4,120 
+Hospital 10 1,420 
+Total 80 27,220 
+ 
+Wholesale market has been included as a new 
+category of Special Generators in the 2011 SGIS 
+2.3.4 Throughout the fieldwork period, quality 
+control measures were strictly applied to ensure 
+that data of the highest quality were collected.  
+These were implemented by an independent 
+quality control team of the  Contractor and also 
+by the Consultant.  Apart from the training and 
+day-to-day supervision of the fieldwork, 15% of 
+the completed GVIS questionnaires were 
+randomly selected by independent checkers for 
+back-checking to verify that interviews with the 
+goods vehicle owners and drivers were made and 
+key information collected was correct.  In 
+addition, random on -site checks were made for 
+on t he work and quality of the completed 
+questionnaires/data record forms for the other 
+surveys. 
+
+##### PAGE 20
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 7  
+ 
+2.4 Data Processing and Expansion  
+2.4.1 All the data collected in the interview 
+surveys were edited, coded and entered in 
+computer format by the Contractor. The 
+addresses given for fields involving locations 
+such as trip origin, destination and interchange 
+locations (between transport modes t aken) were 
+coded to the Tertiary Planning Unit Street Block 
+level.  To minimise the risk of incorrect data 
+entry, a double data entry system was adopted, 
+i.e. all data were keypunched twice into the 
+computer by different staff for verification. 
+2.4.2 The input d ata went through a series of 
+validity checks using the computer to identify 
+any duplicated records, omitted items, out -of-
+range values and inconsistencies between 
+different data items, for subsequent verification 
+and cleaning. 
+2.4.3 The cleaned data collected fr om the 
+GVIS and SGIS were then expanded to represent 
+the population based on a 2 -stage process.  The 
+first stage involved direct expansion of the GVIS 
+results according to the sampling fractions by 
+stratum to match the goods vehicle fleet size 
+control tota ls, while the SGIS data for each 
+surveyed site was initially expanded to match the 
+observed traffic counts at individual sites 
+conducted in tandem with the interviews.   
+2.4.4 As the SGIS was only conducted at a 
+sample of selected sites, the data collected at th e 
+surveyed sites, after initial direct expansion to 
+match observed counts, had to be further 
+expanded to the territory -wide SG totals based 
+on relevant parameters such as number of sites, 
+throughput, site or floor area, as appropriate.   
+2.4.5 Following the abov e, initial goods 
+vehicle trip matrices for SG -related and non-SG-
+related trips were derived from the SGIS and 
+GVIS results respectively.  They were then 
+compared against independent observed traffic 
+flows across screenlines/cordons and adjusted 
+accordingly by using matrix estimation 
+technique.  Matrix adjustments in this second 
+stage of expansion were necessary because, 
+irrespective of the survey design, some under -
+reporting of trips by the GVIS respondents 
+would be inevitable.  For the SGIS trip data, the 
+adjustments mainly accounted for any 
+discrepancy arising from the application of the 
+surveyed SG site characteristics to the SG 
+population totals. 
+ 
+       
+       
+2.4.6 In this stage of expansion process, the 
+GVCS traffic counts were adopted as the control 
+goods vehicle flows.  Reference has also been 
+made to the Annual Traffic Census daily traffic 
+profiles.  For cross -boundary goods vehicle 
+movements, PlanD’s Cross -boundary Travel 
+Survey 2011 results were applied as controls. 
+ 
+ 
+Independent observed traffic statistics from 
+various sources including the GVCS results, 
+Cross-boundary Travel Survey and Annual 
+Traffic Census were adopted for GVTCS trip 
+data expansion 
+ 
+ 
+2.5 GVTCS 2011 Database 
+2.5.1 The finally expanded data for the GVIS 
+and SGIS were archived into a comprehensive 
+goods vehicle trip characteristics database which 
+comprises key data items on the owner, vehicle 
+and trip information given in Table 2.4. 
+ 
+2.5.2 The GVTCS 2011  database will be 
+adopted as the basis for the re -calibration and 
+updating of the CTS Goods Vehicle Trip Model.  
+In addition, the information in the database will 
+provide useful reference for future goods vehicle 
+transport planning.    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+##### PAGE 21
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 8  
+ 
+Table 2.4 Key Data Items in the GVTCS 2011 
+Database  
+ Data 
+Type Key Data Items 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GVIS 
+Owner 
+ Industry Engaged in * 
+ Goods Vehicle Fleet Size Owned 
+ Total Number of Employees 
+ Number of Drivers and Delivery Staff 
+Employed 
+Vehicle 
+ Type of Goods Vehicle 
+ Main Purpose of Vehicle Usage 
+ Usual Location for Overnight Parking (or 
+When Vehicle Not in Operation) 
+ Usual Type of Parking Space and 
+Average Fee Paid for Overnight Parking 
+(or When Vehicle Not in Operation) 
+ Age of Vehicle, Expected Life and Price of 
+Purchase 
+ Total Working Hours of Drivers/ Delivery 
+Staff Deployed Per Week 
+ Expenses Incurred in Operating the 
+Vehicle 
+ Decision Maker and Any Criterion for 
+Route Choice 
+Trip 
+ Locations of Trip Origin/ Destination        
+(in Tertiary Planning Unit Street Block) 
+ Trip Starting and Ending Time, and 
+Journey Time 
+ Land Use at Trip Origin/ Destination 
+ Type of Parking Space at Trip Origin/ 
+Destination 
+ Trip Purpose 
+ Number of Persons in the Vehicle 
+ Loading Condition 
+ Control Point Used for Cross-boundary 
+Trips 
+ Use of Tunnels/ Tolled Roads 
+ 
+ 
+ 
+ 
+ 
+ 
+SGIS 
+ 
+Trip 
+ Type of Goods Vehicle 
+ Direction (Inbound/ Outbound) 
+ Time Arriving/ Departing Site 
+ Location of the Other End of the Trip       
+(in Tertiary Planning Unit Street Block) 
+ Land Use at the Other End of the Trip 
+ Trip Purpose 
+ Control Point Used for Cross-boundary 
+Trips  
+ Use of Tunnels/ Tolled Roads 
+ Loading Condition 
+ Number of Persons in the Vehicle 
+* For non-government vehicles only 
+ 
+##### PAGE 22
+Survey on Goods Vehicle Trip Characteristics 2011  Final Repor t 
+ 
+12.2014 Page 9 
+ 
+3. GOODS VEHICLE OWNER AND 
+VEHICLE USAGE 
+3.1 Profile of Goods Vehicle Owners 
+3.1.1 Among the non-government goods 
+vehicles, the largest proportion of their owners 
+were engaged in the “Transportation, Storage, 
+Postal and Courier Services” sector (55%) as 
+shown in Figure 3.1 .  It was followed by 
+“Construction” (15%) and “Wholesale, Retail 
+and Import/Export Trade” (13%).  These 
+percentages were fairly consistent with the 
+corresponding figures of 49%, 15% and 14% in 
+GVTCS 2003. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 3.1 : Industry Goods Vehicle Owners 
+Engaged In 
+ 
+3.1.2 “Manufacturing” industry accounted for 
+only 4% of the goods vehicles, which dropped 
+from 8% in 2003.  About 2% of the goods 
+vehicles were for non-commercial use.  Most of 
+them were van-type LGVs.   
+ 
+3.2 Goods Vehicle Usage 
+3.2.1 As at September 2011, the total goods 
+vehicle fleet size in Hong Kong was 111,946 
+vehicles, comprising 110,660 goods vehicles 
+licensed in TD’s VALID database (non-
+government vehicles) and another 1,286 goods 
+vehicles owned by the HKSAR government 
+(government vehicles).  This was about 1% less 
+than the total fleet size of 113,380 goods 
+vehicles as reported in GVTCS 2003. 
+ 
+3.2.2 The proportions of goods vehicles by 
+vehicle type are illustrated in Figure 3.2 . As 
+shown, van-type LGVs accounted for the largest 
+proportion (39%) of the goods vehicle fleet, 
+followed by LGVs (25%) and MGVs (24%).   
+ 
+Figure 3.2 : Goods Vehicle Fleet by  
+Vehicle Type 
+ 
+ 
+3.2.3 As compared to 2003, the proportion of 
+van-type LGVs had increased from 34% to 39%.  
+Corresponding reductions in proportions were 
+observed for LGVs (from 27% in 2003) and 
+container vehicles (from 12% in 2003). 
+ 
+3.2.4 About half (49%) of the non-government 
+goods vehicles were mainly used for transporting 
+goods of the respondents’ own company.  36% 
+mainly provided transport services directly to 
+customers.  “Transportation of employees of 
+own company” and “personal transport by 
+respondents or their family” each accounted for 
+5%, which comprised mostly van-type LGVs 
+and to a lesser extent LGVs.   
+ 
+3.2.5 As for the government goods vehicles, 
+most (68%) of them were mainly used for 
+transporting goods of the respondents’ own 
+department.  17% were used mainly for 
+transportation of operational staff of the 
+respondents’ own department, and 10% mainly 
+for repair/ maintenance/ carrying out works/ 
+cleaning. 
+Van-type 
+LGV
+43,697 
+(39%)
+LGV
+27,276 
+(25%)
+MGV
+27,128 
+(24%)
+HGV
+3,473 
+(3%)
+Container 
+Vehicle
+10,372 (9%)
+Non-
+commerical 
+Use 
+(2%) Others 
+(11%) 
+Transportati
+on Storage, 
+Postal and 
+Courier 
+Services  
+(55%) 
+Construction 
+(15%) 
+Manufacturing
+(4%)
+Wholesale, 
+Retail and 
+Import/Exp
+ort Trade 
+(13%) 
+
+##### PAGE 23
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 10  
+ 
+ 
+The number of van-type LGVs had increased by 
+12% from 2003 to 2011 
+ 
+3.2.6 The average numbers of working hours 
+of drivers and delivery staff deployed for each 
+goods vehicle per week are given in Table 3.1 .  
+On average, 48 hours of drivers’ and 39 hours of 
+delivery staff’s time were deployed in a week for 
+each goods vehicle.   
+ 
+Table 3.1 Average Numbers of Working Hours of 
+Goods Vehicle Drivers and Delivery 
+Staff Per Week  
+Vehicle Type 
+Average Number of  
+Working Hours (1) Per Week  
+Driver Delivery Staff 
+Van-type LGV 45.0 34.7 
+LGV 46.8 42.7 
+MGV 50.0 43.0 
+HGV 51.8 39.0 
+Container Vehicle 54.7 13.0 
+Overall 48.0 39.3 
+Note:  (1) All goods vehicles excluding non-commercial use. 
+ 
+3.2.7 As indicated from the above table, the 
+number of drivers’ working hours generally 
+increased with the Gross Vehicle Weight (GVW) 
+of the goods vehicle.  On the other hand, the 
+number of delivery staff’s working hours was 
+highest among MGVs and LGVs. 
+ 
+3.2.8 The number of working hours of drivers 
+would be a proxy of the operating hours of the 
+goods vehicle.  On this basis, the average 
+operating hours of the goods vehicles was 
+estimated to be about 2,500 hours per year.  This 
+was slightly more than the 2,420 hours estimated 
+in GVTCS 2003. 
+3.2.9 Table 3.2  shows the average annual 
+kilometrage travelled by different goods vehicle 
+types, and compares them against the GVTCS 
+2003 results.  In 2011, the overall average annual 
+distance travelled by a goods vehicle including 
+cross-boundary trips was 38,300 km.  This was 
+notably higher than the 31,800 km estimated in 
+GVTCS 2003  for which confined to travel 
+distances within HKSAR territory only.  As a 
+relatively large proportion of container vehicle 
+trips involved cross -boundary movements, the 
+average annual kilometrage tra velled by 
+container vehicles in 2011 was much higher  
+than in 2003.   
+Table 3.2 Average Annual Kilometrage Travelled 
+by Goods Vehicle Type  in 2003 and 
+2011 
+Note: (1) The GVTCS 2011 covered the distances travelled 
+outside the HKSAR for cross-boundary trips while the 
+GVTCS 2003 were confined to that within the HKSAR 
+territory only.   
+3.2.10 Among different types of goods vehicles, 
+the average annual kilometrage travelled 
+generally increased with the size or GVW of the 
+vehicle, starting from 27,7 00 km for van-type 
+LGV to the highest 78,900 km for container 
+vehicle. 
+3.3 Overnight Parking of Goods 
+Vehicles 
+3.3.1 Goods vehicle owners were asked where 
+their vehicles were parked overnight (or when 
+the vehicles were not in operation) over the 6 
+months before enum eration.  The results 
+indicated that the majority (95%) of goods 
+vehicles were parked within Hong Kong.  Only 
+5% of goods vehicles were parked in the 
+Mainland, as compared to 10% in 2003.   
+3.3.2 Comparing different vehicle types, a 
+much higher percentage (22%) of container 
+vehicles were parked overnight in the Mainland.  
+It was followed by MGVs (11%).  Other goods 
+vehicle types generally had less than 5% parking 
+Vehicle Type 
+Annual Kilometres Travelled (km) (1) 
+  2003   2011 
+Van-type LGV 30,300 27,700 
+LGV 29,900 31,200 
+MGV 32,500 46,400 
+HGV 39,800 46,900 
+Container Vehicle 36,900 78,900 
+Overall 31,800 38,300 
+##### PAGE 24
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 11  
+ 
+in the Mainland, with van-type LGV showing the 
+lowest proportion (less than 0.5%).   
+3.3.3 When the goods vehicles were parked 
+overnight in Hong Kong, the distribution of their 
+most usual parking locations are set out in Table 
+A.1 in the Appendix by 26 broad districts 
+commonly adopted for transport planning and 
+modelling analysis (refer to Figure A5 in the 
+Appendix for definition of these districts).  In 
+general, 8% of them were parked on Hong Kong 
+Island, 21% in Kowloon, and 71% in the New 
+Territories (NT).  These compared to 8%, 18% 
+and 74% respectively in 2003. 
+3.3.4 Among the 26 broad districts, ru ral 
+Northwest NT (13%) and Kwai Chung (11%) 
+accounted for the largest proportions of 
+overnight goods vehicle parking. 
+ 
+Goods vehicles parking on streets 
+3.3.5 The type s of parking space used by 
+goods vehicles when parked overnight in Hong 
+Kong are summarised in Table 3.3 .  The vast 
+majority (90%) were parked off -street, with 
+monthly rental space (57%) being the most 
+common type of parking, followed by designated 
+rent-free space (18%) and self-owned space (8%).  
+Table 3.3 Overnight Parking Arrangement in 
+Hong Kong  
+Type of Parking Space Proportion of 
+Goods Vehicles 
+Off-
+street 
+Self-owned space  8% 
+Rent-free space (designated) 18% 
+Monthly rental space  57% 
+Hourly/daily rental space 3% 
+Designated loading/unloading space * 
+Non-designated  4% 
+On-
+street 
+Metered 4% 
+Designated non-metered * 
+Non-designated 5% 
+  Total 100% 
+* Less than 0.5% 
+3.3.6 The average monthly costs paid for 
+parking goods vehicles (excluding government 
+vehicles) overnight in Hong Kong are illustrated 
+in Figure 3.3  by vehicle type.  The average 
+parking cost ranged from the lowest $910/month 
+for HGVs to the highest $1,630/month  for 
+container vehicles.  Average overnight parking 
+cost was $1,160/month.  The lower parking cost 
+for HGVs could be attributed to the larger 
+proportion of HGVs parked at non -designated 
+parking spaces (both on -street and off -street) as 
+compared to other vehicle types.   
+ 
+ 
+ (Base: Non-government goods vehicles) 
+ 
+Figure 3.3 : Average Overnight Parking Costs 
+Paid for Goods Vehicles  
+ 
+ 
+3.3.7 All government goods vehicles were 
+parked at designated off -street rent -free spaces, 
+therefore they did not incur any parking cost.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Van-type      LGV          MGV         HGV     Container    Overall 
+    LGV                    Vehicle 
+Vehicle Type  
+ 
+##### PAGE 25
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 12  
+ 
+3.4 Costs for Operating Goods 
+Vehicles 
+3.4.1 Detailed information was obtained from 
+goods vehicle owners about the avera ge 
+expenses incurred in operating their vehicles.  
+Table 3.4  summarises the annual expenses, 
+itemised by type of expenses and vehicle type.  
+ 
+3.4.2 The average total annual operational cost 
+(excluding capital cost of vehicle) incurred by a 
+goods vehicle ranged f rom some $238,200 for a 
+van-type LGV  to $471,600 for a container 
+vehicle.  As can be expected, the operating cost 
+generally increased with the size or GVW of the 
+vehicle.   
+ 
+3.4.3 As compared to the GVTCS 2003 results, 
+there were marginal increases (4% - 5%) in the 
+annual total expenses from 2003 to 2011 in 
+nominal terms for all vehicle types except van-
+type LGV.  Such marginal increases in the total 
+expenses (except for van-type LGVs ) however 
+fell behind inflation over the period.  There was 
+a 14% reduction in a nnual total expenses 
+incurred by van-type LGVs and it could be due 
+to some major changes in their usage (e.g. 
+increased non-commercial use) and operation. 
+ 
+3.4.4 In real terms, the operating costs for all 
+vehicle types had dropped by 11% - 27% 
+between 2003 and 2011. 
+ 
+3.4.5 Amongst the operating expenses of 
+goods vehicles, salary costs constituted the 
+highest proportion of the total, varying between 
+40% and 60% for different vehicle types.  Fuel 
+cost came second (17% - 41%), followed by tyre 
+replacement/ repair/ mainten ance costs for 
+MGV/ HGV/ Container Vehicle or parking cost 
+for van-type LGV/ LGV.  As compared to 2003, 
+the most notable increase had been on fuel cost 
+due to the rise in oil price over the period.  In 
+contrast, salary costs had gone down 
+considerably which could be resulted from some 
+structural changes in the trade , operation of 
+goods vehicle and worker population.       
+ 
+ 
+ 
+Table 3.4 Annual Expenses Incurred in 
+Operating Goods Vehicles 
+Expenses GVan LGV MGV HGV CV 
+Parking Fee 20,370 
+(15,000) 
+19,770 
+(16,300) 
+23,270 
+(18,800) 
+15,660 
+(17,700) 
+28,300 
+(19,000) 
+Fuel Cost 40,510 
+(30,500) 
+60,390 
+(35,900) 
+112,270 
+(73,600) 
+171,070 
+(99,000) 
+194,070 
+(115,300) 
+Tyre Replacement/ 
+Repair/ 
+Maintenance Cost 
+10,810 
+(9,900) 
+16,680 
+(11,100) 
+30,130 
+(21,800) 
+51,710 
+(32,200) 
+44,550 
+(26,900) 
+Insurance Premium 5,390 
+(5,100) 
+6,150 
+(5,400) 
+9,070 
+(9,300) 
+13,080 
+(13,600) 
+13,990 
+(9,200) 
+Licence Fee 4,160 
+(4,300) 
+2,390 
+(2,400) 
+$4,670 
+(4,700) 
+4,690 
+(4,700) 
+4,690 
+(4,700) 
+Sub-total 
+Operational Cost 
+81,240  
+(64,800) 
+105,380 
+(71,100) 
+179,410 
+(128,200) 
+256,210 
+(167,200) 
+285,600 
+(175,100) 
+Salary Costs 157,000 
+(211,800) 
+178,500 
+(202,700) 
+208,260 
+(243,900) 
+199,270 
+(264,800) 
+185,940 
+(273,900) 
+Annualised  
+Vehicle Cost 
+20,160 
+(18,700) 
+24,360 
+(25,200) 
+41,790 
+(42,400) 
+64,230 
+(63,000) 
+46,430 
+(62,700) 
+Legend: “GVan” denotes “ Van-type LGV”; CV denotes “Container 
+Vehicle” 
+Note: 2003 figures are shown in (    ). 
+ Monetary values above are expressed in nominal terms 
+(i.e. money -of-the-day).  Between 2003 and 2011, the 
+Composite Consumer Price Index has increased by 
+18.2%. 
+ 
+ 
+ 
+ 
+ 
+##### PAGE 26
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 13  
+ 
+4. CHARACTERISTICS OF GOODS 
+VEHICLE TRIPS MADE ON A 
+WEEKDAY 
+4.1 Total Goods Vehicle Trips Made 
+4.1.1 It is estimated from the expanded GVIS 
+and SGIS results that a total of 785,500 goods 
+vehicle trips were made within the HKSAR 
+territory (including trips from a place within the 
+HKSAR to any Hong Kong boundary control 
+point and vice versa) on a normal week day 
+(Mondays to Fridays except public holidays). 
+This had decreased from the 833,000 daily trips 
+in 2003, representing a 6% reduction over the 8 -
+year period.   
+ 
+4.1.2 Figure 4.1  illustrates the distribution of 
+goods vehicle trips by vehicle type.  Van-type 
+LGV trips constituted the largest proportion 
+(40%) of the daily goods vehicle trips.  It was 
+followed by LGV (27%) and MGV (21%).  
+HGV and container vehicle accounted for 
+relatively small proportions of the daily goods 
+vehicle trips at 3% and 9% respectively.   
+ 
+ 
+Figure 4.1 : Daily Goods Vehicle Trips  
+  by Vehicle Type 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4.1.3 Table 4.1 provides further breakdown of 
+the daily goods vehicle trips into SG - and non -
+SG-related1 trips by vehicle type.   
+ 
+Table 4.1 Daily SG -related and Non -SG-related 
+Goods Vehicle Trips by Vehicle Type  
+Vehicle Type 
+Number of Trips Proportion 
+of SG-related SG-related Non-SG-related 
+Van-type LGV 32,600 283,300 10% 
+LGV 46,800 164,200 22% 
+MGV 54,000 109,700 33% 
+HGV 12,100 15,500 44% 
+Container Vehicle 64,100 3,100 95% 
+Note: Special generator (SG) includes those land uses defined for 
+the purpose of the SGIS as well as boundary control points. 
+ 
+4.1.4 Overall speaking, 27% of the daily 
+goods vehicle trips were SG -related, i.e. to 
+and/or from the SG sites.  The proportion of SG -
+related trips varied substantially across vehicle 
+types.  The proportion was the smallest (10%) 
+among van-type LGV trips but was predominant 
+(95%) for container vehicle trips. 
+ 
+ 
+A predominant proportion of the container 
+vehicle trips started from or ended at the special 
+generator sites.  
+4.1.5 Goods vehicle trip rates which refer to 
+the average number of trips made on a daily 
+basis per vehicle are presented in Table 4.2  by 
+vehicle type.  They are compared with the 2003 
+trip rates in the table. 
+                                                      
+1    SG-related trips refer to trips with one or both 
+ends of the trip originating from or destined to any of 
+the special generator land use types mentioned in Para. 
+2.2.6.  Although not covered by the S GIS surveys, 
+boundary control points are commonly considered as 
+special generators of goods vehicle traffic.  Therefore, 
+cross-boundary trips are also classified as SG -related 
+trips. 
+ 
+Van-type 
+LGV 
+316,000 
+(40%) 
+LGV 
+211,000 
+(27%) 
+MGV 
+164,000 
+(21%) 
+HGV 
+28,000 
+(3%) 
+Container 
+Vehicle 
+67,000  
+(9%) 
+
+##### PAGE 27
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 14  
+ 
+Table 4.2 Weekday Daily Goods Vehicle Trip 
+Rates by Vehicle Type  in 2003 and 
+2011 
+Vehicle Type Trip Rate (Daily Trips Per Vehicle) 
+2003 2011 
+Van-type LGV 7.90 7.23 
+LGV 7.80 7.73 
+MGV 6.70 6.03 
+HGV 7.90 7.95 
+Container Vehicle 6.40 6.48 
+Overall 7.40 7.02 
+ 
+4.1.6 The overall weekday daily goods vehicle 
+trip rate decreased slightly from 7.40 
+trips/vehicle in 2003 to 7.02 trips/vehicle in 2011.  
+In comparison, the decrease in trip rate was more 
+noticeable for van-type LGV  and MGV for 
+which close to 10% reductions were observed.  
+Trip rates for the other vehicle types stayed 
+relatively unchanged over the period.   
+ 
+4.2 Trip-making Time 
+4.2.1 Figure 4.2  illustrates the profiles of 
+goods vehicle trips made against different times 
+of the day for various vehicle types.  Trip -
+making time is defined as mid-point between trip 
+arrival and departure times for this purpose.   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4.2.2 Unlike person commuting trips, goods 
+vehicle trips were more concentrated in the mid-
+day.  They stayed generally flat from 9:00 a.m. 
+to 6:00 p.m. with a trough around lunch hour at 
+1:00 – 2:00 p.m.  The peak periods occurred 
+during 10:00 a.m. – 12:00 noon in the morning 
+and 2:00 – 4:00 p.m. in the afternoon.  These two 
+peak periods accounted for 20% and 17% of the 
+daily trip total respective ly.  This pattern was 
+generally consistent across all types of goods 
+vehicles, and was also very similar to that in 
+GVTCS 2003. 
+ 
+4.2.3 The profiles for trip-making time for 
+SG-related and non-SG-related trips were similar, 
+except that the SG -related trips tended  to start 
+earlier in the day and showed a less prominent 
+afternoon peak. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 4.2 : Hourly Profiles of Goods Vehicle Trips 
+ 
+Van-type LGV      LGV          MGV          HGV          Container Vehicle  
+##### PAGE 28
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 15  
+ 
+4.3 Trip Journey Time 
+4.3.1 The goods vehicle trip journey time 
+distribution is depicted in Figure 4.3 .  It 
+indicates that close to 7 4% of the trips took 30 
+minutes or less to travel from origin to 
+destination; 22% took more than 30 minutes to 
+an hour; and about 4% took more than an hour.  
+The mean journey time was 27 minutes.   
+ 
+4.3.2 Further analysis by vehicle type reveals 
+that trips made b y van-type LGV s and LGVs 
+were generally shorter with a mean journey time 
+of 24 to 25 minutes.  HGV and container vehicle 
+trips were longest.  The estimated mean journey 
+times for HGVs and container vehicle trips were 
+34 and 41 minutes respectively.   
+ 
+ 
+ 
+Figure 4.3 : Distribution of Trip Journey Time  
+ 
+4.4 Trip Movements 
+4.4.1 The estimated daily goods vehicle trip 
+movements on a normal weekday are 
+summarised in Table 4.3 by main geographical 
+region.   
+ 
+Table 4.3 Major Trip Movements 
+To/ 
+From HKI Kowloon NT BCP Total 
+HKI 77,500 21,500 10,200 100 109,300 
+Kowloon 19,400 166,900 72,200 500 259,000 
+NT 8,500 71,000 317,200 10,800 407,500 
+BCP 100 800 8,700 N/A 9,700 
+Total 105,500 260,300 408,400 11,400 785,500 
+Legend: “HKI” denotes “Hong Kong Island”; “NT” denotes “New 
+Territories”; “BCP” denotes “Boundary Control Point” 
+ 
+4.4.2 As indicated in the table above, the 
+goods vehicle trips were largely dominated by 
+intra-regional movements, among which the 
+intra-NT movement accounted for the largest 
+proportion (40%) of the total number of daily 
+trips, which was followed by intra -Kowloon 
+(21%) and intra -HKI (10%).  These three intra -
+regional movements accounted for over 70% of 
+the daily trip total.  A similar phenomenon was 
+observed from the GVTCS 2003.  
+ 
+4.4.3 Cross-boundary trips constituted less 
+than 3% of the daily goods vehicle trip total , and 
+was close to 4% in the GVTCS 2003.   
+ 
+4.4.4 More detailed analysis of the goods 
+vehicle trip origin and destination locations by 
+broad district and by vehicle type are given in 
+Table A.2  in the Appendix.  As shown in the 
+table, the most common origin/desti nation 
+district for goods vehicle trips was Kwai Chung.  
+About 9% of the total daily goods vehicle trips 
+originated from Kwai Chung, and the same 
+applied to the destination end.  This was 
+attributed to the frequent activities of container 
+vehicles and othe r heavy goods vehicles serv ing 
+the Container Terminal and other backup 
+facilities located in the district.  For van-type 
+LGVs and LGVs, their trip ends were more 
+dispersed 
+ 
+
+##### PAGE 29
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 16  
+ 
+4.5 Loading Conditions 
+4.5.1 The loading conditions of goods vehicles 
+by vehicle type are sum marised in Figure 4.4. 
+HGV trips showed the largest proportion (36%) 
+of “full” loading (defined as carrying more than 
+80% of the loading capacity) followed by 
+container vehicle (25%) and MGV (20%).   
+ 
+ 
+ 
+Figure 4.4 : Loading Conditions by 
+Vehicle Type  
+ 
+ 
+4.5.2 In general, some 40% or more of trips 
+were made by “empty” goods vehicles (defined 
+as carrying less than 10% of the loading 
+capacity”.  Container vehicle trips showed the 
+largest proportion (66%) being empty-loaded. 
+ 
+ 
+Kwai Tsing Container Terminal is a key special 
+generator of goods vehicle traffic  
+ 
+ 
+ 
+4.6 Usage of Toll Roads/Tunnels 
+4.6.1 Most (76%) of the trips reported did not 
+involve the use of any toll road/tunnel.  Among 
+the various tunnels, Cross Harbour Tunnel was 
+the most frequently used.  5% of the surveyed 
+trips included the use of Cross Harbour Tunnel , 
+followed by Tseung Kwan O Tunnel (3%), Lion 
+Rock Tunnel (3%) and Shing Mun Tunnel (3%).   
+The remaining (10%) of the surveyed trips used 
+other toll roads/tunnels.  
+ 
+ 
+ 
+Van-type           LGV             MGV              HGV          Container     
+LGV                                                                   Vehicle 
+Vehicle Type 
+##### PAGE 30
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 17  
+ 
+5. OTHER SURVEY RESULTS 
+5.1 Goods Vehicle Trip Generation 
+Survey 
+5.1.1 Traffic count data was collected on 
+goods vehicle trips produced from or attracted to 
+specific land uses throughout the day.  Based on 
+the count data together with the surveyed site 
+information, trip generation by land use type are 
+derived. 
+5.1.2 Illustrative trip generation on a territory-
+wide basis are shown in Table 5.1.  Table A.3 in 
+the Appendix provides further breakdowns of the 
+survey results by Hong Kong Island, Kowloon 
+and the New Territories. 
+ 
+Table 5.1 Weekday Daily Goods Vehicle Trip 
+Production and Attraction Rates 
+Land Use Unit 
+Whole Territory 
+Pro Att 
+Education       
+Kindergarten per site 4.875 4.875 
+Primary per 100m2 GFA 0.206 0.206 
+Secondary per 100m2 GFA 0.219 0.221 
+Tertiary per 100m2 GFA 0.085 0.085 
+Domestic       
+Private Residential per flat 0.059 0.058 
+Public Housing per flat 0.030 0.031 
+Subsidised Sale 
+Flats per flat 0.028 0.028 
+Non-Domestic       
+Retail per 100m2 GFA 1.766 1.790 
+Hotel per 100m2 GFA 0.099 0.100 
+Industrial per 100m2 GFA 0.609 0.615 
+Office per 100m2 GFA 0.331 0.321 
+Legend: Pro – Trip Production; Att – Trip Attraction 
+GFA – Gross Floor Area 
+ 
+5.2 Goods Vehicle Composition 
+Survey 
+5.2.1 The data collected has been used to 
+establish detailed screenline/cordon goods 
+vehicle flows to facilitate the GVIS and SGIS 
+trip expansion process.  Summary results are 
+provided in Table A.4 in the Appendix. 
+ 
+##### PAGE 31
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 18  
+ 
+6. COMPARISON OF GVTCS 2011 
+RESULTS WITH PREVIOUS 
+RECORDS 
+6.1 Comparison of Key Findings 
+6.1.1 The following aims  to provide a 
+summary comparison of how the goods vehicle 
+trip-making patterns and characteristics in 2011 
+had changed since 2003.   
+6.1.2 Table 6.1 summarises these comparisons 
+which cover those key parameters on goods 
+vehicle fleet, operation, overnight parking, 
+vehicle utilisation and overall trip -making 
+characteristics. 
+ 
+Goods Vehicle Fleet 
+6.1.3 The total goods vehicle fleet size 
+including the total li cenced goods vehicles and 
+government goods vehicles had decreased by a 
+slight 1% between 2003 and 2011.  In 
+comparison, the proportion of van-type LGV s 
+and LGVs in the goods vehicle fleet had 
+increased slightly to 63% in 2011.    
+6.1.4 As for vehicle ownership, the proportion 
+of goods vehicles owned by single -fleet owners 
+has substantially increased from 39% in 2003 to 
+47% in 2011.  This suggests a structural change 
+in the goods vehicle operation over the 8 -year 
+period with more goods vehicles being operated 
+by s maller scale operations and individuals 
+(particularly for van-type LGVs and LGVs). 
+ 
+Operational Characteristics 
+6.1.5 Similar to 2003, “Transporting Own 
+Goods” and “Providing Transport Services” 
+remained the two main usages in 2011, 
+accounting for 49% and 36% of  the total goods 
+vehicles.  These compared to the respective 
+percentages of 47% and 40% in 2003, indicating 
+a slight shift of goods vehicles being used by 
+owners/operators for transporting their own 
+goods, rather than providing transport services 
+for others.  
+6.1.6 A noticeable decrease of “Hiring Out” 
+from 6% in 2003 to 2% in 2011 was observed.   
+ 
+Overnight Parking 
+6.1.7 The general geographical distribution of 
+overnight parking was consistent in 2003 and 
+2011.  From 2003 to 2011, parking in Kowloon 
+has increased by 3 %, while a corresponding 
+decrease in parking in the NT was recorded. 
+ 
+Vehicle Utilisation 
+6.1.8 The average working hours per year per 
+vehicle has an increase from 2,420 hours per 
+year in 2003 to 2,494 hours per year in 2011.  
+ 
+Trip-making Characteristics 
+6.1.9 The total goods vehicle trips made 
+within Hong Kong on a regular weekday has 
+decreased by 6%, from 833,000 in 2003 to 
+785,000 in 2011.  Van-type LGV constituted the 
+largest proportion of goods vehicle trips since 
+2003, accounting for 36% of the daily goods  
+vehicle trips in 2003, and increasing to 40% in 
+2011.  The daily container vehicle trips showed a 
+noticeable decrease from 85,000 in 2003 to 
+67,000 in 2011. 
+6.1.10 The overall goods vehicle trip rate 
+decreased from 7.4 trips per day in 2003 to 7.0 
+trips per day in 2011.  This is in line with the 
+reduction in the total number of goods vehicle 
+trips as the goods vehicle fleet size remained 
+more or less the same between 2003 and 2011.  
+Among different vehicle types, the daily trip 
+rates generally decreased with the exceptions of 
+HGV and container vehicle which showed 
+marginal increases in the daily trip rate per 
+vehicle. 
+6.1.11 The distribution of trip ends by main 
+region remained relatively constant between 
+2003 and 2011.  In 2011, New Territories 
+(excluding Tsuen Wan/Kwai  Tsing and 
+boundary control points) accounted for the 
+largest proportion (34%) of trip ends, closely 
+followed by Kowloon (33%) and Tsuen 
+Wan/Kwai Tsing (18%).  These compared to 
+36%, 35% and 14% respectively in 2003.  More 
+notable increase was observed in the percentage 
+of goods vehicle trips to and from Tsuen 
+Wan/Kwai Tsing, possibly due to the continuous 
+growth in the Container Terminal (CT) – related 
+traffic, especially after the opening of CT9. 
+##### PAGE 32
+Survey on Goods Vehicle Trip Characteristics 2011  Final Repor t 
+ 
+12.2014 Page 19
+ 
+6.1.12 With the exception of van-type LGV, the 
+Value of Time (VoT) for other vehicle types has 
+increased in real terms from 2003 to 2011. The 
+largest increase was with container vehicle 
+(34%), followed by HGV (21%). The VoT for 
+van-type LGVs went down by 9% in real terms 
+(albeit a 7% increase in nominal terms) over the 
+8-year period.  The overall real increase was 
+about 18% with all goods vehicle types 
+combined in real terms.   
+6.1.13 The average goods vehicle operating 
+costs (inclusive of all costs including capital cost 
+of vehicle) per kilometre travelled decreased 
+from HK$13.1 (in 2011 prices) in 2003 to 
+HK$9.2 (in 2011 prices) in 2011, a notable 30% 
+reduction from 2003 to 2011 in real terms among 
+all goods vehicles.  This is a result of the drop in 
+annual expenses incurred on goods vehicles as 
+discussed earlier in Section 3.4 of this report 
+(also refer to Table 3.4), coupled with the 
+increase in average daily distance travelled as 
+also shown in Table 6.1. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Table 6.1 Comparison of Key Goods Vehicle 
+Trip-making Characteristics in 2003 
+and  2011 
+Key Parameters 2003 (1) 2011 
+Goods Vehicle Fleet  
+Total No. of Goods Vehicles 113,000 111,946  
+Proportion of Van-type LGVs and 
+LGVs 61% 63% 
+Proportion of Goods Vehicles 
+Owned by Single Fleet Owners 
+(excl. Government Vehicle) 
+39% 47% 
+Operational Characteristics 
+Main Usage of Goods Vehicle: 
+Transport Own Goods 
+Providing Transport Services 
+Hiring Out 
+47% 49%  
+40% 36%  
+6% 2%  
+Overnight Parking  
+Distribution of Overnight Parking 
+Location in Hong Kong:   
+Hong Kong Island 8% 8% (2) 
+Kowloon 18% 21% (2) 
+New Territories 74% 71% (2) 
+Vehicle Utilisation 
+Average Working Hours per Year 
+(hrs) 2,420 2,494 
+Annual Average Daily Distance 
+Travelled (km) 87 105 (3) 
+Trip-making Characteristics 
+Goods Vehicle Trips  
+by Vehicle Type per Weekday: 
+  
+Van-type LGV 304,000 
+(36%) 
+316,000 
+(40%) 
+LGV 235,000 
+(28%) 
+211,000 
+(27%) 
+MGV 183,000 
+(22%) 
+164,000 
+(21%) 
+HGV 26,000  
+(3%) 
+28,000 
+ (4%) 
+Container Vehicle 85,000  
+(10%) 
+67,000 
+ (9%) 
+Total 833,000 
+(100%) 
+785,000 
+(100%) 
+Overall Goods Vehicle Trip Rate 
+per Weekday (Trips/Vehicle) 7.4 7.0 
+Distribution of Trips by Time of 
+Day:   
+0700-1900 90% 94%  
+2200-0400 3% 1%  
+Distribution of Trips Ends by 
+Region: 
+  
+Hong Kong Island 13% 14%  
+Kowloon 35% 33%  
+Tsuen Wan / Kwai Tsing 14% 18%  
+Remaining NT 36% 34%  
+Boundary Control Points 2% 1%  
+Value of Time ($/min)  
+(in HK$ at 2011 prices) (4): 
+ 
+ 
+ 
+ 
+Van-type LGV 2.02 1.83  
+LGV 2.07 2.11  
+MGV 2.40 2.75  
+HGV 2.64 3.21  
+Container Vehicle 2.26 3.04  
+Average Vehicle Operating Cost 
+per Kilometre Travelled (5) 
+ (2011 prices) (4) 
+13.1 9.2 
+##### PAGE 33
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 20  
+ 
+ 
+Notes: 
+(1) The 2003 figures presented were extracted from GVTCS 2003, 
+Final Technical Report. 
+(2) Based on locations where the goods vehicles were most 
+usually parked when not in operation in the 6 months before 
+enumeration as cited by the goods vehicle owners.  These 
+could however vary from the locations where the GVs were 
+actually parked overnight on the reference travel day. 
+(3) Estimated by dividing the annual kilometres travelled by 365 
+days. 
+(4) Converted from 2003 to 2011 prices based on Composite 
+Consumer Price Index growth (+18.2%) between 2003 and 
+2011. 
+(5) Inclusive of all costs including amortised vehicle capital cost. 
+ 
+##### PAGE 34
+Survey on Goods Vehicle Trip Characteristics 2011  Final Report  
+ 
+12.2014 Page 21  
+ 
+7. NEXT STEP 
+7.1 Application of Data for Model 
+Enhancement 
+7.1.1 One of the main objectives of the 
+GVTCS 2011 is to collect up-to-date goods 
+vehicle trip characteristics data and information 
+to facilitate the continuous enhancement of the 
+CTS transport model.  The current Goods 
+Vehicle Trip Model within the CTS model was 
+developed based on the GVTCS 2003 data.     
+7.1.2 The mainstay of the Goods Vehicle Trip 
+Model development will be the goods vehicle 
+trip data extensively collected from the GVIS 
+and SGIS.  Data collected through other surveys 
+of GVTCS 2011 will also provide valuable 
+supplementary information as reference.  All 
+these data will form the basis for subsequent re -
+calibration and enhancement of the CTS model 
+in the next stage of the Consultancy Study. 
+ 
+ 
+Up-to-date trip characteristics data of goods 
+vehicles collected by GVTCS 2011 will be 
+applied for subsequent enhancemen t of the CTS 
+model  
+ 
+ 
+ 
+ 
+ 
+ 

@@ -13,8 +13,11 @@ node_modules/
 frontend/dist/
 frontend/map-check/
 
-# Large or regenerable data (re-create with the pipeline scripts)
-data/raw/
+# Raw downloads ARE in Git (so the whole pipeline can be rerun), except the statutory plans (data/raw/zoning:
+# 153 plans' zones + notes PDFs, ~510 MB, largest file 75 MB, used only by pipeline/37) - they are in the
+# GitHub Release attachment together with data/cache/luhk2024 (docs/onboarding.md 1.3).
+data/raw/zoning/
+# Regenerable data (re-create with the pipeline scripts)
 data/processed/
 data/cache/
 data/build/

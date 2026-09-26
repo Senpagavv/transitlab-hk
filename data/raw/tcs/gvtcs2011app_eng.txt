@@ -1,0 +1,299 @@
+Survey on Goods Vehicle Trip Characteristics 2011                       Final Report
+
+APPENDIX : TABULATIONS
+
+                                                                        Page
+
+LIST     OF   FIGURES
+
+Figure   A.1  Locations of Special Generators
+
+Figure   A.2  Locations of Screenlines/Cordons     ­  Hong Kong Island
+
+Figure   A.3  Locations of Screenlines/Cordons     ­  Kowloon
+
+Figure   A.4  Locations of Screenlines/Cordons     ­  New Territories
+
+Figure   A.5  Broad Districts Definition
+
+LIST OF       TABLES
+
+Table A.1     Overnight Parking Locations of Goods Vehicles
+
+              in Hong Kong by Broad District                            A-1
+
+Table A.2     Weekday Daily Goods Vehicle Trip Ends by Broad District
+
+              and Vehicle Type                                          A-2
+
+Table A.3     Weekday Daily Goods Vehicle Trip Production and
+
+              Attraction Rates by Region                                A-3
+
+Table A.4     Weekday Daily Goods Vehicle Composition by
+
+              Screenline/Cordon                                         A-4
+
+12.2014
+Figure A.1 : Locations of Special Generators
+
+The SGIS collected goods vehicle trip characteristics data for various types of special generator (SG) sites that generate significant
+
+goods vehicle movements with specific trip characteristics.
+Figure A.2 : Locations of Screenlines/Cordons ­ Hong Kong Island
+Figure A.3 : Locations of Screenlines/Cordons ­ Kowloon
+Figure A.4 : Locations of Screenlines/Cordons ­ New Territories
+Figure A.5 : Broad Districts Definition
+Survey on Goods Vehicle Trip Characteristics  2011                                    Final Report
+
+Table A.1  Overnight Parking Locations of     Goods Vehicles in Hong Kong  by  Broad  District
+
+District                                                Proportion in the
+
+                                                        whole territory
+
+Central & Western                                       1.5%
+
+Wan Chai                                                0.5%
+
+Eastern                                                 3.8%
+
+Southern                                                1.9%
+
+         Subtotal - Hong Kong Island                    7.7%
+
+Yau Ma Tei                                              0.9%
+
+Mong Kok                                                1.1%
+
+Sham Shui Po                                            4.5%
+
+Kowloon City                                            3.8%
+
+Kwun Tong                                               7.9%
+
+Wong Tai Sin                                            3.5%
+
+         Subtotal - Kowloon                             21.6%
+
+Tsuen Wan                                               3.7%
+
+Kwai Chung                                              11.2%
+
+Tsing Yi                                                3.3%
+
+Tuen Mun                                                7.1%
+
+Yuen Long                                               4.2%
+
+Tin Shui Wai                                            2.0%
+
+Tai Po                                                  3.4%
+
+Fanling/ Sheung Shui                                    4.6%
+
+Sha Tin                                                 6.4%
+
+Ma On Shan                                              1.6%
+
+Tseung Kwan O                                           3.5%
+
+North Lantau                                            1.2%
+
+         Subtotal - New Towns                           52.1%
+
+Rural NWNT                                              13.4%
+
+Rural NENT                                              4.0%
+
+Rural SENT                                              0.9%
+
+Rural SWNT                                              0.3%
+
+         Subtotal - Rural NT                            18.6%
+
+Whole Territory                                         100.0%
+
+12.2014                                       Page A-1
+Survey on Goods Vehicle Trip Characteristics 2011                                                      Final Report
+
+Table A.2      Weekday Daily Goods Vehicle Trip Ends by Broad                     District and Vehicle Type
+
+                                                                                  MGV / HGV /       All Goods
+
+District /                   Van-type LGV                             LGV         Container         Vehicles
+
+Boundary Control Point                                                               Vehicle
+
+                             O                        D        O           D      O           D     O         D
+
+Central & Western            18,800                   15,800   9,700       9,600  6,400    5,600    34,800   31,000
+
+Wan Chai                     13,500                   12,600   6,200       6,000  6,400    5,400    26,100   24,000
+
+Eastern                      16,200                   16,900   9,500       9,700  5,700    6,600    31,400   33,100
+
+Southern                     7,800                    8,200    6,000       5,800  3,200    3,300    17,000   17,300
+
+       Subtotal - Hong Kong  56,300                   53,500   31,400    31,100   21,600   20,900   109,300  105,500
+
+       Island
+
+Yau Ma Tei                   13,800                   32,800   9,200     18,900   8,300    15,200   31,300   67,000
+
+Mong Kok                     28,000                   14,400   13,500      6,400  7,000    3,100    48,500   23,800
+
+Sham Shui Po                 27,800                   20,000   18,300    14,100   14,300   12,300   60,400   46,500
+
+Kowloon City                 19,100                   24,600   12,100    13,000   5,500    6,400    36,700   44,000
+
+Kwun Tong                    27,600                   23,800   16,600    20,400   15,000   14,400   59,200   58,500
+
+Wong Tai Sin                 11,400                   10,500   7,700       6,400  3,800    3,600    23,000   20,500
+
+       Subtotal - Kowloon    127,700                  126,100  77,400    79,200   53,900   55,000   259,000  260,300
+
+Tsuen Wan                    14,900                   13,900   9,700     10,900   7,400    5,200    32,000   29,900
+
+Kwai Chung                   19,400                   18,400   16,600    17,600   36,100   33,400   72,100   69,400
+
+Tsing Yi                     5,100                    7,800    5,000       4,400  23,300   21,600   33,400   33,800
+
+Tuen Mun                     15,600                   15,400   11,100    10,900   26,300   27,300   53,000   53,600
+
+Yuen Long                    6,100                    6,600    8,300       7,800  4,800    4,100    19,100   18,600
+
+Tin Shui Wai                 2,700                    2,700    2,000       2,200  1,200    1,300    5,900    6,200
+
+Tai Po                       8,400                    8,800    4,600       4,300  4,900    3,700    17,900   16,900
+
+Fanling/ Sheung Shui         8,400                    7,300    7,600       7,300  5,600    7,900    21,500   22,500
+
+Sha Tin                      22,000                   21,100   10,000    10,500   11,400   11,900   43,300   43,500
+
+Ma On Shan                   4,000                    4,300    2,300       1,600  1,900    1,600    8,200    7,500
+
+Tseung Kwan O                5,300                    9,400    6,300       3,300  7,800    8,200    19,400   20,900
+
+North Lantau                 3,800                    3,800    5,700       5,500  12,300   12,700   21,800   22,000
+
+       Subtotal - New Towns  115,700                  119,500  89,100    86,300   142,800  138,900  347,600  344,800
+
+Rural NWNT                   7,400                    7,300    8,200       8,900  22,900   25,800   38,600   42,000
+
+Rural NENT                   4,800                    6,500    2,800       3,400  6,600    5,500    14,200   15,300
+
+Rural SENT                   3,500                    2,600    1,200       1,300  1,100    1,100    5,800    5,100
+
+Rural SWNT                   400                      400      300         300    600      400      1,300    1,200
+
+       Subtotal - Rural NT   16,200                   16,900   12,500    13,900   31,200   32,800   59,900   63,600
+
+Boundary Control Points      *                        *        600         400    9,100    11,000   9,700    11,400
+
+Whole Territory              316,000                  316,000  211,000   211,000  258,500  258,500  785,500  785,500
+
+Legend:  O ­ Trip Origin; D ­ Trip Destination
+
+Note:    "*" refers to cells with less than 50 trips
+
+12.2014                                                        Page A-2
+Survey on Goods Vehicle Trip Characteristics 2011                                                  Final Report
+
+Table A.3     Weekday Daily Goods Vehicle Trip Production and Attraction Rates                     by Region
+
+                                               Hong Kong         Kowloon                NT         Whole Territory
+
+Land Use                          Unit              Island
+
+                                               Pro          Att  Pro     Att     Pro        Att    Pro        Att
+
+Education
+
+Kindergarten           per site                2.000     2.000   11.000  11.000  3.250      3.250  4.875      4.875
+
+Primary                per 100m2 GFA           0.188     0.188   0.035   0.035   0.267      0.267  0.206      0.206
+
+Secondary              per 100m2 GFA           0.076     0.076   0.279   0.279   0.305      0.309  0.219      0.221
+
+Tertiary               per 100m2 GFA           -            -    0.118   0.118   0.048      0.048  0.085      0.085
+
+Domestic
+
+Private Residential    per flat                0.058     0.058   0.109   0.115   0.045      0.042  0.059      0.058
+
+Public Housing         per flat                0.019     0.018   0.031   0.031   0.037      0.037  0.030      0.031
+
+Subsidised Sale Flats  per flat                0.037     0.035   0.047   0.046   0.020      0.020  0.028      0.028
+
+Non-Domestic
+
+Retail                 per 100m2 GFA           1.812     1.798   1.432   1.439   2.466      2.541  1.766      1.790
+
+Hotel                  per 100m2 GFA           0.129     0.133   0.062   0.062   0.108      0.107  0.099      0.100
+
+Industrial             per 100m2 GFA           0.504     0.519   0.517   0.520   0.686      0.691  0.609      0.615
+
+Office                 per 100m2 GFA           0.229     0.229   0.441   0.413   0.419      0.419  0.331      0.321
+
+Legend:   Pro ­ Trip Production;  Att ­ Trip Attraction
+
+          GFA ­ Gross Floor Area
+
+Note:     "-" refers to cells with no records
+
+12.2014                                                        Page A-3
+Survey on Goods Vehicle Trip Characteristics 2011                                     Final Report
+
+Table A.4  Weekday Daily Goods Vehicle Composition by     Screenline/Cordon
+
+                    Goods Vehicle                         Composition (%)
+
+                    Flows (2-way)  Van-type        LGV    MGV    HGV         Container  Total
+
+                                   LGV                                       Vehicle
+
+Screenline
+
+A-A                 121,100        51.7%           28.1%  15.9%  3.5%        0.9%       100.0%
+
+C-C                 166,300        51.0%           28.3%  16.8%  3.2%        0.8%       100.0%
+
+F-F                 34,100         54.0%           27.8%  13.9%  3.8%        0.5%       100.0%
+
+G-G                 35,200         53.4%           25.8%  16.9%  3.6%        0.3%       100.0%
+
+H-H                 3,200          67.5%           20.2%  10.4%  1.7%        0.1%       100.0%
+
+I-I                 20,500         47.2%           30.0%  15.1%  6.9%        0.7%       100.0%
+
+K-K                 99,100         46.8%           27.5%  19.4%  5.0%        1.2%       100.0%
+
+R-R                 111,500        31.4%           23.4%  24.9%  4.6%        15.7%      100.0%
+
+S-S                 104,000        26.9%           21.8%  23.3%  6.8%        21.3%      100.0%
+
+T-T                 81,900         28.0%           22.7%  30.3%  6.3%        12.7%      100.0%
+
+Y-Y                 43,700         28.7%           19.7%  20.3%  9.1%        22.3%      100.0%
+
+Cross-Harbour       56,900         51.3%           29.1%  15.2%  3.6%        0.8%       100.0%
+
+Cordon
+
+Hong Kong External  25,300         49.0%           33.6%  13.4%  3.4%        0.6%       100.0%
+
+Kowloon External    224,200        37.0%           25.4%  22.4%  5.1%        10.1%      100.0%
+
+Tsing Yi External   120,800        26.6%           22.7%  22.3%  6.7%        21.7%      100.0%
+
+Hong Kong Internal  66,200         53.4%           29.5%  13.3%  3.3%        0.5%       100.0%
+
+Sha Tin External    135,400        40.6%           25.6%  25.4%  4.0%        4.5%       100.0%
+
+MOS External        17,800         52.6%           27.8%  14.7%  4.0%        0.9%       100.0%
+
+TKO External        31,200         41.6%           21.1%  24.3%  12.2%       0.8%       100.0%
+
+12.2014                                      Page A-4
+

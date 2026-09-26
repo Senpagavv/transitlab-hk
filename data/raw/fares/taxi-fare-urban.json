@@ -1,0 +1,13 @@
+{
+ "source": "Transport Department, Taxi Fare of Hong Kong - Urban taxi fare scale",
+ "url": "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/taxi/taxi_fare_of_hong_kong/index.html",
+ "retrieved": "2026-09-18",
+ "effective": "2024-07-14",
+ "flag_fall_hkd": 29.0,
+ "flag_fall_km": 2.0,
+ "step_m": 200,
+ "step_hkd_below_threshold": 2.1,
+ "threshold_hkd": 102.5,
+ "step_hkd_above_threshold": 1.4,
+ "note": "Urban (red) taxis. NT (green) and Lantau (blue) taxis charge less; the model applies the urban scale everywhere as an upper-bound approximation until those scales are added. Waiting time is charged at the same step per minute and is not modelled."
+}

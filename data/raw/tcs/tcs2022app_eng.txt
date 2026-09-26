@@ -1,0 +1,374 @@
+Travel Characteristics
+Survey 2022
+Final Report
+
+Appendices
+
+2025 version
+TABULATIONS
+
+                                                                                              Page
+
+LIST OF FIGURES
+
+Figure A.1  Broad Districts Definition
+
+LIST OF TABLES
+
+Table A.1   Key Demographic Characteristics by Broad District                                 A-1
+Table A.2
+            Daily Person Trip Productions and Attractions by Broad District and Trip Purpose
+Table A.3
+Table A.4   (in '000)                                                                         A-2
+
+Table A.5   Number of Daily Boardings by Transport Mode and Trip Purpose (in '000)            A-3
+Table A.6
+Table A.7   Proportion of Households with Private Vehicles Available for Use by Vehicle Type
+
+            and Broad District                                                                A-4
+
+            Proportion of Households with Bicycles Available for Use by Broad District        A-5
+
+            Sightseeing Spots for Visitors Staying in Hotels/Guesthouses                      A-6
+
+            Shopping Attractions for Visitors Staying in Hotels/Guesthouses                   A-7
+Figure A.1 Broad Districts Definition
+Table A.1 Key Demographic Characteristics by Broad District
+
+District                     Household   HH Population          No. of Resident     No. of Resident
+                                                                    Workers            Students
+Central & Western                89 000                225 500
+Wan Chai                         57 700                149 100             128 100              34 500
+Eastern                         196 600                543 300              82 600              19 600
+Southern                         87 400                266 300             281 500              73 900
+Subtotal - Hong Kong Island     430 700              1 184 100             138 400              40 900
+Yau Ma Tei                       58 600                151 500             630 600             168 800
+Mong Kok                         57 100                124 200              79 900              23 900
+Sham Shui Po                    176 200                451 300              65 800              18 200
+Kowloon City                    148 600                401 400             216 400              70 400
+Kwun Tong                       249 600                674 200             203 900              66 100
+Wong Tai Sin                    150 800                409 800             321 700              99 500
+Subtotal - Kowloon              840 800              2 212 300             196 800              54 800
+Tsuen Wan                       108 500                298 600           1 084 500             332 900
+Kwai Chung                      111 200                300 300             163 100              47 600
+Tsing Yi                         64 600                179 700             148 600              44 600
+Tuen Mun                        176 200                463 600              88 700              24 400
+Yuen Long                        67 600                178 700             236 400              63 700
+Tin Shui Wai                     96 000                278 700              92 400              30 100
+Tai Po                           88 500                244 900             138 400              42 800
+Fanling/Sheung Shui              91 300                240 800             120 200              33 000
+Sha Tin                         177 200                482 100             114 600              38 800
+Ma On Shan                       75 600                215 200             238 900              77 800
+Tsueng Kwan O                   146 500                421 100             112 000              32 800
+North Lantau                     46 300                130 900             226 800              64 000
+Subtotal - New Towns          1 249 400              3 434 600              67 200              23 700
+NWNT (Other Area)                85 400                251 700           1 747 300             523 300
+NENT (Other Area)                39 500                118 400             137 300              41 400
+SENT (Other Area)                22 400                 66 800              64 200              17 700
+SWNT (Other Area)                27 000                 65 800              41 900              11 400
+Subtotal - NT (Other Area)      174 300                502 600              35 600                9 900
+Territory Total              2 695 200              7 333 600              279 000              80 400
+                                                                        3 741 400           1 105 500
+
+                                        Page A ­ 1
+Table A.2  Daily Person Trip Productions and Attractions by Broad District and Trip Purpose (in '000)
+
+ District             HBW       HBS         HBO      NHB + EB                                                               All Trip
+                                                                                                                           Purposes
+
+                      Prod Att Prod Att Prod Att Prod Att Prod                                                                  Att
+
+Central & Western     176  585  48   64     319  313 82        56                                                          625 1 018
+Wan Chai
+Eastern               113  413  24   53     210  540 60        83                                                          408 1 089
+Southern
+Yau Ma Tei            388  294  102  76     498  322 60        48 1 048                                                               739
+Mong Kok
+Sham Shui Po          178  142  39   58     227  175 21        21                                                          466        397
+Kowloon City
+Kwun Tong             89   387  15   23     155  480 81        96                                                          340        986
+Wong Tai Sin
+Tsuen Wan             79   218  8    19     97   300 48        70                                                          233        607
+Kwai Chung
+Tsing Yi              289  279  56   68     316  364 69        84                                                          731        795
+Tuen Mun
+Yuen Long             248  273  59   144    337  306 77 66                                                                 721        789
+Tin Shui Wai
+Tai Po                469  539  125  87     389  312 80        69 1 063 1 008
+Fanling/ Sheung Shui
+Sha Tin               276  114  61   39     270  157 40        35                                                          648        346
+Ma On Shan
+Tseung Kwan O         221  234  51   26     217  224 39        37                                                          528        521
+North Lantau
+NWNT (Other Area)     216  242  37   36     173  147 35        39                                                          461        466
+NENT (Other Area)
+SENT (Other Area)     120  55   30   17     129  60 10 10                                                                  289        141
+SWNT (Other Area)
+Territory Total       363  203  66   61     236  238 27        33                                                          692        535
+
+                      106  132  23   42     95   183 23        15                                                          246        373
+
+                      184  34   38   33     91   43 13 16                                                                  326        126
+
+                      148  121  40   57     145  182 17        15                                                          350        376
+
+                      166  101  35   27     108  99 11 14                                                                  321        241
+
+                      317  280  86   112    359  305 60 55                                                                 823        753
+
+                      159  40   39   22     134  66 13 13                                                                  346        141
+
+                      284  113  57   49     264  157 40        53                                                          645        372
+
+                      82   151  20   10     50   47 18 11                                                                  170        219
+
+                      211  83   53   10     168  66 13         4                                                           444        163
+
+                      101  29   24   1      92   24  6         7                                                           223        61
+
+                      62   26   16   22     48   20 17         7                                                           143        74
+
+                      56   15   9    3      9    7   2         1                                                           75         26
+
+                      5 103 5 103 1 162 1 162 5 139 5 139 959 959 12 363 12 363
+
+Notes : Prod ­ Trip productions which refer to the home ends of home-based trips or origins of NHB and EB trips.
+         Att ­ Trip Attractions which refer to the non-home ends of home-based trips or destinations of NHB and EB trips.
+         A trip may consist of more than one boarding.
+
+                                Page A ­ 2
+Table A.3 Number of Daily Boardings by Transport Mode and Trip Purpose (in '000)
+
+Mode             HBW     HBS         HBO     NHB + EB                             Overall
+
+MTR               2 199     339       1 407     429                                       4 375
+LRT                 195      68         147      20                                         430
+Tram                 49      12          67        9                                        137
+Ferry                69        8         12        9                                         98
+PLB                 605     141         748      80
+Franchised Bus              293                 200                                       1 575
+Private Vehicle   1 720      83       1 443     189                                       3 657
+Taxi                606      32       1 055      63                                       1 932
+SPB                 192     315                  35
+                    282  1 292          550  1 035                                          838
+Total                                   148                                                 780
+                 5 918               5 578
+                                                                                     13 823
+
+                         Page A ­ 3
+Table A.4 Proportion of Households with Private Vehicles Available for Use by Vehicle Type and Broad
+              District
+
+                             Private Car (PC)                      Motorcycle (MC)             Total
+
+District              1      2     More than         Sub-total  1     2 or More     Sub-total  (PC+MC)
+                                        2                              than 2
+
+Central & Western     15.6%  3.5%              1.1% 20.1%       1.1%  0.4%          1.5%       21.3%
+Wan Chai                                                                                       27.5%
+Eastern               20.6%  5.6%              1.0% 27.3%       0.7%  0.2%          1.0%       18.2%
+Southern                                                                                       21.3%
+Yau Ma Tei            15.6%  1.6%              0.3% 17.4%       1.2%  0.0%          1.2%       14.3%
+Mong Kok                                                                                        5.2%
+Sham Shui Po          13.7%  5.8%              0.9% 20.3%       1.2%  0.0%          1.2%       11.5%
+Kowloon City                                                                                   19.7%
+Kwun Tong             12.2%  1.2%              0.1% 13.5%       0.9%  0.0%          0.9%       11.8%
+Wong Tai Sin                                                                                    9.1%
+Tsuen Wan             3.7%   0.3%              0.0%  3.9%       1.2%  0.2%          1.4%       18.4%
+Kwai Chung                                                                                     11.5%
+Tsing Yi              9.6%   0.5%              0.3% 10.4%       1.3%  0.0%          1.3%       11.2%
+Tuen Mun                                                                                       17.9%
+Yuen Long             17.4%  1.1%              0.4% 18.9%       0.9%  0.2%          1.1%       20.2%
+Tin Shui Wai                                                                                   14.2%
+Tai Po                10.0%  0.3%              0.1% 10.4%       1.7%  0.1%          1.8%       17.7%
+Fanling/ Sheung Shui                                                                           14.7%
+Sha Tin               7.9%   0.3%              0.0%  8.2%       1.1%  0.1%          1.2%       17.3%
+Ma On Shan                                                                                     22.2%
+Tseung Kwan O         15.0%  1.7%              0.3% 17.0%       1.3%  0.2%          1.5%       17.6%
+North Lantau                                                                                    9.9%
+NWNT (Other Area)     9.4%   0.4%              0.0%  9.8%       2.3%  0.1%          2.4%       38.5%
+NENT (Other Area)                                                                              39.7%
+SENT (Other Area)     9.9%   0.3%              0.0% 10.3%       1.1%  0.0%          1.1%       51.9%
+SWNT (Other Area)                                                                              12.9%
+                      15.9%  0.9%              0.2% 17.0%       1.2%  0.0%          1.2%
+
+                      17.3%  2.0%              0.5% 19.8%       0.7%  0.0%          0.7%
+
+                      12.4%  0.8%              0.2% 13.4%       0.8%  0.0%          0.8%
+
+                      15.0%  1.5%              0.5% 17.0%       1.0%  0.0%          1.0%
+
+                      13.2%  0.8%              0.1% 14.0%       1.1%  0.0%          1.1%
+
+                      15.1%  1.2%              0.2% 16.4%       1.3%  0.1%          1.4%
+
+                      20.3%  1.3%              0.1% 21.7%       0.8%  0.0%          0.8%
+
+                      15.8%  0.7%              0.1% 16.5%       1.2%  0.1%          1.3%
+
+                      8.1%   0.9%              0.2%  9.3%       0.6%  0.0%          0.6%
+
+                      28.2%  8.0%              2.0% 38.2%       1.7%  0.4%          2.1%
+
+                      29.4%  6.3%              3.7% 39.3%       0.4%  0.0%          0.4%
+
+                      26.8% 19.5%              5.4% 51.7%       0.7%  1.3%          1.9%
+
+                      12.2%  0.6%              0.0% 12.9%       0.5%  0.0%          0.5%
+
+Territory Total       14.2%  1.7%              0.4% 16.3%       1.2%  0.1%          1.3%       17.2%
+
+                                               Page A ­ 4
+Table A.5 Proportion of Households with Bicycles Available for Use by Broad District
+
+District of Residence  Proportion of Bicycle Availability                                 No. of Bicycle Available
+                                   Households                                                   Households
+
+Central & Western                                                                   1.6%                             1 400
+Wan Chai                                                                            1.0%                               600
+Eastern                                                                             1.6%
+Southern                                                                            0.8%                             3 200
+Yau Ma Tei                                                                          1.1%                               700
+Mong Kok                                                                            1.1%                               700
+Sham Shui Po                                                                        1.5%                               900
+Kowloon City                                                                        0.9%
+Kwun Tong                                                                           1.6%                             2 000
+Wong Tai Sin                                                                        1.1%                             1 600
+Tsuen Wan                                                                           2.2%                             2 300
+Kwai Chung                                                                          1.2%                             2 300
+Tsing Yi                                                                            4.6%                             5 000
+Tuen Mun                                                                            5.5%                             2 500
+Yuen Long                                                                           7.8%
+Tin Shui Wai                                                                        7.8%                               800
+Tai Po                                                                             11.6%                             9 700
+Fanling/ Sheung Shui                                                               12.8%                             5 300
+Sha Tin                                                                             9.0%                             7 500
+Ma On Shan                                                                          9.3%                            11 300
+Tseung Kwan O                                                                       8.0%                            10 600
+North Lantau                                                                        9.4%                            15 900
+NWNT (Other Area)                                                                  14.8%                             7 100
+NENT (Other Area)                                                                  17.3%                            11 700
+SENT (Other Area)                                                                  10.8%                             4 400
+SWNT (Other Area)                                                                  30.3%                            14 800
+                                                                                                                     5 900
+                                                                                                                     2 400
+                                                                                                                     8 200
+
+Territory Total                                                                    5.1%                             138 600
+
+# Results should be interpreted with caution due to relatively small sample size.
+
+                       Page A ­ 5
+Table A.6 Sightseeing Spots for Visitors Staying in Hotels/Guesthouses
+
+Sightseeing Spot                                                          Overall  Mainland/Macau Visitors
+                                                                                                   10.7%
+Hong Kong Disneyland                                                      11.2%                    10.9%
+                                                                                                   10.8%
+Avenue of Stars                                                           10.3%                      5.8%
+                                                                                                     5.4%
+Peak / Peak Tower / Hong Kong Madame Tussauds                             10.1%                      4.6%
+                                                                                                     4.4%
+Tsim Sha Tsui Pier / TST Waterfront                                       5.8%                       3.6%
+                                                                                                     3.1%
+Hong Kong Observation Wheel                                               4.8%                       2.5%
+                                                                                                     3.6%
+Ladies' Market / Sneakers Street in Mong Kok                              4.7%                       2.7%
+                                                                                                     2.8%
+Ocean Park / Water World Ocean Park                                       4.4%                       2.6%
+                                                                                                     2.1%
+West Kowloon Cultural District/ M+ / Hong Kong Palace Museum/Xiqu Centre  3.8%                       1.3%
+                                                                                                     1.2%
+Temple Street in Yau Ma Tei                                               3.3%                       1.7%
+                                                                                                     0.9%
+Lan Kwai Fong / SOHO                                                      3.1%                       1.3%
+                                                                                                     1.3%
+The University of Hong Kong                                               3.0%                       0.8%
+                                                                                                     0.9%
+Sik Sik Yuen Wong Tai Sin Temple                                          2.6%                       0.9%
+                                                                                                     1.0%
+Central Pier                                                              2.6%                       0.7%
+                                                                                                     0.6%
+Golden Bauhinia Square                                                    2.3%                       0.7%
+                                                                                                     0.4%
+Cultural Center / Clock Tower                                             2.0%                       0.7%
+                                                                                                     0.5%
+Tai Kwun                                                                  1.7%                       0.5%
+                                                                                                     9.0%
+Po Lin Monastery / Giant Buddha                                           1.6%                    100.0%
+
+Hong Kong Space Museum                                                    1.5%
+
+Ngong Ping 360 / Ngong Ping Piazza                                        1.2%
+
+Hong Kong Science Museum                                                  1.2%
+
+Hong Kong Convention & Exhibition Centre                                  1.2%
+
+Central Market                                                            1.1%
+
+Tai O Fishing Village and Stilt-house                                     1.0%
+
+Hong Kong Museum of Art                                                   0.8%
+
+Kennedy Town Praya                                                        0.8%
+
+Cheung Chau / Cheung Po Tsai Cave                                         0.7%
+
+Wan Chai Pier                                                             0.7%
+
+Repulse Bay                                                               0.7%
+
+Stanley Market / Murray House                                             0.6%
+
+Central and Western District Promenade / Central Waterfront               0.6%
+
+Sky 100 Hong Kong Observation Deck                                        0.6%
+
+Knutsford Terrace                                                         0.5%
+
+Others                                                                    9.6%
+
+Total                                                                     100.0%
+
+Note:
+Due to the rounding issue, the total number may not be equal to 100%.
+
+                                                             Page A ­ 6
+Table A.7 Shopping Attractions for Visitors Staying in Hotels/Guesthouses
+
+Shopping District                      Overall                               Mainland/Macau Visitors
+
+Yau Tsim Mong                          47.7%                                 49.6%
+
+Wan Chai                               17.1%                                 17.9%
+
+Central & Western                                                      6.3%  6.0%
+
+Outlying Islands (incl. North Lantau)                                  3.7%  3.2%
+
+Tuen Mun                                                               2.3%  2.5%
+
+Kwun Tong                                                              2.2%  1.9%
+
+Kwai Tsing                                                             2.1%  2.4%
+
+Tsuen Wan                                                              2.1%  2.0%
+
+Sha Tin                                                                2.0%  1.7%
+
+Sham Shui Po                                                           1.9%  1.6%
+
+Eastern                                                                1.5%  1.0%
+
+Wong Tai Sin                                                           1.4%  1.3%
+
+Others (incl. unspecified locations)                                   9.7%  8.8%
+
+Total                                  100.0%                                100.0%
+
+Note:
+Due to the rounding issue, the total number may not be equal to 100%.
+
+                                       Page A ­ 7
+

@@ -1,0 +1,398 @@
+         Base District Traffic Model (BDTM) Licence Agreement
+
+This AGREEMENT is made the [ ] day of [               ] of 20 [ ]
+
+BETWEEN
+
+(1) [                                                 ] whose registered office is at
+[                                                              ] ("the Developer") and
+
+(2) [                                                  ] whose registered office is at
+[                                                     ] ("the Traffic & Transport
+
+Consultants, hereinafter called "the T&T Consultants"); and
+
+(3) The Government of Hong Kong Special Administrative Region ("the
+Government") acting through the Transport Department ("TD")
+
+1.  The Licensed Materials comprises of (i) BDTM Data (consisting of network
+
+and matrix files) as specified in clause 5 of the BDTM Data Order Form and (ii)
+
+the Final Report (a technical document on the assumptions, development process and
+
+figures of the BDTM Data in (i)) whether in electronic read only device or otherwise
+
+which contains information of simulated traffic flow, physical details of roads and
+
+junctions, trip generation and attraction at each zone, assumed flow capacity for each
+
+of the simulated entities, etc at the base year and future years as appropriate.
+
+2.     In consideration of the charges paid by the T&T Consultants in the BDTM
+
+Data Order Form (attached herewith), the Transport Department shall provide the
+
+Licensed Materials as requested in the BDTM Data Order Form and the Government
+
+hereby grants a non-exclusive, non-assignable, non-sublicensable and non-
+
+transferable licence to use the Licensed Materials to the Developer and the T&T
+
+Consultants upon the following terms and conditions:
+
+2.1 The Licensed Materials, supplied by the Transport Department, shall be used
+for the purpose as specified in clause 2 of the BDTM Data Order Form for carrying
+out traffic impact assessment (TIA) for the proposed development project and not for
+any other purpose for the period commencing from the date of this Licence
+Agreement until the completion date of the TIA for the proposed development project
+set out in clause 3 of the BDTM Data Order Form or two years from the date of this
+Licence Agreement whichever is the earlier.
+
+         -1/8-
+2.2 Unless otherwise expressly stated or permitted under this Licence Agreement,
+the Licensed Materials or any part thereof shall not be used in any form or manner
+(including but not limited to copying, modification, enhancement, adaptation,
+translation or distribution to any third party in whatever form or media) by the
+Developer or the T&T Consultants.
+
+2.3  If the supplied Licensed Materials is found to be corrupted or defective
+
+within one (1) calendar month from the date of collection by the users, Transport
+
+Department shall replace the supplied Licensed Materials. The Licensed Materials
+
+will not be regarded as corrupted or defective if it can be loaded into and displayed
+
+on the computer system of Transport Department.
+
+2.4  The Transport Department shall not be responsible to install the Licensed
+
+Materials or provide any training in the use of the Licensed Materials and gives no
+
+warranty that the Licensed Materials can be processed on the computer system of the
+
+Developer or the T&T Consultants.
+
+2.5  The Developer and the T&T Consultants acknowledge that the Licensed
+
+Materials has not been prepared specifically to meet their individual requirements and
+
+purpose and that they will not have any recourse against the Government for any
+
+damage or loss they may suffer in any use or attempted use of the Licensed Materials.
+
+2.6 The Government gives no warranty that the Licensed Materials is error-free
+and the Government shall in no way be held responsible for any loss or damage
+which may be suffered by the users or any other person from the use of the Licensed
+Materials.
+
+2.7 The Developer and the T&T Consultants shall display on and in the products
+containing the Licensed Materials an acknowledgement with the following wording
+"© Licensed Materials reproduced with permission of the Commissioner for
+Transport, the Government of the Hong Kong SAR".
+
+2.8  The Government remains the owners of the Licensed Materials and the
+
+intellectual property rights therein at all times.
+
+2.9 The Developer [jointly and severally]**/*** warrants and undertakes that it
+shall not infringe any intellectual property rights in the Licensed Materials and shall
+fully indemnify the Government against all loss, damage, claims, demands,
+proceedings, costs, charges, expenses and liabilities suffered or incurred by the
+Government arising by reason of any act, default, breach or omission on the part of
+the Developer.
+
+2.10 The T&T Consultants [jointly and severally]**/*** warrants and undertakes
+that it shall not infringe any intellectual property rights in the Licensed Materials and
+shall fully indemnify the Government against all loss, damage, claims, demands,
+
+                                                        -2/8-
+proceedings, costs, charges, expenses and liabilities suffered or incurred by the
+Government arising by reason of any act, default, breach or omission on the part of
+the T&T Consultants.
+
+2.11 The Developer [jointly and severally]**/*** warrants and undertakes that
+their staff shall abide by all the terms and conditions of the Licence Agreement in
+using the Licensed Materials and that their staff shall not infringe any intellectual
+property rights in the Licensed Materials and the Developer shall fully indemnify the
+Government against all loss, damage, claims, demands, proceedings, costs, charges,
+expenses and liabilities suffered or incurred by the Government arising by reason of
+any act, default, breach, omission or failure to comply with the terms and conditions
+of the Licence Agreement by or of the staff of the Developer in using the Licensed
+Materials.
+
+2.12 The T&T Consultants [jointly and severally]**/*** warrants and undertakes
+that their staff shall abide by all the terms and conditions of the Licence Agreement in
+using the Licensed Materials and that their staff shall not infringe any intellectual
+property rights in the Licensed Materials and the T&T Consultants shall fully
+indemnify the Government against all loss, damage, claims, demands, proceedings,
+costs, charges, expenses and liabilities suffered or incurred by the Government
+arising by reason of any act, default, breach, omission or failure to comply with the
+terms and conditions of the Licence Agreement by or of the staff of the T&T
+Consultants in using the Licensed Materials.
+
+2.13 The Transport Department is not responsible for the accuracy of the Licensed
+Materials nor providing a copy of the revised Licensed Materials to the Developer
+and the T&T Consultants. The Developer and the T&T Consultants are responsible
+for making their own assessment of all information contained in the Licensed
+Materials and are advised to verify such information before acting upon it.
+
+2.14 Technically, the Licensed Materials, among other things, are prepared,
+compiled and validated by the Transport Department based on, but not limited to, the
+following data sources (the original data sources) at the base years and future years
+(specified in clause 5 of the BDTM Data Order Form) as appropriate:
+
+         i the cordoned strategic traffic flow (from the re-run of the
+               Comprehensive Transport Study Model) for each of the BDTMs;
+
+         ii. the Major Highway and Railway Network Assumptions;
+
+         iii. the Territorial Population and Employment Data Matrices;
+
+         iv. future new developments;
+
+                                                        -3/8-
+         v. the latest resident and working populations classified on Small Street
+               Block Group and Large Street Block Group respectively, Quarterly
+               Survey of Employment and Vacancies and the like;
+
+         vi. the Annual Traffic Census;
+
+         vii. the cycle time, methods of control and signal plans for signal junctions;
+
+         viii. the layout of roads, junctions and the traffic aids; and
+
+         ix. the public bus routes and their timetables.
+
+Notwithstanding the above, Licensed Materials have their limitations particularly in
+the following areas:
+
+         i. they should not be used to forecast roads of strategic nature which have
+               not been included in the Major Highway and Railway Network
+               Assumptions.
+
+         ii. they should not be used for projects straddling two different BDTMs.
+
+2.15 The Developer and the T&T Consultants shall note that Licensed Materials
+has only been validated at major screenlines and junctions as detailed in the relevant
+Final Reports in the Licensed Materials. In the event that there is any discrepancy in
+the information contained in the Licensed Materials and that contained in the original
+data sources, the original data sources shall prevail.
+
+2.16 Whilst endeavours have been made to ensure the accuracy of the Licensed
+Materials, no express or implied warranty or representation is given to the accuracy
+or completeness of the Licensed Materials or its appropriateness for use in any
+particular circumstances. The Government is not responsible for any loss, damage,
+claims, demands, proceedings, costs, charges, expenses and liabilities arising from
+any cause whatsoever in connection with the Licensed Materials or the use thereof.
+
+2.17 Upon completion of the TIA for the proposed development project set out in
+clause 3 of the BDTM Data Order Form or upon two years from the date of this
+Licence Agreement whichever is the earlier, the Developer and the T&T Consultants
+shall immediately cease using the Licensed Materials. The Licensed Materials stored
+in the Developer and the T&T Consultants' computer systems and storage media
+shall all be destroyed upon completion of the TIA for the proposed development
+project set out in clause 3 of the BDTM Data Order Form or upon two years from the
+date of this Licence Agreement whichever is the earlier.
+
+2.18.1 The Developer and the T&T Consultants shall treat as confidential the
+Licensed Materials and all other data (including without limitation any personal
+
+                                                        -4/8-
+particulars records and Personal Data (as defined in the Personal Data (Privacy)
+Ordinance (Cap 486)) and materials of any nature (in or on whatever media))
+accessible by the Developer and the T&T Consultants under this Licence Agreement
+or which the Government has for the purposes of or in the course of performing this
+Licence Agreement disclosed supplied made available or communicated to the
+Developer or the T&T Consultants and which the Government has designated as
+confidential PROVIDED THAT this clause 2.18.1 shall not extend to any
+information which was rightfully in the possession of the Developer or the T&T
+Consultants prior to the commencement of the negotiations leading to this Licence
+Agreement or which is already in the public knowledge or becomes so at a future date
+(otherwise than as a result of a breach of this Clause).
+
+2.18.2  The Developer and the T&T Consultants shall indemnify and keep the
+
+Government its employees and authorized persons fully and effectively indemnified
+
+against all loss, damage, claims, demands, proceedings, costs, charges, expenses and
+
+liabilities of whatsoever nature arising from or incurred by reason of any actions
+
+and/or claims made in respect of information subject to the Personal Data (Privacy)
+
+Ordinance (Cap 486) which action and/or claim would not have arisen but for the
+
+negligence or omission of the Developer or the T&T Consultants, any of their
+
+respective employees, sub-contractors or agents (or any one acting on their behalf) in
+
+connection with this Licence Agreement.
+
+2.18.3 The Developer and the T&T Consultants hereby agree that it will use the
+confidential information described in clause 2.18.1 solely for the purposes of this
+Licence Agreement and that it will not, at any time whether during or after the
+completion, expiry or termination (howsoever occasioned) of this Licence Agreement
+use or allow to be used the same for any other purposes without the Government's
+prior written consent.
+
+2.18.4  The Developer and the T&T Consultants undertakes to take all such
+
+security measures for the protection of the Licensed Materials which it is obliged by
+
+this clause 2.18.1 to keep secret and treat as confidential as it takes for the protection
+
+of its own confidential information, documentation and materials.
+
+2.18.5 The Developer and the T&T Consultants shall ensure that each of their
+respective employees, agents, associates, sub-contractors, consultants and any other
+persons engaged in any work in connection with this Licence Agreement are aware of
+and comply with the provisions of this clause 2.18 and the Official Secrets Ordinance
+(Cap 521). The Developer and the T&T Consultants shall indemnify the Government
+and keep the Government fully and effectively indemnified against all actions, costs
+(including without limitation the fees and disbursements of lawyers, agents and
+experts witnesses), claims, demands, expenses, loss, damage and liabilities
+whatsoever which the Government may suffer incur or sustain as a result of any
+breach of confidence (whether under this Licence Agreement or general law) by the
+Developer and the T&T Consultants and/or by any of the said persons.
+
+                                                        -5/8-
+2.18.6 The Developer and the T&T Consultants undertakes, if so requested by
+the Government, to sign the Government's separate confidentiality agreement in a
+form prescribed by the Government and to procure each of their employees, agents,
+associates, sub-contractors and consultants to whom any confidential information is
+required to be disclosed to do so.
+
+2.18.7        The Developer and the T&T Consultants shall promptly notify the
+
+Government of any breach of confidence, the Personal Data (Privacy) Ordinance or
+
+the Official Secrets Ordinance by any of the persons referred to in this clause 2.18
+
+and give the Government all reasonable assistance in connection with any
+
+proceedings which the Government may institute against any such persons for any
+
+such breach.
+
+2.18.8        The provisions of this clause 2.18 shall survive the termination of this
+
+Licence Agreement (howsoever occasioned) and shall continue in full force and
+
+effect notwithstanding such termination.
+
+2.19          The obligations and liabilities of the Developer and the T&T
+
+Consultants in this Licence Agreement are joint and several.
+
+2.20          This Licence Agreement shall be governed by and construed in all
+
+respects according to the laws for the time being in force in Hong Kong Special
+
+Administrative Region.
+
+                                          -6/8-
+Signed for and on behalf of the
+Government
+Signature
+Name
+Post
+Witness
+
+*[Signed for and on behalf of the
+Developer
+
+Signature
+
+Name
+
+Job title
+
+Company chop
+
+Witness       ]
+
+*[Signed for and on behalf of the T&T
+Consultants
+
+Signature
+
+Name
+
+Job Title
+
+Company chop
+
+Witness       ]
+
+-7/8-
+**[Signed by
+
+                      (Name)
+
+And
+
+                      (Name)
+
+Being the partners of the Developer
+
+                    (Company chop)
+
+In the presence of
+
+Witness                                      ]
+
+**[Signed by          (Name)
+And                   (Name)
+
+Being the partners of the T & T Consultants
+
+                      (Company chop)
+
+In the presence of
+
+Witness                                      ]
+
+***[Signed by
+
+                      (Name)
+
+for and on behalf of
+
+(Name of unincorporated joint venture participant)
+
+being a participant of the Developer
+
+                    (Company chop)
+
+In the presence of
+
+Witness                                         ]
+
+***[Signed by
+
+                      (Name)
+
+for and on behalf of
+
+(Name of unincorporated joint venture participant)
+
+being a participant of the T&T Consultants
+
+                      (Company chop)
+
+In the presence of
+
+Witness                                         ]
+
+* For use where the company is a limited liability company
+** For use where the company is a partnership (please add space for more names
+
+     where appropriate)
+*** For use where the company is an unincorporated joint venture (Please add more
+
+     execution clauses where appropriate)
+
+                                                        -8/8-
+

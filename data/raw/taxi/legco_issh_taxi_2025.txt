@@ -1,0 +1,168 @@
+          Transport
+
+Research Office
+Legislative Council Secretariat
+
+                                                                                                            ISSH03/2025
+
+Taxi services in Hong Kong
+
+Figure 1 ­ Average daily patronage of taxis and                                                 Highlights
+
+                share in public transport patronage                                             · Local taxi services have witnessed a visible
+
+Patronage ('000)                                                                          9% downtrend over the past decade, with their daily
+1 200                                                                                           patronage plummeting by 29.4% to 682 000 in 2024
+                                                                                                (Figure 1). Likewise, the share of taxis in overall
+        7.7% 7.4% 7.1% 6.9% 6.9% 7.4% 7.2% 7.4%                                                 public transport patronage declined from 7.7% to
+                                                                           6.4%
+                                                                                    5.8%
+
+800                                                                                       6% 5.8% over the same period. While this could be in
+
+                                                                                                part attributable to further extension of the railway
+
+400     966 933 898 889 855 660 762 711 729 682                                           3%    networks, there were allegations of unsatisfactory
+                                                                                                quality of taxi services (e.g. over-charging, hire
+                                                                                                refusal, customer selection and intentionally taking a
+
+                                                                                                longer route). Moreover, local taxis are also facing
+
+     0                                                                     0%                   intensified competition from other modes of
+          2015                                                    2024
+                             2018              2021                                             personalized point-to-point ("P2P") services (e.g.
+
+                             Patronage ('000)           Ratio                                   ride-hailing platforms and private hire services).
+
+Figure 2 ­ Number of registered taxis and market                                                · Over the past decade, the fleet of taxis has held
+              value of urban taxi licences(1)                                                      broadly stable at around 18 100, with an average age
+                                                                                                   of eight years. Over 99% of local taxis are driven
+HK$ (million)                                                     No. of taxis                     by petrol/liquefied petroleum gas ("LPG"), with just
+                                                                        ('000)                     139 registered electric taxis despite the launch of
+                                                                                                   a loan guarantee scheme by the Government to
+7.5 18.1 18.1 18.1 18.1 18.1 18.1 18.1 18.1 18.1 18.1 18.2                                         encourage conversion into electric taxis in
+                                                                                                   September 2023. In December 2024, the
+5                                                                                         17.7     Government rolled out a subsidy scheme to expedite
+                                                                                                   the process. As regards the market value of local
+        6.7 6.2 6.7 6.1                                                                            urban taxi licence, it plunged by 46% in 10 years to
+                                                                                                   HK$3.6 million by early 2024, dampened by
+                                   5.0 5.1 4.8 4.8 4.4                                             (a) falling patronage; (b) increased competition in
+                                                                                                   the P2P market; and (c) correction in the local asset
+                                                                  3.6                              markets in recent years (Figure 2). In late
+                                                                                                   February 2025, this licence value went down to
+2.5                                                                                       17.2     below HK$2.9 million.
+
+        2015           2018                    2021               2024                          · The public has been increasingly concerned
+                                                                                                   about the safety of taxis in recent years, as the
+                  Urban licence price                Taxi number                                   involvement rate of taxis in traffic accidents was
+                                                                                                   295 per 1 000 vehicles in 2023, considerably higher
+Note: (1) Licence price refers to the market value on 1 January in each year.                      than that of 285 for franchised public buses and 192
+                                                                                                   for public light buses (Figure 3). Conceivably, this
+Figure 3 ­ Accident rate of major public transport(1)                                              is related to their long operation hours each day and
+                                                                                                   old age of taxi drivers, as the average age of taxi
+450                                                                                                drivers was 59 in 2022. In December 2024, the
+                                                                                                   Government proposed the installation of "the camera
+        402 394 392 381 393 354                                          295                       system" (e.g. in-vehicle cameras) in all taxi
+                                                                                                   compartments to address safety concerns and restore
+300     233 240 247 240 244 265 213                        257    225    285                       public trust in taxi services.
+150               254                                        270    224    192
+        250            249                            241
+                             233       221     213
+
+                                                        155 179 162
+
+     0  2014           2016        2018              2020         2022
+Note:
+                  Taxi Franchised public bus Public light bus
+
+        (1) Accident rate per 1 000 licenced vehicles.
+Taxi services in Hong Kong (cont'd)
+
+Figure 4 ­ Complaints against taxi services                                       Highlights
+
+No. of complaints                                                                 · In 2023, there were altogether 11 452 complaints
+('000)                                                                               against taxis, representing a 51% surge over a year
+
+12 10.4 10.4 10.8 11.0 10.3                          11.5                         earlier (Figure 4). "Refusing hire" was the most
+                                                                                  common type of complaints (25.1%), followed by
+8                                                                9.2              "improper driving behaviour" (20%) and "failure to
+                                          8.4 7.6                                 take the most direct route" (18.2%). However, only
+                                                                                  24.9% of the complaints related to driver malpractice
+                                5.4
+
+4                                                                                 were referred to the Police for further investigation.
+
+                                                                                  During the year, only 3.4% of the investigated cases
+
+0                                                                                 were summonsed due largely to insufficient evidence.
+     2015
+                   2018               2021                 2024                   Under the Taxi-Driver-Offence Points system
+
+                                                          (Q1-Q3) effective from 22 September 2024, taxi drivers
+
+Others                          Failure to take the most direct route             convicted or fined will incur offence points, with the
+Improper driving behaviour      Refusing hire                                     highest penalty being disqualified from driving a taxi
+                                                                                  for six months. As at 16 November 2024, 15 drivers
+
+Figure 5 ­ Insurance gross premiums per taxi                                      have reportedly been penalized under the system for
+                                                                                  bad practices.
+
+HK$ ('000)                                           42.6 44.1                    · In the face of a higher accident involvement rate,
+45                                                                                   comprehensive insurance premiums per insured taxi
+                                                                                     surged by 57% in five years to HK$44,145 in 2023,
+                                      33.9  35.5           34.7                      and so did the third-party insurance premiums by 56%
+                                                    33.5                             to HK$34,743 (Figure 5).
+
+30 26.6 25.9 25.9 25.5 28.1 26.2 27.6
+
+      20.6 20.4 20.4 20.7 22.2                                                    · Since 2014, several ride-hailing platforms have set up
+
+15                                                                                business in Hong Kong, with reported numbers of
+                                                                                  drivers ranging from 4 000 to 200 000 (Figure 6).
+
+                                                                                  However, given that up to 1 500 private vehicles are
+
+0                  2017         2019        2021           2023                   so far authorized by the Transport Department to
+     2015                                                                         carry passengers for hire or reward, there are
+                                                                                  allegations that a majority of passenger services
+                   Third party        Comprehensive                               offered by ride-hailing platforms are illegal under the
+
+Figure 6 ­ Ride-hailing platforms in Hong Kong(1)                                 existing laws. During 2015-2023, there were over
+                                                                                  500 enforcement actions taken by the Police against
+
+                                                                                  such illegal carriage of passengers.
+
+Ride-hailing Launch Headquarters                  Reported                        · In December 2023, the Government raised the penalty
+                                                  number of                          (e.g. raising the fine to HK$25,000) for illegal
+platforms          year         base
+                                                    drivers
+
+Uber               2014 United States             200 000                         passenger services. In July 2024, it announced a
+
+Didi               2018         Mainland             42 000                       plan to regulate online ride-hailing platforms, with a
+
+                                                                                  legislative proposal expected to be introduced in 2025.
+
+Tada               2024         Singapore            4 000                        In February 2025, while the local taxi trade expressed
+                                                                                  dissatisfaction over slow regulatory developments, the
+Amap               2024         Mainland data unavailable                         Government has pledged to step up enforcement
+                                                                                  efforts against illegal carriage services.
+Note: (1) All the platforms listed are also collaborating with the taxi business
+                 to provide taxi services.
+
+                                                                                           Sources: HKTEx, Insurance Authority, Transport Advisory Committee,
+                                                                                           Transport Department, and Uber.
+
+Research Office
+Research and Information Division
+Legislative Council Secretariat
+27 February 2025
+Tel: 3919 3181
+
+Statistical Highlights are compiled for Members and Committees of the Legislative Council. They are not legal or other professional advice and shall not be relied on as
+such. Statistical Highlights are subject to copyright owned by The Legislative Council Commission (The Commission). The Commission permits accurate reproduction
+of Statistical Highlights for non-commercial use in a manner not adversely affecting the Legislative Council. Please refer to the Disclaimer and Copyright Notice on the
+Legislative Council website at www.legco.gov.hk for details. The paper number of this issue of Statistical Highlights is ISSH03/2025.
+
+                                                                      2
+

@@ -2,7 +2,13 @@
 
 香港交通情景模拟平台 · Hack for SDGs 2026（Green Transport & Smart Mobility 赛道）
 
-项目背景、比赛规则和决策记录见桌面《9 月 19 黑客松 / 项目交接主文档.md》。
+> ### 新组员从这里开始
+> - **人**：读 [`docs/onboarding.md`](docs/onboarding.md)——装什么、怎么拿到项目、按角色（看结果 / 前端 / 调模型 / 画新线）看哪里、怎么在 GitHub 上协作、哪些东西不能动。
+> - **AI 助手**（Claude Code、Codex、Cursor…）：让它先读 [`AGENTS.md`](AGENTS.md)。
+> - **数据从哪来**：[`docs/data-sources.md`](docs/data-sources.md)（43 个来源的总目录）。
+> - **现在做到哪、准确度、已知局限**：[`docs/handoff.md`](docs/handoff.md) 顶部。
+>
+> 方向（2026-09-25 起）：在这个模型上做「画新地铁线 / 新路」的规划游戏；下面「这个工程算出了什么」一节是更早的无人车车队方向，保留作参考。
 
 > **要演示？照着 [`docs/demo-runbook.md`](docs/demo-runbook.md) 念**——开场、讲什么、会被问什么、不要说什么。
 >
@@ -37,9 +43,10 @@
 | 目录 | 作用 | 类比 |
 |---|---|---|
 | `pipeline/` | 数据管线：下载、清洗、统一坐标、算出行时间矩阵（离线运行） | 材料进场检验 + 预制构件厂 |
-| `data/raw/` | 原始下载，永远不手改（不进 Git） | 原材料仓 |
+| `data/raw/` | 原始下载，永远不手改（进 Git；法定图则 `data/raw/zoning/` 太大，放在 Releases 附件） | 原材料仓 |
 | `data/processed/` | 清洗后的数据（不进 Git，可由 pipeline 重新生成） | 半成品 |
-| `data/web/` | 给网站用的轻量文件 | 成品构件 |
+| `data/model/` | 模型算出来的表和矩阵（只能由 pipeline 生成） | 计算结果 |
+| `data/web/` | 给网站用的轻量文件 + 每步的审计报告 | 成品构件 |
 | `model/` | 交通模型（出行产生、分布、方式选择、指标）+ 测试 | 结构计算书 |
 | `backend/` | FastAPI 后端：数据查询、地名解析、跑模型、调用 AI | 结构和设备系统 |
 | `frontend/` | React + MapLibre 前端：地图、面板、图表 | 建筑外观和人流动线 |
