@@ -39,12 +39,15 @@ Table 3.5 together; K is solved for each r tried. Two fitted numbers for fifteen
 (2026-09-18: r = 1.28, K = 0.62. Table 3.5's "trips to or from" was tested three ways; counting a
 trip once if either end is in the area fits the survey by far the best - 4.8 points against 14-15.)
 
-Known deviation, left visible on purpose (decided 2026-09-18): Sha Tin/Ma On Shan keeps 21% of its
-trips against the survey's 31%. The areas that miss low are the ones a fast rail line puts close to
-Kowloon (Sha Tin: Kowloon 1.74 times as far as its own area, Tsuen Wan/Kwai Tsing 1.78; Tuen Mun,
-which matches, 2.59), and a gamma-shaped decay did not change it (-10 to -9 points). The likely cause
-is that the times carry no crowding: the East Rail and Tuen Ma lines are fuller than the engine
-knows. Assignment will produce crowded times; feed them back here before adding any area factors.
+Area factors (decided 2026-09-26, replacing the 2026-09-18 decision to leave it visible): Sha Tin/Ma On
+Shan kept 21% of its trips inside against the survey's 31%, and the surplus showed up on both Lion
+Rock Tunnel (+24%) and the East Rail line (+44%). The areas that missed low are the ones a fast rail
+line puts close to Kowloon (Sha Tin: Kowloon 1.74 times as far as its own area; Tuen Mun, which
+matched, 2.59); a gamma-shaped decay did not help. The likely cause is crowding the transit times do
+not carry - but pipeline/39 has no crowding model yet, so each Table 3.5 main area now gets one
+intra-area factor, fitted after r (odds update, harbour factor and decays refitted each round) until
+every area is within half a point. The factors stand in for that missing crowding: when crowded
+times are fed back, refit and expect them to move toward 1.
 
 Cross-boundary trips are fixed at the control point (Immigration counts them there) and spread over
 Hong Kong with the other-purpose decay and the harbour factor - a placeholder until the Planning
@@ -83,6 +86,16 @@ SCALE_RANGE = (1.0, 1.6)  # reported over engine time; 1.0 is "the survey's time
 HARBOUR_RANGE = (0.2, 1.0)
 REGION_TOLERANCE = 0.15  # a modelled regional movement this far from Table 3.4 is reported
 CONTAINMENT_TOLERANCE = 0.10  # an area's self-containment this many points from Table 3.5 is reported
+# Table 3.5 fitted directly (2026-09-26): one intra-area factor per main area. Without it Sha Tin/Ma On Shan kept
+# 21% of its trips inside against the survey's 31%, and the surplus showed up on both Lion Rock Tunnel (+24%)
+# and the East Rail line (+44%) - too many Sha Tin people going to Kowloon, whichever way they travelled.
+AREA_ROUNDS = 12
+AREA_TOLERANCE = 0.005       # stop when every main area is within half a point of Table 3.5, or stops improving
+# Hong Kong Island gets no factor: its trips either stay on the island or cross the harbour, so its
+# self-containment and the cross-harbour share are one constraint seen from two sides, and the harbour
+# factor K already fits it. Given one of its own, the two factors pull against each other round after
+# round (tried: the island's factor climbed to 1.79 while K rose from 0.62 to 0.82, with the island still
+# at 48% against 49% - the last point is the island's trip-end total, pipeline/21, not distribution).
 HONG_KONG_ISLAND = {"Central & Western", "Wan Chai", "Eastern", "Southern"}
 KOWLOON = {"Yau Ma Tei", "Mong Kok", "Sham Shui Po", "Kowloon City", "Kwun Tong", "Wong Tai Sin"}
 # Table 3.5's main areas, built from the survey's broad districts.
@@ -98,6 +111,7 @@ MAIN_AREAS = {
     "Tseung Kwan O": {"Tseung Kwan O"},
     "North Lantau": {"North Lantau"},
 }
+AREA_FITTED = [a for a in MAIN_AREAS if a != "Hong Kong Island"]
 
 
 def costs(zones: pd.DataFrame, external: pd.DataFrame) -> tuple[np.ndarray, list[str]]:
@@ -171,13 +185,22 @@ class Model:
         movements = self.params["regional_movements"]
         self.survey_regions = {k: movements[k] / movements["total"] for k in regional_keys()}
         self.survey_containment = {a: self.params["self_containment_pct"][a] / 100 for a in MAIN_AREAS}
+        self.area_k = {a: 1.0 for a in MAIN_AREAS}
+        self.inside = {a: np.isin(self.broad, list(m)) for a, m in MAIN_AREAS.items()}
+        self.area_factor = np.ones_like(self.cost)
+
+    def update_area(self) -> None:
+        """Trips that start and end in the same main area are made more attractive by that area's factor."""
+        self.area_factor = np.ones_like(self.cost)
+        for a, inside in self.inside.items():
+            self.area_factor[np.ix_(inside, inside)] = self.area_k[a]
 
     def target(self, purpose: str, scale: float) -> float:
         return self.params["mean_journey_time_min"][MEAN_TIME_KEY[purpose]] * self.transit_share / scale
 
     def seed(self, beta: float, harbour: float) -> np.ndarray:
         decay = np.where(self.reachable, np.exp(-beta * self.finite_cost), 0.0)
-        return decay * np.where(self.across, harbour, 1.0)
+        return decay * np.where(self.across, harbour, 1.0) * self.area_factor
 
     def calibrate(self, purpose: str, scale: float, harbour: float) -> tuple[float, np.ndarray, float]:
         """The decay at which the balanced matrix's mean time equals the target (bisection, log scale)."""
@@ -298,7 +321,27 @@ def main() -> None:
     report, flags = [], []
     print("拟合时间换算系数 r 与过海系数 K …", flush=True)
     scale, harbour, matrices, fitted, history = fit_scale(model)
+    # Table 3.5: raise or lower each main area's intra-area factor by the ratio of the survey's odds of a
+    # trip staying inside to the model's, refit the harbour factor and the decays, until every area is
+    # within AREA_TOLERANCE. The time scale r stays as fitted above.
+    before = model.misfit(matrices)[2]
+    last = float("inf")
+    for round_ in range(1, AREA_ROUNDS + 1):
+        contained = model.misfit(matrices)[2]
+        worst = max(abs(contained[a] - model.survey_containment[a]) for a in AREA_FITTED)
+        print(f"   区内系数第 {round_} 轮：自给率最大偏差 {worst * 100:.1f} 个百分点", flush=True)
+        if worst < AREA_TOLERANCE or last - worst < 0.001:
+            break
+        last = worst
+        for a in AREA_FITTED:
+            t, m = model.survey_containment[a], contained[a]
+            model.area_k[a] *= (t / (1 - t)) / (m / (1 - m))
+        model.update_area()
+        harbour, matrices, fitted = model.with_harbour(scale)
     misfit, shares, contained = model.misfit(matrices)
+    report.append("区内系数（表 3.5 自给率逐区对准；同一主要地区内的出行吸引力再乘这个数）：" + "；".join(
+        f"{a} {model.area_k[a]:.2f}（{before[a]:.0%} → {contained[a]:.0%}，调查 {model.survey_containment[a]:.0%}）"
+        for a in MAIN_AREAS))
 
     summary = {}
     for purpose in PURPOSES:
@@ -368,8 +411,10 @@ def main() -> None:
                         **{f"T_{p}": m.astype(np.float32) for p, m in matrices.items()})
     AUDIT.write_text(json.dumps({
         "method": "doubly constrained gravity per purpose, exponential decay on public transport time, "
-                  "one harbour factor; cross-boundary singly constrained at the control point",
+                  "one harbour factor, one intra-area factor per Table 3.5 main area; "
+                  "cross-boundary singly constrained at the control point",
         "time_scale_r": round(scale, 4), "harbour_factor_k": round(harbour, 4), "misfit_pts": round(misfit, 3),
+        "area_factors": {a: round(k, 4) for a, k in model.area_k.items()},
         "search": history, "purposes": summary,
         "regional_movements_share": {k: round(v, 4) for k, v in shares.items()},
         "self_containment": {k: round(v, 4) for k, v in contained.items()},

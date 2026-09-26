@@ -33,9 +33,10 @@ DOCS = ["README.md", "docs/architecture-walkthrough.md", "docs/demo-runbook.md"]
 # Figures that were true once and are not any more, with the date they were retired. A document may
 # not contain these. Keep the reason: it is the only way to tell a retired figure from a typo later.
 RETIRED = [
+    ("717,198", "2026-09-26", "的士请求数：出行分布加区内系数、塞车回代后变成 715,443"),
     ("703,506", "2026-09-24", "的士请求数，锚定运输署最近 12 个月后变成 717,198"),
     ("70.3 万", "2026-09-24", "同上"),
-    ("5.8 分", "2026-09-24", "10,000 辆车队的平均等待，现为 6.0 分"),
+    ("6.0 分", "2026-09-26", "10,000 辆车队的平均等待，出行分布加区内系数、塞车回代后回到 5.8 分"),
     ("1%–32%", "2026-09-24", "调度省下的车公里区间，现为 0%–31%"),
     ("759.57", "2026-09-24", "人口改锚到统计处 2026 年中估计 7,517,309"),
     ("759.58", "2026-09-24", "同上"),
@@ -64,7 +65,9 @@ def audits() -> dict:
         "请求总数": (f"{total:,}", ["docs/architecture-walkthrough.md", "docs/demo-runbook.md"]),
         "最小达标车队": (f"{min(passing):,}", DOCS),
         "领牌车队": (f"{simulation['fleet']:,}", DOCS),
-        "走廊 GEH<5": (f"{assignment['corridor_geh_under_5']:.1%}", ["docs/architecture-walkthrough.md"]),
+        # Must sit on a line that says 走廊 GEH<5: the history table there also holds old values, and on
+        # 2026-09-26 an old 29.4% in it let a stale 23.5% pass.
+        "走廊 GEH<5": (f"{assignment['corridor_geh_under_5']:.1%}", ["docs/architecture-walkthrough.md"], "走廊 GEH<5"),
     }
 
 
@@ -75,14 +78,16 @@ def main() -> None:
     for name in missing:
         problems.append(f"文档不存在：{name}")
 
-    for label, (value, where) in audits().items():
+    for label, (value, where, *context) in audits().items():
         if not value or not where:
             continue
         for name in where:
             if name not in texts:
                 continue
             checked += 1
-            if value not in texts[name]:
+            lines = [l for l in texts[name].splitlines()
+                     if not context or (context[0] in l and not l.lstrip().startswith("|"))]  # history tables don't count
+            if not any(value in l for l in lines):
                 problems.append(f"{name} 里找不到当前的「{label} = {value}」")
 
     for value, retired_on, why in RETIRED:

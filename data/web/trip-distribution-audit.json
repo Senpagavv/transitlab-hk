@@ -1,8 +1,20 @@
 {
- "method": "doubly constrained gravity per purpose, exponential decay on public transport time, one harbour factor; cross-boundary singly constrained at the control point",
+ "method": "doubly constrained gravity per purpose, exponential decay on public transport time, one harbour factor, one intra-area factor per Table 3.5 main area; cross-boundary singly constrained at the control point",
  "time_scale_r": 1.2803,
- "harbour_factor_k": 0.6174,
- "misfit_pts": 4.108,
+ "harbour_factor_k": 0.617,
+ "misfit_pts": 0.529,
+ "area_factors": {
+  "Hong Kong Island": 1.0,
+  "Kowloon": 1.0764,
+  "Tsuen Wan/Kwai Tsing": 1.3829,
+  "Tuen Mun": 1.1613,
+  "Yuen Long/Tin Shui Wai": 0.5192,
+  "Fanling/Sheung Shui": 0.7428,
+  "Tai Po": 1.4036,
+  "Sha Tin/Ma On Shan": 2.3418,
+  "Tseung Kwan O": 1.2897,
+  "North Lantau": 0.5387
+ },
  "search": [
   {
    "scale": 1.1416,
@@ -57,77 +69,76 @@
  ],
  "purposes": {
   "HBW": {
-   "beta": 0.04811,
+   "beta": 0.04667,
    "target_min": 40.2,
    "modelled_min": 40.2,
-   "harbour_penalty_min": 10.0,
-   "balance_error": 3.1038808330854966e-05,
-   "intrazonal_share": 0.0196
+   "harbour_penalty_min": 10.3,
+   "balance_error": 8.377049722477285e-05,
+   "intrazonal_share": 0.0194
   },
   "HBS": {
-   "beta": 0.08383,
+   "beta": 0.08108,
    "target_min": 32.6,
-   "modelled_min": 32.7,
-   "harbour_penalty_min": 5.8,
-   "balance_error": 7.966529576905992e-05,
-   "intrazonal_share": 0.0622
+   "modelled_min": 32.6,
+   "harbour_penalty_min": 6.0,
+   "balance_error": 9.202683198092137e-05,
+   "intrazonal_share": 0.0611
   },
   "HBO": {
-   "beta": 0.08747,
+   "beta": 0.0846,
    "target_min": 30.1,
    "modelled_min": 30.1,
-   "harbour_penalty_min": 5.5,
-   "balance_error": 9.338190849795435e-05,
-   "intrazonal_share": 0.0602
+   "harbour_penalty_min": 5.7,
+   "balance_error": 9.852385239122663e-05,
+   "intrazonal_share": 0.059
   },
   "NHB": {
-   "beta": 0.07181,
+   "beta": 0.06946,
    "target_min": 30.1,
    "modelled_min": 30.1,
-   "harbour_penalty_min": 6.7,
-   "balance_error": 5.890160777213736e-05,
-   "intrazonal_share": 0.0672
+   "harbour_penalty_min": 7.0,
+   "balance_error": 6.530784998267355e-05,
+   "intrazonal_share": 0.0664
   }
  },
  "regional_movements_share": {
   "within_hong_kong_island": 0.1458,
   "cross_harbour": 0.1594,
-  "within_kowloon": 0.1911,
-  "kowloon_nt": 0.2033,
-  "within_nt": 0.3005
+  "within_kowloon": 0.1964,
+  "kowloon_nt": 0.1921,
+  "within_nt": 0.3063
  },
  "self_containment": {
-  "Hong Kong Island": 0.4779,
-  "Kowloon": 0.3949,
-  "Tsuen Wan/Kwai Tsing": 0.2425,
-  "Tuen Mun": 0.3053,
-  "Yuen Long/Tin Shui Wai": 0.242,
-  "Fanling/Sheung Shui": 0.1588,
-  "Tai Po": 0.1735,
-  "Sha Tin/Ma On Shan": 0.2077,
-  "Tseung Kwan O": 0.1684,
-  "North Lantau": 0.1783
+  "Hong Kong Island": 0.4778,
+  "Kowloon": 0.4105,
+  "Tsuen Wan/Kwai Tsing": 0.2781,
+  "Tuen Mun": 0.3063,
+  "Yuen Long/Tin Shui Wai": 0.1703,
+  "Fanling/Sheung Shui": 0.1296,
+  "Tai Po": 0.2091,
+  "Sha Tin/Ma On Shan": 0.3063,
+  "Tseung Kwan O": 0.1884,
+  "North Lantau": 0.1195
  },
  "journey_time_shares": {
-  "up_to_30": 0.2939,
-  "30_to_60": 0.4785,
-  "over_60": 0.2276
+  "up_to_30": 0.2981,
+  "30_to_60": 0.4719,
+  "over_60": 0.2299
  },
- "flags": [
-  "containment"
- ],
+ "flags": [],
  "report": [
-  "拟合：自报 ÷ 引擎时间 r = 1.280，过海系数 K = 0.617（过海出行吸引力再乘 K）；表 3.4 其余四项与表 3.5 十区的均方根误差 4.1 个百分点",
-  "HBW：β = 0.0481/分钟，公交平均 40.2 分钟（调查自报 48 × 1.071 ÷ r）；过海相当于多 10 分钟；区内 2.0%；配平误差 3.1e-05",
-  "HBS：β = 0.0838/分钟，公交平均 32.7 分钟（调查自报 39 × 1.071 ÷ r）；过海相当于多 6 分钟；区内 6.2%；配平误差 8.0e-05",
-  "HBO：β = 0.0875/分钟，公交平均 30.1 分钟（调查自报 36 × 1.071 ÷ r）；过海相当于多 6 分钟；区内 6.0%；配平误差 9.3e-05",
-  "NHB：β = 0.0718/分钟，公交平均 30.1 分钟（调查自报 36 × 1.071 ÷ r）；过海相当于多 7 分钟；区内 6.7%；配平误差 5.9e-05",
-  "CBS：33,310 人次从口岸分到全港，公交平均 55 分钟",
-  "CBR：592,952 人次从口岸分到全港，公交平均 52 分钟",
-  "CBV：279,458 人次从口岸分到全港，公交平均 47 分钟",
-  "地域间出行占比（表 3.4；过海一项用于定 K）：within_hong_kong_island 14.6%（调查 15.4%，-6%）；cross_harbour 15.9%（调查 15.9%，+0%）；within_kowloon 19.1%（调查 19.4%，-1%）；kowloon_nt 20.3%（调查 19.7%，+3%）；within_nt 30.0%（调查 29.6%，+2%）",
-  "自给率（表 3.5）：Hong Kong Island 48%（调查 49%）；Kowloon 39%（调查 41%）；Tsuen Wan/Kwai Tsing 24%（调查 28%）；Tuen Mun 31%（调查 31%）；Yuen Long/Tin Shui Wai 24%（调查 17%）；Fanling/Sheung Shui 16%（调查 13%）；Tai Po 17%（调查 21%）；Sha Tin/Ma On Shan 21%（调查 31%）；Tseung Kwan O 17%（调查 19%）；North Lantau 18%（调查 12%）；相差超过 10%：['Sha Tin/Ma On Shan']  ← 需复核",
-  "出行时间分布（公交时间 × r，换回自报尺度；调查为全部方式，仅作参考）：up_to_30 29%（调查 48%）、30_to_60 48%（调查 41%）、over_60 23%（调查 10%）",
+  "拟合：自报 ÷ 引擎时间 r = 1.280，过海系数 K = 0.617（过海出行吸引力再乘 K）；表 3.4 其余四项与表 3.5 十区的均方根误差 0.5 个百分点",
+  "区内系数（表 3.5 自给率逐区对准；同一主要地区内的出行吸引力再乘这个数）：Hong Kong Island 1.00（48% → 48%，调查 49%）；Kowloon 1.08（39% → 41%，调查 41%）；Tsuen Wan/Kwai Tsing 1.38（24% → 28%，调查 28%）；Tuen Mun 1.16（31% → 31%，调查 31%）；Yuen Long/Tin Shui Wai 0.52（24% → 17%，调查 17%）；Fanling/Sheung Shui 0.74（16% → 13%，调查 13%）；Tai Po 1.40（17% → 21%，调查 21%）；Sha Tin/Ma On Shan 2.34（21% → 31%，调查 31%）；Tseung Kwan O 1.29（17% → 19%，调查 19%）；North Lantau 0.54（18% → 12%，调查 12%）",
+  "HBW：β = 0.0467/分钟，公交平均 40.2 分钟（调查自报 48 × 1.071 ÷ r）；过海相当于多 10 分钟；区内 1.9%；配平误差 8.4e-05",
+  "HBS：β = 0.0811/分钟，公交平均 32.6 分钟（调查自报 39 × 1.071 ÷ r）；过海相当于多 6 分钟；区内 6.1%；配平误差 9.2e-05",
+  "HBO：β = 0.0846/分钟，公交平均 30.1 分钟（调查自报 36 × 1.071 ÷ r）；过海相当于多 6 分钟；区内 5.9%；配平误差 9.9e-05",
+  "NHB：β = 0.0695/分钟，公交平均 30.1 分钟（调查自报 36 × 1.071 ÷ r）；过海相当于多 7 分钟；区内 6.6%；配平误差 6.5e-05",
+  "CBS：33,310 人次从口岸分到全港，公交平均 56 分钟",
+  "CBR：592,952 人次从口岸分到全港，公交平均 53 分钟",
+  "CBV：279,458 人次从口岸分到全港，公交平均 48 分钟",
+  "地域间出行占比（表 3.4；过海一项用于定 K）：within_hong_kong_island 14.6%（调查 15.4%，-6%）；cross_harbour 15.9%（调查 15.9%，+0%）；within_kowloon 19.6%（调查 19.4%，+1%）；kowloon_nt 19.2%（调查 19.7%，-2%）；within_nt 30.6%（调查 29.6%，+4%）",
+  "自给率（表 3.5）：Hong Kong Island 48%（调查 49%）；Kowloon 41%（调查 41%）；Tsuen Wan/Kwai Tsing 28%（调查 28%）；Tuen Mun 31%（调查 31%）；Yuen Long/Tin Shui Wai 17%（调查 17%）；Fanling/Sheung Shui 13%（调查 13%）；Tai Po 21%（调查 21%）；Sha Tin/Ma On Shan 31%（调查 31%）；Tseung Kwan O 19%（调查 19%）；North Lantau 12%（调查 12%）",
+  "出行时间分布（公交时间 × r，换回自报尺度；调查为全部方式，仅作参考）：up_to_30 30%（调查 48%）、30_to_60 47%（调查 41%）、over_60 23%（调查 10%）",
   "不可达的小区对上分到的出行 0"
  ]
 }
