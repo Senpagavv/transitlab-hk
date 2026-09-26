@@ -1,0 +1,6 @@
+# 改到这些目录的合并请求，必须由项目负责人批准（底座数据与模型的保护）。
+# Pull requests touching these paths need the project lead's approval.
+/data/      @Senpagavv
+/pipeline/  @Senpagavv
+/.github/   @Senpagavv
+/AGENTS.md  @Senpagavv
