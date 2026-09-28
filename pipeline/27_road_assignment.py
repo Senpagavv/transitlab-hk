@@ -27,8 +27,9 @@ Capacity is TPDM Volume 2 Table 2.4.1.1's design flow, in vehicles, which allows
 heavy vehicles (medium/heavy goods and all buses). Where the assignment puts more heavy vehicles
 on a link, its design flow is cut by Table 2.4.1.2 (15-20%: 7%, 20-25%: 10%; above 25% the table
 stops, so 10% is kept and the link is listed) and the assignment is run again. Delay grows with
-volume / capacity by the BPR curve (alpha 0.15, beta 4), the usual default: TPDM gives no delay
-function, and the census comparison is where this is judged.
+volume / capacity by the BPR curve, alpha and beta fitted to the traffic detectors by pipeline/15e
+(0.378 and 2 since 2026-09-26; the textbook 0.15 / 4 had half-full roads 1% slower where the detectors
+see 9%). TPDM gives no delay function; the census comparison is where the result is judged.
 
 Comparison. For every counted direction whose weekday AM peak hour is 08:00-09:00, the census's
 one-way flow is compared with the modelled flow summed over the link sides it counts (GEH; the

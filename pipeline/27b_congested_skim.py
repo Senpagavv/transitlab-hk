@@ -21,7 +21,9 @@ What goes back:
     and the evening queue the other, so the delay is the average of the two directions.
   - weight(purpose) = how much of the AM peak hour's delay that purpose's trips meet over the day:
     sum over hours of (the purpose's share of trips in the hour) x (traffic in the hour / traffic
-    at 8-9)^4 - BPR delay grows with flow to the fourth power. Traffic by hour is the median of the
+    at 8-9)^beta - BPR delay grows with flow to the power beta, the same beta the assignment uses
+    (pipeline/15e: 2; until 2026-09-28 this was hard-coded as 4, left over from the textbook curve -
+    found by the methods catalogue, docs/for-codex/task-43). Traffic by hour is the median of the
     2024 census stations; trips by hour are the survey's (HBW, HBS, HBO, and NHB_EB for NHB).
   Averaging: round k keeps (k-1)/k of the old delay and takes 1/k of the new (the method of
   successive averages), so the rounds settle instead of swinging.
@@ -47,6 +49,7 @@ FREEFLOW = MODEL / "skim-car-freeflow.npz"
 PARAMETERS = MODEL / "parameters-tcs2022.json"
 STATIONS = WEB / "traffic" / "atc-stations.json"
 PEAK = MODEL / "am-peak-2026.npz"
+BPR_FILE = MODEL / "bpr-parameters.json"   # pipeline/15e
 OUTPUT = MODEL / "skim-car-am-delay.npz"
 AUDIT = WEB / "congestion-feedback-audit.json"
 CONNECTOR_KPH = 25            # same as pipeline/17 and 27
@@ -58,14 +61,16 @@ SETTLED_GAP = 0.05            # settled when the delay the assignment produces i
 def purpose_weights(report: list) -> dict:
     census = json.loads(STATIONS.read_text(encoding="utf-8"))
     hourly = np.median([r["weekday_pct"] for r in census["hourly"] if r["year"] == CENSUS_YEAR and r.get("weekday_pct")], axis=0)
-    relative = (hourly / hourly[8]) ** 4
+    beta = json.loads(BPR_FILE.read_text(encoding="utf-8"))["beta"] if BPR_FILE.exists() else 4.0
+    relative = (hourly / hourly[8]) ** beta
     profile = json.loads(PARAMETERS.read_text(encoding="utf-8"))["hourly_profile_pct"]
     weights = {}
     for purpose, key in PURPOSE_PROFILE.items():
         share = np.asarray(profile[key], float)
         weights[purpose] = round(float((share / share.sum() * relative).sum()), 3)
     report.append("各目的一天里遇到的塞车（早高峰 8-9 时延误的倍数）：" + "、".join(f"{p} {w:.2f}" for p, w in weights.items())
-                  + f"；各小时塞车 = (该小时车流 / 8-9 时车流)^4，车流取 {CENSUS_YEAR} 年普查站中位（中午约为早高峰的 0.5）")
+                  + f"；各小时塞车 = (该小时车流 / 8-9 时车流)^{beta:g}（与道路分配的塞车曲线同一指数），"
+                    f"车流取 {CENSUS_YEAR} 年普查站中位（中午约为早高峰的 {float(np.median(relative[10:16])):.2f}）")
     return weights
 
 

@@ -47,6 +47,7 @@
 - 小游戏（修桥 / 画地铁，已冻结当例子用）：直接双击 `game-demo/index.html`、`game-demo/metro.html`，不需要服务器。
 - 结果文件：`data/model/`（模型算出来的表和矩阵）、`data/web/`（网站用的数据和每一步的 `*-audit.json` 审计报告）。
 - 数据都从哪来：[`data-sources.md`](data-sources.md)（43 个来源，每个有多少条、什么字段、用在哪一步）。
+- 每一步怎么算、用什么方程、怎么拟合、和 CA5236 课程的对照：[`methods-catalogue.md`](methods-catalogue.md)（英文 `methods-catalogue.en.md`）。
 - 演示话术：[`demo-runbook.md`](demo-runbook.md)。
 
 ### 2.2 做前端

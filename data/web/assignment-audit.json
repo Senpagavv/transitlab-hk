@@ -1,10 +1,10 @@
 {
  "values_of_time": {
-  "car": 1.260241286845677,
-  "taxi": 0.8722804538498518,
+  "car": 1.260240848733418,
+  "taxi": 0.8722804622298047,
   "goods_light": 2.741552656343501,
   "goods_heavy": 4.058107430739009,
-  "coach": 1.260241286845677
+  "coach": 1.260240848733418
  },
  "bpr": {
   "alpha": 0.3776,
@@ -13,53 +13,53 @@
  "tunnel_queue_min": 6.0,
  "toll_weight": 0.2,
  "class_toll_weight": {},
- "vehicle_km": 2383878.7527029593,
- "geh_under_5": 0.18324607329842932,
+ "vehicle_km": 2378816.3901217417,
+ "geh_under_5": 0.18848167539267016,
  "corridor_geh_under_5": 0.29411764705882354,
  "corridors": [
   {
    "corridor": "过海",
    "stations": 3,
    "observed": 17498.6602,
-   "modelled": 19371.785603667755,
+   "modelled": 19337.385367962645,
    "geh_under_5": 0.6666666666666666
   },
   {
    "corridor": "沙田－九龙",
    "stations": 3,
    "observed": 15850.835600000002,
-   "modelled": 18416.677707590112,
+   "modelled": 18413.814068108695,
    "geh_under_5": 0.0
   },
   {
    "corridor": "屯门－荃湾",
    "stations": 5,
    "observed": 34565.290100000006,
-   "modelled": 37603.06407063375,
+   "modelled": 37536.175672001846,
    "geh_under_5": 0.6
   },
   {
    "corridor": "将军澳",
    "stations": 2,
    "observed": 7821.8585,
-   "modelled": 9311.20325419447,
+   "modelled": 9301.221258109716,
    "geh_under_5": 0.0
   },
   {
    "corridor": "大屿山",
    "stations": 4,
    "observed": 12008.780399999998,
-   "modelled": 10711.427992225892,
+   "modelled": 10697.100444087533,
    "geh_under_5": 0.0
   }
  ],
- "flow_ratio": 0.9599958588920299,
+ "flow_ratio": 0.9583903305254394,
  "per_class_ratio": {
-  "car": 0.9165370519804054,
-  "taxi": 1.1163155578214508,
-  "goods_light": 0.9508630874660988,
-  "goods_heavy": 0.9743411589923696,
-  "coach": 1.7922496291159424,
+  "car": 0.9133297378202251,
+  "taxi": 1.1153540223220206,
+  "goods_light": 0.9507985440134695,
+  "goods_heavy": 0.9742463429430694,
+  "coach": 1.7752746404344728,
   "bus": 0.8192119009045239
  },
  "compare": [
@@ -69,8 +69,8 @@
    "link": "HARCOURT RD (from TAMAR ST to ARSENAL ST)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 5800,
-   "flow": 1499.4,
-   "geh": 71.2
+   "flow": 1472.1,
+   "geh": 71.8
   },
   {
    "station": 1002,
@@ -78,8 +78,8 @@
    "link": "VICTORIA PARK RD (from GLOUCESTER RD to ISLAND EASTERN CORRIDOR)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3310,
-   "flow": 2652.6,
-   "geh": 12.0
+   "flow": 2630.9,
+   "geh": 12.5
   },
   {
    "station": 1003,
@@ -87,8 +87,8 @@
    "link": "ISLAND EASTERN CORRIDOR (from HEALTHY ST INT EASTERN END to TAIKOO SHING INT WESTERN END)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 4860,
-   "flow": 3192.1,
-   "geh": 26.3
+   "flow": 3169.9,
+   "geh": 26.7
   },
   {
    "station": 1004,
@@ -96,7 +96,7 @@
    "link": "ABERDEEN TUNNEL (from TOLL PLAZA to NORTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2070,
-   "flow": 2155.5,
+   "flow": 2156.5,
    "geh": 1.9
   },
   {
@@ -105,8 +105,8 @@
    "link": "POK FU LAM RD (from SASSOON RD to CHI FU RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 910,
-   "flow": 1051.0,
-   "geh": 4.5
+   "flow": 1048.2,
+   "geh": 4.4
   },
   {
    "station": 1005,
@@ -114,7 +114,7 @@
    "link": "POK FU LAM RD (from SASSOON RD to CHI FU RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1300,
-   "flow": 1037.2,
+   "flow": 1037.1,
    "geh": 7.7
   },
   {
@@ -123,8 +123,8 @@
    "link": "CONNAUGHT RD W (from WATER ST to EASTERN ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2230,
-   "flow": 1860.9,
-   "geh": 8.2
+   "flow": 1887.9,
+   "geh": 7.5
   },
   {
    "station": 1009,
@@ -132,7 +132,7 @@
    "link": "CHAI WAN RD (from ISLAND EASTERN CORRIDOR APPROACH to TAI TAM RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 820,
-   "flow": 904.9,
+   "flow": 906.6,
    "geh": 2.9
   },
   {
@@ -141,8 +141,8 @@
    "link": "CHAI WAN RD (from ISLAND EASTERN CORRIDOR APPROACH to TAI TAM RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 840,
-   "flow": 1306.9,
-   "geh": 14.2
+   "flow": 1307.5,
+   "geh": 14.3
   },
   {
    "station": 1010,
@@ -150,7 +150,7 @@
    "link": "WONG CHUK HANG RD (from NAM LONG SHAN RD to NAM FUNG RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2530,
-   "flow": 2128.7,
+   "flow": 2129.8,
    "geh": 8.3
   },
   {
@@ -159,7 +159,7 @@
    "link": "WONG CHUK HANG RD (from NAM LONG SHAN RD to NAM FUNG RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1770,
-   "flow": 1900.4,
+   "flow": 1899.0,
    "geh": 3.0
   },
   {
@@ -168,7 +168,7 @@
    "link": "REPULSE BAY RD & STANLEY GAP RD (from SOUTH BAY RD to TAI TAM RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 460,
-   "flow": 198.9,
+   "flow": 199.0,
    "geh": 14.4
   },
   {
@@ -186,7 +186,7 @@
    "link": "STUBBS RD (from QUEEN'S RD E to STUBBS RD FO <H119> NORTHERN END)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 710,
-   "flow": 425.0,
+   "flow": 424.3,
    "geh": 12.0
   },
   {
@@ -195,7 +195,7 @@
    "link": "AP LEI CHAU BRIDGE & AP LEI CHAU BRIDGE RD (from WONG CHUK HANG RD to AP LEI CHAU EST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 860,
-   "flow": 805.2,
+   "flow": 804.4,
    "geh": 1.9
   },
   {
@@ -204,7 +204,7 @@
    "link": "AP LEI CHAU BRIDGE & AP LEI CHAU BRIDGE RD (from WONG CHUK HANG RD to AP LEI CHAU EST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1230,
-   "flow": 1388.8,
+   "flow": 1389.5,
    "geh": 4.4
   },
   {
@@ -213,7 +213,7 @@
    "link": "TAI TAM RD (from CHAI WAN RD to SHEK O RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 480,
-   "flow": 317.8,
+   "flow": 318.0,
    "geh": 8.1
   },
   {
@@ -222,8 +222,8 @@
    "link": "CROSS HARBOUR TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2500,
-   "flow": 3190.4,
-   "geh": 12.9
+   "flow": 3181.0,
+   "geh": 12.8
   },
   {
    "station": 1023,
@@ -231,7 +231,7 @@
    "link": "TAI TAM RD (from RED HILL RD to SHEK O RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 350,
-   "flow": 215.2,
+   "flow": 215.5,
    "geh": 8.0
   },
   {
@@ -240,8 +240,8 @@
    "link": "TAI HANG RD (from KA NING PATH to LAI TAK TSUEN RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 910,
-   "flow": 201.4,
-   "geh": 30.1
+   "flow": 198.8,
+   "geh": 30.2
   },
   {
    "station": 1025,
@@ -249,8 +249,8 @@
    "link": "EASTERN HARBOUR CROSSING (from KAI TIN RD to ISLAND EASTERN CORRIDOR)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2820,
-   "flow": 3791.2,
-   "geh": 16.9
+   "flow": 3810.6,
+   "geh": 17.2
   },
   {
    "station": 1025,
@@ -258,7 +258,7 @@
    "link": "EASTERN HARBOUR CROSSING (from KAI TIN RD to ISLAND EASTERN CORRIDOR)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2450,
-   "flow": 1795.0,
+   "flow": 1797.5,
    "geh": 14.2
   },
   {
@@ -267,8 +267,8 @@
    "link": "WESTERN HARBOUR CROSSING (from TOLL PLAZA to SOUTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2740,
-   "flow": 4228.3,
-   "geh": 25.2
+   "flow": 4207.0,
+   "geh": 24.9
   },
   {
    "station": 1027,
@@ -276,8 +276,8 @@
    "link": "SHING SAI RD (from SAI CHEUNG ST N to NEW PRAYA, KENNEDY TOWN)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1170,
-   "flow": 634.1,
-   "geh": 17.8
+   "flow": 614.3,
+   "geh": 18.6
   },
   {
    "station": 1027,
@@ -285,8 +285,8 @@
    "link": "SHING SAI RD (from SAI CHEUNG ST N to NEW PRAYA, KENNEDY TOWN)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 790,
-   "flow": 638.1,
-   "geh": 5.7
+   "flow": 639.9,
+   "geh": 5.6
   },
   {
    "station": 1030,
@@ -294,7 +294,7 @@
    "link": "CONNAUGHT RD C & UNDERPASS (from PEDDER ST to COTTON TREE DRIVE)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2890,
-   "flow": 268.6,
+   "flow": 267.0,
    "geh": 66.0
   },
   {
@@ -303,8 +303,8 @@
    "link": "CENTRAL-WANCHAI BYPASS – CENTRAL SECTION (from CWB WESTERN END PORTAL to WAN CHAI EXIT)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1700,
-   "flow": 1835.3,
-   "geh": 3.2
+   "flow": 1787.7,
+   "geh": 2.1
   },
   {
    "station": 1032,
@@ -312,8 +312,8 @@
    "link": "CENTRAL-WANCHAI BYPASS – CAUSEWAY BAY SECTION (from WAN CHAI EXIT to MERGING POINT TO IEC)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2400,
-   "flow": 3487.7,
-   "geh": 20.0
+   "flow": 3487.9,
+   "geh": 20.1
   },
   {
    "station": 1101,
@@ -339,7 +339,7 @@
    "link": "STANLEY VILLAGE RD (from TAI TAM RD to STANLEY NEW ST)",
    "road_type": "LOCAL DISTRIBUTOR",
    "am_peak_flow": 410,
-   "flow": 78.1,
+   "flow": 78.2,
    "geh": 21.2
   },
   {
@@ -366,8 +366,8 @@
    "link": "POK FU LAM RD (from POKFIELD RD to MOUNT DAVIS RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 800,
-   "flow": 1149.2,
-   "geh": 11.2
+   "flow": 1165.8,
+   "geh": 11.7
   },
   {
    "station": 2201,
@@ -375,7 +375,7 @@
    "link": "POK FU LAM RD (from POKFIELD RD to MOUNT DAVIS RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1830,
-   "flow": 1530.5,
+   "flow": 1530.7,
    "geh": 7.3
   },
   {
@@ -384,7 +384,7 @@
    "link": "WONG NAI CHUNG GAP RD (from STUBBS RD FO <H119> SOUTHERN END to REPULSE BAY RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1130,
-   "flow": 496.6,
+   "flow": 496.4,
    "geh": 22.2
   },
   {
@@ -393,7 +393,7 @@
    "link": "STUBBS RD (from WAN CHAI GAP RD to WONG NAI CHUNG GAP RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 440,
-   "flow": 52.7,
+   "flow": 52.8,
    "geh": 24.7
   },
   {
@@ -411,8 +411,8 @@
    "link": "YEE KING RD & LAI TAK TSUEN RD (from CLOUD VIEW RD to TAI HANG RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 410,
-   "flow": 251.8,
-   "geh": 8.7
+   "flow": 250.2,
+   "geh": 8.8
   },
   {
    "station": 2206,
@@ -420,7 +420,7 @@
    "link": "BELCHER'S ST & VICTORIA RD (from SMITHFIELD to MOUNT DAVIS RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 320,
-   "flow": 78.2,
+   "flow": 78.3,
    "geh": 17.1
   },
   {
@@ -429,8 +429,8 @@
    "link": "GARDEN RD (from DES VOEUX RD C to UPPER ALBERT RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2930,
-   "flow": 1038.7,
-   "geh": 42.5
+   "flow": 1043.7,
+   "geh": 42.3
   },
   {
    "station": 2214,
@@ -438,8 +438,8 @@
    "link": "CAUSEWAY RD (from SHELTER ST to HING FAT ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1410,
-   "flow": 915.7,
-   "geh": 14.5
+   "flow": 918.2,
+   "geh": 14.4
   },
   {
    "station": 2214,
@@ -447,8 +447,8 @@
    "link": "CAUSEWAY RD (from SHELTER ST to HING FAT ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 740,
-   "flow": 1319.1,
-   "geh": 18.0
+   "flow": 1313.2,
+   "geh": 17.9
   },
   {
    "station": 2215,
@@ -456,7 +456,7 @@
    "link": "ISLAND EASTERN CORRIDOR (from NAM ON LANE to WING TAI RD INT)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2010,
-   "flow": 1532.4,
+   "flow": 1533.8,
    "geh": 11.3
   },
   {
@@ -465,8 +465,8 @@
    "link": "CONNAUGHT RD FO <H173> (from RAMP NR GILMAN ST to THE NEAREST DIVERGING & MERGING POINTS WEST OF SHUN TAK CENTRE)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2550,
-   "flow": 1373.9,
-   "geh": 26.6
+   "flow": 1375.3,
+   "geh": 26.5
   },
   {
    "station": 2407,
@@ -474,7 +474,7 @@
    "link": "SMITHFIELD (from POK FU LAM RD to LUNG WAH ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 190,
-   "flow": 100.5,
+   "flow": 100.7,
    "geh": 7.4
   },
   {
@@ -483,8 +483,8 @@
    "link": "PRINCESS MARGARET RD (from WYLIE RD to PUI CHING RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2370,
-   "flow": 3073.2,
-   "geh": 13.5
+   "flow": 3110.0,
+   "geh": 14.1
   },
   {
    "station": 3001,
@@ -492,8 +492,8 @@
    "link": "PRINCESS MARGARET RD (from WYLIE RD to PUI CHING RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1710,
-   "flow": 891.2,
-   "geh": 22.7
+   "flow": 889.7,
+   "geh": 22.8
   },
   {
    "station": 3002,
@@ -501,8 +501,8 @@
    "link": "LUNG CHEUNG RD (from NAM CHEONG ST to LION ROCK TUNNEL RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3870,
-   "flow": 2477.4,
-   "geh": 24.7
+   "flow": 2487.2,
+   "geh": 24.5
   },
   {
    "station": 3003,
@@ -510,8 +510,8 @@
    "link": "PRINCE EDWARD RD E & FO <K10A> (from CHOI HUNG RD to NEAR KING TAI COURT)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3520,
-   "flow": 3641.7,
-   "geh": 2.0
+   "flow": 3621.7,
+   "geh": 1.7
   },
   {
    "station": 3004,
@@ -519,8 +519,8 @@
    "link": "KAI TAK TUNNEL (from SUNG WONG TOI RD to KAI CHEUNG RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2270,
-   "flow": 2684.6,
-   "geh": 8.3
+   "flow": 2693.1,
+   "geh": 8.5
   },
   {
    "station": 3009,
@@ -528,8 +528,8 @@
    "link": "TAI PO RD (from NAM CHEONG ST to KWEILIN ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 690,
-   "flow": 1339.6,
-   "geh": 20.4
+   "flow": 1351.9,
+   "geh": 20.7
   },
   {
    "station": 3009,
@@ -537,8 +537,8 @@
    "link": "TAI PO RD (from NAM CHEONG ST to KWEILIN ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 500,
-   "flow": 211.0,
-   "geh": 15.3
+   "flow": 193.5,
+   "geh": 16.5
   },
   {
    "station": 3010,
@@ -546,8 +546,8 @@
    "link": "PRINCE EDWARD RD W (from LA SALLE RD to WATERLOO RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2390,
-   "flow": 3057.1,
-   "geh": 12.8
+   "flow": 3107.3,
+   "geh": 13.7
   },
   {
    "station": 3011,
@@ -555,8 +555,8 @@
    "link": "SHUN LEE TSUEN RD (from NEW CLEAR WATER BAY RD to SHUN KING ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 790,
-   "flow": 1047.9,
-   "geh": 8.5
+   "flow": 1009.8,
+   "geh": 7.3
   },
   {
    "station": 3011,
@@ -564,8 +564,8 @@
    "link": "SHUN LEE TSUEN RD (from NEW CLEAR WATER BAY RD to SHUN KING ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 590,
-   "flow": 555.8,
-   "geh": 1.4
+   "flow": 552.6,
+   "geh": 1.6
   },
   {
    "station": 3012,
@@ -573,8 +573,8 @@
    "link": "KWUN TONG RD (from NGAU TAU KOK RD to KWUN TONG RD #330)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2170,
-   "flow": 1883.3,
-   "geh": 6.4
+   "flow": 2027.8,
+   "geh": 3.1
   },
   {
    "station": 3012,
@@ -582,8 +582,8 @@
    "link": "KWUN TONG RD (from NGAU TAU KOK RD to KWUN TONG RD #330)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2250,
-   "flow": 1660.0,
-   "geh": 13.3
+   "flow": 1668.3,
+   "geh": 13.1
   },
   {
    "station": 3013,
@@ -591,7 +591,7 @@
    "link": "AUSTIN RD (from COX'S RD to CHATHAM RD S)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 690,
-   "flow": 1059.0,
+   "flow": 1060.7,
    "geh": 12.5
   },
   {
@@ -600,8 +600,8 @@
    "link": "MA TAU WAI RD & TO KWA WAN RD (from SAN LAU ST & BAILEY ST to CHI KIANG ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1120,
-   "flow": 1223.3,
-   "geh": 3.0
+   "flow": 1209.3,
+   "geh": 2.6
   },
   {
    "station": 3016,
@@ -609,8 +609,8 @@
    "link": "JUNCTION RD (from NGA TSIN WAI RD to TUNG TAU TSUEN RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 510,
-   "flow": 840.4,
-   "geh": 12.7
+   "flow": 844.8,
+   "geh": 12.9
   },
   {
    "station": 3016,
@@ -618,8 +618,8 @@
    "link": "JUNCTION RD (from NGA TSIN WAI RD to TUNG TAU TSUEN RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 400,
-   "flow": 455.0,
-   "geh": 2.7
+   "flow": 448.1,
+   "geh": 2.3
   },
   {
    "station": 3017,
@@ -627,8 +627,8 @@
    "link": "TONKIN ST (from CHEUNG SHA WAN RD to UN CHAU ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 550,
-   "flow": 274.1,
-   "geh": 13.6
+   "flow": 262.9,
+   "geh": 14.2
   },
   {
    "station": 3017,
@@ -636,7 +636,7 @@
    "link": "TONKIN ST (from CHEUNG SHA WAN RD to UN CHAU ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 570,
-   "flow": 348.6,
+   "flow": 348.7,
    "geh": 10.3
   },
   {
@@ -645,8 +645,8 @@
    "link": "HIU KWONG ST (from SAU MING RD to HIP WO ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 420,
-   "flow": 91.8,
-   "geh": 20.5
+   "flow": 97.0,
+   "geh": 20.1
   },
   {
    "station": 3019,
@@ -654,8 +654,8 @@
    "link": "CLEAR WATER BAY RD (from NEW CLEAR WATER BAY RD NORTHERN JUNCTION to NEW CLEAR WATER BAY RD SOUTHERN JUNCTION)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 970,
-   "flow": 1917.3,
-   "geh": 24.9
+   "flow": 1925.0,
+   "geh": 25.1
   },
   {
    "station": 3023,
@@ -663,8 +663,8 @@
    "link": "KWUN TONG BYPASS <K77> (from WAI YIP ST to CHEUNG YIP ST)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3510,
-   "flow": 3339.9,
-   "geh": 2.9
+   "flow": 3354.3,
+   "geh": 2.7
   },
   {
    "station": 3023,
@@ -672,8 +672,8 @@
    "link": "KWUN TONG BYPASS <K77> (from WAI YIP ST to CHEUNG YIP ST)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3550,
-   "flow": 4391.7,
-   "geh": 13.4
+   "flow": 4390.4,
+   "geh": 13.3
   },
   {
    "station": 3024,
@@ -681,8 +681,8 @@
    "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 4100,
-   "flow": 6891.0,
-   "geh": 37.6
+   "flow": 6829.9,
+   "geh": 36.9
   },
   {
    "station": 3024,
@@ -690,8 +690,8 @@
    "link": "WEST KOWLOON HIGHWAY (from SLIP RDS TO & FROM LIN CHEUNG RD & YAU MA TEI INT N/B RAMP to HING WAH ST W)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2400,
-   "flow": 4186.4,
-   "geh": 31.1
+   "flow": 4181.1,
+   "geh": 31.0
   },
   {
    "station": 3025,
@@ -699,8 +699,8 @@
    "link": "LIN CHEUNG RD (from YAU MA TEI INT to CHERRY ST UNDERPASS)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1050,
-   "flow": 1827.1,
-   "geh": 20.5
+   "flow": 1815.7,
+   "geh": 20.2
   },
   {
    "station": 3026,
@@ -708,8 +708,8 @@
    "link": "LIN CHEUNG RD (from CHERRY ST to YAU MA TEI INT)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2910,
-   "flow": 4326.0,
-   "geh": 23.5
+   "flow": 4428.5,
+   "geh": 25.1
   },
   {
    "station": 3103,
@@ -717,8 +717,8 @@
    "link": "KO SHAN RD (from PAK KUNG ST to CHI KIANG ST)",
    "road_type": "LOCAL DISTRIBUTOR",
    "am_peak_flow": 150,
-   "flow": 12.5,
-   "geh": 15.2
+   "flow": 12.4,
+   "geh": 15.3
   },
   {
    "station": 3106,
@@ -726,8 +726,8 @@
    "link": "TAT CHEE AVE (from BEGONIA RD to CORNWALL ST)",
    "road_type": "LOCAL DISTRIBUTOR",
    "am_peak_flow": 360,
-   "flow": 111.0,
-   "geh": 16.2
+   "flow": 112.1,
+   "geh": 16.1
   },
   {
    "station": 3106,
@@ -744,7 +744,7 @@
    "link": "TAI PO RD (from CALDECOTT RD to TAI PO RD INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2210,
-   "flow": 1423.9,
+   "flow": 1425.5,
    "geh": 18.4
   },
   {
@@ -753,8 +753,8 @@
    "link": "TAI PO RD (from CALDECOTT RD to TAI PO RD INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 880,
-   "flow": 284.9,
-   "geh": 24.7
+   "flow": 285.2,
+   "geh": 24.6
   },
   {
    "station": 4202,
@@ -762,8 +762,8 @@
    "link": "BOUNDARY ST (from TAI HANG TUNG RD to EMBANKMENT RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2400,
-   "flow": 2367.0,
-   "geh": 0.7
+   "flow": 2355.9,
+   "geh": 0.9
   },
   {
    "station": 4202,
@@ -771,8 +771,8 @@
    "link": "BOUNDARY ST (from TAI HANG TUNG RD to EMBANKMENT RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 500,
-   "flow": 304.8,
-   "geh": 9.7
+   "flow": 301.3,
+   "geh": 9.9
   },
   {
    "station": 4203,
@@ -780,7 +780,7 @@
    "link": "PRINCE EDWARD RD W (from EMBANKMENT RD to YUEN NGAI ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2640,
-   "flow": 2671.7,
+   "flow": 2669.2,
    "geh": 0.6
   },
   {
@@ -789,8 +789,8 @@
    "link": "ARGYLE ST & FO <K13> (from WATERLOO RD to YIM PO FONG ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1460,
-   "flow": 2526.8,
-   "geh": 23.9
+   "flow": 2502.8,
+   "geh": 23.4
   },
   {
    "station": 4205,
@@ -798,8 +798,8 @@
    "link": "WATERLOO RD (from YIM PO FONG ST to PUI CHING RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1240,
-   "flow": 1309.1,
-   "geh": 1.9
+   "flow": 1301.3,
+   "geh": 1.7
   },
   {
    "station": 4205,
@@ -807,8 +807,8 @@
    "link": "WATERLOO RD (from YIM PO FONG ST to PUI CHING RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1250,
-   "flow": 1264.0,
-   "geh": 0.4
+   "flow": 1269.2,
+   "geh": 0.5
   },
   {
    "station": 4206,
@@ -816,8 +816,8 @@
    "link": "CORNWALL ST (from WATERLOO RD to NAM CHEONG ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 780,
-   "flow": 422.9,
-   "geh": 14.6
+   "flow": 419.1,
+   "geh": 14.7
   },
   {
    "station": 4206,
@@ -825,8 +825,8 @@
    "link": "CORNWALL ST (from WATERLOO RD to NAM CHEONG ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 680,
-   "flow": 182.7,
-   "geh": 23.9
+   "flow": 182.4,
+   "geh": 24.0
   },
   {
    "station": 4208,
@@ -834,8 +834,8 @@
    "link": "CHATHAM RD N (from WUHU ST to HONG CHONG RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 4210,
-   "flow": 2903.5,
-   "geh": 21.9
+   "flow": 2889.8,
+   "geh": 22.2
   },
   {
    "station": 4211,
@@ -843,8 +843,8 @@
    "link": "FAT KWONG ST (from CHUNG HAU ST to YAN FUNG ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1140,
-   "flow": 925.4,
-   "geh": 6.7
+   "flow": 934.7,
+   "geh": 6.4
   },
   {
    "station": 4211,
@@ -852,8 +852,8 @@
    "link": "FAT KWONG ST (from CHUNG HAU ST to YAN FUNG ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 930,
-   "flow": 635.7,
-   "geh": 10.5
+   "flow": 646.4,
+   "geh": 10.1
   },
   {
    "station": 4212,
@@ -861,8 +861,8 @@
    "link": "CHATHAM RD N & MA TAU WAI RD (from SAN LAU ST to CHI KIANG ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 690,
-   "flow": 1318.4,
-   "geh": 19.8
+   "flow": 1313.8,
+   "geh": 19.7
   },
   {
    "station": 4213,
@@ -870,8 +870,8 @@
    "link": "EAST KOWLOON CORRIDOR <FO> (from MA TAU KOK RD to CHATHAM RD N)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1330,
-   "flow": 1524.4,
-   "geh": 5.1
+   "flow": 1495.0,
+   "geh": 4.4
   },
   {
    "station": 4213,
@@ -879,8 +879,8 @@
    "link": "EAST KOWLOON CORRIDOR <FO> (from MA TAU KOK RD to CHATHAM RD N)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3360,
-   "flow": 1852.9,
-   "geh": 29.5
+   "flow": 1850.8,
+   "geh": 29.6
   },
   {
    "station": 4214,
@@ -888,8 +888,8 @@
    "link": "FERRY ST & FERRY ST <FO> (from WATERLOO RD to SHANTUNG ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 2110,
-   "flow": 1920.6,
-   "geh": 4.2
+   "flow": 1852.0,
+   "geh": 5.8
   },
   {
    "station": 4215,
@@ -897,8 +897,8 @@
    "link": "YIM PO FONG ST (from SHANTUNG ST to WATERLOO RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 550,
-   "flow": 655.4,
-   "geh": 4.3
+   "flow": 661.2,
+   "geh": 4.5
   },
   {
    "station": 4215,
@@ -906,8 +906,8 @@
    "link": "YIM PO FONG ST (from SHANTUNG ST to WATERLOO RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 490,
-   "flow": 691.4,
-   "geh": 8.3
+   "flow": 698.0,
+   "geh": 8.5
   },
   {
    "station": 4216,
@@ -915,8 +915,8 @@
    "link": "KWUN TONG RD (from PING SHEK EST EASTERN END to WAI YIP ST FO <K42>)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 5310,
-   "flow": 3802.9,
-   "geh": 22.3
+   "flow": 3798.8,
+   "geh": 22.4
   },
   {
    "station": 4218,
@@ -924,7 +924,7 @@
    "link": "SHING KAI RD (from CONCORDE RD to KAI SHING ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 350,
-   "flow": 152.0,
+   "flow": 152.3,
    "geh": 12.5
   },
   {
@@ -933,8 +933,8 @@
    "link": "KWUN TONG BYPASS (from WANG CHIN ST to TATE'S CAIRN TUNNEL SLIP RD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2300,
-   "flow": 1481.2,
-   "geh": 18.8
+   "flow": 1479.3,
+   "geh": 18.9
   },
   {
    "station": 4220,
@@ -942,7 +942,7 @@
    "link": "HOI WANG RD (from HOI TING RD to CHERRY ST RA)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 640,
-   "flow": 433.3,
+   "flow": 432.7,
    "geh": 8.9
   },
   {
@@ -951,8 +951,8 @@
    "link": "HUNG HOM BYPASS (from SLIP RDS TO/FROM PRINCESS MARGARET RD LINK to SLIP RD FROM CHEONG TUNG RD S)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 720,
-   "flow": 645.2,
-   "geh": 2.9
+   "flow": 647.4,
+   "geh": 2.8
   },
   {
    "station": 4222,
@@ -960,8 +960,8 @@
    "link": "SHING KAI RD (from SUNG WONG TOI RD to KAI SHING ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 610,
-   "flow": 1375.5,
-   "geh": 24.3
+   "flow": 1363.6,
+   "geh": 24.0
   },
   {
    "station": 4222,
@@ -969,7 +969,7 @@
    "link": "SHING KAI RD (from SUNG WONG TOI RD to KAI SHING ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1070,
-   "flow": 940.2,
+   "flow": 939.0,
    "geh": 4.1
   },
   {
@@ -996,8 +996,8 @@
    "link": "TUEN MUN RD (from PUI TO RD to TSING CHUI PATH)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 4450,
-   "flow": 3180.6,
-   "geh": 20.6
+   "flow": 3170.1,
+   "geh": 20.7
   },
   {
    "station": 5002,
@@ -1005,7 +1005,7 @@
    "link": "SHA TIN RD (from LION ROCK TUNNEL RD to SHA TIN WAI RD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2230,
-   "flow": 2210.3,
+   "flow": 2210.2,
    "geh": 0.4
   },
   {
@@ -1014,8 +1014,8 @@
    "link": "FANLING HIGHWAY (from SO KWUN PO INT to WO HOP SHEK INT)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3070,
-   "flow": 2807.4,
-   "geh": 4.8
+   "flow": 2801.6,
+   "geh": 5.0
   },
   {
    "station": 5004,
@@ -1023,8 +1023,8 @@
    "link": "CASTLE PEAK RD - KWAI CHUNG (from TAI WO INT to WO YI HOP RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 890,
-   "flow": 1670.4,
-   "geh": 21.8
+   "flow": 1673.9,
+   "geh": 21.9
   },
   {
    "station": 5005,
@@ -1032,7 +1032,7 @@
    "link": "MA ON SHAN RD (from MA ON SHAN BYPASS to HANG HONG ST RA)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 640,
-   "flow": 484.1,
+   "flow": 484.0,
    "geh": 6.6
   },
   {
@@ -1041,7 +1041,7 @@
    "link": "TING KOK RD (from NAM WAN RD to DAI KWAI ST)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1070,
-   "flow": 1160.0,
+   "flow": 1158.6,
    "geh": 2.7
   },
   {
@@ -1050,7 +1050,7 @@
    "link": "KWAI FOO RD (from KWAI CHUNG RD to HING FONG RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 880,
-   "flow": 134.4,
+   "flow": 134.6,
    "geh": 33.1
   },
   {
@@ -1059,8 +1059,8 @@
    "link": "KAU YUK RD (from YUEN LONG TAI YUK RD to YUEN LONG HONG LOK RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 290,
-   "flow": 446.1,
-   "geh": 8.1
+   "flow": 446.7,
+   "geh": 8.2
   },
   {
    "station": 5009,
@@ -1068,7 +1068,7 @@
    "link": "KWONG FUK RD (from NAM WAN RD to WAN TAU ST)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 460,
-   "flow": 361.2,
+   "flow": 360.9,
    "geh": 4.9
   },
   {
@@ -1077,8 +1077,8 @@
    "link": "TUEN MUN RD (from SHAM TSENG to TSING LONG HIGHWAY - TING KAU BRIDGE)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3600,
-   "flow": 2650.6,
-   "geh": 17.0
+   "flow": 2641.2,
+   "geh": 17.2
   },
   {
    "station": 5013,
@@ -1086,8 +1086,8 @@
    "link": "TOLO HIGHWAY (from NORTH OF MA LIU SHUI INT to YUEN SHIN RD INT)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 5190,
-   "flow": 4808.6,
-   "geh": 5.4
+   "flow": 4801.6,
+   "geh": 5.5
   },
   {
    "station": 5014,
@@ -1095,7 +1095,7 @@
    "link": "ROUTE TWISK (from CHUEN LUNG to CHEUNG PEI SHAN RA)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 380,
-   "flow": 412.7,
+   "flow": 411.7,
    "geh": 1.6
   },
   {
@@ -1113,7 +1113,7 @@
    "link": "SOUTH LANTAU RD (from MUI WO FERRY PIER to CHI MA WAN RD)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 140,
-   "flow": 113.0,
+   "flow": 112.8,
    "geh": 2.4
   },
   {
@@ -1122,8 +1122,8 @@
    "link": "CLEAR WATER BAY RD (from ON SAU RD to HIRAM'S HIGHWAY)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 710,
-   "flow": 873.5,
-   "geh": 5.8
+   "flow": 870.8,
+   "geh": 5.7
   },
   {
    "station": 5017,
@@ -1131,8 +1131,8 @@
    "link": "CLEAR WATER BAY RD (from ON SAU RD to HIRAM'S HIGHWAY)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 1130,
-   "flow": 2663.6,
-   "geh": 35.2
+   "flow": 2654.9,
+   "geh": 35.1
   },
   {
    "station": 5018,
@@ -1140,8 +1140,8 @@
    "link": "TSING TSUEN RD (from TSUEN TSING INT to TAM KON SHAN INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1530,
-   "flow": 1017.2,
-   "geh": 14.4
+   "flow": 983.8,
+   "geh": 15.4
   },
   {
    "station": 5018,
@@ -1149,7 +1149,7 @@
    "link": "TSING TSUEN RD (from TSUEN TSING INT to TAM KON SHAN INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 810,
-   "flow": 652.7,
+   "flow": 651.9,
    "geh": 5.8
   },
   {
@@ -1167,7 +1167,7 @@
    "link": "SHING MUN TUNNEL (from WO YI HOP INTERCHANGE to SHING MUN TUNNEL RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1910,
-   "flow": 1972.2,
+   "flow": 1972.6,
    "geh": 1.4
   },
   {
@@ -1176,8 +1176,8 @@
    "link": "SHING MUN TUNNEL (from WO YI HOP INTERCHANGE to SHING MUN TUNNEL RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2040,
-   "flow": 2671.7,
-   "geh": 13.0
+   "flow": 2649.4,
+   "geh": 12.6
   },
   {
    "station": 5021,
@@ -1185,8 +1185,8 @@
    "link": "TSEUNG KWAN O TUNNEL (from TOLL PLAZA to TSEUNG KWAN O TUNNEL RD RA)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2600,
-   "flow": 1679.0,
-   "geh": 19.9
+   "flow": 1668.9,
+   "geh": 20.2
   },
   {
    "station": 5022,
@@ -1194,8 +1194,8 @@
    "link": "TATE'S CAIRN TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2270,
-   "flow": 2015.1,
-   "geh": 5.5
+   "flow": 2011.9,
+   "geh": 5.6
   },
   {
    "station": 5023,
@@ -1203,7 +1203,7 @@
    "link": "PO LAM RD (from ANDERSON RD to TSUI LAM RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 300,
-   "flow": 424.5,
+   "flow": 424.6,
    "geh": 6.5
   },
   {
@@ -1212,8 +1212,8 @@
    "link": "PO LAM RD (from ANDERSON RD to TSUI LAM RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 520,
-   "flow": 1208.7,
-   "geh": 23.4
+   "flow": 1204.0,
+   "geh": 23.3
   },
   {
    "station": 5024,
@@ -1221,7 +1221,7 @@
    "link": "LION ROCK TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2410,
-   "flow": 2999.4,
+   "flow": 2999.1,
    "geh": 11.3
   },
   {
@@ -1230,8 +1230,8 @@
    "link": "YUEN LONG HIGHWAY (from TIN SHUI WAI WEST INT to LAM TEI INT)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 4090,
-   "flow": 2697.2,
-   "geh": 23.9
+   "flow": 2685.5,
+   "geh": 24.1
   },
   {
    "station": 5026,
@@ -1239,8 +1239,8 @@
    "link": "TSING KWAI HIGHWAY (from CHING LAI COURT SLIP RDS TO & FROM CHING CHEUNG RD to CHO YIU CHUEN SLIP RDS TO & FROM KWAI CHUNG RD & TSUEN WAN RD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 5790,
-   "flow": 6756.1,
-   "geh": 12.2
+   "flow": 6674.7,
+   "geh": 11.2
   },
   {
    "station": 5026,
@@ -1248,8 +1248,8 @@
    "link": "TSING KWAI HIGHWAY (from CHING LAI COURT SLIP RDS TO & FROM CHING CHEUNG RD to CHO YIU CHUEN SLIP RDS TO & FROM KWAI CHUNG RD & TSUEN WAN RD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3400,
-   "flow": 4504.8,
-   "geh": 17.6
+   "flow": 4561.1,
+   "geh": 18.4
   },
   {
    "station": 5027,
@@ -1257,8 +1257,8 @@
    "link": "LANTAU LINK (from TSING MA BRIDGE EASTERN END AT TSING YI to NGONG SHUEN AU)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2570,
-   "flow": 2319.8,
-   "geh": 5.1
+   "flow": 2309.7,
+   "geh": 5.3
   },
   {
    "station": 5027,
@@ -1266,8 +1266,8 @@
    "link": "LANTAU LINK (from TSING MA BRIDGE EASTERN END AT TSING YI to NGONG SHUEN AU)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3630,
-   "flow": 2736.4,
-   "geh": 15.8
+   "flow": 2726.1,
+   "geh": 16.0
   },
   {
    "station": 5029,
@@ -1275,8 +1275,8 @@
    "link": "TSING LONG HIGHWAY - TAI LAM TUNNEL (from AU TAU INT to TUEN MUN RD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2810,
-   "flow": 3619.5,
-   "geh": 14.3
+   "flow": 3597.0,
+   "geh": 13.9
   },
   {
    "station": 5030,
@@ -1284,8 +1284,8 @@
    "link": "KWAI CHUNG RD (from KWAI CHUNG INT to TSUEN WAN RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 4760,
-   "flow": 3435.2,
-   "geh": 20.7
+   "flow": 3414.2,
+   "geh": 21.1
   },
   {
    "station": 5030,
@@ -1293,8 +1293,8 @@
    "link": "KWAI CHUNG RD (from KWAI CHUNG INT to TSUEN WAN RD)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3680,
-   "flow": 2945.9,
-   "geh": 12.8
+   "flow": 2976.1,
+   "geh": 12.2
   },
   {
    "station": 5031,
@@ -1302,8 +1302,8 @@
    "link": "NORTH LANTAU HIGHWAY (from TUNG CHUNG EASTERN INT to WESTERN END AT CHEK LAP KOK)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 1070,
-   "flow": 2416.2,
-   "geh": 32.2
+   "flow": 2408.2,
+   "geh": 32.1
   },
   {
    "station": 5031,
@@ -1311,8 +1311,8 @@
    "link": "NORTH LANTAU HIGHWAY (from TUNG CHUNG EASTERN INT to WESTERN END AT CHEK LAP KOK)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 1870,
-   "flow": 2280.7,
-   "geh": 9.0
+   "flow": 2271.8,
+   "geh": 8.8
   },
   {
    "station": 5032,
@@ -1320,8 +1320,8 @@
    "link": "CHEK LAP KOK S RD (from EASTERN END AT TUNG CHUNG to WESTERN END AT CHEK LAP KOK)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 870,
-   "flow": 449.8,
-   "geh": 16.4
+   "flow": 444.5,
+   "geh": 16.6
   },
   {
    "station": 5032,
@@ -1329,8 +1329,8 @@
    "link": "CHEK LAP KOK S RD (from EASTERN END AT TUNG CHUNG to WESTERN END AT CHEK LAP KOK)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1100,
-   "flow": 1028.5,
-   "geh": 2.2
+   "flow": 1007.5,
+   "geh": 2.8
   },
   {
    "station": 5033,
@@ -1338,8 +1338,8 @@
    "link": "TSING LONG HIGHWAY - TING KAU BRIDGE (from NW TSING YI INT SOUTHERN TIP to TUEN MUN RD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 5440,
-   "flow": 5765.1,
-   "geh": 4.3
+   "flow": 5702.0,
+   "geh": 3.5
   },
   {
    "station": 5034,
@@ -1347,8 +1347,8 @@
    "link": "CHEUNG TSING TUNNEL & CHEUNG TSING BRIDGE (from CHEUNG TSING BRIDGE EASTERN END to WESTERN END OF CHEUNG TSING TUNNEL SLIP RDS TO & FROM TSING YI RD W)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3710,
-   "flow": 2617.3,
-   "geh": 19.4
+   "flow": 2514.9,
+   "geh": 21.4
   },
   {
    "station": 5034,
@@ -1356,8 +1356,8 @@
    "link": "CHEUNG TSING TUNNEL & CHEUNG TSING BRIDGE (from CHEUNG TSING BRIDGE EASTERN END to WESTERN END OF CHEUNG TSING TUNNEL SLIP RDS TO & FROM TSING YI RD W)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2320,
-   "flow": 1741.4,
-   "geh": 12.8
+   "flow": 1811.9,
+   "geh": 11.2
   },
   {
    "station": 5035,
@@ -1365,8 +1365,8 @@
    "link": "TUEN MUN RD (from CASTLE PEAK RD - TSUEN WAN to TSING LONG HIGHWAY - TING KAU BRIDGE)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3660,
-   "flow": 3972.6,
-   "geh": 5.1
+   "flow": 4039.9,
+   "geh": 6.1
   },
   {
    "station": 5035,
@@ -1374,8 +1374,8 @@
    "link": "TUEN MUN RD (from CASTLE PEAK RD - TSUEN WAN to TSING LONG HIGHWAY - TING KAU BRIDGE)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2110,
-   "flow": 1929.0,
-   "geh": 4.0
+   "flow": 1945.1,
+   "geh": 3.7
   },
   {
    "station": 5036,
@@ -1383,7 +1383,7 @@
    "link": "SHUN TUNG RD (from YU TUNG RD to TAT TUNG RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 800,
-   "flow": 352.1,
+   "flow": 352.0,
    "geh": 18.7
   },
   {
@@ -1392,7 +1392,7 @@
    "link": "EAGLE'S NEST TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 3650,
-   "flow": 3517.7,
+   "flow": 3520.0,
    "geh": 2.2
   },
   {
@@ -1401,7 +1401,7 @@
    "link": "EAGLE'S NEST TUNNEL (from TOLL PLAZA to SOUTH PORTAL)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2040,
-   "flow": 1590.5,
+   "flow": 1588.7,
    "geh": 10.6
   },
   {
@@ -1410,8 +1410,8 @@
    "link": "NAM WAN TUNNEL (from EAST TSING YI VIADUCT to CHEUNG TSING HIGHWAY)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2330,
-   "flow": 3859.2,
-   "geh": 27.5
+   "flow": 3897.9,
+   "geh": 28.1
   },
   {
    "station": 5038,
@@ -1419,8 +1419,8 @@
    "link": "NAM WAN TUNNEL (from EAST TSING YI VIADUCT to CHEUNG TSING HIGHWAY)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 2040,
-   "flow": 2092.3,
-   "geh": 1.2
+   "flow": 1998.6,
+   "geh": 0.9
   },
   {
    "station": 5039,
@@ -1428,8 +1428,8 @@
    "link": "STONECUTTERS BRIDGE (from EAST TSING YI VIADUCT to CONTAINER PORT RD S NR CONTAINER TERMINAL 8)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 2510,
-   "flow": 3895.5,
-   "geh": 24.5
+   "flow": 3937.4,
+   "geh": 25.1
   },
   {
    "station": 5039,
@@ -1437,8 +1437,8 @@
    "link": "STONECUTTERS BRIDGE (from EAST TSING YI VIADUCT to CONTAINER PORT RD S NR CONTAINER TERMINAL 8)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 1980,
-   "flow": 2573.7,
-   "geh": 12.4
+   "flow": 2479.7,
+   "geh": 10.6
   },
   {
    "station": 5041,
@@ -1446,7 +1446,7 @@
    "link": "LUNG SHAN TUNNEL (from FANLING HIGHWAY to SHA TAU KOK ROAD)",
    "road_type": "RURAL TRUNK ROAD",
    "am_peak_flow": 1000,
-   "flow": 376.6,
+   "flow": 376.8,
    "geh": 23.8
   },
   {
@@ -1455,8 +1455,8 @@
    "link": "TUEN MUN CHEK LAP KOK TUNNEL (from LUNG FU RD to HONG KONG BOUNDARY  CROSSING FACILITIES (BCF))",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1430,
-   "flow": 2234.0,
-   "geh": 18.8
+   "flow": 2225.5,
+   "geh": 18.6
   },
   {
    "station": 5042,
@@ -1464,8 +1464,8 @@
    "link": "TUEN MUN CHEK LAP KOK TUNNEL (from LUNG FU RD to HONG KONG BOUNDARY  CROSSING FACILITIES (BCF))",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 950,
-   "flow": 989.3,
-   "geh": 1.3
+   "flow": 987.6,
+   "geh": 1.2
   },
   {
    "station": 5043,
@@ -1473,8 +1473,8 @@
    "link": "TSEUNG KWAN O - LAM TIN TUNNEL (from EASTERN PORTAL to WESTERN PORTAL & SLIP RD TO EHC)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 760,
-   "flow": 1660.7,
-   "geh": 25.9
+   "flow": 1665.7,
+   "geh": 26.0
   },
   {
    "station": 5043,
@@ -1482,8 +1482,8 @@
    "link": "TSEUNG KWAN O - LAM TIN TUNNEL (from EASTERN PORTAL to WESTERN PORTAL & SLIP RD TO EHC)",
    "road_type": "URBAN TRUNK ROAD",
    "am_peak_flow": 1670,
-   "flow": 3316.4,
-   "geh": 33.0
+   "flow": 3313.3,
+   "geh": 32.9
   },
   {
    "station": 5044,
@@ -1491,8 +1491,8 @@
    "link": "SAN TIN HIGHWAY (from FUNG KAT HEUNG to FAIRVIEW PARK BOULEVARD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3310,
-   "flow": 5136.2,
-   "geh": 28.1
+   "flow": 5118.5,
+   "geh": 27.9
   },
   {
    "station": 5044,
@@ -1500,8 +1500,8 @@
    "link": "SAN TIN HIGHWAY (from FUNG KAT HEUNG to FAIRVIEW PARK BOULEVARD)",
    "road_type": "EXPRESSWAY",
    "am_peak_flow": 3450,
-   "flow": 3998.2,
-   "geh": 9.0
+   "flow": 3981.5,
+   "geh": 8.7
   },
   {
    "station": 5045,
@@ -1518,7 +1518,7 @@
    "link": "CASTLE PEAK RD - TAM MI (from KAM TIN RD to FAIRVIEW PARK BOULEVARD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 270,
-   "flow": 126.6,
+   "flow": 126.2,
    "geh": 10.2
   },
   {
@@ -1527,7 +1527,7 @@
    "link": "SAN TAM RD (from KAM TIN RD to FAIRVIEW PARK BOULEVARD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 620,
-   "flow": 142.3,
+   "flow": 142.0,
    "geh": 24.5
   },
   {
@@ -1554,8 +1554,8 @@
    "link": "LUNG FU RD (from WONG CHU RD to TUEN MUN CHEK LAP KOK TUNNEL RD & LUNG MUN RD)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1600,
-   "flow": 1063.3,
-   "geh": 14.7
+   "flow": 1044.4,
+   "geh": 15.3
   },
   {
    "station": 5107,
@@ -1563,7 +1563,7 @@
    "link": "LUNG MUN RD (from WU CHUI RD to TUEN MUN CHEK LAP KOK TUNNEL RD & LUNG FU RD)",
    "road_type": "LOCAL DISTRIBUTOR",
    "am_peak_flow": 320,
-   "flow": 523.6,
+   "flow": 523.2,
    "geh": 9.9
   },
   {
@@ -1572,7 +1572,7 @@
    "link": "CASTLE PEAK RD - KWAI CHUNG (from CHING CHEUNG RD to TAI WO INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 990,
-   "flow": 1812.0,
+   "flow": 1815.7,
    "geh": 22.0
   },
   {
@@ -1581,7 +1581,7 @@
    "link": "CASTLE PEAK RD - KWAI CHUNG (from CHING CHEUNG RD to TAI WO INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 900,
-   "flow": 1282.5,
+   "flow": 1283.2,
    "geh": 11.6
   },
   {
@@ -1590,7 +1590,7 @@
    "link": "LAI KING HILL RD (from KWAI CHUNG INT SLIP RDS to KING CHO RD)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 650,
-   "flow": 457.2,
+   "flow": 457.0,
    "geh": 8.2
   },
   {
@@ -1608,7 +1608,7 @@
    "link": "JOCKEY CLUB RD (from LOK YIP RD to WO HOP SHEK INT)",
    "road_type": "PRIMARY DISTRIBUTOR",
    "am_peak_flow": 1190,
-   "flow": 582.2,
+   "flow": 581.9,
    "geh": 20.4
   },
   {
@@ -1617,7 +1617,7 @@
    "link": "KAM TIN RD (from KAM SHEUNG RD WESTERN JUNCTION to FAN KAM RD)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 710,
-   "flow": 254.5,
+   "flow": 255.6,
    "geh": 20.7
   },
   {
@@ -1626,7 +1626,7 @@
    "link": "KAM TIN RD (from KAM SHEUNG RD WESTERN JUNCTION to FAN KAM RD)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 720,
-   "flow": 441.1,
+   "flow": 440.4,
    "geh": 11.6
   },
   {
@@ -1644,8 +1644,8 @@
    "link": "CASTLE PEAK RD - TSUEN WAN, TING KAU & SHAM TSENG (from TUEN MUN RD to SHAM TSENG)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 350,
-   "flow": 1828.9,
-   "geh": 44.8
+   "flow": 1769.6,
+   "geh": 43.6
   },
   {
    "station": 6209,
@@ -1653,8 +1653,8 @@
    "link": "CASTLE PEAK RD - TSUEN WAN, TING KAU & SHAM TSENG (from TUEN MUN RD to SHAM TSENG)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 230,
-   "flow": 375.9,
-   "geh": 8.4
+   "flow": 378.4,
+   "geh": 8.5
   },
   {
    "station": 6210,
@@ -1662,8 +1662,8 @@
    "link": "TAI PO RD - MA LIU SHUI (from ENTRANCE TO CHUNG CHI COLLEGE, CUHK to YUEN CHAU TSAI INT)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 700,
-   "flow": 307.9,
-   "geh": 17.5
+   "flow": 300.6,
+   "geh": 17.9
   },
   {
    "station": 6210,
@@ -1680,7 +1680,7 @@
    "link": "TING KOK RD (from DAI KWAI ST to TAI MEI TUK)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 910,
-   "flow": 1148.0,
+   "flow": 1146.6,
    "geh": 7.4
   },
   {
@@ -1689,8 +1689,8 @@
    "link": "FAN KAM RD (from KAM TIN RD to FANLING HIGHWAY)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 610,
-   "flow": 224.3,
-   "geh": 18.9
+   "flow": 228.5,
+   "geh": 18.6
   },
   {
    "station": 6212,
@@ -1707,8 +1707,8 @@
    "link": "CASTLE PEAK RD - HUNG SHUI KIU (from TIN HA RD to LAM TEI INT)",
    "road_type": "RURAL TRUNK ROAD",
    "am_peak_flow": 910,
-   "flow": 1919.1,
-   "geh": 26.8
+   "flow": 1913.6,
+   "geh": 26.7
   },
   {
    "station": 6214,
@@ -1725,7 +1725,7 @@
    "link": "CONTAINER PORT RD S (from NORTH OF KWAI CHUNG INT to SOUTH OF KWAI CHUNG INT)",
    "road_type": "LOCAL DISTRIBUTOR",
    "am_peak_flow": 800,
-   "flow": 41.5,
+   "flow": 41.4,
    "geh": 37.0
   },
   {
@@ -1734,8 +1734,8 @@
    "link": "KWAI TSING RD & TSING YI S BRIDGE (from TSING YI RD to KWAI TAI RD INT)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1940,
-   "flow": 2574.2,
-   "geh": 13.3
+   "flow": 2605.0,
+   "geh": 13.9
   },
   {
    "station": 6219,
@@ -1743,7 +1743,7 @@
    "link": "KWAI TSING RD & TSING YI S BRIDGE (from TSING YI RD to KWAI TAI RD INT)",
    "road_type": "DISTRICT DISTRIBUTOR",
    "am_peak_flow": 1260,
-   "flow": 1611.4,
+   "flow": 1611.3,
    "geh": 9.3
   },
   {
@@ -1752,7 +1752,7 @@
    "link": "SAI SHA RD (from NIN WAH RD to NAI CHUNG)",
    "road_type": "RURAL ROAD",
    "am_peak_flow": 950,
-   "flow": 677.3,
+   "flow": 676.8,
    "geh": 9.6
   },
   {
@@ -1761,7 +1761,7 @@
    "link": "HANG HAU RD (from PO NING RD to CLEAR WATER BAY RD)",
    "road_type": "LOCAL DISTRIBUTOR",
    "am_peak_flow": 490,
-   "flow": 221.4,
+   "flow": 221.5,
    "geh": 14.2
   },
   {
@@ -1779,7 +1779,7 @@
    "link": "MA ON SHAN RD (from HANG SHUN ST to SAI SHA RD)",
    "road_type": "RURAL TRUNK ROAD",
    "am_peak_flow": 2500,
-   "flow": 2555.4,
+   "flow": 2553.4,
    "geh": 1.1
   }
  ],
@@ -1791,25 +1791,25 @@
   "时间价值（元/分钟）：私家车 1.26、的士 0.87（出行调查表 E.6，按早高峰各目的出行加权）；轻型货车 2.74、中重型 4.06（货车调查 2011 × 综合消费物价指数 1.412，202508–202607 对 2011 年）",
   "隧道排队：453 个隧道行车方向连成 44 串，每串至少按 6 分钟的 BPR 延误计（放大的串 40 个）",
   "路网：47,693 个行车方向、1,299 条分区接驳；467/470 个分区接入路网",
-  "8-9 时车次：car 104,128、taxi 44,959、goods_light 30,963、goods_heavy 16,706、coach 8,647；起讫点不在路网上的 0（没有道路的离岛）",
-  "第 1 次分配：21 次迭代，相对间隙 8.1e-04；重型车 >15% 的路段 9,763 个、>25% 的 3,005 个",
-  "第 2 次分配：19 次迭代，相对间隙 9.2e-04；重型车 >15% 的路段 9,825 个、>25% 的 3,051 个",
-  "8-9 时车公里 2.38 百万；超过设计流量的路段方向 1.5%；v/c 最高：8108ab 3.26；35285ab 2.80；35327ab 2.80；35284ab 2.80；22546ab 2.72",
-  "GEH（191 个 8-9 时为高峰的计数方向）：GEH<5 的 18%（目标 85%）；模型/普查 合计 0.96  ← 需复核",
+  "8-9 时车次：car 104,128、taxi 44,931、goods_light 30,963、goods_heavy 16,706、coach 8,628；起讫点不在路网上的 0（没有道路的离岛）",
+  "第 1 次分配：20 次迭代，相对间隙 8.5e-04；重型车 >15% 的路段 9,753 个、>25% 的 2,977 个",
+  "第 2 次分配：23 次迭代，相对间隙 8.6e-04；重型车 >15% 的路段 9,799 个、>25% 的 3,041 个",
+  "8-9 时车公里 2.38 百万；超过设计流量的路段方向 1.5%；v/c 最高：8108ab 3.25；35285ab 2.82；35327ab 2.82；35284ab 2.82；22546ab 2.70",
+  "GEH（191 个 8-9 时为高峰的计数方向）：GEH<5 的 19%（目标 85%）；模型/普查 合计 0.96  ← 需复核",
   "  DISTRICT DISTRIBUTOR：44 个方向，模型/普查 0.87，GEH<5 18%",
   "  EXPRESSWAY：26 个方向，模型/普查 1.09，GEH<5 19%",
   "  LOCAL DISTRIBUTOR：16 个方向，模型/普查 0.22，GEH<5 0%",
   "  PRIMARY DISTRIBUTOR：46 个方向，模型/普查 0.91，GEH<5 22%",
-  "  RURAL ROAD：16 个方向，模型/普查 1.15，GEH<5 19%",
+  "  RURAL ROAD：16 个方向，模型/普查 1.14，GEH<5 19%",
   "  RURAL TRUNK ROAD：4 个方向，模型/普查 0.92，GEH<5 25%",
-  "  URBAN TRUNK ROAD：39 个方向，模型/普查 0.94，GEH<5 21%",
-  "  走廊 过海：3 站，模型/普查 1.11，GEH<5 67%；最偏的一站 CROSS HARBOUR TUNNEL (from TOLL PLAZA to 普查 5,319 模型 7,259",
-  "  走廊 沙田－九龙：3 站，模型/普查 1.16，GEH<5 0%；最偏的一站 LION ROCK TUNNEL (from TOLL PLAZA to SOU 普查 5,326 模型 7,992",
-  "  走廊 屯门－荃湾：5 站，模型/普查 1.09，GEH<5 60%；最偏的一站 TSING LONG HIGHWAY - TAI LAM TUNNEL (fro 普查 3,563 模型 5,769",
-  "  走廊 将军澳：2 站，模型/普查 1.19，GEH<5 0%；最偏的一站 TSEUNG KWAN O - LAM TIN TUNNEL (from EAS 普查 2,432 模型 4,977",
-  "  走廊 大屿山：4 站，模型/普查 0.89，GEH<5 0%；最偏的一站 LUNG FU RD (from WONG CHU RD to TUEN MUN 普查 2,563 模型 1,768",
+  "  URBAN TRUNK ROAD：39 个方向，模型/普查 0.94，GEH<5 23%",
+  "  走廊 过海：3 站，模型/普查 1.11，GEH<5 67%；最偏的一站 CROSS HARBOUR TUNNEL (from TOLL PLAZA to 普查 5,319 模型 7,225",
+  "  走廊 沙田－九龙：3 站，模型/普查 1.16，GEH<5 0%；最偏的一站 LION ROCK TUNNEL (from TOLL PLAZA to SOU 普查 5,326 模型 7,997",
+  "  走廊 屯门－荃湾：5 站，模型/普查 1.09，GEH<5 60%；最偏的一站 TSING LONG HIGHWAY - TAI LAM TUNNEL (fro 普查 3,563 模型 5,738",
+  "  走廊 将军澳：2 站，模型/普查 1.19，GEH<5 0%；最偏的一站 TSEUNG KWAN O - LAM TIN TUNNEL (from EAS 普查 2,432 模型 4,979",
+  "  走廊 大屿山：4 站，模型/普查 0.89，GEH<5 0%；最偏的一站 LUNG FU RD (from WONG CHU RD to TUEN MUN 普查 2,563 模型 1,747",
   "走廊合计（收费权重 0.20）：17 站，GEH<5 29%（目标 60%）  ← 需复核",
-  "核心站按车种（模型/普查，8-9 时两方向）：car 0.92、taxi 1.12、goods_light 0.95、goods_heavy 0.97、coach 1.79、bus 0.82",
-  "单一车种占比：的士占比超过 50% 的路段方向 175 个（流量 > 300），最高 70%"
+  "核心站按车种（模型/普查，8-9 时两方向）：car 0.91、taxi 1.12、goods_light 0.95、goods_heavy 0.97、coach 1.78、bus 0.82",
+  "单一车种占比：的士占比超过 50% 的路段方向 167 个（流量 > 300），最高 70%"
  ]
 }

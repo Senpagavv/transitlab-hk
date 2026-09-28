@@ -14,71 +14,71 @@
   {
    "line": "EAL",
    "segment": "Tai Wai → Kowloon Tong",
-   "model": 60778.669,
+   "model": 60892.394,
    "reference": 44600,
-   "ratio": 1.363,
-   "model_busiest": "Tai Wai → Kowloon Tong 60,779",
-   "load_factor": 0.994,
+   "ratio": 1.365,
+   "model_busiest": "Tai Wai → Kowloon Tong 60,892",
+   "load_factor": 0.996,
    "note": "2022 年答复推算"
   },
   {
    "line": "TWL",
    "segment": "Tsim Sha Tsui → Admiralty",
-   "model": 38126.302,
+   "model": 38130.163,
    "reference": 40794,
    "ratio": 0.935,
-   "model_busiest": "Sham Shui Po → Prince Edward 51,147",
+   "model_busiest": "Sham Shui Po → Prince Edward 51,178",
    "load_factor": 0.667,
    "note": "2014 年 52,300，东铁过海后少两成多"
   },
   {
    "line": "KTL",
    "segment": "Shek Kip Mei → Prince Edward",
-   "model": 55576.295,
+   "model": 55595.787,
    "reference": 43290,
    "ratio": 1.284,
-   "model_busiest": "Lok Fu → Kowloon Tong 64,547",
+   "model_busiest": "Lok Fu → Kowloon Tong 64,571",
    "load_factor": 0.973,
    "note": "2014 年 48,100，东铁过海后少约一成"
   },
   {
    "line": "ISL",
    "segment": "Tin Hau → Causeway Bay",
-   "model": 58795.534,
+   "model": 58793.24,
    "reference": 53700,
    "ratio": 1.095,
-   "model_busiest": "Tin Hau → Causeway Bay 58,796",
+   "model_busiest": "Tin Hau → Causeway Bay 58,793",
    "load_factor": 0.931,
    "note": "2014 年"
   },
   {
    "line": "TKL",
    "segment": "Yau Tong → Quarry Bay",
-   "model": 34740.363,
+   "model": 34744.118,
    "reference": 45200,
    "ratio": 0.769,
-   "model_busiest": "Yau Tong → Quarry Bay 34,740",
+   "model_busiest": "Yau Tong → Quarry Bay 34,744",
    "load_factor": 0.637,
    "note": "2014 年"
   },
   {
    "line": "TML",
    "segment": "Kam Sheung Road → Tsuen Wan West",
-   "model": 36964.751,
+   "model": 37136.095,
    "reference": 36600,
-   "ratio": 1.01,
-   "model_busiest": "Tsuen Wan West → Mei Foo 37,014",
-   "load_factor": 0.878,
+   "ratio": 1.015,
+   "model_busiest": "Tsuen Wan West → Mei Foo 37,185",
+   "load_factor": 0.882,
    "note": "2014 年（当年的西铁线）"
   },
   {
    "line": "TCL",
    "segment": "Olympic → Kowloon",
-   "model": 20343.2,
+   "model": 20374.678,
    "reference": 22800,
-   "ratio": 0.892,
-   "model_busiest": "Olympic → Kowloon 20,343",
-   "load_factor": 0.593,
+   "ratio": 0.894,
+   "model_busiest": "Olympic → Kowloon 20,375",
+   "load_factor": 0.594,
    "note": "2014 年"
   }
  ],
@@ -92,10 +92,10 @@
  "report": [
   "港铁早高峰班距按官网改写（秒，原 → 新）：EAL-DT 180→209；EAL-LMC-DT 180→720；EAL-LMC-UT 180→720；EAL-UT 180→209；ISL-DT 198→114；ISL-UT 198→114；KTL-DT 180→126；KTL-UT 180→126；SIL-DT 180→198；SIL-UT 180→198；TCL-DT 420→210；TCL-UT 420→210；TKL-DT 210→197；TKL-LHP-DT 450→400；TKL-LHP-UT 450→400；TKL-UT 210→197",
   "截取 2026-09-22 7:30–9:30：线路 1,928 条、班次 26,641（按班距的 12,634 段自己展开成 25,024 班；按时刻的 1,617 班）、车站 9,489 个；1,102 个车站归到 200 米内的港铁/轻铁站下面",
-  "导入 AequilibraE：123 秒；线路模式 2,727、班次 26,641、车站 9,392",
+  "导入 AequilibraE：147 秒；线路模式 2,727、班次 26,641、车站 9,392",
   "公交网络（巴士车上时间 × 1.5）：98,717 个节点、223,846 条边（on-board 44,211, boarding 44,211, alighting 44,211, dwell 41,651, walking 21,146, access_connector 14,208, egress_connector 14,208）；删掉直线跨海或水塘超过 30 米的接驳 874 条（共 29,290 条）",
-  "分配 8-9 时公交 1,391,009 人次，进入网络 1,368,185（98.4%）；上车人次：电车/轻铁 26,879、港铁 1,103,749、巴士/小巴 1,156,138、渡轮 9、缆车 0；平均每人上车 1.67 次",
-  "港铁最繁忙一段（模型 / 立法会，每小时每方向）：EAL Tai Wai → Kowloon Tong 60,779/44,600（1.36）；TWL Tsim Sha Tsui → Admiralty 38,126/40,794（0.93）；KTL Shek Kip Mei → Prince Edward 55,576/43,290（1.28）；ISL Tin Hau → Causeway Bay 58,796/53,700（1.09）；TKL Yau Tong → Quarry Bay 34,740/45,200（0.77）；TML Kam Sheung Road → Tsuen Wan West 36,965/36,600（1.01）；TCL Olympic → Kowloon 20,343/22,800（0.89）"
+  "分配 8-9 时公交 1,391,248 人次，进入网络 1,368,380（98.4%）；上车人次：电车/轻铁 26,905、港铁 1,104,516、巴士/小巴 1,157,136、渡轮 9、缆车 0；平均每人上车 1.67 次",
+  "港铁最繁忙一段（模型 / 立法会，每小时每方向）：EAL Tai Wai → Kowloon Tong 60,892/44,600（1.37）；TWL Tsim Sha Tsui → Admiralty 38,130/40,794（0.93）；KTL Shek Kip Mei → Prince Edward 55,596/43,290（1.28）；ISL Tin Hau → Causeway Bay 58,793/53,700（1.09）；TKL Yau Tong → Quarry Bay 34,744/45,200（0.77）；TML Kam Sheung Road → Tsuen Wan West 37,136/36,600（1.01）；TCL Olympic → Kowloon 20,375/22,800（0.89）"
  ],
- "seconds": 167
+ "seconds": 190
 }

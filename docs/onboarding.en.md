@@ -47,6 +47,7 @@ Unzip it **in the project root** (paths inside already start with `data/...`). C
 - Mini-games (bridge / metro line — frozen, kept as examples): double-click `game-demo/index.html` or `game-demo/metro.html`; no server needed.
 - Result files: `data/model/` (tables and matrices the model computed), `data/web/` (website data and each step's `*-audit.json` check report).
 - Where the data comes from: [`data-sources.md`](data-sources.md) (43 sources; size, fields, which step uses them — Chinese).
+- How every step computes — equations, code lines, calibration, and the link to the CA5236 course: [`methods-catalogue.en.md`](methods-catalogue.en.md) (English).
 - Demo script: [`demo-runbook.md`](demo-runbook.md) (Chinese).
 
 ### 2.2 Front end
