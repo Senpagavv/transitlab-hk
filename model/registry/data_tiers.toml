@@ -114,6 +114,19 @@ note_zh = "政策参考文件，不是逐条数据"
 note_en = "Policy documents for reference, not item-level data"
 
 [[item]]
+id = "B05"
+kind = "dataset"
+name_zh = "政府已公布的规划铁路（走线与车站）"
+name_en = "Government planned railways (alignments and stations)"
+tier = "C"
+source = "路政署、立法会文件、运输基建发展蓝图、港铁业绩报告（24 项，核对至 2026-10-02）；data/raw/planned-railways/"
+basis = "官方资料＋人工读图数字化"
+status = "in_use"
+ref = "data/raw/planned-railways/规划铁路清单.md"
+note_zh = "走线和站位是从公布的示意图读出来的，约 ±500 米，不是工程定线；游戏里当「政府方案」对手。原始 PDF（161 MB）在桌面「TransitLab规划铁路/sources」"
+note_en = "Alignments and stations digitised from published indicative maps (about ±500 m), not engineering alignments; used as the 'government plan' rival in the game"
+
+[[item]]
 id = "C01"
 kind = "dataset"
 name_zh = "全港建筑物位置、高度与推算楼面"

@@ -19,7 +19,7 @@
 
 | 类别 Kind | 🟢 A | 🔵 B | 🟠 C | 🔴 D | 合计 Total |
 |---|---|---|---|---|---|
-| 数据集 Dataset | 27 | 6 | 2 | 0 | 35 |
+| 数据集 Dataset | 27 | 6 | 3 | 0 | 36 |
 | 模型产物 Model output | 2 | 18 | 3 | 4 | 27 |
 | 参数 Parameter | 7 | 13 | 16 | 19 | 55 |
 
@@ -106,11 +106,12 @@
 | P.bus_time_factor | 巴士车上时间系数 | Bus in-vehicle time factor | 参数 Parameter | 1.5 | 按港铁 7 条线最繁忙段扫描（`pipeline/39_transit_assignment.py`） | 在用 in use | 反映班次表外的塞车与不准时 | Covers congestion and unreliability the timetable omits |
 | G.jobs_per_m2 | 每平方米写字楼/零售楼面对应岗位 | Jobs per m² of office/retail floor | 参数 Parameter | 待定 m²/岗 | 待查 / to research | 在用 in use | 沿用第 21 步回归（写字楼 22、零售 24 m²/岗） | Reuse step 21's regression (office 22, retail 24 m² per job) |
 
-## 🟠 C · 依据推断 / Evidence-based estimate（21）
+## 🟠 C · 依据推断 / Evidence-based estimate（22）
 
 | ID | 名称 | Name | 类别 Kind | 数值 Value | 来源 / 依据 Source | 状态 Status | 说明 | Note |
 |---|---|---|---|---|---|---|---|---|
 | B04 | 规划及自动驾驶政策参考文件 | Planning and autonomous-vehicle policy references | 数据集 Dataset |  | 规划署／立法会／相关部门；2017—2030（按文件名） | 在用 in use | 政策参考文件，不是逐条数据 | Policy documents for reference, not item-level data |
+| B05 | 政府已公布的规划铁路（走线与车站） | Government planned railways (alignments and stations) | 数据集 Dataset |  | 路政署、立法会文件、运输基建发展蓝图、港铁业绩报告（24 项，核对至 2026-10-02）；data/raw/planned-railways/ | 在用 in use | 走线和站位是从公布的示意图读出来的，约 ±500 米，不是工程定线；游戏里当「政府方案」对手。原始 PDF（161 MB）在桌面「TransitLab规划铁路/sources」 | Alignments and stations digitised from published indicative maps (about ±500 m), not engineering alignments; used as the 'government plan' rival in the game |
 | E02 | 社区版香港 GTFS | Community Hong Kong GTFS | 数据集 Dataset |  | wheelstransit／OpenStreetMap 社区；2026-09-15 下载（文档） | 在用 in use | 众包时刻表；港铁班距有错，已用官网班距改写（见 E03、39） | Crowd-sourced timetable; its MTR headways were wrong and are overridden (see E03, step 39) |
 | K20 | 的士车队逐小时仿真 | Taxi fleet simulation | 模型产物 Model output |  | 模型步骤 31；2026 工作日 | 在用 in use | 分钟级仿真，与第 29 步边界交叉核对（已停做的车队方向） | Minute-level simulation, cross-checked with step 29 bounds (fleet direction, discontinued) |
 | K25 | 法定用途地带与可建楼面 | Zoning and buildable floor space | 模型产物 Model output |  | 模型步骤 37；现存图则／2026 分区 | 在用 in use | 65% 的地积比从图则注释提取，35% 用规划标准默认值（乡村式发展按 1.0 估计） | 65% of plot ratios from the plan notes, 35% planning-standard defaults (village type estimated at 1.0) |

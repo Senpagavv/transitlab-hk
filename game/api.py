@@ -23,7 +23,8 @@ router = APIRouter(prefix="/game/api", tags=["game"])
 _state = {"stage": "idle", "error": None}
 _lock = threading.Lock()
 _jobs: dict[str, dict] = {}
-_queue: queue.Queue = queue.Queue()
+_queue: queue.PriorityQueue = queue.PriorityQueue()
+_seq = iter(range(10 ** 9))
 _layers: dict[str, bytes] = {}
 
 
@@ -54,10 +55,13 @@ def _warm() -> None:
         _state["stage"] = "loading"
         get_base()
         get_places()
+        from game.engine.missions import get_missions
+        get_missions()
         _state["stage"] = "ready"
         threading.Thread(target=_worker, daemon=True).start()
-        # prepare the scenario's world-without-lines in the background so the first scenario play is quick
-        _queue.put(("warm-scenario", None))
+        # background, behind any player: the scenario's world-without-lines, then the government lines' full runs
+        _queue.put((1, next(_seq), "warm-scenario", None))
+        _queue.put((1, next(_seq), "benchmarks", None))
     except Exception as exc:  # shown on the page
         _state["stage"] = "error"
         _state["error"] = repr(exc)
@@ -75,8 +79,16 @@ def _worker() -> None:
     from game.engine.base import get_base
     from game.engine.params import Params
     from game.engine.scenario import Rates
+    from game.engine.missions import compute_benchmarks, get_missions
     while True:
-        job_id, payload = _queue.get()
+        _, _, job_id, payload = _queue.get()
+        if job_id == "benchmarks":
+            try:
+                compute_benchmarks(get_missions())
+            except Exception:
+                import traceback
+                _state["bench_error"] = traceback.format_exc()[-1500:]
+            continue
         if job_id == "warm-scenario":
             try:
                 b = get_base()
@@ -95,7 +107,11 @@ def _worker() -> None:
             job["progress"].append(event)
 
         try:
-            job["result"] = R.run(payload["design"], payload.get("scenario"), progress)
+            mission = payload.get("mission")
+            scenario = payload.get("scenario")
+            if mission:
+                scenario = get_missions().items[mission].get("scenario")
+            job["result"] = R.run(payload["design"], scenario, progress, mission, payload.get("flags"))
             job["status"] = "done"
         except Exception as exc:
             import traceback
@@ -192,7 +208,7 @@ def run(payload: dict = Body(...)) -> Response:
         raise HTTPException(status_code=400, detail="至少画一条有两个车站的线")
     job_id = uuid.uuid4().hex[:10]
     _jobs[job_id] = {"status": "queued", "progress": [], "result": None, "queued_behind": _queue.qsize()}
-    _queue.put((job_id, payload))
+    _queue.put((0, next(_seq), job_id, payload))
     return _json({"job": job_id})
 
 
@@ -201,3 +217,33 @@ def job(job_id: str) -> Response:
     if job_id not in _jobs:
         raise HTTPException(status_code=404)
     return _json(_jobs[job_id])
+
+
+@router.get("/missions")
+def missions() -> Response:
+    _ready()
+    from game.engine.missions import get_missions
+    M = get_missions()
+    return _json({"daily": M.daily(), "items": M.listing(), "benchmarks_ready": sorted(M.benchmarks)})
+
+
+@router.get("/mission/{key}")
+def mission(key: str) -> Response:
+    _ready()
+    from game.engine.missions import get_missions
+    M = get_missions()
+    if key not in M.items:
+        raise HTTPException(status_code=404)
+    return _json(M.public(key))
+
+
+@router.post("/quick")
+def quick(payload: dict = Body(...)) -> Response:
+    """The 0.03-0.1 s estimate shown while drawing (new-line riders with today's demand, no feedback rounds)."""
+    _ready()
+    from game.engine.missions import get_missions
+    M = get_missions()
+    key = payload.get("mission")
+    if key and key not in M.items:
+        raise HTTPException(status_code=404)
+    return _json(M.quick(payload.get("design", {}), key))

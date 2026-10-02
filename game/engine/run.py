@@ -104,7 +104,7 @@ def reference(base, params, key, rates, progress) -> tuple[dict, dict]:
     return _REF[key]
 
 
-def run(design: dict, scenario_key: str | None = None, progress=None) -> dict:
+def run(design: dict, scenario_key: str | None = None, progress=None, mission: str | None = None, flags: dict | None = None) -> dict:
     progress = progress or (lambda *a: None)
     t0 = time.time()
     base, params = get_base(), Params()
@@ -119,6 +119,9 @@ def run(design: dict, scenario_key: str | None = None, progress=None) -> dict:
     out = solve(base, params, paths, ends, "design", progress)
     labels = [z["label"] for z in get_places().zones]
     result = evaluate(base, params, net, paths, ref, out, built, scenario_key, info, station_names(net), labels)
+    if mission:
+        from .missions import get_missions, score
+        result["mission"] = score(get_missions(), mission, result, out["saving"], flags or {})
     result["seconds"] = round(time.time() - t0, 1)
     result["history"] = out["history"]
     return result

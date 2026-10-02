@@ -157,7 +157,7 @@ class Places:
             self.zones.append({"zone": z, "label": p.get("label", z), "district": p.get("district", ""),
                                "lon": round(float(b.zone_lon[k]), 6), "lat": round(float(b.zone_lat[k]), 6),
                                "pop": int(b.ends["population"].iloc[k]), "jobs": int(b.ends["jobs"].iloc[k]),
-                               "price_m2": round(float(price.iloc[k]))})
+                               "price_m2": round(float(price.iloc[k])), "road_access": bool(p.get("road_access", True))})
 
     def corridors(self, P_PT: np.ndarray, top: int = 12) -> list[dict]:
         """Biggest morning-peak public-transport flows between districts."""

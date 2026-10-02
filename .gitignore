@@ -33,3 +33,6 @@ data/snapshots/
 
 # Stray debug output (live traffic API response, 2026-09-16), not used by any script
 /live.json.gz
+
+# Game engine cache (government benchmarks, regenerated automatically)
+game/.cache/

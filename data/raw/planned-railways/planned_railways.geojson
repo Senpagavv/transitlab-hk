@@ -1,0 +1,5701 @@
+{
+  "type": "FeatureCollection",
+  "name": "TransitLab HK 官方规划铁路及集体运输系统（近似教学几何）",
+  "as_of": "2026-10-02",
+  "coordinate_reference": "WGS84 longitude, latitude (RFC7946)",
+  "disclaimer": "人工读官方图的近似位置，非工程测量、征地界线、出入口或已落实营运方案。未知几何用null，不画猜测线。",
+  "projects": [
+    {
+      "project_id": "NOL",
+      "name_zh": "北环线（主线）",
+      "name_en": "Northern Link (Main Line)",
+      "status": "已动工",
+      "extent": "锦上路—古洞",
+      "via": "凹头、牛潭尾、新田",
+      "length": "约10.7",
+      "stations": "5站区：锦上路、凹头、牛潭尾、新田、古洞",
+      "cost": "全项目未公布；第一部分389亿港元，不含财务成本，价格年份未公布，不能全部归主线",
+      "opening": "2034或之前；第一部分工程2032完成不等于全线通车",
+      "connect": "锦上路：屯马线；古洞：东铁线；新田：规划支线",
+      "areas": "凹头、牛潭尾、新田科技城、古洞北",
+      "notes": "2025动工；第一部分含主线部分土建、支线设计等；古洞东铁站另列，Point共用站区。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "NOLE",
+      "name_zh": "北环线东延线",
+      "name_en": "Northern Link Eastern Extension",
+      "status": "规划中",
+      "extent": "古洞—坪輋",
+      "via": "罗湖南、文锦渡、恐龙坑",
+      "length": "约9.5",
+      "stations": "S18图示5处：古洞、罗湖南、文锦渡、恐龙坑、坪輋；正式配置／站名未公布",
+      "cost": "未公布",
+      "opening": "2039及以后（初步、配合土地发展）",
+      "connect": "古洞：规划主线／东铁线；坪輋：规划新界东北线",
+      "areas": "打鼓岭新发展区（前称新界北新市镇）、罗湖／文锦渡、马草垄",
+      "notes": "采用2025规划图；除古洞外均为暂定图示地名。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "NOLS",
+      "name_zh": "北环线支线",
+      "name_en": "Northern Link Spur Line",
+      "status": "已批准",
+      "extent": "新田—新皇岗口岸",
+      "via": "洲头、河套",
+      "length": "约6.0；香港约4.9（公告取整约5）、深圳约1",
+      "stations": "新建3站：洲头、河套、新皇岗口岸；连同新田接驳共4处",
+      "cost": "未公布；不得将第一部分389亿当作支线造价",
+      "opening": "2034或之前，与主线同步",
+      "connect": "新田：规划主线；新皇岗口岸：深圳地铁网络，具体安排未公布",
+      "areas": "新田科技城、河套园区、跨境通勤",
+      "notes": "香港段2026-09-18获授权；未找到主体正式动工公告。几何用2026-03粗略图，旧长度6.2不采用；深圳端旧图称皇岗口岸。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "HSWRL",
+      "name_zh": "港深西部铁路（洪水桥至前海）",
+      "name_en": "Hong Kong–Shenzhen Western Rail Link (Hung Shui Kiu–Qianhai)",
+      "status": "规划中",
+      "extent": "洪水桥—前海湾",
+      "via": "厦村、流浮山、深圳湾口岸",
+      "length": "约18.1；香港7.3、深圳10.8",
+      "stations": "5站：洪水桥、厦村、流浮山、深圳湾口岸、前海湾",
+      "cost": "未公布；3.038亿港元为勘查设计预算（付款当日价格），非总建造费",
+      "opening": "2035港深同步开通；香港2027具备条件招标",
+      "connect": "洪水桥：屯马线新站；深圳端：地铁网络，具体换乘安排未公布",
+      "areas": "洪水桥／厦村、流浮山、新界西北—前海",
+      "notes": "2025-06起香港段勘查设计；五站位置初步，深圳远端外推精度较低。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "TMS",
+      "name_zh": "屯门南延线",
+      "name_en": "Tuen Mun South Extension",
+      "status": "已动工",
+      "extent": "屯门—屯门南",
+      "via": "屯门河、第16区",
+      "length": "约2.4",
+      "stations": "新增2站：第16区、屯门南；接续屯门站",
+      "cost": "182亿港元；价格年份未公布",
+      "opening": "2030",
+      "connect": "接续屯马线；屯门站现有轻铁接驳",
+      "areas": "屯门南、第16区",
+      "notes": "2023动工；新增站名为工作名称。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "TCL",
+      "name_zh": "东涌线延线",
+      "name_en": "Tung Chung Line Extension",
+      "status": "已动工",
+      "extent": "东涌线东段改线＋东涌—东涌西",
+      "via": "东涌东填海区、逸东邨附近",
+      "length": "工程2.5＝改线1.2＋西延1.3",
+      "stations": "新增2站：东涌东、东涌西；东涌作参考",
+      "cost": "242亿港元；价格年份未公布",
+      "opening": "2029",
+      "connect": "接续东涌线",
+      "areas": "东涌新市镇扩展",
+      "notes": "2023-05动工。东、西段分别LineString，中间既有铁路不计新增长度。香港站掉头隧道延长属辅助工程、不设新站，本数据不画该隧道。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "HSK",
+      "name_zh": "洪水桥站（屯马线新增站）",
+      "name_en": "Hung Shui Kiu Station",
+      "status": "已动工",
+      "extent": "天水围—兆康之间",
+      "via": "洪水桥／厦村站区",
+      "length": "不适用：既有线加站",
+      "stations": "新增1站：洪水桥",
+      "cost": "83亿港元；价格年份未公布",
+      "opening": "2030",
+      "connect": "屯马线；规划接港深西部铁路、洪厦智慧系统",
+      "areas": "洪水桥／厦村",
+      "notes": "2024主体工程展开；与港深西部铁路洪水桥站相邻，分别保留Point。",
+      "kind": "station",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "KT",
+      "name_zh": "古洞站（东铁线新增站）",
+      "name_en": "Kwu Tung Station (East Rail Line)",
+      "status": "已动工",
+      "extent": "上水—落马洲之间",
+      "via": "古洞北",
+      "length": "不适用：既有线加站",
+      "stations": "新增1站：古洞",
+      "cost": "108亿港元，包括北环线主线详细规划设计及前期工程，非纯单站费；价格年份未公布",
+      "opening": "2027",
+      "connect": "东铁线落马洲支线；未来北环线主线／东延",
+      "areas": "古洞北／粉岭北",
+      "notes": "2023-09动工；一个Point代表站区，未表达各线路相邻月台和步行换乘距离。",
+      "kind": "station",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "OB",
+      "name_zh": "小蚝湾站（官方繁体：小蠔灣）",
+      "name_en": "Oyster Bay Station",
+      "status": "已动工",
+      "extent": "欣澳—未来东涌东之间",
+      "via": "小蚝湾车厂用地",
+      "length": "不适用：既有线加站",
+      "stations": "新增1站：小蚝湾",
+      "cost": "67亿港元为车站资本开支，不含车厂重置、物业备置工程及地盘平整；价格年份未公布",
+      "opening": "2030",
+      "connect": "东涌线新增站；未公布另一铁路换乘",
+      "areas": "小蚝湾车厂用地房屋发展",
+      "notes": "2023-12主体动工；官方英文工作名Oyster Bay。",
+      "kind": "station",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "PSK",
+      "name_zh": "白石角站（蓝图旧称科学园／白石角站）",
+      "name_en": "Pak Shek Kok Station",
+      "status": "规划中",
+      "extent": "大学—大埔墟之间",
+      "via": "中大罗桂祥综合生物医学大楼旁",
+      "length": "不适用：既有线加站",
+      "stations": "新增1站：白石角",
+      "cost": "未公布",
+      "opening": "2033或之前；拟2028下半年动工",
+      "connect": "东铁线新增站；行人天桥接科学园，不是铁路换乘",
+      "areas": "白石角、科学园、中大周边",
+      "notes": "采用2026-07新选址，弃用运动中心旧站点。",
+      "kind": "station",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "CRL",
+      "name_zh": "中铁线（官方名称，非“中央铁路”）",
+      "name_en": "Central Rail Link",
+      "status": "规划中",
+      "extent": "锦上路（锦田）—九龙塘",
+      "via": "荃景围、荃湾东北（梨木树）、葵涌东北（石荫／石篱）",
+      "length": "约17",
+      "stations": "图示5站区：锦上路、荃景围、荃湾东北、葵涌东北、九龙塘；中途正式站名未公布",
+      "cost": "未公布",
+      "opening": "2039及以后（蓝图初步目标）",
+      "connect": "锦上路：屯马线／规划北环线；荃景围：拟荃湾线西延；九龙塘：东铁／观塘线",
+      "areas": "北都南北通道、锦田、荃湾／葵涌房屋发展",
+      "notes": "中间三处为暂定站区，不是落实站址。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "TWX",
+      "name_zh": "荃湾线向西延伸（中铁线配套建议）",
+      "name_en": "Tsuen Wan Line Westward Extension [descriptive name]",
+      "status": "规划中",
+      "extent": "荃湾—荃景围",
+      "via": "荃景围",
+      "length": "未公布",
+      "stations": "建议新增1转乘站区（荃景围），正式站名未公布",
+      "cost": "未公布",
+      "opening": "未公布；随中铁线规划",
+      "connect": "荃景围：规划中铁线；接续荃湾线",
+      "areas": "荃景围",
+      "notes": "蓝图有明确建议但未命名为独立项目；英文是描述性译名。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "NENT",
+      "name_zh": "新界东北线",
+      "name_en": "Northeast New Territories Line",
+      "status": "规划中",
+      "extent": "香园围—粉岭",
+      "via": "打鼓岭、坪輋、皇后山",
+      "length": "约8.5",
+      "stations": "S18图示5处：香园围、打鼓岭、坪輋、皇后山、粉岭；正式配置未公布",
+      "cost": "未公布",
+      "opening": "2039及以后（初步、配合土地发展）",
+      "connect": "粉岭：东铁线；坪輋：规划北环线东延",
+      "areas": "打鼓岭新发展区（新界北新市镇）、香园围口岸",
+      "notes": "使用2025图示暂定站点，不与2021北环线东延至粉岭构想重复加载。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "TKOS",
+      "name_zh": "将军澳线南延线",
+      "name_en": "Tseung Kwan O Line Southern Extension",
+      "status": "规划中",
+      "extent": "康城—将军澳第137区",
+      "via": "将军澳创新园外海床",
+      "length": "约4",
+      "stations": "图示新增1终点（第137区）；正式站数／站名未公布",
+      "cost": "未公布",
+      "opening": "2034—2038（蓝图初步目标）",
+      "connect": "接续将军澳线；康城不是新增独立换乘站",
+      "areas": "将军澳第137区",
+      "notes": "海底隧道示意；官方未计划将军澳南新过海铁路至港岛东。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "SILW",
+      "name_zh": "南港岛线（西段）",
+      "name_en": "South Island Line (West)",
+      "status": "规划中",
+      "extent": "黄竹坑—香港大学",
+      "via": "香港仔、田湾、华贵、华富、数码港、玛丽医院",
+      "length": "约7.5",
+      "stations": "8新设施站：黄竹坑、香港仔、田湾、华贵、华富、数码港、玛丽医院、香港大学；工作名称",
+      "cost": "未公布",
+      "opening": "2034或之前；目标2027动工",
+      "connect": "黄竹坑：南港岛线；香港大学：港岛线（行人连接）",
+      "areas": "华富重建、薄扶林南、港岛南／西",
+      "notes": "2026详细设计；转智慧绿色中运量胶轮电力，大部分高架，玛丽医院至港大约1.5公里隧道，不加载为旧重铁方案。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "EKSG",
+      "name_zh": "东九龙智慧绿色集体运输系统",
+      "name_en": "Smart and Green Mass Transit System in East Kowloon",
+      "status": "已批准",
+      "extent": "彩虹东—油塘东",
+      "via": "彩云、顺利、顺安、秀茂坪、宝达、马游塘、蓝田北",
+      "length": "约7",
+      "stations": "9站：彩虹东、彩云、顺利、顺安、秀茂坪、宝达、马游塘、蓝田北、油塘东",
+      "cost": "未公布；财务获批不等于公布建造总价",
+      "opening": "2033或之前；目标2027批合约",
+      "connect": "彩虹东行人接观塘线彩虹；油塘东行人接观塘线／将军澳线油塘",
+      "areas": "观塘上坡社区、安达臣道石矿场发展",
+      "notes": "走线2025-08获批，财务2026-06获批，2026-07招标。系统新站与现有彩虹／油塘分别定位。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "KTSG",
+      "name_zh": "启德智慧绿色集体运输系统",
+      "name_en": "Smart and Green Mass Transit System in Kai Tak",
+      "status": "已批准",
+      "extent": "启德车站广场—邮轮码头",
+      "via": "体育园、拟议都会公园、空中花园、承景街车厂",
+      "length": "约3.5",
+      "stations": "6站位：车站广场、体育园、拟议都会公园、空中花园、承景街车厂、邮轮码头；正式站名未公布",
+      "cost": "未公布",
+      "opening": "2031",
+      "connect": "车站广场行人接屯马线启德站",
+      "areas": "启德前跑道区",
+      "notes": "2026-03-31方案获授权；蓝图4公里／2034—2038已更新。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "HSG",
+      "name_zh": "洪水桥／厦村及元朗南智慧绿色集体运输系统（全网）",
+      "name_en": "Smart and Green Mass Transit System in Hung Shui Kiu/Ha Tsuen and Yuen Long South",
+      "status": "规划中",
+      "extent": "洪水桥／厦村—元朗南（分支网络）",
+      "via": "流浮山、天水围方向、元朗南",
+      "length": "全网约16（含第一阶段4.5）",
+      "stations": "全网站数／其余站名未公布；第一阶段7站另列",
+      "cost": "未公布",
+      "opening": "第一阶段道路2031或之前完成；其余阶段2034—2038（旧蓝图初步）",
+      "connect": "屯马线、轻铁、规划港深西部铁路；未来接驳细节未公布",
+      "areas": "洪水桥／厦村、元朗南",
+      "notes": "2023全网图仅分支走廊；两条几何概念段均默认关闭，不是已公布营运线路。",
+      "kind": "route",
+      "enabled_by_default": false
+    },
+    {
+      "project_id": "HSG1",
+      "name_zh": "洪水桥／厦村智慧绿色集体运输系统（第一阶段）",
+      "name_en": "Smart and Green Mass Transit System in Hung Shui Kiu/Ha Tsuen (Phase 1)",
+      "status": "已批准",
+      "extent": "泥围—物流、企业和科技区",
+      "via": "市中心、住宅区、洪水桥站附近",
+      "length": "约4.5（包含在全网16）",
+      "stations": "7站：A1—A7；正式中英名未公布",
+      "cost": "未公布",
+      "opening": "2031或之前完成相关道路；确实营运日未公布（目标配合入伙）",
+      "connect": "A1附近轻铁泥围；洪水桥附近屯马线新站／拟港深西部铁路；精确换乘未公布",
+      "areas": "洪水桥／厦村第二阶段",
+      "notes": "2026-01相关道路获授权；环保路面模式毋须实体轨道。审批范围不是整条铁路法定授权。",
+      "kind": "route",
+      "enabled_by_default": true
+    },
+    {
+      "project_id": "HKIHSK",
+      "name_zh": "港岛西至洪水桥铁路（2023走廊概念）",
+      "name_en": "Hong Kong Island West–Hung Shui Kiu Rail Link",
+      "status": "研究中",
+      "extent": "港岛西—洪水桥",
+      "via": "交椅洲人工岛、大屿山东北（欣澳）、屯门东",
+      "length": "未公布",
+      "stations": "站数、精确站位／正式站名未公布",
+      "cost": "未公布",
+      "opening": "旧目标最早2038起分阶段；现行落实年份未公布",
+      "connect": "计划接港岛线、东涌线、屯马线；具体站配置未公布",
+      "areas": "交椅洲人工岛、北都与维港都会区",
+      "notes": "旧走廊默认关闭。2026研究无人工岛发展下的过海容量及港深西部铁路南延；没有证据断言替代、合并或取消。",
+      "kind": "route",
+      "enabled_by_default": false
+    },
+    {
+      "project_id": "KYC",
+      "name_zh": "交椅洲人工岛环保集体运输系统",
+      "name_en": "Environmentally Friendly Mass Transit System on the Kau Yi Chau Artificial Islands",
+      "status": "研究中",
+      "extent": "贯通拟议三个人工岛",
+      "via": "实际营运走线未公布",
+      "length": "未公布",
+      "stations": "未公布",
+      "cost": "未公布",
+      "opening": "2039以后为2023概念目标；现行落实年份未公布",
+      "connect": "拟接港岛西至洪水桥铁路，精确点未公布",
+      "areas": "交椅洲人工岛",
+      "notes": "模式／走线待研究；示意图有分叉及环状，不能编一条营运LineString，geometry=null。",
+      "kind": "concept",
+      "enabled_by_default": false
+    },
+    {
+      "project_id": "TBT",
+      "name_zh": "尖鼻咀至白泥绿色运输走廊",
+      "name_en": "Green Transport Corridor from Tsim Bei Tsui to Pak Nai [descriptive name]",
+      "status": "研究中",
+      "extent": "尖鼻咀—白泥",
+      "via": "未公布",
+      "length": "未公布",
+      "stations": "未公布",
+      "cost": "未公布",
+      "opening": "未公布",
+      "connect": "未公布",
+      "areas": "流浮山、尖鼻咀、白泥",
+      "notes": "仅探讨可行性，未确认是否铁路／集体系统；作为边界记录，geometry=null，英文为描述译名。",
+      "kind": "concept",
+      "enabled_by_default": false
+    },
+    {
+      "project_id": "HSWS",
+      "name_zh": "港深西部铁路南延（研究项目）",
+      "name_en": "Southern Extension of Hong Kong–Shenzhen Western Rail Link [descriptive name]",
+      "status": "研究中",
+      "extent": "拟加强机场—北都—内地接驳；实际起讫未公布",
+      "via": "未公布",
+      "length": "未公布",
+      "stations": "未公布",
+      "cost": "未公布",
+      "opening": "未公布；2027提出初步方案不是通车年",
+      "connect": "未公布",
+      "areas": "机场、北都",
+      "notes": "2026提出研究，不用机场地名连直线冒充方案；geometry=null，英文描述译名。",
+      "kind": "concept",
+      "enabled_by_default": false
+    },
+    {
+      "project_id": "NIL",
+      "name_zh": "北港岛线（历史建议／现阶段无迫切性）",
+      "name_en": "North Island Line",
+      "status": "研究中",
+      "extent": "本次现行文件未重新公布起讫方案",
+      "via": "未公布",
+      "length": "现行方案未公布",
+      "stations": "现行站数／站名／站位未公布",
+      "cost": "未公布",
+      "opening": "未公布；蓝图称直至2046仍无迫切性",
+      "connect": "现行配置未公布",
+      "areas": "不作为新区新增运能预设",
+      "notes": "2014历史项目，2023明确无迫切性；geometry=null，默认关闭；2046不是通车年。",
+      "kind": "legacy",
+      "enabled_by_default": false
+    }
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "id": "NOL",
+      "properties": {
+        "project_id": "NOL",
+        "line_id": "NOL",
+        "name_zh": "北环线（主线）",
+        "name_en": "Northern Link (Main Line)",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，人工读图误差估计±500米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约10.7",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.06318,
+            22.43513
+          ],
+          [
+            114.05878,
+            22.44113
+          ],
+          [
+            114.05474,
+            22.4468
+          ],
+          [
+            114.05316,
+            22.45095
+          ],
+          [
+            114.05354,
+            22.45658
+          ],
+          [
+            114.05533,
+            22.4612
+          ],
+          [
+            114.05871,
+            22.46598
+          ],
+          [
+            114.06246,
+            22.47241
+          ],
+          [
+            114.06691,
+            22.47866
+          ],
+          [
+            114.07474,
+            22.48787
+          ],
+          [
+            114.08186,
+            22.49609
+          ],
+          [
+            114.09039,
+            22.50413
+          ],
+          [
+            114.09731,
+            22.50788
+          ],
+          [
+            114.10564,
+            22.5083
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KSR",
+      "properties": {
+        "project_id": "NOL",
+        "line_id": "NOL",
+        "name_zh": "锦上路",
+        "name_en": "Kam Sheung Road",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KSR",
+        "line_ids": [
+          "NOL",
+          "CRL"
+        ],
+        "station_role": "existing_interchange",
+        "name_is_working": false,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          550,
+          710
+        ],
+        "map_key": "NOL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.06318,
+          22.43513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "AUT",
+      "properties": {
+        "project_id": "NOL",
+        "line_id": "NOL",
+        "name_zh": "凹头",
+        "name_en": "Au Tau",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "AUT",
+        "line_ids": [
+          "NOL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          495,
+          581
+        ],
+        "map_key": "NOL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.05354,
+          22.45658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NTM",
+      "properties": {
+        "project_id": "NOL",
+        "line_id": "NOL",
+        "name_zh": "牛潭尾",
+        "name_en": "Ngau Tam Mei",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "NTM",
+        "line_ids": [
+          "NOL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          545,
+          485
+        ],
+        "map_key": "NOL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.06246,
+          22.47241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ST",
+      "properties": {
+        "project_id": "NOL",
+        "line_id": "NOL",
+        "name_zh": "新田",
+        "name_en": "San Tin",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "ST",
+        "line_ids": [
+          "NOL",
+          "NOLS"
+        ],
+        "station_role": "proposed_interchange",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          614,
+          391
+        ],
+        "map_key": "NOL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.07474,
+          22.48787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KT",
+      "properties": {
+        "project_id": "NOL",
+        "line_id": "NOL",
+        "name_zh": "古洞（站区）",
+        "name_en": "Kwu Tung",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KT",
+        "line_ids": [
+          "NOL",
+          "NOLE",
+          "KT"
+        ],
+        "station_role": "proposed_interchange",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          788,
+          266
+        ],
+        "map_key": "NOL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.10564,
+          22.5083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NOLS",
+      "properties": {
+        "project_id": "NOLS",
+        "line_id": "NOLS",
+        "name_zh": "北环线支线",
+        "name_en": "Northern Link Spur Line",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《北环线走线平面图，北区区议会8/2026附件》；S13 PDF第1页；https://www.districtcouncils.gov.hk/north/doc/2024_2027/tc/dc_meetings_doc/31220/ndc_2026_008_ch_annex_01_02.pdf",
+        "source_id": "S13",
+        "source_page": 1,
+        "precision_m": 900,
+        "precision_note": "近似，读自《北环线走线平面图，北区区议会8/2026附件》S13 PDF第1页，人工读图误差估计±900米；不是统计置信区间。2026-03旧图写6.2公里；仅粗略展示，不代替2026-06刊宪图；长度／状态采用S12/S15。2026刊宪局部变动未精细数字化。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约6.0；香港约4.9（公告取整约5）、深圳约1",
+        "source_title": "北环线走线平面图，北区区议会8/2026附件",
+        "source_file": "S13_北环线及支线走线_2026.pdf",
+        "map_image": "sources/读图辅助/S13_PDF1.png",
+        "map_image_size_px": [
+          834,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.07524,
+            22.4927
+          ],
+          [
+            114.07817,
+            22.49676
+          ],
+          [
+            114.07999,
+            22.50124
+          ],
+          [
+            114.07805,
+            22.50413
+          ],
+          [
+            114.07566,
+            22.506
+          ],
+          [
+            114.07374,
+            22.51073
+          ],
+          [
+            114.07313,
+            22.51402
+          ],
+          [
+            114.07427,
+            22.51666
+          ],
+          [
+            114.08026,
+            22.51945
+          ],
+          [
+            114.08226,
+            22.52107
+          ],
+          [
+            114.08229,
+            22.52291
+          ],
+          [
+            114.07878,
+            22.52377
+          ],
+          [
+            114.07439,
+            22.52485
+          ],
+          [
+            114.06759,
+            22.52739
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CT",
+      "properties": {
+        "project_id": "NOLS",
+        "line_id": "NOLS",
+        "name_zh": "洲头",
+        "name_en": "Chau Tau",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "CT",
+        "line_ids": [
+          "NOLS"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《北环线走线平面图，北区区议会8/2026附件》；S13 PDF第1页；https://www.districtcouncils.gov.hk/north/doc/2024_2027/tc/dc_meetings_doc/31220/ndc_2026_008_ch_annex_01_02.pdf",
+        "source_id": "S13",
+        "source_page": 1,
+        "precision_m": 900,
+        "precision_note": "近似，读自《北环线走线平面图，北区区议会8/2026附件》S13 PDF第1页，估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          338,
+          277
+        ],
+        "map_key": "SPUR",
+        "source_title": "北环线走线平面图，北区区议会8/2026附件",
+        "source_file": "S13_北环线及支线走线_2026.pdf",
+        "map_image": "sources/读图辅助/S13_PDF1.png",
+        "map_image_size_px": [
+          834,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.07566,
+          22.506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LOOP",
+      "properties": {
+        "project_id": "NOLS",
+        "line_id": "NOLS",
+        "name_zh": "河套",
+        "name_en": "Loop",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "LOOP",
+        "line_ids": [
+          "NOLS"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《北环线走线平面图，北区区议会8/2026附件》；S13 PDF第1页；https://www.districtcouncils.gov.hk/north/doc/2024_2027/tc/dc_meetings_doc/31220/ndc_2026_008_ch_annex_01_02.pdf",
+        "source_id": "S13",
+        "source_page": 1,
+        "precision_m": 900,
+        "precision_note": "近似，读自《北环线走线平面图，北区区议会8/2026附件》S13 PDF第1页，估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          351,
+          190
+        ],
+        "map_key": "SPUR",
+        "source_title": "北环线走线平面图，北区区议会8/2026附件",
+        "source_file": "S13_北环线及支线走线_2026.pdf",
+        "map_image": "sources/读图辅助/S13_PDF1.png",
+        "map_image_size_px": [
+          834,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.07878,
+          22.52377
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HGP",
+      "properties": {
+        "project_id": "NOLS",
+        "line_id": "NOLS",
+        "name_zh": "新皇岗口岸",
+        "name_en": "New Huanggang Port",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HGP",
+        "line_ids": [
+          "NOLS"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《北环线走线平面图，北区区议会8/2026附件》；S13 PDF第1页；https://www.districtcouncils.gov.hk/north/doc/2024_2027/tc/dc_meetings_doc/31220/ndc_2026_008_ch_annex_01_02.pdf",
+        "source_id": "S13",
+        "source_page": 1,
+        "precision_m": 900,
+        "precision_note": "近似，读自《北环线走线平面图，北区区议会8/2026附件》S13 PDF第1页，估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          300,
+          173
+        ],
+        "map_key": "SPUR",
+        "source_title": "北环线走线平面图，北区区议会8/2026附件",
+        "source_file": "S13_北环线及支线走线_2026.pdf",
+        "map_image": "sources/读图辅助/S13_PDF1.png",
+        "map_image_size_px": [
+          834,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.06759,
+          22.52739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSWRL",
+      "properties": {
+        "project_id": "HSWRL",
+        "line_id": "HSWRL",
+        "name_zh": "港深西部铁路（洪水桥至前海）",
+        "name_en": "Hong Kong–Shenzhen Western Rail Link (Hung Shui Kiu–Qianhai)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《港深西部铁路香港段勘查设计PWSC(2025-26)7》；S05 PDF第13页；https://www.legco.gov.hk/yr2025/chinese/fc/pwsc/papers/P25-7-c.pdf",
+        "source_id": "S05",
+        "source_page": 13,
+        "precision_m": 2000,
+        "precision_note": "近似，读自《港深西部铁路香港段勘查设计PWSC(2025-26)7》S05 PDF第13页，人工读图误差估计±2000米；不是统计置信区间。跨境图以香港既有站校准，远端外推误差较大；未使用GCJ-02地图。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约18.1；香港7.3、深圳10.8",
+        "source_title": "港深西部铁路香港段勘查设计PWSC(2025-26)7",
+        "source_file": "S05_港深西部铁路勘查设计_PWSC2025-26-7.pdf",
+        "map_image": "sources/读图辅助/S05_PDF13.png",
+        "map_image_size_px": [
+          953,
+          1348
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.98836,
+            22.43237
+          ],
+          [
+            113.99083,
+            22.43729
+          ],
+          [
+            113.9936,
+            22.44409
+          ],
+          [
+            113.99545,
+            22.44959
+          ],
+          [
+            113.99528,
+            22.4532
+          ],
+          [
+            113.99169,
+            22.4584
+          ],
+          [
+            113.98685,
+            22.46185
+          ],
+          [
+            113.98062,
+            22.46631
+          ],
+          [
+            113.9736,
+            22.47207
+          ],
+          [
+            113.96642,
+            22.4784
+          ],
+          [
+            113.95955,
+            22.48474
+          ],
+          [
+            113.95252,
+            22.49194
+          ],
+          [
+            113.9469,
+            22.49799
+          ],
+          [
+            113.94455,
+            22.50174
+          ],
+          [
+            113.94173,
+            22.50607
+          ],
+          [
+            113.93768,
+            22.50793
+          ],
+          [
+            113.93301,
+            22.50821
+          ],
+          [
+            113.9159,
+            22.50814
+          ],
+          [
+            113.91061,
+            22.50942
+          ],
+          [
+            113.9053,
+            22.51403
+          ],
+          [
+            113.9003,
+            22.51965
+          ],
+          [
+            113.89514,
+            22.52527
+          ],
+          [
+            113.89107,
+            22.53045
+          ],
+          [
+            113.88887,
+            22.53637
+          ],
+          [
+            113.88854,
+            22.53998
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSK_XB",
+      "properties": {
+        "project_id": "HSWRL",
+        "line_id": "HSWRL",
+        "name_zh": "洪水桥（港深西部铁路）",
+        "name_en": "Hung Shui Kiu (HSWRL)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSK_XB",
+        "line_ids": [
+          "HSWRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《港深西部铁路香港段勘查设计PWSC(2025-26)7》；S05 PDF第13页；https://www.legco.gov.hk/yr2025/chinese/fc/pwsc/papers/P25-7-c.pdf",
+        "source_id": "S05",
+        "source_page": 13,
+        "precision_m": 2000,
+        "precision_note": "近似，读自《港深西部铁路香港段勘查设计PWSC(2025-26)7》S05 PDF第13页，估计±2000米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          724,
+          902
+        ],
+        "map_key": "HSWRL",
+        "source_title": "港深西部铁路香港段勘查设计PWSC(2025-26)7",
+        "source_file": "S05_港深西部铁路勘查设计_PWSC2025-26-7.pdf",
+        "map_image": "sources/读图辅助/S05_PDF13.png",
+        "map_image_size_px": [
+          953,
+          1348
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.98836,
+          22.43237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HT",
+      "properties": {
+        "project_id": "HSWRL",
+        "line_id": "HSWRL",
+        "name_zh": "厦村",
+        "name_en": "Ha Tsuen",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HT",
+        "line_ids": [
+          "HSWRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《港深西部铁路香港段勘查设计PWSC(2025-26)7》；S05 PDF第13页；https://www.legco.gov.hk/yr2025/chinese/fc/pwsc/papers/P25-7-c.pdf",
+        "source_id": "S05",
+        "source_page": 13,
+        "precision_m": 2000,
+        "precision_note": "近似，读自《港深西部铁路香港段勘查设计PWSC(2025-26)7》S05 PDF第13页，估计±2000米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          769,
+          758
+        ],
+        "map_key": "HSWRL",
+        "source_title": "港深西部铁路香港段勘查设计PWSC(2025-26)7",
+        "source_file": "S05_港深西部铁路勘查设计_PWSC2025-26-7.pdf",
+        "map_image": "sources/读图辅助/S05_PDF13.png",
+        "map_image_size_px": [
+          953,
+          1348
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.99528,
+          22.4532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LFS",
+      "properties": {
+        "project_id": "HSWRL",
+        "line_id": "HSWRL",
+        "name_zh": "流浮山",
+        "name_en": "Lau Fau Shan",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "LFS",
+        "line_ids": [
+          "HSWRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《港深西部铁路香港段勘查设计PWSC(2025-26)7》；S05 PDF第13页；https://www.legco.gov.hk/yr2025/chinese/fc/pwsc/papers/P25-7-c.pdf",
+        "source_id": "S05",
+        "source_page": 13,
+        "precision_m": 2000,
+        "precision_note": "近似，读自《港深西部铁路香港段勘查设计PWSC(2025-26)7》S05 PDF第13页，估计±2000米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          715,
+          698
+        ],
+        "map_key": "HSWRL",
+        "source_title": "港深西部铁路香港段勘查设计PWSC(2025-26)7",
+        "source_file": "S05_港深西部铁路勘查设计_PWSC2025-26-7.pdf",
+        "map_image": "sources/读图辅助/S05_PDF13.png",
+        "map_image_size_px": [
+          953,
+          1348
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.98685,
+          22.46185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SZB",
+      "properties": {
+        "project_id": "HSWRL",
+        "line_id": "HSWRL",
+        "name_zh": "深圳湾口岸",
+        "name_en": "Shenzhen Bay Port",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "SZB",
+        "line_ids": [
+          "HSWRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《港深西部铁路香港段勘查设计PWSC(2025-26)7》；S05 PDF第13页；https://www.legco.gov.hk/yr2025/chinese/fc/pwsc/papers/P25-7-c.pdf",
+        "source_id": "S05",
+        "source_page": 13,
+        "precision_m": 2000,
+        "precision_note": "近似，读自《港深西部铁路香港段勘查设计PWSC(2025-26)7》S05 PDF第13页，估计±2000米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          444,
+          421
+        ],
+        "map_key": "HSWRL",
+        "source_title": "港深西部铁路香港段勘查设计PWSC(2025-26)7",
+        "source_file": "S05_港深西部铁路勘查设计_PWSC2025-26-7.pdf",
+        "map_image": "sources/读图辅助/S05_PDF13.png",
+        "map_image_size_px": [
+          953,
+          1348
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.94455,
+          22.50174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "QHB",
+      "properties": {
+        "project_id": "HSWRL",
+        "line_id": "HSWRL",
+        "name_zh": "前海湾",
+        "name_en": "Qianhai Bay",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "QHB",
+        "line_ids": [
+          "HSWRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《港深西部铁路香港段勘查设计PWSC(2025-26)7》；S05 PDF第13页；https://www.legco.gov.hk/yr2025/chinese/fc/pwsc/papers/P25-7-c.pdf",
+        "source_id": "S05",
+        "source_page": 13,
+        "precision_m": 2000,
+        "precision_note": "近似，读自《港深西部铁路香港段勘查设计PWSC(2025-26)7》S05 PDF第13页，估计±2000米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          85,
+          155
+        ],
+        "map_key": "HSWRL",
+        "source_title": "港深西部铁路香港段勘查设计PWSC(2025-26)7",
+        "source_file": "S05_港深西部铁路勘查设计_PWSC2025-26-7.pdf",
+        "map_image": "sources/读图辅助/S05_PDF13.png",
+        "map_image_size_px": [
+          953,
+          1348
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.88854,
+          22.53998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TMS",
+      "properties": {
+        "project_id": "TMS",
+        "line_id": "TMS",
+        "name_zh": "屯门南延线",
+        "name_en": "Tuen Mun South Extension",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第11页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 11,
+        "precision_m": 300,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第11页，人工读图误差估计±300米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约2.4",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF11.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.97319,
+            22.39511
+          ],
+          [
+            113.97243,
+            22.39253
+          ],
+          [
+            113.97118,
+            22.38856
+          ],
+          [
+            113.97021,
+            22.38674
+          ],
+          [
+            113.969,
+            22.38482
+          ],
+          [
+            113.96802,
+            22.38258
+          ],
+          [
+            113.96715,
+            22.38022
+          ],
+          [
+            113.96571,
+            22.37808
+          ],
+          [
+            113.96519,
+            22.3755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TM",
+      "properties": {
+        "project_id": "TMS",
+        "line_id": "TMS",
+        "name_zh": "屯门",
+        "name_en": "Tuen Mun",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TM",
+        "line_ids": [
+          "TMS"
+        ],
+        "station_role": "existing_endpoint",
+        "name_is_working": false,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第11页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 11,
+        "precision_m": 300,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第11页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          792,
+          362
+        ],
+        "map_key": "TMS",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF11.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.97319,
+          22.39511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "A16",
+      "properties": {
+        "project_id": "TMS",
+        "line_id": "TMS",
+        "name_zh": "第16区",
+        "name_en": "Area 16",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "A16",
+        "line_ids": [
+          "TMS"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第11页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 11,
+        "precision_m": 300,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第11页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          758,
+          458
+        ],
+        "map_key": "TMS",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF11.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.969,
+          22.38482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TMS_ST",
+      "properties": {
+        "project_id": "TMS",
+        "line_id": "TMS",
+        "name_zh": "屯门南",
+        "name_en": "Tuen Mun South",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TMS_ST",
+        "line_ids": [
+          "TMS"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第11页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 11,
+        "precision_m": 300,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第11页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          727,
+          545
+        ],
+        "map_key": "TMS",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF11.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.96519,
+          22.3755
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TCL_W",
+      "properties": {
+        "project_id": "TCL",
+        "line_id": "TCL_W",
+        "name_zh": "东涌线延线（西延段）",
+        "name_en": "Tung Chung Line Extension [西延段]",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第7页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 7,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第7页，人工读图误差估计±400米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "工程2.5＝改线1.2＋西延1.3",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF7.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.94127,
+            22.28918
+          ],
+          [
+            113.93905,
+            22.28796
+          ],
+          [
+            113.93762,
+            22.28608
+          ],
+          [
+            113.93696,
+            22.2838
+          ],
+          [
+            113.93678,
+            22.28111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TCL_E",
+      "properties": {
+        "project_id": "TCL",
+        "line_id": "TCL_E",
+        "name_zh": "东涌线延线（东段改线）",
+        "name_en": "Tung Chung Line Extension [东段改线]",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第7页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 7,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第7页，人工读图误差估计±400米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "工程2.5＝改线1.2＋西延1.3",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF7.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.95565,
+            22.29648
+          ],
+          [
+            113.95802,
+            22.29769
+          ],
+          [
+            113.96071,
+            22.29864
+          ],
+          [
+            113.9637,
+            22.29946
+          ],
+          [
+            113.96654,
+            22.30041
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TC",
+      "properties": {
+        "project_id": "TCL",
+        "line_id": "TCL_W",
+        "name_zh": "东涌",
+        "name_en": "Tung Chung",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TC",
+        "line_ids": [
+          "TCL_W"
+        ],
+        "station_role": "existing_endpoint",
+        "name_is_working": false,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第7页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 7,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第7页，估计±400米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          615,
+          524
+        ],
+        "map_key": "TCL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF7.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.94127,
+          22.28918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TCW",
+      "properties": {
+        "project_id": "TCL",
+        "line_id": "TCL_W",
+        "name_zh": "东涌西",
+        "name_en": "Tung Chung West",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TCW",
+        "line_ids": [
+          "TCL_W"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第7页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 7,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第7页，估计±400米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          583,
+          580
+        ],
+        "map_key": "TCL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF7.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.93678,
+          22.28111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TCE",
+      "properties": {
+        "project_id": "TCL",
+        "line_id": "TCL_E",
+        "name_zh": "东涌东",
+        "name_en": "Tung Chung East",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TCE",
+        "line_ids": [
+          "TCL_E"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第7页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 7,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第7页，估计±400米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          746,
+          462
+        ],
+        "map_key": "TCL",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF7.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.96071,
+          22.29864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSK_REF",
+      "properties": {
+        "project_id": "HSK",
+        "line_id": "HSK_REF",
+        "name_zh": "洪水桥站（屯马线新增站）",
+        "name_en": "Hung Shui Kiu Station",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "existing_track_reference",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第15页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 15,
+        "precision_m": 300,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第15页，人工读图误差估计±300米；不是统计置信区间。仅为既有屯马线定位参考，非新增线。",
+        "geometry_status": "近似示意",
+        "published_project_length": "不适用：既有线加站",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF15.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.99466,
+            22.44188
+          ],
+          [
+            113.99244,
+            22.43808
+          ],
+          [
+            113.98953,
+            22.43228
+          ],
+          [
+            113.98731,
+            22.42739
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSK_TML",
+      "properties": {
+        "project_id": "HSK",
+        "line_id": "HSK",
+        "name_zh": "洪水桥（屯马线）",
+        "name_en": "Hung Shui Kiu (Tuen Ma Line)",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSK_TML",
+        "line_ids": [
+          "HSK",
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第15页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 15,
+        "precision_m": 300,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第15页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          995,
+          621
+        ],
+        "map_key": "HSK",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF15.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.98953,
+          22.43228
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KT_REF",
+      "properties": {
+        "project_id": "KT",
+        "line_id": "KT_REF",
+        "name_zh": "古洞站（东铁线新增站）",
+        "name_en": "Kwu Tung Station (East Rail Line)",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "existing_track_reference",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第13页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 13,
+        "precision_m": 500,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第13页，人工读图误差估计±500米；不是统计置信区间。仅为既有东铁线落马洲支线定位参考，非新增线。",
+        "geometry_status": "近似示意",
+        "published_project_length": "不适用：既有线加站",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF13.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.09643,
+            22.50871
+          ],
+          [
+            114.10139,
+            22.50851
+          ],
+          [
+            114.10564,
+            22.5083
+          ],
+          [
+            114.11095,
+            22.50726
+          ],
+          [
+            114.11607,
+            22.50523
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "OB_REF",
+      "properties": {
+        "project_id": "OB",
+        "line_id": "OB_REF",
+        "name_zh": "小蚝湾站（官方繁体：小蠔灣）",
+        "name_en": "Oyster Bay Station",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "existing_track_reference",
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第9页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 9,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第9页，人工读图误差估计±400米；不是统计置信区间。既有东涌线定位参考，非新线。",
+        "geometry_status": "近似示意",
+        "published_project_length": "不适用：既有线加站",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF9.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.97429,
+            22.30538
+          ],
+          [
+            113.97711,
+            22.30662
+          ],
+          [
+            113.97975,
+            22.30857
+          ],
+          [
+            113.98298,
+            22.31068
+          ],
+          [
+            113.98579,
+            22.31221
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "OB",
+      "properties": {
+        "project_id": "OB",
+        "line_id": "OB",
+        "name_zh": "小蚝湾",
+        "name_en": "Oyster Bay",
+        "status": "已动工",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "OB",
+        "line_ids": [
+          "OB"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新铁路项目进展CB(3)955/2024(04)》；S07 PDF第9页；https://www.legco.gov.hk/yr2024/chinese/panels/tp/tp_rsc/papers/tp_rsc20241206cb3-955-4-c.pdf",
+        "source_id": "S07",
+        "source_page": 9,
+        "precision_m": 400,
+        "precision_note": "近似，读自《新铁路项目进展CB(3)955/2024(04)》S07 PDF第9页，估计±400米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          878,
+          398
+        ],
+        "map_key": "OB",
+        "source_title": "新铁路项目进展CB(3)955/2024(04)",
+        "source_file": "S07_新铁路项目进展_20241206.pdf",
+        "map_image": "sources/读图辅助/S07_PDF9.png",
+        "map_image_size_px": [
+          1516,
+          1072
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.97975,
+          22.30857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PSK_REF",
+      "properties": {
+        "project_id": "PSK",
+        "line_id": "PSK_REF",
+        "name_zh": "白石角站（蓝图旧称科学园／白石角站）",
+        "name_en": "Pak Shek Kok Station",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "existing_track_reference",
+        "source": "《白石角站发展项目，大埔区议会SHD33/2026》；S10 PDF第6页；https://www.districtcouncils.gov.hk/tp/doc/2024_2027/tc/committee_meetings_doc/SHDC/32180/SHD_33_2026.pdf",
+        "source_id": "S10",
+        "source_page": 6,
+        "precision_m": 300,
+        "precision_note": "近似，读自《白石角站发展项目，大埔区议会SHD33/2026》S10 PDF第6页，人工读图误差估计±300米；不是统计置信区间。蓝色斜线站区中部，不用运动中心旧站址。既有东铁线定位参考，非新线。",
+        "geometry_status": "近似示意",
+        "published_project_length": "不适用：既有线加站",
+        "source_title": "白石角站发展项目，大埔区议会SHD33/2026",
+        "source_file": "S10_白石角站位置_202607.pdf",
+        "map_image": "sources/读图辅助/S10_PDF6.png",
+        "map_image_size_px": [
+          1668,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.20324,
+            22.42845
+          ],
+          [
+            114.20387,
+            22.42805
+          ],
+          [
+            114.20468,
+            22.42757
+          ],
+          [
+            114.20531,
+            22.42719
+          ],
+          [
+            114.20601,
+            22.42673
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PSK",
+      "properties": {
+        "project_id": "PSK",
+        "line_id": "PSK",
+        "name_zh": "白石角",
+        "name_en": "Pak Shek Kok",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "PSK",
+        "line_ids": [
+          "PSK"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《白石角站发展项目，大埔区议会SHD33/2026》；S10 PDF第6页；https://www.districtcouncils.gov.hk/tp/doc/2024_2027/tc/committee_meetings_doc/SHDC/32180/SHD_33_2026.pdf",
+        "source_id": "S10",
+        "source_page": 6,
+        "precision_m": 300,
+        "precision_note": "近似，读自《白石角站发展项目，大埔区议会SHD33/2026》S10 PDF第6页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          774,
+          529
+        ],
+        "map_key": "PSK",
+        "source_title": "白石角站发展项目，大埔区议会SHD33/2026",
+        "source_file": "S10_白石角站位置_202607.pdf",
+        "map_image": "sources/读图辅助/S10_PDF6.png",
+        "map_image_size_px": [
+          1668,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.20468,
+          22.42757
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CRL",
+      "properties": {
+        "project_id": "CRL",
+        "line_id": "CRL",
+        "name_zh": "中铁线（官方名称，非“中央铁路”）",
+        "name_en": "Central Rail Link",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），人工读图误差估计±900米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约17",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.06318,
+            22.43513
+          ],
+          [
+            114.07677,
+            22.41576
+          ],
+          [
+            114.0893,
+            22.39826
+          ],
+          [
+            114.10174,
+            22.38525
+          ],
+          [
+            114.11203,
+            22.37857
+          ],
+          [
+            114.11987,
+            22.37988
+          ],
+          [
+            114.12621,
+            22.3807
+          ],
+          [
+            114.13258,
+            22.37939
+          ],
+          [
+            114.13726,
+            22.37332
+          ],
+          [
+            114.14039,
+            22.36936
+          ],
+          [
+            114.14988,
+            22.36432
+          ],
+          [
+            114.16014,
+            22.35859
+          ],
+          [
+            114.16795,
+            22.34833
+          ],
+          [
+            114.17578,
+            22.33712
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TSC",
+      "properties": {
+        "project_id": "CRL",
+        "line_id": "CRL",
+        "name_zh": "荃景围（暂定站区）",
+        "name_en": "Tsuen King Circuit",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TSC",
+        "line_ids": [
+          "CRL",
+          "TWX"
+        ],
+        "station_role": "proposed_interchange",
+        "name_is_working": true,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          594,
+          850
+        ],
+        "map_key": "CENTRAL",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.11203,
+          22.37857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NETW",
+      "properties": {
+        "project_id": "CRL",
+        "line_id": "CRL",
+        "name_zh": "荃湾东北（梨木树附近）",
+        "name_en": "Tsuen Wan Northeast (near Lei Muk Shue)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "NETW",
+        "line_ids": [
+          "CRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          675,
+          848
+        ],
+        "map_key": "CENTRAL",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13258,
+          22.37939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NEKC",
+      "properties": {
+        "project_id": "CRL",
+        "line_id": "CRL",
+        "name_zh": "葵涌东北（石荫／石篱附近）",
+        "name_en": "Kwai Chung Northeast (near Shek Yam/Shek Lei)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "NEKC",
+        "line_ids": [
+          "CRL"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          705,
+          891
+        ],
+        "map_key": "CENTRAL",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.14039,
+          22.36936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KOT",
+      "properties": {
+        "project_id": "CRL",
+        "line_id": "CRL",
+        "name_zh": "九龙塘",
+        "name_en": "Kowloon Tong",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KOT",
+        "line_ids": [
+          "CRL"
+        ],
+        "station_role": "existing_interchange",
+        "name_is_working": false,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          842,
+          1030
+        ],
+        "map_key": "CENTRAL",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.17578,
+          22.33712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TWX",
+      "properties": {
+        "project_id": "TWX",
+        "line_id": "TWX",
+        "name_zh": "荃湾线向西延伸（中铁线配套建议）",
+        "name_en": "Tsuen Wan Line Westward Extension [descriptive name]",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "planning_connection",
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），人工读图误差估计±900米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "未公布",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.12512,
+            22.37123
+          ],
+          [
+            114.12002,
+            22.37233
+          ],
+          [
+            114.11614,
+            22.37581
+          ],
+          [
+            114.11203,
+            22.37857
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TW",
+      "properties": {
+        "project_id": "TWX",
+        "line_id": "TWX",
+        "name_zh": "荃湾",
+        "name_en": "Tsuen Wan",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TW",
+        "line_ids": [
+          "TWX"
+        ],
+        "station_role": "existing_endpoint",
+        "name_is_working": false,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第20页（印刷第18页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 20,
+        "precision_m": 900,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第20页（印刷第18页），估计±900米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          645,
+          882
+        ],
+        "map_key": "CENTRAL",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF20.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.12512,
+          22.37123
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NOLE",
+      "properties": {
+        "project_id": "NOLE",
+        "line_id": "NOLE",
+        "name_zh": "北环线东延线",
+        "name_en": "Northern Link Eastern Extension",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，人工读图误差估计±1500米；不是统计置信区间。口岸大楼只作区域控制点；站位尚在规划中。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约9.5",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.10564,
+            22.5083
+          ],
+          [
+            114.11019,
+            22.50835
+          ],
+          [
+            114.11186,
+            22.51018
+          ],
+          [
+            114.1122,
+            22.51381
+          ],
+          [
+            114.11291,
+            22.51702
+          ],
+          [
+            114.11709,
+            22.51915
+          ],
+          [
+            114.12032,
+            22.52184
+          ],
+          [
+            114.12365,
+            22.52563
+          ],
+          [
+            114.12555,
+            22.52983
+          ],
+          [
+            114.12564,
+            22.53596
+          ],
+          [
+            114.12551,
+            22.53833
+          ],
+          [
+            114.12658,
+            22.54057
+          ],
+          [
+            114.13077,
+            22.54103
+          ],
+          [
+            114.13521,
+            22.5408
+          ],
+          [
+            114.13942,
+            22.5382
+          ],
+          [
+            114.14267,
+            22.5342
+          ],
+          [
+            114.14617,
+            22.53062
+          ],
+          [
+            114.14822,
+            22.52786
+          ],
+          [
+            114.15278,
+            22.52568
+          ],
+          [
+            114.15698,
+            22.52489
+          ],
+          [
+            114.16129,
+            22.52494
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LWS",
+      "properties": {
+        "project_id": "NOLE",
+        "line_id": "NOLE",
+        "name_zh": "罗湖南（暂定）",
+        "name_en": "Lo Wu South",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "LWS",
+        "line_ids": [
+          "NOLE"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18标注站位尚在规划中，地名不是核定站名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          522,
+          491
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.12365,
+          22.52563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MKT",
+      "properties": {
+        "project_id": "NOLE",
+        "line_id": "NOLE",
+        "name_zh": "文锦渡（暂定）",
+        "name_en": "Man Kam To",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "MKT",
+        "line_ids": [
+          "NOLE"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18标注站位尚在规划中，地名不是核定站名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          582,
+          381
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13077,
+          22.54103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HLH",
+      "properties": {
+        "project_id": "NOLE",
+        "line_id": "NOLE",
+        "name_zh": "恐龙坑（暂定）",
+        "name_en": "Hung Lung Hang",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HLH",
+        "line_ids": [
+          "NOLE"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18标注站位尚在规划中，地名不是核定站名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          710,
+          457
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.14617,
+          22.53062
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PC",
+      "properties": {
+        "project_id": "NOLE",
+        "line_id": "NOLE",
+        "name_zh": "坪輋（暂定）",
+        "name_en": "Ping Che",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "PC",
+        "line_ids": [
+          "NOLE",
+          "NENT"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18标注站位尚在规划中，地名不是核定站名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          836,
+          499
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.16129,
+          22.52494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NENT",
+      "properties": {
+        "project_id": "NENT",
+        "line_id": "NENT",
+        "name_zh": "新界东北线",
+        "name_en": "Northeast New Territories Line",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，人工读图误差估计±1500米；不是统计置信区间。口岸大楼只作区域控制点；站位尚在规划中。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约8.5",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.15385,
+            22.55354
+          ],
+          [
+            114.15482,
+            22.55063
+          ],
+          [
+            114.15568,
+            22.54743
+          ],
+          [
+            114.15438,
+            22.54338
+          ],
+          [
+            114.15512,
+            22.53796
+          ],
+          [
+            114.15694,
+            22.53394
+          ],
+          [
+            114.16091,
+            22.53106
+          ],
+          [
+            114.16152,
+            22.52842
+          ],
+          [
+            114.16129,
+            22.52494
+          ],
+          [
+            114.16071,
+            22.52048
+          ],
+          [
+            114.16086,
+            22.51407
+          ],
+          [
+            114.15969,
+            22.5096
+          ],
+          [
+            114.15646,
+            22.50776
+          ],
+          [
+            114.15119,
+            22.50575
+          ],
+          [
+            114.14713,
+            22.5025
+          ],
+          [
+            114.14416,
+            22.49718
+          ],
+          [
+            114.13867,
+            22.4921
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HYY",
+      "properties": {
+        "project_id": "NENT",
+        "line_id": "NENT",
+        "name_zh": "香园围（暂定）",
+        "name_en": "Heung Yuen Wai",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HYY",
+        "line_ids": [
+          "NENT"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18图示、尚在规划中。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          775,
+          293
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.15385,
+          22.55354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TKL",
+      "properties": {
+        "project_id": "NENT",
+        "line_id": "NENT",
+        "name_zh": "打鼓岭（暂定）",
+        "name_en": "Ta Kwu Ling",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TKL",
+        "line_ids": [
+          "NENT"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18图示、尚在规划中。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          785,
+          405
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.15512,
+          22.53796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "QH",
+      "properties": {
+        "project_id": "NENT",
+        "line_id": "NENT",
+        "name_zh": "皇后山（暂定）",
+        "name_en": "Queen’s Hill",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "QH",
+        "line_ids": [
+          "NENT"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18图示、尚在规划中。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          795,
+          622
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.15646,
+          22.50776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FAN",
+      "properties": {
+        "project_id": "NENT",
+        "line_id": "NENT",
+        "name_zh": "粉岭",
+        "name_en": "Fanling",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "FAN",
+        "line_ids": [
+          "NENT"
+        ],
+        "station_role": "existing_endpoint",
+        "name_is_working": false,
+        "source": "《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》；S18 PDF第5页；https://www.legco.gov.hk/yr2025/chinese/panels/dev/papers/dev20250124cb1-130-1-ec.pdf",
+        "source_id": "S18",
+        "source_page": 5,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《新界北新市镇及马草垄发展建议CB(1)130/2025(01)》S18 PDF第5页，估计±1500米。S18图示、尚在规划中。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          646,
+          733
+        ],
+        "map_key": "NTN",
+        "source_title": "新界北新市镇及马草垄发展建议CB(1)130/2025(01)",
+        "source_file": "S18_新界北新市镇规划建议_202501.pdf",
+        "map_image": "sources/读图辅助/S18_PDF5.png",
+        "map_image_size_px": [
+          1632,
+          918
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13867,
+          22.4921
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TKOS",
+      "properties": {
+        "project_id": "TKOS",
+        "line_id": "TKOS",
+        "name_zh": "将军澳线南延线",
+        "name_en": "Tseung Kwan O Line Southern Extension",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第22页（印刷第20页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 22,
+        "precision_m": 1000,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第22页（印刷第20页），人工读图误差估计±1000米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约4",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF22.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.26961,
+            22.29632
+          ],
+          [
+            114.26821,
+            22.29453
+          ],
+          [
+            114.26682,
+            22.29171
+          ],
+          [
+            114.26638,
+            22.28868
+          ],
+          [
+            114.26604,
+            22.28506
+          ],
+          [
+            114.26583,
+            22.2827
+          ],
+          [
+            114.26666,
+            22.28005
+          ],
+          [
+            114.26892,
+            22.2769
+          ],
+          [
+            114.27127,
+            22.27324
+          ],
+          [
+            114.27354,
+            22.26892
+          ],
+          [
+            114.27517,
+            22.26561
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LHP",
+      "properties": {
+        "project_id": "TKOS",
+        "line_id": "TKOS",
+        "name_zh": "康城",
+        "name_en": "LOHAS Park",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "LHP",
+        "line_ids": [
+          "TKOS"
+        ],
+        "station_role": "existing_endpoint",
+        "name_is_working": false,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第22页（印刷第20页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 22,
+        "precision_m": 1000,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第22页（印刷第20页），估计±1000米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          643,
+          618
+        ],
+        "map_key": "TKOS",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF22.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.26961,
+          22.29632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TKO137",
+      "properties": {
+        "project_id": "TKOS",
+        "line_id": "TKOS",
+        "name_zh": "将军澳第137区（暂定终点）",
+        "name_en": "Tseung Kwan O Area 137",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TKO137",
+        "line_ids": [
+          "TKOS"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第22页（印刷第20页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 22,
+        "precision_m": 1000,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第22页（印刷第20页），估计±1000米。图示终点地区，正式站名／配置未公布。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          708,
+          1035
+        ],
+        "map_key": "TKOS",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF22.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.27517,
+          22.26561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SILW",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "南港岛线（西段）",
+        "name_en": "South Island Line (West)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，人工读图误差估计±500米；不是统计置信区间。终点图示邻近现有站；不表示月台／闸口位置相同。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约7.5",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.16799,
+            22.24798
+          ],
+          [
+            114.16606,
+            22.24764
+          ],
+          [
+            114.16295,
+            22.2476
+          ],
+          [
+            114.16104,
+            22.24805
+          ],
+          [
+            114.16025,
+            22.24811
+          ],
+          [
+            114.15866,
+            22.24772
+          ],
+          [
+            114.15703,
+            22.2472
+          ],
+          [
+            114.15605,
+            22.2474
+          ],
+          [
+            114.15359,
+            22.24813
+          ],
+          [
+            114.15163,
+            22.24858
+          ],
+          [
+            114.14967,
+            22.24888
+          ],
+          [
+            114.14756,
+            22.24965
+          ],
+          [
+            114.14569,
+            22.24959
+          ],
+          [
+            114.14401,
+            22.24971
+          ],
+          [
+            114.14308,
+            22.25023
+          ],
+          [
+            114.14143,
+            22.25159
+          ],
+          [
+            114.13993,
+            22.25295
+          ],
+          [
+            114.13838,
+            22.25408
+          ],
+          [
+            114.13653,
+            22.25558
+          ],
+          [
+            114.13553,
+            22.25729
+          ],
+          [
+            114.13492,
+            22.25891
+          ],
+          [
+            114.13494,
+            22.26006
+          ],
+          [
+            114.13512,
+            22.26143
+          ],
+          [
+            114.13387,
+            22.2631
+          ],
+          [
+            114.13286,
+            22.26427
+          ],
+          [
+            114.13223,
+            22.26529
+          ],
+          [
+            114.13221,
+            22.26666
+          ],
+          [
+            114.13247,
+            22.26753
+          ],
+          [
+            114.13269,
+            22.26849
+          ],
+          [
+            114.13202,
+            22.26961
+          ],
+          [
+            114.1318,
+            22.27099
+          ],
+          [
+            114.13227,
+            22.27235
+          ],
+          [
+            114.13339,
+            22.2739
+          ],
+          [
+            114.13382,
+            22.27568
+          ],
+          [
+            114.1343,
+            22.2776
+          ],
+          [
+            114.13473,
+            22.27938
+          ],
+          [
+            114.13475,
+            22.28048
+          ],
+          [
+            114.13413,
+            22.2815
+          ],
+          [
+            114.13429,
+            22.28251
+          ],
+          [
+            114.13491,
+            22.2836
+          ],
+          [
+            114.13556,
+            22.28405
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "WCH_SG",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "黄竹坑（西段转乘站）",
+        "name_en": "Wong Chuk Hang (SIL West)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "WCH_SG",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          1282,
+          883
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.16799,
+          22.24798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ABER",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "香港仔",
+        "name_en": "Aberdeen",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "ABER",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          1040,
+          900
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.15605,
+          22.2474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TWAN",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "田湾",
+        "name_en": "Tin Wan",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "TWAN",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          910,
+          870
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.14967,
+          22.24888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "WKW",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "华贵",
+        "name_en": "Wah Kwai",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "WKW",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          742,
+          814
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.14143,
+          22.25159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "WFU",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "华富",
+        "name_en": "Wah Fu",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "WFU",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          679,
+          761
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13838,
+          22.25408
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CYB",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "数码港",
+        "name_en": "Cyberport",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "CYB",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          607,
+          632
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13494,
+          22.26006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "QMH",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "玛丽医院",
+        "name_en": "Queen Mary Hospital",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "QMH",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          554,
+          470
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13247,
+          22.26753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HKU_SG",
+      "properties": {
+        "project_id": "SILW",
+        "line_id": "SILW",
+        "name_zh": "香港大学（西段转乘站）",
+        "name_en": "HKU (SIL West)",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HKU_SG",
+        "line_ids": [
+          "SILW"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《南港岛线西段工程项目简介（2026年4月）》；S08 PDF第22页；https://www.epd.gov.hk/eia/files/applications/tc/pp_1014/esb_6414/profile/SIL%28W%29_PP_V5_chin%2820260416%29.pdf",
+        "source_id": "S08",
+        "source_page": 22,
+        "precision_m": 500,
+        "precision_note": "近似，读自《南港岛线西段工程项目简介（2026年4月）》S08 PDF第22页，估计±500米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          610,
+          109
+        ],
+        "map_key": "SILW",
+        "source_title": "南港岛线西段工程项目简介（2026年4月）",
+        "source_file": "S08_南港岛西段项目简介_202604.pdf",
+        "map_image": "sources/读图辅助/S08_PDF22.png",
+        "map_image_size_px": [
+          1667,
+          1179
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.13556,
+          22.28405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EKSG",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "东九龙智慧绿色集体运输系统",
+        "name_en": "Smart and Green Mass Transit System in East Kowloon",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，人工读图误差估计±300米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约7",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.21162,
+            22.33448
+          ],
+          [
+            114.21174,
+            22.33363
+          ],
+          [
+            114.21289,
+            22.33241
+          ],
+          [
+            114.21372,
+            22.33219
+          ],
+          [
+            114.21531,
+            22.33252
+          ],
+          [
+            114.21627,
+            22.33266
+          ],
+          [
+            114.2179,
+            22.33307
+          ],
+          [
+            114.21976,
+            22.33332
+          ],
+          [
+            114.22183,
+            22.33306
+          ],
+          [
+            114.2231,
+            22.3335
+          ],
+          [
+            114.22421,
+            22.33305
+          ],
+          [
+            114.22524,
+            22.33228
+          ],
+          [
+            114.22615,
+            22.33154
+          ],
+          [
+            114.22711,
+            22.33065
+          ],
+          [
+            114.22726,
+            22.32976
+          ],
+          [
+            114.22706,
+            22.32858
+          ],
+          [
+            114.22674,
+            22.32725
+          ],
+          [
+            114.22698,
+            22.32669
+          ],
+          [
+            114.22817,
+            22.32606
+          ],
+          [
+            114.22888,
+            22.32555
+          ],
+          [
+            114.22916,
+            22.32495
+          ],
+          [
+            114.22936,
+            22.32418
+          ],
+          [
+            114.2307,
+            22.32325
+          ],
+          [
+            114.23173,
+            22.3221
+          ],
+          [
+            114.23265,
+            22.32136
+          ],
+          [
+            114.23352,
+            22.32011
+          ],
+          [
+            114.23487,
+            22.31962
+          ],
+          [
+            114.23621,
+            22.3187
+          ],
+          [
+            114.23713,
+            22.31818
+          ],
+          [
+            114.23804,
+            22.3181
+          ],
+          [
+            114.23963,
+            22.31832
+          ],
+          [
+            114.2403,
+            22.31802
+          ],
+          [
+            114.24086,
+            22.31736
+          ],
+          [
+            114.24081,
+            22.31603
+          ],
+          [
+            114.24069,
+            22.31455
+          ],
+          [
+            114.24049,
+            22.31359
+          ],
+          [
+            114.23942,
+            22.31282
+          ],
+          [
+            114.23822,
+            22.31178
+          ],
+          [
+            114.23822,
+            22.31112
+          ],
+          [
+            114.23866,
+            22.31067
+          ],
+          [
+            114.24001,
+            22.31023
+          ],
+          [
+            114.2412,
+            22.30941
+          ],
+          [
+            114.24187,
+            22.30834
+          ],
+          [
+            114.24195,
+            22.30753
+          ],
+          [
+            114.24131,
+            22.30649
+          ],
+          [
+            114.24012,
+            22.30572
+          ],
+          [
+            114.23825,
+            22.30487
+          ],
+          [
+            114.23729,
+            22.30417
+          ],
+          [
+            114.23682,
+            22.3034
+          ],
+          [
+            114.23681,
+            22.3024
+          ],
+          [
+            114.23733,
+            22.30126
+          ],
+          [
+            114.23816,
+            22.30011
+          ],
+          [
+            114.23887,
+            22.29907
+          ],
+          [
+            114.23931,
+            22.29833
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CHE_SG",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "彩虹东",
+        "name_en": "Choi Hung East",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "CHE_SG",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          179,
+          311
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.21162,
+          22.33448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CWA",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "彩云",
+        "name_en": "Choi Wan",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "CWA",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          296,
+          360
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.21627,
+          22.33266
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SLE",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "顺利",
+        "name_en": "Shun Lee",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "SLE",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          545,
+          390
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.22615,
+          22.33154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SON",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "顺安",
+        "name_en": "Shun On",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "SON",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          621,
+          568
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.22916,
+          22.32495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SMP",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "秀茂坪",
+        "name_en": "Sau Mau Ping",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "SMP",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          709,
+          665
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.23265,
+          22.32136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "POT",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "宝达",
+        "name_en": "Po Tat",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "POT",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          845,
+          753
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.23804,
+          22.3181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MYT",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "马游塘",
+        "name_en": "Ma Yau Tong",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "MYT",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          916,
+          773
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.24086,
+          22.31736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTN",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "蓝田北",
+        "name_en": "Lam Tin North",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "LTN",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          850,
+          942
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.23822,
+          22.31112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "YTE",
+      "properties": {
+        "project_id": "EKSG",
+        "line_id": "EKSG",
+        "name_zh": "油塘东",
+        "name_en": "Yau Tong East",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "YTE",
+        "line_ids": [
+          "EKSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《东九龙系统拟议走线及融资用地位置图（公告附件）》；S14 PDF第1页；https://gia.info.gov.hk/general/202606/12/P2026061200505_546496_1_1781250926514.pdf",
+        "source_id": "S14",
+        "source_page": 1,
+        "precision_m": 300,
+        "precision_note": "近似，读自《东九龙系统拟议走线及融资用地位置图（公告附件）》S14 PDF第1页，估计±300米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          878,
+          1288
+        ],
+        "map_key": "EK",
+        "source_title": "东九龙系统拟议走线及融资用地位置图（公告附件）",
+        "source_file": "S14_东九龙最新走线及站位_202606.pdf",
+        "map_image": "sources/读图辅助/S14_PDF1.png",
+        "map_image_size_px": [
+          1072,
+          1516
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.23931,
+          22.29833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KTSG",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "启德智慧绿色集体运输系统",
+        "name_en": "Smart and Green Mass Transit System in Kai Tak",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，人工读图误差估计±300米；不是统计置信区间。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约3.5",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            114.19844,
+            22.33027
+          ],
+          [
+            114.19715,
+            22.32908
+          ],
+          [
+            114.19642,
+            22.32816
+          ],
+          [
+            114.19634,
+            22.32757
+          ],
+          [
+            114.19685,
+            22.32673
+          ],
+          [
+            114.19758,
+            22.32576
+          ],
+          [
+            114.19834,
+            22.32468
+          ],
+          [
+            114.19894,
+            22.32337
+          ],
+          [
+            114.19884,
+            22.32186
+          ],
+          [
+            114.19879,
+            22.32013
+          ],
+          [
+            114.19912,
+            22.31935
+          ],
+          [
+            114.20056,
+            22.31792
+          ],
+          [
+            114.20114,
+            22.31724
+          ],
+          [
+            114.20147,
+            22.31637
+          ],
+          [
+            114.20253,
+            22.31538
+          ],
+          [
+            114.20543,
+            22.31258
+          ],
+          [
+            114.2096,
+            22.30866
+          ],
+          [
+            114.21349,
+            22.30504
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KAI_SQ",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "启德车站广场（站位标签）",
+        "name_en": "Kai Tak Station Square",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KAI_SQ",
+        "line_ids": [
+          "KTSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，估计±300米。设施地名不是正式站名；英文仅说明地名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          172,
+          249
+        ],
+        "map_key": "KAI",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.19844,
+          22.33027
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KAI_SP",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "启德体育园（站位标签）",
+        "name_en": "Kai Tak Sports Park",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KAI_SP",
+        "line_ids": [
+          "KTSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，估计±300米。设施地名不是正式站名；英文仅说明地名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          289,
+          370
+        ],
+        "map_key": "KAI",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.19834,
+          22.32468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KAI_MP",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "拟议都会公园（站位标签）",
+        "name_en": "Proposed Metro Park",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KAI_MP",
+        "line_ids": [
+          "KTSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，估计±300米。设施地名不是正式站名；英文仅说明地名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          477,
+          470
+        ],
+        "map_key": "KAI",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.20056,
+          22.31792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KAI_SKY",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "空中花园（站位标签）",
+        "name_en": "Kai Tak Sky Garden",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KAI_SKY",
+        "line_ids": [
+          "KTSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，估计±300米。设施地名不是正式站名；英文仅说明地名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          687,
+          487
+        ],
+        "map_key": "KAI",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.20543,
+          22.31258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KAI_DEP",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "承景街／车厂（站位标签）",
+        "name_en": "Shing King Street / Depot",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KAI_DEP",
+        "line_ids": [
+          "KTSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，估计±300米。设施地名不是正式站名；英文仅说明地名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          853,
+          488
+        ],
+        "map_key": "KAI",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.2096,
+          22.30866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KAI_CR",
+      "properties": {
+        "project_id": "KTSG",
+        "line_id": "KTSG",
+        "name_zh": "启德邮轮码头（站位标签）",
+        "name_en": "Kai Tak Cruise Terminal",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "KAI_CR",
+        "line_ids": [
+          "KTSG"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《启德系统，九龙城区议会交通运输委员会15/2025》；S09 PDF第7页；https://www.districtcouncils.gov.hk/kc/doc/2024_2027/tc/committee_meetings_doc/TTC/29902/8th_TTC_15_2025.pdf",
+        "source_id": "S09",
+        "source_page": 7,
+        "precision_m": 300,
+        "precision_note": "近似，读自《启德系统，九龙城区议会交通运输委员会15/2025》S09 PDF第7页，估计±300米。设施地名不是正式站名；英文仅说明地名。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          1007,
+          488
+        ],
+        "map_key": "KAI",
+        "source_title": "启德系统，九龙城区议会交通运输委员会15/2025",
+        "source_file": "S09_启德智慧绿色集体运输系统_202503.pdf",
+        "map_image": "sources/读图辅助/S09_PDF7.png",
+        "map_image_size_px": [
+          1179,
+          834
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.21349,
+          22.30504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG1",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "洪水桥／厦村智慧绿色集体运输系统（第一阶段）",
+        "name_en": "Smart and Green Mass Transit System in Hung Shui Kiu/Ha Tsuen (Phase 1)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "line",
+        "geometry_role": "indicative_alignment",
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，人工读图误差估计±700米；不是统计置信区间。图面比例简化；A1—A7是编号，正式站名未公布。",
+        "geometry_status": "近似示意",
+        "published_project_length": "约4.5（包含在全网16）",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.98584,
+            22.42434
+          ],
+          [
+            113.98617,
+            22.42588
+          ],
+          [
+            113.98689,
+            22.42799
+          ],
+          [
+            113.98776,
+            22.42979
+          ],
+          [
+            113.98791,
+            22.43186
+          ],
+          [
+            113.98868,
+            22.43341
+          ],
+          [
+            113.98841,
+            22.43506
+          ],
+          [
+            113.98878,
+            22.43618
+          ],
+          [
+            113.98929,
+            22.43713
+          ],
+          [
+            113.99005,
+            22.43868
+          ],
+          [
+            113.99068,
+            22.44055
+          ],
+          [
+            113.99084,
+            22.44187
+          ],
+          [
+            113.99137,
+            22.44294
+          ],
+          [
+            113.99256,
+            22.4443
+          ],
+          [
+            113.99335,
+            22.44612
+          ],
+          [
+            113.99428,
+            22.44845
+          ],
+          [
+            113.99413,
+            22.45047
+          ],
+          [
+            113.99371,
+            22.45182
+          ],
+          [
+            113.99199,
+            22.45232
+          ],
+          [
+            113.99089,
+            22.4527
+          ],
+          [
+            113.99069,
+            22.45392
+          ],
+          [
+            113.99102,
+            22.4558
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A1",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A1站（正式名未公布）",
+        "name_en": "Station A1 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A1",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          370,
+          1318
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.98584,
+          22.42434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A2",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A2站（正式名未公布）",
+        "name_en": "Station A2 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A2",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          380,
+          1199
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.98791,
+          22.43186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A3",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A3站（正式名未公布）",
+        "name_en": "Station A3 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A3",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          385,
+          1116
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.98929,
+          22.43713
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A4",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A4站（正式名未公布）",
+        "name_en": "Station A4 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A4",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          400,
+          1060
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.99068,
+          22.44055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A5",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A5站（正式名未公布）",
+        "name_en": "Station A5 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A5",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          425,
+          997
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.99256,
+          22.4443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A6",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A6站（正式名未公布）",
+        "name_en": "Station A6 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A6",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          430,
+          900
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.99413,
+          22.45047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_A7",
+      "properties": {
+        "project_id": "HSG1",
+        "line_id": "HSG1",
+        "name_zh": "A7站（正式名未公布）",
+        "name_en": "Station A7 (official name unpublished)",
+        "status": "已批准",
+        "approx": true,
+        "enabled_by_default": true,
+        "feature_type": "station",
+        "station_id": "HSG_A7",
+        "line_ids": [
+          "HSG1"
+        ],
+        "station_role": "proposed_station",
+        "name_is_working": true,
+        "source": "《洪厦智慧绿色系统第一阶段业界简介附件》；S06 PDF第3页；https://gia.info.gov.hk/general/202601/30/P2026013000675_530634_1_1769771519415.pdf",
+        "source_id": "S06",
+        "source_page": 3,
+        "precision_m": 700,
+        "precision_note": "近似，读自《洪厦智慧绿色系统第一阶段业界简介附件》S06 PDF第3页，估计±700米。",
+        "geometry_status": "近似站区中心",
+        "pixel_xy": [
+          329,
+          835
+        ],
+        "map_key": "SG1",
+        "source_title": "洪厦智慧绿色系统第一阶段业界简介附件",
+        "source_file": "S06_洪厦智慧绿色系统第一阶段_20260130.pdf",
+        "map_image": "sources/读图辅助/S06_PDF3.png",
+        "map_image_size_px": [
+          1224,
+          1584
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.99102,
+          22.4558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_W_CONCEPT",
+      "properties": {
+        "project_id": "HSG",
+        "line_id": "HSG_W_CONCEPT",
+        "name_zh": "洪水桥／厦村及元朗南智慧绿色集体运输系统（全网）（2023西支概念段）",
+        "name_en": "Smart and Green Mass Transit System in Hung Shui Kiu/Ha Tsuen and Yuen Long South [2023西支概念段]",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": false,
+        "feature_type": "line",
+        "geometry_role": "planning_corridor",
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第36页（印刷第34页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 36,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第36页（印刷第34页），人工读图误差估计±1500米；不是统计置信区间。2023全网概念图；两支几何线段不是确定营运路线，不与2026第一阶段叠加算长度。",
+        "geometry_status": "近似示意",
+        "published_project_length": "全网约16（含第一阶段4.5）",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF36.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.98506,
+            22.46593
+          ],
+          [
+            113.98738,
+            22.46198
+          ],
+          [
+            113.9898,
+            22.46016
+          ],
+          [
+            113.99154,
+            22.45706
+          ],
+          [
+            113.9843,
+            22.45297
+          ],
+          [
+            113.98431,
+            22.44869
+          ],
+          [
+            113.98938,
+            22.44849
+          ],
+          [
+            113.99146,
+            22.44614
+          ],
+          [
+            113.99032,
+            22.44281
+          ],
+          [
+            113.98941,
+            22.44035
+          ],
+          [
+            113.98849,
+            22.43981
+          ],
+          [
+            113.98895,
+            22.4381
+          ],
+          [
+            113.98758,
+            22.43574
+          ],
+          [
+            113.98689,
+            22.43413
+          ],
+          [
+            113.98839,
+            22.43306
+          ],
+          [
+            113.98702,
+            22.42963
+          ],
+          [
+            113.98725,
+            22.42824
+          ],
+          [
+            113.986,
+            22.42502
+          ],
+          [
+            113.98727,
+            22.42385
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HSG_E_CONCEPT",
+      "properties": {
+        "project_id": "HSG",
+        "line_id": "HSG_E_CONCEPT",
+        "name_zh": "洪水桥／厦村及元朗南智慧绿色集体运输系统（全网）（2023东支概念段）",
+        "name_en": "Smart and Green Mass Transit System in Hung Shui Kiu/Ha Tsuen and Yuen Long South [2023东支概念段]",
+        "status": "规划中",
+        "approx": true,
+        "enabled_by_default": false,
+        "feature_type": "line",
+        "geometry_role": "planning_corridor",
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第36页（印刷第34页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 36,
+        "precision_m": 1500,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第36页（印刷第34页），人工读图误差估计±1500米；不是统计置信区间。2023全网概念图；两支几何线段不是确定营运路线，不与2026第一阶段叠加算长度。",
+        "geometry_status": "近似示意",
+        "published_project_length": "全网约16（含第一阶段4.5）",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF36.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.9898,
+            22.46016
+          ],
+          [
+            113.99291,
+            22.46081
+          ],
+          [
+            113.99671,
+            22.46125
+          ],
+          [
+            113.99558,
+            22.45632
+          ],
+          [
+            113.99859,
+            22.45194
+          ],
+          [
+            113.99975,
+            22.44777
+          ],
+          [
+            113.99999,
+            22.4452
+          ],
+          [
+            114.00206,
+            22.4452
+          ],
+          [
+            114.00207,
+            22.44392
+          ],
+          [
+            114.0,
+            22.44273
+          ],
+          [
+            114.00001,
+            22.43931
+          ],
+          [
+            114.00025,
+            22.43631
+          ],
+          [
+            114.0014,
+            22.4346
+          ],
+          [
+            114.00509,
+            22.43396
+          ],
+          [
+            114.00797,
+            22.43515
+          ],
+          [
+            114.00843,
+            22.43601
+          ],
+          [
+            114.01176,
+            22.43687
+          ],
+          [
+            114.01361,
+            22.43527
+          ],
+          [
+            114.01523,
+            22.43474
+          ],
+          [
+            114.0173,
+            22.43667
+          ],
+          [
+            114.02018,
+            22.43572
+          ],
+          [
+            114.02122,
+            22.43486
+          ],
+          [
+            114.02077,
+            22.43111
+          ],
+          [
+            114.0194,
+            22.42747
+          ],
+          [
+            114.01709,
+            22.42693
+          ],
+          [
+            114.01641,
+            22.42318
+          ],
+          [
+            114.01849,
+            22.42061
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "HKIHSK",
+      "properties": {
+        "project_id": "HKIHSK",
+        "line_id": "HKIHSK",
+        "name_zh": "港岛西至洪水桥铁路（2023走廊概念）",
+        "name_en": "Hong Kong Island West–Hung Shui Kiu Rail Link",
+        "status": "研究中",
+        "approx": true,
+        "enabled_by_default": false,
+        "feature_type": "line",
+        "geometry_role": "planning_corridor",
+        "source": "《香港主要运输基建发展蓝图（2023）》；S01 PDF第40页（印刷第38页）；https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "source_id": "S01",
+        "source_page": 40,
+        "precision_m": 2500,
+        "precision_note": "近似，读自《香港主要运输基建发展蓝图（2023）》S01 PDF第40页（印刷第38页），人工读图误差估计±2500米；不是统计置信区间。2023交椅洲相关共用运输走廊，未细分道路／铁路；默认关闭。",
+        "geometry_status": "近似示意",
+        "published_project_length": "未公布",
+        "source_title": "香港主要运输基建发展蓝图（2023）",
+        "source_file": "S01_香港主要运输基建发展蓝图_2023.pdf",
+        "map_image": "sources/读图辅助/S01_PDF40.png",
+        "map_image_size_px": [
+          1191,
+          1684
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.98953,
+            22.43228
+          ],
+          [
+            113.99088,
+            22.41881
+          ],
+          [
+            113.99307,
+            22.40418
+          ],
+          [
+            113.99983,
+            22.38728
+          ],
+          [
+            114.00658,
+            22.37037
+          ],
+          [
+            114.01373,
+            22.35578
+          ],
+          [
+            114.02003,
+            22.34388
+          ],
+          [
+            114.03338,
+            22.33126
+          ],
+          [
+            114.04671,
+            22.32094
+          ],
+          [
+            114.06044,
+            22.31063
+          ],
+          [
+            114.07004,
+            22.2999
+          ],
+          [
+            114.07717,
+            22.28762
+          ],
+          [
+            114.0756,
+            22.27567
+          ],
+          [
+            114.07278,
+            22.26448
+          ],
+          [
+            114.0807,
+            22.25605
+          ],
+          [
+            114.0894,
+            22.25533
+          ],
+          [
+            114.1059,
+            22.26275
+          ],
+          [
+            114.12406,
+            22.2698
+          ],
+          [
+            114.13434,
+            22.28026
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KYC",
+      "properties": {
+        "project_id": "KYC",
+        "line_id": "KYC",
+        "name_zh": "交椅洲人工岛环保集体运输系统",
+        "name_en": "Environmentally Friendly Mass Transit System on the Kau Yi Chau Artificial Islands",
+        "status": "研究中",
+        "approx": false,
+        "enabled_by_default": false,
+        "feature_type": "unlocated_project",
+        "geometry_status": "未公布／没有可可靠数字化的现行走线",
+        "geometry_role": "unlocated_concept",
+        "source": "S01 PDF第59页（印刷第57页） https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf；S01 PDF第61页（印刷第59页） https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf；S01 PDF第73页（印刷第71页） https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "precision_m": null,
+        "precision_note": "无坐标；approx=false表示不适用，不是存在精确位置。"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "id": "TBT",
+      "properties": {
+        "project_id": "TBT",
+        "line_id": "TBT",
+        "name_zh": "尖鼻咀至白泥绿色运输走廊",
+        "name_en": "Green Transport Corridor from Tsim Bei Tsui to Pak Nai [descriptive name]",
+        "status": "研究中",
+        "approx": false,
+        "enabled_by_default": false,
+        "feature_type": "unlocated_project",
+        "geometry_status": "未公布／没有可可靠数字化的现行走线",
+        "geometry_role": "unlocated_concept",
+        "source": "S01 PDF第50页（印刷第48页） https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf；S01 PDF第72页（印刷第70页） https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "precision_m": null,
+        "precision_note": "无坐标；approx=false表示不适用，不是存在精确位置。"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "id": "HSWS",
+      "properties": {
+        "project_id": "HSWS",
+        "line_id": "HSWS",
+        "name_zh": "港深西部铁路南延（研究项目）",
+        "name_en": "Southern Extension of Hong Kong–Shenzhen Western Rail Link [descriptive name]",
+        "status": "研究中",
+        "approx": false,
+        "enabled_by_default": false,
+        "feature_type": "unlocated_project",
+        "geometry_status": "未公布／没有可可靠数字化的现行走线",
+        "geometry_role": "unlocated_concept",
+        "source": "S21 网页／见段落 https://www.info.gov.hk/gia/general/202609/16/P2026091600251.htm；S22 网页／见段落 https://www.tlb.gov.hk/tc/legislative/transport/panels_subcommittees/2026/20260211a.html",
+        "precision_m": null,
+        "precision_note": "无坐标；approx=false表示不适用，不是存在精确位置。"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "id": "NIL",
+      "properties": {
+        "project_id": "NIL",
+        "line_id": "NIL",
+        "name_zh": "北港岛线（历史建议／现阶段无迫切性）",
+        "name_en": "North Island Line",
+        "status": "研究中",
+        "approx": false,
+        "enabled_by_default": false,
+        "feature_type": "unlocated_project",
+        "geometry_status": "未公布／没有可可靠数字化的现行走线",
+        "geometry_role": "unlocated_concept",
+        "source": "S01 PDF第61页（印刷第59页） https://www.tlb.gov.hk/doc/Hong%20Kong%20Major%20Transport%20Infrastructure%20Development%20Blueprint%20(Chinese).pdf",
+        "precision_m": null,
+        "precision_note": "无坐标；approx=false表示不适用，不是存在精确位置。"
+      },
+      "geometry": null
+    }
+  ]
+}

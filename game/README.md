@@ -3,7 +3,9 @@
 **怎么开 / How to start**: 双击 `scripts\start-game.cmd`（Mac：`scripts/start-game.sh`），浏览器会打开 <http://127.0.0.1:8000/game/>。第一次载入模型约 15 秒。
 Double-click `scripts\start-game.cmd` (Mac: `scripts/start-game.sh`); the browser opens <http://127.0.0.1:8000/game/>. The model takes about 15 s to load the first time.
 
-两种玩法 / Two modes:
+**v2 出题模式（2026-10-02）/ Missions**：选题首页有今日一题和题库（通勤题、打败政府方案、发展题，都由数据自动生成，见 `engine/missions.py` 和 `docs/design/game-v2-missions.md`）；画线时每一步 0.1 秒快算（`/game/api/quick`）给反馈和分数，「通车」用完整模型揭晓。
+
+两种玩法（v1）/ Two modes (v1):
 - **自由世界 / Free world**：2026 年真实的香港，随便画线、选站旁开发，看账本和净收益。Real 2026 Hong Kong, draw anything, see the ledger and net benefit.
 - **情境题：北都人口大增 / Scenario: Northern Metropolis boom**：元朗、北区多住 20 万人，预算 1500 亿，每次算完给 100 分制的分数，本机排行榜。200,000 more residents in Yuen Long and North, HK$150 bn budget, a score out of 100 for every attempt, local leaderboard.
 
@@ -42,6 +44,7 @@ Riders per day, time saved (rule of half × the model's values of time × 300 da
 | `engine/scenario.py` | 情境题和站旁开发 / scenarios and station-area development |
 | `engine/run.py` | 一次完整计算 / one full run |
 | `engine/evaluate.py` | 账本、原因卡、情境题打分 / ledger, reasons, scenario score |
+| `engine/missions.py` | 自动出题、快算、分步得分、政府方案基准 / generated missions, quick estimate, step scoring, government benchmarks |
 | `../game-ui/` | 网页（Leaflet，地政总署底图）/ the page |
 
 截图检查 / Screenshot check: 先启动后端到 8010 端口，再 `cd frontend; node scripts/check-game.mjs map-check/game`。

@@ -49,3 +49,16 @@ def test_line_snaps_to_existing_stations_and_saves_time(base):
     assert (tr["T"][ok] <= base.cost22[ok] + 1e-9).all()                     # riders mostly where it is faster
     cost = network.cost(net, P)
     assert cost["total"] > 0 and cost["tier"] == "D"                          # provisional unit costs
+
+
+def test_missions_are_generated_from_data(base):
+    from game.engine.missions import get_missions
+    M = get_missions()
+    kinds = [m["kind"] for m in M.items.values()]
+    assert kinds.count("commute") >= 5 and kinds.count("gov") >= 3 and kinds.count("growth") >= 1
+    for m in M.items.values():
+        assert m["budget_yi"] > 0 and m["metric"]["goal"] > 0
+    key = next(k for k, m in M.items.items() if m["kind"] == "commute")
+    q = M.quick(LINE, key)
+    assert q["ok"] and q["target"]["after"] <= q["target"]["before"]
+    assert M.daily() in M.items
