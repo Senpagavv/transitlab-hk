@@ -2,3 +2,6 @@
 # No line-ending conversion, no diffs of huge JSON.
 data/** -text -diff
 game-demo/data*.js -text -diff
+
+# Shell scripts must keep LF line endings for macOS / Linux
+*.sh text eol=lf

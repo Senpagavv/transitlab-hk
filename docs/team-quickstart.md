@@ -35,6 +35,11 @@
 
 装好 GitHub Desktop 后，用你的 GitHub 账号登录它（首次打开会提示 *Sign in to GitHub.com*）。
 
+**要跑网站或模型的人：下载完项目（第 4 步）后，一键装好其余所有环境**——
+- **Windows**：双击项目里的 `scripts\setup-windows.cmd`，等它显示「装好了 / All set」（第一次约 5–15 分钟，会自动装 uv、Node.js、Python 3.12 和全部库）。
+- **Mac**：打开「终端」，进入项目文件夹，运行 `bash scripts/setup-mac.sh`。
+- 卡住了：把项目里的 `data\cache\setup-log.txt` 发到群里。
+
 ## 第 4 步　把项目下载到电脑
 
 用 GitHub Desktop：

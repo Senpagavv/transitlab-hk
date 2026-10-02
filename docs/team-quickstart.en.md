@@ -35,6 +35,11 @@ After accepting, <https://github.com/Senpagavv/transitlab-hk> shows every file a
 
 After installing GitHub Desktop, sign in with your GitHub account (it asks *Sign in to GitHub.com* the first time).
 
+**If you will run the website or the model: after downloading the project (Step 4), set up everything else in one go** —
+- **Windows**: double-click `scripts\setup-windows.cmd` in the project and wait for "装好了 / All set" (first time about 5–15 minutes; it installs uv, Node.js, Python 3.12 and every library).
+- **Mac**: open Terminal, go to the project folder, run `bash scripts/setup-mac.sh`.
+- Stuck? Post the project's `data\cache\setup-log.txt` in the group.
+
 ## Step 4 · Download the project to your computer
 
 With GitHub Desktop:

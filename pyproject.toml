@@ -25,6 +25,9 @@ dependencies = [
     "aequilibrae>=1.7.0",
     "pypdf>=6.19.0",
     "pypdfium2>=5.13.0",
+    "pillow>=12.3",
+    "rasterio>=1.5.1",
+    "scipy>=1.18.1",
 ]
 
 [dependency-groups]

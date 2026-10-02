@@ -30,7 +30,7 @@
 1. 接受邀请：GitHub 会发邮件「invited you to collaborate on transitlab-hk」，点 **Accept invitation**（仓库是私有的，只有组员能看）。
 2. 登录：终端里 `gh auth login`，选 GitHub.com → HTTPS → Login with a web browser，按提示在浏览器里输入一次性代码。
 3. 下载：`gh repo clone Senpagavv/transitlab-hk`（约 450 MB，含代码、文档、模型结果和除法定图则外的全部原始数据）。
-4. 装环境：项目根目录 `uv sync`；然后 `cd frontend` → `npm install`。
+4. 装环境：**Windows 双击 `scripts\setup-windows.cmd`，Mac 运行 `bash scripts/setup-mac.sh`**，一次装好全部（含中文用户名的处理）；手动装的话：项目根目录 `uv sync`，然后 `cd frontend` → `npm install`。
 5. 自检：`uv run python pipeline/00_check_env.py`，全部 `[OK]` 即可（Java 只有重算公交时间矩阵的第 18 步才需要）。
 
 ### 1.3 附件（只有要重跑这两步的人才需要）

@@ -30,7 +30,7 @@ On top of it we are building a **"draw a new line" planning game**: draw a new r
 1. Accept the invitation: GitHub emails "invited you to collaborate on transitlab-hk" → **Accept invitation** (the repository is private).
 2. Sign in: `gh auth login` → GitHub.com → HTTPS → Login with a web browser, then enter the one-time code in the browser.
 3. Clone: `gh repo clone Senpagavv/transitlab-hk` (about 450 MB: code, documents, model results, and all raw data except the statutory plans).
-4. Environment: in the project root `uv sync`; then `cd frontend` → `npm install`.
+4. Environment: **Windows: double-click `scripts\setup-windows.cmd`; Mac: `bash scripts/setup-mac.sh`** — installs everything (and handles non-English Windows user names). By hand: `uv sync` in the project root, then `cd frontend` → `npm install`.
 5. Self-check: `uv run python pipeline/00_check_env.py`; all `[OK]` is fine (Java is only needed for step 18, the public-transport travel-time matrix).
 
 ### 1.3 Attachment (only for two steps)

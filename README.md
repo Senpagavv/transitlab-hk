@@ -96,6 +96,8 @@ cd frontend; npm run build               # 前端类型检查 + 打包
 
 ## 新电脑第一次配置
 
+> **最快**：Windows 双击 `scripts\setup-windows.cmd`；Mac 运行 `bash scripts/setup-mac.sh`（自动装 uv、Node.js、Python 3.12 和全部库，处理中文用户名，最后自检）。下面是手动步骤。
+
 1. 安装 Node.js 20+、Git、Python（任意版本，只用来装 uv）。
 2. 安装 uv：`python -m pip install uv`
 3. 下载 Java 21（Temurin **zip 版**，不要用 MSI），解压到**纯英文路径**。
