@@ -21,7 +21,7 @@
 |---|---|---|---|---|---|
 | 数据集 Dataset | 27 | 6 | 2 | 0 | 35 |
 | 模型产物 Model output | 2 | 18 | 3 | 4 | 27 |
-| 参数 Parameter | 7 | 13 | 14 | 9 | 43 |
+| 参数 Parameter | 7 | 13 | 16 | 11 | 47 |
 
 ## 🟢 A · 实测 / Measured（36）
 
@@ -106,7 +106,7 @@
 | P.bus_time_factor | 巴士车上时间系数 | Bus in-vehicle time factor | 参数 Parameter | 1.5 | 按港铁 7 条线最繁忙段扫描（`pipeline/39_transit_assignment.py`） | 在用 in use | 反映班次表外的塞车与不准时 | Covers congestion and unreliability the timetable omits |
 | G.jobs_per_m2 | 每平方米写字楼/零售楼面对应岗位 | Jobs per m² of office/retail floor | 参数 Parameter | 待定 m²/岗 | 待查 / to research | 在用 in use | 沿用第 21 步回归（写字楼 22、零售 24 m²/岗） | Reuse step 21's regression (office 22, retail 24 m² per job) |
 
-## 🟠 C · 依据推断 / Evidence-based estimate（19）
+## 🟠 C · 依据推断 / Evidence-based estimate（21）
 
 | ID | 名称 | Name | 类别 Kind | 数值 Value | 来源 / 依据 Source | 状态 Status | 说明 | Note |
 |---|---|---|---|---|---|---|---|---|
@@ -129,8 +129,10 @@
 | G.discount_rate | 贴现率 | Discount rate | 参数 Parameter | 待定 % | 待查 / to research | 待查 to research | 政府项目评估指引（找到则 C，否则 D） | Government appraisal guidance (C if found, else D) |
 | G.nested_logit | 嵌套 logit 嵌套系数 | Nested logit nesting coefficient | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 文献值，须在 0–1 之间 | Literature; must lie in 0-1 |
 | G.induced_demand | 诱发需求弹性（车公里对出行时间） | Induced demand elasticity (VKT to travel time) | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 文献；方向必须是路越快车越多 | Literature; faster roads must mean more traffic |
+| G.train_kinematics | 列车最高速度、加减速度、停站时间 | Train top speed, acceleration, dwell time | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 港铁或文献常用设计值；草案示意 100 km/h、1.0 m/s²、40 秒 | MTR or literature design values; draft uses 100 km/h, 1.0 m/s², 40 s |
+| G.walk_catchment | 车站步行服务范围 | Station walking catchment | 参数 Parameter | 待定 分钟 / 米 | 待查 / to research | 待查 to research | TOD 常用约 10 分钟 / 800 米；原型用 1.5 公里上限；待找出处 | TOD practice about 10 min / 800 m; the prototype caps at 1.5 km; source pending |
 
-## 🔴 D · 示意假设 / Illustrative assumption（13）
+## 🔴 D · 示意假设 / Illustrative assumption（15）
 
 | ID | 名称 | Name | 类别 Kind | 数值 Value | 来源 / 依据 Source | 状态 Status | 说明 | Note |
 |---|---|---|---|---|---|---|---|---|
@@ -147,6 +149,8 @@
 | G.carbon_price | 碳价 | Carbon price | 参数 Parameter | 待定 港元/吨 | 待查 / to research | 待查 to research | 政策取值，用户可改 | A policy choice, user-adjustable |
 | X.junction_tia | 路口级交通影响评估 | Junction-level traffic impact | 参数 Parameter | 不做 |  | 不做 excluded | 455 分区宏观模型做不到路口级，明确不涵盖 | Out of scope for a 455-zone macro model |
 | X.bus_bunching | 巴士串车 | Bus bunching | 参数 Parameter | 不做 |  | 不做 excluded | 模型没有车辆层面，明确不涵盖 | No vehicle-level simulation; out of scope |
+| P.crowding_factor | 公交拥挤系数（感受车上时间的倍数） | Transit crowding factor (perceived in-vehicle time multiplier) | 参数 Parameter | 载客/运力 ≤0.8 为 1；0.8–1.2 线性升到 1.6；>1.2 为 1.6+4×(ρ−1.2) | 修地铁原型取值（`game-demo/sim.js`） | 在用 in use | 原型里的示意取值；待用文献（如拥挤惩罚研究）升级为 C | Prototype value; to be upgraded to C from crowding-penalty literature |
+| P.transfer_penalty_min | 换乘惩罚 | Transfer penalty | 参数 Parameter | 3 分钟 min | 修地铁原型取值（`game-demo/sim.js`） | 在用 in use | 不含步行时间的额外不便；待文献 | Extra inconvenience beyond walking; literature pending |
 
 数据集与模型产物的详细描述（条数、字段、用在哪一步）见 [`data-sources.md`](data-sources.md)；每一步的方程与拟合见 [`methods-catalogue.md`](methods-catalogue.md)。
 Details of every dataset are in `data-sources.md`; equations and calibration in `methods-catalogue.en.md`.

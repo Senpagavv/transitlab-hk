@@ -6,7 +6,12 @@
 
 ## 2026-10-02
 
-### 15:00 · 数据与参数可信度分级登记表；改动日志 / Confidence registry; changelog
+### 15:10 · Codex 任务书 44、45；专业/教学模式完整流程示例（草案）
+- **改了什么**：`docs/for-codex/task-44-parameter-research.md`（24 个待查/待升级参数：造价、运营成本、楼价溢价、排放系数、碳价、贴现率、各种弹性、列车运动学、步行范围、拥挤与换乘惩罚，每个值须附出处页码）；`docs/for-codex/task-45-planned-railways.md`（政府已公布的规划铁路：清单 + GeoJSON 走向与车站）；`docs/design/pro-mode-walkthrough.md`（以虚构的北都东西线 + 站旁开发为例，18 步写清看到什么、能做什么、公式、考虑因素、数据级别、对应课程、可视化、计算时间）。登记表新增 4 项（拥挤系数 D、换乘惩罚 D、列车运动学 C 待查、步行范围 C 待查），共 109 项。
+- **为什么**：发起人要求 Codex 并行查资料；先看一个完整、复杂的专业模式例子再决定加减。
+- **验证**：pytest 55 全过；`docs/data-tiers.md` 已重新生成。
+
+### 15:00 · `866730a` 数据与参数可信度分级登记表；改动日志 / Confidence registry; changelog
 - **改了什么**：新增 `model/registry/data_tiers.toml`——105 项（35 数据集、27 模型产物、43 参数）逐项标 **A 实测 / B 校准推算 / C 依据推断 / D 示意假设**，写明出处、依据、在用/待查/不做；
   `model/registry/build_doc.py` 自动生成中英对照的 [`docs/data-tiers.md`](docs/data-tiers.md)；`tests/test_data_tiers.py` 核对登记值与审计文件一致、43 个数据来源都已登记、文档是最新的。
   新增本日志；`AGENTS.md`、上手指南、合并请求模板加入「每次改动写日志、本地与 GitHub 同步」。
