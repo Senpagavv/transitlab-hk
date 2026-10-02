@@ -6,6 +6,11 @@
 
 ## 2026-10-02
 
+### 16:40 · 桌面图标「TransitLab 修地铁」/ Desktop shortcut for the demo
+- **改了什么**：新增 `scripts/start-game.ps1`（`start-game.cmd` 改为调用它）：8000 端口没开就在后台启动计算引擎；开着但没有 /game（游戏加进来之前启动的旧后端，返回 404）就自动重启它；等到能用再打开 <http://127.0.0.1:8000/game/>。本机桌面加了「TransitLab 修地铁」快捷方式（图标同 TransitLab HK）。
+- **为什么**：发起人要能从桌面直接打开；本机正开着一个旧后端，直接打开会 404。
+- **验证**：本机实跑：旧后端被替换为带 --reload 的新后端，8 秒后浏览器打开游戏页，/game/api/boot 返回 200。
+
 ### 16:31 · 可玩 demo：自由世界 + 情境题「北都人口大增」/ Playable demo: free world + scenario
 - **改了什么**：新增 `game/`（计算引擎 + `/game/api`）和 `game-ui/`（网页），双击 `scripts/start-game.cmd`（Mac：`start-game.sh`）打开 <http://127.0.0.1:8000/game/>。
   点地图放车站、站间自动连直线（Shift+点 = 拐弯点）；150 米内接上现有港铁站自动成换乘站；线段按土地用途格网自动判断隧道/高架（可点击改）；站旁开发三种套餐；搜车站、地方、屋苑、分区。
