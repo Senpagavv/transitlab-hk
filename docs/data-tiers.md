@@ -21,7 +21,7 @@
 |---|---|---|---|---|---|
 | 数据集 Dataset | 27 | 6 | 3 | 0 | 36 |
 | 模型产物 Model output | 2 | 18 | 3 | 4 | 27 |
-| 参数 Parameter | 7 | 13 | 16 | 19 | 55 |
+| 参数 Parameter | 7 | 13 | 17 | 18 | 55 |
 
 ## 🟢 A · 实测 / Measured（36）
 
@@ -59,9 +59,9 @@
 | P.mtr_headways | 港铁早高峰班距（改写社区版） | MTR peak headways (override) | 参数 Parameter | 见代码 MTR_PEAK_HEADWAY_S 秒 s | 港铁官网（`pipeline/39_transit_assignment.py`） | 在用 in use | 社区版东铁 40 班/时、港岛线 18 班/时不对，按官网改 | Community feed had EAL 40/h and ISL 18/h; replaced with MTR's own figures |
 | P.capacity_tpdm | 道路通行能力（每车道设计流量） | Road capacity (design flow per lane) | 参数 Parameter | TPDM 第二册表 2.4.1.1 辆/小时 veh/h | 运输规划及设计手册（`pipeline/15_road_network.py`） | 在用 in use | 官方设计标准；当作通行能力用是假设 | Official design standard; using it as capacity is an assumption |
 | P.heavy_reduction | 重型车多时通行能力折减 | Capacity cut for heavy vehicles | 参数 Parameter | TPDM 第二册表 2.4.1.2 | 运输规划及设计手册（`pipeline/27_road_assignment.py`） | 在用 in use | 15–20% 减 7%，20% 以上减 10% | 7% cut at 15-20% heavy, 10% above 20% |
-| G.train_capacity | 每列车载客量 | Passengers per train | 参数 Parameter | 待定 人（demo 临时值 2000，🔴D） | 待查 / to research | 待查 to research | 港铁公布的列车载客量（按每平方米站立人数口径） | MTR's published train capacity |
+| G.train_capacity | 每列车载客量 | Passengers per train | 参数 Parameter | 1780 人/列（每平方米 4 人站立） | 港铁典型市区重铁列车载客量；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/network.py`） | 在用 in use | 每平方米 6 人站立时约 2500；各线完整分列未找到 | About 2,500 at 6 standing per m2; per-line values not found |
 | G.emission_factor_vehicle | 车辆每公里碳排放系数 | Vehicle CO2 per km | 参数 Parameter | 待定 g CO2/km（demo 临时值 0.19，🔴D） | 待查 / to research | 待查 to research | 环保署排放清单 / EMFAC-HK | EPD inventory / EMFAC-HK |
-| G.grid_factor | 电网每度电碳排放 | Grid CO2 per kWh | 参数 Parameter | 待定 kg CO2/kWh（demo 临时值 0.6，🔴D） | 待查 / to research | 待查 to research | 中电、港灯公布值 | CLP / HK Electric published values |
+| G.grid_factor | 电网每度电碳排放 | Grid CO2 per kWh | 参数 Parameter | CLP_HK_2025 0.34；HK_Electric_2025 0.59 kg CO2e/kWh（售电） | 中电、港灯 2025 年公布的每度电排放；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/evaluate.py`） | 在用 in use | 游戏：线路上港岛的站按港灯、其余按中电，按车站比例加权；不是全生命周期 | Game: Hong Kong Island stations at HK Electric, others at CLP, weighted by stations |
 | G.children_share | 各分区儿童比例 | Share of children by zone | 参数 Parameter | landuse-2026.parquet 的 age_0_14 列 % | 2021 人口普查，经第 16 步推到 2026 | 在用 in use | 人口普查表直接补 | Straight from the census tables |
 
 ## 🔵 B · 校准推算 / Calibrated（37）
@@ -106,7 +106,7 @@
 | P.bus_time_factor | 巴士车上时间系数 | Bus in-vehicle time factor | 参数 Parameter | 1.5 | 按港铁 7 条线最繁忙段扫描（`pipeline/39_transit_assignment.py`） | 在用 in use | 反映班次表外的塞车与不准时 | Covers congestion and unreliability the timetable omits |
 | G.jobs_per_m2 | 每平方米写字楼/零售楼面对应岗位 | Jobs per m² of office/retail floor | 参数 Parameter | 待定 m²/岗 | 待查 / to research | 在用 in use | 沿用第 21 步回归（写字楼 22、零售 24 m²/岗） | Reuse step 21's regression (office 22, retail 24 m² per job) |
 
-## 🟠 C · 依据推断 / Evidence-based estimate（22）
+## 🟠 C · 依据推断 / Evidence-based estimate（23）
 
 | ID | 名称 | Name | 类别 Kind | 数值 Value | 来源 / 依据 Source | 状态 Status | 说明 | Note |
 |---|---|---|---|---|---|---|---|---|
@@ -123,17 +123,18 @@
 | G.cost_viaduct_km | 地铁高架段每公里造价 | Rail cost per km, viaduct | 参数 Parameter | 待定 亿港元/公里（demo 临时值 15，🔴D） | 待查 / to research | 待查 to research | 同上 | As above |
 | G.cost_atgrade_km | 地铁地面段每公里造价 | Rail cost per km, at grade | 参数 Parameter | 待定 亿港元/公里（demo 临时值 8，🔴D） | 待查 / to research | 待查 to research | 同上 | As above |
 | G.cost_station | 每个车站造价 | Cost per station | 参数 Parameter | 待定 亿港元/站（demo 临时值 10，🔴D） | 待查 / to research | 待查 to research | 同上 | As above |
-| G.opex_car_km | 每车公里运营成本 | Operating cost per car-km | 参数 Parameter | 待定 港元（demo 临时值 300，🔴D） | 待查 / to research | 待查 to research | 港铁年报 | MTR annual reports |
+| G.opex_car_km | 每车公里运营成本 | Operating cost per car-km | 参数 Parameter | 37.04 港元/车厢公里（2026年8月价） | 港铁 2025 年报 36.4 港元/车厢公里，按综合 CPI 110.8/108.9 换算；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/evaluate.py`） | 在用 in use | 平均运营成本，不是边际成本；游戏按每列 8 节车厢折成列车公里 | Average, not marginal, cost; the game uses 8 cars per train |
 | G.price_premium | 车站附近楼价溢价（随距离递减） | Property price premium near stations (distance decay) | 参数 Parameter | 待定 % | 待查 / to research | 待查 to research | 香港相关学术研究；有上限、随距离递减、不出现负值 | Hong Kong studies; capped, decaying with distance, never negative |
 | G.commercial_uplift | 新线带动周边商业的弹性 | Commercial uplift elasticity | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 文献；查不到则降为 D | Literature; tier D if nothing reliable is found |
 | G.embodied_carbon | 建造期隐含碳（每公里隧道/高架） | Embodied carbon per km of tunnel/viaduct | 参数 Parameter | 待定 吨 CO2/公里 | 待查 / to research | 待查 to research | 文献经验系数，单独列出 | Literature factors, reported separately |
-| G.discount_rate | 贴现率 | Discount rate | 参数 Parameter | 待定 %（demo 临时值 0.04，🔴D） | 待查 / to research | 待查 to research | 政府项目评估指引（找到则 C，否则 D） | Government appraisal guidance (C if found, else D) |
+| G.discount_rate | 贴现率 | Discount rate | 参数 Parameter | 0.04 每年 | 香港铁路评估历来用 4% 实质社会贴现率（现行强制指引未找到；英国 3.5% 可作比较）；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/evaluate.py`） | 在用 in use | 长期分段贴现（英国 31 年后 3%）未采用 | Declining long-term rates (UK 3% after 30 years) not used |
 | G.nested_logit | 嵌套 logit 嵌套系数 | Nested logit nesting coefficient | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 文献值，须在 0–1 之间 | Literature; must lie in 0-1 |
 | G.induced_demand | 诱发需求弹性（车公里对出行时间） | Induced demand elasticity (VKT to travel time) | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 文献；方向必须是路越快车越多 | Literature; faster roads must mean more traffic |
-| G.train_kinematics | 列车最高速度、加减速度、停站时间 | Train top speed, acceleration, dwell time | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 港铁或文献常用设计值；草案示意 100 km/h、1.0 m/s²、40 秒 | MTR or literature design values; draft uses 100 km/h, 1.0 m/s², 40 s |
+| P.transfer_penalty_min | 换乘惩罚 | Transfer penalty | 参数 Parameter | 4.41 分钟 min（等价不拥挤车上时间） | 香港港铁乘客路线选择研究（3,495 个选择）：地铁↔地铁 4.41（同台 3.59、跨层 4.66）；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/network.py`） | 在用 in use | 不含实际步行和等车；巴士↔地铁 10.3、巴士↔巴士 7.1 另列，游戏未用 | Excludes walking and waiting; bus-MTR 10.3 and bus-bus 7.1 not used |
+| G.train_kinematics | 列车最高速度、加减速度、停站时间 | Train top speed, acceleration, dwell time | 参数 Parameter | v_max_kmh 80；accel_ms2 1；dwell_s 40 km/h；m/s²；秒 | 市区车型设计速度 80 km/h；加减速 1.0 m/s²（文献范围上限）；停站 30–50 秒取中值；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/params.py`） | 在用 in use | 80 是车型设计速度，不是全线限速；停站中值来自新加坡普通站 | 80 is a rolling-stock design speed; the dwell midpoint is from Singapore |
 | G.walk_catchment | 车站步行服务范围 | Station walking catchment | 参数 Parameter | 待定 分钟 / 米 | 待查 / to research | 待查 to research | TOD 常用约 10 分钟 / 800 米；原型用 1.5 公里上限；待找出处 | TOD practice about 10 min / 800 m; the prototype caps at 1.5 km; source pending |
 
-## 🔴 D · 示意假设 / Illustrative assumption（23）
+## 🔴 D · 示意假设 / Illustrative assumption（22）
 
 | ID | 名称 | Name | 类别 Kind | 数值 Value | 来源 / 依据 Source | 状态 Status | 说明 | Note |
 |---|---|---|---|---|---|---|---|---|
@@ -147,11 +148,10 @@
 | P.hbo_from_home | 其他目的出行中从家出发的比例 | Share of HBO trips starting from home | 参数 Parameter | 0.7 | 假设（`pipeline/24_peak_hour.py`） | 在用 in use | 调查没有直接给出 | Not given directly by the survey |
 | P.game_pop_elasticity | 人口随可达性搬迁的弹性（快速版小游戏） | Population-accessibility elasticity (quick game) | 参数 Parameter | 0.5 | 估计（`game-demo/sim.js`） | 在用 in use | 可达性变 1%，人口变 0.5%；约 10–15 年效果；待用文献或历史线路替换 | 1% accessibility change -> 0.5% population; to be replaced from literature or past lines |
 | G.relocation_elasticity | 人口长远搬迁弹性（正式版） | Long-run relocation elasticity (full version) | 参数 Parameter | 待定 | 待查 / to research | 待查 to research | 文献或用过去线路（西铁、将军澳线、南港岛线）拟合；受图则可建楼面约束 | Literature or past lines; bounded by zoning capacity |
-| G.carbon_price | 碳价 | Carbon price | 参数 Parameter | 待定 港元/吨（demo 临时值 400，🔴D） | 待查 / to research | 待查 to research | 政策取值，用户可改 | A policy choice, user-adjustable |
+| G.carbon_price | 碳价 | Carbon price | 参数 Parameter | 1860 港元/吨 CO2（2026年8月价） | 国际碳价情景中值 215 美元/吨（2020 价，低 133、高 365），折 2026 港元（低 1151、高 3158）；Codex 任务 44（桌面「TransitLab参数调研」，2026-10-02，出处页码见其核对记录）（`game/engine/evaluate.py`） | 在用 in use | 政策情景，不是香港政府取值，也不是碳市场价 | A policy scenario, not a Hong Kong government value or market price |
 | X.junction_tia | 路口级交通影响评估 | Junction-level traffic impact | 参数 Parameter | 不做 |  | 不做 excluded | 455 分区宏观模型做不到路口级，明确不涵盖 | Out of scope for a 455-zone macro model |
 | X.bus_bunching | 巴士串车 | Bus bunching | 参数 Parameter | 不做 |  | 不做 excluded | 模型没有车辆层面，明确不涵盖 | No vehicle-level simulation; out of scope |
 | P.crowding_factor | 公交拥挤系数（感受车上时间的倍数） | Transit crowding factor (perceived in-vehicle time multiplier) | 参数 Parameter | 载客/运力 ≤0.8 为 1；0.8–1.2 线性升到 1.6；>1.2 为 1.6+4×(ρ−1.2) | 修地铁原型取值（`game-demo/sim.js`） | 在用 in use | 原型里的示意取值；待用文献（如拥挤惩罚研究）升级为 C | Prototype value; to be upgraded to C from crowding-penalty literature |
-| P.transfer_penalty_min | 换乘惩罚 | Transfer penalty | 参数 Parameter | 3 分钟 min | 修地铁原型取值（`game-demo/sim.js`） | 在用 in use | 不含步行时间的额外不便；待文献 | Extra inconvenience beyond walking; literature pending |
 | D.train_energy_kwh_km | 列车每公里耗电 | Train energy per train-km | 参数 Parameter | 20 kWh/列车公里 | 临时值（demo）（`game/engine/params.py`） | 在用 in use | 待任务 44 用港铁可持续发展报告替换 | Placeholder until task 44 (MTR sustainability report) |
 | D.land_capture_share | 站旁开发地价中政府/铁路可取得的比例 | Share of station-area development value captured | 参数 Parameter | 0.3 | 临时值（demo）（`game/engine/params.py`） | 在用 in use | 铁路加物业的地价回收比例；待文献 | Rail-plus-property capture share; literature pending |
 | D.appraisal_years | 评估年限 | Appraisal period | 参数 Parameter | 40 年 | 临时值（demo），常见 30–50 年（`game/engine/params.py`） | 在用 in use | 发起人待定 | To be decided |

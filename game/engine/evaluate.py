@@ -9,7 +9,7 @@ from __future__ import annotations
 import numpy as np
 
 from .network import TYPES, cost
-from .params import ANNUAL_DAYS, CONSTRUCTION_YEARS, TRAIN, weakest
+from .params import ANNUAL_DAYS, CARS_PER_TRAIN, CONSTRUCTION_YEARS, weakest
 
 PEAK_HOURS, OFFPEAK_HOURS = 4, 14     # D.service_pattern: peak headway 4 h a day, half as often for 14 h
 TIERS = {
@@ -98,17 +98,24 @@ def evaluate(base, params, net, paths, ref, out, built, key, info, names, zone_l
     delay_hours = float(((r1["vol"] * (r1["time"] - base.road["t0"])).sum() - (r0["vol"] * (r0["time"] - base.road["t0"])).sum()) / 60)
     vehkm_year = vehkm_peak * base.car_daily_factor * days
     ef = params.value("G.emission_factor_vehicle")
-    train_km_day = sum(2 * l["length_m"] / 1000 * (PEAK_HOURS * 60 / l["headway"] + OFFPEAK_HOURS * 60 / (2 * l["headway"]))
-                       for l in net.lines if len(l["stations"]) >= 2)
-    train_km_year = train_km_day * 365
+    grid = params.items["G.grid_factor"]["value"]
+    island = {"Central and Western", "Wan Chai", "Eastern", "Southern"}       # supplied by HK Electric, the rest by CLP
+    train_km_year, co2_train_t = 0.0, 0.0
+    for l in net.lines:
+        if len(l["stations"]) < 2:
+            continue
+        km_year = 2 * l["length_m"] / 1000 * (PEAK_HOURS * 60 / l["headway"] + OFFPEAK_HOURS * 60 / (2 * l["headway"])) * 365
+        on_island = np.mean([base.landuse["district"].iloc[net.stations[s]["zone"]] in island for s in l["stations"]])
+        factor = on_island * grid["HK_Electric_2025"] + (1 - on_island) * grid["CLP_HK_2025"]
+        train_km_year += km_year
+        co2_train_t += km_year * params.value("D.train_energy_kwh_km") * factor / 1000
     co2_road_t = vehkm_year * ef / 1000
-    co2_train_t = train_km_year * params.value("D.train_energy_kwh_km") * params.value("G.grid_factor") / 1000
     co2_t = co2_road_t + co2_train_t                  # negative = less carbon
     carbon_value = -co2_t * params.value("G.carbon_price") / 1e8
 
     # ---------- money ----------
     capex = cost(net, params)
-    opex = train_km_year * params.value("G.opex_car_km") / 1e8
+    opex = train_km_year * CARS_PER_TRAIN * params.value("G.opex_car_km") / 1e8
     capture = params.value("D.land_capture_share")
     land = 0.0
     for d in built:

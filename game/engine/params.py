@@ -42,7 +42,9 @@ def weakest(*tiers: str) -> str:
 
 
 # Engine settings that are modelling choices rather than data (documented here, tier in brackets).
-TRAIN = {"v_max_kmh": 80.0, "accel_ms2": 1.0, "dwell_min": 0.5}   # G.train_kinematics (D until task 44)
+_kin = Params().items["G.train_kinematics"]["value"]                # G.train_kinematics (C, task 44)
+TRAIN = {"v_max_kmh": float(_kin["v_max_kmh"]), "accel_ms2": float(_kin["accel_ms2"]), "dwell_min": float(_kin["dwell_s"]) / 60}
+CARS_PER_TRAIN = 8          # MTR urban lines run 8-car trains (East Rail 9): turns cost per car-km into per train-km
 WALK = {"catchment_m": 800.0, "speed_kmh": 4.5, "detour": 1.25, "max_m": 1200.0}   # G.walk_catchment (D)
 DEFAULT_HEADWAY_MIN = 3.0
 STATION_SNAP_M = 150.0      # a new station this close to an existing one is the same station (interchange)
