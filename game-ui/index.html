@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TransitLab 修地铁</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="map"></div>
+
+<div class="search">
+  <input id="q" type="text" placeholder="搜车站、地方、屋苑…（回车搜更多）" autocomplete="off">
+  <ul id="qres" hidden></ul>
+</div>
+<div class="overlay-legend" id="legend" hidden></div>
+
+<aside class="panel">
+  <h1>TransitLab · 修地铁</h1>
+  <p class="sub">在真实的 2026 年香港上画新地铁线，用完整的交通模型算出：谁会坐、省多少时间、路上少多少车、值不值。</p>
+  <div class="tabs">
+    <button type="button" data-mode="free" class="on">自由世界</button>
+    <button type="button" data-mode="north">情境题：北都人口大增</button>
+  </div>
+
+  <section id="story" class="card story" hidden></section>
+
+  <details id="method" open>
+    <summary>像规划师一样想：四个问题</summary>
+    <ol class="steps4">
+      <li><b>人在哪？</b>打开「人口」「岗位」图层，颜色越深越多。</li>
+      <li><b>要去哪？</b>打开「主要人流」：早高峰坐公交、人多又走得远的方向，箭头越粗人越多。</li>
+      <li><b>站放哪？</b>在地图上随便点一下，右边会出「站点卡」：周边 800 米多少人、跟哪个现有站差不多。</li>
+      <li><b>怎么接？</b>把站点在现有港铁站旁边（150 米内）就自动变成换乘站。</li>
+    </ol>
+  </details>
+
+  <h2>图层</h2>
+  <div class="chips" id="layers">
+    <span class="chip" data-layer="pop"><span class="dot" style="background:#d64541"></span>人口</span>
+    <span class="chip" data-layer="jobs"><span class="dot" style="background:#3465a4"></span>岗位</span>
+    <span class="chip on" data-layer="unserved"><span class="dot" style="background:#e67e22"></span>离港铁远的人</span>
+    <span class="chip" data-layer="flows"><span class="dot" style="background:#7c3aed"></span>主要人流</span>
+    <span class="chip on" data-layer="mtr"><span class="dot" style="background:#4a5560"></span>现有港铁站</span>
+    <span class="chip" data-layer="result" hidden><span class="dot" style="background:#1f8a4c"></span>结果</span>
+  </div>
+  <p class="legend" id="layerNote">「离港铁远的人」= 住或工作在离最近港铁站超过 800 米（约走 10 分钟）的人。</p>
+
+  <section id="cardBox" hidden></section>
+
+  <h2>我的线路</h2>
+  <div id="lines"></div>
+  <div class="row">
+    <button type="button" class="btn" id="newLine">＋ 画一条新线</button>
+    <button type="button" class="btn" id="example">看个例子</button>
+    <button type="button" class="btn danger" id="clearAll">全部清空</button>
+  </div>
+  <p class="hint" id="drawHint" hidden>
+    <b>正在画线：</b>点地图 = 加车站；<kbd>Shift</kbd>+点 = 拐弯点（不设站）；拖动 = 挪位置；右键 = 删掉；点线段 = 换「隧道 / 高架 / 地面」。画完点「画好了」。
+  </p>
+
+  <div class="card" id="costBox"></div>
+
+  <div class="row">
+    <button type="button" class="btn main" id="go">开始算</button>
+    <span class="hint" id="goHint">完整模型跑 4 轮，约 30 秒</span>
+  </div>
+
+  <section id="progress" hidden>
+    <h2 id="progTitle">正在算</h2>
+    <ul class="prog" id="prog"></ul>
+  </section>
+
+  <section id="results" hidden></section>
+
+  <h2>我的记录</h2>
+  <div class="row"><span class="hint">昵称</span><input type="text" id="nick" maxlength="16" placeholder="排行榜上显示的名字"></div>
+  <div id="history"></div>
+
+  <p class="legend" style="margin-top:18px">
+    可信度：<span class="tier t-A">A</span> 实测　<span class="tier t-B">B</span> 校准推算　<span class="tier t-C">C</span> 依据推断　<span class="tier t-D">D</span> 示意假设。
+    带 C / D 的结果<b>仅供参考、学习</b>：造价、运营费、碳排等参数还在调研（见 docs/data-tiers.md）。
+  </p>
+</aside>
+
+<div class="loading" id="loading"><span class="spinner"></span>正在载入 2026 年香港交通模型（第一次约 15 秒）…</div>
+
+<div class="modal" id="intro" hidden>
+  <div>
+    <h2>欢迎来修地铁</h2>
+    <p>这是真实的香港：455 个分区、750 万人、早高峰每小时 140 万人次坐公交，都来自政府数据并校准过。</p>
+    <ol class="steps4">
+      <li>看图层：橙色是<b>离港铁远的人</b>，越深越多。</li>
+      <li>点「画一条新线」，在地图上一下一下<b>点出车站</b>，站和站之间自动连直线。</li>
+      <li>点「开始算」，模型会一轮轮算：谁改坐新线、去哪的人变了、路上少了多少车。</li>
+      <li>看账本：值不值、为什么。改一改再算，分数会变。</li>
+    </ol>
+    <p class="hint">情境题模式有一道题和打分；自由世界随便画。</p>
+    <div class="row"><button type="button" class="btn main" id="introOk">开始</button></div>
+  </div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

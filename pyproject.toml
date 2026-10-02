@@ -42,3 +42,4 @@ package = false
 
 [tool.pytest.ini_options]
 testpaths = ["model", "backend", "tests"]
+pythonpath = ["."]  # the project root first, so `game` and `backend` are this project's even if PYTHONPATH has another

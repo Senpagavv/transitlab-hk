@@ -143,3 +143,10 @@ async def traffic_live(request: Request) -> LiveTrafficSnapshot:
         return await request.app.state.live_traffic.snapshot()
     except (httpx.HTTPError, ValueError) as exc:
         raise HTTPException(status_code=502, detail=f"Traffic feed unavailable: {exc}") from exc
+
+
+# Playable demo (game/): the engine API under /game/api, the page at /game/.
+from game.api import GAME_UI, router as game_router  # noqa: E402
+
+app.include_router(game_router)
+app.mount("/game", StaticFiles(directory=GAME_UI, html=True, check_dir=False), name="game")

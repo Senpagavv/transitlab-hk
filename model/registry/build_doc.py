@@ -89,6 +89,8 @@ def render(items: list[dict]) -> str:
             kzh, ken = KINDS[i["kind"]]
             szh, sen = STATUS[i["status"]]
             value = fmt(i.get("value", "")) + (f" {i['unit']}" if i.get("unit") and "value" in i else "")
+            if "provisional" in i:
+                value += f"（demo 临时值 {fmt(i['provisional'])}，🔴D）"
             src = i.get("source", "") + (f"（`{i['code']}`）" if i.get("code") else "")
             out.append("| " + " | ".join(cell(x) for x in [
                 i["id"], i["name_zh"], i["name_en"], f"{kzh} {ken}", value, src, f"{szh} {sen}",

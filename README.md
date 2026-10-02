@@ -62,6 +62,7 @@
 
 - 启动后任务栏会出现一个终端窗口（后端、前端各一个标签页），**用网站时不要关**；不用时关掉它即可停止。
 - 桌面图标指向 `scripts\start-dev.ps1`；图标丢了可以双击 `scripts\start-dev.cmd`，效果相同。
+- **玩修地铁 demo**：双击 `scripts\start-game.cmd`（Mac：`scripts/start-game.sh`），浏览器打开 <http://127.0.0.1:8000/game/>；说明见 [`game/README.md`](game/README.md)。
 
 或者手动开两个终端：
 

@@ -6,6 +6,18 @@
 
 ## 2026-10-02
 
+### 16:31 · 可玩 demo：自由世界 + 情境题「北都人口大增」/ Playable demo: free world + scenario
+- **改了什么**：新增 `game/`（计算引擎 + `/game/api`）和 `game-ui/`（网页），双击 `scripts/start-game.cmd`（Mac：`start-game.sh`）打开 <http://127.0.0.1:8000/game/>。
+  点地图放车站、站间自动连直线（Shift+点 = 拐弯点）；150 米内接上现有港铁站自动成换乘站；线段按土地用途格网自动判断隧道/高架（可点击改）；站旁开发三种套餐；搜车站、地方、屋苑、分区。
+  每次「开始算」跑完整四阶段模型 4 轮：新线客流和拥挤 → pipeline/22、23、24 原参数重算去哪里、坐什么、早高峰 → 增量路网分配和塞车回代；以 2026 基准加差值，什么都不建 = 基准原样。
+  结果：每天坐新线人次、省时（半数法则 × 模型时间价值）、路上车辆、碳排、造价、运营费、地价、40 年净收益和回本年数，每项带 A–D 可信度；原因卡；每段载客率；地图上线宽 = 客流、绿圈 = 上车、蓝圈 = 受益地区。情境题 100 分制（通勤 30、少开车 15、效益成本比 40、有人坐 15，超预算 ×0.7）和本机排行榜。
+  帮大众看懂数据：人口 / 岗位 / 离港铁远的人三张热力图（分区人口摊到 10 米土地用途格网的住宅/工商楼宇）、「人多又走得远」的主要人流箭头、站点卡（800 米内人口岗位，和 97 个现有站比 A–D，「跟哪个站差不多」）。
+  登记表新增 4 项 D 级（D.route_cutoff_min、D.service_pattern、D.dev_packages、D.scenario_north），to_research 参数给了 demo 临时值（`provisional`，按 D 级算），共 117 项；`pyproject.toml` 的 pytest 把项目根目录放在最前（本机 PYTHONPATH 里另有一个 `game` 文件夹会抢名字）。
+- **What**: playable demo (`game/` engine + API, `game-ui/` page): click to place stations, straight segments, automatic interchange and tunnel/viaduct choice, station-area development, search; each run is the full four-step model for 4 feedback rounds as a difference on the 2026 base; ledger with confidence tiers, reasons, section loads, maps of riders and gains; scenario score out of 100 and a local leaderboard; heat maps, main-flow arrows and station cards to make the data readable.
+- **为什么**：发起人要先亲手玩两个 demo（自由开放世界 + 一道有分数的题），再给体验反馈。
+- **验证**：pytest 58 全过（新增 `tests/test_game_engine.py`：不建线 = 基准原样，误差 < 1e-6；运行时间公式；接驳与分流合理）；无头浏览器截图检查 `frontend/scripts/check-game.mjs` 全流程无报错。示例「北环线」（錦上路—上水 12 公里）：每天约 37 万人次（含一条屯门试画线）、造价 405–571 亿、效益成本比 0.14–0.2；情境题示例 24.6 分 D 级。自由模式一次约 25 秒，情境题第一次约 50 秒（多算一遍「没有新线的北都」，之后缓存）。
+- **已知局限**：现有港铁各线的拥挤没有建模（新线分走旧线乘客的好处没算）；造价、碳排等单价是 D 级临时值，等任务 44。
+
 ### 15:19 · 游戏规则 v1 草案（A 真实世界 + B 情境题）
 - **改了什么**：新增 `docs/design/game-rules-v1.md`——两个模式共用一个引擎和一本账；四道情境题（北都人口大增、东铁过挤、老龄化社区、新就业中心）；预算内不限线路条数；排行榜按净收益（亏得少也算）+ 题目目标徽章；引擎要支持多条新线互相换乘（min-plus 组合）。`pro-mode-walkthrough.md` 标注为教学沙盘（以后做）的参考。
 - **为什么**：发起人澄清：要的是玩家自己画线、切实感受变化并比较谁画得最好，而不是跟着老师做任务。
