@@ -54,6 +54,8 @@ Windows 注意：用户名含中文时，GDAL 需要 `CPL_TMPDIR` 指向纯英�
 3. `check_docs.py` 通过；文档里引用的数字改了就同步改，旧值加入 `check_docs.py` 的 `RETIRED`；
 4. `pytest` 全过；前端改动还要 `npm run build`；
 5. 在 `docs/handoff.md` 顶部加一段中文记录：改了什么、为什么、前后数字对比、还剩什么；新步骤写进 `pipeline-manifest.md`。
+6. **在 `CHANGELOG.md` 最上面加一条**：时间（香港时间）、提交编号、改了什么、为什么、怎么验证；**本地提交后立即推送到 GitHub**，本地与线上保持一致。
+7. 新增或改动了任何数据、模型产物或参数：在 `model/registry/data_tiers.toml` 登记它的可信度级别（A 实测 / B 校准推算 / C 依据推断 / D 示意假设）与出处，再运行 `uv run python model/registry/build_doc.py`；C/D 级结果对外展示时必须带「仅供参考 / 仅供学习」提示。
 不要宣称「完成」或「更准了」而不给出前后对比的数字。
 
 ## 6. 模型关键事实（改之前要知道）

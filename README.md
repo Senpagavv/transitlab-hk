@@ -7,7 +7,8 @@
 > - **第一次用 GitHub**：[`docs/team-quickstart.md`](docs/team-quickstart.md)（注册、接受邀请、下载、日常怎么提交）
 > - **人**：读 [`docs/onboarding.md`](docs/onboarding.md)——装什么、怎么拿到项目、按角色（看结果 / 前端 / 调模型 / 画新线）看哪里、怎么在 GitHub 上协作、哪些东西不能动。
 > - **AI 助手**（Claude Code、Codex、Cursor…）：让它先读 [`AGENTS.md`](AGENTS.md)。
-> - **数据从哪来**：[`docs/data-sources.md`](docs/data-sources.md)（43 个来源的总目录）。
+> - **数据从哪来**：[`docs/data-sources.md`](docs/data-sources.md)（43 个来源的总目录）；**每个数据、参数可信到什么程度**：[`docs/data-tiers.md`](docs/data-tiers.md)（A/B/C/D 四级）。
+> - **改动日志**：[`CHANGELOG.md`](CHANGELOG.md)（每次改动的时间、内容、验证）。
 > - **现在做到哪、准确度、已知局限**：[`docs/handoff.md`](docs/handoff.md) 顶部。
 >
 > 方向（2026-09-25 起）：在这个模型上做「画新地铁线 / 新路」的规划游戏；下面「这个工程算出了什么」一节是更早的无人车车队方向，保留作参考。

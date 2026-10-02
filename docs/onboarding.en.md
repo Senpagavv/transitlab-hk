@@ -92,6 +92,8 @@ main (only reviewed work)
 6. **Do not hammer government APIs** (CSDI, DATA.GOV.HK, …) — our IP was blocked once; use caches.
 7. If you change a number, update the documents that quote it (`check_docs.py` checks this).
 8. **Never force-push.**
+9. **Every change adds an entry at the top of `CHANGELOG.md`** (time, what, why, how verified); push to GitHub right after committing.
+10. Every dataset and parameter carries a confidence tier (A measured / B calibrated / C evidence-based estimate / D illustrative assumption), see [`data-tiers.md`](data-tiers.md); register new ones in `model/registry/data_tiers.toml`. Tier C/D values are for reference and learning only.
 
 ## 5. FAQ
 - **`uv sync` is slow or fails on a path**: probably a non-English Windows user name, see 1.1.
