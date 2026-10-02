@@ -40,3 +40,10 @@
 | 限时人流 / 疏散的排队模拟引擎 | Claude（发起人挑完后）|
 | 把选中的地图样式做进游戏、事件简报、多维评分和排行 | Claude |
 | 从 6 版里挑 1–2 版；从事件库挑 3 个先做 | 发起人 |
+
+## 补充（同日）：核心抽象是「想法」/ Addendum: the core unit is a "desire"
+发起人：**交通网络依旧复杂，但每个人的想法简单。** 游戏把全港出行翻译成几十个「想法」——一群人从 A 去 B、多少人、现在开不开心（😊 满足 / 🐢 太慢 / 🧱 太挤 / ⛔ 断了，⛔ 只在事件里）。
+满足想法的办法：①**牵线直达**（快，但会把人都吸过来、自己变挤，终点换乘站会把压力推给别的线）；②**分流减压**（绕开爆满段，带走一部分人，经过那段的想法都跟着变开心——一条线救一片）；③**接驳**到有空位的线；④（可选）站旁开发，让一部分人就近上班，想法变短。
+计分：满足了几个想法、多少人，直接 / 间接分开算，被弄得更挤的想法扣分；结算给连锁说明（「你的线带走 8,000 人 → 东铁大围→九龙塘 137%→95% → 另外 6 个想法变开心」）。大事件 = 改变想法（冒出新想法、一部分想法变 ⛔）。
+第一步由 Codex 任务 48 用真实数据做「想法地图」，检验人能不能一眼看出规律；之后 Claude 做「修线 → 重算想法状态 → 连锁说明」的引擎。
+*The network stays complex; each person's desire is simple. Players satisfy desires by a direct link, by relieving a crowded section (indirectly helping every desire through it), or by feeding an under-used line. Task 48 builds the desire map from real data first.*
