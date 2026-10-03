@@ -24,7 +24,8 @@
     RAIL_CAP: 600,          // people per minute through the Kai Tak MTR gate (36,000 an hour)
     WALK_KM: 3, WALK_KMPM: 0.075,
     BUS_CAP: 120, BUS_PCU: 2.5, BUS_DEPLOY: 10, BUS_DWELL: 3, FLEET: 400,
-    LANES_MAX: 3, LANE_SETUP: 10, LANE_BUS_PER_MIN: 4,
+    LANES_MAX: 4, LANE_SETUP: 5, LANE_BUS_PER_MIN: 4,
+    BUS_ACCESS: 6, BUS_LOAD: 70, BUS_PENALTY: 3,   // ordinary public buses on the roads: walk + wait, people per bus
     PICKUP_KM: 2, LOCAL_KMPM: 25 / 60,
   };
 
@@ -39,7 +40,7 @@
     const edges = data.edges.map((e, i) => {
       const bg = Math.min(0.85, e.vc * p.BG_FACTOR);
       return Object.assign({}, e, { i, avail: e.cap * (1 - bg) / 60, queue: [], busQueue: [], transit: [],
-        lane: null, inflow: 0, outflow: 0, flowHist: [] });
+        lane: null, inflow: 0, outflow: 0, flowHist: [], delayLog: [] });
     });
     const out = {}; nodeIds.forEach((n) => { out[n] = []; });
     edges.forEach((e) => out[e.from].push(e.i));
@@ -58,7 +59,7 @@
     function capNow(e) { return laneOn(e) ? e.avail * (e.lanes - 1) / e.lanes : e.avail; }
     function queueVeh(e) { return e.queue.reduce((a, k) => a + k.veh * (k.mode === 'bus' ? p.BUS_PCU : 1), 0); }
     function delay(e, bus) {
-      if (bus && laneOn(e)) return e.busQueue.length / p.LANE_BUS_PER_MIN;
+      if (bus && laneOn(e)) return e.busQueue.reduce((a, k) => a + k.veh, 0) / p.LANE_BUS_PER_MIN;
       return queueVeh(e) / Math.max(capNow(e), 1e-6);
     }
     function routes(bus) {
@@ -160,7 +161,7 @@
       S.routes = { car: routes(false), bus: routes(true) };
       const railWait = (S.railQueue + S.railComing) / p.RAIL_CAP;   // people can see how crowded the MTR is
       const left = p.DURATION - t;
-      const carIn = {};
+      const carIn = {}, busIn = {};
 
       // 1. decisions at home
       for (const z of zones) {
@@ -171,13 +172,14 @@
         opt.car = z.access + S.routes.car.dist[z.node] + p.CAR_PENALTY;
         opt.rail = z.pt + railWait;
         if (z.kt_km <= p.WALK_KM) opt.walk = z.kt_km * 1.25 / p.WALK_KMPM;
+        opt.bus = z.access + p.BUS_ACCESS + S.routes.bus.dist[z.node] + p.BUS_PENALTY;
         let bestPk = null;
         for (const pk of S.pickups) {
           if (pk.closed || !pk.buses.length) continue;
           const c = pk.covered.find((x) => x.z === z);
           if (!c) continue;
           const tb = c.walk + busWait(pk) + pickupAccess(pk) + S.routes.bus.dist[pk.node];
-          if (opt.bus === undefined || tb < opt.bus) { opt.bus = tb; bestPk = { pk, walk: c.walk }; }
+          if (tb < opt.bus) { opt.bus = tb; bestPk = { pk, walk: c.walk }; }
         }
         let tBest = Infinity;
         for (const m in opt) tBest = Math.min(tBest, opt[m]);
@@ -194,12 +196,17 @@
           if (m === 'car') { const k = Math.round(t + z.access); carIn[k + '|' + z.node] = (carIn[k + '|' + z.node] || 0) + n; }
           else if (m === 'rail') { S.railComing += n; later(t + Math.max(z.pt - 3, 1), 'rail', { people: n, z }); }
           else if (m === 'walk') later(t + opt.walk, 'arrive', { people: n, mode: 'walk', z });
-          else if (m === 'bus') later(t + bestPk.walk, 'pickup', { people: n, pk: bestPk.pk });
+          else if (m === 'bus' && bestPk) later(t + bestPk.walk, 'pickup', { people: n, pk: bestPk.pk });
+          else if (m === 'bus') { const k = Math.round(t + z.access + p.BUS_ACCESS); busIn[k + '|' + z.node] = (busIn[k + '|' + z.node] || 0) + n; }
         }
       }
       for (const key in carIn) {
         const [k, node] = key.split('|');
         later(Number(k), 'car', { people: carIn[key], node });
+      }
+      for (const key in busIn) {
+        const [k, node] = key.split('|');
+        later(Number(k), 'pbus', { people: busIn[key], node });
       }
 
       // 2. things arriving this minute
@@ -209,6 +216,7 @@
         else if (item.kind === 'pickup') item.pk.queue += item.people;
         else if (item.kind === 'car') inject({ mode: 'car', veh: item.people / p.OCC, people: item.people, origin: item.node }, item.node);
         else if (item.kind === 'bus') inject(item.pkt, item.pkt.origin);
+        else if (item.kind === 'pbus') inject({ mode: 'bus', veh: item.people / p.BUS_LOAD, people: item.people, origin: item.node }, item.node);
         else if (item.kind === 'busfree') { item.bus.state = 'board'; item.bus.load = 0; }
       }
       delete S.pending[t];
@@ -255,9 +263,14 @@
         }
         if (laneOn(e)) {
           let bc = p.LANE_BUS_PER_MIN;
-          while (e.busQueue.length && bc >= 1) { enter(e, e.busQueue.shift()); bc -= 1; }
+          while (e.busQueue.length && bc > 1e-6) {
+            const k = e.busQueue[0];
+            if (k.veh <= bc) { e.busQueue.shift(); bc -= k.veh; enter(e, k); }
+            else { const part = Object.assign({}, k, { veh: bc, people: k.people * bc / k.veh }); k.people -= part.people; k.veh -= bc; bc = 0; enter(e, part); }
+          }
         }
         const d = delay(e, false);
+        e.delayLog.push(d);
         e.flowHist.push(e.inflow);
         if (e.flowHist.length > 60) e.flowHist.shift();
         if (e.player && d >= 20 && !S.alerted[e.i]) { S.alerted[e.i] = true; S.alerts.push({ type: 'jam', edge: e.i, text: `${e.name} 堵了 ${Math.round(d)} 分钟！` }); }
@@ -271,10 +284,11 @@
 
       // 6. book-keeping
       let veh = 0;
-      for (const e of edges) { for (const k of e.queue) veh += k.veh; for (const k of e.transit) veh += k.veh; veh += e.busQueue.length; }
+      let cars = 0;
+      for (const e of edges) for (const k of e.queue.concat(e.transit, e.busQueue)) { veh += k.veh; if (k.mode === 'car') cars += k.veh; }
       S.vehMin += veh;
       S.busMin += busFleetUsed();
-      S.history.push({ t, arrived: S.arrived, gave: S.gave, veh, rail: S.railQueue });
+      S.history.push({ t, arrived: S.arrived, gave: S.gave, veh, cars, rail: S.railQueue });
       const recentGave = S.history.length > 5 ? S.gave - S.history[S.history.length - 6].gave : 0;
       if (recentGave > 6000 && !S.alerted.gave) { S.alerted.gave = true; S.alerts.push({ type: 'gave', text: `最近 5 分钟有 ${Math.round(recentGave / 1000)} 千人放弃了！` }); }
       if (recentGave < 2000) S.alerted.gave = false;
@@ -303,7 +317,7 @@
     }
     function reach(k) {
       arrive(k.people, k.mode, null);
-      if (k.mode === 'bus') {
+      if (k.mode === 'bus' && k.pk) {
         k.pk.served += k.people;
         const back = 2 * p.BUS_DWELL + k.path.reduce((a, i) => a + edges[i].free_min, 0) + pickupAccess(k.pk);
         k.bus.state = 'back'; k.bus.load = 0;
@@ -317,7 +331,8 @@
     }
 
     function summary() {
-      return { arrived: Math.round(S.arrived), gave: Math.round(S.gave), want: Math.round(S.wantTotal),
+      const departed = zones.reduce((a, z) => a + z.dep.car + z.dep.rail + z.dep.walk + z.dep.bus, 0);
+      return { arrived: Math.round(S.arrived), gave: Math.round(S.gave), want: Math.round(S.wantTotal), late: Math.round(departed - S.arrived),
         by: Object.fromEntries(Object.entries(S.arrivedBy).map(([k, v]) => [k, Math.round(v)])),
         vehHours: Math.round(S.vehMin / 60), busHours: Math.round(S.busMin / 60), railQueue: Math.round(S.railQueue) };
     }
@@ -327,7 +342,19 @@
     return S;
   }
 
-  const api = { create, P, km };
+  // Re-run a game from the start with a list of actions [{t, type: 'lane', edge}] up to minute `until`.
+  function replay(data, actions, until, settings) {
+    const S = create(data, settings);
+    const todo = actions.slice().sort((a, b) => a.t - b.t);
+    let k = 0;
+    while (!S.done && S.t < until) {
+      while (k < todo.length && todo[k].t <= S.t) { const a = todo[k++]; if (a.type === 'lane') S.toggleLane(a.edge); }
+      S.step();
+    }
+    return S;
+  }
+
+  const api = { create, replay, P, km };
   root.AlienSim = api;
   if (typeof module !== 'undefined') module.exports = api;
 })(typeof window !== 'undefined' ? window : this);

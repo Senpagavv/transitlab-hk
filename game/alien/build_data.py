@@ -29,7 +29,7 @@ NODES = {
     "QB": ("鲗鱼涌", 22.2860, 114.2150), "KTG": ("观塘", 22.3110, 114.2260), "DHN": ("钻石山", 22.3390, 114.1950),
     "ST": ("沙田", 22.3830, 114.1890), "TKO": ("将军澳", 22.3070, 114.2600), "TP": ("大埔", 22.4480, 114.1660),
     "FL": ("粉岭", 22.4960, 114.1390), "TW": ("荃湾", 22.3720, 114.1140), "KC": ("葵涌", 22.3570, 114.1300),
-    "TM": ("屯门", 22.3920, 113.9760), "YL": ("元朗", 22.4440, 114.0280),
+    "TM": ("屯门", 22.3920, 113.9760), "YL": ("元朗", 22.4440, 114.0280), "ABD": ("香港仔", 22.2480, 114.1690),
 }
 # the 13 corridors the player can act on, all directed towards Kai Tak: (name, from, to, road names in the data, speed km/h)
 CORRIDORS = [
@@ -46,23 +46,74 @@ CORRIDORS = [
     ("龙翔道", "DHN", "KT", ["LUNG CHEUNG ROAD"], 40),
     ("观塘道", "KTG", "KT", ["KWUN TONG ROAD"], 35),
     ("东九龙走廊·启德隧道", "HH", "KT", ["EAST KOWLOON CORRIDOR", "KAI TAK TUNNEL"], 45),
+    ("青沙公路（尖山隧道）", "ST", "KLN_W", ["TSING SHA HIGHWAY"], 70),
+    ("城门隧道", "TW", "ST", ["SHING MUN TUNNEL ROAD", "SHING MUN TUNNEL"], 60),
+    ("观塘绕道", "KTG", "KT", ["KWUN TONG BYPASS"], 50),
+    ("东区走廊", "CWB", "QB", ["ISLAND EASTERN CORRIDOR"], 60),
+    ("香港仔隧道", "ABD", "CWB", ["ABERDEEN TUNNEL"], 50),
+    ("西九龙公路", "KC", "WK", ["WEST KOWLOON HIGHWAY"], 70),
+    ("亚皆老街", "KLN_W", "KT", ["ARGYLE STREET"], 30),
 ]
 # connecting roads (not player-controlled): (name, from, to, capacity veh/h, speed, normal v/c)
 CONNECTORS = [
-    ("港岛北（西营盘—铜锣湾）", "CEN", "CWB", 4500, 30, 0.6), ("港岛北（铜锣湾—鲗鱼涌）", "CWB", "QB", 4500, 35, 0.6),
+    ("港岛北（西营盘—铜锣湾）", "CEN", "CWB", 4500, 30, 0.6),
     ("西九龙—旺角", "WK", "KLN_W", 4000, 30, 0.6), ("龙翔道西段（旺角—钻石山）", "KLN_W", "DHN", 3000, 40, 0.5),
     ("荃湾—葵涌", "TW", "KC", 4500, 50, 0.5), ("大榄隧道（元朗—荃湾）", "YL", "TW", 4500, 80, 0.4),
     ("粉岭公路（粉岭—大埔）", "FL", "TP", 4500, 80, 0.4),
 ]
-REGION = {"中西区": "HKI", "湾仔区": "HKI", "东区": "HKI", "南区": "HKI",
+REGION = {"中西区": "HKI", "湾仔区": "HKI", "东区": "HKI",
           "油尖旺区": "KLN", "深水埗区": "KLN", "九龙城区": "KLN", "黄大仙区": "KLN", "观塘区": "KLN"}
 REGION_NODES = {"HKI": ["CEN", "CWB", "QB"], "KLN": ["KLN_W", "WK", "HH", "DHN", "KTG", "KT"]}
-DISTRICT_NODE = {"西贡区": "TKO", "沙田区": "ST", "大埔区": "TP", "北区": "FL", "荃湾区": "TW", "葵青区": "KC",
+DISTRICT_NODE = {"南区": "ABD", "西贡区": "TKO", "沙田区": "ST", "大埔区": "TP", "北区": "FL", "荃湾区": "TW", "葵青区": "KC",
                  "屯门区": "TM", "元朗区": "YL"}
 
 
 def km(lat0, lon0, lat1, lon1):
     return float(np.hypot((lat1 - lat0) * 110.57, (lon1 - lon0) * 111.32 * np.cos(np.radians(22.35))))
+
+
+def road_paths(b, edges):
+    """Each edge drawn along the real roads: shortest path on the road network, preferring the named roads."""
+    from scipy.sparse import csr_matrix
+    from scipy.sparse.csgraph import dijkstra
+    links = pd.read_parquet(ROOT / "data" / "model" / "road-links.parquet", columns=["a_node", "b_node", "length_m", "street", "routable"])
+    links = links[links["routable"]]
+    nodes = pd.read_parquet(ROOT / "data" / "model" / "road-nodes.parquet").set_index("node_id")
+    n = int(max(links["a_node"].max(), links["b_node"].max(), nodes.index.max())) + 1
+    xy = np.full((n, 2), np.nan)
+    xy[nodes.index.to_numpy()] = nodes[["x", "y"]].to_numpy()
+    have = np.flatnonzero(np.isfinite(xy[:, 0]))
+    for e in edges:
+        pref = links["street"].isin(e["roads"]).to_numpy()
+        w = links["length_m"].to_numpy() * np.where(pref, 1.0, 4.0 if e["roads"] else 1.0) + 1.0
+        g = csr_matrix((np.concatenate([w, w]), (np.concatenate([links["a_node"], links["b_node"]]), np.concatenate([links["b_node"], links["a_node"]]))), shape=(n, n))
+        ends = []
+        for hub in (e["from"], e["to"]):
+            x, y = b.to_grid.transform(NODES[hub][2], NODES[hub][1])
+            ends.append(int(have[np.argmin(np.hypot(xy[have, 0] - x, xy[have, 1] - y))]))
+        stops = [ends[0]]
+        if e["roads"]:      # go through the middle of the named road, so two tunnels between the same towns differ
+            named = np.unique(np.concatenate([links.loc[pref, "a_node"].to_numpy(), links.loc[pref, "b_node"].to_numpy()]))
+            named = named[np.isfinite(xy[named, 0])]
+            c = xy[named].mean(axis=0)
+            stops.append(int(named[np.argmin(np.hypot(xy[named, 0] - c[0], xy[named, 1] - c[1]))]))
+        stops.append(ends[1])
+        path = [stops[0]]
+        for a, z in zip(stops[:-1], stops[1:]):
+            _, pred = dijkstra(g, directed=True, indices=a, return_predecessors=True)
+            seg, cur = [], z
+            while cur >= 0 and cur != a and len(seg) < 20000:
+                seg.append(cur); cur = pred[cur]
+            path += seg[::-1] if cur == a else [z]
+        pts = xy[path]
+        step = max(1, len(pts) // 80)
+        pts = np.vstack([pts[::step], pts[-1:]])
+        lon, lat = b.to_ll.transform(pts[:, 0], pts[:, 1])
+        e["geom"] = [[NODES[e["from"]][1], NODES[e["from"]][2]]] + [[round(float(a), 5), round(float(o), 5)] for a, o in zip(lat, lon)] + [[NODES[e["to"]][1], NODES[e["to"]][2]]]
+        km_real = float(np.hypot(np.diff(pts[:, 0]), np.diff(pts[:, 1])).sum() / 1000)
+        if km_real > 0.5:
+            e["km"] = round(km_real, 1)
+            e["free_min"] = round(km_real / e["speed"] * 60, 1)
 
 
 def main() -> None:
@@ -84,11 +135,12 @@ def main() -> None:
         v = vc.reindex(s["link_id"]).dropna()
         d = km(NODES[f][1], NODES[f][2], NODES[t][1], NODES[t][2]) * 1.3
         edges.append({"name": name, "from": f, "to": t, "cap": round(cap), "lanes": max(lanes, 2), "vc": round(float(v.median()), 2),
-                      "free_min": round(d / speed * 60, 1), "km": round(d, 1), "player": True, "roads": streets})
+                      "free_min": round(d / speed * 60, 1), "km": round(d, 1), "player": True, "roads": streets, "speed": speed})
     for name, f, t, cap, speed, v in CONNECTORS:
         d = km(NODES[f][1], NODES[f][2], NODES[t][1], NODES[t][2]) * 1.3
         edges.append({"name": name, "from": f, "to": t, "cap": cap, "lanes": 3, "vc": v, "free_min": round(d / speed * 60, 1),
-                      "km": round(d, 1), "player": False, "roads": []})
+                      "km": round(d, 1), "player": False, "roads": [], "speed": speed})
+    road_paths(b, edges)
 
     zones = []
     for k, z in enumerate(pl.zones):
@@ -116,8 +168,8 @@ def main() -> None:
                    + json.dumps(data, ensure_ascii=False) + ";\nif (typeof module !== 'undefined') module.exports = ALIEN_DATA;\n",
                    encoding="utf-8")
     print(f"{len(zones)} zones, population {sum(z['pop'] for z in zones):,}, {len(edges)} edges -> {OUT}")
-    for e in edges[:13]:
-        print(f"  {e['name']:12s} cap {e['cap']:5d} lanes {e['lanes']} v/c {e['vc']:.2f} free {e['free_min']} min")
+    for e in edges:
+        print(f"  {e['name']:14s} cap {e['cap']:5d} lanes {e['lanes']} v/c {e['vc']:.2f} {e['km']} km free {e['free_min']} min pts {len(e['geom'])}")
 
 
 if __name__ == "__main__":

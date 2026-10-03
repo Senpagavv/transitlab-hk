@@ -56,3 +56,16 @@ table.res td.n { text-align: right; font-weight: 700; }
 .leaflet-tooltip.rail { background: #6b21a8; color: #fff; border: 0; font-size: 12px; }
 .leaflet-tooltip.hub { background: rgba(255,255,255,.8); border: 0; box-shadow: none; color: #374151; font-size: 11px; font-weight: 700; padding: 0 3px; }
 .leaflet-tooltip.hub::before { display: none; }
+.goal { margin: 2px 0 6px; padding: 6px 8px; background: #ede9fe; border-radius: 8px; }
+.how { margin: 4px 0 6px; padding-left: 18px; font-size: 12.8px; }
+.how li { margin: 3px 0; }
+.sq { display: inline-block; width: 8px; height: 8px; margin-right: 6px; }
+.delta { font-size: 15px; margin: 6px 0; padding: 6px 8px; border-radius: 8px; }
+.delta.up { background: #dcfce7; } .delta.down { background: #fee2e2; }
+.delta small { display: block; font-size: 11.5px; color: #4b5563; }
+#card p { margin: 4px 0; }
+.g { color: #15803d; } .r { color: #b91c1c; }
+.leaflet-tooltip.better { background: #15803d; color: #fff; border: 0; font-weight: 700; font-size: 12px; }
+.leaflet-tooltip.worse { background: #b91c1c; color: #fff; border: 0; font-weight: 700; font-size: 12px; }
+.leaflet-tooltip.ename { font-weight: 700; }
+.leaflet-tooltip.self { background: #1d4ed8; color: #fff; border: 0; font-weight: 800; font-size: 13px; }
