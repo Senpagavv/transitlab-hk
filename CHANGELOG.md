@@ -6,7 +6,7 @@
 
 ## 2026-10-03
 
-### 14:40 · 给 Codex 的游戏玩法讨论简报 / Briefing for Codex on the game-design discussion
+### 14:52 · 给 Codex 的游戏玩法讨论简报 / Briefing for Codex on the game-design discussion
 - **改了什么**：`docs/for-codex/briefing-game-design-2026-10-03.md`（另复制到桌面「TransitLab游戏讨论简报（给Codex）.md」）：背景与比赛时间线、游戏目标、发起人的原则、试过的 10 个方案及否决原因、现在的位置（还没有一个本身好玩的核心操作）、关键难点、可用资产、可以请 Codex 帮忙的方向、做小样的规矩、术语。
 - **为什么**：发起人要和 Codex 一起找玩法启发，免得花很久对齐背景。
 - **验证**：文档变更。
