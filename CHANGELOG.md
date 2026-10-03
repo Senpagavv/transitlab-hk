@@ -4,6 +4,15 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-03
+
+### 14:09 · 「外星人降临启德」规则版 demo / Rules demo: aliens land at Kai Tak
+- **改了什么**：按 10/2–10/3 讨论定的玩法做的第一个可玩 demo（画面从简，先验证规则）：`game-ui/alien/`（`index.html`、`ui.js`、`sim.js`、`alien.css`、生成的 `data.js`），`game/alien/build_data.py`（数据）、`game/alien/tune.js`（机器人试玩）。桌面新增「外星人降临启德」图标；`scripts/start-game.ps1` 可带 `-Page alien/` 直接打开。
+  规则：18:00 外星人在启德派礼物、21:00 离开；全港 439 个分区（不含离岛）约 58 万人想来，消息从启德往外传；在家决定去不去（预计时间比平时多太多就放弃，放弃不回头）和怎么去（开车打车 / 港铁 / 走路 / 玩家的巴士）；13 条主干道 + 7 条连接路是排队模型（每分钟最多放行通行能力，堵车不再变长后从前面消掉）；港铁在启德一个进站瓶颈；玩家放巴士上车点（派几辆、10 分钟到位、来回循环）和开巴士专线（最多 3 条、10 分钟生效、私家车少一条车道）；严重堵车或大量放弃时自动暂停。结算：送到人数（和"什么都不做"比，1–3 星）、开车车次与路上车辆总时间（绿色）、巴士车·时，结尾彩蛋揭晓是大型活动散场。
+  真实数据：分区人口、各区到启德的平日公交时间、13 条干道的通行能力 / 车道 / 平日负荷（路网与早高峰分配）；想来的人数、消息速度、放弃率、车队规模是游戏设定。
+- **为什么**：发起人要先试玩、感受玩法，再调规则和美术。
+- **验证**：机器人试玩（`node game/alien/tune.js`）：什么都不做 16.8 万；只派巴士不开专线≈不做（巴士一起堵）；6 处派车 + 最后一段 3 条专线 26.8 万（+60%，路上车辆总时间 −25%）；同样做法晚 1 小时只有 17.7 万。无头浏览器全流程（开局 → 派车 → 开专线 → 结算）无报错。
+
 ## 2026-10-02
 
 ### 19:45 · 取消任务 49；新手模式数字刻意夸张 / Task 49 dropped; beginner numbers deliberately exaggerated

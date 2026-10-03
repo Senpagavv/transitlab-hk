@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>外星人降临启德</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../vendor/leaflet.css">
+<link rel="stylesheet" href="alien.css">
+</head>
+<body>
+<div id="map"></div>
+<canvas id="dots"></canvas>
+
+<div id="hud">
+  <div class="clock"><span id="clock">18:00</span><small id="left">距离外星人离开 3:00</small></div>
+  <div class="big"><b id="arrived">0</b><small>已领到礼物</small></div>
+  <div class="big"><b id="moving">0</b><small>正在路上</small></div>
+  <div class="big grey"><b id="gave">0</b><small>放弃了</small></div>
+  <div class="big red"><b id="cars">0</b><small>路上的车</small></div>
+</div>
+<div id="toast" hidden></div>
+
+<aside id="panel">
+  <h1>🛸 外星人降临启德</h1>
+  <p class="sub">外星人在启德派礼物，<b>3 小时后离开</b>。全港的人都想来，路会堵、港铁会挤，太难来的人会放弃。你能动用巴士和巴士专线，让更多人在外星人离开前赶到。</p>
+  <p class="base" id="baseline"></p>
+
+  <div class="row">
+    <button id="play" class="btn main">▶ 开始</button>
+    <button data-speed="1" class="btn spd on">1×</button>
+    <button data-speed="2" class="btn spd">2×</button>
+    <button data-speed="4" class="btn spd">4×</button>
+    <button id="restart" class="btn">重来</button>
+  </div>
+
+  <h2>你的工具</h2>
+  <div class="row">
+    <button id="toolPickup" class="btn tool">🚌 放巴士上车点</button>
+    <button id="toolLane" class="btn tool">🛣 开巴士专线</button>
+  </div>
+  <p class="hint" id="toolHint">选一个工具，再点地图。用工具时时间自动暂停。</p>
+  <div class="res"><span>巴士 <b id="fleet">0 / 400</b> 辆</span><span>专线 <b id="lanes">0 / 3</b> 条</span></div>
+  <div id="pickupList"></div>
+  <div id="laneList"></div>
+
+  <section id="card" hidden></section>
+
+  <h2>怎么看</h2>
+  <ul class="legend">
+    <li><i class="dot" style="background:#f97316"></i>想来、还在家的人（越亮越多）</li>
+    <li><i class="dot" style="background:#6b7280"></i>放弃了的地方变灰</li>
+    <li><i class="dot" style="background:#cbd5e1"></i>还没收到消息</li>
+    <li><i class="line" style="background:#22c55e"></i><i class="line" style="background:#f59e0b"></i><i class="line" style="background:#ef4444"></i><i class="line" style="background:#7f1d1d"></i>干道：畅通 → 堵死；越粗车越多</li>
+    <li><i class="dot small" style="background:#ef4444"></i>开车 / 打车的人　<i class="dot small" style="background:#2563eb"></i>巴士</li>
+    <li><i class="dot ring" style="border-color:#a855f7"></i>港铁站外排队的人</li>
+  </ul>
+  <p class="hint">点干道、地区、上车点，看详情。人数、道路通行能力、平时的公交时间都来自 2026 年的香港数据；想来的人数和外星人是游戏设定。</p>
+</aside>
+
+<div class="modal" id="intro">
+  <div>
+    <h2>🛸 外星人降临启德！</h2>
+    <p>傍晚 6 点，外星飞船停在启德体育园上空派礼物，<b>9 点离开</b>。消息从启德往外传，全港约 <b id="wantAll">58 万</b>人想赶来。</p>
+    <ol>
+      <li>人会自己选：<b>开车 / 打车</b>（会堵）、<b>港铁</b>（会挤）、<b>走路</b>（近的人）、或者坐你的<b>巴士</b>。</li>
+      <li>路上要的时间比平时长太多，人就<b>放弃</b>不来了——放弃的不会再来。</li>
+      <li>你可以 <b>放巴士上车点</b>（定派几辆车），和 <b>开巴士专线</b>（巴士不再堵，但私家车更堵）。</li>
+      <li>巴士派出去要 10 分钟才到，专线设置要 10 分钟。<b>越早出手越好。</b></li>
+      <li>9 点前送到越多人越好，路上的车越少越环保。</li>
+    </ol>
+    <p class="base" id="introBase"></p>
+    <button class="btn main" id="introOk">知道了，开始</button>
+  </div>
+</div>
+
+<div class="modal" id="end" hidden><div id="endBody"></div></div>
+
+<script src="../vendor/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="sim.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>

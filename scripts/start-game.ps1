@@ -2,6 +2,7 @@
 # Starts the backend (port 8000) only if it is not running yet, waits until it answers, then opens /game.
 # Safe to run again at any time; works side by side with start-dev.ps1 (same backend).
 # A backend started before the game existed (without --reload) answers 404 on /game: it is restarted.
+param([string]$Page = '')   # e.g. 'alien/' opens /game/alien/
 $root = Split-Path -Parent $PSScriptRoot
 $gameUrl = 'http://127.0.0.1:8000/game/'
 
@@ -36,7 +37,7 @@ while ((Get-Date) -lt $deadline) {
 }
 
 if ($ok) {
-    Start-Process $gameUrl
+    Start-Process ($gameUrl + $Page)
 } else {
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.MessageBox]::Show(

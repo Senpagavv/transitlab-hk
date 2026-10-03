@@ -1,5 +1,9 @@
 # 修地铁可玩 demo / Playable metro demo
 
+> **新：外星人降临启德（规则版 demo，2026-10-03）**——桌面「外星人降临启德」或 <http://127.0.0.1:8000/game/alien/>。
+> 规则见 `docs/design/game-v3-concept.md`；模拟器 `game-ui/alien/sim.js`（每游戏分钟一步，浏览器和 Node 都能跑），数据 `game/alien/build_data.py`（439 分区、13 条干道的真实通行能力与平日负荷），自动试玩 `node game/alien/tune.js`。
+> New: the "aliens land at Kai Tak" rules demo at /game/alien/ (simulator in game-ui/alien/sim.js, data from game/alien/build_data.py, bot play-tests in game/alien/tune.js).
+
 **怎么开 / How to start**: 双击 `scripts\start-game.cmd`（Mac：`scripts/start-game.sh`），浏览器会打开 <http://127.0.0.1:8000/game/>。第一次载入模型约 15 秒。
 Double-click `scripts\start-game.cmd` (Mac: `scripts/start-game.sh`); the browser opens <http://127.0.0.1:8000/game/>. The model takes about 15 s to load the first time.
 
