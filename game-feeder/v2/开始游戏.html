@@ -117,6 +117,7 @@ body.entered .side.right{animation-name:sideInR}
 #tickHigh::after{left:50%;transform:translateX(-50%);top:auto;bottom:15px}
 #tickMaster::after{left:5px;transform:none}
 #tickMaster{background:var(--s-accent)}
+.maps{margin:2px 0 12px}.maps .seg button{height:26px;font-size:11.5px}
 .controls{margin:14px 0 14px;gap:6px}.controls #start{flex:1;justify-content:center;height:34px;font-size:14px}
 .controls .seg button{height:32px;font-size:12.5px}
 .stations{display:flex;gap:6px;margin:6px 0 8px}
@@ -313,6 +314,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
     <div class="row"><span class="lbl">Mode 01 · Beginner</span><div class="sp"></div><span class="chip"><i></i>確定規則</span></div>
     <h1 class="h1">Feeder to Long Ping<span class="h1tc">接駁巴士 → 朗屏港鐵</span></h1>
     <p class="lede">Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span></p>
+    <div class="row maps"><span class="lbl">Board · 地圖</span><div class="sp"></div><div class="seg" id="mapSeg" role="group" aria-label="地圖"><button data-map="fan">弧形</button><button data-map="arc">緊湊弧形</button><button data-map="grid">方格（舊）</button></div></div>
 
     <div class="box goal">
       <div class="row"><span class="lbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">180</span></span></div>
@@ -333,7 +335,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
     <div class="lbl" style="margin-top:16px">Three rules · 三條規則</div>
     <ol class="mini">
       <li><b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。站要比港鐵近才有人去。</li>
-      <li><b>離港鐵越近，班次越密。</b>班距＝60 秒＋到港鐵每格 10 秒；每班 6 座，最多再排 8 人。正滿的站沒人會選；到站才發現滿了就近換站，換不了就回家想 20 秒，再從「最近的站」和「開車」中選一個。</li>
+      <li><b>離港鐵越近，班次越密。</b>班距＝<span class="hwBase">60</span> 秒＋到港鐵每格 <span class="hwStep">10</span> 秒；每班 6 座，最多再排 8 人。正滿的站沒人會選；到站才發現滿了就近換站，換不了就回家想 20 秒，再從「最近的站」和「開車」中選一個。</li>
       <li><b>看潮汐表。</b>每區一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。</li>
     </ol>
     <div class="lbl" style="margin-top:14px">How to read the map · 怎麼看</div>
@@ -396,7 +398,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 <ol class="rules">
 <li><b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。<b>正在滿員（8 個排隊位都滿）的站，在他做決定的那一刻沒有吸引力</b>；已經在路上的人不會因為近的站空出來而回頭。</li>
 <li><b>站要比港鐵近。</b>這些人今天開車，就是因為走去港鐵太遠；要走得和去港鐵一樣遠（或要越過港鐵）的站，他們不會去。所以不會有人走過港鐵再坐車回來。</li>
-<li><b>定時發車。</b>每座站的班距＝60 秒＋到港鐵的道路格數×10 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。</li>
+<li><b>定時發車。</b>每座站的班距＝<span class="hwBase">60</span> 秒＋到港鐵的道路格數×<span class="hwStep">10</span> 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。</li>
 <li><b>滿了、等久了就近換站。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，就在原地看另一座站：全程走路格數（已走的＋還要走的）按同一張表仍在他的意願內、而且仍比港鐵近，就直接走過去（每趟出門最多換一次）；不然就走回家，想 20 秒後再決定一次：最近的站夠近、而且那一刻沒有滿就再出門，否則開車。每人最多從家裡出門兩次。從出門起總耐心約 3.5 分鐘，不會重置。</li>
 <li><b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人就近換站，或走回家再考慮；已開出的巴士照常送達。</li>
 <li><b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：唐人新村每批 6 人，其他三區每批 3 人；每區一次高峰，那一批多 18 人。</li>
@@ -409,13 +411,43 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 
 <script>
 (function(root) {
-  const roads = new Set();
-  function line(x1,y1,x2,y2) {
-    for(let x=Math.min(x1,x2); x<=Math.max(x1,x2); x++)
-      for(let y=Math.min(y1,y2); y<=Math.max(y1,y2); y++) roads.add(`${x},${y}`);
+  // Two boards share the same estates, demand and rules.
+  //   fan  (default, v2.6): the estates sit on an arc around Long Ping, so neighbours can share a stop.
+  //   grid (v2.0–v2.5):     the original board — Long Ping between the north estate and the south ones.
+  // Choose with #map=grid in the browser, or FEEDER_MAP=grid for node.
+  const pick=(typeof process!=='undefined'&&process.env&&process.env.FEEDER_MAP)||
+    (typeof location!=='undefined'&&(/(?:^|[#&])map=(\w+)/.exec(location.hash)||[])[1])||'fan';
+  function build(lines){
+    const roads=new Set();
+    for(const [x1,y1,x2,y2] of lines)
+      for(let x=Math.min(x1,x2); x<=Math.max(x1,x2); x++)
+        for(let y=Math.min(y1,y2); y<=Math.max(y1,y2); y++) roads.add(`${x},${y}`);
+    return [...roads].map(s=>s.split(',').map(Number));
   }
-  line(1,6,8,6); line(3,3,3,6); line(3,4,8,4); line(5,4,5,6);
-  line(6,1,6,6); line(8,3,8,6); line(5,2,7,2);
+  const MAPS={
+    // headway = [base, per block] seconds; tiers = [pass, high, master]. Each board is tuned on its own.
+    grid:{cols:10,rows:7,margin:[20,30],hub:[6,4],headway:[60,10],tiers:[133,140,146],
+      roads:build([[1,6,8,6],[3,3,3,6],[3,4,8,4],[5,4,5,6],[6,1,6,6],[8,3,8,6],[5,2,7,2]]),
+      candidates:[[2,6],[3,6],[3,5],[3,4],[4,4],[5,4],[5,6],[6,6],[7,6],[8,6],[8,4],[6,2],[6,3]],
+      cells:[[1,6],[5,6],[7,6],[6,1]], house:[[0,38],[0,38],[0,38],[0,-40]],
+      geography:'香港朗屏與四個住宅區的相對方位取自 TransitLab 本地資料。道路重畫為棋盤示意，不是實測道路或獲准設站位置。'},
+    // Long Ping at the top; the estates on an arc below it, joined by a ring road with three spokes.
+    // Every estate is 6–7 blocks from the MTR, and each pair of neighbours has stops that are nearer to both.
+    fan:{cols:11,rows:8,margin:[78,42],hub:[5,2],headway:[60,5],tiers:[139,147,152],
+      roads:build([[1,2,10,2],[1,2,1,4],[0,4,1,4],[1,5,1,5],[1,5,2,5],[2,5,2,6],[2,6,7,6],[5,2,5,6],
+        [8,6,8,6],[8,5,8,6],[8,5,9,5],[9,4,9,5],[9,4,10,4],[10,2,10,4]]),
+      candidates:[[0,4],[1,4],[1,5],[2,5],[3,6],[4,6],[5,6],[6,6],[7,6],[8,5],[9,5],[9,4],[10,3],[10,2],[8,2],[5,4],[3,2]],
+      cells:[[0,4],[3,6],[7,6],[10,3]], house:[[-50,0],[0,40],[0,40],[50,0]],
+      geography:'朗屏站與四個住宅區的名字與遠近次序取自 TransitLab 本地資料。為了玩法，棋盤把四區排成圍著港鐵站的一道弧，方位與距離都經遊戲化處理：真實的橫洲東頭圍在朗屏站北面，其餘三區在南面，港鐵站正好夾在中間，南北之間其實沒有共用的接駁站位。道路為示意，不是實測道路或獲准設站位置。'},
+    // Compact arc: same distances to the MTR as the old board (3 / 3 / 4 / 7 blocks, the real order),
+    // but the estates run in one arc from west to south-east, so every pair of neighbours can share a stop.
+    arc:{cols:8,rows:5,margin:[84,44],hub:[5,1],headway:[60,10],tiers:[138,144,147],
+      roads:build([[1,1,7,1],[1,1,1,3],[0,3,3,3],[3,1,3,4],[3,4,7,4],[5,1,5,4],[7,1,7,4]]),
+      candidates:[[0,3],[1,3],[2,3],[3,3],[3,2],[3,4],[4,4],[5,4],[6,4],[7,4],[7,3],[7,2],[5,2],[1,1],[4,1],[6,1]],
+      cells:[[0,3],[3,2],[5,4],[7,3]], house:[[-50,0],[-46,0],[0,40],[50,0]],
+      geography:'朗屏站與四個住宅區的名字、遠近次序（翹翠峰、蝶翠峰較近，橫洲東頭圍稍遠，唐人新村最遠）取自 TransitLab 本地資料。為了玩法，棋盤把四區排成圍著港鐵站的一道弧，方位經遊戲化處理：真實的橫洲東頭圍在朗屏站北面，其餘三區在南面，港鐵站正好夾在中間，南北之間其實沒有共用的接駁站位。道路為示意，不是實測道路或獲准設站位置。'}
+  };
+  const M=MAPS[pick]||MAPS.fan;
   // v2 demand: every estate sends the same number of people in every batch,
   // and each estate has exactly one announced peak batch ("rising tide").
   const base=[6,3,3,3], peaks=[
@@ -426,18 +458,18 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
   ];
   const waves=Array.from({length:8},(_,w)=>base.map((b,o)=>b+peaks.filter(p=>p.origin===o&&p.wave===w).reduce((s,p)=>s+p.extra,0)));
   const origins=[
-    {name:'唐人新村',cell:[1,6],zone:'519',source:[818830.48,833186.74]},
-    {name:'翹翠峰',cell:[5,6],zone:'527.4',source:[820324.07,833217.23]},
-    {name:'蝶翠峰',cell:[7,6],zone:'529',source:[821106.98,833104.55]},
-    {name:'橫洲東頭圍',cell:[6,1],zone:'528',source:[820945.62,835625.03]}
+    {name:'唐人新村',zone:'519',source:[818830.48,833186.74]},
+    {name:'翹翠峰',zone:'527.4',source:[820324.07,833217.23]},
+    {name:'蝶翠峰',zone:'529',source:[821106.98,833104.55]},
+    {name:'橫洲東頭圍',zone:'528',source:[820945.62,835625.03]}
   ];
-  origins.forEach((o,i)=>{o.count=waves.reduce((s,w)=>s+w[i],0);o.base=base[i];});
+  origins.forEach((o,i)=>{o.cell=M.cells[i];o.house=M.house[i];o.count=waves.reduce((s,w)=>s+w[i],0);o.base=base[i];});
   const D = {
-    cols:10, rows:9, roads:[...roads].map(s=>s.split(',').map(Number)), hub:[6,4],
-    candidates:[[2,6],[3,6],[3,5],[3,4],[4,4],[5,4],[5,6],[6,6],[7,6],[8,6],[8,4],[6,2],[6,3]],
+    map:MAPS[pick]?pick:'fan', cols:M.cols, rows:M.rows, margin:M.margin, roads:M.roads, hub:M.hub, candidates:M.candidates,
+    headway:M.headway, tiers:M.tiers,
     origins, base, peaks, waves,
-    source:{geography:'香港朗屏與四個住宅區的相對方位取自 TransitLab 本地資料。道路重畫為棋盤示意，不是實測道路或獲准設站位置。',
-      demand:'四區平時人數按分區私家車模型量的大小排序後取整（唐人新村最多）；每區一次高峰與所有時間均為遊戲假設，不代表真實客流或減碳量。',date:'2026-10-06'}
+    source:{geography:M.geography,
+      demand:'四區平時人數按分區私家車模型量的大小排序後取整（唐人新村最多）；每區一次高峰與所有時間均為遊戲假設，不代表真實客流或減碳量。',date:'2026-10-07'}
   };
   if(typeof module!=='undefined') module.exports=D;
   root.TIDE_DATA=D;
@@ -454,6 +486,9 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
     reconsider:4,target:133,highScore:140,masterScore:146};
+  // each board carries its own headway formula and score tiers
+  if(D.headway)[P.headwayBase,P.headwayStep]=D.headway;
+  if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
@@ -712,14 +747,19 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   readTokens();
   let game=new Game(),selected=0,playing=false,speed=1,hover=null,shown=false,drag=null,pointerPressed=false,restoringFocus=false;
   let last=performance.now(),lastDraw=0,lastSide=0,seen=0,lastDelivered=0,warned=new Set(),rang=new Set(),toastTimer=0;
-  const xy=c=>[20+c[0]*72,30+c[1]*62];
+  const [MX,MY]=D.margin||[20,30],xy=c=>[MX+c[0]*72,MY+c[1]*62];
+  // board size follows the map: grid cells plus room for the buildings and labels around them
+  const VBW=MX+(D.cols-1)*72+Math.max(MX,120),VBH=MY+(D.rows-1)*62+58;
+  document.getElementById('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);document.getElementById('fx').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
   const fmt=n=>`${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
   const pathStr=path=>path.map((c,i)=>(i?'L':'M')+xy(c).join(' ')).join(' ');
   const svg=(tag,attrs,content='')=>`<${tag} ${Object.entries(attrs).map(([k,v])=>`${k}="${v}"`).join(' ')}>${content}</${tag}>`;
   const text=(x,y,s,size=13,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.panel,'stroke-width':3.5,...extra},s);
   const rect=(x,y,w,h,fill,stroke=C.line2,extra={})=>svg('rect',{x,y,width:w,height:h,rx:4,fill,stroke,...extra});
   const waveStart=w=>P.firstWave+w*P.interval;
-  const houseAt=i=>{const [x,y]=xy(D.origins[i].cell);return i===3?[x,y-40]:[x,y+38];};
+  const houseAt=i=>{const [x,y]=xy(D.origins[i].cell),[dx,dy]=D.origins[i].house||[0,38];return[x+dx,y+dy];};
+  // name label: above a building that sits above its road, otherwise below it
+  const labelY=i=>{const [,hy]=houseAt(i),dy=(D.origins[i].house||[0,38])[1];return dy<0?hy-22:hy+28;};
   function note(s){$('notice').textContent=s;}
   function toast(s,kind=''){const t=$('toast');t.className='toast on '+kind;t.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2600);}
 
@@ -796,13 +836,16 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     if(hover){const f=fc[i],w=f.stop===selected?f.share:0,k=f.perWave;
       if(w>0){const r=22+24*w,next=game.started?game.waveInfo().next:0;
         out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.08+.16*w).toFixed(2),stroke:C.accent,'stroke-width':1.5+2*w});
-        out+=text(hx+r+6,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace'});
-        if(next>=0)out+=text(hx+r+6,hy+15,`下批 ${k[next]}/${D.waves[next][i]} 人`,12,C.accent,{'font-weight':500});}}
+        const right=hx<VBW*.72,lx=right?hx+r+6:hx-r-6,anchor=right?'start':'end';   // keep the label inside the board
+        out+=text(lx,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':anchor});
+        if(next>=0)out+=text(lx,hy+15,`下批 ${k[next]}/${D.waves[next][i]} 人`,12,C.accent,{'font-weight':500,'text-anchor':anchor});}}
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
-    out+=text(hx,i===3?hy-22:hy+28,o.name,14,C.ink,{'text-anchor':'middle','font-weight':600});
-    if(h.home)out+=rect(hx+20,hy-12,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(hx+37,hy+3,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
+    out+=text(hx,labelY(i),o.name,14,C.ink,{'text-anchor':'middle','font-weight':600});
+    // people at home deciding: beside a building under its road, above a building beside its road
+    const side=(o.house||[0,38])[0]!==0,[bx,by]=side?[hx-17,hy-46]:[hx+20,hy-12];
+    if(h.home)out+=rect(bx,by,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(bx+17,by+15,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
     return out;
   }
   function drawMap(){
@@ -948,6 +991,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   function setTheme(t){document.documentElement.setAttribute('data-theme',t);$('thPaper').setAttribute('aria-pressed',String(t==='light'));$('thInk').setAttribute('aria-pressed',String(t==='dark'));
     try{localStorage.setItem('tl-theme',t);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
+  // board switch: the board is read at load, so switching reloads straight into the game (no cover)
+  document.querySelectorAll('#mapSeg button').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.map===D.map));
+    b.onclick=()=>{if(b.dataset.map===D.map)return;if(game.started&&!game.done&&!confirm('換地圖會清除本局進度，是否繼續？'))return;location.hash=`map=${b.dataset.map}&intro=0`;location.reload();};});
   // For the cover hand-off: every block of the board in screen pixels, so the cover's dots can land exactly on them.
   window.TL_BOARD={targets(){
     const m=board.getScreenCTM();if(!m)return null;
@@ -962,6 +1008,7 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   $('source').textContent=D.source.geography+' '+D.source.demand;
   if(window.COVER)$('coverSource').textContent=`開場封面：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（${window.COVER.tide.period||'24 個工作日'}）；圓點是全港 455 個分區的出行量。`;
   $('totalN').textContent=total;
+  document.querySelectorAll('.hwBase').forEach(e=>e.textContent=P.headwayBase);document.querySelectorAll('.hwStep').forEach(e=>e.textContent=P.headwayStep);
   $('goal').innerHTML=`<b>${P.target}</b> 過關：開局三站要擺得很準，不然要靠中途挪站補救。<b>${P.highScore}</b> 高分：一定要跟著潮汐挪站。<b>${P.masterScore}</b> 潮汐大師：每一步都挪得準。`;
   $('tickMaster').style.left=`${100*P.masterScore/total}%`;$('tickMaster').dataset.label=`大師 ${P.masterScore}`;
   $('tickPass').style.left=`${100*P.target/total}%`;$('tickPass').dataset.label=`過關 ${P.target}`;

@@ -20,7 +20,7 @@ const report={version,generated:new Date().toISOString(),
     reachTarget:r.statics.filter(s=>s.delivered>=P.target).length,reachHigh:r.statics.filter(s=>s.delivered>=P.highScore).length},
   bots:{novice:r.novice,reader:r.reader,bestStatic:r.bestStatic,bestChaser:chase,greedyFromNovice:greedyNovice,greedyFromBest:greedyBest},
   seeds,seconds:(Date.now()-t0)/1000};
-if(write){fs.mkdirSync(path.join(__dirname,'reports'),{recursive:true});fs.writeFileSync(path.join(__dirname,'reports',`${version}.json`),JSON.stringify(report,null,2));}
+if(write){fs.mkdirSync(path.join(__dirname,'reports'),{recursive:true});fs.writeFileSync(path.join(__dirname,'reports',`${version}-${D.map||'grid'}.json`),JSON.stringify(report,null,2));}
 const cell=l=>l.map(i=>D.candidates[i].join(',')).join(' | ');
 console.log(`${version}  demand ${r.demand}  target ${P.target}  high ${P.highScore}  (${report.seconds}s)`);
 console.log(`legibility  coverage ρ=${r.legibility.coverage}  capacity ρ=${r.legibility.capacity}`);

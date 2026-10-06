@@ -1,19 +1,18 @@
 'use strict';
-// Difficulty curve check for v2.3: does passing need either the right opening or moves, and does a high
-// score need good moves? Tries a few home-wait settings. Usage: node bots/curve.js [homeGrace ...]
+// Difficulty curve: static score of a few openings (best, runners-up, middling) vs what moves can add.
+// Usage: node bots/curve.js            (FEEDER_MAP=grid for the old board)
 const path=require('node:path');
 const E=require(path.join(__dirname,'..','v2','engine.js'));
 const B=require('./lib.js')(E),{D,P}=E;
-const graces=process.argv.slice(2).map(Number);
 const name=l=>l.map(i=>D.candidates[i].join(',')).join(' | ');
-const idx=c=>D.candidates.findIndex(x=>x.join()===c);
-const openings={best:['2,6','6,6','6,2'],nearBest:['2,6','6,6','6,3'],southPair:['2,6','5,6','6,6'],stepIn:['3,6','6,6','6,2'],eastStop:['2,6','6,6','7,6']};
-for(const g of graces.length?graces:[P.homeGrace]){
-  P.homeGrace=g;
-  const statics=B.layouts.map(l=>B.play(l).delivered).sort((a,b)=>b-a);
-  console.log(`\nhomeGrace ${g}s · static top ${statics.slice(0,6).join(' ')} · median ${statics[143]}`);
-  for(const [k,names] of Object.entries(openings)){
-    const l=names.map(idx),st=B.play(l).delivered,ch=B.chasers([l]),gr=B.greedy(l);
-    console.log(`${k.padEnd(10)} ${name(l).padEnd(20)} static ${st}  chaser ${ch[0]?.delivered??'-'}  greedy ${gr.delivered} (${gr.moves.length} moves)`);
-  }
+const ranked=B.layouts.map(l=>({l,d:B.play(l).delivered})).sort((a,b)=>b.d-a.d);
+const at=q=>ranked[Math.min(ranked.length-1,Math.floor(q))];
+const ge=t=>ranked.filter(r=>r.d>=t).length;
+console.log(`map ${D.map} · ${ranked.length} static layouts · top ${ranked.slice(0,8).map(r=>r.d).join(' ')} · median ${at(ranked.length/2).d}`);
+console.log(`static ≥ thresholds: ${[P.target,P.highScore,P.masterScore].map(t=>`${t}:${ge(t)}`).join('  ')}`);
+const picks=[['best',at(0)],['2nd',at(1)],['5th',at(4)],['10th',at(9)],['20th',at(19)],['top 10%',at(ranked.length*.1)]];
+let bestMove=0;
+for(const [k,r] of picks){
+  const ch=B.chasers([r.l]),gr=B.greedy(r.l);bestMove=Math.max(bestMove,gr.delivered);
+  console.log(`${k.padEnd(8)} ${name(r.l).padEnd(22)} static ${r.d}  chaser ${ch[0]?.delivered??'-'}  greedy ${gr.delivered} (${gr.moves.length} moves)`);
 }

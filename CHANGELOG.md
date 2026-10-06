@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-07
+
+### 01:07 · 接驳巴士 v2.6：弧形地图，北站不再孤立；三张地图可切换 / Feeder v2.6: arc board, switchable boards
+- **改了什么**：`game-feeder/v2/data.js`：新增「弧形」（默认）和「紧凑弧形」两张地图，保留原方格地图；每张地图有自己的班距和过关 / 高分 / 大师门槛（弧形 139 / 147 / 152，班距 60+5×格）。`engine.js` 读入地图参数；`ui.js` / `index.html` / `style.css`：棋盘尺寸与楼块位置按地图数据、左栏地图开关、规则文字的班距按地图显示。`bots/curve.js`（通用开局）、`sweep3.js`、`sweep4.js`；报告按地图命名。规则本身未改。
+- **为什么**：发起人：北边横洲的站太孤立，放哪里都影响不到南边。查真实坐标：朗屏站正好夹在横洲和南边两区之间，现实中南北没有共用站位；发起人不想加新规则，接受游戏化地图，于是把四区排成围着港铁的弧。
+- **验证**：`node game-feeder/v2/test_engine.js` 19 项通过（含三张地图完整性）；三张地图机器人：静态能过关的 3 / 2 / 2 种、能拿高分的 0 种，规则可预测度 0.95 / 0.91 / 0.93。详见 `game-feeder/LOG.md`。
+
 ## 2026-10-06
 
 ### 21:07 · `ec319e6` 接驳巴士 v2.5：正满员的站在做决定那一刻没有吸引力；过关 133 / Feeder v2.5: full stops attract nobody at decision time

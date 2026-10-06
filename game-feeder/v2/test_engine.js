@@ -1,6 +1,9 @@
 'use strict';
 // Rule checks for v2. Run: node test_engine.js   (bots/evaluate.js covers difficulty)
+// The rules do not depend on the board, so the rule checks run on the original grid board (whose
+// cells they name); the last check loads every board and checks it is well formed.
 const assert=require('node:assert/strict');
+const BOARD=process.env.FEEDER_MAP;process.env.FEEDER_MAP='grid';
 const {Game,D,P,dist,length,same,willing,comes,headwayAt}=require('./engine.js');
 const total=D.waves.flat().reduce((a,b)=>a+b,0);
 let passed=0;
@@ -141,5 +144,22 @@ test('Moves are limited; occupied cells are rejected; starting needs three stops
 test('Frame rate does not change the result',()=>{
   const a=setup(),b=setup();a.advance(P.duration);for(let t=0;t<P.duration*10;t++)b.advance(.1);
   assert.deepEqual(a.stats(),b.stats());
+});
+test('Every board is well formed: candidates on roads, every estate reaches the MTR, arcs let neighbours share a stop',()=>{
+  for(const name of ['grid','fan','arc']){
+    for(const k of Object.keys(require.cache))if(/[\\/]v2[\\/](engine|data)\.js$/.test(k))delete require.cache[k];
+    process.env.FEEDER_MAP=name;
+    const E=require('./engine.js'),M=E.D;assert.equal(M.map,name);
+    const onRoad=c=>M.roads.some(r=>E.same(r,c));
+    assert(onRoad(M.hub),`${name}: hub off road`);
+    M.candidates.forEach(c=>{assert(onRoad(c),`${name}: candidate ${c} off road`);assert(!E.same(c,M.hub));});
+    M.origins.forEach((o,i)=>{assert(onRoad(o.cell),`${name}: ${o.name} off road`);assert(E.toMTR[i]>0,`${name}: ${o.name} cannot reach the MTR`);
+      assert(M.candidates.some(c=>E.shareAt(i,c)>=.8),`${name}: ${o.name} has no good stop`);});
+    if(name!=='grid')for(let i=0;i<M.origins.length-1;i++)
+      assert(M.candidates.some(c=>E.shareAt(i,c)>0&&E.shareAt(i+1,c)>0),`${name}: ${M.origins[i].name} and ${M.origins[i+1].name} share no stop`);
+    const g=new E.Game();[0,1,2].forEach(id=>assert(g.place(id,M.candidates[id*3])));assert(g.start());g.advance(E.P.duration);
+    const st=g.stats();assert.equal(st.delivered+st.cars+st.missed,st.total,`${name}: people lost`);
+  }
+  process.env.FEEDER_MAP=BOARD||'';
 });
 console.log(`${passed} checks passed`);

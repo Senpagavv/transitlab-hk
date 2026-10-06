@@ -113,6 +113,7 @@ body.entered .side.right{animation-name:sideInR}
 #tickHigh::after{left:50%;transform:translateX(-50%);top:auto;bottom:15px}
 #tickMaster::after{left:5px;transform:none}
 #tickMaster{background:var(--s-accent)}
+.maps{margin:2px 0 12px}.maps .seg button{height:26px;font-size:11.5px}
 .controls{margin:14px 0 14px;gap:6px}.controls #start{flex:1;justify-content:center;height:34px;font-size:14px}
 .controls .seg button{height:32px;font-size:12.5px}
 .stations{display:flex;gap:6px;margin:6px 0 8px}
