@@ -6,7 +6,7 @@
 
 ## 2026-10-07
 
-### 01:20 · 接驳巴士 v2.7：退回 v2.5 方格地图 / Feeder v2.7: back to the v2.5 grid board
+### 01:20 · `b0069a4` 接驳巴士 v2.7：退回 v2.5 方格地图 / Feeder v2.7: back to the v2.5 grid board
 - **改了什么**：`game-feeder/v2/` 恢复为 v2.5（`08b9932`）。v2.6 的弧形地图试验记录保留在 `game-feeder/LOG.md` 与 `bots/`。
 - **为什么**：发起人试玩：弧形地图反而更孤立，每座站只影响一个地区；先回到原地图，再在原地图上找方案。
 - **验证**：`node game-feeder/v2/test_engine.js` 18 项通过。
