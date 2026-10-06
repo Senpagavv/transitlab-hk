@@ -17,9 +17,9 @@ Codex 自己的工作目录（`Documents\Codex\...\接驳巴士长局Demo\`）�
 ## 怎么玩 / 怎么改
 
 - **玩**：双击 `v2/开始游戏.html`（单文件，离线可玩；联网时会加载品牌字体）。桌面快捷方式「接驳巴士 v2」指向它。
-- **改**：改 `v2/` 里的 `engine.js`（规则）、`data.js`（地图和需求）、`ui.js` / `style.css` / `index.html`（画面与反馈动画）、`cover.js`（开场封面与推近过渡），然后 `python v2/build.py` 重新生成 `开始游戏.html`。
-- **测规则**：`node v2/test_engine.js`（13 项）。
-- **AI 试玩**：`node bots/evaluate.js v2 --write`（或 `v1-codex`），报告写到 `bots/reports/`。调参搜索：`node bots/sweep.js`。
+- **改**：改 `v2/` 里的 `engine.js`（规则）、`data.js`（地图和需求）、`ui.js` / `style.css` / `index.html`（画面与反馈动画）、`cover.js`（开场封面与圆点飞成棋盘的过渡），然后 `python v2/build.py` 重新生成 `开始游戏.html`。
+- **测规则**：`node v2/test_engine.js`（15 项）。
+- **AI 试玩**：`node bots/evaluate.js v2 --write`（或 `v1-codex`），报告写到 `bots/reports/`。调参搜索：`node bots/sweep2.js`（v2.2 规则；`sweep.js` 是 v2.0 时的）。
 - **截图 / 指定局面**：网址后加 `#intro=0&layout=0-7-11&t=400&hover=3&sel=1&moves=125:1:11`（数字是 `data.js` 里候选格的序号；`intro=0` 跳过封面）。另有 `theme=dark`、`fx=60&fxfreeze=1`（把最近 60 个事件的反馈动画定格）、`coverfx=700`（开场过渡定格在第 700 毫秒）。
 - **封面数据**：`python tools/extract_cover.py "<组员的 TransitLab-產品套件.html>"` 重新生成 `v2/cover-data.js`（只抽封面要的圆点、陆地、海岸线和 24 小时潮汐）。
 
