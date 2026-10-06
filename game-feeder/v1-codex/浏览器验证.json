@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-06",
+  "browser": "Codex in-app browser",
+  "playbackSpeed": 8,
+  "defaultUserSpeed": 1,
+  "fullRounds": [
+    {
+      "layout": "住宅附近",
+      "stats": {
+        "delivered": 112,
+        "cars": 124,
+        "missed": 4,
+        "active": 0,
+        "future": 0,
+        "total": 240,
+        "time": 1080,
+        "moves": 6,
+        "done": true
+      }
+    },
+    {
+      "layout": "港鐵附近",
+      "stats": {
+        "delivered": 120,
+        "cars": 113,
+        "missed": 7,
+        "active": 0,
+        "future": 0,
+        "total": 240,
+        "time": 1080,
+        "moves": 6,
+        "done": true
+      }
+    }
+  ],
+  "uiChecks": [
+    "鼠标连续放置三站后可开始",
+    "从另一站的选择状态拖动 A 站，移动的是 A",
+    "键盘 Tab 预览显示各住宅步行秒数与距离强度",
+    "住宅卡展开八批时间与人数",
+    "保存本局记录在下载文件中可读取",
+    "完整结算与独立引擎结果一致"
+  ],
+  "note": "浏览器两局用8倍快放检验流程，没有宣称真人以1倍完整试玩后的乐趣。近住宅首局先于最后的预览与拖动修复，运行机制一致；近港铁局使用最终交互版本。人类对18分钟节奏的感受待用户反馈。",
+  "partialRoundMove": {
+    "displayTime": "02:49",
+    "remainingMoves": 5,
+    "returnedFromWaiting": 9,
+    "inFlightBusA": 5,
+    "constructionSeconds": 20
+  }
+}

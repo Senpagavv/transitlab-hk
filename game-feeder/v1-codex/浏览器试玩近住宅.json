@@ -1,0 +1,10674 @@
+{
+  "version": "scheduled-feeder-long-2026-10-06",
+  "seed": 1781,
+  "parameters": {
+    "tick": 0.5,
+    "duration": 1080,
+    "firstWave": 35,
+    "interval": 120,
+    "release": 30,
+    "walkStep": 12,
+    "busStep": 10,
+    "headwayBase": 70,
+    "headwayStep": 12,
+    "seats": 5,
+    "queue": 8,
+    "build": 20,
+    "moves": 6,
+    "spread": 3.8,
+    "waitScale": 140,
+    "homeGrace": 50,
+    "patience": 210,
+    "queuePatience": 120,
+    "reconsider": 4,
+    "target": 130
+  },
+  "stats": {
+    "delivered": 112,
+    "cars": 124,
+    "missed": 4,
+    "active": 0,
+    "future": 0,
+    "total": 240,
+    "time": 1080,
+    "moves": 6,
+    "done": true
+  },
+  "stops": [
+    {
+      "id": 0,
+      "cell": [
+        2,
+        6
+      ],
+      "peak": 8,
+      "rejected": 15
+    },
+    {
+      "id": 1,
+      "cell": [
+        6,
+        6
+      ],
+      "peak": 8,
+      "rejected": 14
+    },
+    {
+      "id": 2,
+      "cell": [
+        6,
+        2
+      ],
+      "peak": 8,
+      "rejected": 3
+    }
+  ],
+  "moves": [],
+  "events": [
+    {
+      "time": 0,
+      "type": "place",
+      "stop": 0,
+      "cell": [
+        2,
+        6
+      ]
+    },
+    {
+      "time": 0,
+      "type": "place",
+      "stop": 1,
+      "cell": [
+        6,
+        6
+      ]
+    },
+    {
+      "time": 0,
+      "type": "place",
+      "stop": 2,
+      "cell": [
+        6,
+        2
+      ]
+    },
+    {
+      "time": 36.5,
+      "type": "spawn",
+      "id": 0,
+      "origin": 0
+    },
+    {
+      "time": 36.5,
+      "type": "walk",
+      "id": 0,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 36.5,
+      "type": "spawn",
+      "id": 20,
+      "origin": 1
+    },
+    {
+      "time": 36.5,
+      "type": "walk",
+      "id": 20,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 37,
+      "type": "spawn",
+      "id": 1,
+      "origin": 0
+    },
+    {
+      "time": 37,
+      "type": "walk",
+      "id": 1,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 39,
+      "type": "spawn",
+      "id": 24,
+      "origin": 2
+    },
+    {
+      "time": 39,
+      "type": "walk",
+      "id": 24,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 39,
+      "type": "spawn",
+      "id": 2,
+      "origin": 0
+    },
+    {
+      "time": 40.5,
+      "type": "spawn",
+      "id": 3,
+      "origin": 0
+    },
+    {
+      "time": 40.5,
+      "type": "walk",
+      "id": 3,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 41.5,
+      "type": "spawn",
+      "id": 4,
+      "origin": 0
+    },
+    {
+      "time": 41.5,
+      "type": "walk",
+      "id": 4,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 43,
+      "type": "spawn",
+      "id": 25,
+      "origin": 2
+    },
+    {
+      "time": 43,
+      "type": "walk",
+      "id": 25,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 43.5,
+      "type": "spawn",
+      "id": 5,
+      "origin": 0
+    },
+    {
+      "time": 43.5,
+      "type": "walk",
+      "id": 5,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 45.5,
+      "type": "spawn",
+      "id": 6,
+      "origin": 0
+    },
+    {
+      "time": 45.5,
+      "type": "walk",
+      "id": 6,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 46,
+      "type": "spawn",
+      "id": 7,
+      "origin": 0
+    },
+    {
+      "time": 46,
+      "type": "walk",
+      "id": 7,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 48,
+      "type": "spawn",
+      "id": 8,
+      "origin": 0
+    },
+    {
+      "time": 48,
+      "type": "walk",
+      "id": 8,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 48,
+      "type": "spawn",
+      "id": 21,
+      "origin": 1
+    },
+    {
+      "time": 48,
+      "type": "walk",
+      "id": 21,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 48.5,
+      "type": "queue",
+      "id": 0,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 48.5,
+      "type": "board",
+      "id": 0,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 48.5,
+      "type": "queue",
+      "id": 20,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 48.5,
+      "type": "board",
+      "id": 20,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 48.5,
+      "type": "spawn",
+      "id": 26,
+      "origin": 2
+    },
+    {
+      "time": 48.5,
+      "type": "walk",
+      "id": 26,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 49,
+      "type": "queue",
+      "id": 1,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 49,
+      "type": "board",
+      "id": 1,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 50,
+      "type": "spawn",
+      "id": 9,
+      "origin": 0
+    },
+    {
+      "time": 50,
+      "type": "walk",
+      "id": 9,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 51,
+      "type": "queue",
+      "id": 24,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 51,
+      "type": "board",
+      "id": 24,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 51,
+      "type": "spawn",
+      "id": 10,
+      "origin": 0
+    },
+    {
+      "time": 51,
+      "type": "walk",
+      "id": 10,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 51.5,
+      "type": "spawn",
+      "id": 22,
+      "origin": 1
+    },
+    {
+      "time": 51.5,
+      "type": "walk",
+      "id": 22,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 52,
+      "type": "spawn",
+      "id": 27,
+      "origin": 2
+    },
+    {
+      "time": 52,
+      "type": "walk",
+      "id": 27,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 52,
+      "type": "spawn",
+      "id": 11,
+      "origin": 0
+    },
+    {
+      "time": 52,
+      "type": "walk",
+      "id": 11,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 52.5,
+      "type": "queue",
+      "id": 3,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 52.5,
+      "type": "board",
+      "id": 3,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 53.5,
+      "type": "queue",
+      "id": 4,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 53.5,
+      "type": "board",
+      "id": 4,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 54,
+      "type": "spawn",
+      "id": 12,
+      "origin": 0
+    },
+    {
+      "time": 54,
+      "type": "walk",
+      "id": 12,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 55,
+      "type": "queue",
+      "id": 25,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 55,
+      "type": "board",
+      "id": 25,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 55.5,
+      "type": "queue",
+      "id": 5,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 55.5,
+      "type": "board",
+      "id": 5,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 55.5,
+      "type": "spawn",
+      "id": 13,
+      "origin": 0
+    },
+    {
+      "time": 55.5,
+      "type": "walk",
+      "id": 13,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 57,
+      "type": "spawn",
+      "id": 14,
+      "origin": 0
+    },
+    {
+      "time": 57,
+      "type": "spawn",
+      "id": 28,
+      "origin": 2
+    },
+    {
+      "time": 57,
+      "type": "walk",
+      "id": 28,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 57.5,
+      "type": "queue",
+      "id": 6,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 58,
+      "type": "queue",
+      "id": 7,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 58.5,
+      "type": "spawn",
+      "id": 15,
+      "origin": 0
+    },
+    {
+      "time": 59.5,
+      "type": "spawn",
+      "id": 16,
+      "origin": 0
+    },
+    {
+      "time": 59.5,
+      "type": "walk",
+      "id": 16,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 60,
+      "type": "queue",
+      "id": 8,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 60,
+      "type": "queue",
+      "id": 21,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 60,
+      "type": "board",
+      "id": 21,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 60.5,
+      "type": "queue",
+      "id": 26,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 60.5,
+      "type": "board",
+      "id": 26,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 61,
+      "type": "spawn",
+      "id": 17,
+      "origin": 0
+    },
+    {
+      "time": 61.5,
+      "type": "spawn",
+      "id": 23,
+      "origin": 1
+    },
+    {
+      "time": 61.5,
+      "type": "walk",
+      "id": 23,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 62,
+      "type": "queue",
+      "id": 9,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 63,
+      "type": "queue",
+      "id": 10,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 63,
+      "type": "spawn",
+      "id": 18,
+      "origin": 0
+    },
+    {
+      "time": 63.5,
+      "type": "queue",
+      "id": 22,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 63.5,
+      "type": "spawn",
+      "id": 29,
+      "origin": 2
+    },
+    {
+      "time": 63.5,
+      "type": "walk",
+      "id": 29,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 64,
+      "type": "queue",
+      "id": 27,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 64,
+      "type": "queue",
+      "id": 11,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 64,
+      "type": "spawn",
+      "id": 19,
+      "origin": 0
+    },
+    {
+      "time": 64,
+      "type": "walk",
+      "id": 19,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 66,
+      "type": "queue",
+      "id": 12,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 67.5,
+      "type": "queue",
+      "id": 13,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 69,
+      "type": "queue",
+      "id": 28,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 71.5,
+      "type": "full",
+      "id": 16,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 71.5,
+      "type": "return",
+      "id": 16,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 73.5,
+      "type": "queue",
+      "id": 23,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 75.5,
+      "type": "queue",
+      "id": 29,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 76,
+      "type": "full",
+      "id": 19,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 76,
+      "type": "return",
+      "id": 19,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 83.5,
+      "type": "home",
+      "id": 16,
+      "origin": 0
+    },
+    {
+      "time": 87.5,
+      "type": "walk",
+      "id": 16,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 88,
+      "type": "home",
+      "id": 19,
+      "origin": 0
+    },
+    {
+      "time": 89,
+      "type": "car",
+      "id": 2,
+      "origin": 0
+    },
+    {
+      "time": 92,
+      "type": "walk",
+      "id": 19,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 94,
+      "type": "depart",
+      "id": 20,
+      "origin": 1,
+      "stop": 1,
+      "serial": 1
+    },
+    {
+      "time": 94,
+      "type": "depart",
+      "id": 24,
+      "origin": 2,
+      "stop": 1,
+      "serial": 1
+    },
+    {
+      "time": 94,
+      "type": "depart",
+      "id": 25,
+      "origin": 2,
+      "stop": 1,
+      "serial": 1
+    },
+    {
+      "time": 94,
+      "type": "depart",
+      "id": 21,
+      "origin": 1,
+      "stop": 1,
+      "serial": 1
+    },
+    {
+      "time": 94,
+      "type": "depart",
+      "id": 26,
+      "origin": 2,
+      "stop": 1,
+      "serial": 1
+    },
+    {
+      "time": 94,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 1,
+      "load": 5
+    },
+    {
+      "time": 94,
+      "type": "board",
+      "id": 22,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 94,
+      "type": "board",
+      "id": 27,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 94,
+      "type": "board",
+      "id": 28,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 94,
+      "type": "board",
+      "id": 23,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 94,
+      "type": "board",
+      "id": 29,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 94,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 1,
+      "load": 0
+    },
+    {
+      "time": 99.5,
+      "type": "full",
+      "id": 16,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 99.5,
+      "type": "return",
+      "id": 16,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 104,
+      "type": "full",
+      "id": 19,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 104,
+      "type": "return",
+      "id": 19,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 107,
+      "type": "car",
+      "id": 14,
+      "origin": 0
+    },
+    {
+      "time": 108.5,
+      "type": "car",
+      "id": 15,
+      "origin": 0
+    },
+    {
+      "time": 111,
+      "type": "car",
+      "id": 17,
+      "origin": 0
+    },
+    {
+      "time": 111.5,
+      "type": "home",
+      "id": 16,
+      "origin": 0
+    },
+    {
+      "time": 113,
+      "type": "car",
+      "id": 18,
+      "origin": 0
+    },
+    {
+      "time": 114,
+      "type": "delivered",
+      "id": 20,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 114,
+      "type": "delivered",
+      "id": 24,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 114,
+      "type": "delivered",
+      "id": 25,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 114,
+      "type": "delivered",
+      "id": 21,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 114,
+      "type": "delivered",
+      "id": 26,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 116,
+      "type": "home",
+      "id": 19,
+      "origin": 0
+    },
+    {
+      "time": 142,
+      "type": "depart",
+      "id": 0,
+      "origin": 0,
+      "stop": 0,
+      "serial": 1
+    },
+    {
+      "time": 142,
+      "type": "depart",
+      "id": 1,
+      "origin": 0,
+      "stop": 0,
+      "serial": 1
+    },
+    {
+      "time": 142,
+      "type": "depart",
+      "id": 3,
+      "origin": 0,
+      "stop": 0,
+      "serial": 1
+    },
+    {
+      "time": 142,
+      "type": "depart",
+      "id": 4,
+      "origin": 0,
+      "stop": 0,
+      "serial": 1
+    },
+    {
+      "time": 142,
+      "type": "depart",
+      "id": 5,
+      "origin": 0,
+      "stop": 0,
+      "serial": 1
+    },
+    {
+      "time": 142,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 1,
+      "load": 5
+    },
+    {
+      "time": 142,
+      "type": "board",
+      "id": 6,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 142,
+      "type": "board",
+      "id": 7,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 142,
+      "type": "board",
+      "id": 8,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 142,
+      "type": "board",
+      "id": 9,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 142,
+      "type": "board",
+      "id": 10,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 156.5,
+      "type": "spawn",
+      "id": 43,
+      "origin": 2
+    },
+    {
+      "time": 156.5,
+      "type": "walk",
+      "id": 43,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 157.5,
+      "type": "spawn",
+      "id": 30,
+      "origin": 0
+    },
+    {
+      "time": 157.5,
+      "type": "walk",
+      "id": 30,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 157.5,
+      "type": "spawn",
+      "id": 37,
+      "origin": 1
+    },
+    {
+      "time": 157.5,
+      "type": "walk",
+      "id": 37,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 158,
+      "type": "spawn",
+      "id": 44,
+      "origin": 2
+    },
+    {
+      "time": 158,
+      "type": "walk",
+      "id": 44,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 159.5,
+      "type": "spawn",
+      "id": 45,
+      "origin": 2
+    },
+    {
+      "time": 159.5,
+      "type": "walk",
+      "id": 45,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 161.5,
+      "type": "car",
+      "id": 16,
+      "origin": 0
+    },
+    {
+      "time": 161.5,
+      "type": "spawn",
+      "id": 31,
+      "origin": 0
+    },
+    {
+      "time": 161.5,
+      "type": "spawn",
+      "id": 46,
+      "origin": 2
+    },
+    {
+      "time": 161.5,
+      "type": "walk",
+      "id": 46,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 163.5,
+      "type": "spawn",
+      "id": 38,
+      "origin": 1
+    },
+    {
+      "time": 163.5,
+      "type": "walk",
+      "id": 38,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 163.5,
+      "type": "spawn",
+      "id": 47,
+      "origin": 2
+    },
+    {
+      "time": 163.5,
+      "type": "walk",
+      "id": 47,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 165,
+      "type": "spawn",
+      "id": 48,
+      "origin": 2
+    },
+    {
+      "time": 165,
+      "type": "walk",
+      "id": 48,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 166,
+      "type": "car",
+      "id": 19,
+      "origin": 0
+    },
+    {
+      "time": 166,
+      "type": "spawn",
+      "id": 49,
+      "origin": 2
+    },
+    {
+      "time": 166,
+      "type": "walk",
+      "id": 49,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 167.5,
+      "type": "spawn",
+      "id": 32,
+      "origin": 0
+    },
+    {
+      "time": 168.5,
+      "type": "queue",
+      "id": 43,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 168.5,
+      "type": "spawn",
+      "id": 50,
+      "origin": 2
+    },
+    {
+      "time": 168.5,
+      "type": "walk",
+      "id": 50,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 169.5,
+      "type": "queue",
+      "id": 30,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 169.5,
+      "type": "queue",
+      "id": 37,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 169.5,
+      "type": "spawn",
+      "id": 39,
+      "origin": 1
+    },
+    {
+      "time": 169.5,
+      "type": "walk",
+      "id": 39,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 170,
+      "type": "queue",
+      "id": 44,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 170,
+      "type": "spawn",
+      "id": 51,
+      "origin": 2
+    },
+    {
+      "time": 170,
+      "type": "walk",
+      "id": 51,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 170.5,
+      "type": "return",
+      "id": 6,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 170.5,
+      "type": "board",
+      "id": 11,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 171,
+      "type": "spawn",
+      "id": 33,
+      "origin": 0
+    },
+    {
+      "time": 171.5,
+      "type": "queue",
+      "id": 45,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 172.5,
+      "type": "spawn",
+      "id": 52,
+      "origin": 2
+    },
+    {
+      "time": 172.5,
+      "type": "walk",
+      "id": 52,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 173,
+      "type": "return",
+      "id": 7,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 173,
+      "type": "board",
+      "id": 12,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 173.5,
+      "type": "queue",
+      "id": 46,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 173.5,
+      "type": "spawn",
+      "id": 40,
+      "origin": 1
+    },
+    {
+      "time": 173.5,
+      "type": "walk",
+      "id": 40,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 174,
+      "type": "spawn",
+      "id": 53,
+      "origin": 2
+    },
+    {
+      "time": 174,
+      "type": "walk",
+      "id": 53,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 175.5,
+      "type": "queue",
+      "id": 38,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 175.5,
+      "type": "queue",
+      "id": 47,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 175.5,
+      "type": "spawn",
+      "id": 54,
+      "origin": 2
+    },
+    {
+      "time": 175.5,
+      "type": "walk",
+      "id": 54,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 176,
+      "type": "spawn",
+      "id": 34,
+      "origin": 0
+    },
+    {
+      "time": 176,
+      "type": "walk",
+      "id": 34,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 176.5,
+      "type": "spawn",
+      "id": 41,
+      "origin": 1
+    },
+    {
+      "time": 176.5,
+      "type": "walk",
+      "id": 41,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 177,
+      "type": "queue",
+      "id": 48,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 177,
+      "type": "spawn",
+      "id": 55,
+      "origin": 2
+    },
+    {
+      "time": 177.5,
+      "type": "spawn",
+      "id": 35,
+      "origin": 0
+    },
+    {
+      "time": 177.5,
+      "type": "walk",
+      "id": 35,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 178,
+      "type": "full",
+      "id": 49,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 178,
+      "type": "return",
+      "id": 49,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 178.5,
+      "type": "return",
+      "id": 9,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 178.5,
+      "type": "board",
+      "id": 13,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 178.5,
+      "type": "spawn",
+      "id": 56,
+      "origin": 2
+    },
+    {
+      "time": 180.5,
+      "type": "full",
+      "id": 50,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 180.5,
+      "type": "return",
+      "id": 50,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 180.5,
+      "type": "spawn",
+      "id": 57,
+      "origin": 2
+    },
+    {
+      "time": 181.5,
+      "type": "full",
+      "id": 39,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 181.5,
+      "type": "return",
+      "id": 39,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 182,
+      "type": "full",
+      "id": 51,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 182,
+      "type": "return",
+      "id": 51,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 182,
+      "type": "spawn",
+      "id": 36,
+      "origin": 0
+    },
+    {
+      "time": 182.5,
+      "type": "return",
+      "id": 10,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 182.5,
+      "type": "board",
+      "id": 30,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 182.5,
+      "type": "home",
+      "id": 6,
+      "origin": 0
+    },
+    {
+      "time": 182.5,
+      "type": "spawn",
+      "id": 58,
+      "origin": 2
+    },
+    {
+      "time": 182.5,
+      "type": "walk",
+      "id": 58,
+      "origin": 2,
+      "stop": 2
+    },
+    {
+      "time": 183.5,
+      "type": "spawn",
+      "id": 42,
+      "origin": 1
+    },
+    {
+      "time": 183.5,
+      "type": "walk",
+      "id": 42,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 184,
+      "type": "return",
+      "id": 12,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 184.5,
+      "type": "return",
+      "id": 28,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 184.5,
+      "type": "board",
+      "id": 43,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 184.5,
+      "type": "queue",
+      "id": 52,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 184.5,
+      "type": "spawn",
+      "id": 59,
+      "origin": 2
+    },
+    {
+      "time": 185,
+      "type": "home",
+      "id": 7,
+      "origin": 0
+    },
+    {
+      "time": 185.5,
+      "type": "full",
+      "id": 40,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 185.5,
+      "type": "return",
+      "id": 40,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 186,
+      "type": "full",
+      "id": 53,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 186,
+      "type": "return",
+      "id": 53,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 187.5,
+      "type": "full",
+      "id": 54,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 187.5,
+      "type": "return",
+      "id": 54,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 188,
+      "type": "return",
+      "id": 8,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 188,
+      "type": "depart",
+      "id": 22,
+      "origin": 1,
+      "stop": 1,
+      "serial": 2
+    },
+    {
+      "time": 188,
+      "type": "depart",
+      "id": 27,
+      "origin": 2,
+      "stop": 1,
+      "serial": 2
+    },
+    {
+      "time": 188,
+      "type": "depart",
+      "id": 23,
+      "origin": 1,
+      "stop": 1,
+      "serial": 2
+    },
+    {
+      "time": 188,
+      "type": "depart",
+      "id": 29,
+      "origin": 2,
+      "stop": 1,
+      "serial": 2
+    },
+    {
+      "time": 188,
+      "type": "depart",
+      "id": 43,
+      "origin": 2,
+      "stop": 1,
+      "serial": 2
+    },
+    {
+      "time": 188,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 2,
+      "load": 5
+    },
+    {
+      "time": 188,
+      "type": "board",
+      "id": 37,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 188,
+      "type": "board",
+      "id": 44,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 188,
+      "type": "board",
+      "id": 45,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 188,
+      "type": "board",
+      "id": 46,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 188,
+      "type": "board",
+      "id": 38,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 188,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 2,
+      "load": 0
+    },
+    {
+      "time": 188,
+      "type": "queue",
+      "id": 34,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 188,
+      "type": "board",
+      "id": 34,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 189,
+      "type": "return",
+      "id": 11,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 189,
+      "type": "walk",
+      "id": 55,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 189.5,
+      "type": "queue",
+      "id": 35,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 189.5,
+      "type": "board",
+      "id": 35,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 190,
+      "type": "home",
+      "id": 49,
+      "origin": 2
+    },
+    {
+      "time": 190.5,
+      "type": "home",
+      "id": 9,
+      "origin": 0
+    },
+    {
+      "time": 191,
+      "type": "walk",
+      "id": 33,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 192,
+      "type": "return",
+      "id": 13,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 192.5,
+      "type": "home",
+      "id": 50,
+      "origin": 2
+    },
+    {
+      "time": 193.5,
+      "type": "home",
+      "id": 39,
+      "origin": 1
+    },
+    {
+      "time": 194,
+      "type": "walk",
+      "id": 49,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 194,
+      "type": "home",
+      "id": 51,
+      "origin": 2
+    },
+    {
+      "time": 194,
+      "type": "walk",
+      "id": 36,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 194.5,
+      "type": "home",
+      "id": 10,
+      "origin": 0
+    },
+    {
+      "time": 196,
+      "type": "home",
+      "id": 12,
+      "origin": 0
+    },
+    {
+      "time": 196.5,
+      "type": "home",
+      "id": 28,
+      "origin": 2
+    },
+    {
+      "time": 197.5,
+      "type": "home",
+      "id": 40,
+      "origin": 1
+    },
+    {
+      "time": 198,
+      "type": "walk",
+      "id": 51,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 198,
+      "type": "home",
+      "id": 53,
+      "origin": 2
+    },
+    {
+      "time": 199.5,
+      "type": "walk",
+      "id": 32,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 199.5,
+      "type": "home",
+      "id": 54,
+      "origin": 2
+    },
+    {
+      "time": 200,
+      "type": "home",
+      "id": 8,
+      "origin": 0
+    },
+    {
+      "time": 201,
+      "type": "home",
+      "id": 11,
+      "origin": 0
+    },
+    {
+      "time": 201,
+      "type": "queue",
+      "id": 55,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 201.5,
+      "type": "walk",
+      "id": 40,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 202,
+      "type": "delivered",
+      "id": 0,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 202,
+      "type": "delivered",
+      "id": 1,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 202,
+      "type": "delivered",
+      "id": 3,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 202,
+      "type": "delivered",
+      "id": 4,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 202,
+      "type": "delivered",
+      "id": 5,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 203,
+      "type": "queue",
+      "id": 33,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 203,
+      "type": "board",
+      "id": 33,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 203.5,
+      "type": "walk",
+      "id": 54,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 204,
+      "type": "home",
+      "id": 13,
+      "origin": 0
+    },
+    {
+      "time": 206,
+      "type": "queue",
+      "id": 49,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 206,
+      "type": "queue",
+      "id": 36,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 206,
+      "type": "board",
+      "id": 36,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 208,
+      "type": "delivered",
+      "id": 22,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 208,
+      "type": "delivered",
+      "id": 27,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 208,
+      "type": "delivered",
+      "id": 23,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 208,
+      "type": "delivered",
+      "id": 29,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 208,
+      "type": "delivered",
+      "id": 43,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 210,
+      "type": "queue",
+      "id": 51,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 211.5,
+      "type": "car",
+      "id": 31,
+      "origin": 0
+    },
+    {
+      "time": 211.5,
+      "type": "queue",
+      "id": 32,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 212.5,
+      "type": "queue",
+      "id": 41,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 215.5,
+      "type": "queue",
+      "id": 54,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 219.5,
+      "type": "queue",
+      "id": 42,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 228.5,
+      "type": "car",
+      "id": 56,
+      "origin": 2
+    },
+    {
+      "time": 230.5,
+      "type": "car",
+      "id": 57,
+      "origin": 2
+    },
+    {
+      "time": 232.5,
+      "type": "car",
+      "id": 6,
+      "origin": 0
+    },
+    {
+      "time": 234.5,
+      "type": "car",
+      "id": 59,
+      "origin": 2
+    },
+    {
+      "time": 235,
+      "type": "car",
+      "id": 7,
+      "origin": 0
+    },
+    {
+      "time": 237.5,
+      "type": "queue",
+      "id": 40,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 240.5,
+      "type": "car",
+      "id": 9,
+      "origin": 0
+    },
+    {
+      "time": 242.5,
+      "type": "car",
+      "id": 10,
+      "origin": 0
+    },
+    {
+      "time": 242.5,
+      "type": "car",
+      "id": 50,
+      "origin": 2
+    },
+    {
+      "time": 242.5,
+      "type": "queue",
+      "id": 58,
+      "origin": 2,
+      "stop": 2
+    },
+    {
+      "time": 242.5,
+      "type": "board",
+      "id": 58,
+      "origin": 2,
+      "stop": 2
+    },
+    {
+      "time": 243.5,
+      "type": "car",
+      "id": 39,
+      "origin": 1
+    },
+    {
+      "time": 246,
+      "type": "car",
+      "id": 12,
+      "origin": 0
+    },
+    {
+      "time": 246.5,
+      "type": "car",
+      "id": 28,
+      "origin": 2
+    },
+    {
+      "time": 248,
+      "type": "car",
+      "id": 53,
+      "origin": 2
+    },
+    {
+      "time": 250,
+      "type": "car",
+      "id": 8,
+      "origin": 0
+    },
+    {
+      "time": 251,
+      "type": "car",
+      "id": 11,
+      "origin": 0
+    },
+    {
+      "time": 254,
+      "type": "car",
+      "id": 13,
+      "origin": 0
+    },
+    {
+      "time": 276,
+      "type": "spawn",
+      "id": 74,
+      "origin": 3
+    },
+    {
+      "time": 276,
+      "type": "walk",
+      "id": 74,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 277,
+      "type": "spawn",
+      "id": 68,
+      "origin": 2
+    },
+    {
+      "time": 277,
+      "type": "walk",
+      "id": 68,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 277.5,
+      "type": "spawn",
+      "id": 75,
+      "origin": 3
+    },
+    {
+      "time": 277.5,
+      "type": "walk",
+      "id": 75,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 278,
+      "type": "spawn",
+      "id": 64,
+      "origin": 1
+    },
+    {
+      "time": 280,
+      "type": "spawn",
+      "id": 76,
+      "origin": 3
+    },
+    {
+      "time": 280,
+      "type": "walk",
+      "id": 76,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 281,
+      "type": "spawn",
+      "id": 60,
+      "origin": 0
+    },
+    {
+      "time": 281,
+      "type": "walk",
+      "id": 60,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 281.5,
+      "type": "spawn",
+      "id": 77,
+      "origin": 3
+    },
+    {
+      "time": 281.5,
+      "type": "walk",
+      "id": 77,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 281.5,
+      "type": "spawn",
+      "id": 69,
+      "origin": 2
+    },
+    {
+      "time": 282,
+      "type": "depart",
+      "id": 37,
+      "origin": 1,
+      "stop": 1,
+      "serial": 3
+    },
+    {
+      "time": 282,
+      "type": "depart",
+      "id": 44,
+      "origin": 2,
+      "stop": 1,
+      "serial": 3
+    },
+    {
+      "time": 282,
+      "type": "depart",
+      "id": 45,
+      "origin": 2,
+      "stop": 1,
+      "serial": 3
+    },
+    {
+      "time": 282,
+      "type": "depart",
+      "id": 46,
+      "origin": 2,
+      "stop": 1,
+      "serial": 3
+    },
+    {
+      "time": 282,
+      "type": "depart",
+      "id": 38,
+      "origin": 1,
+      "stop": 1,
+      "serial": 3
+    },
+    {
+      "time": 282,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 3,
+      "load": 5
+    },
+    {
+      "time": 282,
+      "type": "board",
+      "id": 47,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 282,
+      "type": "board",
+      "id": 48,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 282,
+      "type": "board",
+      "id": 52,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 282,
+      "type": "board",
+      "id": 55,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 282,
+      "type": "board",
+      "id": 49,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 282,
+      "type": "depart",
+      "id": 58,
+      "origin": 2,
+      "stop": 2,
+      "serial": 3
+    },
+    {
+      "time": 282,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 3,
+      "load": 1
+    },
+    {
+      "time": 284,
+      "type": "depart",
+      "id": 30,
+      "origin": 0,
+      "stop": 0,
+      "serial": 2
+    },
+    {
+      "time": 284,
+      "type": "depart",
+      "id": 34,
+      "origin": 0,
+      "stop": 0,
+      "serial": 2
+    },
+    {
+      "time": 284,
+      "type": "depart",
+      "id": 35,
+      "origin": 0,
+      "stop": 0,
+      "serial": 2
+    },
+    {
+      "time": 284,
+      "type": "depart",
+      "id": 33,
+      "origin": 0,
+      "stop": 0,
+      "serial": 2
+    },
+    {
+      "time": 284,
+      "type": "depart",
+      "id": 36,
+      "origin": 0,
+      "stop": 0,
+      "serial": 2
+    },
+    {
+      "time": 284,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 2,
+      "load": 5
+    },
+    {
+      "time": 284,
+      "type": "board",
+      "id": 32,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 284,
+      "type": "board",
+      "id": 41,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 284,
+      "type": "board",
+      "id": 42,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 284,
+      "type": "board",
+      "id": 40,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 284,
+      "type": "spawn",
+      "id": 78,
+      "origin": 3
+    },
+    {
+      "time": 284,
+      "type": "walk",
+      "id": 78,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 285.5,
+      "type": "walk",
+      "id": 69,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 285.5,
+      "type": "spawn",
+      "id": 79,
+      "origin": 3
+    },
+    {
+      "time": 285.5,
+      "type": "walk",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 286.5,
+      "type": "spawn",
+      "id": 70,
+      "origin": 2
+    },
+    {
+      "time": 286.5,
+      "type": "walk",
+      "id": 70,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 287,
+      "type": "spawn",
+      "id": 61,
+      "origin": 0
+    },
+    {
+      "time": 287,
+      "type": "walk",
+      "id": 61,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 288,
+      "type": "queue",
+      "id": 74,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 288,
+      "type": "board",
+      "id": 74,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 288,
+      "type": "spawn",
+      "id": 80,
+      "origin": 3
+    },
+    {
+      "time": 288,
+      "type": "walk",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 288,
+      "type": "spawn",
+      "id": 65,
+      "origin": 1
+    },
+    {
+      "time": 288,
+      "type": "walk",
+      "id": 65,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 289,
+      "type": "queue",
+      "id": 68,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 289.5,
+      "type": "queue",
+      "id": 75,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 289.5,
+      "type": "board",
+      "id": 75,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 289.5,
+      "type": "spawn",
+      "id": 81,
+      "origin": 3
+    },
+    {
+      "time": 289.5,
+      "type": "walk",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 291.5,
+      "type": "return",
+      "id": 47,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 291.5,
+      "type": "board",
+      "id": 51,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 291.5,
+      "type": "spawn",
+      "id": 82,
+      "origin": 3
+    },
+    {
+      "time": 291.5,
+      "type": "walk",
+      "id": 82,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 292,
+      "type": "queue",
+      "id": 76,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 292,
+      "type": "board",
+      "id": 76,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 293,
+      "type": "queue",
+      "id": 60,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 293,
+      "type": "board",
+      "id": 60,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 293,
+      "type": "spawn",
+      "id": 83,
+      "origin": 3
+    },
+    {
+      "time": 293,
+      "type": "walk",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 293.5,
+      "type": "queue",
+      "id": 77,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 293.5,
+      "type": "board",
+      "id": 77,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 293.5,
+      "type": "spawn",
+      "id": 71,
+      "origin": 2
+    },
+    {
+      "time": 294.5,
+      "type": "spawn",
+      "id": 66,
+      "origin": 1
+    },
+    {
+      "time": 295.5,
+      "type": "spawn",
+      "id": 84,
+      "origin": 3
+    },
+    {
+      "time": 295.5,
+      "type": "walk",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 296,
+      "type": "queue",
+      "id": 78,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 296,
+      "type": "board",
+      "id": 78,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 296,
+      "type": "spawn",
+      "id": 62,
+      "origin": 0
+    },
+    {
+      "time": 296,
+      "type": "walk",
+      "id": 62,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 296.5,
+      "type": "spawn",
+      "id": 85,
+      "origin": 3
+    },
+    {
+      "time": 296.5,
+      "type": "walk",
+      "id": 85,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 297.5,
+      "type": "return",
+      "id": 52,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 297.5,
+      "type": "board",
+      "id": 54,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 297.5,
+      "type": "queue",
+      "id": 69,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 297.5,
+      "type": "queue",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 298.5,
+      "type": "queue",
+      "id": 70,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 299,
+      "type": "return",
+      "id": 48,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 299,
+      "type": "board",
+      "id": 68,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 299,
+      "type": "queue",
+      "id": 61,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 299,
+      "type": "spawn",
+      "id": 67,
+      "origin": 1
+    },
+    {
+      "time": 299,
+      "type": "spawn",
+      "id": 86,
+      "origin": 3
+    },
+    {
+      "time": 299,
+      "type": "walk",
+      "id": 86,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 299.5,
+      "type": "spawn",
+      "id": 72,
+      "origin": 2
+    },
+    {
+      "time": 299.5,
+      "type": "walk",
+      "id": 72,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 300,
+      "type": "queue",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 300,
+      "type": "queue",
+      "id": 65,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 300.5,
+      "type": "spawn",
+      "id": 87,
+      "origin": 3
+    },
+    {
+      "time": 300.5,
+      "type": "walk",
+      "id": 87,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 301.5,
+      "type": "queue",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 302,
+      "type": "delivered",
+      "id": 37,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 302,
+      "type": "delivered",
+      "id": 44,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 302,
+      "type": "delivered",
+      "id": 45,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 302,
+      "type": "delivered",
+      "id": 46,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 302,
+      "type": "delivered",
+      "id": 38,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 302,
+      "type": "delivered",
+      "id": 58,
+      "origin": 2,
+      "stop": 2
+    },
+    {
+      "time": 302.5,
+      "type": "spawn",
+      "id": 88,
+      "origin": 3
+    },
+    {
+      "time": 303,
+      "type": "spawn",
+      "id": 63,
+      "origin": 0
+    },
+    {
+      "time": 303.5,
+      "type": "home",
+      "id": 47,
+      "origin": 2
+    },
+    {
+      "time": 303.5,
+      "type": "queue",
+      "id": 82,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 303.5,
+      "type": "spawn",
+      "id": 73,
+      "origin": 2
+    },
+    {
+      "time": 303.5,
+      "type": "walk",
+      "id": 73,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 304,
+      "type": "spawn",
+      "id": 89,
+      "origin": 3
+    },
+    {
+      "time": 304,
+      "type": "walk",
+      "id": 89,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 305,
+      "type": "queue",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 307.5,
+      "type": "queue",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 308,
+      "type": "queue",
+      "id": 62,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 308.5,
+      "type": "queue",
+      "id": 85,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 309.5,
+      "type": "home",
+      "id": 52,
+      "origin": 2
+    },
+    {
+      "time": 311,
+      "type": "home",
+      "id": 48,
+      "origin": 2
+    },
+    {
+      "time": 311,
+      "type": "queue",
+      "id": 86,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 311.5,
+      "type": "return",
+      "id": 55,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 311.5,
+      "type": "board",
+      "id": 69,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 311.5,
+      "type": "queue",
+      "id": 72,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 312.5,
+      "type": "full",
+      "id": 87,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 312.5,
+      "type": "return",
+      "id": 87,
+      "origin": 3,
+      "why": "站已滿員"
+    },
+    {
+      "time": 313.5,
+      "type": "walk",
+      "id": 52,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 315.5,
+      "type": "queue",
+      "id": 73,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 316,
+      "type": "full",
+      "id": 89,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 316,
+      "type": "return",
+      "id": 89,
+      "origin": 3,
+      "why": "站已滿員"
+    },
+    {
+      "time": 319.5,
+      "type": "return",
+      "id": 49,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 319.5,
+      "type": "board",
+      "id": 70,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 320.5,
+      "type": "return",
+      "id": 51,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 320.5,
+      "type": "board",
+      "id": 65,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 323,
+      "type": "return",
+      "id": 41,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 323,
+      "type": "board",
+      "id": 61,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 323.5,
+      "type": "home",
+      "id": 55,
+      "origin": 2
+    },
+    {
+      "time": 324.5,
+      "type": "home",
+      "id": 87,
+      "origin": 3
+    },
+    {
+      "time": 325.5,
+      "type": "queue",
+      "id": 52,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 327,
+      "type": "walk",
+      "id": 63,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 327.5,
+      "type": "walk",
+      "id": 55,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 328,
+      "type": "car",
+      "id": 64,
+      "origin": 1
+    },
+    {
+      "time": 328,
+      "type": "home",
+      "id": 89,
+      "origin": 3
+    },
+    {
+      "time": 328.5,
+      "type": "walk",
+      "id": 87,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 329.5,
+      "type": "return",
+      "id": 32,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 329.5,
+      "type": "board",
+      "id": 62,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 331.5,
+      "type": "home",
+      "id": 49,
+      "origin": 2
+    },
+    {
+      "time": 332.5,
+      "type": "home",
+      "id": 51,
+      "origin": 2
+    },
+    {
+      "time": 339,
+      "type": "return",
+      "id": 42,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 339,
+      "type": "queue",
+      "id": 63,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 339,
+      "type": "board",
+      "id": 63,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 339.5,
+      "type": "queue",
+      "id": 55,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 340.5,
+      "type": "full",
+      "id": 87,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 340.5,
+      "type": "return",
+      "id": 87,
+      "origin": 3,
+      "why": "站已滿員"
+    },
+    {
+      "time": 341.5,
+      "type": "return",
+      "id": 54,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 341.5,
+      "type": "board",
+      "id": 72,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 341.5,
+      "type": "home",
+      "id": 32,
+      "origin": 0
+    },
+    {
+      "time": 343.5,
+      "type": "car",
+      "id": 71,
+      "origin": 2
+    },
+    {
+      "time": 344,
+      "type": "delivered",
+      "id": 30,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 344,
+      "type": "delivered",
+      "id": 34,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 344,
+      "type": "delivered",
+      "id": 35,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 344,
+      "type": "delivered",
+      "id": 33,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 344,
+      "type": "delivered",
+      "id": 36,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 344.5,
+      "type": "car",
+      "id": 66,
+      "origin": 1
+    },
+    {
+      "time": 349,
+      "type": "car",
+      "id": 67,
+      "origin": 1
+    },
+    {
+      "time": 349.5,
+      "type": "return",
+      "id": 40,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 352.5,
+      "type": "home",
+      "id": 87,
+      "origin": 3
+    },
+    {
+      "time": 352.5,
+      "type": "car",
+      "id": 88,
+      "origin": 3
+    },
+    {
+      "time": 353.5,
+      "type": "car",
+      "id": 47,
+      "origin": 2
+    },
+    {
+      "time": 353.5,
+      "type": "home",
+      "id": 54,
+      "origin": 2
+    },
+    {
+      "time": 357,
+      "type": "car",
+      "id": 48,
+      "origin": 2
+    },
+    {
+      "time": 359,
+      "type": "home",
+      "id": 41,
+      "origin": 1
+    },
+    {
+      "time": 361.5,
+      "type": "car",
+      "id": 49,
+      "origin": 2
+    },
+    {
+      "time": 372.5,
+      "type": "car",
+      "id": 41,
+      "origin": 1
+    },
+    {
+      "time": 375,
+      "type": "home",
+      "id": 42,
+      "origin": 1
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 68,
+      "origin": 2,
+      "stop": 1,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 69,
+      "origin": 2,
+      "stop": 1,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 70,
+      "origin": 2,
+      "stop": 1,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 65,
+      "origin": 1,
+      "stop": 1,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 72,
+      "origin": 2,
+      "stop": 1,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 4,
+      "load": 5
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 73,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 52,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 55,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 74,
+      "origin": 3,
+      "stop": 2,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 75,
+      "origin": 3,
+      "stop": 2,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 76,
+      "origin": 3,
+      "stop": 2,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 77,
+      "origin": 3,
+      "stop": 2,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "depart",
+      "id": 78,
+      "origin": 3,
+      "stop": 2,
+      "serial": 4
+    },
+    {
+      "time": 376,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 4,
+      "load": 5
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 82,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 376,
+      "type": "board",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 378,
+      "type": "car",
+      "id": 89,
+      "origin": 3
+    },
+    {
+      "time": 379.5,
+      "type": "car",
+      "id": 51,
+      "origin": 2
+    },
+    {
+      "time": 385.5,
+      "type": "home",
+      "id": 40,
+      "origin": 1
+    },
+    {
+      "time": 386,
+      "type": "car",
+      "id": 40,
+      "origin": 1
+    },
+    {
+      "time": 387,
+      "type": "return",
+      "id": 52,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 390,
+      "type": "car",
+      "id": 32,
+      "origin": 0
+    },
+    {
+      "time": 392,
+      "type": "car",
+      "id": 42,
+      "origin": 1
+    },
+    {
+      "time": 393.5,
+      "type": "car",
+      "id": 54,
+      "origin": 2
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 68,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 69,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 70,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 65,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 72,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 74,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 75,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 76,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 77,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 396,
+      "type": "delivered",
+      "id": 78,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 396,
+      "type": "spawn",
+      "id": 90,
+      "origin": 0
+    },
+    {
+      "time": 396,
+      "type": "walk",
+      "id": 90,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 397,
+      "type": "spawn",
+      "id": 110,
+      "origin": 1
+    },
+    {
+      "time": 397,
+      "type": "walk",
+      "id": 110,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 397.5,
+      "type": "spawn",
+      "id": 91,
+      "origin": 0
+    },
+    {
+      "time": 397.5,
+      "type": "walk",
+      "id": 91,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 399,
+      "type": "home",
+      "id": 52,
+      "origin": 2
+    },
+    {
+      "time": 399,
+      "type": "spawn",
+      "id": 92,
+      "origin": 0
+    },
+    {
+      "time": 399,
+      "type": "walk",
+      "id": 92,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 399.5,
+      "type": "car",
+      "id": 52,
+      "origin": 2
+    },
+    {
+      "time": 400.5,
+      "type": "spawn",
+      "id": 93,
+      "origin": 0
+    },
+    {
+      "time": 400.5,
+      "type": "walk",
+      "id": 93,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 401,
+      "type": "spawn",
+      "id": 111,
+      "origin": 1
+    },
+    {
+      "time": 401,
+      "type": "walk",
+      "id": 111,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 401,
+      "type": "spawn",
+      "id": 116,
+      "origin": 2
+    },
+    {
+      "time": 401,
+      "type": "walk",
+      "id": 116,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 401.5,
+      "type": "return",
+      "id": 55,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 402,
+      "type": "spawn",
+      "id": 94,
+      "origin": 0
+    },
+    {
+      "time": 402,
+      "type": "walk",
+      "id": 94,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 402.5,
+      "type": "car",
+      "id": 87,
+      "origin": 3
+    },
+    {
+      "time": 404,
+      "type": "spawn",
+      "id": 95,
+      "origin": 0
+    },
+    {
+      "time": 404,
+      "type": "walk",
+      "id": 95,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 404.5,
+      "type": "spawn",
+      "id": 96,
+      "origin": 0
+    },
+    {
+      "time": 404.5,
+      "type": "walk",
+      "id": 96,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 405.5,
+      "type": "spawn",
+      "id": 117,
+      "origin": 2
+    },
+    {
+      "time": 405.5,
+      "type": "walk",
+      "id": 117,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 406,
+      "type": "spawn",
+      "id": 97,
+      "origin": 0
+    },
+    {
+      "time": 406,
+      "type": "walk",
+      "id": 97,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 408,
+      "type": "queue",
+      "id": 90,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 408,
+      "type": "board",
+      "id": 90,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 408,
+      "type": "spawn",
+      "id": 98,
+      "origin": 0
+    },
+    {
+      "time": 408,
+      "type": "walk",
+      "id": 98,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 408,
+      "type": "spawn",
+      "id": 112,
+      "origin": 1
+    },
+    {
+      "time": 408,
+      "type": "walk",
+      "id": 112,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 409,
+      "type": "queue",
+      "id": 110,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 409,
+      "type": "board",
+      "id": 110,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 409.5,
+      "type": "queue",
+      "id": 91,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 410,
+      "type": "spawn",
+      "id": 99,
+      "origin": 0
+    },
+    {
+      "time": 410,
+      "type": "walk",
+      "id": 99,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 411,
+      "type": "queue",
+      "id": 92,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 411,
+      "type": "spawn",
+      "id": 100,
+      "origin": 0
+    },
+    {
+      "time": 411,
+      "type": "walk",
+      "id": 100,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 412.5,
+      "type": "return",
+      "id": 60,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 412.5,
+      "type": "board",
+      "id": 91,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 412.5,
+      "type": "queue",
+      "id": 93,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 412.5,
+      "type": "spawn",
+      "id": 113,
+      "origin": 1
+    },
+    {
+      "time": 412.5,
+      "type": "walk",
+      "id": 113,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 413,
+      "type": "queue",
+      "id": 111,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 413,
+      "type": "board",
+      "id": 111,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 413,
+      "type": "queue",
+      "id": 116,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 413,
+      "type": "board",
+      "id": 116,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 413,
+      "type": "spawn",
+      "id": 101,
+      "origin": 0
+    },
+    {
+      "time": 413,
+      "type": "walk",
+      "id": 101,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 413.5,
+      "type": "home",
+      "id": 55,
+      "origin": 2
+    },
+    {
+      "time": 414,
+      "type": "return",
+      "id": 81,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 414,
+      "type": "board",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 414,
+      "type": "car",
+      "id": 55,
+      "origin": 2
+    },
+    {
+      "time": 414,
+      "type": "queue",
+      "id": 94,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 414,
+      "type": "spawn",
+      "id": 102,
+      "origin": 0
+    },
+    {
+      "time": 414,
+      "type": "walk",
+      "id": 102,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 416,
+      "type": "queue",
+      "id": 95,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 416,
+      "type": "spawn",
+      "id": 103,
+      "origin": 0
+    },
+    {
+      "time": 416,
+      "type": "walk",
+      "id": 103,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 416,
+      "type": "spawn",
+      "id": 118,
+      "origin": 2
+    },
+    {
+      "time": 416,
+      "type": "walk",
+      "id": 118,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 416.5,
+      "type": "return",
+      "id": 79,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 416.5,
+      "type": "board",
+      "id": 85,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 416.5,
+      "type": "queue",
+      "id": 96,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 416.5,
+      "type": "spawn",
+      "id": 104,
+      "origin": 0
+    },
+    {
+      "time": 417,
+      "type": "spawn",
+      "id": 114,
+      "origin": 1
+    },
+    {
+      "time": 417,
+      "type": "walk",
+      "id": 114,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 417.5,
+      "type": "queue",
+      "id": 117,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 417.5,
+      "type": "board",
+      "id": 117,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 418,
+      "type": "queue",
+      "id": 97,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 418,
+      "type": "spawn",
+      "id": 105,
+      "origin": 0
+    },
+    {
+      "time": 418.5,
+      "type": "return",
+      "id": 80,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 418.5,
+      "type": "board",
+      "id": 86,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 419.5,
+      "type": "return",
+      "id": 83,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 419.5,
+      "type": "spawn",
+      "id": 106,
+      "origin": 0
+    },
+    {
+      "time": 420,
+      "type": "queue",
+      "id": 98,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 420,
+      "type": "queue",
+      "id": 112,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 421,
+      "type": "return",
+      "id": 61,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 421,
+      "type": "board",
+      "id": 92,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 421,
+      "type": "return",
+      "id": 84,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 421.5,
+      "type": "spawn",
+      "id": 115,
+      "origin": 1
+    },
+    {
+      "time": 421.5,
+      "type": "walk",
+      "id": 115,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 421.5,
+      "type": "spawn",
+      "id": 107,
+      "origin": 0
+    },
+    {
+      "time": 422,
+      "type": "return",
+      "id": 86,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 422,
+      "type": "queue",
+      "id": 99,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 422,
+      "type": "spawn",
+      "id": 119,
+      "origin": 2
+    },
+    {
+      "time": 422.5,
+      "type": "return",
+      "id": 82,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 423,
+      "type": "return",
+      "id": 85,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 423,
+      "type": "queue",
+      "id": 100,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 423.5,
+      "type": "spawn",
+      "id": 108,
+      "origin": 0
+    },
+    {
+      "time": 424.5,
+      "type": "home",
+      "id": 60,
+      "origin": 0
+    },
+    {
+      "time": 424.5,
+      "type": "queue",
+      "id": 113,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 424.5,
+      "type": "spawn",
+      "id": 109,
+      "origin": 0
+    },
+    {
+      "time": 425,
+      "type": "full",
+      "id": 101,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 425,
+      "type": "return",
+      "id": 101,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 426,
+      "type": "depart",
+      "id": 62,
+      "origin": 0,
+      "stop": 0,
+      "serial": 3
+    },
+    {
+      "time": 426,
+      "type": "depart",
+      "id": 63,
+      "origin": 0,
+      "stop": 0,
+      "serial": 3
+    },
+    {
+      "time": 426,
+      "type": "depart",
+      "id": 90,
+      "origin": 0,
+      "stop": 0,
+      "serial": 3
+    },
+    {
+      "time": 426,
+      "type": "depart",
+      "id": 91,
+      "origin": 0,
+      "stop": 0,
+      "serial": 3
+    },
+    {
+      "time": 426,
+      "type": "depart",
+      "id": 92,
+      "origin": 0,
+      "stop": 0,
+      "serial": 3
+    },
+    {
+      "time": 426,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 3,
+      "load": 5
+    },
+    {
+      "time": 426,
+      "type": "board",
+      "id": 93,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 426,
+      "type": "board",
+      "id": 94,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 426,
+      "type": "board",
+      "id": 95,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 426,
+      "type": "board",
+      "id": 96,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 426,
+      "type": "board",
+      "id": 97,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 426,
+      "type": "home",
+      "id": 81,
+      "origin": 3
+    },
+    {
+      "time": 426,
+      "type": "queue",
+      "id": 102,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 428,
+      "type": "queue",
+      "id": 103,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 428,
+      "type": "queue",
+      "id": 118,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 428.5,
+      "type": "home",
+      "id": 79,
+      "origin": 3
+    },
+    {
+      "time": 429,
+      "type": "queue",
+      "id": 114,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 430,
+      "type": "walk",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 430.5,
+      "type": "home",
+      "id": 80,
+      "origin": 3
+    },
+    {
+      "time": 431.5,
+      "type": "home",
+      "id": 83,
+      "origin": 3
+    },
+    {
+      "time": 432.5,
+      "type": "walk",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 433,
+      "type": "home",
+      "id": 61,
+      "origin": 0
+    },
+    {
+      "time": 433,
+      "type": "home",
+      "id": 84,
+      "origin": 3
+    },
+    {
+      "time": 433.5,
+      "type": "queue",
+      "id": 115,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 434,
+      "type": "home",
+      "id": 86,
+      "origin": 3
+    },
+    {
+      "time": 434.5,
+      "type": "walk",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 434.5,
+      "type": "home",
+      "id": 82,
+      "origin": 3
+    },
+    {
+      "time": 435,
+      "type": "home",
+      "id": 85,
+      "origin": 3
+    },
+    {
+      "time": 435.5,
+      "type": "walk",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 437,
+      "type": "walk",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 437,
+      "type": "home",
+      "id": 101,
+      "origin": 0
+    },
+    {
+      "time": 438,
+      "type": "walk",
+      "id": 86,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 438.5,
+      "type": "walk",
+      "id": 82,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 439,
+      "type": "walk",
+      "id": 85,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 440.5,
+      "type": "return",
+      "id": 73,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 440.5,
+      "type": "board",
+      "id": 112,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 441,
+      "type": "walk",
+      "id": 101,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 442,
+      "type": "queue",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 442,
+      "type": "board",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 444.5,
+      "type": "queue",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 444.5,
+      "type": "board",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 446.5,
+      "type": "queue",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 446.5,
+      "type": "board",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 447.5,
+      "type": "queue",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 447.5,
+      "type": "board",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 449,
+      "type": "queue",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 449,
+      "type": "board",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 450,
+      "type": "queue",
+      "id": 86,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 450.5,
+      "type": "queue",
+      "id": 82,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 451,
+      "type": "queue",
+      "id": 85,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 452.5,
+      "type": "home",
+      "id": 73,
+      "origin": 2
+    },
+    {
+      "time": 452.5,
+      "type": "walk",
+      "id": 109,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 453,
+      "type": "queue",
+      "id": 101,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 456.5,
+      "type": "walk",
+      "id": 73,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 464.5,
+      "type": "queue",
+      "id": 109,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 466.5,
+      "type": "car",
+      "id": 104,
+      "origin": 0
+    },
+    {
+      "time": 468,
+      "type": "car",
+      "id": 105,
+      "origin": 0
+    },
+    {
+      "time": 468.5,
+      "type": "queue",
+      "id": 73,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 469.5,
+      "type": "car",
+      "id": 106,
+      "origin": 0
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 110,
+      "origin": 1,
+      "stop": 1,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 111,
+      "origin": 1,
+      "stop": 1,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 116,
+      "origin": 2,
+      "stop": 1,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 117,
+      "origin": 2,
+      "stop": 1,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 112,
+      "origin": 1,
+      "stop": 1,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 5,
+      "load": 5
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 113,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 118,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 114,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 115,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 73,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 81,
+      "origin": 3,
+      "stop": 2,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 79,
+      "origin": 3,
+      "stop": 2,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 80,
+      "origin": 3,
+      "stop": 2,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 83,
+      "origin": 3,
+      "stop": 2,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "depart",
+      "id": 84,
+      "origin": 3,
+      "stop": 2,
+      "serial": 5
+    },
+    {
+      "time": 470,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 5,
+      "load": 5
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 86,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 82,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 470,
+      "type": "board",
+      "id": 85,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 471.5,
+      "type": "car",
+      "id": 107,
+      "origin": 0
+    },
+    {
+      "time": 472,
+      "type": "car",
+      "id": 119,
+      "origin": 2
+    },
+    {
+      "time": 473.5,
+      "type": "car",
+      "id": 108,
+      "origin": 0
+    },
+    {
+      "time": 474.5,
+      "type": "car",
+      "id": 60,
+      "origin": 0
+    },
+    {
+      "time": 483,
+      "type": "car",
+      "id": 61,
+      "origin": 0
+    },
+    {
+      "time": 486,
+      "type": "delivered",
+      "id": 62,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 486,
+      "type": "delivered",
+      "id": 63,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 486,
+      "type": "delivered",
+      "id": 90,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 486,
+      "type": "delivered",
+      "id": 91,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 486,
+      "type": "delivered",
+      "id": 92,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 487.5,
+      "type": "return",
+      "id": 82,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 110,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 111,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 116,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 117,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 112,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 81,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 79,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 80,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 83,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 490,
+      "type": "delivered",
+      "id": 84,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 499.5,
+      "type": "home",
+      "id": 82,
+      "origin": 3
+    },
+    {
+      "time": 500,
+      "type": "car",
+      "id": 82,
+      "origin": 3
+    },
+    {
+      "time": 512,
+      "type": "return",
+      "id": 73,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 516.5,
+      "type": "spawn",
+      "id": 126,
+      "origin": 1
+    },
+    {
+      "time": 516.5,
+      "type": "walk",
+      "id": 126,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 517.5,
+      "type": "spawn",
+      "id": 140,
+      "origin": 2
+    },
+    {
+      "time": 517.5,
+      "type": "walk",
+      "id": 140,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 518,
+      "type": "spawn",
+      "id": 127,
+      "origin": 1
+    },
+    {
+      "time": 518,
+      "type": "walk",
+      "id": 127,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 518.5,
+      "type": "spawn",
+      "id": 120,
+      "origin": 0
+    },
+    {
+      "time": 519.5,
+      "type": "spawn",
+      "id": 148,
+      "origin": 3
+    },
+    {
+      "time": 519.5,
+      "type": "walk",
+      "id": 148,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 521,
+      "type": "spawn",
+      "id": 128,
+      "origin": 1
+    },
+    {
+      "time": 521,
+      "type": "walk",
+      "id": 128,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 521,
+      "type": "spawn",
+      "id": 121,
+      "origin": 0
+    },
+    {
+      "time": 521.5,
+      "type": "spawn",
+      "id": 141,
+      "origin": 2
+    },
+    {
+      "time": 521.5,
+      "type": "walk",
+      "id": 141,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 522.5,
+      "type": "return",
+      "id": 85,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 522.5,
+      "type": "spawn",
+      "id": 129,
+      "origin": 1
+    },
+    {
+      "time": 522.5,
+      "type": "walk",
+      "id": 129,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 524,
+      "type": "home",
+      "id": 73,
+      "origin": 2
+    },
+    {
+      "time": 524.5,
+      "type": "car",
+      "id": 73,
+      "origin": 2
+    },
+    {
+      "time": 525,
+      "type": "spawn",
+      "id": 142,
+      "origin": 2
+    },
+    {
+      "time": 525,
+      "type": "walk",
+      "id": 142,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 525.5,
+      "type": "spawn",
+      "id": 130,
+      "origin": 1
+    },
+    {
+      "time": 525.5,
+      "type": "walk",
+      "id": 130,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 527,
+      "type": "spawn",
+      "id": 131,
+      "origin": 1
+    },
+    {
+      "time": 527,
+      "type": "walk",
+      "id": 131,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 527.5,
+      "type": "spawn",
+      "id": 122,
+      "origin": 0
+    },
+    {
+      "time": 527.5,
+      "type": "walk",
+      "id": 122,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 527.5,
+      "type": "spawn",
+      "id": 143,
+      "origin": 2
+    },
+    {
+      "time": 527.5,
+      "type": "walk",
+      "id": 143,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 528.5,
+      "type": "return",
+      "id": 97,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 528.5,
+      "type": "board",
+      "id": 98,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 528.5,
+      "type": "return",
+      "id": 86,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 528.5,
+      "type": "queue",
+      "id": 126,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 528.5,
+      "type": "board",
+      "id": 126,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 529,
+      "type": "spawn",
+      "id": 132,
+      "origin": 1
+    },
+    {
+      "time": 529,
+      "type": "walk",
+      "id": 132,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 529.5,
+      "type": "queue",
+      "id": 140,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 530,
+      "type": "return",
+      "id": 95,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 530,
+      "type": "board",
+      "id": 99,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 530,
+      "type": "queue",
+      "id": 127,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 530.5,
+      "type": "walk",
+      "id": 120,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 531.5,
+      "type": "queue",
+      "id": 148,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 531.5,
+      "type": "board",
+      "id": 148,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 531.5,
+      "type": "spawn",
+      "id": 123,
+      "origin": 0
+    },
+    {
+      "time": 531.5,
+      "type": "spawn",
+      "id": 133,
+      "origin": 1
+    },
+    {
+      "time": 531.5,
+      "type": "walk",
+      "id": 133,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 532.5,
+      "type": "spawn",
+      "id": 144,
+      "origin": 2
+    },
+    {
+      "time": 532.5,
+      "type": "walk",
+      "id": 144,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 533,
+      "type": "queue",
+      "id": 128,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 533,
+      "type": "walk",
+      "id": 121,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 533.5,
+      "type": "queue",
+      "id": 141,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 533.5,
+      "type": "spawn",
+      "id": 134,
+      "origin": 1
+    },
+    {
+      "time": 533.5,
+      "type": "walk",
+      "id": 134,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 534.5,
+      "type": "home",
+      "id": 85,
+      "origin": 3
+    },
+    {
+      "time": 534.5,
+      "type": "queue",
+      "id": 129,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 535,
+      "type": "car",
+      "id": 85,
+      "origin": 3
+    },
+    {
+      "time": 535.5,
+      "type": "spawn",
+      "id": 135,
+      "origin": 1
+    },
+    {
+      "time": 535.5,
+      "type": "walk",
+      "id": 135,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 536.5,
+      "type": "return",
+      "id": 93,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 536.5,
+      "type": "board",
+      "id": 100,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 537,
+      "type": "return",
+      "id": 94,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 537,
+      "type": "board",
+      "id": 102,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 537,
+      "type": "queue",
+      "id": 142,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 537,
+      "type": "spawn",
+      "id": 145,
+      "origin": 2
+    },
+    {
+      "time": 537,
+      "type": "walk",
+      "id": 145,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 537.5,
+      "type": "queue",
+      "id": 130,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 538,
+      "type": "return",
+      "id": 100,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 538,
+      "type": "board",
+      "id": 103,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 538.5,
+      "type": "spawn",
+      "id": 136,
+      "origin": 1
+    },
+    {
+      "time": 538.5,
+      "type": "walk",
+      "id": 136,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 539,
+      "type": "return",
+      "id": 113,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 539,
+      "type": "board",
+      "id": 140,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 539,
+      "type": "queue",
+      "id": 131,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 539,
+      "type": "spawn",
+      "id": 149,
+      "origin": 3
+    },
+    {
+      "time": 539,
+      "type": "walk",
+      "id": 149,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 539,
+      "type": "spawn",
+      "id": 146,
+      "origin": 2
+    },
+    {
+      "time": 539.5,
+      "type": "return",
+      "id": 99,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 539.5,
+      "type": "board",
+      "id": 101,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 539.5,
+      "type": "queue",
+      "id": 122,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 539.5,
+      "type": "queue",
+      "id": 143,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 539.5,
+      "type": "walk",
+      "id": 123,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 539.5,
+      "type": "spawn",
+      "id": 137,
+      "origin": 1
+    },
+    {
+      "time": 539.5,
+      "type": "spawn",
+      "id": 124,
+      "origin": 0
+    },
+    {
+      "time": 539.5,
+      "type": "walk",
+      "id": 124,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 540.5,
+      "type": "return",
+      "id": 118,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 540.5,
+      "type": "board",
+      "id": 127,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 540.5,
+      "type": "home",
+      "id": 86,
+      "origin": 3
+    },
+    {
+      "time": 540.5,
+      "type": "home",
+      "id": 97,
+      "origin": 0
+    },
+    {
+      "time": 541,
+      "type": "car",
+      "id": 86,
+      "origin": 3
+    },
+    {
+      "time": 541,
+      "type": "queue",
+      "id": 132,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 541,
+      "type": "spawn",
+      "id": 125,
+      "origin": 0
+    },
+    {
+      "time": 542,
+      "type": "home",
+      "id": 95,
+      "origin": 0
+    },
+    {
+      "time": 542,
+      "type": "spawn",
+      "id": 138,
+      "origin": 1
+    },
+    {
+      "time": 542.5,
+      "type": "queue",
+      "id": 120,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 543.5,
+      "type": "full",
+      "id": 133,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 543.5,
+      "type": "return",
+      "id": 133,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 544,
+      "type": "spawn",
+      "id": 147,
+      "origin": 2
+    },
+    {
+      "time": 544,
+      "type": "walk",
+      "id": 147,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 544,
+      "type": "spawn",
+      "id": 139,
+      "origin": 1
+    },
+    {
+      "time": 544,
+      "type": "walk",
+      "id": 139,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 544.5,
+      "type": "return",
+      "id": 98,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 544.5,
+      "type": "board",
+      "id": 109,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 544.5,
+      "type": "walk",
+      "id": 97,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 544.5,
+      "type": "full",
+      "id": 144,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 544.5,
+      "type": "return",
+      "id": 144,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 545,
+      "type": "queue",
+      "id": 121,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 545.5,
+      "type": "return",
+      "id": 96,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 545.5,
+      "type": "board",
+      "id": 122,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 545.5,
+      "type": "full",
+      "id": 134,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 545.5,
+      "type": "return",
+      "id": 134,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 546,
+      "type": "return",
+      "id": 115,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 546,
+      "type": "board",
+      "id": 128,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 546,
+      "type": "walk",
+      "id": 95,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 547.5,
+      "type": "queue",
+      "id": 135,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 548.5,
+      "type": "home",
+      "id": 93,
+      "origin": 0
+    },
+    {
+      "time": 549,
+      "type": "home",
+      "id": 94,
+      "origin": 0
+    },
+    {
+      "time": 549,
+      "type": "full",
+      "id": 145,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 549,
+      "type": "return",
+      "id": 145,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 550,
+      "type": "return",
+      "id": 114,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 550,
+      "type": "board",
+      "id": 141,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 550,
+      "type": "home",
+      "id": 100,
+      "origin": 0
+    },
+    {
+      "time": 550.5,
+      "type": "queue",
+      "id": 136,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 551,
+      "type": "home",
+      "id": 113,
+      "origin": 1
+    },
+    {
+      "time": 551,
+      "type": "queue",
+      "id": 149,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 551,
+      "type": "board",
+      "id": 149,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 551.5,
+      "type": "return",
+      "id": 102,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 551.5,
+      "type": "board",
+      "id": 120,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 551.5,
+      "type": "home",
+      "id": 99,
+      "origin": 0
+    },
+    {
+      "time": 551.5,
+      "type": "queue",
+      "id": 123,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 551.5,
+      "type": "queue",
+      "id": 124,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 552.5,
+      "type": "walk",
+      "id": 93,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 552.5,
+      "type": "home",
+      "id": 118,
+      "origin": 2
+    },
+    {
+      "time": 553,
+      "type": "walk",
+      "id": 94,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 554,
+      "type": "walk",
+      "id": 100,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 554.5,
+      "type": "return",
+      "id": 103,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 554.5,
+      "type": "board",
+      "id": 121,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 555.5,
+      "type": "walk",
+      "id": 99,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 555.5,
+      "type": "home",
+      "id": 133,
+      "origin": 1
+    },
+    {
+      "time": 556,
+      "type": "full",
+      "id": 147,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 556,
+      "type": "return",
+      "id": 147,
+      "origin": 2,
+      "why": "站已滿員"
+    },
+    {
+      "time": 556,
+      "type": "full",
+      "id": 139,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 556,
+      "type": "return",
+      "id": 139,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 556.5,
+      "type": "queue",
+      "id": 97,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 556.5,
+      "type": "home",
+      "id": 98,
+      "origin": 0
+    },
+    {
+      "time": 556.5,
+      "type": "home",
+      "id": 144,
+      "origin": 2
+    },
+    {
+      "time": 557.5,
+      "type": "home",
+      "id": 96,
+      "origin": 0
+    },
+    {
+      "time": 557.5,
+      "type": "home",
+      "id": 134,
+      "origin": 1
+    },
+    {
+      "time": 558,
+      "type": "queue",
+      "id": 95,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 558,
+      "type": "home",
+      "id": 115,
+      "origin": 1
+    },
+    {
+      "time": 561,
+      "type": "home",
+      "id": 145,
+      "origin": 2
+    },
+    {
+      "time": 562,
+      "type": "home",
+      "id": 114,
+      "origin": 1
+    },
+    {
+      "time": 563.5,
+      "type": "home",
+      "id": 102,
+      "origin": 0
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 126,
+      "origin": 1,
+      "stop": 1,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 140,
+      "origin": 2,
+      "stop": 1,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 127,
+      "origin": 1,
+      "stop": 1,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 128,
+      "origin": 1,
+      "stop": 1,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 141,
+      "origin": 2,
+      "stop": 1,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 6,
+      "load": 5
+    },
+    {
+      "time": 564,
+      "type": "board",
+      "id": 129,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 564,
+      "type": "board",
+      "id": 142,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 564,
+      "type": "board",
+      "id": 130,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 564,
+      "type": "board",
+      "id": 131,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 564,
+      "type": "board",
+      "id": 143,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 148,
+      "origin": 3,
+      "stop": 2,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "depart",
+      "id": 149,
+      "origin": 3,
+      "stop": 2,
+      "serial": 6
+    },
+    {
+      "time": 564,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 6,
+      "load": 2
+    },
+    {
+      "time": 564.5,
+      "type": "queue",
+      "id": 93,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 565,
+      "type": "queue",
+      "id": 94,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 565,
+      "type": "walk",
+      "id": 145,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 566,
+      "type": "queue",
+      "id": 100,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 566.5,
+      "type": "home",
+      "id": 103,
+      "origin": 0
+    },
+    {
+      "time": 567.5,
+      "type": "queue",
+      "id": 99,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 568,
+      "type": "depart",
+      "id": 101,
+      "origin": 0,
+      "stop": 0,
+      "serial": 4
+    },
+    {
+      "time": 568,
+      "type": "depart",
+      "id": 109,
+      "origin": 0,
+      "stop": 0,
+      "serial": 4
+    },
+    {
+      "time": 568,
+      "type": "depart",
+      "id": 122,
+      "origin": 0,
+      "stop": 0,
+      "serial": 4
+    },
+    {
+      "time": 568,
+      "type": "depart",
+      "id": 120,
+      "origin": 0,
+      "stop": 0,
+      "serial": 4
+    },
+    {
+      "time": 568,
+      "type": "depart",
+      "id": 121,
+      "origin": 0,
+      "stop": 0,
+      "serial": 4
+    },
+    {
+      "time": 568,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 4,
+      "load": 5
+    },
+    {
+      "time": 568,
+      "type": "board",
+      "id": 123,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 568,
+      "type": "board",
+      "id": 124,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 568,
+      "type": "board",
+      "id": 97,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 568,
+      "type": "board",
+      "id": 95,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 568,
+      "type": "board",
+      "id": 93,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 568,
+      "type": "home",
+      "id": 147,
+      "origin": 2
+    },
+    {
+      "time": 568,
+      "type": "home",
+      "id": 139,
+      "origin": 1
+    },
+    {
+      "time": 569.5,
+      "type": "walk",
+      "id": 134,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 572,
+      "type": "walk",
+      "id": 147,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 572,
+      "type": "walk",
+      "id": 139,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 577,
+      "type": "queue",
+      "id": 145,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 581.5,
+      "type": "queue",
+      "id": 134,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 126,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 140,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 127,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 128,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 141,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 148,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 584,
+      "type": "delivered",
+      "id": 149,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 584,
+      "type": "queue",
+      "id": 147,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 584,
+      "type": "queue",
+      "id": 139,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 589,
+      "type": "car",
+      "id": 146,
+      "origin": 2
+    },
+    {
+      "time": 589.5,
+      "type": "car",
+      "id": 137,
+      "origin": 1
+    },
+    {
+      "time": 591,
+      "type": "car",
+      "id": 125,
+      "origin": 0
+    },
+    {
+      "time": 592,
+      "type": "car",
+      "id": 138,
+      "origin": 1
+    },
+    {
+      "time": 601,
+      "type": "car",
+      "id": 113,
+      "origin": 1
+    },
+    {
+      "time": 602.5,
+      "type": "car",
+      "id": 118,
+      "origin": 2
+    },
+    {
+      "time": 605.5,
+      "type": "car",
+      "id": 133,
+      "origin": 1
+    },
+    {
+      "time": 606.5,
+      "type": "car",
+      "id": 98,
+      "origin": 0
+    },
+    {
+      "time": 606.5,
+      "type": "car",
+      "id": 144,
+      "origin": 2
+    },
+    {
+      "time": 607.5,
+      "type": "car",
+      "id": 96,
+      "origin": 0
+    },
+    {
+      "time": 608,
+      "type": "car",
+      "id": 115,
+      "origin": 1
+    },
+    {
+      "time": 609.5,
+      "type": "return",
+      "id": 99,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 610,
+      "type": "return",
+      "id": 93,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 610,
+      "type": "board",
+      "id": 94,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 612,
+      "type": "car",
+      "id": 114,
+      "origin": 1
+    },
+    {
+      "time": 613,
+      "type": "return",
+      "id": 94,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 613,
+      "type": "board",
+      "id": 100,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 613.5,
+      "type": "car",
+      "id": 102,
+      "origin": 0
+    },
+    {
+      "time": 615,
+      "type": "return",
+      "id": 97,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 616.5,
+      "type": "car",
+      "id": 103,
+      "origin": 0
+    },
+    {
+      "time": 617.5,
+      "type": "return",
+      "id": 100,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 621.5,
+      "type": "home",
+      "id": 99,
+      "origin": 0
+    },
+    {
+      "time": 622,
+      "type": "home",
+      "id": 93,
+      "origin": 0
+    },
+    {
+      "time": 622,
+      "type": "car",
+      "id": 99,
+      "origin": 0
+    },
+    {
+      "time": 622.5,
+      "type": "car",
+      "id": 93,
+      "origin": 0
+    },
+    {
+      "time": 625,
+      "type": "home",
+      "id": 94,
+      "origin": 0
+    },
+    {
+      "time": 625.5,
+      "type": "car",
+      "id": 94,
+      "origin": 0
+    },
+    {
+      "time": 626,
+      "type": "return",
+      "id": 95,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 627,
+      "type": "home",
+      "id": 97,
+      "origin": 0
+    },
+    {
+      "time": 627.5,
+      "type": "car",
+      "id": 97,
+      "origin": 0
+    },
+    {
+      "time": 628,
+      "type": "delivered",
+      "id": 101,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 628,
+      "type": "delivered",
+      "id": 109,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 628,
+      "type": "delivered",
+      "id": 122,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 628,
+      "type": "delivered",
+      "id": 120,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 628,
+      "type": "delivered",
+      "id": 121,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 629.5,
+      "type": "home",
+      "id": 100,
+      "origin": 0
+    },
+    {
+      "time": 630,
+      "type": "car",
+      "id": 100,
+      "origin": 0
+    },
+    {
+      "time": 636,
+      "type": "spawn",
+      "id": 150,
+      "origin": 0
+    },
+    {
+      "time": 636,
+      "type": "walk",
+      "id": 150,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 637,
+      "type": "spawn",
+      "id": 171,
+      "origin": 2
+    },
+    {
+      "time": 637,
+      "type": "walk",
+      "id": 171,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 637.5,
+      "type": "spawn",
+      "id": 151,
+      "origin": 0
+    },
+    {
+      "time": 637.5,
+      "type": "walk",
+      "id": 151,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 638,
+      "type": "home",
+      "id": 95,
+      "origin": 0
+    },
+    {
+      "time": 638.5,
+      "type": "car",
+      "id": 95,
+      "origin": 0
+    },
+    {
+      "time": 639.5,
+      "type": "spawn",
+      "id": 152,
+      "origin": 0
+    },
+    {
+      "time": 639.5,
+      "type": "walk",
+      "id": 152,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 640,
+      "type": "spawn",
+      "id": 178,
+      "origin": 3
+    },
+    {
+      "time": 640,
+      "type": "walk",
+      "id": 178,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 640.5,
+      "type": "spawn",
+      "id": 172,
+      "origin": 2
+    },
+    {
+      "time": 640.5,
+      "type": "walk",
+      "id": 172,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 641.5,
+      "type": "spawn",
+      "id": 153,
+      "origin": 0
+    },
+    {
+      "time": 641.5,
+      "type": "walk",
+      "id": 153,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 643,
+      "type": "spawn",
+      "id": 154,
+      "origin": 0
+    },
+    {
+      "time": 643,
+      "type": "walk",
+      "id": 154,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 643.5,
+      "type": "spawn",
+      "id": 168,
+      "origin": 1
+    },
+    {
+      "time": 643.5,
+      "type": "walk",
+      "id": 168,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 644,
+      "type": "spawn",
+      "id": 155,
+      "origin": 0
+    },
+    {
+      "time": 644,
+      "type": "walk",
+      "id": 155,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 646,
+      "type": "spawn",
+      "id": 173,
+      "origin": 2
+    },
+    {
+      "time": 646,
+      "type": "spawn",
+      "id": 156,
+      "origin": 0
+    },
+    {
+      "time": 646,
+      "type": "walk",
+      "id": 156,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 648,
+      "type": "queue",
+      "id": 150,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 648,
+      "type": "board",
+      "id": 150,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 648,
+      "type": "spawn",
+      "id": 157,
+      "origin": 0
+    },
+    {
+      "time": 648,
+      "type": "walk",
+      "id": 157,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 649,
+      "type": "queue",
+      "id": 171,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 649,
+      "type": "spawn",
+      "id": 158,
+      "origin": 0
+    },
+    {
+      "time": 649,
+      "type": "walk",
+      "id": 158,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 649.5,
+      "type": "queue",
+      "id": 151,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 649.5,
+      "type": "board",
+      "id": 151,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 650.5,
+      "type": "spawn",
+      "id": 174,
+      "origin": 2
+    },
+    {
+      "time": 651,
+      "type": "spawn",
+      "id": 159,
+      "origin": 0
+    },
+    {
+      "time": 651,
+      "type": "walk",
+      "id": 159,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 651.5,
+      "type": "return",
+      "id": 143,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 651.5,
+      "type": "board",
+      "id": 132,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 651.5,
+      "type": "queue",
+      "id": 152,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 651.5,
+      "type": "board",
+      "id": 152,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 652,
+      "type": "return",
+      "id": 129,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 652,
+      "type": "board",
+      "id": 135,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 652,
+      "type": "queue",
+      "id": 178,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 652,
+      "type": "board",
+      "id": 178,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 652.5,
+      "type": "queue",
+      "id": 172,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 652.5,
+      "type": "spawn",
+      "id": 160,
+      "origin": 0
+    },
+    {
+      "time": 652.5,
+      "type": "walk",
+      "id": 160,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 652.5,
+      "type": "spawn",
+      "id": 169,
+      "origin": 1
+    },
+    {
+      "time": 653.5,
+      "type": "queue",
+      "id": 153,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 653.5,
+      "type": "spawn",
+      "id": 179,
+      "origin": 3
+    },
+    {
+      "time": 653.5,
+      "type": "walk",
+      "id": 179,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 654,
+      "type": "spawn",
+      "id": 175,
+      "origin": 2
+    },
+    {
+      "time": 654,
+      "type": "walk",
+      "id": 175,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 654,
+      "type": "spawn",
+      "id": 161,
+      "origin": 0
+    },
+    {
+      "time": 654,
+      "type": "walk",
+      "id": 161,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 655,
+      "type": "queue",
+      "id": 154,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 656,
+      "type": "queue",
+      "id": 155,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 656.5,
+      "type": "spawn",
+      "id": 162,
+      "origin": 0
+    },
+    {
+      "time": 656.5,
+      "type": "walk",
+      "id": 162,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 657,
+      "type": "return",
+      "id": 131,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 657,
+      "type": "board",
+      "id": 136,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "depart",
+      "id": 142,
+      "origin": 2,
+      "stop": 1,
+      "serial": 7
+    },
+    {
+      "time": 658,
+      "type": "depart",
+      "id": 130,
+      "origin": 1,
+      "stop": 1,
+      "serial": 7
+    },
+    {
+      "time": 658,
+      "type": "depart",
+      "id": 132,
+      "origin": 1,
+      "stop": 1,
+      "serial": 7
+    },
+    {
+      "time": 658,
+      "type": "depart",
+      "id": 135,
+      "origin": 1,
+      "stop": 1,
+      "serial": 7
+    },
+    {
+      "time": 658,
+      "type": "depart",
+      "id": 136,
+      "origin": 1,
+      "stop": 1,
+      "serial": 7
+    },
+    {
+      "time": 658,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 7,
+      "load": 5
+    },
+    {
+      "time": 658,
+      "type": "board",
+      "id": 145,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "board",
+      "id": 134,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "board",
+      "id": 147,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "board",
+      "id": 139,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "board",
+      "id": 171,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "depart",
+      "id": 178,
+      "origin": 3,
+      "stop": 2,
+      "serial": 7
+    },
+    {
+      "time": 658,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 7,
+      "load": 1
+    },
+    {
+      "time": 658,
+      "type": "queue",
+      "id": 156,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 658,
+      "type": "spawn",
+      "id": 176,
+      "origin": 2
+    },
+    {
+      "time": 658,
+      "type": "walk",
+      "id": 176,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 658,
+      "type": "spawn",
+      "id": 163,
+      "origin": 0
+    },
+    {
+      "time": 658.5,
+      "type": "walk",
+      "id": 174,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 659,
+      "type": "spawn",
+      "id": 164,
+      "origin": 0
+    },
+    {
+      "time": 659,
+      "type": "walk",
+      "id": 164,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 660,
+      "type": "queue",
+      "id": 157,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 660,
+      "type": "spawn",
+      "id": 170,
+      "origin": 1
+    },
+    {
+      "time": 661,
+      "type": "queue",
+      "id": 158,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 661.5,
+      "type": "spawn",
+      "id": 165,
+      "origin": 0
+    },
+    {
+      "time": 661.5,
+      "type": "walk",
+      "id": 165,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 662,
+      "type": "spawn",
+      "id": 177,
+      "origin": 2
+    },
+    {
+      "time": 662.5,
+      "type": "spawn",
+      "id": 166,
+      "origin": 0
+    },
+    {
+      "time": 662.5,
+      "type": "walk",
+      "id": 166,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 663,
+      "type": "return",
+      "id": 123,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 663,
+      "type": "board",
+      "id": 153,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 663,
+      "type": "queue",
+      "id": 159,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 663.5,
+      "type": "home",
+      "id": 143,
+      "origin": 2
+    },
+    {
+      "time": 664,
+      "type": "home",
+      "id": 129,
+      "origin": 1
+    },
+    {
+      "time": 664.5,
+      "type": "queue",
+      "id": 160,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 665,
+      "type": "spawn",
+      "id": 167,
+      "origin": 0
+    },
+    {
+      "time": 665.5,
+      "type": "queue",
+      "id": 179,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 665.5,
+      "type": "board",
+      "id": 179,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 666,
+      "type": "queue",
+      "id": 175,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 666,
+      "type": "queue",
+      "id": 161,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 668,
+      "type": "walk",
+      "id": 129,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 668.5,
+      "type": "full",
+      "id": 162,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 668.5,
+      "type": "return",
+      "id": 162,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 669,
+      "type": "home",
+      "id": 131,
+      "origin": 1
+    },
+    {
+      "time": 670,
+      "type": "return",
+      "id": 124,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 670,
+      "type": "board",
+      "id": 154,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 670,
+      "type": "queue",
+      "id": 176,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 670.5,
+      "type": "queue",
+      "id": 174,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 671,
+      "type": "queue",
+      "id": 164,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 673.5,
+      "type": "full",
+      "id": 165,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 673.5,
+      "type": "return",
+      "id": 165,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 674.5,
+      "type": "full",
+      "id": 166,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 674.5,
+      "type": "return",
+      "id": 166,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 675,
+      "type": "home",
+      "id": 123,
+      "origin": 0
+    },
+    {
+      "time": 678,
+      "type": "delivered",
+      "id": 142,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 678,
+      "type": "delivered",
+      "id": 130,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 678,
+      "type": "delivered",
+      "id": 132,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 678,
+      "type": "delivered",
+      "id": 135,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 678,
+      "type": "delivered",
+      "id": 136,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 678,
+      "type": "delivered",
+      "id": 178,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 679.5,
+      "type": "full",
+      "id": 168,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 679.5,
+      "type": "return",
+      "id": 168,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 680.5,
+      "type": "home",
+      "id": 162,
+      "origin": 0
+    },
+    {
+      "time": 682,
+      "type": "home",
+      "id": 124,
+      "origin": 0
+    },
+    {
+      "time": 685.5,
+      "type": "home",
+      "id": 165,
+      "origin": 0
+    },
+    {
+      "time": 686.5,
+      "type": "home",
+      "id": 166,
+      "origin": 0
+    },
+    {
+      "time": 689.5,
+      "type": "walk",
+      "id": 165,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 696,
+      "type": "return",
+      "id": 145,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 696,
+      "type": "board",
+      "id": 172,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 696,
+      "type": "car",
+      "id": 173,
+      "origin": 2
+    },
+    {
+      "time": 698,
+      "type": "return",
+      "id": 147,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 698,
+      "type": "board",
+      "id": 175,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 700,
+      "type": "walk",
+      "id": 170,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 701.5,
+      "type": "full",
+      "id": 165,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 701.5,
+      "type": "return",
+      "id": 165,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 702.5,
+      "type": "car",
+      "id": 169,
+      "origin": 1
+    },
+    {
+      "time": 704,
+      "type": "full",
+      "id": 129,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 704,
+      "type": "return",
+      "id": 129,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 704.5,
+      "type": "return",
+      "id": 139,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 704.5,
+      "type": "board",
+      "id": 176,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 705,
+      "type": "walk",
+      "id": 131,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 705.5,
+      "type": "return",
+      "id": 134,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 705.5,
+      "type": "board",
+      "id": 174,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 706,
+      "type": "walk",
+      "id": 177,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 708,
+      "type": "home",
+      "id": 145,
+      "origin": 2
+    },
+    {
+      "time": 708,
+      "type": "car",
+      "id": 163,
+      "origin": 0
+    },
+    {
+      "time": 710,
+      "type": "depart",
+      "id": 150,
+      "origin": 0,
+      "stop": 0,
+      "serial": 5
+    },
+    {
+      "time": 710,
+      "type": "depart",
+      "id": 151,
+      "origin": 0,
+      "stop": 0,
+      "serial": 5
+    },
+    {
+      "time": 710,
+      "type": "depart",
+      "id": 152,
+      "origin": 0,
+      "stop": 0,
+      "serial": 5
+    },
+    {
+      "time": 710,
+      "type": "depart",
+      "id": 153,
+      "origin": 0,
+      "stop": 0,
+      "serial": 5
+    },
+    {
+      "time": 710,
+      "type": "depart",
+      "id": 154,
+      "origin": 0,
+      "stop": 0,
+      "serial": 5
+    },
+    {
+      "time": 710,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 5,
+      "load": 5
+    },
+    {
+      "time": 710,
+      "type": "board",
+      "id": 155,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 710,
+      "type": "board",
+      "id": 156,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 710,
+      "type": "board",
+      "id": 157,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 710,
+      "type": "board",
+      "id": 158,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 710,
+      "type": "board",
+      "id": 159,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 710,
+      "type": "home",
+      "id": 147,
+      "origin": 2
+    },
+    {
+      "time": 712,
+      "type": "queue",
+      "id": 170,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 713.5,
+      "type": "car",
+      "id": 143,
+      "origin": 2
+    },
+    {
+      "time": 713.5,
+      "type": "home",
+      "id": 165,
+      "origin": 0
+    },
+    {
+      "time": 715,
+      "type": "car",
+      "id": 167,
+      "origin": 0
+    },
+    {
+      "time": 715.5,
+      "type": "home",
+      "id": 168,
+      "origin": 1
+    },
+    {
+      "time": 716.5,
+      "type": "home",
+      "id": 139,
+      "origin": 1
+    },
+    {
+      "time": 717,
+      "type": "queue",
+      "id": 131,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 717.5,
+      "type": "home",
+      "id": 134,
+      "origin": 1
+    },
+    {
+      "time": 718,
+      "type": "queue",
+      "id": 177,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 719.5,
+      "type": "walk",
+      "id": 168,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 725,
+      "type": "car",
+      "id": 123,
+      "origin": 0
+    },
+    {
+      "time": 730.5,
+      "type": "car",
+      "id": 162,
+      "origin": 0
+    },
+    {
+      "time": 731.5,
+      "type": "queue",
+      "id": 168,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 732,
+      "type": "car",
+      "id": 124,
+      "origin": 0
+    },
+    {
+      "time": 736,
+      "type": "car",
+      "id": 147,
+      "origin": 2
+    },
+    {
+      "time": 736.5,
+      "type": "car",
+      "id": 166,
+      "origin": 0
+    },
+    {
+      "time": 740,
+      "type": "home",
+      "id": 129,
+      "origin": 1
+    },
+    {
+      "time": 740.5,
+      "type": "car",
+      "id": 129,
+      "origin": 1
+    },
+    {
+      "time": 740.5,
+      "type": "car",
+      "id": 134,
+      "origin": 1
+    },
+    {
+      "time": 744.5,
+      "type": "car",
+      "id": 145,
+      "origin": 2
+    },
+    {
+      "time": 752,
+      "type": "depart",
+      "id": 171,
+      "origin": 2,
+      "stop": 1,
+      "serial": 8
+    },
+    {
+      "time": 752,
+      "type": "depart",
+      "id": 172,
+      "origin": 2,
+      "stop": 1,
+      "serial": 8
+    },
+    {
+      "time": 752,
+      "type": "depart",
+      "id": 175,
+      "origin": 2,
+      "stop": 1,
+      "serial": 8
+    },
+    {
+      "time": 752,
+      "type": "depart",
+      "id": 176,
+      "origin": 2,
+      "stop": 1,
+      "serial": 8
+    },
+    {
+      "time": 752,
+      "type": "depart",
+      "id": 174,
+      "origin": 2,
+      "stop": 1,
+      "serial": 8
+    },
+    {
+      "time": 752,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 8,
+      "load": 5
+    },
+    {
+      "time": 752,
+      "type": "board",
+      "id": 170,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 752,
+      "type": "board",
+      "id": 131,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 752,
+      "type": "board",
+      "id": 177,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 752,
+      "type": "board",
+      "id": 168,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 752,
+      "type": "depart",
+      "id": 179,
+      "origin": 3,
+      "stop": 2,
+      "serial": 8
+    },
+    {
+      "time": 752,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 8,
+      "load": 1
+    },
+    {
+      "time": 752,
+      "type": "car",
+      "id": 139,
+      "origin": 1
+    },
+    {
+      "time": 754.5,
+      "type": "return",
+      "id": 131,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 755.5,
+      "type": "spawn",
+      "id": 188,
+      "origin": 2
+    },
+    {
+      "time": 755.5,
+      "type": "walk",
+      "id": 188,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 757.5,
+      "type": "spawn",
+      "id": 201,
+      "origin": 3
+    },
+    {
+      "time": 757.5,
+      "type": "walk",
+      "id": 201,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 759,
+      "type": "spawn",
+      "id": 202,
+      "origin": 3
+    },
+    {
+      "time": 759.5,
+      "type": "spawn",
+      "id": 189,
+      "origin": 2
+    },
+    {
+      "time": 759.5,
+      "type": "walk",
+      "id": 189,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 760,
+      "type": "spawn",
+      "id": 180,
+      "origin": 0
+    },
+    {
+      "time": 760.5,
+      "type": "spawn",
+      "id": 190,
+      "origin": 2
+    },
+    {
+      "time": 760.5,
+      "type": "walk",
+      "id": 190,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 763,
+      "type": "walk",
+      "id": 202,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 763,
+      "type": "spawn",
+      "id": 191,
+      "origin": 2
+    },
+    {
+      "time": 763,
+      "type": "walk",
+      "id": 191,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 763.5,
+      "type": "car",
+      "id": 165,
+      "origin": 0
+    },
+    {
+      "time": 763.5,
+      "type": "spawn",
+      "id": 203,
+      "origin": 3
+    },
+    {
+      "time": 763.5,
+      "type": "walk",
+      "id": 203,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 763.5,
+      "type": "spawn",
+      "id": 181,
+      "origin": 0
+    },
+    {
+      "time": 763.5,
+      "type": "spawn",
+      "id": 185,
+      "origin": 1
+    },
+    {
+      "time": 765,
+      "type": "spawn",
+      "id": 192,
+      "origin": 2
+    },
+    {
+      "time": 766.5,
+      "type": "home",
+      "id": 131,
+      "origin": 1
+    },
+    {
+      "time": 767,
+      "type": "car",
+      "id": 131,
+      "origin": 1
+    },
+    {
+      "time": 767.5,
+      "type": "queue",
+      "id": 188,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 767.5,
+      "type": "board",
+      "id": 188,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 767.5,
+      "type": "spawn",
+      "id": 193,
+      "origin": 2
+    },
+    {
+      "time": 767.5,
+      "type": "walk",
+      "id": 193,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 768,
+      "type": "spawn",
+      "id": 204,
+      "origin": 3
+    },
+    {
+      "time": 768,
+      "type": "walk",
+      "id": 204,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 769.5,
+      "type": "queue",
+      "id": 201,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 769.5,
+      "type": "board",
+      "id": 201,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 769.5,
+      "type": "spawn",
+      "id": 182,
+      "origin": 0
+    },
+    {
+      "time": 769.5,
+      "type": "walk",
+      "id": 182,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 770,
+      "type": "delivered",
+      "id": 150,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 770,
+      "type": "delivered",
+      "id": 151,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 770,
+      "type": "delivered",
+      "id": 152,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 770,
+      "type": "delivered",
+      "id": 153,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 770,
+      "type": "delivered",
+      "id": 154,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 770.5,
+      "type": "spawn",
+      "id": 194,
+      "origin": 2
+    },
+    {
+      "time": 770.5,
+      "type": "walk",
+      "id": 194,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 770.5,
+      "type": "spawn",
+      "id": 205,
+      "origin": 3
+    },
+    {
+      "time": 770.5,
+      "type": "walk",
+      "id": 205,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 771.5,
+      "type": "queue",
+      "id": 189,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 771.5,
+      "type": "board",
+      "id": 189,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 772,
+      "type": "delivered",
+      "id": 171,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 772,
+      "type": "delivered",
+      "id": 172,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 772,
+      "type": "delivered",
+      "id": 175,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 772,
+      "type": "delivered",
+      "id": 176,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 772,
+      "type": "delivered",
+      "id": 174,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 772,
+      "type": "delivered",
+      "id": 179,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 772.5,
+      "type": "return",
+      "id": 156,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 772.5,
+      "type": "board",
+      "id": 160,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 772.5,
+      "type": "queue",
+      "id": 190,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 773,
+      "type": "spawn",
+      "id": 195,
+      "origin": 2
+    },
+    {
+      "time": 773,
+      "type": "walk",
+      "id": 195,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 773,
+      "type": "spawn",
+      "id": 206,
+      "origin": 3
+    },
+    {
+      "time": 773,
+      "type": "walk",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 773,
+      "type": "spawn",
+      "id": 186,
+      "origin": 1
+    },
+    {
+      "time": 773.5,
+      "type": "return",
+      "id": 155,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 773.5,
+      "type": "board",
+      "id": 161,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 775,
+      "type": "return",
+      "id": 159,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 775,
+      "type": "board",
+      "id": 164,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 775,
+      "type": "queue",
+      "id": 202,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 775,
+      "type": "board",
+      "id": 202,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 775,
+      "type": "queue",
+      "id": 191,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 775.5,
+      "type": "queue",
+      "id": 203,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 775.5,
+      "type": "board",
+      "id": 203,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 775.5,
+      "type": "spawn",
+      "id": 196,
+      "origin": 2
+    },
+    {
+      "time": 775.5,
+      "type": "spawn",
+      "id": 183,
+      "origin": 0
+    },
+    {
+      "time": 775.5,
+      "type": "walk",
+      "id": 183,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 776.5,
+      "type": "spawn",
+      "id": 197,
+      "origin": 2
+    },
+    {
+      "time": 776.5,
+      "type": "walk",
+      "id": 197,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 777,
+      "type": "spawn",
+      "id": 207,
+      "origin": 3
+    },
+    {
+      "time": 778.5,
+      "type": "spawn",
+      "id": 198,
+      "origin": 2
+    },
+    {
+      "time": 778.5,
+      "type": "walk",
+      "id": 198,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 779.5,
+      "type": "queue",
+      "id": 193,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 779.5,
+      "type": "spawn",
+      "id": 208,
+      "origin": 3
+    },
+    {
+      "time": 779.5,
+      "type": "walk",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 780,
+      "type": "walk",
+      "id": 180,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 780,
+      "type": "queue",
+      "id": 204,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 780,
+      "type": "board",
+      "id": 204,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 781.5,
+      "type": "queue",
+      "id": 182,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 782,
+      "type": "spawn",
+      "id": 199,
+      "origin": 2
+    },
+    {
+      "time": 782,
+      "type": "walk",
+      "id": 199,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 782.5,
+      "type": "queue",
+      "id": 194,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 782.5,
+      "type": "queue",
+      "id": 205,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 782.5,
+      "type": "board",
+      "id": 205,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 783,
+      "type": "return",
+      "id": 161,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 783,
+      "type": "board",
+      "id": 182,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 783,
+      "type": "spawn",
+      "id": 187,
+      "origin": 1
+    },
+    {
+      "time": 783,
+      "type": "walk",
+      "id": 187,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 783.5,
+      "type": "walk",
+      "id": 181,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 783.5,
+      "type": "spawn",
+      "id": 209,
+      "origin": 3
+    },
+    {
+      "time": 783.5,
+      "type": "walk",
+      "id": 209,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 784,
+      "type": "spawn",
+      "id": 184,
+      "origin": 0
+    },
+    {
+      "time": 784,
+      "type": "walk",
+      "id": 184,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 784.5,
+      "type": "home",
+      "id": 156,
+      "origin": 0
+    },
+    {
+      "time": 785,
+      "type": "queue",
+      "id": 195,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 785,
+      "type": "queue",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 785,
+      "type": "spawn",
+      "id": 200,
+      "origin": 2
+    },
+    {
+      "time": 785.5,
+      "type": "return",
+      "id": 157,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 785.5,
+      "type": "home",
+      "id": 155,
+      "origin": 0
+    },
+    {
+      "time": 787,
+      "type": "home",
+      "id": 159,
+      "origin": 0
+    },
+    {
+      "time": 787.5,
+      "type": "queue",
+      "id": 183,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 787.5,
+      "type": "board",
+      "id": 183,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 788.5,
+      "type": "queue",
+      "id": 197,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 790.5,
+      "type": "queue",
+      "id": 198,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 791,
+      "type": "return",
+      "id": 158,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 791.5,
+      "type": "queue",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 792,
+      "type": "queue",
+      "id": 180,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 792,
+      "type": "board",
+      "id": 180,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 794,
+      "type": "return",
+      "id": 160,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 794,
+      "type": "queue",
+      "id": 199,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 795,
+      "type": "home",
+      "id": 161,
+      "origin": 0
+    },
+    {
+      "time": 795,
+      "type": "full",
+      "id": 187,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 795,
+      "type": "return",
+      "id": 187,
+      "origin": 1,
+      "why": "站已滿員"
+    },
+    {
+      "time": 795.5,
+      "type": "queue",
+      "id": 181,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 795.5,
+      "type": "board",
+      "id": 181,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 795.5,
+      "type": "queue",
+      "id": 209,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 796,
+      "type": "queue",
+      "id": 184,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 797.5,
+      "type": "home",
+      "id": 157,
+      "origin": 0
+    },
+    {
+      "time": 799.5,
+      "type": "return",
+      "id": 164,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 799.5,
+      "type": "board",
+      "id": 184,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 801.5,
+      "type": "walk",
+      "id": 157,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 803,
+      "type": "home",
+      "id": 158,
+      "origin": 0
+    },
+    {
+      "time": 806,
+      "type": "home",
+      "id": 160,
+      "origin": 0
+    },
+    {
+      "time": 807,
+      "type": "home",
+      "id": 187,
+      "origin": 1
+    },
+    {
+      "time": 811,
+      "type": "walk",
+      "id": 187,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 811.5,
+      "type": "home",
+      "id": 164,
+      "origin": 0
+    },
+    {
+      "time": 813.5,
+      "type": "queue",
+      "id": 157,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 813.5,
+      "type": "car",
+      "id": 185,
+      "origin": 1
+    },
+    {
+      "time": 815,
+      "type": "car",
+      "id": 192,
+      "origin": 2
+    },
+    {
+      "time": 815.5,
+      "type": "walk",
+      "id": 164,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 823,
+      "type": "car",
+      "id": 186,
+      "origin": 1
+    },
+    {
+      "time": 825.5,
+      "type": "car",
+      "id": 196,
+      "origin": 2
+    },
+    {
+      "time": 827,
+      "type": "car",
+      "id": 207,
+      "origin": 3
+    },
+    {
+      "time": 827.5,
+      "type": "queue",
+      "id": 164,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 832.5,
+      "type": "return",
+      "id": 177,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 832.5,
+      "type": "board",
+      "id": 190,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 834.5,
+      "type": "car",
+      "id": 156,
+      "origin": 0
+    },
+    {
+      "time": 835,
+      "type": "car",
+      "id": 200,
+      "origin": 2
+    },
+    {
+      "time": 835.5,
+      "type": "car",
+      "id": 155,
+      "origin": 0
+    },
+    {
+      "time": 836.5,
+      "type": "return",
+      "id": 168,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 836.5,
+      "type": "board",
+      "id": 191,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 837,
+      "type": "car",
+      "id": 159,
+      "origin": 0
+    },
+    {
+      "time": 840,
+      "type": "return",
+      "id": 170,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 840,
+      "type": "board",
+      "id": 193,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 844.5,
+      "type": "car",
+      "id": 161,
+      "origin": 0
+    },
+    {
+      "time": 844.5,
+      "type": "home",
+      "id": 177,
+      "origin": 2
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 188,
+      "origin": 2,
+      "stop": 1,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 189,
+      "origin": 2,
+      "stop": 1,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 190,
+      "origin": 2,
+      "stop": 1,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 191,
+      "origin": 2,
+      "stop": 1,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 193,
+      "origin": 2,
+      "stop": 1,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 9,
+      "load": 5
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 194,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 195,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 197,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 198,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 199,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 201,
+      "origin": 3,
+      "stop": 2,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 202,
+      "origin": 3,
+      "stop": 2,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 203,
+      "origin": 3,
+      "stop": 2,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 204,
+      "origin": 3,
+      "stop": 2,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "depart",
+      "id": 205,
+      "origin": 3,
+      "stop": 2,
+      "serial": 9
+    },
+    {
+      "time": 846,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 9,
+      "load": 5
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 846,
+      "type": "board",
+      "id": 209,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 847,
+      "type": "car",
+      "id": 160,
+      "origin": 0
+    },
+    {
+      "time": 847,
+      "type": "queue",
+      "id": 187,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 848.5,
+      "type": "home",
+      "id": 168,
+      "origin": 1
+    },
+    {
+      "time": 848.5,
+      "type": "car",
+      "id": 158,
+      "origin": 0
+    },
+    {
+      "time": 849,
+      "type": "car",
+      "id": 168,
+      "origin": 1
+    },
+    {
+      "time": 852,
+      "type": "depart",
+      "id": 182,
+      "origin": 0,
+      "stop": 0,
+      "serial": 6
+    },
+    {
+      "time": 852,
+      "type": "depart",
+      "id": 183,
+      "origin": 0,
+      "stop": 0,
+      "serial": 6
+    },
+    {
+      "time": 852,
+      "type": "depart",
+      "id": 180,
+      "origin": 0,
+      "stop": 0,
+      "serial": 6
+    },
+    {
+      "time": 852,
+      "type": "depart",
+      "id": 181,
+      "origin": 0,
+      "stop": 0,
+      "serial": 6
+    },
+    {
+      "time": 852,
+      "type": "depart",
+      "id": 184,
+      "origin": 0,
+      "stop": 0,
+      "serial": 6
+    },
+    {
+      "time": 852,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 6,
+      "load": 5
+    },
+    {
+      "time": 852,
+      "type": "board",
+      "id": 157,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 852,
+      "type": "board",
+      "id": 164,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 852,
+      "type": "board",
+      "id": 187,
+      "origin": 1,
+      "stop": 0
+    },
+    {
+      "time": 852,
+      "type": "home",
+      "id": 170,
+      "origin": 1
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 188,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 189,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 190,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 191,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 193,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 201,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 202,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 203,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 204,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 866,
+      "type": "delivered",
+      "id": 205,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 866,
+      "type": "return",
+      "id": 157,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 875.5,
+      "type": "spawn",
+      "id": 210,
+      "origin": 0
+    },
+    {
+      "time": 875.5,
+      "type": "walk",
+      "id": 210,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 877.5,
+      "type": "spawn",
+      "id": 211,
+      "origin": 0
+    },
+    {
+      "time": 877.5,
+      "type": "walk",
+      "id": 211,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 878,
+      "type": "home",
+      "id": 157,
+      "origin": 0
+    },
+    {
+      "time": 878.5,
+      "type": "car",
+      "id": 157,
+      "origin": 0
+    },
+    {
+      "time": 878.5,
+      "type": "spawn",
+      "id": 212,
+      "origin": 0
+    },
+    {
+      "time": 879.5,
+      "type": "car",
+      "id": 177,
+      "origin": 2
+    },
+    {
+      "time": 879.5,
+      "type": "spawn",
+      "id": 234,
+      "origin": 2
+    },
+    {
+      "time": 879.5,
+      "type": "walk",
+      "id": 234,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 880.5,
+      "type": "return",
+      "id": 164,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 880.5,
+      "type": "car",
+      "id": 170,
+      "origin": 1
+    },
+    {
+      "time": 880.5,
+      "type": "spawn",
+      "id": 213,
+      "origin": 0
+    },
+    {
+      "time": 880.5,
+      "type": "walk",
+      "id": 213,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 881.5,
+      "type": "spawn",
+      "id": 230,
+      "origin": 1
+    },
+    {
+      "time": 881.5,
+      "type": "walk",
+      "id": 230,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 881.5,
+      "type": "spawn",
+      "id": 214,
+      "origin": 0
+    },
+    {
+      "time": 881.5,
+      "type": "walk",
+      "id": 214,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 883,
+      "type": "spawn",
+      "id": 237,
+      "origin": 3
+    },
+    {
+      "time": 883,
+      "type": "walk",
+      "id": 237,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 884,
+      "type": "spawn",
+      "id": 215,
+      "origin": 0
+    },
+    {
+      "time": 884,
+      "type": "walk",
+      "id": 215,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 885.5,
+      "type": "spawn",
+      "id": 216,
+      "origin": 0
+    },
+    {
+      "time": 885.5,
+      "type": "walk",
+      "id": 216,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 886.5,
+      "type": "spawn",
+      "id": 217,
+      "origin": 0
+    },
+    {
+      "time": 886.5,
+      "type": "walk",
+      "id": 217,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 887.5,
+      "type": "queue",
+      "id": 210,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 887.5,
+      "type": "board",
+      "id": 210,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 887.5,
+      "type": "spawn",
+      "id": 231,
+      "origin": 1
+    },
+    {
+      "time": 887.5,
+      "type": "walk",
+      "id": 231,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 888,
+      "type": "spawn",
+      "id": 218,
+      "origin": 0
+    },
+    {
+      "time": 888,
+      "type": "walk",
+      "id": 218,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 889,
+      "type": "spawn",
+      "id": 235,
+      "origin": 2
+    },
+    {
+      "time": 889,
+      "type": "walk",
+      "id": 235,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 889.5,
+      "type": "queue",
+      "id": 211,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 889.5,
+      "type": "board",
+      "id": 211,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 890,
+      "type": "spawn",
+      "id": 219,
+      "origin": 0
+    },
+    {
+      "time": 890,
+      "type": "walk",
+      "id": 219,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 891.5,
+      "type": "queue",
+      "id": 234,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 891.5,
+      "type": "spawn",
+      "id": 220,
+      "origin": 0
+    },
+    {
+      "time": 891.5,
+      "type": "walk",
+      "id": 220,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 892.5,
+      "type": "home",
+      "id": 164,
+      "origin": 0
+    },
+    {
+      "time": 892.5,
+      "type": "queue",
+      "id": 213,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 892.5,
+      "type": "board",
+      "id": 213,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 893,
+      "type": "car",
+      "id": 164,
+      "origin": 0
+    },
+    {
+      "time": 893,
+      "type": "spawn",
+      "id": 221,
+      "origin": 0
+    },
+    {
+      "time": 893,
+      "type": "walk",
+      "id": 221,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 893,
+      "type": "spawn",
+      "id": 238,
+      "origin": 3
+    },
+    {
+      "time": 893,
+      "type": "walk",
+      "id": 238,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 893.5,
+      "type": "queue",
+      "id": 230,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 893.5,
+      "type": "queue",
+      "id": 214,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 893.5,
+      "type": "board",
+      "id": 214,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 893.5,
+      "type": "spawn",
+      "id": 222,
+      "origin": 0
+    },
+    {
+      "time": 893.5,
+      "type": "walk",
+      "id": 222,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 895,
+      "type": "queue",
+      "id": 237,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 895,
+      "type": "board",
+      "id": 237,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 895.5,
+      "type": "spawn",
+      "id": 232,
+      "origin": 1
+    },
+    {
+      "time": 895.5,
+      "type": "walk",
+      "id": 232,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 896,
+      "type": "queue",
+      "id": 215,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 896,
+      "type": "spawn",
+      "id": 223,
+      "origin": 0
+    },
+    {
+      "time": 896.5,
+      "type": "spawn",
+      "id": 224,
+      "origin": 0
+    },
+    {
+      "time": 897.5,
+      "type": "queue",
+      "id": 216,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 898.5,
+      "type": "queue",
+      "id": 217,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 898.5,
+      "type": "spawn",
+      "id": 225,
+      "origin": 0
+    },
+    {
+      "time": 899.5,
+      "type": "queue",
+      "id": 231,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 900,
+      "type": "queue",
+      "id": 218,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 900,
+      "type": "spawn",
+      "id": 239,
+      "origin": 3
+    },
+    {
+      "time": 900,
+      "type": "walk",
+      "id": 239,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 900.5,
+      "type": "spawn",
+      "id": 226,
+      "origin": 0
+    },
+    {
+      "time": 901,
+      "type": "queue",
+      "id": 235,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 901.5,
+      "type": "spawn",
+      "id": 227,
+      "origin": 0
+    },
+    {
+      "time": 901.5,
+      "type": "walk",
+      "id": 227,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 902,
+      "type": "queue",
+      "id": 219,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 902.5,
+      "type": "return",
+      "id": 206,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 902.5,
+      "type": "spawn",
+      "id": 236,
+      "origin": 2
+    },
+    {
+      "time": 903.5,
+      "type": "queue",
+      "id": 220,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 903.5,
+      "type": "spawn",
+      "id": 228,
+      "origin": 0
+    },
+    {
+      "time": 904,
+      "type": "spawn",
+      "id": 233,
+      "origin": 1
+    },
+    {
+      "time": 904.5,
+      "type": "spawn",
+      "id": 229,
+      "origin": 0
+    },
+    {
+      "time": 904.5,
+      "type": "walk",
+      "id": 229,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 905,
+      "type": "return",
+      "id": 194,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 905,
+      "type": "board",
+      "id": 234,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 905,
+      "type": "queue",
+      "id": 221,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 905,
+      "type": "queue",
+      "id": 238,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 905,
+      "type": "board",
+      "id": 238,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 905.5,
+      "type": "queue",
+      "id": 222,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 907.5,
+      "type": "queue",
+      "id": 232,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 910.5,
+      "type": "return",
+      "id": 208,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 912,
+      "type": "delivered",
+      "id": 182,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 912,
+      "type": "delivered",
+      "id": 183,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 912,
+      "type": "delivered",
+      "id": 180,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 912,
+      "type": "delivered",
+      "id": 181,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 912,
+      "type": "delivered",
+      "id": 184,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 912,
+      "type": "queue",
+      "id": 239,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 912,
+      "type": "board",
+      "id": 239,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 912.5,
+      "type": "return",
+      "id": 209,
+      "origin": 3,
+      "why": "久候返家"
+    },
+    {
+      "time": 913.5,
+      "type": "full",
+      "id": 227,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 913.5,
+      "type": "return",
+      "id": 227,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 914.5,
+      "type": "return",
+      "id": 195,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 914.5,
+      "type": "board",
+      "id": 230,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 914.5,
+      "type": "home",
+      "id": 206,
+      "origin": 3
+    },
+    {
+      "time": 915.5,
+      "type": "return",
+      "id": 197,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 915.5,
+      "type": "return",
+      "id": 198,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 915.5,
+      "type": "board",
+      "id": 231,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 915.5,
+      "type": "board",
+      "id": 235,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 916,
+      "type": "walk",
+      "id": 233,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 916.5,
+      "type": "full",
+      "id": 229,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 916.5,
+      "type": "return",
+      "id": 229,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 917,
+      "type": "home",
+      "id": 194,
+      "origin": 2
+    },
+    {
+      "time": 918.5,
+      "type": "walk",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 921,
+      "type": "walk",
+      "id": 194,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 922.5,
+      "type": "home",
+      "id": 208,
+      "origin": 3
+    },
+    {
+      "time": 923,
+      "type": "return",
+      "id": 199,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 923,
+      "type": "board",
+      "id": 232,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 924.5,
+      "type": "home",
+      "id": 209,
+      "origin": 3
+    },
+    {
+      "time": 925.5,
+      "type": "home",
+      "id": 227,
+      "origin": 0
+    },
+    {
+      "time": 926.5,
+      "type": "home",
+      "id": 195,
+      "origin": 2
+    },
+    {
+      "time": 926.5,
+      "type": "walk",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 926.5,
+      "type": "walk",
+      "id": 236,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 927.5,
+      "type": "home",
+      "id": 197,
+      "origin": 2
+    },
+    {
+      "time": 927.5,
+      "type": "home",
+      "id": 198,
+      "origin": 2
+    },
+    {
+      "time": 928,
+      "type": "queue",
+      "id": 233,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 928.5,
+      "type": "car",
+      "id": 212,
+      "origin": 0
+    },
+    {
+      "time": 928.5,
+      "type": "home",
+      "id": 229,
+      "origin": 0
+    },
+    {
+      "time": 929.5,
+      "type": "walk",
+      "id": 227,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 930.5,
+      "type": "queue",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 930.5,
+      "type": "board",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 932.5,
+      "type": "walk",
+      "id": 229,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 933,
+      "type": "queue",
+      "id": 194,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 935,
+      "type": "home",
+      "id": 199,
+      "origin": 2
+    },
+    {
+      "time": 938.5,
+      "type": "queue",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 938.5,
+      "type": "board",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 938.5,
+      "type": "queue",
+      "id": 236,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 234,
+      "origin": 2,
+      "stop": 1,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 230,
+      "origin": 1,
+      "stop": 1,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 231,
+      "origin": 1,
+      "stop": 1,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 235,
+      "origin": 2,
+      "stop": 1,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 232,
+      "origin": 1,
+      "stop": 1,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 10,
+      "load": 5
+    },
+    {
+      "time": 940,
+      "type": "board",
+      "id": 233,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 940,
+      "type": "board",
+      "id": 194,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 940,
+      "type": "board",
+      "id": 236,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 237,
+      "origin": 3,
+      "stop": 2,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 238,
+      "origin": 3,
+      "stop": 2,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 239,
+      "origin": 3,
+      "stop": 2,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 206,
+      "origin": 3,
+      "stop": 2,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "depart",
+      "id": 208,
+      "origin": 3,
+      "stop": 2,
+      "serial": 10
+    },
+    {
+      "time": 940,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 10,
+      "load": 5
+    },
+    {
+      "time": 941.5,
+      "type": "full",
+      "id": 227,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 941.5,
+      "type": "return",
+      "id": 227,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 944.5,
+      "type": "full",
+      "id": 229,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 944.5,
+      "type": "return",
+      "id": 229,
+      "origin": 0,
+      "why": "站已滿員"
+    },
+    {
+      "time": 946,
+      "type": "car",
+      "id": 223,
+      "origin": 0
+    },
+    {
+      "time": 946.5,
+      "type": "car",
+      "id": 224,
+      "origin": 0
+    },
+    {
+      "time": 948.5,
+      "type": "car",
+      "id": 225,
+      "origin": 0
+    },
+    {
+      "time": 950.5,
+      "type": "car",
+      "id": 226,
+      "origin": 0
+    },
+    {
+      "time": 953.5,
+      "type": "home",
+      "id": 227,
+      "origin": 0
+    },
+    {
+      "time": 953.5,
+      "type": "car",
+      "id": 228,
+      "origin": 0
+    },
+    {
+      "time": 956.5,
+      "type": "home",
+      "id": 229,
+      "origin": 0
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 234,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 230,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 231,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 235,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 232,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 237,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 238,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 239,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 206,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 960,
+      "type": "delivered",
+      "id": 208,
+      "origin": 3,
+      "stop": 2
+    },
+    {
+      "time": 974,
+      "type": "return",
+      "id": 187,
+      "origin": 1,
+      "why": "久候返家"
+    },
+    {
+      "time": 974,
+      "type": "board",
+      "id": 215,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 974.5,
+      "type": "car",
+      "id": 209,
+      "origin": 3
+    },
+    {
+      "time": 976.5,
+      "type": "car",
+      "id": 195,
+      "origin": 2
+    },
+    {
+      "time": 977.5,
+      "type": "car",
+      "id": 197,
+      "origin": 2
+    },
+    {
+      "time": 977.5,
+      "type": "car",
+      "id": 198,
+      "origin": 2
+    },
+    {
+      "time": 981.5,
+      "type": "return",
+      "id": 194,
+      "origin": 2,
+      "why": "久候返家"
+    },
+    {
+      "time": 985,
+      "type": "car",
+      "id": 199,
+      "origin": 2
+    },
+    {
+      "time": 993.5,
+      "type": "home",
+      "id": 194,
+      "origin": 2
+    },
+    {
+      "time": 994,
+      "type": "depart",
+      "id": 210,
+      "origin": 0,
+      "stop": 0,
+      "serial": 7
+    },
+    {
+      "time": 994,
+      "type": "depart",
+      "id": 211,
+      "origin": 0,
+      "stop": 0,
+      "serial": 7
+    },
+    {
+      "time": 994,
+      "type": "depart",
+      "id": 213,
+      "origin": 0,
+      "stop": 0,
+      "serial": 7
+    },
+    {
+      "time": 994,
+      "type": "depart",
+      "id": 214,
+      "origin": 0,
+      "stop": 0,
+      "serial": 7
+    },
+    {
+      "time": 994,
+      "type": "depart",
+      "id": 215,
+      "origin": 0,
+      "stop": 0,
+      "serial": 7
+    },
+    {
+      "time": 994,
+      "type": "dispatch",
+      "stop": 0,
+      "serial": 7,
+      "load": 5
+    },
+    {
+      "time": 994,
+      "type": "board",
+      "id": 216,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 994,
+      "type": "board",
+      "id": 217,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 994,
+      "type": "board",
+      "id": 218,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 994,
+      "type": "board",
+      "id": 219,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 994,
+      "type": "board",
+      "id": 220,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 994,
+      "type": "car",
+      "id": 194,
+      "origin": 2
+    },
+    {
+      "time": 1003.5,
+      "type": "car",
+      "id": 227,
+      "origin": 0
+    },
+    {
+      "time": 1006.5,
+      "type": "car",
+      "id": 229,
+      "origin": 0
+    },
+    {
+      "time": 1008,
+      "type": "return",
+      "id": 216,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1008,
+      "type": "board",
+      "id": 221,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1010,
+      "type": "home",
+      "id": 187,
+      "origin": 1
+    },
+    {
+      "time": 1012.5,
+      "type": "return",
+      "id": 218,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1012.5,
+      "type": "board",
+      "id": 222,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1012.5,
+      "type": "car",
+      "id": 187,
+      "origin": 1
+    },
+    {
+      "time": 1017.5,
+      "type": "return",
+      "id": 219,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1020,
+      "type": "home",
+      "id": 216,
+      "origin": 0
+    },
+    {
+      "time": 1022.5,
+      "type": "return",
+      "id": 220,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1023,
+      "type": "return",
+      "id": 217,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1023,
+      "type": "return",
+      "id": 221,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1024.5,
+      "type": "home",
+      "id": 218,
+      "origin": 0
+    },
+    {
+      "time": 1029.5,
+      "type": "return",
+      "id": 222,
+      "origin": 0,
+      "why": "久候返家"
+    },
+    {
+      "time": 1029.5,
+      "type": "home",
+      "id": 219,
+      "origin": 0
+    },
+    {
+      "time": 1034,
+      "type": "depart",
+      "id": 233,
+      "origin": 1,
+      "stop": 1,
+      "serial": 11
+    },
+    {
+      "time": 1034,
+      "type": "depart",
+      "id": 236,
+      "origin": 2,
+      "stop": 1,
+      "serial": 11
+    },
+    {
+      "time": 1034,
+      "type": "dispatch",
+      "stop": 1,
+      "serial": 11,
+      "load": 2
+    },
+    {
+      "time": 1034,
+      "type": "dispatch",
+      "stop": 2,
+      "serial": 11,
+      "load": 0
+    },
+    {
+      "time": 1034.5,
+      "type": "home",
+      "id": 220,
+      "origin": 0
+    },
+    {
+      "time": 1035,
+      "type": "home",
+      "id": 217,
+      "origin": 0
+    },
+    {
+      "time": 1035,
+      "type": "home",
+      "id": 221,
+      "origin": 0
+    },
+    {
+      "time": 1041.5,
+      "type": "home",
+      "id": 222,
+      "origin": 0
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 210,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 211,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 213,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 214,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 215,
+      "origin": 0,
+      "stop": 0
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 233,
+      "origin": 1,
+      "stop": 1
+    },
+    {
+      "time": 1054,
+      "type": "delivered",
+      "id": 236,
+      "origin": 2,
+      "stop": 1
+    },
+    {
+      "time": 1070,
+      "type": "car",
+      "id": 216,
+      "origin": 0
+    },
+    {
+      "time": 1074.5,
+      "type": "car",
+      "id": 218,
+      "origin": 0
+    },
+    {
+      "time": 1079.5,
+      "type": "car",
+      "id": 219,
+      "origin": 0
+    },
+    {
+      "time": 1080,
+      "type": "finish"
+    }
+  ]
+}

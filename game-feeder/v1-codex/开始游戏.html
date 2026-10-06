@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 接駁巴士長局</title><style>:root{--paper:#f2efe3;--card:#f7f4e8;--ink:#23201a;--muted:#5a564a;--edge:#d5d0bd;--deep:#0d3024;--green:#2e7d4f;--red:#a72a24;--amber:#c08a2d;--blue:#2a5d8f}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 'PingFang HK','PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif}header,main{max-width:1400px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 22px;border-bottom:1px solid var(--edge)}.brand{display:flex;gap:20px;align-items:center;padding:10px;font:18px Georgia,serif}.brand img,.brand>svg{flex:none;width:40px;height:40px}.brand small,.title small{display:block;font:11px/1.8 'Microsoft JhengHei',sans-serif;color:var(--muted)}.title{flex:1}.title b{font-size:21px}main{padding:10px 22px 18px}button,select{font:inherit;color:inherit}button{cursor:pointer;border-radius:7px;border:1px solid var(--edge);padding:8px 13px;background:var(--card);white-space:nowrap}button:hover,select:hover{border-color:var(--green)}button:focus-visible,select:focus-visible,[role=button]:focus-visible{outline:3px solid var(--blue);outline-offset:3px}button:disabled{opacity:.45;cursor:default}.primary{background:var(--deep);color:var(--card);border-color:var(--deep)}.status{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--edge);margin-bottom:10px;padding-bottom:10px;gap:15px}.status div{display:flex;flex-wrap:wrap;column-gap:12px;align-items:baseline}.status span{font-size:12px;color:var(--muted)}.status b{font-size:20px;font-variant-numeric:tabular-nums}.status small{width:100%;font-size:11px;color:var(--muted)}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px}#stations,.actions{display:flex;gap:7px;align-items:center}.station-button{padding:7px 12px}.station-button.selected{border:2px solid var(--deep);padding:6px 11px;background:#e8e7d9}.station-button b{font-size:16px}.station-button small{margin-left:8px;color:var(--muted);font-size:12px}.speed-label{font-size:12px;white-space:nowrap}.speed-label select{padding:8px 4px;border:1px solid var(--edge);border-radius:7px;background:var(--card);font-size:12px}.map-card{border:1px solid var(--edge);border-radius:10px;background:var(--card);overflow:hidden}.map-top{display:flex;justify-content:space-between;gap:16px;padding:8px 14px;font-size:12px;border-bottom:1px solid var(--edge);color:var(--muted)}#board{display:block;width:100%;height:clamp(490px,calc(100vh - 235px),740px);touch-action:none;user-select:none}#board text{fill:var(--ink);font-family:'PingFang HK','PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif}#board [role=button]{cursor:pointer}.candidate:hover circle{stroke:var(--green);stroke-width:3}.house-card:hover .card-frame{stroke:var(--green);stroke-width:2}#notice{font-size:13px;margin:8px 0 4px;color:var(--deep);min-height:20px}footer{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:12px}dialog{border:1px solid var(--edge);border-radius:12px;background:var(--card);color:var(--ink);max-width:720px;width:calc(100% - 40px);padding:26px;max-height:85vh;overflow:auto}dialog::backdrop{background:#23201a80}.close{position:absolute;right:12px;top:10px;font-size:22px;border:0;background:none}h2,h3{font-family:'Noto Serif TC','STSong','SimSun',serif;font-weight:600}h2{margin:0 30px 16px 0;font-size:25px}li{margin-bottom:12px}ol{padding-left:24px}dialog p{font-size:14px}table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:8px;border-bottom:1px solid var(--edge)}.result-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--edge)}#resultScore{font-size:23px;font-weight:bold}.result-row span:last-child{font-variant-numeric:tabular-nums}@media(max-width:1050px){.toolbar{flex-wrap:wrap}header{padding:6px 14px}.title b{font-size:18px}main{padding:8px 14px}.status b{font-size:17px}#board{height:510px}footer{display:block}.brand{font-size:15px}.station-button small{font-size:11px}}@media(max-width:700px){.brand div{display:none}.title b{font-size:15px}.status{grid-template-columns:1fr 1fr;gap:5px}.actions{flex-wrap:wrap}.map-card{overflow-x:auto}#board{min-width:820px;height:552px}.map-top{min-width:820px}header{gap:10px}button{padding:7px 9px}.brand{padding:10px}.status small{font-size:10px}}
+:root body>header{padding-top:0;padding-bottom:0}main{padding-top:6px}.status{padding-bottom:6px;margin-bottom:6px}.toolbar{margin-bottom:6px}.map-top{padding-top:6px;padding-bottom:6px}#board{height:clamp(430px,calc(100vh - 265px),740px)}@media(max-width:1050px){#board{height:510px}}@media(max-width:700px){#board{height:552px}}
+</style></head><body>
+<header><div class="brand"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" shape-rendering="crispEdges" role="img" aria-label="TransitLab HK — Green Genre 綠色潮汐標誌">
+  <title>TransitLab HK — Green Genre 綠色潮汐標誌</title>
+  <rect width='40' height='40' fill='#0d3024'/><g fill='#f2efe3'><rect x='24' y='4' width='8' height='2'/><rect x='22' y='6' width='12' height='8'/><rect x='24' y='14' width='8' height='2'/></g><g fill='#6cc79b'><rect x='0' y='22' width='10' height='4'/><rect x='10' y='24' width='10' height='4'/><rect x='20' y='26' width='10' height='4'/><rect x='30' y='28' width='10' height='4'/></g><g fill='#3f8f63'><rect x='0' y='26' width='10' height='4'/><rect x='10' y='28' width='10' height='4'/><rect x='20' y='30' width='10' height='4'/><rect x='30' y='32' width='10' height='4'/></g><g fill='#1f5340'><rect x='0' y='30' width='10' height='10'/><rect x='10' y='32' width='10' height='8'/><rect x='20' y='34' width='10' height='6'/><rect x='30' y='36' width='10' height='4'/></g>
+</svg>
+<div>TransitLab HK<small>GREEN GENRE · 綠色潮汐</small></div></div><div class="title"><b>接駁巴士 → 朗屏港鐵</b><small>18 分鐘觀察局 · 先看懂，再調整</small></div><button id="help" class="plain">規則與時間</button></header>
+<main>
+<section class="status" aria-label="全局進度"><div><span>送達得分</span><b id="score">0 / 240</b><small id="goal">目標 130 分</small></div><div><span>自駕已流失</span><b id="cars">0 人</b><small>出發後不能挽回</small></div><div><span>觀察時間</span><b id="clock">00:00 / 18:00</b><small id="wave">第一批：開局後 35 秒</small></div><div><span>搬站餘額</span><b id="moves">6 次</b><small>重建 20 秒</small></div></section>
+<section class="toolbar"><div id="stations" aria-label="選擇接駁站"></div><div class="actions"><button id="preset" class="plain">試放三座站</button><button id="start" class="primary" disabled>開始觀察</button><label class="speed-label">速度 <select id="speed" aria-label="觀察速度"><option value="0.5">0.5×</option><option value="1" selected>1× · 18分鐘</option><option value="2">2×</option><option value="4">4×</option><option value="8">8× · 快看</option></select></label><button id="reset" class="plain">重開</button></div></section>
+<section class="map-card"><div class="map-top"><span id="mapHint">選 A、B、C，再點 ＋ 放站；懸停可預覽對住宅的影響。</span><span>↑ 北 · 香港朗屏示意</span></div><svg id="board" viewBox="0 0 870 585" role="group" aria-label="接駁巴士棋盤及各住宅批次需求"></svg></section>
+<p id="notice" role="status" aria-live="polite">布局不限時。先放好三座接駁站，再開始 18 分鐘觀察。</p>
+<footer>點住宅卡可看八批人數 · 1/2/3 選站，空格暫停 · 住宅步行到站，巴士定時單向送往港鐵。<span>遊戲需求與時間；不代表實測客流或減碳量。</span></footer>
+</main>
+<dialog id="info"><button class="close" data-close="info" aria-label="關閉規則">×</button><h2>先等上車，再等發車</h2><p>你布置的是<b>公交接駁站</b>。朗屏港鐵是固定終點；本局沒有地鐵施工，也沒有畫空車繞圈。</p><ol><li><b>八批需求，每批 30 人。</b>第 1 批在 00:35 開始，其後每 2 分鐘一批。每批在 30 秒內陸續離家，各住宅的人數寫在住宅卡上。</li><li><b>到站即可上下一班車。</b>每班 5 座，上滿後最多另排 8 人。車留在站內開放上客，倒計時歸零才發車；空班不畫行駛動畫。下一班隨即開放上客，車上的人和隊伍都在站點旁顯示。</li><li><b>班距隨位置而變。</b>每站每隔「70 秒 ＋ 到港鐵的道路格數 × 12 秒」發一班；單程行駛每格 10 秒。班距抽象包含車隊周轉，並非真實香港巴士排班。圖上只畫載客車從接駁站到港鐵的單向行程。</li><li><b>距離逐漸減弱吸引力。</b>越遠、候車越久、現有隊伍越長，越少人願意來。步行每格 12 秒。懸停住宅顯示的是距離吸引強度，不是保證上車的比例。</li><li><b>耐心有限，但不是即刻流失。</b>在家最多考慮 50 秒；站內等待上限 110–130 秒，包含已上車但尚未發車的時間。每人從準備出發起的總耐心為 190–230 秒，不因搬站或返家重置。滿員或久候會步行返家，最多再等 50 秒，可再試一次；時間耗盡才自駕。</li><li><b>可以途中搬站，共 6 次。</b>重建 20 秒，該站發車倒計時重排。仍在站內的乘客（包括已入座者）步行返家；走向舊站的人可轉往另一座合適的站；已發出的載客車照原路送達。</li><li><b>送達港鐵才得 1 分。</b>自駕不可追回。觀察固定 18 分鐘，到時未送達、也未自駕的人列為「未完成」，不混算成自駕或得分。</li></ol><p>第一局可點「試放三座站」，觀察住宅附近站點被擠滿。看下一批需求，搬站前先衡量尚未發車的人、重建空窗與新的班距。這是調參用長局，是否有趣仍需要你的完整試玩。</p><h3>香港資料與簡化</h3><p id="source"></p><p>本局呈現接駁可達性、運力與出行方式取捨；完整 TOD 的土地使用與活動安排留待後續。全局分數不換算真實碳排放。</p></dialog>
+<dialog id="houseInfo"><button class="close" data-close="houseInfo" aria-label="關閉住宅批次">×</button><h2 id="houseTitle"></h2><div id="houseWaves"></div><p>各批的 30 人在四個住宅間分配。出發順序固定，重開可公平比較布局。</p></dialog>
+<dialog id="result"><h2 id="resultTitle"></h2><p id="resultScore"></p><div id="resultBreakdown"></div><p id="resultHint"></p><div class="actions"><button id="again" class="primary">再試一局</button><button data-close="result" class="plain">查看棋盤</button><button id="download" class="plain">保存本局紀錄</button></div></dialog>
+<script>
+(function(root) {
+  const roads = new Set();
+  function line(x1,y1,x2,y2) {
+    for(let x=Math.min(x1,x2); x<=Math.max(x1,x2); x++)
+      for(let y=Math.min(y1,y2); y<=Math.max(y1,y2); y++) roads.add(`${x},${y}`);
+  }
+  line(1,6,8,6); line(3,3,3,6); line(3,4,8,4); line(5,4,5,6);
+  line(6,1,6,6); line(8,3,8,6); line(5,2,7,2);
+  const D = {
+    cols:10, rows:9, roads:[...roads].map(s=>s.split(',').map(Number)), hub:[6,4],
+    candidates:[[2,6],[3,6],[3,5],[3,4],[4,4],[5,4],[5,6],[6,6],[7,6],[8,6],[8,4],[6,2],[6,3]],
+    origins:[
+      {name:'唐人新村',cell:[1,6],zone:'519',count:100,source:[818830.48,833186.74]},
+      {name:'翹翠峰',cell:[5,6],zone:'527.4',count:44,source:[820324.07,833217.23]},
+      {name:'蝶翠峰',cell:[7,6],zone:'529',count:64,source:[821106.98,833104.55]},
+      {name:'橫洲東頭圍',cell:[6,1],zone:'528',count:32,source:[820945.62,835625.03]}
+    ],
+    waves:[[20,4,6,0],[7,6,17,0],[4,4,6,16],[20,6,4,0],[6,14,8,2],[18,3,7,2],[5,3,13,9],[20,4,3,3]],
+    source:{geography:'香港朗屏與四個住宅區的相對方位取自 TransitLab 本地資料。道路重畫為棋盤示意，不是實測道路或獲准設站位置。',
+      demand:'原短局的25、11、16、8組需求依分區私家車模型量縮放。本觀察版再放大四倍為240人，批次與時間全是遊戲假設，不代表真實客流或減碳量。',date:'2026-10-06'}
+  };
+  if(typeof module!=='undefined') module.exports=D;
+  root.TIDE_DATA=D;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  const D=typeof module!=='undefined'?require('./data.js'):root.TIDE_DATA;
+  // Seconds are observation-game time, not real transport calibration.
+  const P={tick:.5,duration:1080,firstWave:35,interval:120,release:30,
+    walkStep:12,busStep:10,headwayBase:70,headwayStep:12,seats:5,queue:8,build:20,moves:6,
+    spread:3.8,waitScale:140,homeGrace:50,patience:210,queuePatience:120,
+    reconsider:4,target:120,highScore:130};
+  const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
+  function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
+    let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
+    return((t^t>>>14)>>>0)/4294967296;}; }
+  const graph=new Map(D.roads.map(c=>[key(c),c])), cache=new Map();
+  function route(a,b) {
+    const k=key(a)+'>'+key(b);
+    if(cache.has(k)) return cache.get(k).map(c=>c.slice());
+    const q=[a],parent=new Map([[key(a),null]]);
+    for(let i=0;i<q.length;i++) {
+      const c=q[i]; if(same(c,b)) break;
+      for(const n of [[c[0]+1,c[1]],[c[0]-1,c[1]],[c[0],c[1]+1],[c[0],c[1]-1]])
+        if(graph.has(key(n))&&!parent.has(key(n))) {parent.set(key(n),c);q.push(n);}
+    }
+    if(!parent.has(key(b))) return [];
+    const out=[];let c=b;while(c){out.push(c);c=parent.get(key(c));}
+    out.reverse();cache.set(k,out);return out.map(c=>c.slice());
+  }
+  const dist=(a,b)=>route(a,b).length-1;
+  const length=path=>path.slice(1).reduce((n,c,i)=>n+Math.abs(c[0]-path[i][0])+Math.abs(c[1]-path[i][1]),0);
+  function along(path,elapsed,step) {
+    let left=Math.max(0,elapsed/step);
+    for(let i=1;i<path.length;i++) {
+      const a=path[i-1],b=path[i],d=Math.abs(b[0]-a[0])+Math.abs(b[1]-a[1]);
+      if(left<d) return[a[0]+(b[0]-a[0])*left/d,a[1]+(b[1]-a[1])*left/d];
+      left-=d;
+    }
+    return(path.at(-1)||[0,0]).slice();
+  }
+  class Game {
+    constructor(seed=1781) {
+      Object.assign(this,{seed,t:0,started:false,done:false,moves:P.moves,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
+      this.trips=[];
+      this.stops=[0,1,2].map(id=>({id,cell:null,version:0,ready:0,queue:[],boarding:[],peak:0,rejected:0,serial:0,departAt:Infinity}));
+      const r=rng(seed);let id=0;
+      D.waves.forEach((w,wi)=>w.forEach((n,o)=>{
+        for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
+          born:P.firstWave+wi*P.interval+(j+.15+.7*r())/n*P.release,
+          state:'future',preference:.08+.72*r(),budget:P.patience+40*(r()-.5),
+          queueLimit:P.queuePatience+20*(r()-.5),attempts:0,retryAt:0,
+          path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
+      }));
+      this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
+    }
+    emit(type,p,extra={}) {this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
+    person(id) {return this.people.find(p=>p.id===id);}
+    headway(s) {return P.headwayBase+dist(s.cell,D.hub)*P.headwayStep;}
+    start() {if(this.started||this.stops.some(s=>!s.cell))return false;this.started=true;for(const s of this.stops)s.departAt=this.headway(s);return true;}
+    place(id,cell) {
+      const s=this.stops[id];
+      if(this.done||!s||!D.candidates.some(c=>same(c,cell))||this.stops.some(x=>x.id!==id&&same(x.cell,cell))||same(s.cell,cell))return false;
+      if(this.started&&this.moves<=0)return false;
+      const old=s.cell?.slice();
+      if(this.started){this.moves--;this.commands.push({time:this.t,id,cell:cell.slice()});}
+      s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.build:0;
+      s.departAt=this.started?s.ready+this.headway(s):Infinity;
+      if(old) {
+        for(const pid of [...s.queue,...s.boarding]) {const p=this.person(pid);if(['queue','seated'].includes(p.state))this.goHome(p,'搬站返家');}
+        s.queue=[];s.boarding=[];
+        for(const p of this.people) if(p.state==='walk'&&p.target===id) {
+          const anchor=this.currentNode(p),choice=this.choose(p,anchor,id);
+          if(choice)this.walk(p,choice.id,anchor);else this.goHome(p,'原站搬遷',anchor);
+        }
+      }
+      this.emit(this.started?'move':'place',null,{stop:id,cell:cell.slice()});return true;
+    }
+    pos(p) {return along(p.path,this.t-p.since,P.walkStep);}
+    currentNode(p) {
+      let left=Math.max(0,(this.t-p.since)/P.walkStep);
+      for(let i=1;i<p.path.length;i++) {
+        const d=length([p.path[i-1],p.path[i]]);
+        if(left<d-1e-8)return p.path[i].slice();left-=d;
+      }
+      return p.path.at(-1).slice();
+    }
+    walkingPath(p,from,to) {
+      const path=route(from,to),pos=['walk','return','queue','seated'].includes(p.state)?this.pos(p):from;
+      return same(pos,from)?path:[pos,...path];
+    }
+    eta(s) {return s.cell?Math.max(0,s.departAt-this.t):Infinity;}
+    attraction(p,s,from=D.origins[p.origin].cell) {
+      if(!s.cell||s.ready>this.t)return 0;
+      const steps=dist(from,s.cell);if(steps<0)return 0;
+      const walk=steps*P.walkStep,cycle=this.headway(s);
+      let eta=this.eta(s);
+      if(walk>eta)eta+=Math.ceil((walk-eta)/cycle)*cycle;
+      // People perceive the present crowd, not an omniscient forecast of other walkers.
+      const wait=Math.max(0,eta-walk);
+      const appeal=1/(1+(steps/P.spread)**2)/(1+(wait/P.waitScale)**2)/(1+s.queue.length/10+s.boarding.length/25);
+      return this.t+walk+wait<p.deadline?appeal:0;
+    }
+    choose(p,from,excluded=-1) {
+      let best=null;
+      for(const s of this.stops){if(s.id===excluded)continue;const appeal=this.attraction(p,s,from);
+        if(appeal>p.preference&&(!best||appeal>best.appeal))best={id:s.id,appeal};}
+      return best;
+    }
+    walk(p,id,from) {const path=this.walkingPath(p,from,this.stops[id].cell);Object.assign(p,{state:'walk',target:id,path,since:this.t});this.emit('walk',p,{stop:id});}
+    decide(p) {
+      const choice=this.choose(p,D.origins[p.origin].cell);
+      if(choice){p.attempts++;this.walk(p,choice.id,D.origins[p.origin].cell);}
+      else p.retryAt=this.t+P.reconsider;
+    }
+    goHome(p,why,from) {
+      if(['car','delivered','bus','missed'].includes(p.state))return;
+      for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}
+      const anchor=from||this.currentNode(p),path=this.walkingPath(p,anchor,D.origins[p.origin].cell);
+      Object.assign(p,{state:'return',target:null,path,since:this.t});this.emit('return',p,{why});
+    }
+    car(p) {
+      if(['car','delivered','bus','missed'].includes(p.state))return;
+      for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}
+      p.state='car';p.since=this.t;this.cars++;this.emit('car',p);
+    }
+    board(s) {
+      if(s.ready>this.t)return;
+      while(s.boarding.length<P.seats&&s.queue.length){const id=s.queue.shift(),p=this.person(id);
+        if(p.state!=='queue'||p.deadline<=this.t)continue;
+        s.boarding.push(id);p.state='seated';this.emit('board',p,{stop:s.id});}
+    }
+    buses() {
+      for(const b of this.trips.filter(b=>!b.done))if(this.t>=b.end){
+        for(const id of b.load){const p=this.person(id);p.state='delivered';p.since=this.t;this.delivered++;this.emit('delivered',p,{stop:b.stop});}
+        b.done=true;
+      }
+      for(const s of this.stops){if(!s.cell||s.ready>this.t)continue;
+        for(const id of [...s.queue,...s.boarding]){const p=this.person(id);
+          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline)this.goHome(p,'久候返家');}
+        this.board(s);if(this.t+1e-6<s.departAt)continue;
+        const path=route(s.cell,D.hub),load=s.boarding.splice(0),serial=++s.serial;
+        // A scheduled departure. Fleet circulation is abstracted in the headway;
+        // the map displays only the loaded, one-way feeder trip to MTR.
+        if(load.length){this.trips.push({stop:s.id,serial,path,since:this.t,end:this.t+length(path)*P.busStep,load,done:false});
+          for(const id of load){const p=this.person(id);p.state='bus';p.since=this.t;this.emit('depart',p,{stop:s.id,serial});}}
+        this.emit('dispatch',null,{stop:s.id,serial,load:load.length});
+        s.departAt=this.t+this.headway(s);this.board(s);
+      }
+    }
+    closeSession() {
+      for(const p of this.people)if(!['car','delivered'].includes(p.state)){p.state='missed';this.missed++;}
+      for(const s of this.stops){s.queue=[];s.boarding=[];}
+      for(const b of this.trips)b.done=true;
+      this.done=true;this.emit('finish');
+    }
+    step() {
+      this.steps++;this.t=+(this.steps*P.tick).toFixed(4);this.buses();
+      for(const p of this.people){
+        if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});this.emit('spawn',p);}
+        if(p.state==='home'){
+          if(this.t>=p.deadline||this.t>=p.homeUntil)this.car(p);
+          else if(p.attempts<2&&this.t>=p.retryAt)this.decide(p);
+        } else if(p.state==='walk'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
+          const s=this.stops[p.target];
+          if(s&&s.ready<=this.t&&(s.boarding.length<P.seats||s.queue.length<P.queue)&&this.t<p.deadline){
+            p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
+            this.board(s);
+            s.peak=Math.max(s.peak,s.queue.length);
+          }else{if(s&&s.queue.length>=P.queue){s.rejected++;this.emit('full',p,{stop:s.id});}this.goHome(p,this.t>=p.deadline?'耐心耗盡':'站已滿員');}
+        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline))this.goHome(p,'久候返家');
+        else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
+          Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,homeUntil:Math.min(p.deadline,this.t+P.homeGrace),retryAt:this.t+P.reconsider});this.emit('home',p);
+        }else if(p.state==='walk'&&this.t>=p.deadline)this.goHome(p,'耐心耗盡');
+      }
+      if(this.t>=P.duration)this.closeSession();
+    }
+    advance(seconds) {
+      if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);
+      while(this.acc+1e-8>=P.tick&&!this.done){this.acc-=P.tick;this.step();}
+    }
+    waveInfo() {
+      const active=D.waves.findIndex((w,i)=>this.t>=P.firstWave+i*P.interval&&this.t<P.firstWave+i*P.interval+P.release);
+      const next=D.waves.findIndex((w,i)=>P.firstWave+i*P.interval>this.t);
+      return{active,next,activeEnd:active<0?null:P.firstWave+active*P.interval+P.release,
+        nextStart:next<0?null:P.firstWave+next*P.interval};
+    }
+    homeStats(origin) {
+      const ps=this.people.filter(p=>p.origin===origin),w=this.waveInfo(),count=state=>ps.filter(p=>p.state===state).length;
+      const home=ps.filter(p=>p.state==='home');
+      return{total:ps.length,future:count('future'),home:home.length,walking:count('walk'),queue:count('queue'),seated:count('seated'),returning:count('return'),aboard:count('bus'),delivered:count('delivered'),cars:count('car'),missed:count('missed'),
+        firstDrive:home.length?Math.max(0,Math.min(...home.map(p=>Math.min(p.homeUntil,p.deadline)))-this.t):null,
+        active:w.active,activeTotal:w.active<0?0:D.waves[w.active][origin],activeRemaining:w.active<0?0:ps.filter(p=>p.wave===w.active&&p.state==='future').length,
+        next:w.next,nextCount:w.next<0?0:D.waves[w.next][origin],nextIn:w.nextStart===null?null:w.nextStart-this.t};
+    }
+    stats(){return{delivered:this.delivered,cars:this.cars,missed:this.missed,
+      active:this.people.filter(p=>!['future','delivered','car','missed'].includes(p.state)).length,
+      future:this.people.filter(p=>p.state==='future').length,total:this.people.length,time:this.t,moves:this.moves,done:this.done};}
+  }
+  const API={D,P,Game,route,dist,along,length,rng,same};
+  if(typeof module!=='undefined')module.exports=API;root.Tide=API;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(()=>{
+  'use strict';
+  const {Game,D,P,route,dist,along,same}=Tide,$=id=>document.getElementById(id);
+  const C={paper:'#f2efe3',card:'#f7f4e8',ink:'#23201a',muted:'#5a564a',edge:'#d5d0bd',deep:'#0d3024',green:'#2e7d4f',blue:'#2a5d8f',teal:'#12766e',amber:'#c08a2d',red:'#a72a24'};
+  const letters=['A','B','C'],colors=[C.green,C.blue,C.teal];
+  let game=new Game(),selected=0,playing=false,speed=1,hover=null,shown=false,drag=null,pointerPressed=false,restoringFocus=false,last=performance.now(),lastDraw=0;
+  const xy=c=>[60+c[0]*70,40+c[1]*55];
+  const fmt=n=>`${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
+  const pathStr=path=>path.map((c,i)=>(i?'L':'M')+xy(c).join(' ')).join(' ');
+  const svg=(tag,attrs,content='')=>`<${tag} ${Object.entries(attrs).map(([k,v])=>`${k}="${v}"`).join(' ')}>${content}</${tag}>`;
+  const text=(x,y,s,size=15,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,style:`fill:${fill}`,...extra},s);
+  const rect=(x,y,w,h,fill,stroke=C.edge,extra={})=>svg('rect',{x,y,width:w,height:h,rx:8,fill,stroke,...extra});
+  function note(s){$('notice').textContent=s;}
+  function put(cell){
+    const was=game.started;
+    if(game.place(selected,cell)){
+      hover=null;
+      note(was?`${letters[selected]} 站重建 20 秒；尚未發車者返家，已駛出的車繼續送達。`:'接駁站已放好，可繼續選另一座站。');
+      if(!was){const next=game.stops.find(s=>!s.cell);if(next)selected=next.id;}
+      render();
+    }else note(was&&game.moves===0?'搬站次數已用完。':'這格已有車站，請選另一個 ＋。');
+  }
+  function drawPanel(){
+    const s=game.stops[selected],cell=hover||s.cell,color=colors[selected];
+    let out=rect(20,20,315,177,C.card);
+    out+=text(36,45,hover?`預覽 ${letters[selected]} 站的位置`:`${letters[selected]} 接駁站 · 定時發車`,18,color,{'font-weight':700});
+    if(!cell){out+=text(36,76,'選地圖上的 ＋，看住宅影響。');out+=text(36,103,'每班 5 座 · 另有 8 個排隊位');out+=text(36,132,'車留在站內上客，倒數歸零才出發。',14);out+=text(36,166,'初始布局不限時，開局後可搬 6 次。',14,C.muted);return out;}
+    const steps=dist(cell,D.hub),headway=P.headwayBase+steps*P.headwayStep;
+    out+=text(36,71,`班距 ${headway} 秒 · 到港鐵 ${steps*P.busStep} 秒`,15);
+    if(hover){
+      out+=text(36,98,'住宅卡與光圈：距離影響預覽',15,color);
+      out+=text(36,123,'遠站少走路，卻可能班次更疏。',14);
+      out+=text(36,149,'位置只預覽，實際還受候車與擁擠影響。',12,C.muted);
+      out+=text(36,177,game.started?`點擊搬站 · 重建 20 秒 · 餘 ${game.moves} 次`:'點擊放站 · 初始布局不扣搬遷次數',14,color);
+    }else{
+      const build=Math.max(0,s.ready-game.t),eta=game.started?fmt(game.eta(s)):'開局時計';
+      out+=text(36,98,game.done?'本局觀察已結束':!game.started?`首班：開局後 ${headway} 秒`:build?`重建倒數 ${fmt(build)}`:`下一班 ${eta} 發車`,19,color,{'font-weight':700});
+      out+=rect(36,110,110,29,C.card,color,{'stroke-width':2,rx:5});
+      out+=svg('circle',{cx:55,cy:139,r:3,fill:color})+svg('circle',{cx:125,cy:139,r:3,fill:color});
+      out+=text(91,130,`${letters[s.id]}車 ${s.boarding.length}/5`,16,color,{'text-anchor':'middle','font-weight':700});
+      out+=text(163,130,`排隊 ${s.queue.length}/8`,17,s.queue.length===8?C.red:C.ink);
+      const waiting=[...s.queue,...s.boarding].map(id=>game.person(id));
+      const left=waiting.length?Math.min(...waiting.map(p=>Math.min(p.queueLimit-(game.t-p.since),p.deadline-game.t))):null;
+      out+=text(36,157,left===null?'到站就能上空座，滿座才排隊。':`最先久候返家：${left<1?'不足1秒':fmt(left)}`,14,left===null?C.muted:C.amber);
+      out+=text(36,177,`峰值排隊 ${s.peak}/8 · 滿員返家 ${s.rejected} 人次`,14,C.muted);
+    }
+    return out;
+  }
+  function drawHouse(i){
+    const o=D.origins[i],h=game.homeStats(i),[hx,hy]=xy(o.cell);
+    const box=i===3?[610,20,240,163]:[[20,435,240,142],[290,435,240,142],[560,435,240,142]][i];
+    const [x,y,w,height]=box,tx=x+12,cardAnchor=i===3?[x,100]:[x+w/2,y];
+    let out=svg('path',{d:`M${hx} ${hy-30}L${cardAnchor.join(' ')}`,stroke:C.edge,'stroke-width':1.5,fill:'none'});
+    if(hover){const steps=dist(o.cell,hover),a=1/(1+(steps/P.spread)**2);out+=svg('circle',{cx:hx,cy:hy,r:23+17*a,fill:C.green,opacity:.06+.12*a});out+=svg('circle',{cx:hx,cy:hy,r:23+17*a,fill:'none',stroke:C.green,'stroke-width':1+3*a,opacity:.3+.7*a});}
+    if(!game.stops.some(s=>same(s.cell,o.cell))){
+      out+=rect(hx-19,hy-53,38,29,C.card,h.home?C.amber:C.edge);
+      out+=text(hx,hy-32,`${h.home}`,17,h.home?C.amber:C.muted,{'text-anchor':'middle','font-weight':700});
+      out+=text(hx,hy-60,'在家',12,C.muted,{'text-anchor':'middle'});
+    }
+    let content=rect(x,y,w,height,C.card,h.activeTotal&&h.activeRemaining?C.amber:C.edge,{class:'card-frame'});
+    content+=text(tx,y+23,o.name,17,C.ink,{'font-weight':700});
+    content+=text(x+w-12,y+23,`全局 ${h.total} 人`,13,C.muted,{'text-anchor':'end'});
+    content+=text(tx,y+48,`未出發 ${h.future+h.home} · 在家 ${h.home}`,17,C.ink,{'font-weight':700});
+    if(h.active>=0)content+=text(tx,y+69,`第 ${h.active+1} 批 ${h.activeTotal} 人 · 尚未離家 ${h.activeRemaining}`,14,h.activeRemaining?C.amber:C.muted);
+    else content+=text(tx,y+69,h.firstDrive!==null?`在家考慮 ${h.home} 人 · 最早自駕 ${fmt(h.firstDrive)}`:game.done?`未完成 ${h.missed} 人`:h.next<0?'八批已全數出發':'等下一批，先看位置與班距。',13,C.muted);
+    content+=text(tx,y+89,h.next>=0?`下一批 ${h.next+1}：${h.nextCount} 人 · ${fmt(h.nextIn)} 後`:'沒有後續批次',14,C.blue);
+    if(hover){const steps=dist(o.cell,hover),appeal=1/(1+(steps/P.spread)**2);content+=text(tx,y+111,`本站步行 ${steps*P.walkStep} 秒 · 距離吸引${appeal>.7?'強':appeal>.35?'中':'弱'}`,15,C.green);}
+    else content+=text(tx,y+111,`去站 ${h.walking} · 排隊 ${h.queue} · 返家 ${h.returning}`,14,C.muted);
+    content+=text(tx,y+132,`送達 ${h.delivered} · 自駕 ${h.cars} · 車上 ${h.seated+h.aboard}`,14,h.cars?C.red:C.muted);
+    if(i===3)content+=text(tx,y+151,'點卡查看八批人數',12,C.muted);
+    const recent=game.events.filter(e=>e.type==='car'&&e.origin===i&&game.t-e.time<18).length;
+    if(recent)content+=text(hx+23,hy-30,`自駕 ＋${recent}`,14,C.red,{'font-weight':700});
+    out+=svg('g',{class:'house-card','data-house':i,role:'button',tabindex:0,'aria-label':`${o.name}：全局${h.total}人，未出發${h.future+h.home}人，下一批${h.nextCount}人，查看八批需求`},content);
+    return out;
+  }
+  function drawMap(){
+    // Do not replace a focused SVG node between pointer-down and click.
+    if(pointerPressed&&!drag?.moved)return;
+    const focused=document.activeElement,attrs=['data-cell','data-stop','data-house'];
+    const focusAttr=attrs.find(a=>focused?.hasAttribute(a)),focusVal=focusAttr?focused.getAttribute(focusAttr):null;
+    let out='';
+    for(let x=0;x<10;x++)for(let y=0;y<7;y++){const [cx,cy]=xy([x,y]);out+=rect(cx-35,cy-27.5,70,55,C.card,'#e8e7d9',{rx:0,'stroke-width':.6});}
+    for(const c of D.roads)for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(D.roads.some(q=>same(q,n)))out+=svg('path',{d:pathStr([c,n]),stroke:C.edge,'stroke-width':18,fill:'none','stroke-linecap':'round'});
+    for(const c of D.roads)for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(D.roads.some(q=>same(q,n)))out+=svg('path',{d:pathStr([c,n]),stroke:C.card,'stroke-width':13,fill:'none','stroke-linecap':'round'});
+    const active=game.stops[selected];
+    if(active.cell)out+=svg('path',{d:pathStr(route(active.cell,D.hub)),stroke:colors[selected],'stroke-width':3,fill:'none',opacity:.3});
+    if(hover)out+=svg('path',{d:pathStr(route(hover,D.hub)),stroke:C.green,'stroke-width':3,fill:'none','stroke-dasharray':'5 5',opacity:.6});
+    const [mx,my]=xy(D.hub);
+    out+=rect(mx-23,my-22,46,44,C.deep,C.deep);
+    out+=text(mx,my+7,'M',24,C.card,{'text-anchor':'middle'});
+    out+=text(mx+32,my-11,'朗屏港鐵',18,C.deep,{'font-weight':700});
+    out+=text(mx+32,my+9,`已接上 ${game.delivered} 人`,14,C.green);
+    out+=text(mx+32,my+28,'固定終點 · 下車才得分',11,C.muted);
+    for(const c of D.candidates){
+      if(game.stops.some(s=>same(s.cell,c)))continue;
+      const [x,y]=xy(c);
+      out+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':`放置接駁站於 ${c[0]+1} 列 ${c[1]+1} 行`},svg('circle',{cx:x,cy:y,r:14,fill:C.card,stroke:hover&&same(hover,c)?C.green:C.edge,'stroke-width':2})+text(x,y+6,'＋',20,C.muted,{'text-anchor':'middle'}));
+    }
+    for(const s of game.stops){if(!s.cell)continue;
+      const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),color=colors[s.id];
+      let content=rect(x-19,y-17,38,34,build?C.card:color,selected===s.id?C.ink:color,{'stroke-width':selected===s.id?3:1,'stroke-dasharray':build?'4 3':'none'});
+      content+=text(x,y+6,letters[s.id],20,build?color:C.card,{'text-anchor':'middle','font-weight':700});
+      content+=text(x,y+34,game.done?'已結束':build?`重建 ${Math.ceil(build)}s`:game.started?`發車 ${fmt(game.eta(s))}`:`班距 ${game.headway(s)}s`,13,color,{'text-anchor':'middle'});
+      content+=text(x,y-38,s.queue.length===8?`滿8 · 座${s.boarding.length}`:`座${s.boarding.length} · 隊${s.queue.length}`,14,s.queue.length===8?C.red:color,{'text-anchor':'middle','font-weight':700});
+      for(let j=0;j<8;j++)content+=rect(x-27+j*7,y-30,5,7,j<s.queue.length?(s.queue.length===8?C.red:color):C.card,s.queue.length===8?C.red:color,{rx:1});
+      out+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':`選擇接駁站 ${letters[s.id]}，已入座${s.boarding.length}人，排隊${s.queue.length}人`},content);
+    }
+    for(const p of game.people)if(['walk','return'].includes(p.state)){
+      const [x,y]=xy(game.pos(p)),offset=(p.id%3-1)*5;
+      out+=svg('circle',{cx:x+offset,cy:y+9,r:3.8,fill:p.state==='walk'?C.blue:C.amber,stroke:C.card,'stroke-width':1});
+    }
+    for(const b of game.trips.filter(b=>!b.done)){
+      const pos=along(b.path,game.t-b.since,P.busStep),[x,y]=xy(pos),color=colors[b.stop];
+      // The arrow uses the current segment, and the trip never changes its path.
+      const progress=(game.t-b.since)/P.busStep,index=Math.min(b.path.length-2,Math.floor(progress)),a=b.path[index],z=b.path[index+1];
+      const angle=Math.atan2((z[1]-a[1])*55,(z[0]-a[0])*70)*180/Math.PI;
+      out+=svg('path',{d:pathStr(b.path),fill:'none',stroke:color,'stroke-width':2,opacity:.2});
+      out+=rect(x-27,y-17,54,25,C.card,color,{'stroke-width':2});
+      out+=text(x,y,`${letters[b.stop]}車 ${b.load.length}`,13,color,{'text-anchor':'middle','font-weight':700});
+      out+=svg('path',{d:`M${x-4} ${y+13}l9 0-4-4m4 4-4 4`,stroke:color,fill:'none','stroke-width':2,transform:`rotate(${angle} ${x} ${y+13})`});
+      out+=text(x,y-24,'送往港鐵',11,color,{'text-anchor':'middle'});
+    }
+    out+=drawPanel();
+    const w=game.waveInfo();
+    out+=text(20,225,w.active>=0?`第 ${w.active+1} 批正在離家 · 全圖 30 人，30 秒內陸續出發`:w.next>=0?`下一批 ${w.next+1} · 全圖 30 人 · ${fmt(w.nextStart-game.t)} 後`:game.done?'觀察結束 · 查看各住宅的送達與自駕':'八批已離家 · 繼續接上在路上的乘客',15,w.active>=0?C.amber:C.deep,{'font-weight':700});
+    out+=text(20,251,'● 去站　● 返家　　在家 → 入座／排隊 → 巴士 → 港鐵',12,C.muted);
+    out+=svg('circle',{cx:24,cy:247,r:3.5,fill:C.blue});out+=svg('circle',{cx:81,cy:247,r:3.5,fill:C.amber});
+    for(let i=0;i<D.origins.length;i++)out+=drawHouse(i);
+    $('board').innerHTML=out;
+    if(focusAttr){restoringFocus=true;try{$('board').querySelector(`[${focusAttr}="${focusVal}"]`)?.focus({preventScroll:true});}finally{restoringFocus=false;}}
+  }
+  function render(){
+    const stats=game.stats(),w=game.waveInfo(),focusSelect=document.activeElement?.getAttribute('data-select');
+    $('goal').textContent=`目標 ${P.target} · 高分 ${P.highScore}`;$('score').textContent=`${stats.delivered} / 240`;$('cars').textContent=`${stats.cars} 人`;
+    $('clock').textContent=`${fmt(game.t)} / 18:00`;$('moves').textContent=`${game.moves} 次`;
+    $('wave').textContent=!game.started?'第一批：開局後 35 秒':game.done?`未完成 ${game.missed} 人`:w.active>=0?`第 ${w.active+1}/8 批正在離家`:w.next>=0?`第 ${w.next+1}/8 批：${fmt(w.nextStart-game.t)} 後`:'所有批次已出發';
+    $('start').textContent=game.done?'本局已結束':game.started?(playing?'暫停':'繼續'):'開始觀察';
+    $('start').disabled=game.done||(!game.started&&game.stops.some(s=>!s.cell));$('preset').hidden=game.started;$('speed').value=speed;
+    $('mapHint').textContent=game.done?'本局已結束，點住宅卡查看批次。':game.started?`${playing?'運行中':'已暫停'} · 選 ${letters[selected]} 站，再點 ＋ 搬站（餘 ${game.moves} 次）`:`正在放置 ${letters[selected]} 站 · 懸停 ＋ 預覽；點擊放置`;
+    $('stations').innerHTML=game.stops.map(s=>`<button class="station-button ${s.id===selected?'selected':''}" data-select="${s.id}" aria-pressed="${s.id===selected}"><b>${letters[s.id]} 站</b><small>${s.cell?`入座 ${s.boarding.length} · 排隊 ${s.queue.length}`:'未放置'}</small></button>`).join('');
+    drawMap();if(focusSelect)$('stations').querySelector(`[data-select="${focusSelect}"]`)?.focus({preventScroll:true});
+    if(game.done&&!shown){shown=true;playing=false;$('resultTitle').textContent=game.delivered>=P.highScore?'達成高分挑戰':game.delivered>=P.target?'本局達成觀察目標':'18 分鐘觀察結束';
+      $('resultScore').textContent=`送達 ${game.delivered} · 自駕 ${game.cars} · 未完成 ${game.missed}`;
+      $('resultBreakdown').innerHTML=D.origins.map((o,i)=>{const h=game.homeStats(i);return `<div class="result-row"><span>${o.name} · ${h.total} 人</span><span>送達 ${h.delivered}／自駕 ${h.cars}／未完成 ${h.missed}</span></div>`}).join('');
+      const full=game.events.filter(e=>e.type==='full').length,wait=game.events.filter(e=>e.why==='久候返家').length;
+      $('resultHint').textContent=`本局滿員返家 ${full} 人次、久候返家 ${wait} 人次，搬站 ${game.commands.length} 次。返家次數可包含同一人重試；未完成指觀察結束時尚未送達。保存紀錄可對照你覺得太快、太慢或難以判斷的時段。`;
+      $('result').showModal();
+    }
+  }
+  function reset(){game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;last=performance.now();note('布局不限時。每次重開使用同一份需求與乘客意願，方便對照。');render();}
+  function pauseForInfo(){if(playing){playing=false;render();note('查看說明時已暫停，關閉後點繼續。');}}
+  function showHouse(i){pauseForInfo();$('houseTitle').textContent=D.origins[i].name+' · 八批出發表';$('houseWaves').innerHTML=`<table><thead><tr><th>批次</th><th>開始離家</th><th>此住宅人數</th></tr></thead><tbody>${D.waves.map((wave,j)=>`<tr><td>第 ${j+1} 批</td><td>${fmt(P.firstWave+j*P.interval)} ～ ${fmt(P.firstWave+j*P.interval+P.release)}</td><td>${wave[i]} 人</td></tr>`).join('')}</tbody></table>`;$('houseInfo').showModal();}
+  $('stations').onclick=e=>{const el=e.target.closest('[data-select]');if(el){selected=+el.dataset.select;render();}};
+  function pointCell(e){const point=$('board').createSVGPoint();point.x=e.clientX;point.y=e.clientY;const p=point.matrixTransform($('board').getScreenCTM().inverse());return D.candidates.find(c=>{const [x,y]=xy(c);return Math.hypot(p.x-x,p.y-y)<20&&!game.stops.some(s=>same(s.cell,c));});}
+  function pointStop(e){const point=$('board').createSVGPoint();point.x=e.clientX;point.y=e.clientY;const p=point.matrixTransform($('board').getScreenCTM().inverse());return game.stops.find(s=>{if(!s.cell)return false;const [x,y]=xy(s.cell);return Math.hypot(p.x-x,p.y-y)<21;});}
+  $('board').onclick=e=>{if(drag?.moved)return;const stop=e.target.closest('[data-stop]'),house=e.target.closest('[data-house]'),cell=e.target.closest('[data-cell]');if(stop){selected=+stop.dataset.stop;render();}else if(house)showHouse(+house.dataset.house);else{const c=cell?cell.dataset.cell.split(',').map(Number):pointCell(e);if(c)put(c);}};
+  $('board').onkeydown=e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();const s=e.target.closest('[data-stop]'),c=e.target.closest('[data-cell]'),h=e.target.closest('[data-house]');if(s){selected=+s.dataset.stop;render();}else if(c)put(c.dataset.cell.split(',').map(Number));else if(h)showHouse(+h.dataset.house);}};
+  $('board').onpointermove=e=>{if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;const c=pointCell(e)||null;if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;drawMap();}};
+  $('board').onpointerleave=()=>{if(!drag){hover=null;drawMap();}};
+  $('board').onpointerdown=e=>{pointerPressed=true;const el=e.target.closest('[data-stop]'),s=el?game.stops[+el.dataset.stop]:pointStop(e);if(s){selected=s.id;drag={x:e.clientX,y:e.clientY,moved:false};$('board').setPointerCapture(e.pointerId);render();}};
+  $('board').onpointerup=()=>{pointerPressed=false;if(drag?.moved&&hover)put(hover);const moved=drag?.moved;drag=null;hover=null;if(moved)render();};
+  document.addEventListener('pointerup',()=>{pointerPressed=false;requestAnimationFrame(()=>drawMap());});
+  $('board').onpointercancel=()=>{pointerPressed=false;drag=null;hover=null;render();};
+  $('board').addEventListener('focusin',e=>{if(restoringFocus)return;const c=e.target.closest('[data-cell]'),next=c?c.dataset.cell.split(',').map(Number):null;if(JSON.stringify(next)!==JSON.stringify(hover)){hover=next;drawMap();}});
+  $('preset').onclick=()=>{[0,7,11].forEach((i,id)=>game.place(id,D.candidates[i]));selected=0;note('試放住宅附近的三座站。這份布局會出現排隊壓力，仍可自由改位置。');render();};
+  $('start').onclick=()=>{if(!game.started&&!game.start())return;playing=!playing;last=performance.now();note(playing?'觀察開始。住宅卡顯示本批與下一批；車站倒數歸零才發車。':'已暫停，能細看住宅批次與排隊；搬站仍扣次數。');render();};
+  $('speed').onchange=()=>{speed=+$('speed').value;note(`觀察速度 ${speed}×。遊戲規則時間不變；1× 是完整 18 分鐘。`);render();};
+  $('reset').onclick=()=>{if(game.started&&!game.done&&!confirm('重開會清除本局進度，是否重開？'))return;reset();};
+  $('help').onclick=()=>{pauseForInfo();$('info').showModal();};
+  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
+  $('again').onclick=()=>{$('result').close();reset();};
+  $('download').onclick=()=>{const run={version:'scheduled-feeder-long-2026-10-06',seed:game.seed,parameters:P,stats:game.stats(),stops:game.stops.map(s=>({id:s.id,cell:s.cell,peak:s.peak,rejected:s.rejected})),moves:game.commands,events:game.events};const url=URL.createObjectURL(new Blob([JSON.stringify(run,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='TransitLab-本局观察记录.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+  $('source').textContent=D.source.geography+' '+D.source.demand;
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||e.target.tagName==='SELECT')return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done){playing=!playing;last=performance.now();render();}}});
+  document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing){playing=false;note('離開畫面時已自動暫停。');render();}});
+  function frame(now){const dt=Math.min(.5,(now-last)/1000);last=now;if(playing)game.advance(dt*speed);if(playing&&now-lastDraw>120){render();lastDraw=now;}requestAnimationFrame(frame);}
+  render();requestAnimationFrame(frame);
+})();
+
+</script></body></html>

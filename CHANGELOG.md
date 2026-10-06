@@ -4,6 +4,14 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-06
+
+### 19:35 · 接驳巴士小游戏：保存 Codex 第一版 + 做第二版 / Feeder-bus game: Codex v1 snapshot + v2
+- **改了什么**：新建 `game-feeder/`。`v1-codex/` 是 Codex「接驳巴士长局Demo」17:05 版的原样快照（只读，指纹在 `SOURCE.md`）；`v2/` 是在它基础上的第二版；`bots/` 是 AI 试玩与调参脚本；`LOG.md` 分 v1 / v2 两条线记改动，`README.md` 说明怎么玩、怎么改。桌面新增「接驳巴士 v2」。
+  v2：每批出门人数有规律（平时固定，每个屋苑一次高峰 +15）；来不来只看走路距离（每多 1 格少 20%，圈上比例就是真实比例）；右侧常驻潮汐表（出门人数、会来几人、高峰、可能挤爆）；按组员品牌规范重做界面；结算列出开车原因。
+- **为什么**：发起人试玩 v1 后觉得每批人数太散、要点开才看得到，没法一眼做调度；要规则人能懂、过关不难、高分要动脑；v1 要保留，以后可能两版都继续改。
+- **验证**：`node game-feeder/v2/test_engine.js` 13 项通过；`node game-feeder/bots/evaluate.js`：看得见的规则预测成绩的等级相关 v1 0.51 → v2 0.90；新手布局 130（过关 120）、最佳静态 130、看潮汐表搬站 140（高分 135）、搜索上限 144；无头浏览器截图开场 / 预览 / 对局 / 结算正常。
+
 ## 2026-10-03
 
 ### 14:52 · 给 Codex 的游戏玩法讨论简报 / Briefing for Codex on the game-design discussion

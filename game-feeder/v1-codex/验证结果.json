@@ -1,0 +1,200 @@
+{
+  "version": "scheduled-feeder-long-2026-10-06",
+  "checks": [
+    "8 batches × 30 = 240; each housing total matches data",
+    "Every release falls in its own 30-second window; each housing staggered",
+    "Attraction falls gradually with road distance, not a hard catchment cutoff",
+    "Map forecast distinguishes current release and following batch",
+    "Passengers enter seats before scheduled departure, not a drive-through pickup",
+    "Capacity, population accounting, stable waiting position and irreversible driving throughout a full round",
+    "Every displayed trip goes from its stop to MTR once; scoring occurs on arrival",
+    "Relocating a populated stop returns waiting people, preserves departed trip, and delays next service",
+    "Mid-walk relocation keeps fractional position continuous",
+    "Moves are limited; occupied cells rejected; starting requires 3 stops",
+    "Returns take distance time and home reconsideration time, no patience reset",
+    "Station patience includes seated wait; no departure after deadline or queue patience",
+    "Fixed 18-minute ending counts incomplete separately; variable frame cadence identical"
+  ],
+  "parameters": {
+    "tick": 0.5,
+    "duration": 1080,
+    "firstWave": 35,
+    "interval": 120,
+    "release": 30,
+    "walkStep": 12,
+    "busStep": 10,
+    "headwayBase": 70,
+    "headwayStep": 12,
+    "seats": 5,
+    "queue": 8,
+    "build": 20,
+    "moves": 6,
+    "spread": 3.8,
+    "waitScale": 140,
+    "homeGrace": 50,
+    "patience": 210,
+    "queuePatience": 120,
+    "reconsider": 4,
+    "target": 120,
+    "highScore": 130
+  },
+  "comparisons": {
+    "nearHousing": {
+      "layout": [
+        0,
+        7,
+        11
+      ],
+      "delivered": 112,
+      "cars": 124,
+      "missed": 4,
+      "peak": [
+        8,
+        8,
+        8
+      ],
+      "fullReturns": 32,
+      "waitReturns": 97,
+      "moves": []
+    },
+    "nearMTR": {
+      "layout": [
+        3,
+        5,
+        12
+      ],
+      "delivered": 120,
+      "cars": 113,
+      "missed": 7,
+      "peak": [
+        7,
+        8,
+        8
+      ],
+      "fullReturns": 5,
+      "waitReturns": 29,
+      "moves": []
+    },
+    "twoWest": {
+      "layout": [
+        0,
+        1,
+        7
+      ],
+      "delivered": 120,
+      "cars": 114,
+      "missed": 6,
+      "peak": [
+        8,
+        5,
+        8
+      ],
+      "fullReturns": 17,
+      "waitReturns": 77,
+      "moves": []
+    },
+    "farEast": {
+      "layout": [
+        10,
+        11,
+        12
+      ],
+      "delivered": 94,
+      "cars": 146,
+      "missed": 0,
+      "peak": [
+        8,
+        2,
+        7
+      ],
+      "fullReturns": 0,
+      "waitReturns": 19,
+      "moves": []
+    }
+  },
+  "staticLayouts": 286,
+  "staticMin": {
+    "layout": [
+      1,
+      2,
+      3
+    ],
+    "delivered": 73,
+    "cars": 157,
+    "missed": 10,
+    "peak": [
+      8,
+      8,
+      0
+    ],
+    "fullReturns": 43,
+    "waitReturns": 63,
+    "moves": []
+  },
+  "staticMedian": {
+    "layout": [
+      3,
+      4,
+      7
+    ],
+    "delivered": 107,
+    "cars": 126,
+    "missed": 7,
+    "peak": [
+      7,
+      2,
+      8
+    ],
+    "fullReturns": 13,
+    "waitReturns": 41,
+    "moves": []
+  },
+  "staticBest": {
+    "layout": [
+      5,
+      7,
+      8
+    ],
+    "delivered": 132,
+    "cars": 106,
+    "missed": 2,
+    "peak": [
+      7,
+      8,
+      6
+    ],
+    "fullReturns": 1,
+    "waitReturns": 28,
+    "moves": []
+  },
+  "staticTargetOrBetter": 52,
+  "oneMovePolicies": 1050,
+  "oneMoveBest": {
+    "layout": [
+      3,
+      5,
+      12
+    ],
+    "delivered": 130,
+    "cars": 109,
+    "missed": 1,
+    "peak": [
+      8,
+      8,
+      8
+    ],
+    "fullReturns": 7,
+    "waitReturns": 32,
+    "moves": [
+      {
+        "time": 250,
+        "id": 0,
+        "cell": [
+          6,
+          6
+        ]
+      }
+    ]
+  },
+  "dynamicImprovement": 11
+}

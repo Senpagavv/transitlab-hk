@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 接駁巴士 v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header><div class="brand"><img src="logo-tide.svg" width="40" height="40" alt="綠色潮汐標誌"><div class="wordmark">TransitLab HK<small class="en">GREEN GENRE</small></div></div>
+<div class="title"><h1>接駁巴士 → 朗屏港鐵</h1><small class="en">FEEDER BUS TO LONG PING</small></div>
+<button id="help" class="plain">規則<small class="en">RULES</small></button></header>
+<main>
+<section class="status" aria-label="全局進度">
+ <div class="kpi score"><span class="label">送達<small class="en">DELIVERED</small></span><b id="score">0</b><div class="bar" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em></div><small id="goal"></small></div>
+ <div class="kpi drove"><span class="label">自駕流失<small class="en">DROVE</small></span><b id="cars">0</b><small>開了車就不會再回來</small></div>
+ <div class="kpi"><span class="label">時間<small class="en">TIME</small></span><b id="clock">00:00</b><small id="wave"></small></div>
+ <div class="kpi"><span class="label">搬站<small class="en">MOVES LEFT</small></span><b id="moves">6</b><small>每次重建 20 秒</small></div>
+</section>
+<section class="toolbar"><div id="stations" aria-label="選擇接駁站"></div><div class="actions"><button id="start" class="primary" disabled>開始<small class="en">START</small></button><label class="speed-label">速度 <select id="speed" aria-label="速度"><option value="0.5">0.5×</option><option value="1" selected>1× · 18 分鐘</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></label><button id="reset" class="plain">重開<small class="en">RESET</small></button></div></section>
+<section class="play">
+ <div class="map-card"><div class="map-top"><span id="mapHint"></span><span class="maplegend"><i class="dot" style="background:var(--blue)"></i>去站 <i class="dot" style="background:var(--amber)"></i>回家 <i class="car"></i>開車 · ↑ 北 · 朗屏示意</span></div><svg id="board" viewBox="0 0 660 485" role="group" aria-label="接駁巴士棋盤"></svg></div>
+ <aside class="side">
+  <div class="panel"><h2>潮汐表<small class="en">TIDE TABLE</small></h2><table id="tide" aria-label="每批出門人數與預計會來的人數"></table>
+   <p class="legend">每 2 分鐘一批人出門。大字＝出門人數；<span style="color:var(--green)">綠字＝按目前站位會來的人數</span>；<span style="color:var(--amber)">琥珀框＝該屋苑的高峰</span>；<span style="color:var(--red)">紅字＝那座站這批可能擠爆</span>。</p></div>
+  <div class="panel" id="stopPanel"></div>
+ </aside>
+</section>
+<p id="notice" role="status" aria-live="polite"></p>
+<footer><span>1/2/3 選站 · 空格暫停 · 拖動車站可搬站</span><span>遊戲需求與時間均為示意；不代表實測客流或減碳量。</span></footer>
+</main>
+<dialog id="intro"><h2>把開車的人，接上港鐵</h2><small class="en">GET DRIVERS ONTO THE MTR</small>
+<p>朗屏四個屋苑的居民早上要去港鐵站。你有 <b>三座接駁站</b>：巴士定時把站上的人送去朗屏港鐵。站放得不好，大家就會自己開車。</p>
+<ol class="rules">
+<li><b>離站越遠，越少人來。</b>走 1 格內全部會來，之後每多走 1 格少 20%（2 格 80%、3 格 60%……6 格就沒人來）。放站時圈上的百分比，就是真的會來的比例。</li>
+<li><b>離港鐵越近，班次越密。</b>班距＝60 秒＋到港鐵每 1 格 10 秒。每班 6 個座位，滿了最多再排 8 人；排不進或等太久的人會走回家，改去別的站，否則就開車。</li>
+<li><b>看右邊的潮汐表。</b>每 2 分鐘一批人出門，人數固定；每個屋苑有一次高峰（多 15 人）。高峰前可以把站搬過去：一共 6 次，每次重建 20 秒。</li>
+</ol>
+<div class="intro-goal"><div>過關<b id="introPass"></b>送達三分之二</div><div>高分<b id="introHigh"></b>要跟著潮汐搬站</div><div>全部通勤者<b id="introTotal"></b>18 分鐘一局</div></div>
+<button id="enter" class="primary enter">走進城市<small class="en">ENTER THE CITY</small></button></dialog>
+<dialog id="info"><button class="close" data-close="info" aria-label="關閉規則">×</button><h2>規則</h2><small class="en">RULES</small>
+<ol class="rules">
+<li><b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。</li>
+<li><b>定時發車。</b>每座站的班距＝60 秒＋到港鐵的道路格數×10 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。</li>
+<li><b>滿了、等久了就回家。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，會走回家；回家後如果另一座站也夠近，會改去那裡再試一次（最多出門兩次），不然就開車。從出門起總耐心約 3.5 分鐘，不會因回家或搬站重置。</li>
+<li><b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人要走回家；已開出的巴士照常送達。</li>
+<li><b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：唐人新村每批 6 人，其他三區每批 3 人；每區一次高峰，那一批多 15 人。</li>
+</ol>
+<h3>哪些是真的</h3><p id="source"></p><p>本關只表達接駁的步行距離、班次與運力怎樣影響大家坐不坐公共交通；土地開發（TOD）與真實減碳核算留待後續關卡。</p></dialog>
+<dialog id="result"><h2 id="resultTitle"></h2><small class="en" id="resultEn"></small><p id="resultScore"></p>
+<table class="result"><thead><tr><th>屋苑</th><th>送達</th><th>開車：太遠</th><th>站滿了</th><th>等太久</th><th>未完成</th></tr></thead><tbody id="resultRows"></tbody></table>
+<p id="resultHint"></p><div class="dialog-actions"><button id="again" class="primary">再試一局<small class="en">PLAY AGAIN</small></button><button data-close="result" class="plain">查看棋盤</button><button id="download" class="plain">保存本局紀錄</button></div></dialog>
+<script src="data.js"></script><script src="engine.js"></script><script src="ui.js"></script></body></html>
