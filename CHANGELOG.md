@@ -6,7 +6,7 @@
 
 ## 2026-10-06
 
-### 21:07 · 接驳巴士 v2.5：正满员的站在做决定那一刻没有吸引力；过关 133 / Feeder v2.5: full stops attract nobody at decision time
+### 21:07 · `ec319e6` 接驳巴士 v2.5：正满员的站在做决定那一刻没有吸引力；过关 133 / Feeder v2.5: full stops attract nobody at decision time
 - **改了什么**：`game-feeder/v2/engine.js`：排队位满的站在任何决定时刻（出门、就地换站、回家后）吸引力为 0，已在路上的人不回头；因此没出门而开车的人原因记为「站满了」。过关 131 → 133。`index.html` / `README.md` 规则文字；`test_engine.js` 18 项。
 - **为什么**：发起人：满人的车站在满人状态下对人没有吸引力。
 - **验证**：`node game-feeder/v2/test_engine.js` 18 项通过；静态 286 种 ≥133 的 2 种、≥140 的 0 种；挪站机器人 135–143，搜索上限 144–147。详见 `game-feeder/LOG.md`。
