@@ -8,9 +8,6 @@
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
     reconsider:4,target:133,highScore:140,masterScore:146};
-  // each board carries its own headway formula and score tiers
-  if(D.headway)[P.headwayBase,P.headwayStep]=D.headway;
-  if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;

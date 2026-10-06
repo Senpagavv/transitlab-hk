@@ -11,19 +11,14 @@
   readTokens();
   let game=new Game(),selected=0,playing=false,speed=1,hover=null,shown=false,drag=null,pointerPressed=false,restoringFocus=false;
   let last=performance.now(),lastDraw=0,lastSide=0,seen=0,lastDelivered=0,warned=new Set(),rang=new Set(),toastTimer=0;
-  const [MX,MY]=D.margin||[20,30],xy=c=>[MX+c[0]*72,MY+c[1]*62];
-  // board size follows the map: grid cells plus room for the buildings and labels around them
-  const VBW=MX+(D.cols-1)*72+Math.max(MX,120),VBH=MY+(D.rows-1)*62+58;
-  document.getElementById('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);document.getElementById('fx').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
+  const xy=c=>[20+c[0]*72,30+c[1]*62];
   const fmt=n=>`${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
   const pathStr=path=>path.map((c,i)=>(i?'L':'M')+xy(c).join(' ')).join(' ');
   const svg=(tag,attrs,content='')=>`<${tag} ${Object.entries(attrs).map(([k,v])=>`${k}="${v}"`).join(' ')}>${content}</${tag}>`;
   const text=(x,y,s,size=13,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.panel,'stroke-width':3.5,...extra},s);
   const rect=(x,y,w,h,fill,stroke=C.line2,extra={})=>svg('rect',{x,y,width:w,height:h,rx:4,fill,stroke,...extra});
   const waveStart=w=>P.firstWave+w*P.interval;
-  const houseAt=i=>{const [x,y]=xy(D.origins[i].cell),[dx,dy]=D.origins[i].house||[0,38];return[x+dx,y+dy];};
-  // name label: above a building that sits above its road, otherwise below it
-  const labelY=i=>{const [,hy]=houseAt(i),dy=(D.origins[i].house||[0,38])[1];return dy<0?hy-22:hy+28;};
+  const houseAt=i=>{const [x,y]=xy(D.origins[i].cell);return i===3?[x,y-40]:[x,y+38];};
   function note(s){$('notice').textContent=s;}
   function toast(s,kind=''){const t=$('toast');t.className='toast on '+kind;t.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2600);}
 
@@ -100,16 +95,13 @@
     if(hover){const f=fc[i],w=f.stop===selected?f.share:0,k=f.perWave;
       if(w>0){const r=22+24*w,next=game.started?game.waveInfo().next:0;
         out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.08+.16*w).toFixed(2),stroke:C.accent,'stroke-width':1.5+2*w});
-        const right=hx<VBW*.72,lx=right?hx+r+6:hx-r-6,anchor=right?'start':'end';   // keep the label inside the board
-        out+=text(lx,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':anchor});
-        if(next>=0)out+=text(lx,hy+15,`下批 ${k[next]}/${D.waves[next][i]} 人`,12,C.accent,{'font-weight':500,'text-anchor':anchor});}}
+        out+=text(hx+r+6,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace'});
+        if(next>=0)out+=text(hx+r+6,hy+15,`下批 ${k[next]}/${D.waves[next][i]} 人`,12,C.accent,{'font-weight':500});}}
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
-    out+=text(hx,labelY(i),o.name,14,C.ink,{'text-anchor':'middle','font-weight':600});
-    // people at home deciding: beside a building under its road, above a building beside its road
-    const side=(o.house||[0,38])[0]!==0,[bx,by]=side?[hx-17,hy-46]:[hx+20,hy-12];
-    if(h.home)out+=rect(bx,by,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(bx+17,by+15,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
+    out+=text(hx,i===3?hy-22:hy+28,o.name,14,C.ink,{'text-anchor':'middle','font-weight':600});
+    if(h.home)out+=rect(hx+20,hy-12,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(hx+37,hy+3,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
     return out;
   }
   function drawMap(){
@@ -255,9 +247,6 @@
   function setTheme(t){document.documentElement.setAttribute('data-theme',t);$('thPaper').setAttribute('aria-pressed',String(t==='light'));$('thInk').setAttribute('aria-pressed',String(t==='dark'));
     try{localStorage.setItem('tl-theme',t);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
-  // board switch: the board is read at load, so switching reloads straight into the game (no cover)
-  document.querySelectorAll('#mapSeg button').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.map===D.map));
-    b.onclick=()=>{if(b.dataset.map===D.map)return;if(game.started&&!game.done&&!confirm('換地圖會清除本局進度，是否繼續？'))return;location.hash=`map=${b.dataset.map}&intro=0`;location.reload();};});
   // For the cover hand-off: every block of the board in screen pixels, so the cover's dots can land exactly on them.
   window.TL_BOARD={targets(){
     const m=board.getScreenCTM();if(!m)return null;
@@ -272,7 +261,6 @@
   $('source').textContent=D.source.geography+' '+D.source.demand;
   if(window.COVER)$('coverSource').textContent=`開場封面：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（${window.COVER.tide.period||'24 個工作日'}）；圓點是全港 455 個分區的出行量。`;
   $('totalN').textContent=total;
-  document.querySelectorAll('.hwBase').forEach(e=>e.textContent=P.headwayBase);document.querySelectorAll('.hwStep').forEach(e=>e.textContent=P.headwayStep);
   $('goal').innerHTML=`<b>${P.target}</b> 過關：開局三站要擺得很準，不然要靠中途挪站補救。<b>${P.highScore}</b> 高分：一定要跟著潮汐挪站。<b>${P.masterScore}</b> 潮汐大師：每一步都挪得準。`;
   $('tickMaster').style.left=`${100*P.masterScore/total}%`;$('tickMaster').dataset.label=`大師 ${P.masterScore}`;
   $('tickPass').style.left=`${100*P.target/total}%`;$('tickPass').dataset.label=`過關 ${P.target}`;
