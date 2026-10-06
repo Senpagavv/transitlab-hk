@@ -105,6 +105,17 @@ test('Back home, people think it over before driving (homeThink seconds, within 
   }
   assert(checked>0,'nobody came home and drove');
 });
+test('A full stop attracts nobody at the moment of deciding; walkers never turn back',()=>{
+  const g=setup([0,7,11]);g.advance(60);
+  const p=g.people.find(p=>p.origin===0&&p.state==='future')||g.people.find(p=>p.origin===0);p.deadline=1e9;p.avoid=[];
+  const s=g.stops[0],keep=s.queue;
+  assert(g.attraction(p,s)>0);s.queue=Array(P.queue).fill(-1);assert.equal(g.attraction(p,s),0);s.queue=keep;
+  const h=setup([0,7,11]),walk=h.walk.bind(h);let checked=0;
+  h.walk=(q,id,from)=>{if(q.state!=='walk'||q.target===id)assert(h.stops[id].queue.length<P.queue,'chose a full stop');checked++;walk(q,id,from);};
+  finish(h);assert(checked>0);
+  for(const e of h.events.filter(e=>e.type==='walk')){const next=h.events.find(x=>x.id===e.id&&x.time>=e.time&&x!==e&&['walk','queue','full','return'].includes(x.type));
+    if(next&&next.type==='walk')assert(next.time>e.time||h.events.some(x=>x.id===e.id&&x.type==='switch'&&x.time===next.time),'changed course mid-walk');}
+});
 test('Every car has a reason the result screen can show',()=>{
   const g=finish(setup());const why=new Set(g.events.filter(e=>e.type==='car').map(e=>e.why));
   for(const w of why)assert(['沒有夠近的站','站滿了','等太久'].includes(w),w);

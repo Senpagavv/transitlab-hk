@@ -7,7 +7,7 @@
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:30,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
-    reconsider:4,target:131,highScore:140,masterScore:146};
+    reconsider:4,target:133,highScore:140,masterScore:146};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
@@ -107,6 +107,7 @@
     // after this person was turned away there, or if they cannot make a bus in time.
     attraction(p,s,from=D.origins[p.origin].cell,walked=0) {
       if(!s.cell||s.ready>this.t||p.avoid.includes(s.id+':'+s.version))return 0;
+      if(s.queue.length>=P.queue)return 0;          // a full stop attracts nobody at the moment they decide
       const steps=dist(from,s.cell);if(steps<0)return 0;
       const share=shareAt(p.origin,s.cell,walked,from);if(!share)return 0;
       const walk=steps*P.walkStep,cycle=this.headway(s);
@@ -125,13 +126,16 @@
     decide(p) {
       const choice=this.choose(p,D.origins[p.origin].cell);
       if(choice){p.trips++;p.switched=false;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
-      else p.retryAt=this.t+P.reconsider;
+      else{p.retryAt=this.t+P.reconsider;
+        // nothing chosen because the stop they would use is full right now — that is the reason if they end up driving
+        if(this.stops.some(s=>s.cell&&s.ready<=this.t&&s.queue.length>=P.queue&&shareAt(p.origin,s.cell)>p.preference))p.lastWhy='站滿了';}
     }
     leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
     // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
     // walk (already walked + still to walk) is still within their willingness — once per trip; otherwise walk
     // home, think for homeThink seconds, then choose once between the nearest stop that suits them (by the same
-    // distance rule, the stop that was full included) and driving. At most two trips out from home.
+    // distance rule; the stop that was full counts again unless it is still full) and driving. At most two trips
+    // out from home. Whoever is already walking never turns back, even if a nearer stop frees up.
     reroute(p,here,failed,why,excluded=-1) {
       this.leave(p);
       if(failed){p.avoid.push(failed.id+':'+failed.version);p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
