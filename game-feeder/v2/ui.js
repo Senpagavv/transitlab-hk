@@ -67,6 +67,7 @@
       if(game.t>=t0&&!rang.has(pk.wave)){rang.add(pk.wave);fxTide(pk.origin);toast(`漲潮 · ${name} 這批 ${n} 人出門`,'tide');}}
     if(lastDelivered<P.target&&game.delivered>=P.target)toast(`過關 · CLEARED  ${P.target} 人送達`);
     if(lastDelivered<P.highScore&&game.delivered>=P.highScore)toast(`高分 · HIGH SCORE  ${P.highScore} 人送達`);
+    if(lastDelivered<P.masterScore&&game.delivered>=P.masterScore)toast(`潮汐大師 · TIDE MASTER  ${P.masterScore} 人送達`);
     lastDelivered=game.delivered;
   }
 
@@ -202,14 +203,17 @@
   function render(){drawMap();drawSide();if(game.done&&!shown){shown=true;playing=false;showResult();drawSide();}}
   const reasons=['沒有夠近的站','站滿了','等太久'];
   function showResult(){
-    const tier=game.delivered>=P.highScore?2:game.delivered>=P.target?1:0;
+    const tier=game.delivered>=P.masterScore?3:game.delivered>=P.highScore?2:game.delivered>=P.target?1:0;
     $('result').classList.toggle('win',tier>0);
-    $('resultTitle').textContent=['未過關','過關','高分 · 跟上了潮汐'][tier];$('resultEn').textContent=['Try again','Cleared','High score'][tier];
+    $('resultTitle').textContent=['未過關','過關','高分 · 跟上了潮汐','潮汐大師'][tier];$('resultEn').textContent=['Try again','Cleared','High score','Tide master'][tier];
     $('resultScore').textContent=`送達 ${game.delivered} / ${total} · 開車 ${game.cars} · 未完成 ${game.missed}`;
     const cars=game.events.filter(e=>e.type==='car'),count=(o,r)=>cars.filter(e=>e.origin===o&&e.why===r).length;
     $('resultRows').innerHTML=D.origins.map((o,i)=>{const h=game.homeStats(i);return `<tr><td>${o.name}</td><td>${h.delivered}/${h.total}</td>${reasons.map(r=>`<td>${count(i,r)||''}</td>`).join('')}<td>${h.missed||''}</td></tr>`;}).join('');
     const by=reasons.map(r=>cars.filter(e=>e.why===r).length),top=by.indexOf(Math.max(...by));
-    $('resultHint').textContent=tier===2?'這局跟上了每一次高峰。可以試試用更少的搬站次數做到。':
+    const moved=game.commands.length;
+    $('resultHint').textContent=tier===3?'每一次漲潮都接住了。':
+      tier===2?`已經跟上了潮汐（挪站 ${moved} 次）。潮汐大師要 ${P.masterScore}：試試開局就把兩座站留在南邊（四次高峰有三次在南邊），再讓一座站跟著高峰走。`:
+      tier===1?(moved?`靠挪站過關了。高分 ${P.highScore} 要每次高峰前約 30 秒就把站挪到位。`:`開局擺得很準，一站不挪也過關了。高分 ${P.highScore} 光靠擺站到不了，要跟著潮汐表挪站。`):
       top===0?`開車的人裡，最多是因為「太遠」（${by[0]} 人）：站離屋苑每近一格，願意來的人多 20%。`:
       `開車的人裡，最多是因為「${reasons[top]}」（${by[top]} 人）：看潮汐表，在高峰前 30 秒把一座站搬到那個屋苑旁邊，分走一部分人。`;
     $('result').showModal();
@@ -257,7 +261,8 @@
   $('source').textContent=D.source.geography+' '+D.source.demand;
   if(window.COVER)$('coverSource').textContent=`開場封面：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（${window.COVER.tide.period||'24 個工作日'}）；圓點是全港 455 個分區的出行量。`;
   $('totalN').textContent=total;
-  $('goal').innerHTML=`送達 <b>${P.target}</b> 人過關，<b>${P.highScore}</b> 人高分——光靠擺站到不了高分，要在高峰前搬站。`;
+  $('goal').innerHTML=`<b>${P.target}</b> 過關：開局三站要擺得很準，不然要靠中途挪站補救。<b>${P.highScore}</b> 高分：一定要跟著潮汐挪站。<b>${P.masterScore}</b> 潮汐大師：每一步都挪得準。`;
+  $('tickMaster').style.left=`${100*P.masterScore/total}%`;$('tickMaster').dataset.label=`大師 ${P.masterScore}`;
   $('tickPass').style.left=`${100*P.target/total}%`;$('tickPass').dataset.label=`過關 ${P.target}`;
   $('tickHigh').style.left=`${100*P.highScore/total}%`;$('tickHigh').dataset.label=`高分 ${P.highScore}`;
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.getElementById('cover'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done){playing=!playing;last=performance.now();render();}}});

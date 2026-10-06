@@ -105,12 +105,14 @@ body.entered .side.right{animation-name:sideInR}
 .chip i{width:5px;height:5px;border-radius:50%;background:var(--s-accent);font-style:normal}
 .box{background:var(--s-soft);border:1px solid var(--s-line);border-radius:6px;padding:11px 12px}
 .goal .goalnum{font-size:13px;color:var(--s-ink2)}.goal .goalnum b{font-size:22px;color:var(--s-accent);font-weight:500}
-.gauge{position:relative;height:10px;margin:10px 0 16px;background:var(--s-raise);border-radius:5px}
+.gauge{position:relative;height:10px;margin:24px 0 20px;background:var(--s-raise);border-radius:5px}
 .gauge i{position:absolute;inset:0 auto 0 0;border-radius:5px;background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));
   box-shadow:0 0 12px color-mix(in srgb,var(--s-accent2) 55%,transparent);transition:width .45s cubic-bezier(.2,.7,.2,1)}
 .gauge em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--s-ink)}
 .gauge em::after{content:attr(data-label);position:absolute;top:15px;left:-3px;transform:translateX(-100%);font:500 10px var(--s-mono);color:var(--s-ink2);white-space:nowrap;font-style:normal}
-#tickHigh::after{left:5px;transform:none}
+#tickHigh::after{left:50%;transform:translateX(-50%);top:auto;bottom:15px}
+#tickMaster::after{left:5px;transform:none}
+#tickMaster{background:var(--s-accent)}
 .controls{margin:14px 0 14px;gap:6px}.controls #start{flex:1;justify-content:center;height:34px;font-size:14px}
 .controls .seg button{height:32px;font-size:12.5px}
 .stations{display:flex;gap:6px;margin:6px 0 8px}

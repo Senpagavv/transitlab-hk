@@ -15,7 +15,7 @@ const seeds=[1781,42,73,99,2026].map(s=>({seed:s,novice:B.play(r.novice.layout,[
   chaser:chase?B.play(chase.layout,chase.moves,s).delivered:null,greedy:B.play(greedyBest.layout,greedyBest.moves,s).delivered}));
 const report={version,generated:new Date().toISOString(),
   demand:{total:r.demand,waves:D.waves,peaks:D.peaks||null},
-  parameters:{seats:P.seats,queue:P.queue,headway:`${P.headwayBase}+${P.headwayStep}×格`,willing:P.willing||null,target:P.target,highScore:P.highScore,moves:P.moves},
+  parameters:{seats:P.seats,queue:P.queue,headway:`${P.headwayBase}+${P.headwayStep}×格`,willing:P.willing||null,target:P.target,highScore:P.highScore,masterScore:P.masterScore,moves:P.moves},
   legibility:r.legibility,statics:{count:r.statics.length,...r.dist,
     reachTarget:r.statics.filter(s=>s.delivered>=P.target).length,reachHigh:r.statics.filter(s=>s.delivered>=P.highScore).length},
   bots:{novice:r.novice,reader:r.reader,bestStatic:r.bestStatic,bestChaser:chase,greedyFromNovice:greedyNovice,greedyFromBest:greedyBest},

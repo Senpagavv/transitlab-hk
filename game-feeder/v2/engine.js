@@ -7,7 +7,7 @@
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:30,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,patience:210,queuePatience:120,
-    reconsider:4,target:120,highScore:133};
+    reconsider:4,target:128,highScore:138,masterScore:145};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
@@ -80,11 +80,11 @@
         // and may try again once the new stop is built (the move was not their failure).
         const waiting=[...s.queue,...s.boarding].map(pid=>this.person(pid)).filter(p=>['queue','seated'].includes(p.state));
         s.queue=[];s.boarding=[];
-        for(const p of waiting)this.reroute(p,old,null,'搬站返家',true);
+        for(const p of waiting)this.reroute(p,old,null,'搬站返家');
         for(const p of this.people) if(p.state==='walk'&&p.target===id) {
           const anchor=this.currentNode(p),pos=this.pos(p);
           p.walked+=(this.t-p.since)/P.walkStep;p.path=[pos];p.since=this.t;
-          this.reroute(p,anchor,null,'原站搬遷',true,id);
+          this.reroute(p,anchor,null,'原站搬遷',id);
         }
       }
       this.emit(this.started?'move':'place',null,{stop:id,cell:cell.slice()});return true;
@@ -129,14 +129,14 @@
     }
     leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
     // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
-    // walk (already walked + still to walk) is still within their willingness; otherwise walk home.
-    // After a failure of their own they drive once home; after a move they may try again from home.
-    reroute(p,here,failed,why,mayRetry=false,excluded=-1) {
+    // walk (already walked + still to walk) is still within their willingness; otherwise walk home, where they
+    // think it over like anyone at home (up to homeGrace, within their patience) before deciding to drive.
+    // At most two trips out per person, so nobody wanders back and forth.
+    reroute(p,here,failed,why,excluded=-1) {
       this.leave(p);
-      if(failed)p.avoid.push(failed.id+':'+failed.version);
+      if(failed){p.avoid.push(failed.id+':'+failed.version);p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
       const choice=p.attempts<2?this.choose(p,here,excluded,p.walked):null;
       if(choice){p.attempts++;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
-      if(!mayRetry){p.giveUp=true;p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
       this.goHome(p,why,here);
     }
     goHome(p,why,from,turnedAway) {
@@ -197,7 +197,7 @@
           }else{const full=s&&s.queue.length>=P.queue,here=p.path.at(-1).slice();
             if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
             if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
-            else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建',!full);}
+            else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}
         } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           if(p.giveUp){this.car(p);continue;}

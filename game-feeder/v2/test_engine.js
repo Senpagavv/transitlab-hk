@@ -71,17 +71,24 @@ test('Nobody walks to a stop that is as far as the MTR, so nobody walks past the
     for(const p of g.people)assert(p.walked<toMTR[p.origin]+1e-6,`${D.origins[p.origin].name} walked ${p.walked} ≥ ${toMTR[p.origin]}`);
   }
 });
-test('Turned away: switch on the spot within the same walking budget, at most once; otherwise home and drive',()=>{
+test('Turned away: switch on the spot within the walking budget; otherwise home to think it over; two trips out at most',()=>{
   const g=finish(setup([1,0,7]));
   const people=new Set(g.events.filter(e=>e.type==='full'||e.why==='久候返家').map(e=>e.id));
   assert(people.size>0);
   for(const id of people){
-    const p=g.person(id),walks=g.events.filter(e=>e.id===id&&e.type==='walk');
-    assert(walks.length<=2,'more than one switch');
-    assert(p.walked<=5+1e-6);
-    assert(!g.events.some(e=>e.id===id&&e.type==='home'&&g.events.some(w=>w.id===id&&w.type==='walk'&&w.time>e.time)),'went home and came out again after a failure');
+    const walks=g.events.filter(e=>e.id===id&&e.type==='walk');
+    assert(walks.length<=2,'more than two trips out');
   }
   assert(g.events.some(e=>e.type==='switch'),'nobody ever switched');
+});
+test('Back home, people think it over before driving (up to homeGrace, within their patience)',()=>{
+  const g=finish(setup([1,0,7]));let checked=0;
+  for(const car of g.events.filter(e=>e.type==='car')){
+    const home=g.events.filter(e=>e.id===car.id&&e.type==='home'&&e.time<=car.time).at(-1);if(!home)continue;
+    const p=g.person(car.id),expect=Math.min(P.homeGrace,p.deadline-home.time);
+    assert(car.time-home.time>=expect-P.tick-1e-6,`drove ${car.time-home.time}s after getting home, expected ~${expect}s`);checked++;
+  }
+  assert(checked>0,'nobody came home and drove');
 });
 test('Every car has a reason the result screen can show',()=>{
   const g=finish(setup());const why=new Set(g.events.filter(e=>e.type==='car').map(e=>e.why));
