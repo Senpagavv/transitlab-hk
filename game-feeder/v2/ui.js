@@ -39,8 +39,9 @@
     for(let k=0;k<Math.min(3,n);k++)m+=svg('g',{class:'fx car',style:`--dx:${dir*(80+k*18)}px;animation-delay:${k*.12}s`},
       rect(x-9+dir*22,y+12+k*4,18,9,C.bad,C.bad,{rx:3})+svg('circle',{cx:x-4+dir*22,cy:y+21+k*4,r:2.2,fill:C.ink})+svg('circle',{cx:x+5+dir*22,cy:y+21+k*4,r:2.2,fill:C.ink}));
     fx(m,2000);pulse('hudBad','hit');}
+  // Someone turned away at a full stop: a quiet red ripple, no words (the stop itself carries the FULL chip).
   function fxFull(s){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
-    fx(svg('rect',{class:'fx flash',x:x-34,y:y-30,width:68,height:12,rx:3,fill:C.bad,opacity:.9})+svg('text',{class:'fx float',x:x+36,y:y-22,fill:C.bad,stroke:C.panel,'font-size':12},'滿'),1500);}
+    fx(svg('circle',{class:'fx ring',cx:x,cy:y,r:24,stroke:C.bad,style:'--d:1s'}),1100);}
   function fxDepart(s,n){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
     fx(svg('circle',{class:'fx ring',cx:x,cy:y,r:22,stroke:C.accent,style:'--d:.9s'}),1000);}
   function fxTide(o){const [x,y]=houseAt(o);
@@ -126,6 +127,10 @@
       out+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':`放置接駁站於 ${c[0]+1} 列 ${c[1]+1} 行`},
         svg('circle',{cx:x,cy:y,r:11,fill:on?C.accent:C.panel,stroke:on?C.accent:C.ink3,'stroke-width':1.3})+svg('text',{x,y:y+5,'font-size':15,fill:on?C.paper:C.ink3,'text-anchor':'middle'},'＋'));
     }
+    for(const p of game.people)if(['walk','return'].includes(p.state)){   // people walk under buses and stops
+      const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
+      out+=svg('circle',{cx:x+ox,cy:y+oy,r:3.6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1});
+    }
     for(const b of game.trips.filter(b=>!b.done)){       // buses under the stops
       const [x,y]=xy(along(b.path,game.t-b.since,P.busStep));
       out+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.25});
@@ -133,16 +138,16 @@
     }
     for(const s of game.stops){if(!s.cell)continue;
       const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue;
-      let content=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:5});
+      let content='';
+      if(full){const breathe=(.35+.3*Math.sin(performance.now()/380)).toFixed(2);   // a slow red breath while the queue is full
+        content+=svg('circle',{cx:x,cy:y,r:27,fill:C.bad,'fill-opacity':(breathe*.18).toFixed(3),stroke:C.bad,'stroke-width':1.5,'stroke-opacity':breathe});
+        content+=rect(x+20,y-58,58,16,C.bad,C.bad,{rx:8})+svg('text',{x:x+49,y:y-46.5,'font-size':9.5,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace','letter-spacing':'.08em','font-weight':600},'FULL 滿');}
+      content+=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:5});
       content+=svg('text',{x,y:y+7,'font-size':19,fill:build?C.accent:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif'},letters[s.id]);
       content+=text(x,y+31,game.done?'':build?`重建 ${Math.ceil(build)}s`:game.started?`發車 ${fmt(game.eta(s))}`:`班距 ${game.headway(s)}s`,11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
       for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-29+j*10,y:y-37,width:8,height:8,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1.1});
       for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-31+j*8,y:y-26,width:6,height:7,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1});
       out+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':`接駁站 ${letters[s.id]}：座位 ${s.boarding.length}/${P.seats}，排隊 ${s.queue.length}/${P.queue}`},content);
-    }
-    for(const p of game.people)if(['walk','return'].includes(p.state)){
-      const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
-      out+=svg('circle',{cx:x+ox,cy:y+oy,r:3.6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1});
     }
     $('board').innerHTML=out;
     if(focusAttr){restoringFocus=true;try{$('board').querySelector(`[${focusAttr}="${focusVal}"]`)?.focus({preventScroll:true});}finally{restoringFocus=false;}}
@@ -168,7 +173,9 @@
     if(!cell){$('stopPanel').innerHTML=h+'<p>還沒放。滑鼠停在地圖的 ＋ 上先看預覽，再點擊放站。</p>';return;}
     const steps=dist(cell,D.hub),hw=headwayAt(cell),fc=game.forecast(hover?selected:-1,hover);
     const served=fc.filter(f=>f.stop===selected).map(f=>`${D.origins[f.origin].name} ${Math.round(f.share*100)}%`).join('、')||'沒有屋苑選這座站';
+    const beyond=D.origins.map((o,i)=>i).filter(i=>{const d=dist(D.origins[i].cell,cell);return d>=Tide.toMTR[i]&&Tide.willing(d)>0;}).map(i=>D.origins[i].name);
     h+=`<div class="r"><span>到港鐵</span><span>${steps} 格 → 班距 <b>${hw}s</b></span></div><div class="r"><span>誰會來</span><span>${served}</span></div>`;
+    if(beyond.length)h+=`<div class="r"><span>不會來</span><span>${beyond.join('、')}（比走去港鐵還遠）</span></div>`;
     if(!hover){
       const build=Math.max(0,s.ready-game.t);
       h+=`<div class="r"><span>下一班</span><span class="big">${game.done?'—':!game.started?`開局 +${hw}s`:build?`重建 ${Math.ceil(build)}s`:fmt(game.eta(s))}</span></div>`;
@@ -236,10 +243,21 @@
   function setTheme(t){document.documentElement.setAttribute('data-theme',t);$('thPaper').setAttribute('aria-pressed',String(t==='light'));$('thInk').setAttribute('aria-pressed',String(t==='dark'));
     try{localStorage.setItem('tl-theme',t);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
+  // For the cover hand-off: every block of the board in screen pixels, so the cover's dots can land exactly on them.
+  window.TL_BOARD={targets(){
+    const m=board.getScreenCTM();if(!m)return null;
+    const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],isRoad=c=>D.roads.some(q=>same(q,c));
+    for(const c of D.roads){const [x,y]=xy(c);items.push({p:at(x,y),w:20*k,h:20*k,color:C.road,kind:'road'});
+      for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(isRoad(n)){const [x2,y2]=xy(n),h=n[0]!==c[0];
+        items.push({p:at((x+x2)/2,(y+y2)/2),w:(h?52:20)*k,h:(h?20:42)*k,color:C.road,kind:'road'});}}
+    D.origins.forEach((o,i)=>{const [hx,hy]=houseAt(i);items.push({p:at(hx,hy+1),w:34*k,h:28*k,color:C.ink,kind:'house'});});
+    const [mx,my]=xy(D.hub);items.push({p:at(mx,my),w:46*k,h:44*k,color:C.ink,kind:'hub'});
+    return{items,hub:at(mx,my),k};
+  }};
   $('source').textContent=D.source.geography+' '+D.source.demand;
   if(window.COVER)$('coverSource').textContent=`開場封面：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（${window.COVER.tide.period||'24 個工作日'}）；圓點是全港 455 個分區的出行量。`;
   $('totalN').textContent=total;
-  $('goal').innerHTML=`送達 <b>${P.target}</b> 人過關（三分之二），<b>${P.highScore}</b> 人高分——光靠擺站到不了高分，要在高峰前搬站。`;
+  $('goal').innerHTML=`送達 <b>${P.target}</b> 人過關，<b>${P.highScore}</b> 人高分——光靠擺站到不了高分，要在高峰前搬站。`;
   $('tickPass').style.left=`${100*P.target/total}%`;$('tickPass').dataset.label=`過關 ${P.target}`;
   $('tickHigh').style.left=`${100*P.highScore/total}%`;$('tickHigh').dataset.label=`高分 ${P.highScore}`;
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.getElementById('cover'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done){playing=!playing;last=performance.now();render();}}});

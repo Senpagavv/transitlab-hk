@@ -93,8 +93,11 @@ button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--s-info)
 
 /* ---- the game: left column · map plate · right column ---- */
 .eg{flex:1;min-height:0;display:flex}
-body.entered .eg{animation:appIn .7s cubic-bezier(.2,.7,.2,1) both}
-@keyframes appIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+/* the board stays put (the cover's blocks land exactly on it); only the side columns glide in */
+body.entered .side{animation:sideIn .8s cubic-bezier(.2,.7,.2,1) both}
+body.entered .side.right{animation-name:sideInR}
+@keyframes sideIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes sideInR{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
 .side{width:360px;flex:0 0 auto;border-right:1px solid var(--s-line);background:var(--s-panel);overflow:auto;padding:16px 17px 30px;scrollbar-width:thin}
 .side.right{width:318px;border-right:0;border-left:1px solid var(--s-line)}
 .scol{font-size:14px;line-height:1.58}
@@ -235,12 +238,12 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 /* ---- the cover (from the suite) ---- */
 #cover{position:fixed;inset:0;z-index:200;background:var(--s-paper);overflow:hidden;
   background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;transition:opacity .6s ease}
-#cover.gone{opacity:0;pointer-events:none}
+#cover.gone{opacity:0;pointer-events:none;transition:opacity .55s ease}
 .cv-stage{position:absolute;inset:0}
 #cover canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .cv-copy{position:absolute;left:max(6vw,32px);top:50%;transform:translateY(-52%);max-width:620px;z-index:3;transition:opacity .35s,transform .5s}
-#cover.zooming .cv-copy{opacity:0;transform:translate(-24px,-52%)}
-#cover.zooming .cv-bar{opacity:0;transform:translate(-50%,16px)}
+#cover.leaving .cv-copy{opacity:0;transform:translate(-24px,-52%)}
+#cover.leaving .cv-bar{opacity:0;transform:translate(-50%,16px)}
 .cv-logo{width:68px;height:68px;image-rendering:pixelated;display:block;margin-bottom:26px}
 .cv-title{font-family:var(--s-display);font-weight:600;font-size:clamp(42px,5.6vw,72px);line-height:1.03;letter-spacing:-.01em;color:var(--s-ink);margin:0 0 18px}
 .cv-title em{font-style:italic;font-weight:500;color:var(--s-accent)}
@@ -327,9 +330,9 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 
     <div class="lbl" style="margin-top:16px">Three rules · 三條規則</div>
     <ol class="mini">
-      <li><b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。</li>
-      <li><b>離港鐵越近，班次越密。</b>班距＝60 秒＋到港鐵每格 10 秒；每班 6 座，最多再排 8 人。</li>
-      <li><b>看潮汐表。</b>每區一次高峰（+15 人），高峰前可以搬站：6 次，每次重建 20 秒。</li>
+      <li><b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。站要比港鐵近才有人去。</li>
+      <li><b>離港鐵越近，班次越密。</b>班距＝60 秒＋到港鐵每格 10 秒；每班 6 座，最多再排 8 人。滿了就近換站，走不動就回家開車。</li>
+      <li><b>看潮汐表。</b>每區一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。</li>
     </ol>
     <div class="lbl" style="margin-top:14px">How to read the map · 怎麼看</div>
     <div class="legend">
@@ -390,10 +393,11 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 <span class="lbl">Rules &amp; sources · 規則與資料</span><h2 class="h1">規則</h2>
 <ol class="rules">
 <li><b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。</li>
+<li><b>站要比港鐵近。</b>這些人今天開車，就是因為走去港鐵太遠；要走得和去港鐵一樣遠（或要越過港鐵）的站，他們不會去。所以不會有人走過港鐵再坐車回來。</li>
 <li><b>定時發車。</b>每座站的班距＝60 秒＋到港鐵的道路格數×10 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。</li>
-<li><b>滿了、等久了就回家。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，會走回家；回家後如果另一座站也夠近，會改去那裡再試一次（最多出門兩次），不然就開車。從出門起總耐心約 3.5 分鐘，不會因回家或搬站重置。</li>
-<li><b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人要走回家；已開出的巴士照常送達。</li>
-<li><b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：唐人新村每批 6 人，其他三區每批 3 人；每區一次高峰，那一批多 15 人。</li>
+<li><b>滿了、等久了就近換站。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，就在原地看另一座站：全程走路格數（已走的＋還要走的）按同一張表仍在他的意願內、而且仍比港鐵近，就直接走過去；不然就走回家開車。每人最多換一次站。從出門起總耐心約 3.5 分鐘，不會重置。</li>
+<li><b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人就近換站或走回家（搬站不算他們失敗，回家後還可以再出門）；已開出的巴士照常送達。</li>
+<li><b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：唐人新村每批 6 人，其他三區每批 3 人；每區一次高峰，那一批多 18 人。</li>
 </ol>
 <h3>哪些是真的</h3><p id="source"></p><p id="coverSource"></p><p>本關只表達接駁的步行距離、班次與運力怎樣影響大家坐不坐公共交通；土地開發（TOD）與真實減碳核算留待後續關卡。</p></dialog>
 
@@ -413,10 +417,10 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
   // v2 demand: every estate sends the same number of people in every batch,
   // and each estate has exactly one announced peak batch ("rising tide").
   const base=[6,3,3,3], peaks=[
-    {origin:3, wave:1, extra:15},   // 橫洲東頭圍
-    {origin:1, wave:3, extra:15},   // 翹翠峰
-    {origin:0, wave:5, extra:15},   // 唐人新村
-    {origin:2, wave:6, extra:15}    // 蝶翠峰
+    {origin:3, wave:1, extra:18},   // 橫洲東頭圍
+    {origin:1, wave:3, extra:18},   // 翹翠峰
+    {origin:0, wave:5, extra:18},   // 唐人新村
+    {origin:2, wave:6, extra:18}    // 蝶翠峰
   ];
   const waves=Array.from({length:8},(_,w)=>base.map((b,o)=>b+peaks.filter(p=>p.origin===o&&p.wave===w).reduce((s,p)=>s+p.extra,0)));
   const origins=[
@@ -447,7 +451,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:30,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,patience:210,queuePatience:120,
-    reconsider:4,target:120,highScore:135};
+    reconsider:4,target:120,highScore:133};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
@@ -469,6 +473,10 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
   const dist=(a,b)=>route(a,b).length-1;
   const length=path=>path.slice(1).reduce((n,c,i)=>n+Math.abs(c[0]-path[i][0])+Math.abs(c[1]-path[i][1]),0);
   const willing=steps=>steps<0?0:(P.willing[steps]??0);
+  // These residents drive today because the MTR is too far to walk. A stop that is as far on foot as the MTR
+  // itself (or lies beyond it) wins nobody — nobody walks past the station to ride back to it.
+  const toMTR=D.origins.map(o=>dist(o.cell,D.hub));
+  const shareAt=(origin,cell,walked=0,from=D.origins[origin].cell)=>{const total=walked+dist(from,cell);return total<toMTR[origin]?willing(total):0;};
   // How many of n people in one batch come when the share is w (thresholds are evenly spread).
   const comes=(n,w)=>Math.max(0,Math.min(n,Math.ceil(w*n-.5)));
   const headwayAt=cell=>P.headwayBase+dist(cell,D.hub)*P.headwayStep;
@@ -494,7 +502,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
         for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
           born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
           state:'future',preference:thresholds[j],budget:P.patience+40*(r()-.5),
-          queueLimit:P.queuePatience+20*(r()-.5),attempts:0,retryAt:0,avoid:[],
+          queueLimit:P.queuePatience+20*(r()-.5),attempts:0,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
       this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
@@ -512,11 +520,15 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
       s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.build:0;
       s.departAt=this.started?s.ready+this.headway(s):Infinity;
       if(old) {
-        for(const pid of [...s.queue,...s.boarding]) {const p=this.person(pid);if(['queue','seated'].includes(p.state))this.goHome(p,'搬站返家');}
+        // People at the old spot look for another stop from where they stand; if none suits, they walk home
+        // and may try again once the new stop is built (the move was not their failure).
+        const waiting=[...s.queue,...s.boarding].map(pid=>this.person(pid)).filter(p=>['queue','seated'].includes(p.state));
         s.queue=[];s.boarding=[];
+        for(const p of waiting)this.reroute(p,old,null,'搬站返家',true);
         for(const p of this.people) if(p.state==='walk'&&p.target===id) {
-          const anchor=this.currentNode(p),choice=this.choose(p,anchor,id);
-          if(choice)this.walk(p,choice.id,anchor);else this.goHome(p,'原站搬遷',anchor);
+          const anchor=this.currentNode(p),pos=this.pos(p);
+          p.walked+=(this.t-p.since)/P.walkStep;p.path=[pos];p.since=this.t;
+          this.reroute(p,anchor,null,'原站搬遷',true,id);
         }
       }
       this.emit(this.started?'move':'place',null,{stop:id,cell:cell.slice()});return true;
@@ -537,26 +549,39 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
     eta(s) {return s.cell?Math.max(0,s.departAt-this.t):Infinity;}
     // Share of people willing to walk to stop s; zero while it is being built,
     // after this person was turned away there, or if they cannot make a bus in time.
-    attraction(p,s,from=D.origins[p.origin].cell) {
+    attraction(p,s,from=D.origins[p.origin].cell,walked=0) {
       if(!s.cell||s.ready>this.t||p.avoid.includes(s.id+':'+s.version))return 0;
       const steps=dist(from,s.cell);if(steps<0)return 0;
+      const share=shareAt(p.origin,s.cell,walked,from);if(!share)return 0;
       const walk=steps*P.walkStep,cycle=this.headway(s);
       let eta=this.eta(s);
       if(walk>eta)eta+=Math.ceil((walk-eta)/cycle)*cycle;
       const wait=Math.max(0,eta-walk);
-      return this.t+walk+wait<p.deadline?willing(steps):0;
+      return this.t+walk+wait<p.deadline?share:0;
     }
-    choose(p,from,excluded=-1) {
+    choose(p,from,excluded=-1,walked=0) {
       let best=null;
-      for(const s of this.stops){if(s.id===excluded)continue;const appeal=this.attraction(p,s,from);
+      for(const s of this.stops){if(s.id===excluded)continue;const appeal=this.attraction(p,s,from,walked);
         if(appeal>p.preference&&(!best||appeal>best.appeal||appeal===best.appeal&&this.headway(s)<best.headway))best={id:s.id,appeal,headway:this.headway(s)};}
       return best;
     }
     walk(p,id,from) {const path=this.walkingPath(p,from,this.stops[id].cell);Object.assign(p,{state:'walk',target:id,path,since:this.t});this.emit('walk',p,{stop:id});}
     decide(p) {
       const choice=this.choose(p,D.origins[p.origin].cell);
-      if(choice){p.attempts++;this.walk(p,choice.id,D.origins[p.origin].cell);}
+      if(choice){p.attempts++;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
       else p.retryAt=this.t+P.reconsider;
+    }
+    leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
+    // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
+    // walk (already walked + still to walk) is still within their willingness; otherwise walk home.
+    // After a failure of their own they drive once home; after a move they may try again from home.
+    reroute(p,here,failed,why,mayRetry=false,excluded=-1) {
+      this.leave(p);
+      if(failed)p.avoid.push(failed.id+':'+failed.version);
+      const choice=p.attempts<2?this.choose(p,here,excluded,p.walked):null;
+      if(choice){p.attempts++;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
+      if(!mayRetry){p.giveUp=true;p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
+      this.goHome(p,why,here);
     }
     goHome(p,why,from,turnedAway) {
       if(['car','delivered','bus','missed'].includes(p.state))return;
@@ -583,7 +608,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
       }
       for(const s of this.stops){if(!s.cell||s.ready>this.t)continue;
         for(const id of [...s.queue,...s.boarding]){const p=this.person(id);
-          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline){p.lastWhy='等太久';this.goHome(p,'久候返家',undefined,s);}}
+          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline)this.reroute(p,s.cell.slice(),s,'久候返家');}
         this.board(s);if(this.t+1e-6<s.departAt)continue;
         const path=route(s.cell,D.hub),load=s.boarding.splice(0),serial=++s.serial;
         // A scheduled departure. Fleet circulation is abstracted in the headway;
@@ -608,17 +633,20 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
           if(this.t>=p.deadline||this.t>=p.homeUntil)this.car(p);
           else if(p.attempts<2&&this.t>=p.retryAt)this.decide(p);
         } else if(p.state==='walk'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
-          const s=this.stops[p.target];
+          const s=this.stops[p.target];p.walked+=length(p.path);
           if(s&&s.ready<=this.t&&(s.boarding.length<P.seats||s.queue.length<P.queue)&&this.t<p.deadline){
             p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
             this.board(s);
             s.peak=Math.max(s.peak,s.queue.length);
-          }else{const full=s&&s.queue.length>=P.queue;if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
-            p.lastWhy=full?'站滿了':'等太久';this.goHome(p,this.t>=p.deadline?'耐心耗盡':'站已滿員',undefined,full?s:undefined);}
-        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){p.lastWhy='等太久';this.goHome(p,'久候返家',undefined,this.stops[p.target]);}
+          }else{const full=s&&s.queue.length>=P.queue,here=p.path.at(-1).slice();
+            if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
+            if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
+            else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建',!full);}
+        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
+          if(p.giveUp){this.car(p);continue;}
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,homeUntil:Math.min(p.deadline,this.t+P.homeGrace),retryAt:this.t+P.reconsider});this.emit('home',p);
-        }else if(p.state==='walk'&&this.t>=p.deadline){p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
+        }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
       if(this.t>=P.duration)this.closeSession();
     }
@@ -638,7 +666,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
       const cells=this.stops.map(s=>s.id===id?cell:s.cell);
       return D.origins.map((o,i)=>{
         let best=null;
-        cells.forEach((c,sid)=>{if(!c)return;const steps=dist(o.cell,c),w=willing(steps);
+        cells.forEach((c,sid)=>{if(!c)return;const steps=dist(o.cell,c),w=shareAt(i,c);
           if(w>0&&(!best||w>best.share||w===best.share&&headwayAt(c)<headwayAt(best.cell)))best={stop:sid,cell:c,steps,share:w};});
         return{origin:i,stop:best?.stop??-1,steps:best?.steps??null,share:best?.share??0,perWave:D.waves.map(w=>comes(w[i],best?.share??0))};
       });
@@ -655,7 +683,7 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
       active:this.people.filter(p=>!['future','delivered','car','missed'].includes(p.state)).length,
       future:this.people.filter(p=>p.state==='future').length,total:this.people.length,time:this.t,moves:this.moves,done:this.done};}
   }
-  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt};
+  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt,shareAt,toMTR};
   if(typeof module!=='undefined')module.exports=API;root.Tide=API;
 })(typeof window!=='undefined'?window:globalThis);
 
@@ -705,8 +733,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     for(let k=0;k<Math.min(3,n);k++)m+=svg('g',{class:'fx car',style:`--dx:${dir*(80+k*18)}px;animation-delay:${k*.12}s`},
       rect(x-9+dir*22,y+12+k*4,18,9,C.bad,C.bad,{rx:3})+svg('circle',{cx:x-4+dir*22,cy:y+21+k*4,r:2.2,fill:C.ink})+svg('circle',{cx:x+5+dir*22,cy:y+21+k*4,r:2.2,fill:C.ink}));
     fx(m,2000);pulse('hudBad','hit');}
+  // Someone turned away at a full stop: a quiet red ripple, no words (the stop itself carries the FULL chip).
   function fxFull(s){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
-    fx(svg('rect',{class:'fx flash',x:x-34,y:y-30,width:68,height:12,rx:3,fill:C.bad,opacity:.9})+svg('text',{class:'fx float',x:x+36,y:y-22,fill:C.bad,stroke:C.panel,'font-size':12},'滿'),1500);}
+    fx(svg('circle',{class:'fx ring',cx:x,cy:y,r:24,stroke:C.bad,style:'--d:1s'}),1100);}
   function fxDepart(s,n){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
     fx(svg('circle',{class:'fx ring',cx:x,cy:y,r:22,stroke:C.accent,style:'--d:.9s'}),1000);}
   function fxTide(o){const [x,y]=houseAt(o);
@@ -792,6 +821,10 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
       out+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':`放置接駁站於 ${c[0]+1} 列 ${c[1]+1} 行`},
         svg('circle',{cx:x,cy:y,r:11,fill:on?C.accent:C.panel,stroke:on?C.accent:C.ink3,'stroke-width':1.3})+svg('text',{x,y:y+5,'font-size':15,fill:on?C.paper:C.ink3,'text-anchor':'middle'},'＋'));
     }
+    for(const p of game.people)if(['walk','return'].includes(p.state)){   // people walk under buses and stops
+      const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
+      out+=svg('circle',{cx:x+ox,cy:y+oy,r:3.6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1});
+    }
     for(const b of game.trips.filter(b=>!b.done)){       // buses under the stops
       const [x,y]=xy(along(b.path,game.t-b.since,P.busStep));
       out+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.25});
@@ -799,16 +832,16 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     }
     for(const s of game.stops){if(!s.cell)continue;
       const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue;
-      let content=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:5});
+      let content='';
+      if(full){const breathe=(.35+.3*Math.sin(performance.now()/380)).toFixed(2);   // a slow red breath while the queue is full
+        content+=svg('circle',{cx:x,cy:y,r:27,fill:C.bad,'fill-opacity':(breathe*.18).toFixed(3),stroke:C.bad,'stroke-width':1.5,'stroke-opacity':breathe});
+        content+=rect(x+20,y-58,58,16,C.bad,C.bad,{rx:8})+svg('text',{x:x+49,y:y-46.5,'font-size':9.5,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace','letter-spacing':'.08em','font-weight':600},'FULL 滿');}
+      content+=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:5});
       content+=svg('text',{x,y:y+7,'font-size':19,fill:build?C.accent:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif'},letters[s.id]);
       content+=text(x,y+31,game.done?'':build?`重建 ${Math.ceil(build)}s`:game.started?`發車 ${fmt(game.eta(s))}`:`班距 ${game.headway(s)}s`,11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
       for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-29+j*10,y:y-37,width:8,height:8,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1.1});
       for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-31+j*8,y:y-26,width:6,height:7,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1});
       out+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':`接駁站 ${letters[s.id]}：座位 ${s.boarding.length}/${P.seats}，排隊 ${s.queue.length}/${P.queue}`},content);
-    }
-    for(const p of game.people)if(['walk','return'].includes(p.state)){
-      const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
-      out+=svg('circle',{cx:x+ox,cy:y+oy,r:3.6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1});
     }
     $('board').innerHTML=out;
     if(focusAttr){restoringFocus=true;try{$('board').querySelector(`[${focusAttr}="${focusVal}"]`)?.focus({preventScroll:true});}finally{restoringFocus=false;}}
@@ -834,7 +867,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     if(!cell){$('stopPanel').innerHTML=h+'<p>還沒放。滑鼠停在地圖的 ＋ 上先看預覽，再點擊放站。</p>';return;}
     const steps=dist(cell,D.hub),hw=headwayAt(cell),fc=game.forecast(hover?selected:-1,hover);
     const served=fc.filter(f=>f.stop===selected).map(f=>`${D.origins[f.origin].name} ${Math.round(f.share*100)}%`).join('、')||'沒有屋苑選這座站';
+    const beyond=D.origins.map((o,i)=>i).filter(i=>{const d=dist(D.origins[i].cell,cell);return d>=Tide.toMTR[i]&&Tide.willing(d)>0;}).map(i=>D.origins[i].name);
     h+=`<div class="r"><span>到港鐵</span><span>${steps} 格 → 班距 <b>${hw}s</b></span></div><div class="r"><span>誰會來</span><span>${served}</span></div>`;
+    if(beyond.length)h+=`<div class="r"><span>不會來</span><span>${beyond.join('、')}（比走去港鐵還遠）</span></div>`;
     if(!hover){
       const build=Math.max(0,s.ready-game.t);
       h+=`<div class="r"><span>下一班</span><span class="big">${game.done?'—':!game.started?`開局 +${hw}s`:build?`重建 ${Math.ceil(build)}s`:fmt(game.eta(s))}</span></div>`;
@@ -902,10 +937,21 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   function setTheme(t){document.documentElement.setAttribute('data-theme',t);$('thPaper').setAttribute('aria-pressed',String(t==='light'));$('thInk').setAttribute('aria-pressed',String(t==='dark'));
     try{localStorage.setItem('tl-theme',t);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
+  // For the cover hand-off: every block of the board in screen pixels, so the cover's dots can land exactly on them.
+  window.TL_BOARD={targets(){
+    const m=board.getScreenCTM();if(!m)return null;
+    const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],isRoad=c=>D.roads.some(q=>same(q,c));
+    for(const c of D.roads){const [x,y]=xy(c);items.push({p:at(x,y),w:20*k,h:20*k,color:C.road,kind:'road'});
+      for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(isRoad(n)){const [x2,y2]=xy(n),h=n[0]!==c[0];
+        items.push({p:at((x+x2)/2,(y+y2)/2),w:(h?52:20)*k,h:(h?20:42)*k,color:C.road,kind:'road'});}}
+    D.origins.forEach((o,i)=>{const [hx,hy]=houseAt(i);items.push({p:at(hx,hy+1),w:34*k,h:28*k,color:C.ink,kind:'house'});});
+    const [mx,my]=xy(D.hub);items.push({p:at(mx,my),w:46*k,h:44*k,color:C.ink,kind:'hub'});
+    return{items,hub:at(mx,my),k};
+  }};
   $('source').textContent=D.source.geography+' '+D.source.demand;
   if(window.COVER)$('coverSource').textContent=`開場封面：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（${window.COVER.tide.period||'24 個工作日'}）；圓點是全港 455 個分區的出行量。`;
   $('totalN').textContent=total;
-  $('goal').innerHTML=`送達 <b>${P.target}</b> 人過關（三分之二），<b>${P.highScore}</b> 人高分——光靠擺站到不了高分，要在高峰前搬站。`;
+  $('goal').innerHTML=`送達 <b>${P.target}</b> 人過關，<b>${P.highScore}</b> 人高分——光靠擺站到不了高分，要在高峰前搬站。`;
   $('tickPass').style.left=`${100*P.target/total}%`;$('tickPass').dataset.label=`過關 ${P.target}`;
   $('tickHigh').style.left=`${100*P.highScore/total}%`;$('tickHigh').dataset.label=`高分 ${P.highScore}`;
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.getElementById('cover'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done){playing=!playing;last=performance.now();render();}}});
@@ -934,7 +980,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
 </script><script>
 /* Opening cover — adapted from the team product suite ("OPENING · THE TIDE").
    The territory's trip field rises and falls with the 761-detector 24-hour tide.
-   v2.1 adds the hand-off: Enter zooms the dot field into Long Ping, where the game is. */
+   v2.2 hand-off: on Enter the copy fades, the dots around Long Ping gather and fly onto the board one after
+   another (from the MTR outwards), turning from round ink dots into the board's coloured blocks; the rest of
+   the territory fades away, and the cover dissolves onto the real board underneath, block for block. */
 (function () {
   'use strict';
   var D = window.COVER, cover = document.getElementById('cover');
@@ -943,9 +991,8 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   function finish() {
     cover.classList.add('gone'); document.body.classList.add('entered');
     window.dispatchEvent(new CustomEvent('tl:entered'));
-    setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 650);
+    setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 700);
   }
-  // test hook (#intro=0) and a missing payload both skip straight to the game
   if (!D || /(^|[#&])intro=0/.test(location.hash)) { cover.parentNode.removeChild(cover); document.body.classList.add('entered'); return; }
 
   function b64u8(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
@@ -964,6 +1011,14 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   }
   function grp(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
   function hh(x) { return (x < 10 ? '0' + x : '' + x) + ':00'; }
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function easeInOut(u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; }
+  function easeOut(u) { return 1 - Math.pow(1 - u, 3); }
+  function rgba(c) {                            // '#RRGGBB' or 'rgba(r,g,b,a)' → [r,g,b,a]
+    c = String(c).trim();
+    if (c.charAt(0) === '#') { var n = parseInt(c.slice(1, 7), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255, 1]; }
+    var m = c.match(/[\d.]+/g) || [0, 0, 0, 1]; return [+m[0], +m[1], +m[2], m[3] === undefined ? 1 : +m[3]];
+  }
 
   var DOTS = (function () {
     var idx = b64u16(D.dotsI), val = b64u16(D.dotsV), zi = b64u16(D.dotZ), n = idx.length;
@@ -989,50 +1044,44 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   var TREF = Math.max(0.05, tOf(POSV[Math.floor(POSV.length * 0.85)] || baseMax));
   var tVis = function (v) { var t = Math.min(1, tOf(v) / TREF); return t * t * (1.9 - 0.9 * t); };
 
-  var cv = $('cvDots'), state = { hour: LH, raf: 0, zoom: 0 };
+  var cv = $('cvDots'), ctx = cv.getContext('2d'), state = { hour: LH, raf: 0, leaving: false };
   function light() { return document.documentElement.getAttribute('data-theme') !== 'dark'; }
-  function narrow() { return window.innerWidth < 1024; }
   function geom() {
     var rc = cv.getBoundingClientRect(), s = rc.width / rc.height > D.W / D.H ? rc.width / D.W : rc.height / D.H;
-    var g = narrow() ? { s: s, ox: (rc.width - D.W * s) / 2, oy: (rc.height - D.H * s) / 2 } : { s: s, ox: rc.width - D.W * s, oy: (rc.height - D.H * s) / 2 };
-    if (state.zoom > 0) {                       // glide Long Ping to the centre while zooming in
-      var e = state.zoom, s1 = g.s * (1 + 2.2 * e);
-      var sx = g.ox + LP.x * g.s, sy = g.oy + LP.y * g.s;
-      sx += (rc.width / 2 - sx) * e; sy += (rc.height / 2 - sy) * e;
-      g = { s: s1, ox: sx - LP.x * s1, oy: sy - LP.y * s1 };
-    }
-    return g;
+    return window.innerWidth < 1024 ? { s: s, ox: (rc.width - D.W * s) / 2, oy: (rc.height - D.H * s) / 2 } : { s: s, ox: rc.width - D.W * s, oy: (rc.height - D.H * s) / 2 };
   }
-  function draw() {
+  function size() {
     var dpr = Math.min(2, window.devicePixelRatio || 1), rect = cv.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
     var W = Math.round(rect.width * dpr), H = Math.round(rect.height * dpr);
     if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
-    var g = geom(), L = light(), k = g.s * dpr, m = TIDE[state.hour], ctx = cv.getContext('2d');
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
+    return dpr;
+  }
+  // The territory: land, coast and the dot field. `alpha` fades it; `skip` leaves out dots that are flying.
+  function drawMap(alpha, skip) {
+    var dpr = size(), g = geom(), L = light(), k = g.s * dpr, m = TIDE[state.hour];
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+    if (alpha <= 0) return;
+    ctx.globalAlpha = alpha;
     ctx.setTransform(k, 0, 0, k, g.ox * dpr, g.oy * dpr);
     ctx.fillStyle = L ? '#FFFFFF' : '#1B1B1B'; ctx.fill(LAND);
     ctx.strokeStyle = L ? 'rgba(14,122,78,.85)' : 'rgba(110,217,150,.6)'; ctx.lineWidth = 1.1 / k; ctx.stroke(COAST);
-    var RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',', shrink = Math.pow(1 + 2.2 * state.zoom, 0.6);   // keep the halftone fine while zooming
+    var RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',';
     for (var i = 0; i < DOTS.n; i++) {
+      if (skip && skip[i]) continue;
       var val = DOTS.v[i] * baseMax * m;
       if (val <= 0.5) continue;
       var t = tVis(val);
       ctx.fillStyle = RGBA + (0.09 + 0.91 * t).toFixed(3) + ')';
-      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], (1.05 + 1.35 * t) / shrink, 0, 6.2832); ctx.fill();
+      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], 1.05 + 1.35 * t, 0, 6.2832); ctx.fill();
     }
-    if (state.zoom > 0) {                       // Long Ping lights up green as we arrive
-      var e = state.zoom;
-      ctx.fillStyle = 'rgba(18,160,106,' + (0.22 * e).toFixed(3) + ')';
-      ctx.beginPath(); ctx.arc(LP.x, LP.y, 4 + 10 * e, 0, 6.2832); ctx.fill();
-      ctx.strokeStyle = 'rgba(14,122,78,' + (0.9 * e).toFixed(3) + ')'; ctx.lineWidth = 1.6 / k; ctx.stroke();
-    }
+    ctx.globalAlpha = 1;
   }
+  function draw() { if (!state.leaving) drawMap(1); }
 
   (function () {                                // hover: one zone card
     var tip = $('cvTip');
     cv.addEventListener('pointermove', function (e) {
-      if (state.zoom) return;
+      if (state.leaving) return;
       var rect = cv.getBoundingClientRect(), g = geom(), x = (e.clientX - rect.left - g.ox) / g.s, y = (e.clientY - rect.top - g.oy) / g.s;
       var best = -1, bd = 256;
       for (var i = 0; i < DOTS.n; i++) { var dx = DOTS.x[i] - x, dy = DOTS.y[i] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; best = i; } }
@@ -1077,7 +1126,7 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   }
   (function () {                                // scrub the curve
     var mid = $('cvTide'), drag = false;
-    function set(e) { var rc = mid.getBoundingClientRect(); stop(); setHour(Math.round(Math.max(0, Math.min(1, (e.clientX - rc.left) / rc.width)) * 23)); }
+    function set(e) { var rc = mid.getBoundingClientRect(); stop(); setHour(Math.round(clamp((e.clientX - rc.left) / rc.width) * 23)); }
     mid.addEventListener('pointerdown', function (e) { drag = true; mid.setPointerCapture(e.pointerId); set(e); });
     mid.addEventListener('pointermove', function (e) { if (drag) set(e); });
     mid.addEventListener('pointerup', function () { drag = false; });
@@ -1100,24 +1149,66 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     })(t0);
   }
   $('cvPlay').addEventListener('click', rise);
-  window.addEventListener('resize', function () { if (cover.parentNode) { renderTide(); draw(); } });
+  window.addEventListener('resize', function () { if (cover.parentNode && !state.leaving) { renderTide(); draw(); } });
   new MutationObserver(function () { if (cover.parentNode) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-  $('coverEnter').addEventListener('click', function () {
-    stop(); cover.classList.add('zooming'); $('cvTip').classList.remove('on');
-    var t0 = performance.now(), DUR = 1500;
-    (function step(t) {
-      var u = Math.min(1, (t - t0) / DUR);
-      state.zoom = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;   // ease-in-out cubic
-      draw();
-      if (u < 1) requestAnimationFrame(step); else setTimeout(finish, 380);
-    })(t0);
-  });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && cover.parentNode && !cover.classList.contains('zooming')) $('coverEnter').click(); });
+  /* ---- the hand-off: dots gather onto the board ---- */
+  var FADE = 520, FLY = 760, SPREAD = 620, HOLD = 140;
+  function leave(frozenAt) {
+    var B = window.TL_BOARD && window.TL_BOARD.targets();
+    stop(); state.leaving = true; cover.classList.add('leaving'); $('cvTip').classList.remove('on');
+    if (!B || !B.items.length) { drawMap(0); setTimeout(finish, 300); return; }
+    var dpr = size(), g = geom(), m = TIDE[state.hour], L = light();
+    var lpx = g.ox + LP.x * g.s, lpy = g.oy + LP.y * g.s;
+    // the live dots nearest Long Ping, nearest first
+    var live = [];
+    for (var i = 0; i < DOTS.n; i++) {
+      var val = DOTS.v[i] * baseMax * m; if (val <= 0.5) continue;
+      var sx = g.ox + DOTS.x[i] * g.s, sy = g.oy + DOTS.y[i] * g.s, t = tVis(val);
+      live.push({ i: i, x: sx, y: sy, r: (1.05 + 1.35 * t) * g.s, a: 0.09 + 0.91 * t, d: (sx - lpx) * (sx - lpx) + (sy - lpy) * (sy - lpy) });
+    }
+    live.sort(function (a, b) { return a.d - b.d; });
+    // blocks ordered from the MTR outwards, so the board assembles like a ripple leaving the station
+    var items = B.items.slice().sort(function (a, b) {
+      var da = Math.hypot(a.p[0] - B.hub[0], a.p[1] - B.hub[1]), db = Math.hypot(b.p[0] - B.hub[0], b.p[1] - B.hub[1]);
+      return (a.kind === 'hub' ? -1 : 0) - (b.kind === 'hub' ? -1 : 0) || da - db;
+    });
+    var ink = rgba(L ? '#0A0A0A' : '#F5F5F5'), skip = new Uint8Array(DOTS.n), parts = [], n = Math.min(items.length, live.length);
+    for (var j = 0; j < n; j++) {
+      var src = live[j], dst = items[j]; skip[src.i] = 1;
+      parts.push({ x0: src.x, y0: src.y, r0: Math.max(1.4, src.r), a0: src.a, x1: dst.p[0], y1: dst.p[1], w1: dst.w, h1: dst.h,
+        c1: rgba(dst.color), delay: 160 + SPREAD * (j / Math.max(1, n - 1)), house: dst.kind !== 'road' });
+    }
+    // roads underneath, buildings and the MTR on top — the same stacking as the board
+    var order = parts.filter(function (p) { return !p.house; }).concat(parts.filter(function (p) { return p.house; }));
+    var END = 160 + SPREAD + FLY + HOLD, T0 = performance.now(), done = false;
+    function frame(now) {
+      var t = frozenAt === undefined ? now - T0 : frozenAt;
+      drawMap(1 - easeOut(clamp(t / FADE)), skip);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      for (var q = 0; q < order.length; q++) {
+        var p = order[q], u = clamp((t - p.delay) / FLY), e = easeInOut(u), s = easeOut(clamp((u - .55) / .45));
+        var x = p.x0 + (p.x1 - p.x0) * e, y = p.y0 + (p.y1 - p.y0) * e;
+        // a dot first, then it opens out into its block as it lands
+        var w = 2 * p.r0 + (p.w1 - 2 * p.r0) * s, hgt = 2 * p.r0 + (p.h1 - 2 * p.r0) * s, rad = Math.min(w, hgt) / 2 * (1 - s) + (p.house ? 3 : 1.5) * s;
+        var c = [0, 1, 2].map(function (z) { return Math.round(ink[z] + (p.c1[z] - ink[z]) * s); }), a = p.a0 + (Math.max(.9, p.c1[3]) - p.a0) * easeOut(u);
+        ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x - w / 2, y - hgt / 2, w, hgt, rad); else ctx.rect(x - w / 2, y - hgt / 2, w, hgt);
+        ctx.fill();
+      }
+      if (frozenAt !== undefined) return;
+      if (t >= END && !done) { done = true; finish(); }
+      if (t < END + 700) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  $('coverEnter').addEventListener('click', function () { if (!state.leaving) leave(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && cover.parentNode && !state.leaving) leave(); });
 
   renderTide();
-  var held = /coverzoom=([\d.]+)/.exec(location.hash);   // test hook: hold the zoom at a fraction
-  if (held) { cover.classList.add('zooming'); state.zoom = +held[1]; setHour(8); return; }
+  var held = /coverfx=(\d+)/.exec(location.hash);    // test hook: freeze the hand-off at t ms for screenshots
+  if (held) { setHour(8); setTimeout(function () { leave(+held[1]); }, 200); return; }
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setHour(PH);
   else { setHour(LH); setTimeout(rise, 650); }
 })();

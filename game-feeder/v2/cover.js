@@ -1,6 +1,8 @@
 /* Opening cover — adapted from the team product suite ("OPENING · THE TIDE").
    The territory's trip field rises and falls with the 761-detector 24-hour tide.
-   v2.1 adds the hand-off: Enter zooms the dot field into Long Ping, where the game is. */
+   v2.2 hand-off: on Enter the copy fades, the dots around Long Ping gather and fly onto the board one after
+   another (from the MTR outwards), turning from round ink dots into the board's coloured blocks; the rest of
+   the territory fades away, and the cover dissolves onto the real board underneath, block for block. */
 (function () {
   'use strict';
   var D = window.COVER, cover = document.getElementById('cover');
@@ -9,9 +11,8 @@
   function finish() {
     cover.classList.add('gone'); document.body.classList.add('entered');
     window.dispatchEvent(new CustomEvent('tl:entered'));
-    setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 650);
+    setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 700);
   }
-  // test hook (#intro=0) and a missing payload both skip straight to the game
   if (!D || /(^|[#&])intro=0/.test(location.hash)) { cover.parentNode.removeChild(cover); document.body.classList.add('entered'); return; }
 
   function b64u8(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
@@ -30,6 +31,14 @@
   }
   function grp(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
   function hh(x) { return (x < 10 ? '0' + x : '' + x) + ':00'; }
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function easeInOut(u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; }
+  function easeOut(u) { return 1 - Math.pow(1 - u, 3); }
+  function rgba(c) {                            // '#RRGGBB' or 'rgba(r,g,b,a)' → [r,g,b,a]
+    c = String(c).trim();
+    if (c.charAt(0) === '#') { var n = parseInt(c.slice(1, 7), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255, 1]; }
+    var m = c.match(/[\d.]+/g) || [0, 0, 0, 1]; return [+m[0], +m[1], +m[2], m[3] === undefined ? 1 : +m[3]];
+  }
 
   var DOTS = (function () {
     var idx = b64u16(D.dotsI), val = b64u16(D.dotsV), zi = b64u16(D.dotZ), n = idx.length;
@@ -55,50 +64,44 @@
   var TREF = Math.max(0.05, tOf(POSV[Math.floor(POSV.length * 0.85)] || baseMax));
   var tVis = function (v) { var t = Math.min(1, tOf(v) / TREF); return t * t * (1.9 - 0.9 * t); };
 
-  var cv = $('cvDots'), state = { hour: LH, raf: 0, zoom: 0 };
+  var cv = $('cvDots'), ctx = cv.getContext('2d'), state = { hour: LH, raf: 0, leaving: false };
   function light() { return document.documentElement.getAttribute('data-theme') !== 'dark'; }
-  function narrow() { return window.innerWidth < 1024; }
   function geom() {
     var rc = cv.getBoundingClientRect(), s = rc.width / rc.height > D.W / D.H ? rc.width / D.W : rc.height / D.H;
-    var g = narrow() ? { s: s, ox: (rc.width - D.W * s) / 2, oy: (rc.height - D.H * s) / 2 } : { s: s, ox: rc.width - D.W * s, oy: (rc.height - D.H * s) / 2 };
-    if (state.zoom > 0) {                       // glide Long Ping to the centre while zooming in
-      var e = state.zoom, s1 = g.s * (1 + 2.2 * e);
-      var sx = g.ox + LP.x * g.s, sy = g.oy + LP.y * g.s;
-      sx += (rc.width / 2 - sx) * e; sy += (rc.height / 2 - sy) * e;
-      g = { s: s1, ox: sx - LP.x * s1, oy: sy - LP.y * s1 };
-    }
-    return g;
+    return window.innerWidth < 1024 ? { s: s, ox: (rc.width - D.W * s) / 2, oy: (rc.height - D.H * s) / 2 } : { s: s, ox: rc.width - D.W * s, oy: (rc.height - D.H * s) / 2 };
   }
-  function draw() {
+  function size() {
     var dpr = Math.min(2, window.devicePixelRatio || 1), rect = cv.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
     var W = Math.round(rect.width * dpr), H = Math.round(rect.height * dpr);
     if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
-    var g = geom(), L = light(), k = g.s * dpr, m = TIDE[state.hour], ctx = cv.getContext('2d');
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
+    return dpr;
+  }
+  // The territory: land, coast and the dot field. `alpha` fades it; `skip` leaves out dots that are flying.
+  function drawMap(alpha, skip) {
+    var dpr = size(), g = geom(), L = light(), k = g.s * dpr, m = TIDE[state.hour];
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+    if (alpha <= 0) return;
+    ctx.globalAlpha = alpha;
     ctx.setTransform(k, 0, 0, k, g.ox * dpr, g.oy * dpr);
     ctx.fillStyle = L ? '#FFFFFF' : '#1B1B1B'; ctx.fill(LAND);
     ctx.strokeStyle = L ? 'rgba(14,122,78,.85)' : 'rgba(110,217,150,.6)'; ctx.lineWidth = 1.1 / k; ctx.stroke(COAST);
-    var RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',', shrink = Math.pow(1 + 2.2 * state.zoom, 0.6);   // keep the halftone fine while zooming
+    var RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',';
     for (var i = 0; i < DOTS.n; i++) {
+      if (skip && skip[i]) continue;
       var val = DOTS.v[i] * baseMax * m;
       if (val <= 0.5) continue;
       var t = tVis(val);
       ctx.fillStyle = RGBA + (0.09 + 0.91 * t).toFixed(3) + ')';
-      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], (1.05 + 1.35 * t) / shrink, 0, 6.2832); ctx.fill();
+      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], 1.05 + 1.35 * t, 0, 6.2832); ctx.fill();
     }
-    if (state.zoom > 0) {                       // Long Ping lights up green as we arrive
-      var e = state.zoom;
-      ctx.fillStyle = 'rgba(18,160,106,' + (0.22 * e).toFixed(3) + ')';
-      ctx.beginPath(); ctx.arc(LP.x, LP.y, 4 + 10 * e, 0, 6.2832); ctx.fill();
-      ctx.strokeStyle = 'rgba(14,122,78,' + (0.9 * e).toFixed(3) + ')'; ctx.lineWidth = 1.6 / k; ctx.stroke();
-    }
+    ctx.globalAlpha = 1;
   }
+  function draw() { if (!state.leaving) drawMap(1); }
 
   (function () {                                // hover: one zone card
     var tip = $('cvTip');
     cv.addEventListener('pointermove', function (e) {
-      if (state.zoom) return;
+      if (state.leaving) return;
       var rect = cv.getBoundingClientRect(), g = geom(), x = (e.clientX - rect.left - g.ox) / g.s, y = (e.clientY - rect.top - g.oy) / g.s;
       var best = -1, bd = 256;
       for (var i = 0; i < DOTS.n; i++) { var dx = DOTS.x[i] - x, dy = DOTS.y[i] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; best = i; } }
@@ -143,7 +146,7 @@
   }
   (function () {                                // scrub the curve
     var mid = $('cvTide'), drag = false;
-    function set(e) { var rc = mid.getBoundingClientRect(); stop(); setHour(Math.round(Math.max(0, Math.min(1, (e.clientX - rc.left) / rc.width)) * 23)); }
+    function set(e) { var rc = mid.getBoundingClientRect(); stop(); setHour(Math.round(clamp((e.clientX - rc.left) / rc.width) * 23)); }
     mid.addEventListener('pointerdown', function (e) { drag = true; mid.setPointerCapture(e.pointerId); set(e); });
     mid.addEventListener('pointermove', function (e) { if (drag) set(e); });
     mid.addEventListener('pointerup', function () { drag = false; });
@@ -166,24 +169,66 @@
     })(t0);
   }
   $('cvPlay').addEventListener('click', rise);
-  window.addEventListener('resize', function () { if (cover.parentNode) { renderTide(); draw(); } });
+  window.addEventListener('resize', function () { if (cover.parentNode && !state.leaving) { renderTide(); draw(); } });
   new MutationObserver(function () { if (cover.parentNode) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-  $('coverEnter').addEventListener('click', function () {
-    stop(); cover.classList.add('zooming'); $('cvTip').classList.remove('on');
-    var t0 = performance.now(), DUR = 1500;
-    (function step(t) {
-      var u = Math.min(1, (t - t0) / DUR);
-      state.zoom = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;   // ease-in-out cubic
-      draw();
-      if (u < 1) requestAnimationFrame(step); else setTimeout(finish, 380);
-    })(t0);
-  });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && cover.parentNode && !cover.classList.contains('zooming')) $('coverEnter').click(); });
+  /* ---- the hand-off: dots gather onto the board ---- */
+  var FADE = 520, FLY = 760, SPREAD = 620, HOLD = 140;
+  function leave(frozenAt) {
+    var B = window.TL_BOARD && window.TL_BOARD.targets();
+    stop(); state.leaving = true; cover.classList.add('leaving'); $('cvTip').classList.remove('on');
+    if (!B || !B.items.length) { drawMap(0); setTimeout(finish, 300); return; }
+    var dpr = size(), g = geom(), m = TIDE[state.hour], L = light();
+    var lpx = g.ox + LP.x * g.s, lpy = g.oy + LP.y * g.s;
+    // the live dots nearest Long Ping, nearest first
+    var live = [];
+    for (var i = 0; i < DOTS.n; i++) {
+      var val = DOTS.v[i] * baseMax * m; if (val <= 0.5) continue;
+      var sx = g.ox + DOTS.x[i] * g.s, sy = g.oy + DOTS.y[i] * g.s, t = tVis(val);
+      live.push({ i: i, x: sx, y: sy, r: (1.05 + 1.35 * t) * g.s, a: 0.09 + 0.91 * t, d: (sx - lpx) * (sx - lpx) + (sy - lpy) * (sy - lpy) });
+    }
+    live.sort(function (a, b) { return a.d - b.d; });
+    // blocks ordered from the MTR outwards, so the board assembles like a ripple leaving the station
+    var items = B.items.slice().sort(function (a, b) {
+      var da = Math.hypot(a.p[0] - B.hub[0], a.p[1] - B.hub[1]), db = Math.hypot(b.p[0] - B.hub[0], b.p[1] - B.hub[1]);
+      return (a.kind === 'hub' ? -1 : 0) - (b.kind === 'hub' ? -1 : 0) || da - db;
+    });
+    var ink = rgba(L ? '#0A0A0A' : '#F5F5F5'), skip = new Uint8Array(DOTS.n), parts = [], n = Math.min(items.length, live.length);
+    for (var j = 0; j < n; j++) {
+      var src = live[j], dst = items[j]; skip[src.i] = 1;
+      parts.push({ x0: src.x, y0: src.y, r0: Math.max(1.4, src.r), a0: src.a, x1: dst.p[0], y1: dst.p[1], w1: dst.w, h1: dst.h,
+        c1: rgba(dst.color), delay: 160 + SPREAD * (j / Math.max(1, n - 1)), house: dst.kind !== 'road' });
+    }
+    // roads underneath, buildings and the MTR on top — the same stacking as the board
+    var order = parts.filter(function (p) { return !p.house; }).concat(parts.filter(function (p) { return p.house; }));
+    var END = 160 + SPREAD + FLY + HOLD, T0 = performance.now(), done = false;
+    function frame(now) {
+      var t = frozenAt === undefined ? now - T0 : frozenAt;
+      drawMap(1 - easeOut(clamp(t / FADE)), skip);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      for (var q = 0; q < order.length; q++) {
+        var p = order[q], u = clamp((t - p.delay) / FLY), e = easeInOut(u), s = easeOut(clamp((u - .55) / .45));
+        var x = p.x0 + (p.x1 - p.x0) * e, y = p.y0 + (p.y1 - p.y0) * e;
+        // a dot first, then it opens out into its block as it lands
+        var w = 2 * p.r0 + (p.w1 - 2 * p.r0) * s, hgt = 2 * p.r0 + (p.h1 - 2 * p.r0) * s, rad = Math.min(w, hgt) / 2 * (1 - s) + (p.house ? 3 : 1.5) * s;
+        var c = [0, 1, 2].map(function (z) { return Math.round(ink[z] + (p.c1[z] - ink[z]) * s); }), a = p.a0 + (Math.max(.9, p.c1[3]) - p.a0) * easeOut(u);
+        ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x - w / 2, y - hgt / 2, w, hgt, rad); else ctx.rect(x - w / 2, y - hgt / 2, w, hgt);
+        ctx.fill();
+      }
+      if (frozenAt !== undefined) return;
+      if (t >= END && !done) { done = true; finish(); }
+      if (t < END + 700) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  $('coverEnter').addEventListener('click', function () { if (!state.leaving) leave(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && cover.parentNode && !state.leaving) leave(); });
 
   renderTide();
-  var held = /coverzoom=([\d.]+)/.exec(location.hash);   // test hook: hold the zoom at a fraction
-  if (held) { cover.classList.add('zooming'); state.zoom = +held[1]; setHour(8); return; }
+  var held = /coverfx=(\d+)/.exec(location.hash);    // test hook: freeze the hand-off at t ms for screenshots
+  if (held) { setHour(8); setTimeout(function () { leave(+held[1]); }, 200); return; }
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setHour(PH);
   else { setHour(LH); setTimeout(rise, 650); }
 })();

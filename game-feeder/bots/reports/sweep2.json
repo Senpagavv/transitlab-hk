@@ -1,0 +1,266 @@
+[
+ {
+  "hw": [
+   60,
+   10
+  ],
+  "seats": 5,
+  "extra": 15,
+  "demand": 180,
+  "median": 78,
+  "p90": 102,
+  "novice": 114,
+  "best": 115,
+  "chaser": 118,
+  "greedy": 120,
+  "rho": 0.922,
+  "bestLayout": "1-6-11",
+  "chase": {
+   "float": null,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   60,
+   10
+  ],
+  "seats": 5,
+  "extra": 18,
+  "demand": 192,
+  "median": 80,
+  "p90": 105,
+  "novice": 114,
+  "best": 115,
+  "chaser": 122,
+  "greedy": 132,
+  "rho": 0.86,
+  "bestLayout": "0-6-7",
+  "chase": {
+   "float": null,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   60,
+   10
+  ],
+  "seats": 5,
+  "extra": 21,
+  "demand": 204,
+  "median": 80,
+  "p90": 106,
+  "novice": 115,
+  "best": 117,
+  "chaser": 125,
+  "greedy": 125,
+  "rho": 0.816,
+  "bestLayout": "0-6-7",
+  "chase": {
+   "float": null,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   60,
+   10
+  ],
+  "seats": 6,
+  "extra": 15,
+  "demand": 180,
+  "median": 86,
+  "p90": 109,
+  "novice": 129,
+  "best": 129,
+  "chaser": 133,
+  "greedy": 137,
+  "rho": 0.944,
+  "bestLayout": "0-7-11",
+  "chase": {
+   "float": 2,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   60,
+   10
+  ],
+  "seats": 6,
+  "extra": 18,
+  "demand": 192,
+  "median": 86,
+  "p90": 112,
+  "novice": 129,
+  "best": 129,
+  "chaser": 134,
+  "greedy": 146,
+  "rho": 0.913,
+  "bestLayout": "0-7-11",
+  "chase": {
+   "float": 2,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   60,
+   10
+  ],
+  "seats": 6,
+  "extra": 21,
+  "demand": 204,
+  "median": 86,
+  "p90": 114,
+  "novice": 129,
+  "best": 132,
+  "chaser": 138,
+  "greedy": 145,
+  "rho": 0.878,
+  "bestLayout": "0-6-7",
+  "chase": {
+   "float": null,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   50,
+   15
+  ],
+  "seats": 5,
+  "extra": 15,
+  "demand": 180,
+  "median": 77,
+  "p90": 99,
+  "novice": 109,
+  "best": 114,
+  "chaser": 116,
+  "greedy": 121,
+  "rho": 0.884,
+  "bestLayout": "1-7-11",
+  "chase": {
+   "float": 2,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   50,
+   15
+  ],
+  "seats": 5,
+  "extra": 18,
+  "demand": 192,
+  "median": 78,
+  "p90": 99,
+  "novice": 109,
+  "best": 115,
+  "chaser": 119,
+  "greedy": 127,
+  "rho": 0.856,
+  "bestLayout": "1-7-12",
+  "chase": {
+   "float": null,
+   "lead": 30,
+   "back": 150
+  }
+ },
+ {
+  "hw": [
+   50,
+   15
+  ],
+  "seats": 5,
+  "extra": 21,
+  "demand": 204,
+  "median": 78,
+  "p90": 99,
+  "novice": 110,
+  "best": 118,
+  "chaser": 119,
+  "greedy": 126,
+  "rho": 0.834,
+  "bestLayout": "1-7-12",
+  "chase": {
+   "float": null,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   50,
+   15
+  ],
+  "seats": 6,
+  "extra": 15,
+  "demand": 180,
+  "median": 82,
+  "p90": 104,
+  "novice": 123,
+  "best": 123,
+  "chaser": 127,
+  "greedy": 132,
+  "rho": 0.904,
+  "bestLayout": "0-7-11",
+  "chase": {
+   "float": 2,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   50,
+   15
+  ],
+  "seats": 6,
+  "extra": 18,
+  "demand": 192,
+  "median": 84,
+  "p90": 106,
+  "novice": 123,
+  "best": 125,
+  "chaser": 127,
+  "greedy": 143,
+  "rho": 0.883,
+  "bestLayout": "0-7-12",
+  "chase": {
+   "float": 2,
+   "lead": 30,
+   "back": 0
+  }
+ },
+ {
+  "hw": [
+   50,
+   15
+  ],
+  "seats": 6,
+  "extra": 21,
+  "demand": 204,
+  "median": 84,
+  "p90": 107,
+  "novice": 123,
+  "best": 127,
+  "chaser": 132,
+  "greedy": 138,
+  "rho": 0.849,
+  "bestLayout": "0-7-12",
+  "chase": {
+   "float": 2,
+   "lead": 60,
+   "back": 0
+  }
+ }
+]

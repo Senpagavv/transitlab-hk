@@ -9,10 +9,10 @@
   // v2 demand: every estate sends the same number of people in every batch,
   // and each estate has exactly one announced peak batch ("rising tide").
   const base=[6,3,3,3], peaks=[
-    {origin:3, wave:1, extra:15},   // 橫洲東頭圍
-    {origin:1, wave:3, extra:15},   // 翹翠峰
-    {origin:0, wave:5, extra:15},   // 唐人新村
-    {origin:2, wave:6, extra:15}    // 蝶翠峰
+    {origin:3, wave:1, extra:18},   // 橫洲東頭圍
+    {origin:1, wave:3, extra:18},   // 翹翠峰
+    {origin:0, wave:5, extra:18},   // 唐人新村
+    {origin:2, wave:6, extra:18}    // 蝶翠峰
   ];
   const waves=Array.from({length:8},(_,w)=>base.map((b,o)=>b+peaks.filter(p=>p.origin===o&&p.wave===w).reduce((s,p)=>s+p.extra,0)));
   const origins=[

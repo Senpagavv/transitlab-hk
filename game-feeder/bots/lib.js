@@ -21,7 +21,7 @@ module.exports=function bots(E){
   function estimate(layout,useCapacity){
     const cells=layout.map(i=>D.candidates[i]),load=cells.map(()=>0);
     D.origins.forEach((o,i)=>{let best=-1,bw=0;
-      cells.forEach((c,s)=>{const w=willing(dist(o.cell,c));if(w>bw||w===bw&&w>0&&best>=0&&headway(c)<headway(cells[best])){bw=w;best=s;}});
+      cells.forEach((c,s)=>{const w=E.shareAt?E.shareAt(i,c):willing(dist(o.cell,c));if(w>bw||w===bw&&w>0&&best>=0&&headway(c)<headway(cells[best])){bw=w;best=s;}});
       if(best>=0)load[best]+=D.waves.reduce((sum,w)=>sum+comes(w[i],bw),0);});
     if(!useCapacity)return load.reduce((a,b)=>a+b,0);
     return cells.reduce((sum,c,s)=>sum+Math.min(load[s],P.seats*Math.floor((P.duration-headway(c))/headway(c))),0);
@@ -29,17 +29,19 @@ module.exports=function bots(E){
 
   // A tide-table player: before each announced peak, move the stop serving the fewest people
   // in that batch to the free candidate the peaking estate likes best; optionally move it back.
-  function tideMoves(start,lead,back){
+  function tideMoves(start,lead,back,floatId=null){
     if(!D.peaks)return[];
     const moves=[];let cells=start.slice();
     for(const pk of [...D.peaks].sort((a,b)=>a.wave-b.wave)){
       const t=Math.max(1,P.firstWave+pk.wave*P.interval-lead),o=D.origins[pk.origin];
       const free=D.candidates.map((c,i)=>i).filter(i=>!cells.includes(i));
-      const score=i=>willing(dist(o.cell,D.candidates[i]));
+      const score=i=>E.shareAt?E.shareAt(pk.origin,D.candidates[i]):willing(dist(o.cell,D.candidates[i]));
       const target=free.sort((a,b)=>score(b)-score(a)||headway(D.candidates[a])-headway(D.candidates[b]))[0];
       const served=cells.map(()=>0);
-      D.origins.forEach((oo,k)=>{const ws=cells.map(ci=>willing(dist(oo.cell,D.candidates[ci])));const m=Math.max(...ws);if(m>0)served[ws.indexOf(m)]+=D.waves[pk.wave][k]*m;});
-      const id=served.indexOf(Math.min(...served));
+      D.origins.forEach((oo,k)=>{const ws=cells.map(ci=>E.shareAt?E.shareAt(k,D.candidates[ci]):willing(dist(oo.cell,D.candidates[ci])));const m=Math.max(...ws);if(m>0)served[ws.indexOf(m)]+=D.waves[pk.wave][k]*m;});
+      // either the stop doing least right now, or one "floating" stop that follows every peak
+      const id=floatId??served.indexOf(Math.min(...served));
+      if(score(cells[id])>=score(target))continue;          // already where this peak needs it
       if(moves.length>=P.moves)break;
       moves.push({time:t,id,to:target});const from=cells[id];cells[id]=target;
       if(back&&moves.length<P.moves){moves.push({time:P.firstWave+pk.wave*P.interval+P.release+back,id,to:from});cells[id]=from;}
@@ -48,9 +50,9 @@ module.exports=function bots(E){
   }
   function chasers(starts,leads=[30,60,120,180],backs=[0,60,150]){
     const out=[];
-    for(const start of starts)for(const lead of leads)for(const back of backs){
-      const moves=tideMoves(start,lead,back);if(!moves.length)continue;
-      out.push({...summary(play(start,moves),start,moves),lead,back});
+    for(const start of starts)for(const lead of leads)for(const back of backs)for(const floatId of [null,0,1,2]){
+      const moves=tideMoves(start,lead,back,floatId);if(!moves.length)continue;
+      out.push({...summary(play(start,moves),start,moves),lead,back,floatId});
     }
     return out.sort((a,b)=>b.delivered-a.delivered);
   }

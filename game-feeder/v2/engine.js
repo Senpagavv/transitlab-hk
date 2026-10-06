@@ -7,7 +7,7 @@
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:30,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,patience:210,queuePatience:120,
-    reconsider:4,target:120,highScore:135};
+    reconsider:4,target:120,highScore:133};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
@@ -29,6 +29,10 @@
   const dist=(a,b)=>route(a,b).length-1;
   const length=path=>path.slice(1).reduce((n,c,i)=>n+Math.abs(c[0]-path[i][0])+Math.abs(c[1]-path[i][1]),0);
   const willing=steps=>steps<0?0:(P.willing[steps]??0);
+  // These residents drive today because the MTR is too far to walk. A stop that is as far on foot as the MTR
+  // itself (or lies beyond it) wins nobody — nobody walks past the station to ride back to it.
+  const toMTR=D.origins.map(o=>dist(o.cell,D.hub));
+  const shareAt=(origin,cell,walked=0,from=D.origins[origin].cell)=>{const total=walked+dist(from,cell);return total<toMTR[origin]?willing(total):0;};
   // How many of n people in one batch come when the share is w (thresholds are evenly spread).
   const comes=(n,w)=>Math.max(0,Math.min(n,Math.ceil(w*n-.5)));
   const headwayAt=cell=>P.headwayBase+dist(cell,D.hub)*P.headwayStep;
@@ -54,7 +58,7 @@
         for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
           born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
           state:'future',preference:thresholds[j],budget:P.patience+40*(r()-.5),
-          queueLimit:P.queuePatience+20*(r()-.5),attempts:0,retryAt:0,avoid:[],
+          queueLimit:P.queuePatience+20*(r()-.5),attempts:0,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
       this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
@@ -72,11 +76,15 @@
       s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.build:0;
       s.departAt=this.started?s.ready+this.headway(s):Infinity;
       if(old) {
-        for(const pid of [...s.queue,...s.boarding]) {const p=this.person(pid);if(['queue','seated'].includes(p.state))this.goHome(p,'搬站返家');}
+        // People at the old spot look for another stop from where they stand; if none suits, they walk home
+        // and may try again once the new stop is built (the move was not their failure).
+        const waiting=[...s.queue,...s.boarding].map(pid=>this.person(pid)).filter(p=>['queue','seated'].includes(p.state));
         s.queue=[];s.boarding=[];
+        for(const p of waiting)this.reroute(p,old,null,'搬站返家',true);
         for(const p of this.people) if(p.state==='walk'&&p.target===id) {
-          const anchor=this.currentNode(p),choice=this.choose(p,anchor,id);
-          if(choice)this.walk(p,choice.id,anchor);else this.goHome(p,'原站搬遷',anchor);
+          const anchor=this.currentNode(p),pos=this.pos(p);
+          p.walked+=(this.t-p.since)/P.walkStep;p.path=[pos];p.since=this.t;
+          this.reroute(p,anchor,null,'原站搬遷',true,id);
         }
       }
       this.emit(this.started?'move':'place',null,{stop:id,cell:cell.slice()});return true;
@@ -97,26 +105,39 @@
     eta(s) {return s.cell?Math.max(0,s.departAt-this.t):Infinity;}
     // Share of people willing to walk to stop s; zero while it is being built,
     // after this person was turned away there, or if they cannot make a bus in time.
-    attraction(p,s,from=D.origins[p.origin].cell) {
+    attraction(p,s,from=D.origins[p.origin].cell,walked=0) {
       if(!s.cell||s.ready>this.t||p.avoid.includes(s.id+':'+s.version))return 0;
       const steps=dist(from,s.cell);if(steps<0)return 0;
+      const share=shareAt(p.origin,s.cell,walked,from);if(!share)return 0;
       const walk=steps*P.walkStep,cycle=this.headway(s);
       let eta=this.eta(s);
       if(walk>eta)eta+=Math.ceil((walk-eta)/cycle)*cycle;
       const wait=Math.max(0,eta-walk);
-      return this.t+walk+wait<p.deadline?willing(steps):0;
+      return this.t+walk+wait<p.deadline?share:0;
     }
-    choose(p,from,excluded=-1) {
+    choose(p,from,excluded=-1,walked=0) {
       let best=null;
-      for(const s of this.stops){if(s.id===excluded)continue;const appeal=this.attraction(p,s,from);
+      for(const s of this.stops){if(s.id===excluded)continue;const appeal=this.attraction(p,s,from,walked);
         if(appeal>p.preference&&(!best||appeal>best.appeal||appeal===best.appeal&&this.headway(s)<best.headway))best={id:s.id,appeal,headway:this.headway(s)};}
       return best;
     }
     walk(p,id,from) {const path=this.walkingPath(p,from,this.stops[id].cell);Object.assign(p,{state:'walk',target:id,path,since:this.t});this.emit('walk',p,{stop:id});}
     decide(p) {
       const choice=this.choose(p,D.origins[p.origin].cell);
-      if(choice){p.attempts++;this.walk(p,choice.id,D.origins[p.origin].cell);}
+      if(choice){p.attempts++;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
       else p.retryAt=this.t+P.reconsider;
+    }
+    leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
+    // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
+    // walk (already walked + still to walk) is still within their willingness; otherwise walk home.
+    // After a failure of their own they drive once home; after a move they may try again from home.
+    reroute(p,here,failed,why,mayRetry=false,excluded=-1) {
+      this.leave(p);
+      if(failed)p.avoid.push(failed.id+':'+failed.version);
+      const choice=p.attempts<2?this.choose(p,here,excluded,p.walked):null;
+      if(choice){p.attempts++;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
+      if(!mayRetry){p.giveUp=true;p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
+      this.goHome(p,why,here);
     }
     goHome(p,why,from,turnedAway) {
       if(['car','delivered','bus','missed'].includes(p.state))return;
@@ -143,7 +164,7 @@
       }
       for(const s of this.stops){if(!s.cell||s.ready>this.t)continue;
         for(const id of [...s.queue,...s.boarding]){const p=this.person(id);
-          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline){p.lastWhy='等太久';this.goHome(p,'久候返家',undefined,s);}}
+          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline)this.reroute(p,s.cell.slice(),s,'久候返家');}
         this.board(s);if(this.t+1e-6<s.departAt)continue;
         const path=route(s.cell,D.hub),load=s.boarding.splice(0),serial=++s.serial;
         // A scheduled departure. Fleet circulation is abstracted in the headway;
@@ -168,17 +189,20 @@
           if(this.t>=p.deadline||this.t>=p.homeUntil)this.car(p);
           else if(p.attempts<2&&this.t>=p.retryAt)this.decide(p);
         } else if(p.state==='walk'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
-          const s=this.stops[p.target];
+          const s=this.stops[p.target];p.walked+=length(p.path);
           if(s&&s.ready<=this.t&&(s.boarding.length<P.seats||s.queue.length<P.queue)&&this.t<p.deadline){
             p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
             this.board(s);
             s.peak=Math.max(s.peak,s.queue.length);
-          }else{const full=s&&s.queue.length>=P.queue;if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
-            p.lastWhy=full?'站滿了':'等太久';this.goHome(p,this.t>=p.deadline?'耐心耗盡':'站已滿員',undefined,full?s:undefined);}
-        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){p.lastWhy='等太久';this.goHome(p,'久候返家',undefined,this.stops[p.target]);}
+          }else{const full=s&&s.queue.length>=P.queue,here=p.path.at(-1).slice();
+            if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
+            if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
+            else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建',!full);}
+        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
+          if(p.giveUp){this.car(p);continue;}
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,homeUntil:Math.min(p.deadline,this.t+P.homeGrace),retryAt:this.t+P.reconsider});this.emit('home',p);
-        }else if(p.state==='walk'&&this.t>=p.deadline){p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
+        }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
       if(this.t>=P.duration)this.closeSession();
     }
@@ -198,7 +222,7 @@
       const cells=this.stops.map(s=>s.id===id?cell:s.cell);
       return D.origins.map((o,i)=>{
         let best=null;
-        cells.forEach((c,sid)=>{if(!c)return;const steps=dist(o.cell,c),w=willing(steps);
+        cells.forEach((c,sid)=>{if(!c)return;const steps=dist(o.cell,c),w=shareAt(i,c);
           if(w>0&&(!best||w>best.share||w===best.share&&headwayAt(c)<headwayAt(best.cell)))best={stop:sid,cell:c,steps,share:w};});
         return{origin:i,stop:best?.stop??-1,steps:best?.steps??null,share:best?.share??0,perWave:D.waves.map(w=>comes(w[i],best?.share??0))};
       });
@@ -215,6 +239,6 @@
       active:this.people.filter(p=>!['future','delivered','car','missed'].includes(p.state)).length,
       future:this.people.filter(p=>p.state==='future').length,total:this.people.length,time:this.t,moves:this.moves,done:this.done};}
   }
-  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt};
+  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt,shareAt,toMTR};
   if(typeof module!=='undefined')module.exports=API;root.Tide=API;
 })(typeof window!=='undefined'?window:globalThis);

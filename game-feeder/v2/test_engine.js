@@ -57,6 +57,32 @@ test('Someone turned away by a full stop does not walk back to that same stop',(
     for(const w of later)assert.notEqual(w.stop,e.stop);
   }
 });
+test('Nobody walks to a stop that is as far as the MTR, so nobody walks past the station and rides back',()=>{
+  const {shareAt,toMTR,route}=require('./engine.js');
+  assert.equal(shareAt(3,[6,6]),0);                                   // 橫洲 → south of the MTR: 5 blocks via the station
+  assert.equal(shareAt(1,[3,4]),0);                                   // 翹翠峰 → past the MTR's corner: 4 ≥ 3
+  assert.equal(shareAt(3,[6,2]),1);
+  for(const layout of [[0,7,11],[3,7,12],[0,6,10],[4,5,12]]){
+    const g=finish(setup(layout));
+    for(const e of g.events.filter(e=>e.type==='walk')){
+      const p=g.person(e.id);
+      assert(!route(D.origins[p.origin].cell,g.stops[e.stop].cell).slice(1,-1).some(c=>same(c,D.hub))||false,'walked through the MTR');
+    }
+    for(const p of g.people)assert(p.walked<toMTR[p.origin]+1e-6,`${D.origins[p.origin].name} walked ${p.walked} ≥ ${toMTR[p.origin]}`);
+  }
+});
+test('Turned away: switch on the spot within the same walking budget, at most once; otherwise home and drive',()=>{
+  const g=finish(setup([1,0,7]));
+  const people=new Set(g.events.filter(e=>e.type==='full'||e.why==='久候返家').map(e=>e.id));
+  assert(people.size>0);
+  for(const id of people){
+    const p=g.person(id),walks=g.events.filter(e=>e.id===id&&e.type==='walk');
+    assert(walks.length<=2,'more than one switch');
+    assert(p.walked<=5+1e-6);
+    assert(!g.events.some(e=>e.id===id&&e.type==='home'&&g.events.some(w=>w.id===id&&w.type==='walk'&&w.time>e.time)),'went home and came out again after a failure');
+  }
+  assert(g.events.some(e=>e.type==='switch'),'nobody ever switched');
+});
 test('Every car has a reason the result screen can show',()=>{
   const g=finish(setup());const why=new Set(g.events.filter(e=>e.type==='car').map(e=>e.why));
   for(const w of why)assert(['沒有夠近的站','站滿了','等太久'].includes(w),w);
@@ -70,7 +96,8 @@ test('Moving a stop sends its waiting people home, keeps departed buses, restart
   const g=setup();g.advance(200);const s=g.stops[0],waiting=[...s.queue,...s.boarding];assert(waiting.length>0);
   const trip=g.trips.find(b=>!b.done&&b.stop===0);
   assert(g.place(0,D.candidates[1]));assert.equal(g.moves,P.moves-1);assert.equal(s.ready,200+P.build);assert.equal(s.departAt,200+P.build+g.headway(s));
-  waiting.forEach(id=>assert.equal(g.person(id).state,'return'));
+  waiting.forEach(id=>assert(['return','walk'].includes(g.person(id).state)));   // home, or on to another stop
+  waiting.forEach(id=>assert(!g.person(id).giveUp,'a move is not the passenger\'s failure'));
   if(trip){g.advance(80);assert(trip.done);}
 });
 test('Moves are limited; occupied cells are rejected; starting needs three stops',()=>{

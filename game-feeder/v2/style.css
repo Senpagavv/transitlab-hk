@@ -89,8 +89,11 @@ button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--s-info)
 
 /* ---- the game: left column · map plate · right column ---- */
 .eg{flex:1;min-height:0;display:flex}
-body.entered .eg{animation:appIn .7s cubic-bezier(.2,.7,.2,1) both}
-@keyframes appIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+/* the board stays put (the cover's blocks land exactly on it); only the side columns glide in */
+body.entered .side{animation:sideIn .8s cubic-bezier(.2,.7,.2,1) both}
+body.entered .side.right{animation-name:sideInR}
+@keyframes sideIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes sideInR{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
 .side{width:360px;flex:0 0 auto;border-right:1px solid var(--s-line);background:var(--s-panel);overflow:auto;padding:16px 17px 30px;scrollbar-width:thin}
 .side.right{width:318px;border-right:0;border-left:1px solid var(--s-line)}
 .scol{font-size:14px;line-height:1.58}
@@ -231,12 +234,12 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 /* ---- the cover (from the suite) ---- */
 #cover{position:fixed;inset:0;z-index:200;background:var(--s-paper);overflow:hidden;
   background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;transition:opacity .6s ease}
-#cover.gone{opacity:0;pointer-events:none}
+#cover.gone{opacity:0;pointer-events:none;transition:opacity .55s ease}
 .cv-stage{position:absolute;inset:0}
 #cover canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .cv-copy{position:absolute;left:max(6vw,32px);top:50%;transform:translateY(-52%);max-width:620px;z-index:3;transition:opacity .35s,transform .5s}
-#cover.zooming .cv-copy{opacity:0;transform:translate(-24px,-52%)}
-#cover.zooming .cv-bar{opacity:0;transform:translate(-50%,16px)}
+#cover.leaving .cv-copy{opacity:0;transform:translate(-24px,-52%)}
+#cover.leaving .cv-bar{opacity:0;transform:translate(-50%,16px)}
 .cv-logo{width:68px;height:68px;image-rendering:pixelated;display:block;margin-bottom:26px}
 .cv-title{font-family:var(--s-display);font-weight:600;font-size:clamp(42px,5.6vw,72px);line-height:1.03;letter-spacing:-.01em;color:var(--s-ink);margin:0 0 18px}
 .cv-title em{font-style:italic;font-weight:500;color:var(--s-accent)}
