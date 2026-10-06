@@ -1,0 +1,113 @@
+{
+ "唐人新村": {
+  "walk_m": 2524,
+  "straight_m": 2140,
+  "via": [
+   "nan·footway",
+   "唐人新村路 Tong Yan San Tsuen Road·footway",
+   "nan·service",
+   "唐人新村路 Tong Yan San Tsuen Road·unclassified",
+   "青山公路－屏山段 Castle Peak Road – Ping Shan·primary",
+   "媽橫路 Ma Wang Road·primary",
+   "元朗安樂路 Yuen Long On Lok Road·secondary"
+  ]
+ },
+ "翹翠峰": {
+  "walk_m": 1348,
+  "straight_m": 1108,
+  "via": [
+   "元朗體育路 Yuen Long Tai Yuk Road·secondary",
+   "媽廟路 Ma Miu Road·secondary",
+   "元朗安寧路 Yuen Long On Ning Road·secondary",
+   "元朗安寧路 Yuen Long On Ning Road·tertiary",
+   "nan·footway",
+   "屏昌徑 Ping Cheong Path·pedestrian",
+   "俊賢坊 Chun Yin Square·pedestrian",
+   "nan·service",
+   "nan·residential",
+   "媽橫路 Ma Wang Road·primary",
+   "元朗安樂路 Yuen Long On Lok Road·secondary"
+  ]
+ },
+ "蝶翠峰": {
+  "walk_m": 1553,
+  "straight_m": 1239,
+  "via": [
+   "nan·footway",
+   "十八鄉路 Shap Pat Heung Road·footway",
+   "大樹下東路 Tai Shu Ha Road East·unclassified",
+   "裕榮徑 Yu Wing Path·pedestrian",
+   "裕榮徑 Yu Wing Path·footway",
+   "教育路 Kau Yuk Road·tertiary",
+   "昌盛徑 Cheong Shing Path·pedestrian",
+   "青山公路－元朗段 Castle Peak Road – Yuen Long·secondary",
+   "擊壤路 Kik Yeung Road·service",
+   "擊壤路 Kik Yeung Road·unclassified",
+   "青山公路－元朗段 Castle Peak Road – Yuen Long·footway",
+   "保輝徑 Po Fai Path·pedestrian",
+   "nan·service",
+   "元朗安樂路 Yuen Long On Lok Road·secondary"
+  ]
+ },
+ "橫洲東頭圍": {
+  "walk_m": 1624,
+  "straight_m": 1384,
+  "via": [
+   "宏利街 Wang Lee Street·tertiary",
+   "nan·service",
+   "nan·cycleway",
+   "nan·residential",
+   "宏樂街 Wang Lok Street·tertiary",
+   "宏樂街 Wang Lok Street·secondary",
+   "元朗安樂路 Yuen Long On Lok Road·secondary"
+  ]
+ },
+ "橫洲東頭圍|蝶翠峰": {
+  "nodes": 46,
+  "best": [
+   1556,
+   1551,
+   [
+    821109,
+    834429
+   ]
+  ]
+ },
+ "橫洲東頭圍|翹翠峰": {
+  "nodes": 1,
+  "best": [
+   1620,
+   1344,
+   [
+    820632,
+    834304
+   ]
+  ]
+ },
+ "橫洲東頭圍|唐人新村": {
+  "nodes": 0,
+  "best": null
+ },
+ "翹翠峰|蝶翠峰": {
+  "nodes": 4854,
+  "best": [
+   414,
+   416,
+   [
+    820715,
+    833108
+   ]
+  ]
+ },
+ "唐人新村|翹翠峰": {
+  "nodes": 631,
+  "best": [
+   1236,
+   1246,
+   [
+    819508,
+    833011
+   ]
+  ]
+ }
+}

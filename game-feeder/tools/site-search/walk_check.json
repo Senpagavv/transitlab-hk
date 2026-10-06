@@ -1,0 +1,647 @@
+{
+ "Fanling": {
+  "station": "Fanling",
+  "estates": [
+   {
+    "label": "山丽苑",
+    "car_am": 2006,
+    "pop": 48606,
+    "km": 2.37,
+    "bearing": 57,
+    "walk_m": 3073
+   },
+   {
+    "label": "凤凰岭邨",
+    "car_am": 372,
+    "pop": 19993,
+    "km": 1.11,
+    "bearing": 31,
+    "walk_m": 1337
+   },
+   {
+    "label": "北区公园北门",
+    "car_am": 311,
+    "pop": 17773,
+    "km": 0.84,
+    "bearing": 10,
+    "walk_m": 1073
+   },
+   {
+    "label": "华明邨",
+    "car_am": 267,
+    "pop": 20070,
+    "km": 0.85,
+    "bearing": 170,
+    "walk_m": 1083
+   },
+   {
+    "label": "和合石新村",
+    "car_am": 203,
+    "pop": 15119,
+    "km": 0.8,
+    "bearing": 138,
+    "walk_m": 908
+   }
+  ],
+  "pairs": [
+   {
+    "a": "山丽苑",
+    "b": "凤凰岭邨",
+    "shared_nodes": 1043,
+    "best_walks": [
+     1043,
+     1012
+    ]
+   },
+   {
+    "a": "山丽苑",
+    "b": "北区公园北门",
+    "shared_nodes": 125,
+    "best_walks": [
+     1459,
+     1068
+    ]
+   },
+   {
+    "a": "山丽苑",
+    "b": "华明邨",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "山丽苑",
+    "b": "和合石新村",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "凤凰岭邨",
+    "b": "北区公园北门",
+    "shared_nodes": 5578,
+    "best_walks": [
+     311,
+     316
+    ]
+   },
+   {
+    "a": "凤凰岭邨",
+    "b": "华明邨",
+    "shared_nodes": 5,
+    "best_walks": [
+     1307,
+     1080
+    ]
+   },
+   {
+    "a": "凤凰岭邨",
+    "b": "和合石新村",
+    "shared_nodes": 22,
+    "best_walks": [
+     1281,
+     903
+    ]
+   },
+   {
+    "a": "北区公园北门",
+    "b": "华明邨",
+    "shared_nodes": 5,
+    "best_walks": [
+     1057,
+     1067
+    ]
+   },
+   {
+    "a": "北区公园北门",
+    "b": "和合石新村",
+    "shared_nodes": 21,
+    "best_walks": [
+     1021,
+     903
+    ]
+   },
+   {
+    "a": "华明邨",
+    "b": "和合石新村",
+    "shared_nodes": 3911,
+    "best_walks": [
+     426,
+     419
+    ]
+   }
+  ]
+ },
+ "Yuen Long": {
+  "station": "Yuen Long",
+  "estates": [
+   {
+    "label": "元朗(崇山新村",
+    "car_am": 1017,
+    "pop": 22740,
+    "km": 2.54,
+    "bearing": 193,
+    "walk_m": 3003
+   },
+   {
+    "label": "东华三院马振玉中学(近朗善邨",
+    "car_am": 418,
+    "pop": 13316,
+    "km": 1.38,
+    "bearing": 187,
+    "walk_m": 2004
+   },
+   {
+    "label": "蝶翠峰",
+    "car_am": 388,
+    "pop": 20275,
+    "km": 1.11,
+    "bearing": 206,
+    "walk_m": 1563
+   },
+   {
+    "label": "大棠路站一带",
+    "car_am": 383,
+    "pop": 19753,
+    "km": 0.66,
+    "bearing": 240,
+    "walk_m": 833
+   }
+  ],
+  "pairs": [
+   {
+    "a": "元朗(崇山新村",
+    "b": "东华三院马振玉中学(近朗善邨",
+    "shared_nodes": 1727,
+    "best_walks": [
+     822,
+     826
+    ]
+   },
+   {
+    "a": "元朗(崇山新村",
+    "b": "蝶翠峰",
+    "shared_nodes": 1256,
+    "best_walks": [
+     853,
+     848
+    ]
+   },
+   {
+    "a": "元朗(崇山新村",
+    "b": "大棠路站一带",
+    "shared_nodes": 16,
+    "best_walks": [
+     1503,
+     821
+    ]
+   },
+   {
+    "a": "东华三院马振玉中学(近朗善邨",
+    "b": "蝶翠峰",
+    "shared_nodes": 5028,
+    "best_walks": [
+     440,
+     476
+    ]
+   },
+   {
+    "a": "东华三院马振玉中学(近朗善邨",
+    "b": "大棠路站一带",
+    "shared_nodes": 2164,
+    "best_walks": [
+     758,
+     748
+    ]
+   },
+   {
+    "a": "蝶翠峰",
+    "b": "大棠路站一带",
+    "shared_nodes": 4403,
+    "best_walks": [
+     424,
+     448
+    ]
+   }
+  ]
+ },
+ "Tai Wo": {
+  "station": "Tai Wo",
+  "estates": [
+   {
+    "label": "富亨邨",
+    "car_am": 577,
+    "pop": 33312,
+    "km": 1.55,
+    "bearing": 50,
+    "walk_m": 1863
+   },
+   {
+    "label": "林村新村",
+    "car_am": 540,
+    "pop": 12414,
+    "km": 2.39,
+    "bearing": 268,
+    "walk_m": 3326
+   },
+   {
+    "label": "九龙坑",
+    "car_am": 534,
+    "pop": 11369,
+    "km": 2.55,
+    "bearing": 341,
+    "walk_m": 3359
+   },
+   {
+    "label": "大埔公众泳池",
+    "car_am": 309,
+    "pop": 15287,
+    "km": 1.14,
+    "bearing": 339,
+    "walk_m": 2929
+   },
+   {
+    "label": "帝欣苑",
+    "car_am": 197,
+    "pop": 3855,
+    "km": 0.61,
+    "bearing": 289,
+    "walk_m": 942
+   }
+  ],
+  "pairs": [
+   {
+    "a": "富亨邨",
+    "b": "林村新村",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "富亨邨",
+    "b": "九龙坑",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "富亨邨",
+    "b": "大埔公众泳池",
+    "shared_nodes": 15,
+    "best_walks": [
+     1478,
+     1454
+    ]
+   },
+   {
+    "a": "富亨邨",
+    "b": "帝欣苑",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "林村新村",
+    "b": "九龙坑",
+    "shared_nodes": 4,
+    "best_walks": [
+     1588,
+     1570
+    ]
+   },
+   {
+    "a": "林村新村",
+    "b": "大埔公众泳池",
+    "shared_nodes": 222,
+    "best_walks": [
+     1441,
+     1441
+    ]
+   },
+   {
+    "a": "林村新村",
+    "b": "帝欣苑",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "九龙坑",
+    "b": "大埔公众泳池",
+    "shared_nodes": 1002,
+    "best_walks": [
+     1194,
+     1182
+    ]
+   },
+   {
+    "a": "九龙坑",
+    "b": "帝欣苑",
+    "shared_nodes": 0,
+    "best_walks": null
+   },
+   {
+    "a": "大埔公众泳池",
+    "b": "帝欣苑",
+    "shared_nodes": 0,
+    "best_walks": null
+   }
+  ]
+ },
+ "Tsing Yi": {
+  "station": "Tsing Yi",
+  "estates": [
+   {
+    "label": "绿悠雅苑",
+    "car_am": 338,
+    "pop": 30324,
+    "km": 0.78,
+    "bearing": 176,
+    "walk_m": 976
+   },
+   {
+    "label": "长康邨",
+    "car_am": 276,
+    "pop": 23970,
+    "km": 1.03,
+    "bearing": 211,
+    "walk_m": 1512
+   },
+   {
+    "label": "长青邨",
+    "car_am": 257,
+    "pop": 22735,
+    "km": 1.59,
+    "bearing": 173,
+    "walk_m": 1892
+   },
+   {
+    "label": "长亨邨",
+    "car_am": 252,
+    "pop": 28229,
+    "km": 1.11,
+    "bearing": 259,
+    "walk_m": 2145
+   }
+  ],
+  "pairs": [
+   {
+    "a": "绿悠雅苑",
+    "b": "长康邨",
+    "shared_nodes": 4250,
+    "best_walks": [
+     474,
+     467
+    ]
+   },
+   {
+    "a": "绿悠雅苑",
+    "b": "长青邨",
+    "shared_nodes": 3078,
+    "best_walks": [
+     489,
+     482
+    ]
+   },
+   {
+    "a": "绿悠雅苑",
+    "b": "长亨邨",
+    "shared_nodes": 906,
+    "best_walks": [
+     972,
+     1013
+    ]
+   },
+   {
+    "a": "长康邨",
+    "b": "长青邨",
+    "shared_nodes": 4879,
+    "best_walks": [
+     638,
+     632
+    ]
+   },
+   {
+    "a": "长康邨",
+    "b": "长亨邨",
+    "shared_nodes": 3150,
+    "best_walks": [
+     776,
+     710
+    ]
+   },
+   {
+    "a": "长青邨",
+    "b": "长亨邨",
+    "shared_nodes": 870,
+    "best_walks": [
+     1299,
+     1287
+    ]
+   }
+  ]
+ },
+ "Kwai Hing": {
+  "station": "Kwai Hing",
+  "estates": [
+   {
+    "label": "石篱邨",
+    "car_am": 429,
+    "pop": 35317,
+    "km": 0.65,
+    "bearing": 68,
+    "walk_m": 1044
+   },
+   {
+    "label": "梨木树邨",
+    "car_am": 340,
+    "pop": 27422,
+    "km": 1.19,
+    "bearing": 40,
+    "walk_m": 1337
+   },
+   {
+    "label": "安荫邨",
+    "car_am": 295,
+    "pop": 24336,
+    "km": 1.09,
+    "bearing": 61,
+    "walk_m": 1587
+   }
+  ],
+  "pairs": [
+   {
+    "a": "石篱邨",
+    "b": "梨木树邨",
+    "shared_nodes": 4524,
+    "best_walks": [
+     450,
+     431
+    ]
+   },
+   {
+    "a": "石篱邨",
+    "b": "安荫邨",
+    "shared_nodes": 5105,
+    "best_walks": [
+     370,
+     386
+    ]
+   },
+   {
+    "a": "梨木树邨",
+    "b": "安荫邨",
+    "shared_nodes": 7323,
+    "best_walks": [
+     313,
+     312
+    ]
+   }
+  ]
+ },
+ "South Horizons": {
+  "station": "South Horizons",
+  "estates": [
+   {
+    "label": "华富邨",
+    "car_am": 244,
+    "pop": 20477,
+    "km": 1.64,
+    "bearing": 309,
+    "walk_m": 4349
+   },
+   {
+    "label": "华贵邨",
+    "car_am": 217,
+    "pop": 16524,
+    "km": 1.35,
+    "bearing": 311,
+    "walk_m": 4082
+   },
+   {
+    "label": "富仁苑",
+    "car_am": 196,
+    "pop": 15501,
+    "km": 2.02,
+    "bearing": 328,
+    "walk_m": 4957
+   },
+   {
+    "label": "田湾邨",
+    "car_am": 183,
+    "pop": 11921,
+    "km": 1.06,
+    "bearing": 8,
+    "walk_m": 3322
+   }
+  ],
+  "pairs": [
+   {
+    "a": "华富邨",
+    "b": "华贵邨",
+    "shared_nodes": 4613,
+    "best_walks": [
+     230,
+     244
+    ]
+   },
+   {
+    "a": "华富邨",
+    "b": "富仁苑",
+    "shared_nodes": 3865,
+    "best_walks": [
+     746,
+     751
+    ]
+   },
+   {
+    "a": "华富邨",
+    "b": "田湾邨",
+    "shared_nodes": 1350,
+    "best_walks": [
+     960,
+     980
+    ]
+   },
+   {
+    "a": "华贵邨",
+    "b": "富仁苑",
+    "shared_nodes": 3142,
+    "best_walks": [
+     822,
+     826
+    ]
+   },
+   {
+    "a": "华贵邨",
+    "b": "田湾邨",
+    "shared_nodes": 1761,
+    "best_walks": [
+     827,
+     845
+    ]
+   },
+   {
+    "a": "富仁苑",
+    "b": "田湾邨",
+    "shared_nodes": 288,
+    "best_walks": [
+     1248,
+     1243
+    ]
+   }
+  ]
+ },
+ "Chai Wan": {
+  "station": "Chai Wan",
+  "estates": [
+   {
+    "label": "小西湾邨",
+    "car_am": 249,
+    "pop": 22330,
+    "km": 1.28,
+    "bearing": 104,
+    "walk_m": 1882
+   },
+   {
+    "label": "富怡花园",
+    "car_am": 210,
+    "pop": 18559,
+    "km": 1.5,
+    "bearing": 100,
+    "walk_m": 2352
+   },
+   {
+    "label": "富欣花园",
+    "car_am": 187,
+    "pop": 10937,
+    "km": 1.43,
+    "bearing": 82,
+    "walk_m": 1845
+   }
+  ],
+  "pairs": [
+   {
+    "a": "小西湾邨",
+    "b": "富怡花园",
+    "shared_nodes": 2425,
+    "best_walks": [
+     361,
+     362
+    ]
+   },
+   {
+    "a": "小西湾邨",
+    "b": "富欣花园",
+    "shared_nodes": 3304,
+    "best_walks": [
+     347,
+     346
+    ]
+   },
+   {
+    "a": "富怡花园",
+    "b": "富欣花园",
+    "shared_nodes": 2425,
+    "best_walks": [
+     444,
+     444
+    ]
+   }
+  ]
+ }
+}

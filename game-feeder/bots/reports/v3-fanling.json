@@ -1,0 +1,313 @@
+{
+  "version": "v3",
+  "generated": "2026-10-06T18:39:12.767Z",
+  "demand": {
+    "total": 234,
+    "waves": [
+      [
+        6,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        21,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        3,
+        3,
+        21
+      ],
+      [
+        6,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        24,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        3,
+        21,
+        3
+      ],
+      [
+        6,
+        21,
+        3,
+        3,
+        3
+      ]
+    ],
+    "peaks": [
+      {
+        "origin": 2,
+        "wave": 1,
+        "extra": 18
+      },
+      {
+        "origin": 4,
+        "wave": 3,
+        "extra": 18
+      },
+      {
+        "origin": 0,
+        "wave": 5,
+        "extra": 18
+      },
+      {
+        "origin": 3,
+        "wave": 6,
+        "extra": 18
+      },
+      {
+        "origin": 1,
+        "wave": 7,
+        "extra": 18
+      }
+    ]
+  },
+  "parameters": {
+    "seats": 6,
+    "queue": 8,
+    "headway": "60+5×格",
+    "willing": [
+      1,
+      1,
+      0.8,
+      0.6,
+      0.4,
+      0.2
+    ],
+    "target": 174,
+    "highScore": 180,
+    "masterScore": 185,
+    "moves": 6
+  },
+  "legibility": {
+    "coverage": 0.921,
+    "capacity": 0.913
+  },
+  "statics": {
+    "count": 364,
+    "min": 72,
+    "p25": 118,
+    "median": 132,
+    "p75": 145,
+    "p90": 161,
+    "max": 176,
+    "reachTarget": 4,
+    "reachHigh": 0
+  },
+  "bots": {
+    "novice": {
+      "layout": [
+        1,
+        5,
+        11
+      ],
+      "moves": [],
+      "delivered": 176,
+      "cars": 54,
+      "missed": 4,
+      "full": 23,
+      "longWait": 60
+    },
+    "reader": {
+      "layout": [
+        1,
+        5,
+        11
+      ],
+      "moves": [],
+      "delivered": 176,
+      "cars": 54,
+      "missed": 4,
+      "full": 23,
+      "longWait": 60
+    },
+    "bestStatic": {
+      "layout": [
+        1,
+        5,
+        11
+      ],
+      "moves": [],
+      "delivered": 176,
+      "cars": 54,
+      "missed": 4,
+      "full": 23,
+      "longWait": 60
+    },
+    "bestChaser": {
+      "layout": [
+        1,
+        5,
+        11
+      ],
+      "moves": [
+        {
+          "time": 125,
+          "id": 1,
+          "to": 0
+        },
+        {
+          "time": 365,
+          "id": 1,
+          "to": 12
+        },
+        {
+          "time": 605,
+          "id": 1,
+          "to": 5
+        },
+        {
+          "time": 725,
+          "id": 1,
+          "to": 10
+        },
+        {
+          "time": 845,
+          "id": 1,
+          "to": 2
+        }
+      ],
+      "delivered": 178,
+      "cars": 53,
+      "missed": 3,
+      "full": 37,
+      "longWait": 20,
+      "lead": 30,
+      "back": 0,
+      "floatId": 1
+    },
+    "greedyFromNovice": {
+      "layout": [
+        1,
+        5,
+        11
+      ],
+      "moves": [
+        {
+          "time": 90,
+          "id": 2,
+          "to": 10
+        },
+        {
+          "time": 120,
+          "id": 0,
+          "to": 2
+        },
+        {
+          "time": 870,
+          "id": 1,
+          "to": 1
+        },
+        {
+          "time": 900,
+          "id": 1,
+          "to": 0
+        }
+      ],
+      "delivered": 186,
+      "cars": 46,
+      "missed": 2,
+      "full": 35,
+      "longWait": 36
+    },
+    "greedyFromBest": {
+      "layout": [
+        1,
+        5,
+        11
+      ],
+      "moves": [
+        {
+          "time": 90,
+          "id": 2,
+          "to": 10
+        },
+        {
+          "time": 120,
+          "id": 0,
+          "to": 2
+        },
+        {
+          "time": 870,
+          "id": 1,
+          "to": 1
+        },
+        {
+          "time": 900,
+          "id": 1,
+          "to": 0
+        }
+      ],
+      "delivered": 186,
+      "cars": 46,
+      "missed": 2,
+      "full": 35,
+      "longWait": 36
+    }
+  },
+  "seeds": [
+    {
+      "seed": 1781,
+      "novice": 176,
+      "best": 176,
+      "chaser": 178,
+      "greedy": 186
+    },
+    {
+      "seed": 42,
+      "novice": 178,
+      "best": 178,
+      "chaser": 172,
+      "greedy": 189
+    },
+    {
+      "seed": 73,
+      "novice": 179,
+      "best": 179,
+      "chaser": 177,
+      "greedy": 181
+    },
+    {
+      "seed": 99,
+      "novice": 176,
+      "best": 176,
+      "chaser": 172,
+      "greedy": 184
+    },
+    {
+      "seed": 2026,
+      "novice": 175,
+      "best": 175,
+      "chaser": 173,
+      "greedy": 185
+    }
+  ],
+  "seconds": 37.625
+}

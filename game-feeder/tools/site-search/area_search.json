@@ -1,0 +1,1174 @@
+[
+ {
+  "lrt_zones": 0,
+  "station": "Fanling",
+  "lines": [
+   "EAL"
+  ],
+  "score": 3159,
+  "spread_deg": 159,
+  "linked": "5/5",
+  "isolated": [],
+  "sx": 832334.5243065968,
+  "sy": 839172.1165246896,
+  "estates": [
+   {
+    "zone": "634",
+    "x": 834317.41,
+    "y": 840477.38,
+    "label": "山丽苑",
+    "district": "北区",
+    "pop": 48606,
+    "car_am": 2006,
+    "pt_am": 6295,
+    "km": 2.37,
+    "bearing": 57,
+    "next_station_km": 3.11,
+    "shares_with": [
+     "凤凰岭邨"
+    ]
+   },
+   {
+    "zone": "625.2",
+    "x": 832911.34,
+    "y": 840125.58,
+    "label": "凤凰岭邨",
+    "district": "北区",
+    "pop": 19993,
+    "car_am": 372,
+    "pt_am": 3359,
+    "km": 1.11,
+    "bearing": 31,
+    "next_station_km": 1.69,
+    "shares_with": [
+     "山丽苑",
+     "北区公园北门",
+     "和合石新村"
+    ]
+   },
+   {
+    "zone": "625.3",
+    "x": 832483.23,
+    "y": 840001.67,
+    "label": "北区公园北门",
+    "district": "北区",
+    "pop": 17773,
+    "car_am": 311,
+    "pt_am": 2780,
+    "km": 0.84,
+    "bearing": 10,
+    "next_station_km": 1.27,
+    "shares_with": [
+     "凤凰岭邨"
+    ]
+   },
+   {
+    "zone": "628.4",
+    "x": 832489.0,
+    "y": 838333.3,
+    "label": "华明邨",
+    "district": "北区",
+    "pop": 20070,
+    "car_am": 267,
+    "pt_am": 3260,
+    "km": 0.85,
+    "bearing": 170,
+    "next_station_km": 2.25,
+    "shares_with": [
+     "和合石新村"
+    ]
+   },
+   {
+    "zone": "628.5",
+    "x": 832863.17,
+    "y": 838576.09,
+    "label": "和合石新村",
+    "district": "北区",
+    "pop": 15119,
+    "car_am": 203,
+    "pt_am": 2496,
+    "km": 0.8,
+    "bearing": 138,
+    "next_station_km": 2.3,
+    "shares_with": [
+     "凤凰岭邨",
+     "华明邨"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 1,
+  "station": "Yuen Long",
+  "lines": [
+   "TML"
+  ],
+  "score": 2207,
+  "spread_deg": 53,
+  "linked": "4/4",
+  "isolated": [],
+  "sx": 821695.8106330073,
+  "sy": 834097.7742411405,
+  "estates": [
+   {
+    "zone": "522",
+    "x": 821116.68,
+    "y": 831622.42,
+    "label": "元朗(崇山新村",
+    "district": "元朗区",
+    "pop": 22740,
+    "car_am": 1017,
+    "pt_am": 2764,
+    "km": 2.54,
+    "bearing": 193,
+    "next_station_km": 2.68,
+    "shares_with": [
+     "东华三院马振玉中学(近朗善邨",
+     "蝶翠峰"
+    ]
+   },
+   {
+    "zone": "523",
+    "x": 821527.56,
+    "y": 832731.51,
+    "label": "东华三院马振玉中学(近朗善邨",
+    "district": "元朗区",
+    "pop": 13316,
+    "car_am": 418,
+    "pt_am": 1926,
+    "km": 1.38,
+    "bearing": 187,
+    "next_station_km": 1.76,
+    "shares_with": [
+     "元朗(崇山新村",
+     "蝶翠峰",
+     "大棠路站一带"
+    ]
+   },
+   {
+    "zone": "529",
+    "x": 821213.02,
+    "y": 833101.54,
+    "label": "蝶翠峰",
+    "district": "元朗区",
+    "pop": 20275,
+    "car_am": 388,
+    "pt_am": 3322,
+    "km": 1.11,
+    "bearing": 206,
+    "next_station_km": 1.28,
+    "shares_with": [
+     "元朗(崇山新村",
+     "东华三院马振玉中学(近朗善邨",
+     "大棠路站一带"
+    ]
+   },
+   {
+    "zone": "524.3",
+    "x": 821121.12,
+    "y": 833764.09,
+    "label": "大棠路站一带",
+    "district": "元朗区",
+    "pop": 19753,
+    "car_am": 383,
+    "pt_am": 3578,
+    "km": 0.66,
+    "bearing": 240,
+    "next_station_km": 0.67,
+    "shares_with": [
+     "东华三院马振玉中学(近朗善邨",
+     "蝶翠峰"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 3,
+  "station": "Tin Shui Wai",
+  "lines": [
+   "TML"
+  ],
+  "score": 1807,
+  "spread_deg": 177,
+  "linked": "4/5",
+  "isolated": [
+   "天富站一带"
+  ],
+  "sx": 818537.333541257,
+  "sy": 834298.298737884,
+  "estates": [
+   {
+    "zone": "519",
+    "x": 818834.24,
+    "y": 833109.41,
+    "label": "唐人新村",
+    "district": "元朗区",
+    "pop": 21472,
+    "car_am": 946,
+    "pt_am": 3265,
+    "km": 1.23,
+    "bearing": 166,
+    "next_station_km": 2.18,
+    "shares_with": [
+     "洪水桥站一带",
+     "钟屋村站一带"
+    ]
+   },
+   {
+    "zone": "515",
+    "x": 817845.98,
+    "y": 833176.34,
+    "label": "洪水桥站一带",
+    "district": "元朗区",
+    "pop": 29076,
+    "car_am": 547,
+    "pt_am": 4853,
+    "km": 1.32,
+    "bearing": 212,
+    "next_station_km": 3.04,
+    "shares_with": [
+     "唐人新村",
+     "钟屋村站一带",
+     "厦村"
+    ]
+   },
+   {
+    "zone": "512",
+    "x": 817348.7,
+    "y": 832925.5,
+    "label": "钟屋村站一带",
+    "district": "元朗区",
+    "pop": 11570,
+    "car_am": 390,
+    "pt_am": 1626,
+    "km": 1.82,
+    "bearing": 221,
+    "next_station_km": 3.0,
+    "shares_with": [
+     "唐人新村",
+     "洪水桥站一带"
+    ]
+   },
+   {
+    "zone": "511",
+    "x": 817169.3,
+    "y": 834563.1,
+    "label": "厦村",
+    "district": "元朗区",
+    "pop": 8205,
+    "car_am": 375,
+    "pt_am": 1169,
+    "km": 1.39,
+    "bearing": 281,
+    "next_station_km": 3.52,
+    "shares_with": [
+     "洪水桥站一带"
+    ]
+   },
+   {
+    "zone": "510.5",
+    "x": 818040.54,
+    "y": 835937.52,
+    "label": "天富站一带",
+    "district": "元朗区",
+    "pop": 28749,
+    "car_am": 282,
+    "pt_am": 3859,
+    "km": 1.71,
+    "bearing": 343,
+    "next_station_km": 3.12,
+    "shares_with": []
+   }
+  ]
+ },
+ {
+  "lrt_zones": 4,
+  "station": "Siu Hong",
+  "lines": [
+   "TML"
+  ],
+  "score": 1679,
+  "spread_deg": 234,
+  "linked": "5/5",
+  "isolated": [],
+  "sx": 815866.6823357266,
+  "sy": 830322.5979709376,
+  "estates": [
+   {
+    "zone": "441",
+    "x": 816635.82,
+    "y": 831126.14,
+    "label": "泥围",
+    "district": "屯门区",
+    "pop": 18732,
+    "car_am": 963,
+    "pt_am": 2429,
+    "km": 1.11,
+    "bearing": 44,
+    "next_station_km": 2.99,
+    "shares_with": [
+     "蓝地站一带"
+    ]
+   },
+   {
+    "zone": "423S.7",
+    "x": 814822.07,
+    "y": 829883.61,
+    "label": "建生站一带",
+    "district": "屯门区",
+    "pop": 35182,
+    "car_am": 530,
+    "pt_am": 5902,
+    "km": 1.13,
+    "bearing": 247,
+    "next_station_km": 1.5,
+    "shares_with": [
+     "青松站一带",
+     "景峰站一带"
+    ]
+   },
+   {
+    "zone": "423S.2",
+    "x": 815104.8,
+    "y": 830210.52,
+    "label": "青松站一带",
+    "district": "屯门区",
+    "pop": 28993,
+    "car_am": 449,
+    "pt_am": 4544,
+    "km": 0.77,
+    "bearing": 262,
+    "next_station_km": 1.77,
+    "shares_with": [
+     "建生站一带",
+     "景峰站一带",
+     "蓝地站一带"
+    ]
+   },
+   {
+    "zone": "425.3",
+    "x": 816032.79,
+    "y": 829358.34,
+    "label": "景峰站一带",
+    "district": "屯门区",
+    "pop": 18554,
+    "car_am": 448,
+    "pt_am": 3192,
+    "km": 0.98,
+    "bearing": 170,
+    "next_station_km": 1.17,
+    "shares_with": [
+     "建生站一带",
+     "青松站一带"
+    ]
+   },
+   {
+    "zone": "442",
+    "x": 816067.68,
+    "y": 831428.98,
+    "label": "蓝地站一带",
+    "district": "屯门区",
+    "pop": 7459,
+    "car_am": 409,
+    "pt_am": 919,
+    "km": 1.12,
+    "bearing": 10,
+    "next_station_km": 3.07,
+    "shares_with": [
+     "泥围",
+     "青松站一带"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 5,
+  "station": "Tuen Mun",
+  "lines": [
+   "TML"
+  ],
+  "score": 1462,
+  "spread_deg": 167,
+  "linked": "4/5",
+  "isolated": [
+   "新围站一带"
+  ],
+  "sx": 815290.7574934319,
+  "sy": 828455.1317553394,
+  "estates": [
+   {
+    "zone": "423S.8",
+    "x": 814348.15,
+    "y": 829634.55,
+    "label": "新围站一带",
+    "district": "屯门区",
+    "pop": 42229,
+    "car_am": 641,
+    "pt_am": 6680,
+    "km": 1.51,
+    "bearing": 321,
+    "next_station_km": 1.67,
+    "shares_with": []
+   },
+   {
+    "zone": "421S.5",
+    "x": 814784.3,
+    "y": 826056.33,
+    "label": "屯门码头站一带",
+    "district": "屯门区",
+    "pop": 30795,
+    "car_am": 573,
+    "pt_am": 5131,
+    "km": 2.45,
+    "bearing": 192,
+    "next_station_km": 4.4,
+    "shares_with": [
+     "三圣站一带",
+     "龙门站一带"
+    ]
+   },
+   {
+    "zone": "424.4",
+    "x": 815614.62,
+    "y": 827686.91,
+    "label": "安定站一带",
+    "district": "屯门区",
+    "pop": 21690,
+    "car_am": 442,
+    "pt_am": 3523,
+    "km": 0.83,
+    "bearing": 157,
+    "next_station_km": 2.65,
+    "shares_with": [
+     "三圣站一带",
+     "龙门站一带"
+    ]
+   },
+   {
+    "zone": "425.4",
+    "x": 816058.53,
+    "y": 826843.76,
+    "label": "三圣站一带",
+    "district": "屯门区",
+    "pop": 18148,
+    "car_am": 439,
+    "pt_am": 3090,
+    "km": 1.78,
+    "bearing": 155,
+    "next_station_km": 3.48,
+    "shares_with": [
+     "屯门码头站一带",
+     "安定站一带",
+     "龙门站一带"
+    ]
+   },
+   {
+    "zone": "423S.9",
+    "x": 814719.83,
+    "y": 827528.9,
+    "label": "龙门站一带",
+    "district": "屯门区",
+    "pop": 23738,
+    "car_am": 373,
+    "pt_am": 3909,
+    "km": 1.09,
+    "bearing": 212,
+    "next_station_km": 3.02,
+    "shares_with": [
+     "屯门码头站一带",
+     "安定站一带",
+     "三圣站一带"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Tai Wo",
+  "lines": [
+   "EAL"
+  ],
+  "score": 1294,
+  "spread_deg": 141,
+  "linked": "4/5",
+  "isolated": [
+   "林村新村"
+  ],
+  "sx": 834641.4204738276,
+  "sy": 834623.1883495398,
+  "estates": [
+   {
+    "zone": "722S.2",
+    "x": 835823.83,
+    "y": 835630.53,
+    "label": "富亨邨",
+    "district": "大埔区",
+    "pop": 33312,
+    "car_am": 577,
+    "pt_am": 5130,
+    "km": 1.55,
+    "bearing": 50,
+    "next_station_km": 1.75,
+    "shares_with": [
+     "大埔公众泳池"
+    ]
+   },
+   {
+    "zone": "724",
+    "x": 832254.78,
+    "y": 834553.08,
+    "label": "林村新村",
+    "district": "大埔区",
+    "pop": 12414,
+    "car_am": 540,
+    "pt_am": 1677,
+    "km": 2.39,
+    "bearing": 268,
+    "next_station_km": 3.43,
+    "shares_with": []
+   },
+   {
+    "zone": "631S",
+    "x": 833814.83,
+    "y": 837032.46,
+    "label": "九龙坑",
+    "district": "大埔区",
+    "pop": 11369,
+    "car_am": 534,
+    "pt_am": 1521,
+    "km": 2.55,
+    "bearing": 341,
+    "next_station_km": 2.6,
+    "shares_with": [
+     "大埔公众泳池"
+    ]
+   },
+   {
+    "zone": "722S.3",
+    "x": 834227.75,
+    "y": 835687.93,
+    "label": "大埔公众泳池",
+    "district": "大埔区",
+    "pop": 15287,
+    "car_am": 309,
+    "pt_am": 1810,
+    "km": 1.14,
+    "bearing": 339,
+    "next_station_km": 2.27,
+    "shares_with": [
+     "富亨邨",
+     "九龙坑",
+     "帝欣苑"
+    ]
+   },
+   {
+    "zone": "720",
+    "x": 834061.32,
+    "y": 834818.82,
+    "label": "帝欣苑",
+    "district": "大埔区",
+    "pop": 3855,
+    "car_am": 197,
+    "pt_am": 619,
+    "km": 0.61,
+    "bearing": 289,
+    "next_station_km": 1.81,
+    "shares_with": [
+     "大埔公众泳池"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Tsing Yi",
+  "lines": [
+   "AEL",
+   "TCL"
+  ],
+  "score": 1122,
+  "spread_deg": 86,
+  "linked": "4/4",
+  "isolated": [],
+  "sx": 829073.4585157075,
+  "sy": 824355.9023865199,
+  "estates": [
+   {
+    "zone": "350.6",
+    "x": 829125.5,
+    "y": 823573.49,
+    "label": "绿悠雅苑",
+    "district": "葵青区",
+    "pop": 30324,
+    "car_am": 338,
+    "pt_am": 5329,
+    "km": 0.78,
+    "bearing": 176,
+    "next_station_km": 1.88,
+    "shares_with": [
+     "长康邨",
+     "长青邨",
+     "长亨邨"
+    ]
+   },
+   {
+    "zone": "350.4",
+    "x": 828547.89,
+    "y": 823468.98,
+    "label": "长康邨",
+    "district": "葵青区",
+    "pop": 23970,
+    "car_am": 276,
+    "pt_am": 4168,
+    "km": 1.03,
+    "bearing": 211,
+    "next_station_km": 2.13,
+    "shares_with": [
+     "绿悠雅苑",
+     "长青邨",
+     "长亨邨"
+    ]
+   },
+   {
+    "zone": "350.3",
+    "x": 829277.18,
+    "y": 822775.76,
+    "label": "长青邨",
+    "district": "葵青区",
+    "pop": 22735,
+    "car_am": 257,
+    "pt_am": 4137,
+    "km": 1.59,
+    "bearing": 173,
+    "next_station_km": 1.83,
+    "shares_with": [
+     "绿悠雅苑",
+     "长康邨"
+    ]
+   },
+   {
+    "zone": "351.3",
+    "x": 827983.04,
+    "y": 824134.61,
+    "label": "长亨邨",
+    "district": "葵青区",
+    "pop": 28229,
+    "car_am": 252,
+    "pt_am": 4868,
+    "km": 1.11,
+    "bearing": 259,
+    "next_station_km": 1.91,
+    "shares_with": [
+     "绿悠雅苑",
+     "长康邨"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Kwai Hing",
+  "lines": [
+   "TWL"
+  ],
+  "score": 1064,
+  "spread_deg": 28,
+  "linked": "3/3",
+  "isolated": [],
+  "sx": 831579.6307292741,
+  "sy": 824891.4556703557,
+  "estates": [
+   {
+    "zone": "327.4",
+    "x": 832182.46,
+    "y": 825133.03,
+    "label": "石篱邨",
+    "district": "葵青区",
+    "pop": 35317,
+    "car_am": 429,
+    "pt_am": 6093,
+    "km": 0.65,
+    "bearing": 68,
+    "next_station_km": 1.35,
+    "shares_with": [
+     "梨木树邨",
+     "安荫邨"
+    ]
+   },
+   {
+    "zone": "327.2",
+    "x": 832348.62,
+    "y": 825793.65,
+    "label": "梨木树邨",
+    "district": "葵青区",
+    "pop": 27422,
+    "car_am": 340,
+    "pt_am": 4921,
+    "km": 1.19,
+    "bearing": 40,
+    "next_station_km": 1.42,
+    "shares_with": [
+     "石篱邨",
+     "安荫邨"
+    ]
+   },
+   {
+    "zone": "327.5",
+    "x": 832536.97,
+    "y": 825415.96,
+    "label": "安荫邨",
+    "district": "葵青区",
+    "pop": 24336,
+    "car_am": 295,
+    "pt_am": 4073,
+    "km": 1.09,
+    "bearing": 61,
+    "next_station_km": 1.64,
+    "shares_with": [
+     "石篱邨",
+     "梨木树邨"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "South Horizons",
+  "lines": [
+   "SIL"
+  ],
+  "score": 840,
+  "spread_deg": 59,
+  "linked": "4/4",
+  "isolated": [],
+  "sx": 833397.9554321939,
+  "sy": 811526.9127784832,
+  "estates": [
+   {
+    "zone": "172.3",
+    "x": 832124.42,
+    "y": 812564.06,
+    "label": "华富邨",
+    "district": "南区",
+    "pop": 20477,
+    "car_am": 244,
+    "pt_am": 3467,
+    "km": 1.64,
+    "bearing": 309,
+    "next_station_km": 2.26,
+    "shares_with": [
+     "华贵邨",
+     "富仁苑",
+     "田湾邨"
+    ]
+   },
+   {
+    "zone": "172.1",
+    "x": 832374.48,
+    "y": 812405.0,
+    "label": "华贵邨",
+    "district": "南区",
+    "pop": 16524,
+    "car_am": 217,
+    "pt_am": 2759,
+    "km": 1.35,
+    "bearing": 311,
+    "next_station_km": 1.97,
+    "shares_with": [
+     "华富邨",
+     "富仁苑",
+     "田湾邨"
+    ]
+   },
+   {
+    "zone": "172.2",
+    "x": 832315.72,
+    "y": 813229.31,
+    "label": "富仁苑",
+    "district": "南区",
+    "pop": 15501,
+    "car_am": 196,
+    "pt_am": 2688,
+    "km": 2.02,
+    "bearing": 328,
+    "next_station_km": 2.5,
+    "shares_with": [
+     "华富邨",
+     "华贵邨",
+     "田湾邨"
+    ]
+   },
+   {
+    "zone": "173.3",
+    "x": 833545.7,
+    "y": 812579.77,
+    "label": "田湾邨",
+    "district": "南区",
+    "pop": 11921,
+    "car_am": 183,
+    "pt_am": 1983,
+    "km": 1.06,
+    "bearing": 8,
+    "next_station_km": 1.23,
+    "shares_with": [
+     "华富邨",
+     "华贵邨",
+     "富仁苑"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Tsuen Wan West",
+  "lines": [
+   "TML"
+  ],
+  "score": 686,
+  "spread_deg": 196,
+  "linked": "2/3",
+  "isolated": [
+   "海湾花园"
+  ],
+  "sx": 829377.2750703138,
+  "sy": 825434.6591240279,
+  "estates": [
+   {
+    "zone": "323.3",
+    "x": 828429.03,
+    "y": 825794.79,
+    "label": "湾景花园",
+    "district": "荃湾区",
+    "pop": 26235,
+    "car_am": 556,
+    "pt_am": 4479,
+    "km": 1.01,
+    "bearing": 291,
+    "next_station_km": 1.58,
+    "shares_with": [
+     "荃湾中心"
+    ]
+   },
+   {
+    "zone": "320S.7",
+    "x": 829815.59,
+    "y": 824908.44,
+    "label": "海湾花园",
+    "district": "荃湾区",
+    "pop": 22460,
+    "car_am": 486,
+    "pt_am": 4187,
+    "km": 0.68,
+    "bearing": 140,
+    "next_station_km": 0.93,
+    "shares_with": []
+   },
+   {
+    "zone": "323.4",
+    "x": 828958.59,
+    "y": 826384.27,
+    "label": "荃湾中心",
+    "district": "荃湾区",
+    "pop": 22245,
+    "car_am": 473,
+    "pt_am": 3800,
+    "km": 1.04,
+    "bearing": 336,
+    "next_station_km": 1.27,
+    "shares_with": [
+     "湾景花园"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Chai Wan",
+  "lines": [
+   "ISL"
+  ],
+  "score": 646,
+  "spread_deg": 22,
+  "linked": "3/3",
+  "isolated": [],
+  "sx": 842477.7008102781,
+  "sy": 813976.8772060615,
+  "estates": [
+   {
+    "zone": "167.1",
+    "x": 843717.63,
+    "y": 813663.21,
+    "label": "小西湾邨",
+    "district": "东区",
+    "pop": 22330,
+    "car_am": 249,
+    "pt_am": 4218,
+    "km": 1.28,
+    "bearing": 104,
+    "next_station_km": 1.91,
+    "shares_with": [
+     "富怡花园",
+     "富欣花园"
+    ]
+   },
+   {
+    "zone": "167.3",
+    "x": 843952.98,
+    "y": 813720.94,
+    "label": "富怡花园",
+    "district": "东区",
+    "pop": 18559,
+    "car_am": 210,
+    "pt_am": 3541,
+    "km": 1.5,
+    "bearing": 100,
+    "next_station_km": 1.99,
+    "shares_with": [
+     "小西湾邨",
+     "富欣花园"
+    ]
+   },
+   {
+    "zone": "167.2",
+    "x": 843893.08,
+    "y": 814164.49,
+    "label": "富欣花园",
+    "district": "东区",
+    "pop": 10937,
+    "car_am": 187,
+    "pt_am": 2680,
+    "km": 1.43,
+    "bearing": 82,
+    "next_station_km": 1.62,
+    "shares_with": [
+     "小西湾邨",
+     "富怡花园"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Tai Po Market",
+  "lines": [
+   "EAL"
+  ],
+  "score": 646,
+  "spread_deg": 206,
+  "linked": "5/5",
+  "isolated": [],
+  "sx": 835617.4986521892,
+  "sy": 833894.9138311113,
+  "estates": [
+   {
+    "zone": "725",
+    "x": 835240.74,
+    "y": 833044.86,
+    "label": "荔枝山",
+    "district": "大埔区",
+    "pop": 9726,
+    "car_am": 258,
+    "pt_am": 1447,
+    "km": 0.93,
+    "bearing": 204,
+    "next_station_km": 1.69,
+    "shares_with": [
+     "南苑"
+    ]
+   },
+   {
+    "zone": "726.5",
+    "x": 835584.44,
+    "y": 834835.73,
+    "label": "大元邨",
+    "district": "大埔区",
+    "pop": 16966,
+    "car_am": 229,
+    "pt_am": 2541,
+    "km": 0.94,
+    "bearing": 358,
+    "next_station_km": 0.97,
+    "shares_with": [
+     "怡雅苑",
+     "新兴花园"
+    ]
+   },
+   {
+    "zone": "729.2",
+    "x": 836630.28,
+    "y": 833281.92,
+    "label": "南苑",
+    "district": "大埔区",
+    "pop": 7953,
+    "car_am": 211,
+    "pt_am": 1213,
+    "km": 1.18,
+    "bearing": 121,
+    "next_station_km": 2.4,
+    "shares_with": [
+     "荔枝山"
+    ]
+   },
+   {
+    "zone": "726.2",
+    "x": 836149.06,
+    "y": 835043.91,
+    "label": "怡雅苑",
+    "district": "大埔区",
+    "pop": 15269,
+    "car_am": 199,
+    "pt_am": 2223,
+    "km": 1.27,
+    "bearing": 25,
+    "next_station_km": 1.57,
+    "shares_with": [
+     "大元邨",
+     "新兴花园"
+    ]
+   },
+   {
+    "zone": "726.4",
+    "x": 836041.24,
+    "y": 834837.77,
+    "label": "新兴花园",
+    "district": "大埔区",
+    "pop": 13293,
+    "car_am": 179,
+    "pt_am": 1839,
+    "km": 1.03,
+    "bearing": 24,
+    "next_station_km": 1.42,
+    "shares_with": [
+     "大元邨",
+     "怡雅苑"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 1,
+  "station": "Kam Sheung Road",
+  "lines": [
+   "TML"
+  ],
+  "score": 376,
+  "spread_deg": 159,
+  "linked": "2/3",
+  "isolated": [
+   "锦上路站一带"
+  ],
+  "sx": 824588.8007857332,
+  "sy": 832826.9399801267,
+  "estates": [
+   {
+    "zone": "531",
+    "x": 825658.92,
+    "y": 831962.92,
+    "label": "锦上路站一带",
+    "district": "元朗区",
+    "pop": 29031,
+    "car_am": 948,
+    "pt_am": 5002,
+    "km": 1.38,
+    "bearing": 129,
+    "next_station_km": 4.5,
+    "shares_with": []
+   },
+   {
+    "zone": "521",
+    "x": 824677.83,
+    "y": 833484.18,
+    "label": "大江埔",
+    "district": "元朗区",
+    "pop": 11182,
+    "car_am": 391,
+    "pt_am": 1747,
+    "km": 0.66,
+    "bearing": 8,
+    "next_station_km": 3.04,
+    "shares_with": [
+     "凹头"
+    ]
+   },
+   {
+    "zone": "526",
+    "x": 823603.87,
+    "y": 834508.58,
+    "label": "凹头",
+    "district": "元朗区",
+    "pop": 9491,
+    "car_am": 173,
+    "pt_am": 1376,
+    "km": 1.95,
+    "bearing": 330,
+    "next_station_km": 1.95,
+    "shares_with": [
+     "大江埔"
+    ]
+   }
+  ]
+ },
+ {
+  "lrt_zones": 0,
+  "station": "Sheung Shui",
+  "lines": [
+   "EAL"
+  ],
+  "score": 265,
+  "spread_deg": 65,
+  "linked": "2/3",
+  "isolated": [
+   "东塘新村"
+  ],
+  "sx": 831224.7509975149,
+  "sy": 840196.8688298186,
+  "estates": [
+   {
+    "zone": "547",
+    "x": 828793.71,
+    "y": 839273.67,
+    "label": "东塘新村",
+    "district": "北区",
+    "pop": 14533,
+    "car_am": 616,
+    "pt_am": 1960,
+    "km": 2.6,
+    "bearing": 249,
+    "next_station_km": 3.54,
+    "shares_with": []
+   },
+   {
+    "zone": "627.1",
+    "x": 831067.19,
+    "y": 839337.91,
+    "label": "清河邨",
+    "district": "北区",
+    "pop": 26143,
+    "car_am": 224,
+    "pt_am": 4261,
+    "km": 0.87,
+    "bearing": 190,
+    "next_station_km": 1.28,
+    "shares_with": [
+     "哥尔夫球场"
+    ]
+   },
+   {
+    "zone": "610S",
+    "x": 830428.83,
+    "y": 839991.35,
+    "label": "哥尔夫球场",
+    "district": "北区",
+    "pop": 4000,
+    "car_am": 174,
+    "pt_am": 595,
+    "km": 0.82,
+    "bearing": 256,
+    "next_station_km": 2.07,
+    "shares_with": [
+     "清河邨"
+    ]
+   }
+  ]
+ }
+]

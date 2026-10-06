@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 接駁巴士</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="sp"></div>
+  <button class="pill" id="srcBtn" title="Sources · 資料出處"><i class="dot live"></i><span>Sources 資料</span></button>
+  <button class="btn btn-sm" id="help">Rules <span class="tc">規則</span></button>
+  <div class="seg" role="group" aria-label="Theme"><button id="thPaper" aria-pressed="true" title="Paper 紙">☀</button><button id="thInk" aria-pressed="false" title="Ink 墨">☾</button></div>
+</header>
+
+<nav id="navrow" aria-label="Product views">
+  <button aria-selected="true"><i class="stop">01</i><span class="t"><b>Entry game</b><s>入門遊戲</s></span></button>
+  <button disabled title="即將推出"><i class="stop">02</i><span class="t"><b>Lessons</b><s>互動教學 · 即將推出</s></span></button>
+  <button disabled title="即將推出"><i class="stop">03</i><span class="t"><b>Full sandbox</b><s>完整沙盤 · 即將推出</s></span></button>
+  <button disabled title="即將推出"><i class="stop">04</i><span class="t"><b>Observation deck</b><s>觀測台 · 即將推出</s></span></button>
+  <button disabled title="即將推出"><i class="stop">05</i><span class="t"><b>Leaderboard</b><s>排行榜 · 即將推出</s></span></button>
+  <button disabled title="即將推出"><i class="stop">06</i><span class="t"><b>Network console</b><s>數據台 · 即將推出</s></span></button>
+</nav>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <div class="row"><span class="lbl">Mode 01 · Beginner</span><div class="sp"></div><span class="chip"><i></i>確定規則</span></div>
+    <h1 class="h1"><span id="titleEn">Feeder to the MTR</span><span class="h1tc" id="titleTc">接駁巴士 → 港鐵</span></h1>
+    <p class="lede">Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span></p>
+    <div class="row maps"><span class="lbl">Board · 地圖</span><div class="sp"></div><div class="seg" id="mapSeg" role="group" aria-label="地圖"></div></div>
+
+    <div class="box goal">
+      <div class="row"><span class="lbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">180</span></span></div>
+      <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
+      <div class="note" id="goal"></div>
+    </div>
+
+    <div class="row controls">
+      <button class="btn btn-p" id="start" disabled>▶ 開始</button>
+      <div class="seg" id="speedSeg" role="group" aria-label="速度"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button><button data-sp="8" aria-pressed="false">8×</button></div>
+      <button class="btn btn-sm" id="reset" title="重開">↺</button>
+    </div>
+
+    <div class="lbl">Stops · 接駁站 <span class="tc">1/2/3 選站 · 空格暫停</span></div>
+    <div id="stations" class="stations"></div>
+    <div id="stopPanel" class="box stopbox"></div>
+
+    <div class="lbl" style="margin-top:16px">Three rules · 三條規則</div>
+    <ol class="mini">
+      <li><b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。站要比港鐵近才有人去。</li>
+      <li><b>離港鐵越近，班次越密。</b>班距＝<span class="hwBase">60</span> 秒＋到港鐵每格 <span class="hwStep">10</span> 秒；每班 6 座，最多再排 8 人。正滿的站沒人會選；到站才發現滿了就近換站，換不了就回家想 20 秒，再從「最近的站」和「開車」中選一個。</li>
+      <li><b>看潮汐表。</b>每區一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。</li>
+    </ol>
+    <div class="lbl" style="margin-top:14px">How to read the map · 怎麼看</div>
+    <div class="legend">
+      <span><i style="background:var(--s-info);border-radius:50%"></i>去站</span>
+      <span><i style="background:var(--s-warn);border-radius:50%"></i>回家</span>
+      <span><i class="glowkey good"></i>送達 · 越亮越多人</span>
+      <span><i class="glowkey bad"></i>開車流失</span>
+    </div>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate">
+      <svg id="board" viewBox="0 0 660 485" role="group" aria-label="接駁巴士棋盤"></svg>
+      <svg id="fx" viewBox="0 0 660 485" aria-hidden="true"><defs>
+        <radialGradient id="gGood"><stop offset="0" style="stop-color:var(--s-accent2);stop-opacity:.95"/><stop offset=".45" style="stop-color:var(--s-accent);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--s-accent);stop-opacity:0"/></radialGradient>
+        <radialGradient id="gBad"><stop offset="0" style="stop-color:var(--s-bad);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--s-warn);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--s-warn);stop-opacity:0"/></radialGradient>
+        <radialGradient id="gTide"><stop offset="0" style="stop-color:var(--s-warn);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--s-warn);stop-opacity:0"/></radialGradient>
+      </defs><g id="fxl"></g></svg>
+      <div class="clockbox ov"><div class="c" id="clock">00:00</div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
+      <div class="lanebox ov"><div class="h">Moves · 搬站 <b id="moves">6</b> / 6</div><div class="hint" id="mapHint"></div></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="hud">
+        <div class="good" id="hudGood"><b id="score">0</b><small>Delivered · 已送達</small></div>
+        <div><b id="onway">0</b><small>On the way · 路上</small></div>
+        <div class="bad" id="hudBad"><b id="cars">0</b><small>Drove · 開車流失</small></div>
+        <div><b id="notOut">0</b><small>Not out yet · 未出門</small></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="row"><span class="lbl">Tide table · 潮汐表</span><div class="sp"></div><span class="chip" title="每 2 分鐘一批"><i></i>8 批 · 每 2 分鐘</span></div>
+    <table id="tide" aria-label="每批出門人數與預計會來的人數"></table>
+    <div class="legend tidekey"><span><b class="mono">6</b>出門人數</span><span><b class="mono" style="color:var(--s-accent)">會來 6</b>按現在站位</span><span><i class="pk"></i>高峰</span><span><b class="mono" style="color:var(--s-bad)">會來 21</b>可能擠爆</span></div>
+    <div class="lbl" style="margin-top:16px">Dispatch log · 調度提示</div>
+    <p id="notice" class="note" role="status" aria-live="polite"></p>
+  </aside>
+</main>
+
+<div id="cover">
+  <div class="cv-stage"><canvas id="cvDots"></canvas><div class="tip" id="cvTip"></div><div class="cv-pin" id="cvPin"><i></i><span>朗屏 · LONG PING</span></div></div>
+  <div class="cv-copy">
+    <img class="cv-logo" src="logo-tide.svg" alt="TransitLab · Green Genre" width="68" height="68">
+    <h1 class="cv-title">This city tides<br><em>twice</em> a day<span class="cv-tc">這座城市，一天漲潮兩次</span></h1>
+    <p class="cv-lede">761 trunk-road detectors, 24 weekdays, one reading every hour.<span class="cv-tc">運輸署實測，逐小時。</span></p>
+    <p class="cv-mode"><span class="lbl">Mode 01 · Entry game</span><span id="coverMode">入門遊戲：接駁巴士 → 港鐵</span></p>
+    <button class="cv-enter" id="coverEnter">Enter <span class="cv-tc2">進入</span> →</button>
+  </div>
+  <footer class="cv-bar">
+    <button class="cv-play" id="cvPlay" title="Replay the tide" aria-label="Replay"><svg width="13" height="14" viewBox="0 0 11 12" fill="currentColor"><path d="M1 0.6 10 6 1 11.4z"/></svg></button>
+    <div class="cv-hour"><div class="h" id="cvHour">03:00</div><div class="u" id="cvPhase">trough</div></div>
+    <div class="cv-mid"><svg id="cvTide"></svg></div>
+    <div class="cv-nums"><div><b id="cvFlow">—</b><span>veh/h</span></div><div><b id="cvSpeed">—</b><span>km/h</span></div></div>
+  </footer>
+</div>
+
+<dialog id="info"><button class="close" data-close="info" aria-label="關閉">×</button>
+<span class="lbl">Rules &amp; sources · 規則與資料</span><h2 class="h1">規則</h2>
+<ol class="rules">
+<li><b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。<b>正在滿員（8 個排隊位都滿）的站，在他做決定的那一刻沒有吸引力</b>；已經在路上的人不會因為近的站空出來而回頭。</li>
+<li><b>站要比港鐵近。</b>這些人今天開車，就是因為走去港鐵太遠；要走得和去港鐵一樣遠（或要越過港鐵）的站，他們不會去。所以不會有人走過港鐵再坐車回來。</li>
+<li><b>定時發車。</b>每座站的班距＝<span class="hwBase">60</span> 秒＋到港鐵的道路格數×<span class="hwStep">10</span> 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。</li>
+<li><b>滿了、等久了就近換站。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，就在原地看另一座站：全程走路格數（已走的＋還要走的）按同一張表仍在他的意願內、而且仍比港鐵近，就直接走過去（每趟出門最多換一次）；不然就走回家，想 20 秒後再決定一次：最近的站夠近、而且那一刻沒有滿就再出門，否則開車。每人最多從家裡出門兩次。從出門起總耐心約 3.5 分鐘，不會重置。</li>
+<li><b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人就近換站，或走回家再考慮；已開出的巴士照常送達。</li>
+<li><b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：唐人新村每批 6 人，其他三區每批 3 人；每區一次高峰，那一批多 18 人。</li>
+</ol>
+<h3>哪些是真的</h3><p id="source"></p><p id="coverSource"></p><p>本關只表達接駁的步行距離、班次與運力怎樣影響大家坐不坐公共交通；土地開發（TOD）與真實減碳核算留待後續關卡。</p></dialog>
+
+<dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
+<table class="result"><thead><tr><th>屋苑</th><th>送達</th><th>開車：太遠</th><th>站滿了</th><th>等太久</th><th>未完成</th></tr></thead><tbody id="resultRows"></tbody></table>
+<p id="resultHint" class="note"></p><div class="row"><button id="again" class="btn btn-p">再試一局 ↺</button><button data-close="result" class="btn">查看棋盤</button><button id="download" class="btn">保存本局紀錄</button></div></dialog>
+
+<script src="data.js"></script><script src="engine.js"></script><script src="cover-data.js"></script><script src="ui.js"></script><script src="cover.js"></script></body></html>

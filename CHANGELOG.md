@@ -6,6 +6,11 @@
 
 ## 2026-10-07
 
+### 02:40 · 接驳巴士 v3.0（选址版）：全港选址检索 + 粉嶺、元朗南真实选址地图 / Feeder v3.0: site search + Fanling and Yuen Long boards
+- **改了什么**：新建 `game-feeder/v3/`（v2 保持 v2.5）：粉嶺（默认）、元朗南、朗屏原版三张地图，各自的车站、分区、需求、班距与门槛；标题与封面跟随地图。`game-feeder/tools/site-search/`：全港 97 站选址检索、OpenStreetMap 真实步行核实、棋盘检查工具及结果。`bots/site_tune.js`；报告 `bots/reports/v3-*.json`。规则与 v2.5 相同。
+- **为什么**：发起人问当初为何选朗屏（实为 Codex 在第一个 Demo 自选，且唐人新村、蝶翠峰最近的车站其实是天水围、元朗），要求大检索找更合适的片区并做成游戏布局。
+- **验证**：`node game-feeder/v3/test_engine.js` 19 项通过；三张地图静态布局能过关的 4 / 4 / 2 种、能拿高分的 0 种；规则可预测度 0.91 / 0.90 / 0.93。详见 `game-feeder/LOG.md` v3 线。
+
 ### 01:20 · `b0069a4` 接驳巴士 v2.7：退回 v2.5 方格地图 / Feeder v2.7: back to the v2.5 grid board
 - **改了什么**：`game-feeder/v2/` 恢复为 v2.5（`08b9932`）。v2.6 的弧形地图试验记录保留在 `game-feeder/LOG.md` 与 `bots/`。
 - **为什么**：发起人试玩：弧形地图反而更孤立，每座站只影响一个地区；先回到原地图，再在原地图上找方案。

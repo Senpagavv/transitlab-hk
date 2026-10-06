@@ -1,0 +1,305 @@
+{
+  "version": "v3",
+  "generated": "2026-10-06T18:40:11.491Z",
+  "demand": {
+    "total": 192,
+    "waves": [
+      [
+        6,
+        3,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        3,
+        21
+      ],
+      [
+        6,
+        3,
+        3,
+        3
+      ],
+      [
+        6,
+        21,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        3,
+        3
+      ],
+      [
+        24,
+        3,
+        3,
+        3
+      ],
+      [
+        6,
+        3,
+        21,
+        3
+      ],
+      [
+        6,
+        3,
+        3,
+        3
+      ]
+    ],
+    "peaks": [
+      {
+        "origin": 3,
+        "wave": 1,
+        "extra": 18
+      },
+      {
+        "origin": 1,
+        "wave": 3,
+        "extra": 18
+      },
+      {
+        "origin": 0,
+        "wave": 5,
+        "extra": 18
+      },
+      {
+        "origin": 2,
+        "wave": 6,
+        "extra": 18
+      }
+    ]
+  },
+  "parameters": {
+    "seats": 6,
+    "queue": 8,
+    "headway": "60+10×格",
+    "willing": [
+      1,
+      1,
+      0.8,
+      0.6,
+      0.4,
+      0.2
+    ],
+    "target": 133,
+    "highScore": 140,
+    "masterScore": 146,
+    "moves": 6
+  },
+  "legibility": {
+    "coverage": 0.931,
+    "capacity": 0.929
+  },
+  "statics": {
+    "count": 286,
+    "min": 24,
+    "p25": 75,
+    "median": 92,
+    "p75": 105,
+    "p90": 116,
+    "max": 134,
+    "reachTarget": 2,
+    "reachHigh": 0
+  },
+  "bots": {
+    "novice": {
+      "layout": [
+        0,
+        7,
+        11
+      ],
+      "moves": [],
+      "delivered": 129,
+      "cars": 63,
+      "missed": 0,
+      "full": 39,
+      "longWait": 42
+    },
+    "reader": {
+      "layout": [
+        0,
+        7,
+        11
+      ],
+      "moves": [],
+      "delivered": 129,
+      "cars": 63,
+      "missed": 0,
+      "full": 39,
+      "longWait": 42
+    },
+    "bestStatic": {
+      "layout": [
+        0,
+        6,
+        12
+      ],
+      "moves": [],
+      "delivered": 134,
+      "cars": 56,
+      "missed": 2,
+      "full": 25,
+      "longWait": 34
+    },
+    "bestChaser": {
+      "layout": [
+        0,
+        6,
+        12
+      ],
+      "moves": [
+        {
+          "time": 95,
+          "id": 2,
+          "to": 11
+        },
+        {
+          "time": 335,
+          "id": 2,
+          "to": 12
+        },
+        {
+          "time": 335,
+          "id": 2,
+          "to": 7
+        },
+        {
+          "time": 575,
+          "id": 2,
+          "to": 12
+        },
+        {
+          "time": 575,
+          "id": 2,
+          "to": 1
+        },
+        {
+          "time": 815,
+          "id": 2,
+          "to": 12
+        }
+      ],
+      "delivered": 137,
+      "cars": 53,
+      "missed": 2,
+      "full": 33,
+      "longWait": 26,
+      "lead": 60,
+      "back": 150,
+      "floatId": 2
+    },
+    "greedyFromNovice": {
+      "layout": [
+        0,
+        7,
+        11
+      ],
+      "moves": [
+        {
+          "time": 60,
+          "id": 1,
+          "to": 6
+        },
+        {
+          "time": 120,
+          "id": 2,
+          "to": 12
+        },
+        {
+          "time": 210,
+          "id": 2,
+          "to": 11
+        },
+        {
+          "time": 330,
+          "id": 2,
+          "to": 8
+        },
+        {
+          "time": 630,
+          "id": 0,
+          "to": 1
+        }
+      ],
+      "delivered": 146,
+      "cars": 46,
+      "missed": 0,
+      "full": 4,
+      "longWait": 16
+    },
+    "greedyFromBest": {
+      "layout": [
+        0,
+        6,
+        12
+      ],
+      "moves": [
+        {
+          "time": 30,
+          "id": 2,
+          "to": 11
+        },
+        {
+          "time": 120,
+          "id": 1,
+          "to": 7
+        },
+        {
+          "time": 300,
+          "id": 2,
+          "to": 6
+        }
+      ],
+      "delivered": 147,
+      "cars": 45,
+      "missed": 0,
+      "full": 30,
+      "longWait": 33
+    }
+  },
+  "seeds": [
+    {
+      "seed": 1781,
+      "novice": 129,
+      "best": 134,
+      "chaser": 137,
+      "greedy": 147
+    },
+    {
+      "seed": 42,
+      "novice": 129,
+      "best": 134,
+      "chaser": 138,
+      "greedy": 145
+    },
+    {
+      "seed": 73,
+      "novice": 129,
+      "best": 134,
+      "chaser": 137,
+      "greedy": 147
+    },
+    {
+      "seed": 99,
+      "novice": 129,
+      "best": 134,
+      "chaser": 139,
+      "greedy": 145
+    },
+    {
+      "seed": 2026,
+      "novice": 130,
+      "best": 133,
+      "chaser": 138,
+      "greedy": 146
+    }
+  ],
+  "seconds": 25.745
+}
