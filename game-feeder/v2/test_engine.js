@@ -50,11 +50,12 @@ test('Seats, queue and population are conserved through a full round; driving is
     const st=g.stats();assert.equal(st.delivered+st.cars+st.missed+st.active+st.future,total);}
   assert(g.done);assert(g.events.some(e=>e.type==='full'));
 });
-test('Someone turned away by a full stop does not walk back to that same stop',()=>{
+test('Turned away by a full stop, nobody walks straight back to it in the same trip (only after going home)',()=>{
   const g=finish(setup());
   for(const e of g.events.filter(e=>e.type==='full')){
-    const later=g.events.filter(x=>x.id===e.id&&x.type==='walk'&&x.time>e.time);
-    for(const w of later)assert.notEqual(w.stop,e.stop);
+    const home=g.events.find(x=>x.id===e.id&&x.type==='home'&&x.time>=e.time);
+    const sameTrip=g.events.filter(x=>x.id===e.id&&x.type==='walk'&&x.time>=e.time&&(!home||x.time<home.time));
+    for(const w of sameTrip)assert.notEqual(w.stop,e.stop);
   }
 });
 test('Nobody walks to a stop that is as far as the MTR, so nobody walks past the station and rides back',()=>{
@@ -76,16 +77,30 @@ test('Turned away: switch on the spot within the walking budget; otherwise home 
   const people=new Set(g.events.filter(e=>e.type==='full'||e.why==='久候返家').map(e=>e.id));
   assert(people.size>0);
   for(const id of people){
-    const walks=g.events.filter(e=>e.id===id&&e.type==='walk');
-    assert(walks.length<=2,'more than two trips out');
+    const p=g.person(id),switches=g.events.filter(e=>e.id===id&&e.type==='switch').length;
+    assert(p.trips<=2,'more than two trips out from home');
+    assert(switches<=p.trips,'more than one switch in a trip');
   }
   assert(g.events.some(e=>e.type==='switch'),'nobody ever switched');
 });
-test('Back home, people think it over before driving (up to homeGrace, within their patience)',()=>{
+test('Home again: think for homeThink seconds, then one choice — the nearest suitable stop (even the one that was full) or the car',()=>{
+  const g=finish(setup([1,0,7]));let again=0,sameStop=0;
+  for(const home of g.events.filter(e=>e.type==='home')){
+    const next=g.events.find(e=>e.id===home.id&&e.time>=home.time&&['walk','car'].includes(e.type)&&e!==home);
+    if(!next||next.type!=='walk')continue;
+    assert(Math.abs(next.time-home.time-P.homeThink)<=P.tick+1e-6,`went out again ${next.time-home.time}s after getting home`);
+    again++;
+    const before=g.events.filter(e=>e.id===home.id&&e.type==='full'&&e.time<home.time).at(-1);
+    if(before&&before.stop===next.stop)sameStop++;
+  }
+  assert(again>0,'nobody went out a second time');
+  assert(sameStop>0,'nobody tried their nearest (previously full) stop again');
+});
+test('Back home, people think it over before driving (homeThink seconds, within their patience)',()=>{
   const g=finish(setup([1,0,7]));let checked=0;
   for(const car of g.events.filter(e=>e.type==='car')){
     const home=g.events.filter(e=>e.id===car.id&&e.type==='home'&&e.time<=car.time).at(-1);if(!home)continue;
-    const p=g.person(car.id),expect=Math.min(P.homeGrace,p.deadline-home.time);
+    const p=g.person(car.id),expect=Math.min(P.homeThink,p.deadline-home.time);
     assert(car.time-home.time>=expect-P.tick-1e-6,`drove ${car.time-home.time}s after getting home, expected ~${expect}s`);checked++;
   }
   assert(checked>0,'nobody came home and drove');

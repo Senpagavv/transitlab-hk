@@ -6,8 +6,8 @@
   // is exactly the share that comes (each extra block costs 20 percentage points).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:30,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
-    willing:[1,1,.8,.6,.4,.2],homeGrace:50,patience:210,queuePatience:120,
-    reconsider:4,target:128,highScore:138,masterScore:145};
+    willing:[1,1,.8,.6,.4,.2],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
+    reconsider:4,target:131,highScore:140,masterScore:146};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
@@ -58,7 +58,7 @@
         for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
           born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
           state:'future',preference:thresholds[j],budget:P.patience+40*(r()-.5),
-          queueLimit:P.queuePatience+20*(r()-.5),attempts:0,retryAt:0,avoid:[],walked:0,giveUp:false,
+          queueLimit:P.queuePatience+20*(r()-.5),trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
       this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
@@ -124,19 +124,19 @@
     walk(p,id,from) {const path=this.walkingPath(p,from,this.stops[id].cell);Object.assign(p,{state:'walk',target:id,path,since:this.t});this.emit('walk',p,{stop:id});}
     decide(p) {
       const choice=this.choose(p,D.origins[p.origin].cell);
-      if(choice){p.attempts++;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
+      if(choice){p.trips++;p.switched=false;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
       else p.retryAt=this.t+P.reconsider;
     }
     leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
     // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
-    // walk (already walked + still to walk) is still within their willingness; otherwise walk home, where they
-    // think it over like anyone at home (up to homeGrace, within their patience) before deciding to drive.
-    // At most two trips out per person, so nobody wanders back and forth.
+    // walk (already walked + still to walk) is still within their willingness — once per trip; otherwise walk
+    // home, think for homeThink seconds, then choose once between the nearest stop that suits them (by the same
+    // distance rule, the stop that was full included) and driving. At most two trips out from home.
     reroute(p,here,failed,why,excluded=-1) {
       this.leave(p);
       if(failed){p.avoid.push(failed.id+':'+failed.version);p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
-      const choice=p.attempts<2?this.choose(p,here,excluded,p.walked):null;
-      if(choice){p.attempts++;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
+      const choice=p.switched?null:this.choose(p,here,excluded,p.walked);
+      if(choice){p.switched=true;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
       this.goHome(p,why,here);
     }
     goHome(p,why,from,turnedAway) {
@@ -187,7 +187,7 @@
         if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});this.emit('spawn',p);}
         if(p.state==='home'){
           if(this.t>=p.deadline||this.t>=p.homeUntil)this.car(p);
-          else if(p.attempts<2&&this.t>=p.retryAt)this.decide(p);
+          else if(p.trips<2&&this.t>=p.retryAt)this.decide(p);
         } else if(p.state==='walk'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           const s=this.stops[p.target];p.walked+=length(p.path);
           if(s&&s.ready<=this.t&&(s.boarding.length<P.seats||s.queue.length<P.queue)&&this.t<p.deadline){
@@ -201,7 +201,8 @@
         } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           if(p.giveUp){this.car(p);continue;}
-          Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,homeUntil:Math.min(p.deadline,this.t+P.homeGrace),retryAt:this.t+P.reconsider});this.emit('home',p);
+          // home again: think for a while, then one decision — the nearest suitable stop, or the car
+          Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
         }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
       if(this.t>=P.duration)this.closeSession();

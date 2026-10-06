@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated": "2026-10-06T12:50:44.958Z",
+  "generated": "2026-10-06T12:59:59.471Z",
   "demand": {
     "total": 192,
     "waves": [
@@ -88,24 +88,24 @@
       0.4,
       0.2
     ],
-    "target": 128,
-    "highScore": 138,
-    "masterScore": 145,
+    "target": 131,
+    "highScore": 140,
+    "masterScore": 146,
     "moves": 6
   },
   "legibility": {
-    "coverage": 0.933,
-    "capacity": 0.919
+    "coverage": 0.929,
+    "capacity": 0.93
   },
   "statics": {
     "count": 286,
     "min": 24,
-    "p25": 71,
-    "median": 87,
-    "p75": 99,
-    "p90": 114,
-    "max": 129,
-    "reachTarget": 2,
+    "p25": 75,
+    "median": 90,
+    "p75": 103,
+    "p90": 115,
+    "max": 132,
+    "reachTarget": 4,
     "reachHigh": 0
   },
   "bots": {
@@ -116,11 +116,11 @@
         11
       ],
       "moves": [],
-      "delivered": 129,
-      "cars": 63,
+      "delivered": 131,
+      "cars": 61,
       "missed": 0,
-      "full": 38,
-      "longWait": 26
+      "full": 67,
+      "longWait": 42
     },
     "reader": {
       "layout": [
@@ -129,24 +129,24 @@
         11
       ],
       "moves": [],
-      "delivered": 129,
-      "cars": 63,
+      "delivered": 131,
+      "cars": 61,
       "missed": 0,
-      "full": 38,
-      "longWait": 26
+      "full": 67,
+      "longWait": 42
     },
     "bestStatic": {
       "layout": [
         0,
         7,
-        11
+        12
       ],
       "moves": [],
-      "delivered": 129,
-      "cars": 63,
+      "delivered": 132,
+      "cars": 60,
       "missed": 0,
-      "full": 38,
-      "longWait": 26
+      "full": 57,
+      "longWait": 36
     },
     "bestChaser": {
       "layout": [
@@ -156,29 +156,34 @@
       ],
       "moves": [
         {
+          "time": 125,
+          "id": 0,
+          "to": 12
+        },
+        {
           "time": 365,
-          "id": 2,
+          "id": 0,
           "to": 6
         },
         {
           "time": 605,
-          "id": 2,
-          "to": 1
+          "id": 1,
+          "to": 0
         },
         {
           "time": 725,
           "id": 2,
-          "to": 8
+          "to": 7
         }
       ],
-      "delivered": 135,
-      "cars": 57,
+      "delivered": 137,
+      "cars": 55,
       "missed": 0,
-      "full": 37,
-      "longWait": 30,
+      "full": 47,
+      "longWait": 41,
       "lead": 30,
       "back": 0,
-      "floatId": 2
+      "floatId": null
     },
     "greedyFromNovice": {
       "layout": [
@@ -188,29 +193,24 @@
       ],
       "moves": [
         {
-          "time": 90,
-          "id": 2,
+          "time": 60,
+          "id": 1,
           "to": 6
         },
         {
           "time": 120,
           "id": 2,
+          "to": 12
+        },
+        {
+          "time": 210,
+          "id": 2,
           "to": 11
         },
         {
-          "time": 240,
-          "id": 1,
-          "to": 6
-        },
-        {
-          "time": 300,
+          "time": 330,
           "id": 2,
           "to": 8
-        },
-        {
-          "time": 390,
-          "id": 2,
-          "to": 7
         },
         {
           "time": 630,
@@ -222,27 +222,22 @@
       "cars": 46,
       "missed": 0,
       "full": 18,
-      "longWait": 24
+      "longWait": 16
     },
     "greedyFromBest": {
       "layout": [
         0,
         7,
-        11
+        12
       ],
       "moves": [
         {
-          "time": 90,
-          "id": 2,
-          "to": 6
-        },
-        {
-          "time": 120,
+          "time": 30,
           "id": 2,
           "to": 11
         },
         {
-          "time": 240,
+          "time": 60,
           "id": 1,
           "to": 6
         },
@@ -252,7 +247,7 @@
           "to": 8
         },
         {
-          "time": 390,
+          "time": 600,
           "id": 2,
           "to": 7
         },
@@ -262,49 +257,49 @@
           "to": 1
         }
       ],
-      "delivered": 146,
-      "cars": 46,
+      "delivered": 147,
+      "cars": 45,
       "missed": 0,
-      "full": 18,
-      "longWait": 24
+      "full": 20,
+      "longWait": 21
     }
   },
   "seeds": [
     {
       "seed": 1781,
-      "novice": 129,
-      "best": 129,
-      "chaser": 135,
-      "greedy": 146
+      "novice": 131,
+      "best": 132,
+      "chaser": 137,
+      "greedy": 147
     },
     {
       "seed": 42,
-      "novice": 129,
-      "best": 129,
-      "chaser": 135,
+      "novice": 131,
+      "best": 132,
+      "chaser": 140,
       "greedy": 143
     },
     {
       "seed": 73,
-      "novice": 129,
-      "best": 129,
-      "chaser": 137,
-      "greedy": 143
+      "novice": 131,
+      "best": 132,
+      "chaser": 139,
+      "greedy": 142
     },
     {
       "seed": 99,
-      "novice": 129,
-      "best": 129,
-      "chaser": 136,
-      "greedy": 145
+      "novice": 131,
+      "best": 132,
+      "chaser": 139,
+      "greedy": 144
     },
     {
       "seed": 2026,
-      "novice": 129,
-      "best": 129,
-      "chaser": 135,
-      "greedy": 143
+      "novice": 132,
+      "best": 132,
+      "chaser": 137,
+      "greedy": 142
     }
   ],
-  "seconds": 21.037
+  "seconds": 28.178
 }
