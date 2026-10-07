@@ -1,0 +1,266 @@
+(function(root) {
+  'use strict';
+  // v3.1 · three languages: 繁體中文 (default), 简体中文, English.
+  // Display titles stay in English in every language (the suite's design); the Chinese line under them follows
+  // the language and is left out in English. Estate names stay in Chinese in English, as on local signs.
+  // Static markup: data-i18n (text), data-i18n-html, data-i18n-title, data-i18n-aria. Dynamic text: I18N.t(key, vars).
+  const LANGS=['zh-Hant','zh-Hans','en'];
+  const L=(hant,hans,en)=>({'zh-Hant':hant,'zh-Hans':hans,en});
+  const S={
+    'doc.title':L('TransitLab HK · 接駁巴士','TransitLab HK · 接驳巴士','TransitLab HK · Feeder bus'),
+    'doc.game':L('TransitLab HK · 接駁巴士 · {s}','TransitLab HK · 接驳巴士 · {s}','TransitLab HK · Feeder bus · {s}'),
+    'sep':L('、','、',', '),
+    // top bar
+    'brand.sub':L('HK · Feeder bus · 接駁巴士','HK · Feeder bus · 接驳巴士','HK · Feeder bus'),
+    'top.sources':L('Sources 資料','Sources 资料','Sources'),
+    'top.sourcesTitle':L('資料出處','资料出处','Data sources'),
+    'top.rules':L('Rules <span class="tc">規則</span>','Rules <span class="tc">规则</span>','Rules'),
+    'top.paper':L('Paper 紙','Paper 纸','Paper'),'top.ink':L('Ink 墨','Ink 墨','Ink'),
+    'top.theme':L('主題','主题','Theme'),'top.lang':L('語言','语言','Language'),
+    // 01–06 menu
+    'nav.aria':L('產品功能','产品功能','Product views'),
+    'nav.1':L('入門遊戲','入门游戏','Feeder bus'),
+    'nav.2':L('互動教學 · 即將推出','互动教学 · 即将推出','Coming soon'),
+    'nav.3':L('完整沙盤 · 即將推出','完整沙盘 · 即将推出','Coming soon'),
+    'nav.4':L('觀測台 · 即將推出','观测台 · 即将推出','Coming soon'),
+    'nav.5':L('排行榜 · 即將推出','排行榜 · 即将推出','Coming soon'),
+    'nav.6':L('數據台 · 即將推出','数据台 · 即将推出','Coming soon'),
+    // opening
+    'cv.titleTc':L('這座城市，一天漲潮兩次','这座城市，一天涨潮两次',''),
+    'cv.ledeTc':L('運輸署實測，逐小時。','运输署实测，逐小时。',''),
+    'cv.mode':L('入門遊戲：接駁巴士 · 三個港鐵站可以玩','入门游戏：接驳巴士 · 三个港铁站可以玩','Entry game: feeder bus · three stations to play'),
+    'cv.scroll':L('向下滾動，打開地圖','向下滚动，打开地图','Scroll to open the map'),
+    'cv.replay':L('重播潮汐','重播潮汐','Replay the tide'),
+    'cv.crest':L('crest 滿潮','crest 满潮','crest'),'cv.trough':L('trough 低潮','trough 低潮','trough'),
+    'cv.rising':L('rising 漲潮','rising 涨潮','rising'),'cv.ebbing':L('ebbing 退潮','ebbing 退潮','ebbing'),
+    'cv.trips':L('Trips now 此刻出行','Trips now 此刻出行','Trips now'),
+    // hub (the map)
+    'hub.aria':L('香港地圖：選一個地點','香港地图：选一个地点','Map of Hong Kong: pick a place'),
+    'hub.start':L('Start · 開始','Start · 开始','Start'),
+    'hub.pickH':L('從上方選一個模式','从上方选一个模式','Pick a mode above'),
+    'hub.pickP':L('現在可以玩的是 <b>01 入門遊戲</b>。之後的模式也會從這張地圖進入。','现在可以玩的是 <b>01 入门游戏</b>。之后的模式也会从这张地图进入。','<b>01 Entry game</b> is ready to play. Later modes will open from this map too.'),
+    'hub.m1H':L('接駁巴士','接驳巴士','Feeder bus'),
+    'hub.m1P':L('在港鐵站周邊放三座接駁站，把原本開車的人接上港鐵。每一關是一個真實的站，和它附近早上開車最多的屋苑。點地圖上的站名開始。','在港铁站周边放三座接驳站，把原本开车的人接上港铁。每一关是一个真实的站，和它附近早上开车最多的屋苑。点地图上的站名开始。','Place three feeder stops around an MTR station and get people who drive today onto the train. Each level is a real station and the nearby estates with the most morning drivers. Click a station on the map to start.'),
+    'hub.levels':L('Levels · 關卡','Levels · 关卡','Levels'),
+    'hub.levelLine':L('{n} 個屋苑 · 過關 {pass}','{n} 个屋苑 · 过关 {pass}','{n} estates · pass {pass}'),
+    'hub.tiers':L('過關 {a} · 高分 {b} · 大師 {c}','过关 {a} · 高分 {b} · 大师 {c}','pass {a} · high {b} · master {c}'),
+    'hub.best':L('最佳 {n}','最佳 {n}','best {n}'),
+    'hub.resume':L('本局未完 · 點擊繼續','本局未完 · 点击继续','Game in progress · click to resume'),
+    'hub.hover':L('把滑鼠停在地圖上的站，看看那裡的情況。','把鼠标停在地图上的站，看看那里的情况。','Hover a station on the map to see what it is like.'),
+    'hub.play':L('可以玩','可以玩','Playable'),'hub.soon':L('未開發','未开发','Not built yet'),
+    'hub.soonNote':L('灰色的站來自全港 97 個港鐵站的選址檢索，還沒做成關卡。','灰色的站来自全港 97 个港铁站的选址检索，还没做成关卡。','Grey stations come from our search of 97 MTR stations; they are not levels yet.'),
+    'hub.enNames':L('','','Estate names stay in Chinese, as on local signs.'),
+    'hub.coming':L('即將推出','即将推出','Coming soon'),
+    'hub.m2H':L('互動教學','互动教学','Lessons'),
+    'hub.m2P':L('一課一個概念：步行距離、班距、運力、潮汐。之後從地圖上的站點進入。','一课一个概念：步行距离、班距、运力、潮汐。之后从地图上的站点进入。','One idea per lesson: walking distance, headway, capacity, the tide. They will open from places on this map.'),
+    'hub.m3H':L('完整沙盤','完整沙盘','Full sandbox'),
+    'hub.m3P':L('更大的地圖：幾個港鐵站、幾條接駁線一起規劃。','更大的地图：几个港铁站、几条接驳线一起规划。','Bigger maps: several stations and feeder lines planned together.'),
+    'hub.m4H':L('觀測台','观测台','Observation deck'),
+    'hub.m4P':L('看真實數據：全港逐小時的潮汐和各區出行量。','看真实数据：全港逐小时的潮汐和各区出行量。','Real data: the hourly tide and the trips of every district.'),
+    'hub.m5H':L('排行榜','排行榜','Leaderboard'),
+    'hub.m5P':L('同一張地圖比分數，只顯示暱稱。','同一张地图比分数，只显示昵称。','Compare scores on the same map — nicknames only.'),
+    'hub.m6H':L('數據台','数据台','Network console'),
+    'hub.m6P':L('資料出處、模型參數和路網。','资料出处、模型参数和路网。','Sources, model parameters and the network.'),
+    // places
+    'site.fanling':L('粉嶺','粉岭','Fanling'),'site.yuenlong':L('元朗南','元朗南','Yuen Long South'),
+    'site.longping':L('朗屏（原版）','朗屏（原版）','Long Ping (original)'),'site.wahfu':L('華富','华富','Wah Fu'),
+    'site.tsingyi':L('青衣','青衣','Tsing Yi'),'site.chaiwan':L('柴灣','柴湾','Chai Wan'),'site.kwaihing':L('葵興','葵兴','Kwai Hing'),
+    'site.taiwo':L('太和','太和','Tai Wo'),'site.tinshuiwai':L('天水圍','天水围','Tin Shui Wai'),'site.tuenmun':L('屯門','屯门','Tuen Mun'),
+    'site.sheungshui':L('上水','上水','Sheung Shui'),
+    'about.fanling':L('東鐵綫。五個屋苑在車站東面散開；北邊的山麗苑最遠、開車的人最多。','东铁线。五个屋苑在车站东面散开；北边的山丽苑最远、开车的人最多。','East Rail line. Five estates fan out east of the station; Shan Lai Court in the north is farthest and has the most drivers.'),
+    'about.yuenlong':L('屯馬綫。四個屋苑排成車站南面的一條走廊，相鄰兩區可以共用一座站。','屯马线。四个屋苑排成车站南面的一条走廊，相邻两区可以共用一座站。','Tuen Ma line. Four estates line up in a corridor south of the station; neighbours can share a stop.'),
+    'about.longping':L('第一版的棋盤，留作對照。','第一版的棋盘，留作对照。','The first board, kept for comparison.'),
+    'about.wahfu':L('華富一帶：港鐵站都在 2.5 公里以外，步行最近的是黃竹坑站。','华富一带：港铁站都在 2.5 公里以外，步行最近的是黄竹坑站。','Around Wah Fu every MTR station is over 2.5 km away; the nearest on foot is Wong Chuk Hang.'),
+    'about.tsingyi':L('四個屋苑擠在一起，一座站就接得完，挪站沒有意思。','四个屋苑挤在一起，一座站就接得完，挪站没有意思。','Four estates packed together: one stop serves them all, so moving stops means little.'),
+    'about.kwaihing':L('三個屋苑彼此只隔三四百米，太緊湊。','三个屋苑彼此只隔三四百米，太紧凑。','Three estates only 300–400 m apart — too compact.'),
+    'about.chaiwan':L('三個屋苑都在車站同一邊，彼此很近，太緊湊。','三个屋苑都在车站同一边，彼此很近，太紧凑。','Three estates on the same side, close together — too compact.'),
+    'about.taiwo':L('屋苑之間沒有共用的步行路，各自孤立。','屋苑之间没有共用的步行路，各自孤立。','No shared walking routes between the estates — each is on its own.'),
+    'about.tinshuiwai':L('輕鐵已經在接駁好幾個區。','轻铁已经在接驳好几个区。','Light Rail already feeds several of these areas.'),
+    'about.tuenmun':L('大部分區已經有輕鐵接駁。','大部分区已经有轻铁接驳。','Light Rail already feeds most of these areas.'),
+    'about.sheungshui':L('開車的人不多，東面的東塘新村又太孤立。','开车的人不多，东面的东塘新村又太孤立。','Few drivers, and 東塘新村 is cut off from the rest.'),
+    // the game, left column
+    'g.mode':L('Mode 01','Mode 01','Mode 01'),
+    'g.toMap':L('← 地圖','← 地图','← Map'),'g.toMapTitle':L('回到地圖選關','回到地图选关','Back to the map'),
+    'g.chip':L('確定規則','确定规则','Fixed rules'),
+    'g.titleTc':L('接駁巴士 → {s}','接驳巴士 → {s}',''),
+    'g.lede':L('Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span>',
+      'Three stops, one station. Get drivers onto the train.<span class="tcb">三座接驳站，把原本开车的人接上港铁。</span>',
+      'Three stops, one station. Get drivers onto the train.<span class="tcb">Estate names stay in Chinese, as on local signs.</span>'),
+    'g.goalLbl':L('Goal · 目標','Goal · 目标','Goal'),
+    'g.goal':L('<b>{pass}</b> 過關：開局三站要擺得很準，不然要靠中途挪站補救。<b>{high}</b> 高分：一定要跟著潮汐挪站。<b>{master}</b> 潮汐大師：每一步都挪得準。',
+      '<b>{pass}</b> 过关：开局三站要摆得很准，不然要靠中途挪站补救。<b>{high}</b> 高分：一定要跟着潮汐挪站。<b>{master}</b> 潮汐大师：每一步都挪得准。',
+      '<b>{pass}</b> to pass: the opening three stops must be spot on, or you rescue it by moving stops. <b>{high}</b> high score: you must move stops with the tide. <b>{master}</b> tide master: every move on time.'),
+    'g.tickPass':L('過關 {n}','过关 {n}','pass {n}'),'g.tickHigh':L('高分 {n}','高分 {n}','high {n}'),'g.tickMaster':L('大師 {n}','大师 {n}','master {n}'),
+    'g.start':L('▶ 開始','▶ 开始','▶ Start'),'g.pause':L('❚❚ 暫停','❚❚ 暂停','❚❚ Pause'),'g.resume':L('▶ 繼續','▶ 继续','▶ Resume'),'g.over':L('已結束','已结束','Finished'),
+    'g.speed':L('速度','速度','Speed'),'g.reset':L('重開','重开','Restart'),
+    'g.stops':L('Stops · 接駁站 <span class="tc">1/2/3 選站 · 空格暫停</span>','Stops · 接驳站 <span class="tc">1/2/3 选站 · 空格暂停</span>','Stops <span class="tc">1/2/3 to select · space to pause</span>'),
+    'g.rules':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'g.rule1':L('<b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。站要比港鐵近才有人去。',
+      '<b>离站越远，越少人来。</b>1 格内全来，之后每多 1 格少 20%。圈上的比例就是真的会来的比例。站要比港铁近才有人去。',
+      '<b>The farther the stop, the fewer come.</b> Everyone within 1 block comes; each extra block loses 20%. The share on the circle is exactly who comes. A stop must be closer than the MTR itself.'),
+    'g.rule2':L('<b>離港鐵越近，班次越密。</b>班距＝{base} 秒＋到港鐵每格 {step} 秒；每班 6 座，最多再排 8 人。正滿的站沒人會選；到站才發現滿了就近換站，換不了就回家想 20 秒，再從「最近的站」和「開車」中選一個。',
+      '<b>离港铁越近，班次越密。</b>班距＝{base} 秒＋到港铁每格 {step} 秒；每班 6 座，最多再排 8 人。正满的站没人会选；到站才发现满了就近换站，换不了就回家想 20 秒，再从「最近的站」和「开车」中选一个。',
+      '<b>The closer to the MTR, the more frequent.</b> Headway = {base} s + {step} s per block to the MTR; 6 seats a bus, up to 8 more in the queue. Nobody picks a stop that is full; whoever finds it full on arrival tries the nearest other stop, or walks home, thinks for 20 s, then picks the nearest stop or the car.'),
+    'g.rule3':L('<b>看潮汐表。</b>每區一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。',
+      '<b>看潮汐表。</b>每区一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。',
+      '<b>Read the tide table.</b> Each estate has one peak (+18 people). Move stops before it: 6 moves, 20 s to rebuild each.'),
+    'g.read':L('How to read the map · 怎麼看','How to read the map · 怎么看','How to read the map'),
+    'g.legWalk':L('去站','去站','to a stop'),'g.legHome':L('回家','回家','going home'),
+    'g.legGood':L('送達 · 越亮越多人','送达 · 越亮越多人','delivered · brighter = more'),'g.legBad':L('開車流失','开车流失','lost to cars'),
+    // right column
+    'g.tide':L('Tide table · 潮汐表','Tide table · 潮汐表','Tide table'),
+    'g.tideChip':L('8 批 · 每 2 分鐘','8 批 · 每 2 分钟','8 batches · every 2 min'),
+    'g.tideChipTitle':L('每 2 分鐘一批','每 2 分钟一批','one batch every 2 minutes'),
+    'g.tideAria':L('每批出門人數與預計會來的人數','每批出门人数与预计会来的人数','People leaving home per batch, and how many will come'),
+    'g.tideKey':L('<span><b class="mono">6</b>出門人數</span><span><b class="mono" style="color:var(--s-accent)">會來 6</b>按現在站位</span><span><i class="pk"></i>高峰</span><span><b class="mono" style="color:var(--s-bad)">會來 21</b>可能擠爆</span>',
+      '<span><b class="mono">6</b>出门人数</span><span><b class="mono" style="color:var(--s-accent)">会来 6</b>按现在站位</span><span><i class="pk"></i>高峰</span><span><b class="mono" style="color:var(--s-bad)">会来 21</b>可能挤爆</span>',
+      '<span><b class="mono">6</b>leave home</span><span><b class="mono" style="color:var(--s-accent)">come 6</b>with these stops</span><span><i class="pk"></i>peak</span><span><b class="mono" style="color:var(--s-bad)">come 21</b>may overflow</span>'),
+    'g.log':L('Dispatch log · 調度提示','Dispatch log · 调度提示','Dispatch log'),
+    // map plate
+    'g.board':L('接駁巴士棋盤','接驳巴士棋盘','Feeder bus board'),
+    'g.moves':L('Moves · 搬站','Moves · 搬站','Moves'),
+    'hud.good':L('Delivered · 已送達','Delivered · 已送达','Delivered'),'hud.onway':L('On the way · 路上','On the way · 路上','On the way'),
+    'hud.bad':L('Drove · 開車流失','Drove · 开车流失','Drove'),'hud.notOut':L('Not out yet · 未出門','Not out yet · 未出门','Not out yet'),
+    'b.next':L('下批 {k}/{n} 人','下批 {k}/{n} 人','next {k}/{n}'),
+    'b.delivered':L('已送達 {n}','已送达 {n}','delivered {n}'),
+    'b.candAria':L('放置接駁站於 {c} 列 {r} 行','放置接驳站于 {c} 列 {r} 行','Place a stop at column {c}, row {r}'),
+    'b.full':L('FULL 滿','FULL 满','FULL'),
+    'b.rebuild':L('重建 {n}s','重建 {n}s','rebuild {n}s'),'b.depart':L('發車 {t}','发车 {t}','departs {t}'),'b.headway':L('班距 {n}s','班距 {n}s','every {n}s'),
+    'b.stopAria':L('接駁站 {s}：座位 {a}/{b}，排隊 {c}/{d}','接驳站 {s}：座位 {a}/{b}，排队 {c}/{d}','Stop {s}: seats {a}/{b}, queue {c}/{d}'),
+    'b.mtr':L('','','MTR'),
+    // tide table + stop panel + side
+    'tt.batch':L('批次','批次','Batch'),'tt.none':L('無站','无站','no stop'),'tt.come':L('會來 {n}','会来 {n}','come {n}'),
+    'sp.title':L('{s} 站','{s} 站','Stop {s}'),'sp.preview':L(' · 預覽',' · 预览',' · preview'),
+    'sp.empty':L('還沒放。滑鼠停在地圖的 ＋ 上先看預覽，再點擊放站。','还没放。鼠标停在地图的 ＋ 上先看预览，再点击放站。','Not placed. Hover a ＋ on the map to preview, then click to place.'),
+    'sp.toMTR':L('到港鐵','到港铁','To MTR'),'sp.toMTRv':L('{n} 格 → 班距 <b>{hw}s</b>','{n} 格 → 班距 <b>{hw}s</b>','{n} blocks → every <b>{hw}s</b>'),
+    'sp.who':L('誰會來','谁会来','Who comes'),'sp.nobody':L('沒有屋苑選這座站','没有屋苑选这座站','no estate picks this stop'),
+    'sp.not':L('不會來','不会来','Won’t come'),'sp.beyond':L('{list}（比走去港鐵還遠）','{list}（比走去港铁还远）','{list} (farther than the MTR)'),
+    'sp.next':L('下一班','下一班','Next bus'),'sp.opening':L('開局 +{n}s','开局 +{n}s','start +{n}s'),
+    'sp.seats':L('座位 {a}/{b}','座位 {a}/{b}','Seats {a}/{b}'),'sp.queue':L('排隊 {a}/{b}','排队 {a}/{b}','Queue {a}/{b}'),
+    'sp.rejected':L('被擠走 {n} 人次','被挤走 {n} 人次','turned away {n}×'),
+    'sp.hoverMove':L('點擊搬到這裡：重建 20 秒，剩 {n} 次。','点击搬到这里：重建 20 秒，剩 {n} 次。','Click to move here: 20 s to rebuild, {n} moves left. '),
+    'sp.hoverPlace':L('點擊放站（開局前不扣搬站次數）。','点击放站（开局前不扣搬站次数）。','Click to place (free before the start). '),
+    'sp.tip':L('離港鐵近 → 班次密；離屋苑近 → 來的人多。','离港铁近 → 班次密；离屋苑近 → 来的人多。','Near the MTR → frequent buses; near the estates → more people.'),
+    'w.first':L('第 1 批：開局後 {n} 秒','第 1 批：开局后 {n} 秒','Batch 1: {n} s after the start'),
+    'w.missed':L('未完成 {n} 人','未完成 {n} 人','{n} unfinished'),
+    'w.active':L('第 {n}/8 批正在出門','第 {n}/8 批正在出门','Batch {n}/8 leaving home'),
+    'w.next':L('第 {n}/8 批：{t} 後','第 {n}/8 批：{t} 后','Batch {n}/8 in {t}'),
+    'w.all':L('8 批都出門了','8 批都出门了','All 8 batches are out'),
+    'h.done':L('本局已結束。','本局已结束。','This game is over.'),
+    'h.running':L('運行中','运行中','Running'),'h.paused':L('已暫停','已暂停','Paused'),
+    'h.run':L('{state} · 選站再點 ＋，或直接拖動車站','{state} · 选站再点 ＋，或直接拖动车站','{state} · pick a stop then click ＋, or drag a stop'),
+    'h.place':L('放 {s} 站：停在 ＋ 上先看預覽，點擊放下','放 {s} 站：停在 ＋ 上先看预览，点击放下','Place stop {s}: hover a ＋ to preview, click to drop'),
+    'st.btn':L('座 {a}/{b} · 隊 {c}/{d}','座 {a}/{b} · 队 {c}/{d}','seats {a}/{b} · queue {c}/{d}'),'st.none':L('未放置','未放置','not placed'),
+    // dispatch log
+    'n.moved':L('{s} 站搬好了，重建 20 秒；站上還沒上車的人就近換站或走回家，已開出的巴士照常送達。','{s} 站搬好了，重建 20 秒；站上还没上车的人就近换站或走回家，已开出的巴士照常送达。','Stop {s} moved: 20 s to rebuild. People still waiting there try another stop or walk home; buses already out still arrive.'),
+    'n.placed':L('放好了。可以選另一座站，或拖動已放的站。','放好了。可以选另一座站，或拖动已放的站。','Placed. Pick another stop, or drag one you placed.'),
+    'n.noMoves':L('搬站次數已用完。','搬站次数已用完。','No moves left.'),
+    'n.taken':L('這格已有車站，請選另一個 ＋。','这格已有车站，请选另一个 ＋。','There is already a stop here — pick another ＋.'),
+    'n.reset':L('每次重開都是同一份需求，方便比較不同站位。','每次重开都是同一份需求，方便比较不同站位。','Every restart has the same demand, so layouts can be compared.'),
+    'n.info':L('看規則時已暫停，關閉後點繼續。','看规则时已暂停，关闭后点继续。','Paused while you read — press Resume afterwards.'),
+    'n.start':L('開始了。看右邊潮汐表：琥珀框是高峰，紅字是那座站可能擠爆。','开始了。看右边潮汐表：琥珀框是高峰，红字是那座站可能挤爆。','Running. Watch the tide table: amber boxes are peaks; red means that stop may overflow.'),
+    'n.pause':L('已暫停，可以慢慢看；搬站仍扣次數。','已暂停，可以慢慢看；搬站仍扣次数。','Paused — take your time; moves still count.'),
+    'n.speed':L('速度 {n}×；1× 是完整 18 分鐘。','速度 {n}×；1× 是完整 18 分钟。','Speed {n}×; 1× is the full 18 minutes.'),
+    'n.hidden':L('離開畫面時已自動暫停。','离开画面时已自动暂停。','Paused while you were away.'),
+    'n.toMap':L('回到地圖時已暫停。','回到地图时已暂停。','Paused while you were on the map.'),
+    'n.layout':L('布局不限時。先放好三座接駁站，再按「開始」。','布局不限时。先放好三座接驳站，再按「开始」。','No time limit to lay out. Place all three stops, then press Start.'),
+    'c.reset':L('重開會清除本局進度，是否重開？','重开会清除本局进度，是否重开？','Restarting clears this game. Restart?'),
+    'c.map':L('換地圖會清除本局進度，是否繼續？','换地图会清除本局进度，是否继续？','Switching maps clears this game. Continue?'),
+    // toasts
+    't.peakSoon':L('25 秒後 · {name} 高峰 {n} 人','25 秒后 · {name} 高峰 {n} 人','In 25 s · peak at {name}: {n} people'),
+    't.peakNow':L('漲潮 · {name} 這批 {n} 人出門','涨潮 · {name} 这批 {n} 人出门','Tide · {n} people leave {name}'),
+    't.pass':L('過關 · CLEARED  {n} 人送達','过关 · CLEARED  {n} 人送达','CLEARED · {n} delivered'),
+    't.high':L('高分 · HIGH SCORE  {n} 人送達','高分 · HIGH SCORE  {n} 人送达','HIGH SCORE · {n} delivered'),
+    't.master':L('潮汐大師 · TIDE MASTER  {n} 人送達','潮汐大师 · TIDE MASTER  {n} 人送达','TIDE MASTER · {n} delivered'),
+    // result
+    'r.t0':L('未過關','未过关','Not cleared'),'r.t1':L('過關','过关','Cleared'),'r.t2':L('高分 · 跟上了潮汐','高分 · 跟上了潮汐','High score · with the tide'),'r.t3':L('潮汐大師','潮汐大师','Tide master'),
+    'r.score':L('送達 {d} / {t} · 開車 {c} · 未完成 {m}','送达 {d} / {t} · 开车 {c} · 未完成 {m}','Delivered {d} / {t} · drove {c} · unfinished {m}'),
+    'r.head':L('<tr><th>屋苑</th><th>送達</th><th>開車：太遠</th><th>站滿了</th><th>等太久</th><th>未完成</th></tr>','<tr><th>屋苑</th><th>送达</th><th>开车：太远</th><th>站满了</th><th>等太久</th><th>未完成</th></tr>',
+      '<tr><th>Estate</th><th>Delivered</th><th>Drove: too far</th><th>stop full</th><th>waited too long</th><th>Unfinished</th></tr>'),
+    'r.h3':L('每一次漲潮都接住了。','每一次涨潮都接住了。','You caught every tide.'),
+    'r.h2':L('已經跟上了潮汐（挪站 {m} 次）。潮汐大師要 {n}：開局就把站擺在高峰最多的方向，再讓一座站跟著高峰走。','已经跟上了潮汐（挪站 {m} 次）。潮汐大师要 {n}：开局就把站摆在高峰最多的方向，再让一座站跟着高峰走。','You kept up with the tide ({m} moves). Tide master needs {n}: open with stops where most peaks come, then let one stop follow the peaks.'),
+    'r.h1moved':L('靠挪站過關了。高分 {n} 要每次高峰前約 30 秒就把站挪到位。','靠挪站过关了。高分 {n} 要每次高峰前约 30 秒就把站挪到位。','Cleared by moving stops. High score {n} needs each move in place about 30 s before a peak.'),
+    'r.h1static':L('開局擺得很準，一站不挪也過關了。高分 {n} 光靠擺站到不了，要跟著潮汐表挪站。','开局摆得很准，一站不挪也过关了。高分 {n} 光靠摆站到不了，要跟着潮汐表挪站。','A spot-on opening — cleared without a single move. High score {n} can’t be reached by placement alone: move stops with the tide table.'),
+    'r.h0far':L('開車的人裡，最多是因為「太遠」（{n} 人）：站離屋苑每近一格，願意來的人多 20%。','开车的人里，最多是因为「太远」（{n} 人）：站离屋苑每近一格，愿意来的人多 20%。','Most drivers left because no stop was near enough ({n}): each block closer brings 20% more people.'),
+    'r.h0other':L('開車的人裡，最多是因為「{why}」（{n} 人）：看潮汐表，在高峰前 30 秒把一座站搬到那個屋苑旁邊，分走一部分人。','开车的人里，最多是因为「{why}」（{n} 人）：看潮汐表，在高峰前 30 秒把一座站搬到那个屋苑旁边，分走一部分人。','Most drivers left because “{why}” ({n}): watch the tide table and move a stop next to that estate 30 s before its peak.'),
+    'why.far':L('沒有夠近的站','没有够近的站','no stop near enough'),'why.full':L('站滿了','站满了','stop full'),'why.wait':L('等太久','等太久','waited too long'),
+    'r.again':L('再試一局 ↺','再试一局 ↺','Play again ↺'),'r.board':L('查看棋盤','查看棋盘','View board'),'r.save':L('保存本局紀錄','保存本局记录','Save this run'),'r.map':L('回到地圖','回到地图','Back to map'),
+    // rules & sources
+    'i.lbl':L('Rules & sources · 規則與資料','Rules & sources · 规则与资料','Rules & sources'),'i.h':L('規則','规则','Rules'),
+    'i.r1':L('<b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。<b>正在滿員（8 個排隊位都滿）的站，在他做決定的那一刻沒有吸引力</b>；已經在路上的人不會因為近的站空出來而回頭。',
+      '<b>意愿只看走路距离。</b>从屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人里正好这个比例的人会出门去站，其余的人直接开车。有几座站可选时，去比例最高的那座（一样高就去班次密的）。<b>正在满员（8 个排队位都满）的站，在他做决定的那一刻没有吸引力</b>；已经在路上的人不会因为近的站空出来而回头。',
+      '<b>Willingness depends only on walking distance.</b> Along the roads from the estate to the stop: 0–1 block 100%, 2 blocks 80%, 3 60%, 4 40%, 5 20%, 6 or more 0%. Exactly that share of each batch heads for the stop; the rest drive. With several stops to choose from, people pick the highest share (on a tie, the more frequent one). <b>A stop that is full (all 8 queue places taken) attracts nobody at the moment they decide</b>; people already walking never turn back because a nearer stop frees up.'),
+    'i.r2':L('<b>站要比港鐵近。</b>這些人今天開車，就是因為走去港鐵太遠；要走得和去港鐵一樣遠（或要越過港鐵）的站，他們不會去。所以不會有人走過港鐵再坐車回來。',
+      '<b>站要比港铁近。</b>这些人今天开车，就是因为走去港铁太远；要走得和去港铁一样远（或要越过港铁）的站，他们不会去。所以不会有人走过港铁再坐车回来。',
+      '<b>A stop must be closer than the MTR.</b> These people drive today because the station is too far to walk. A stop as far as the station, or beyond it, wins nobody — nobody walks past the MTR to ride back to it.'),
+    'i.r3':L('<b>定時發車。</b>每座站的班距＝{base} 秒＋到港鐵的道路格數×{step} 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。',
+      '<b>定时发车。</b>每座站的班距＝{base} 秒＋到港铁的道路格数×{step} 秒。车在站内上客，倒数到零才开；每班 6 座，另有 8 个排队位。巴士每格行驶 10 秒，到港铁下车才得 1 分。',
+      '<b>Buses run to a timetable.</b> Each stop’s headway = {base} s + {step} s × road blocks to the MTR. The bus boards at the stop and leaves when the countdown reaches zero; 6 seats, plus 8 queue places. Buses take 10 s a block; a point counts only when the passenger steps off at the MTR.'),
+    'i.r4':L('<b>滿了、等久了就近換站。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，就在原地看另一座站：全程走路格數（已走的＋還要走的）按同一張表仍在他的意願內、而且仍比港鐵近，就直接走過去（每趟出門最多換一次）；不然就走回家，想 20 秒後再決定一次：最近的站夠近、而且那一刻沒有滿就再出門，否則開車。每人最多從家裡出門兩次。從出門起總耐心約 3.5 分鐘，不會重置。',
+      '<b>满了、等久了就近换站。</b>到站时队伍已满，或在站上等超过约 2 分钟，就在原地看另一座站：全程走路格数（已走的＋还要走的）按同一张表仍在他的意愿内、而且仍比港铁近，就直接走过去（每趟出门最多换一次）；不然就走回家，想 20 秒后再决定一次：最近的站够近、而且那一刻没有满就再出门，否则开车。每人最多从家里出门两次。从出门起总耐心约 3.5 分钟，不会重置。',
+      '<b>Full, or waited too long? Try the nearest other stop.</b> If the queue is full on arrival, or they have waited about 2 minutes, people look at another stop from where they stand: if the whole walk (walked so far + still to go) is still within their willingness on the same table, and still closer than the MTR, they walk on (at most one switch per trip). Otherwise they walk home, think for 20 s and decide once more: out again to the nearest stop if it is near enough and not full at that moment, or drive. At most two trips out from home; total patience about 3.5 minutes from first leaving, never reset.'),
+    'i.r5':L('<b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人就近換站，或走回家再考慮；已開出的巴士照常送達。',
+      '<b>可以搬站。</b>开局后一共 6 次，搬后重建 20 秒，重建好再等一个班距才发第一班。还在站上的人就近换站，或走回家再考虑；已开出的巴士照常送达。',
+      '<b>You can move stops.</b> 6 moves after the start; a moved stop rebuilds for 20 s, then waits one headway before its first bus. People still at the stop try the nearest other stop or walk home to think again; buses already out still arrive.'),
+    'i.r6':L('<b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：{big}每批 6 人，其他各區每批 3 人；每區一次高峰，那一批多 18 人。',
+      '<b>潮汐表。</b>8 批人，每 2 分钟一批，每批在 30 秒内陆续出门。平时：{big}每批 6 人，其他各区每批 3 人；每区一次高峰，那一批多 18 人。',
+      '<b>The tide table.</b> 8 batches, one every 2 minutes, each leaving home over 30 s. Normally {big} sends 6 per batch and every other estate 3; each estate has one peak with 18 more.'),
+    'i.real':L('哪些是真的','哪些是真的','What is real'),
+    'i.scope':L('本關只表達接駁的步行距離、班次與運力怎樣影響大家坐不坐公共交通；土地開發（TOD）與真實減碳核算留待後續關卡。','本关只表达接驳的步行距离、班次与运力怎样影响大家坐不坐公共交通；土地开发（TOD）与真实减碳核算留待后续关卡。','This level only shows how the walking distance, frequency and capacity of feeders decide whether people take public transport; land use (TOD) and real carbon accounting are left to later levels.'),
+    'i.cover':L('開場地圖：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（{p}）；圓點是全港 455 個分區的出行量。','开场地图：组员「TransitLab 产品套件」的潮汐封面，运输署干道探测器逐小时车流（{p}）；圆点是全港 455 个分区的出行量。','Opening map: the tide cover from our team’s TransitLab product suite — hourly flows from Transport Department trunk-road detectors ({p}); the dots are trips in 455 zones across Hong Kong.'),
+    'src.fanling':L('粉嶺站、五個分區的名字與早高峰開車人數取自 TransitLab 本地模型；分區位置按真實步行距離（OpenStreetMap 行人路網）與方位畫成約 350 米一格的棋盤，略作遊戲化：山麗苑真實步行約 3.1 公里，棋盤縮為 8 格。車站在西、各區在東側一個扇形裡；鳳凰嶺邨與和合石之間真的有比去車站還近的共用位置。道路為示意，不是實測道路或獲准設站位置。',
+      '粉岭站、五个分区的名字与早高峰开车人数取自 TransitLab 本地模型；分区位置按真实步行距离（OpenStreetMap 行人路网）与方位画成约 350 米一格的棋盘，略作游戏化：山丽苑真实步行约 3.1 公里，棋盘缩为 8 格。车站在西、各区在东侧一个扇形里；凤凰岭邨与和合石之间真的有比去车站还近的共用位置。道路为示意，不是实测道路或获准设站位置。',
+      'Fanling station and the names and morning-peak car trips of five zones come from the TransitLab local model. The zones are placed on a board of about 350 m a block by real walking distance (OpenStreetMap footpaths) and bearing, lightly gamified: 山麗苑 is about 3.1 km on foot, shrunk to 8 blocks. The station sits to the west and the estates fan out to its east; 鳳凰嶺邨 and 和合石 really do share a spot nearer than the station. Roads are schematic, not surveyed roads or approved stop sites.'),
+    'src.yuenlong':L('元朗站與四個分區的名字、早高峰開車人數取自 TransitLab 本地模型；按真實步行距離（大棠路 0.8、蝶翠峰 1.6、朗善邨一帶 2.0、崇山新村 3.0 公里）與方位畫成約 350 米一格的棋盤，略作遊戲化。四區都在車站南面一條走廊上，相鄰兩區可以共用接駁站。道路為示意。',
+      '元朗站与四个分区的名字、早高峰开车人数取自 TransitLab 本地模型；按真实步行距离（大棠路 0.8、蝶翠峰 1.6、朗善邨一带 2.0、崇山新村 3.0 公里）与方位画成约 350 米一格的棋盘，略作游戏化。四区都在车站南面一条走廊上，相邻两区可以共用接驳站。道路为示意。',
+      'Yuen Long station and the names and morning-peak car trips of four zones come from the TransitLab local model, laid out on a board of about 350 m a block by real walking distance (大棠路 0.8, 蝶翠峰 1.6, 朗善邨一帶 2.0, 崇山新村 3.0 km) and bearing, lightly gamified. All four sit in one corridor south of the station; neighbours can share a feeder stop. Roads are schematic.'),
+    'src.longping':L('v2.5 的原版棋盤：朗屏站與四個分區的相對方位取自 TransitLab 本地資料，道路重畫為棋盤示意。（後來核對發現唐人新村、蝶翠峰最近的港鐵站其實是天水圍和元朗。）',
+      'v2.5 的原版棋盘：朗屏站与四个分区的相对方位取自 TransitLab 本地资料，道路重画为棋盘示意。（后来核对发现唐人新村、蝶翠峰最近的港铁站其实是天水围和元朗。）',
+      'The original v2.5 board: Long Ping station and the relative bearings of four zones come from TransitLab local data, with roads redrawn as a schematic grid. (A later check found that the nearest stations of 唐人新村 and 蝶翠峰 are really Tin Shui Wai and Yuen Long.)'),
+    'src.demand':L('各區平時人數：開車最多的一區每批 6 人，其他每批 3 人；每區一次高峰（多 18 人）。人數與時間均為遊戲假設，不代表真實客流或減碳量。',
+      '各区平时人数：开车最多的一区每批 6 人，其他每批 3 人；每区一次高峰（多 18 人）。人数与时间均为游戏假设，不代表真实客流或减碳量。',
+      'Normal numbers: the estate with the most drivers sends 6 per batch, the others 3; each estate has one peak (+18). Numbers and times are game assumptions, not real ridership or carbon savings.'),
+    'close':L('關閉','关闭','Close')
+  };
+  // district names in the cover data are simplified Chinese
+  const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
+    '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
+    '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
+    '荃湾区':['荃灣區','Tsuen Wan'],'葵青区':['葵青區','Kwai Tsing'],'西贡区':['西貢區','Sai Kung'],'观塘区':['觀塘區','Kwun Tong'],'黄大仙区':['黃大仙區','Wong Tai Sin']};
+  const pick=(/(?:^|[#&])lang=([\w-]+)/.exec(typeof location!=='undefined'?location.hash:'')||[])[1];
+  let saved=null;try{saved=localStorage.getItem('tl-lang');}catch(e){}
+  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:'zh-Hant';
+  function t(key,vars){
+    const e=S[key];let s=e?(e[lang]??e['zh-Hant']):key;
+    if(vars)s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!==undefined?vars[k]:m);
+    return s;
+  }
+  function apply(scope){
+    const el=scope||document;
+    el.querySelectorAll('[data-i18n]').forEach(n=>{n.textContent=t(n.dataset.i18n);});
+    el.querySelectorAll('[data-i18n-html]').forEach(n=>{n.innerHTML=t(n.dataset.i18nHtml);});
+    el.querySelectorAll('[data-i18n-title]').forEach(n=>{n.title=t(n.dataset.i18nTitle);});
+    el.querySelectorAll('[data-i18n-aria]').forEach(n=>{n.setAttribute('aria-label',t(n.dataset.i18nAria));});
+    // an empty translation (the Chinese line in English) hides its element
+    el.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(n=>{n.hidden=!n.textContent&&!n.children.length;});
+    document.documentElement.lang=lang;
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  }
+  function set(next){
+    if(!LANGS.includes(next)||next===lang)return;lang=next;
+    if(typeof document==='undefined')return;            // node tests
+    try{localStorage.setItem('tl-lang',lang);}catch(e){}
+    apply();root.dispatchEvent(new CustomEvent('tl:lang',{detail:lang}));
+  }
+  const hans=()=>lang==='zh-Hans';
+  const API={LANGS,t,apply,set,get lang(){return lang;},
+    name:o=>hans()?(o.hans||o.name):o.name,                                   // estates stay Chinese in English
+    short:o=>hans()?(o.shortHans||o.short||o.hans||o.name):(o.short||o.name),
+    station:st=>lang==='en'?st.en.charAt(0)+st.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase()):st[lang],
+    district:d=>{const v=DIST[d];return !v?d:lang==='zh-Hans'?d:lang==='en'?v[1]:v[0];}};
+  root.I18N=API;
+  if(typeof document!=='undefined'){
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.lang)));
+    apply();
+  }
+})(typeof window!=='undefined'?window:globalThis);

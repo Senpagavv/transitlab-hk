@@ -8,14 +8,13 @@
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
     reconsider:4,target:133,highScore:140,masterScore:146};
-  // each board carries its own headway formula and score tiers
-  if(D.headway)[P.headwayBase,P.headwayStep]=D.headway;
-  if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
     return((t^t>>>14)>>>0)/4294967296;}; }
-  const graph=new Map(D.roads.map(c=>[key(c),c])), cache=new Map();
+  // Everything derived from the board. reset() rebuilds it after D.select() swaps the board in place.
+  let graph=new Map(), cache=new Map();
+  const toMTR=[];
   function route(a,b) {
     const k=key(a)+'>'+key(b);
     if(cache.has(k)) return cache.get(k).map(c=>c.slice());
@@ -34,7 +33,14 @@
   const willing=steps=>steps<0?0:(P.willing[steps]??0);
   // These residents drive today because the MTR is too far to walk. A stop that is as far on foot as the MTR
   // itself (or lies beyond it) wins nobody — nobody walks past the station to ride back to it.
-  const toMTR=D.origins.map(o=>dist(o.cell,D.hub));
+  function reset() {
+    graph=new Map(D.roads.map(c=>[key(c),c]));cache=new Map();
+    // each board carries its own headway formula and score tiers
+    [P.headwayBase,P.headwayStep]=D.headway||[60,10];
+    if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
+    toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
+  }
+  reset();
   const shareAt=(origin,cell,walked=0,from=D.origins[origin].cell)=>{const total=walked+dist(from,cell);return total<toMTR[origin]?willing(total):0;};
   // How many of n people in one batch come when the share is w (thresholds are evenly spread).
   const comes=(n,w)=>Math.max(0,Math.min(n,Math.ceil(w*n-.5)));
@@ -247,6 +253,6 @@
       active:this.people.filter(p=>!['future','delivered','car','missed'].includes(p.state)).length,
       future:this.people.filter(p=>p.state==='future').length,total:this.people.length,time:this.t,moves:this.moves,done:this.done};}
   }
-  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt,shareAt,toMTR};
+  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt,shareAt,toMTR,reset};
   if(typeof module!=='undefined')module.exports=API;root.Tide=API;
 })(typeof window!=='undefined'?window:globalThis);

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 接駁巴士</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>/* v2.1 · design language follows the team product suite (TransitLab-產品套件):
    paper + ink, Bodoni Moda / Geist / Geist Mono, dotted paper, hairline frames,
    colour only where it means something — green = good (delivered), red→amber = loss. */
@@ -117,7 +117,6 @@ body.entered .side.right{animation-name:sideInR}
 #tickHigh::after{left:50%;transform:translateX(-50%);top:auto;bottom:15px}
 #tickMaster::after{left:5px;transform:none}
 #tickMaster{background:var(--s-accent)}
-.maps{margin:2px 0 12px}.maps .seg button{height:26px;font-size:11.5px}
 .controls{margin:14px 0 14px;gap:6px}.controls #start{flex:1;justify-content:center;height:34px;font-size:14px}
 .controls .seg button{height:32px;font-size:12.5px}
 .stations{display:flex;gap:6px;margin:6px 0 8px}
@@ -238,32 +237,49 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 #result .row{margin-top:14px;flex-wrap:wrap}
 #result.win .h1{background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ---- the cover (from the suite) ---- */
-#cover{position:fixed;inset:0;z-index:200;background:var(--s-paper);overflow:hidden;
-  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;transition:opacity .6s ease}
-#cover.gone{opacity:0;pointer-events:none;transition:opacity .55s ease}
+/* ---- the hub: the opening and the map (v3.1, opening adapted from the suite's cover) ----
+   --hub-p: 0 = intro (title + tide bar), 1 = hub (map centred, menu in). --hub-q: how far the top bar is in. */
+[hidden]{display:none!important}
+:root{--hub-q:1;--chrome-h:134px}
+#topbar{position:relative;transform:translateY(calc((var(--hub-q) - 1) * 100%));opacity:var(--hub-q)}
+#navrow{transform:translateY(calc((var(--hub-q) - 1) * (100% + var(--s-top))));opacity:var(--hub-q)}
+body.chrome-off #topbar,body.chrome-off #navrow{pointer-events:none}
+body.inhub{overflow:hidden}
+#hub{--hub-p:0;position:fixed;inset:0;z-index:50;background:var(--s-paper);overflow:hidden;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;transition:opacity .45s ease}
+#hub.gone{opacity:0;pointer-events:none;transition:opacity .55s ease}
+#hub.away{visibility:hidden}
 .cv-stage{position:absolute;inset:0}
-#cover canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.cv-copy{position:absolute;left:max(6vw,32px);top:50%;transform:translateY(-52%);max-width:620px;z-index:3;transition:opacity .35s,transform .5s}
-#cover.leaving .cv-copy{opacity:0;transform:translate(-24px,-52%)}
-#cover.leaving .cv-bar{opacity:0;transform:translate(-50%,16px)}
+#hub canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cv-copy{position:absolute;left:max(6vw,32px);top:50%;max-width:620px;z-index:3;
+  transform:translateY(calc(-52% - var(--hub-p) * 110px));opacity:calc(1 - var(--hub-p) * 1.7)}
+/* The copy sits on a soft paper halo: solid in the middle, fading out on every side (no hard edge), with the dots
+   behind blurred under the same mask, so the black title never sits on black dots. */
+.cv-copy::before{content:'';position:absolute;inset:-150px -230px -160px -190px;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side,var(--s-paper) 0,var(--s-paper) 62%,color-mix(in srgb,var(--s-paper) 70%,transparent) 80%,transparent 100%);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  -webkit-mask-image:radial-gradient(closest-side,#000 74%,transparent 100%);mask-image:radial-gradient(closest-side,#000 74%,transparent 100%)}
 .cv-logo{width:68px;height:68px;image-rendering:pixelated;display:block;margin-bottom:26px}
-.cv-title{font-family:var(--s-display);font-weight:600;font-size:clamp(42px,5.6vw,72px);line-height:1.03;letter-spacing:-.01em;color:var(--s-ink);margin:0 0 18px}
+.cv-title{font-family:var(--s-display);font-weight:600;font-size:clamp(42px,5.6vw,72px);line-height:1.03;letter-spacing:-.01em;color:var(--s-ink);margin:0 0 18px;
+  text-shadow:0 0 18px var(--s-paper),0 0 3px var(--s-paper)}
 .cv-title em{font-style:italic;font-weight:500;color:var(--s-accent)}
 .cv-tc{display:block;font-family:var(--s-serif-tc);font-weight:500;color:var(--s-ink2)}
 .cv-title .cv-tc{font-size:clamp(17px,1.9vw,24px);letter-spacing:.14em;margin-top:16px}
 .cv-lede{font-size:16px;color:var(--s-ink2);margin:0 0 18px;line-height:1.6}
 .cv-lede .cv-tc{font-size:14px;margin-top:4px;letter-spacing:.06em}
-.cv-mode{margin:0 0 26px;display:flex;flex-direction:column;gap:3px;font-size:14.5px;color:var(--s-ink)}
-.cv-enter{appearance:none;border:0;cursor:pointer;background:var(--s-ink);color:var(--s-paper);height:48px;padding:0 26px;border-radius:5px;
-  font-size:15.5px;font-weight:500;font-family:inherit;display:inline-flex;align-items:center;gap:10px;transition:transform .15s,box-shadow .15s,background .2s;
-  box-shadow:0 10px 26px rgba(0,0,0,.16)}
-.cv-enter:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(0,0,0,.2);background:var(--s-accent)}
-.cv-enter .cv-tc2{font-size:14px;opacity:.75}
-.cv-copy::before{content:'';position:absolute;inset:-48px -56px -48px -40px;z-index:-1;background:linear-gradient(90deg,var(--s-paper) 52%,transparent 96%);pointer-events:none}
-.cv-bar{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:4;width:min(880px,calc(100vw - 28px));height:62px;display:flex;align-items:center;
+.cv-mode{margin:0;display:flex;flex-direction:column;gap:3px;font-size:14.5px;color:var(--s-ink)}
+.cv-hint{position:absolute;left:50%;bottom:100px;z-index:4;transform:translate(-50%,calc(var(--hub-p) * 60px));opacity:calc(1 - var(--hub-p) * 3);
+  appearance:none;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font:500 11px var(--s-mono);letter-spacing:.12em;color:var(--s-ink2)}
+.cv-hint span{background:var(--s-chrome);padding:3px 9px;border-radius:999px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.cv-hint .mouse{width:20px;height:31px;border:1.6px solid var(--s-ink2);border-radius:11px;position:relative;background:var(--s-chrome)}
+.cv-hint .mouse::after{content:'';position:absolute;left:50%;top:6px;width:3px;height:6px;margin-left:-1.5px;border-radius:2px;background:var(--s-ink);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(-2px)}30%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+.cv-bar{position:absolute;left:50%;bottom:22px;transform:translate(-50%,calc(var(--hub-p) * 150px));opacity:calc(1 - var(--hub-p) * 1.7);z-index:4;
+  width:min(880px,calc(100vw - 28px));height:62px;display:flex;align-items:center;
   gap:14px;padding:0 14px;background:var(--s-chrome);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
-  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow);transition:opacity .35s,transform .5s}
+  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow)}
+#hub.past .cv-copy,#hub.past .cv-bar,#hub.past .cv-hint{pointer-events:none}
 .cv-play{appearance:none;border:1px solid var(--s-line2);background:transparent;color:var(--s-ink);width:32px;height:32px;border-radius:5px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .cv-play:hover{background:var(--s-soft)}
@@ -273,148 +289,234 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
 .cv-nums{display:flex;gap:18px;flex:0 0 auto}
 .cv-nums b{font-family:var(--s-mono);font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
 .cv-nums span{font-size:9.5px;color:var(--s-ink2);letter-spacing:.08em;text-transform:uppercase}
-#cover .tip{position:absolute;z-index:9;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--s-panel);border:1px solid var(--s-line2);
+#hub .tip{position:absolute;z-index:9;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--s-panel);border:1px solid var(--s-line2);
   border-radius:5px;box-shadow:var(--s-shadow);padding:7px 9px;font-size:11px;min-width:132px;max-width:240px}
-#cover .tip.on{opacity:1}
-#cover .tip .tt{font-weight:500;font-size:12px;margin-bottom:3px}
-#cover .tip .tv{display:flex;justify-content:space-between;gap:12px;color:var(--s-ink2);font-size:10.5px}
-#cover .tip .tv b{color:var(--s-ink);font-family:var(--s-mono);font-weight:400}
-.cv-pin{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;transition:opacity .4s;display:flex;flex-direction:column;align-items:center;gap:10px}
-.cv-pin i{width:22px;height:22px;border-radius:50%;background:var(--s-accent);box-shadow:0 0 0 6px color-mix(in srgb,var(--s-accent2) 30%,transparent),0 0 40px var(--s-accent2)}
-.cv-pin span{font:500 13px var(--s-mono);letter-spacing:.16em;background:var(--s-chrome);padding:4px 10px;border-radius:4px;border:1px solid var(--s-line)}
-#cover.zooming .cv-pin{opacity:1;transition-delay:.55s}
+#hub .tip.on{opacity:1}
+#hub .tip .tt{font-weight:500;font-size:12px;margin-bottom:3px}
+#hub .tip .tv{display:flex;justify-content:space-between;gap:12px;color:var(--s-ink2);font-size:10.5px}
+#hub .tip .tv b{color:var(--s-ink);font-family:var(--s-mono);font-weight:400}
+
+/* the glass panel: what the selected menu item says */
+.hub-panel{position:absolute;left:20px;top:calc(var(--chrome-h) + 16px);width:330px;max-height:calc(100% - var(--chrome-h) - 36px);overflow:auto;z-index:6;
+  background:var(--s-chrome);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
+  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow);padding:15px 17px 14px;scrollbar-width:thin;
+  opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+#hub.open .hub-panel{opacity:1;transform:none;pointer-events:auto}
+#hub.leaving .hub-panel,#hub.leaving .hub-marks{opacity:0!important;pointer-events:none!important;transition:opacity .2s}
+.hp-h{font-family:var(--s-display);font-size:26px;font-weight:600;line-height:1.1;margin:5px 0 8px}
+.hp-tc{display:block;font-family:var(--s-serif-tc);font-size:15px;font-weight:500;color:var(--s-ink2);letter-spacing:.08em;margin-top:5px}
+.hp-up{display:inline-block;color:var(--s-accent);animation:upNudge 1.4s ease-in-out infinite}
+@keyframes upNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.hub-panel .note{font-size:13px}
+.hub-panel .chip{margin:2px 0 8px}
+.hp-sub{margin:14px 0 6px}
+.lvls{display:flex;flex-direction:column;gap:6px}
+.lv{appearance:none;text-align:left;cursor:pointer;border:1px solid var(--s-line2);background:var(--s-panel);border-radius:6px;padding:8px 10px;
+  display:flex;flex-direction:column;gap:2px;transition:border-color .15s,box-shadow .15s,transform .1s}
+.lv:hover,.lv.hot{border-color:var(--s-accent);box-shadow:inset 0 0 0 1px var(--s-accent)}
+.lv:active{transform:translateY(1px)}
+.lv-n{display:flex;align-items:baseline;gap:8px}.lv-n b{font-size:15px;font-weight:600}
+.lv-n small{font:500 9.5px var(--s-mono);letter-spacing:.14em;color:var(--s-ink3)}
+.lv-m{font:400 11.5px var(--s-mono);color:var(--s-ink2)}.lv-m em{font-style:normal;color:var(--s-accent)}
+.lv-r{font-size:11px;color:var(--s-warn)}
+.lv.minor{padding:6px 10px}.lv.minor .lv-n b{font-size:13.5px;font-weight:500;color:var(--s-ink2)}
+.hp-detail{margin:12px 0 0;border-top:1px solid var(--s-line);padding-top:10px;min-height:74px}
+.hp-detail p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--s-ink2)}
+.hp-detail .hp-idle{color:var(--s-ink3)}
+.hp-dh{display:flex;align-items:center;gap:8px}.hp-dh b{font-size:14px}
+.tag{font:500 9.5px var(--s-mono);letter-spacing:.08em;padding:1px 6px;border-radius:3px;border:1px solid var(--s-line2);color:var(--s-ink3)}
+.tag.st-play{border-color:var(--s-accent);color:var(--s-accent)}
+.hp-tiers{font-size:11px!important;color:var(--s-ink)!important}
+.hp-legend{display:flex;gap:14px;margin-top:10px;font-size:11.5px;color:var(--s-ink2)}
+.hp-legend span{display:inline-flex;align-items:center;gap:6px}
+.hp-legend .k{width:10px;height:10px;border-radius:50%;display:block}
+.hp-legend .k.st-play{background:var(--s-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--s-accent2) 25%,transparent)}
+.hp-legend .k.st-soon{border:2px solid var(--s-ink3);background:var(--s-panel)}
+.hp-fine{margin:8px 0 0;font-size:11px;line-height:1.55;color:var(--s-ink3)}
+
+/* markers: playable stations (green, pulsing) and places not built yet (grey) */
+.hub-marks{position:absolute;inset:0;z-index:5;pointer-events:none}
+.hm{position:absolute;width:0;height:0;appearance:none;border:0;background:none;padding:0;cursor:pointer;color:var(--s-ink);
+  opacity:0;pointer-events:none;transition:opacity .4s ease calc(var(--i) * 55ms)}
+#hub.open.m1 .hm{opacity:1;pointer-events:auto}
+.hm .pin{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:var(--s-accent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--s-accent2) 28%,transparent),0 0 22px var(--s-accent2)}
+.hm.st-play .pin::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--s-accent2);animation:pinRing 2.2s ease-out infinite}
+@keyframes pinRing{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.4)}}
+.hm.minor .pin{left:-6px;top:-6px;width:12px;height:12px;box-shadow:0 0 0 3px color-mix(in srgb,var(--s-accent2) 25%,transparent)}
+.hm.minor .pin::after{display:none}
+.hm.st-soon{cursor:help}
+.hm.st-soon .pin{left:-6px;top:-6px;width:12px;height:12px;background:var(--s-panel);border:2px solid var(--s-ink3);box-shadow:none}
+.hm .lab{position:absolute;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:4px 9px 5px;border-radius:6px;
+  background:var(--s-chrome);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--s-line2);box-shadow:0 6px 16px rgba(0,0,0,.08);
+  transition:background .15s,color .15s,border-color .15s}
+.hm .lab b{font-size:14px;font-weight:600;line-height:1.2}
+.hm .lab small{font:500 9px var(--s-mono);letter-spacing:.12em;color:var(--s-ink3);text-transform:uppercase}
+.hm.st-play .lab{border-color:var(--s-accent)}
+.hm.st-play:hover .lab,.hm.st-play.hot .lab,.hm.st-play:focus-visible .lab{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-on-accent)}
+.hm.st-play:hover .lab small,.hm.st-play.hot .lab small,.hm.st-play:focus-visible .lab small{color:var(--s-on-accent)}
+.hm.minor .lab b{font-size:12.5px;font-weight:500}
+.hm.st-soon .lab{padding:2px 7px 3px;border-color:var(--s-line);color:var(--s-ink2)}
+.hm.st-soon .lab b{font-size:12px;font-weight:500}.hm.st-soon .lab small{font-size:8.5px}
+.hm.st-soon.hot .lab{border-color:var(--s-ink2);color:var(--s-ink)}
+.hm[data-side=right] .lab{left:14px;top:0;transform:translateY(-50%)}
+.hm[data-side=left] .lab{right:14px;top:0;transform:translateY(-50%)}
+.hm[data-side=top] .lab{bottom:14px;left:0;transform:translateX(-50%)}
+.hm[data-side=bottom] .lab{top:14px;left:0;transform:translateX(-50%)}
+.hm[data-side=topright] .lab{bottom:10px;left:-4px}
+.hm:focus-visible{outline:none}.hm:focus-visible .pin{outline:2px solid var(--s-info);outline-offset:3px}
+
+/* menu: 02–06 are previews for now; 01 invites a first click */
+#navrow button.soon{color:var(--s-ink3)}
+#navrow button.soon .stop{border-style:dashed}
+#navrow button.invite .stop{animation:invite 1.5s ease-in-out infinite;border-color:var(--s-accent);color:var(--s-accent)}
+@keyframes invite{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--s-accent2) 55%,transparent)}60%{box-shadow:0 0 0 9px transparent}}
+.seg.lang button{min-width:34px;justify-content:center;font-size:12px}
 
 @media (max-width:1279px){.side{width:330px}.side.right{width:290px}}
 @media (max-width:1100px){body{overflow:auto;display:block}.eg{display:block}.side,.side.right{width:100%;border:0;border-bottom:1px solid var(--s-line)}
   .play{height:72vh;position:sticky;top:0;z-index:6;background:var(--s-paper)}#navrow .t s{display:none}}
-@media (max-width:760px){.brand .sub{display:none}.hud{grid-template-columns:repeat(2,1fr)}.lanebox{display:none}
-  .cv-copy{left:20px;right:20px;top:auto;bottom:104px;transform:none;max-width:none}.cv-nums{display:none}}
+@media (max-width:760px){.brand .sub,#srcBtn{display:none}#topbar{gap:8px;padding:0 10px}.hud{grid-template-columns:repeat(2,1fr)}.lanebox{display:none}
+  .cv-copy{left:20px;right:20px;top:auto;bottom:172px;transform:translateY(calc(var(--hub-p) * -110px));max-width:none}.cv-nums{display:none}
+  .cv-hint{bottom:92px}.hub-panel{left:8px;right:8px;width:auto;top:auto;bottom:8px;max-height:200px}
+  /* the map is small on a phone: smaller labels, "not built yet" stations show only their pin until tapped,
+     and the minor Long Ping label goes up-left so it clears Fanling */
+  .hm .lab{padding:2px 6px 3px}.hm .lab b,.hm.minor .lab b{font-size:12px}.hm .lab small{display:none}
+  .hm.st-soon .lab{display:none}.hm.st-soon.hot .lab{display:flex}
+  .hm.minor[data-side=topright] .lab{bottom:9px;left:0;transform:translateX(-85%)}}
+/* a phone-width top bar must fit, or the browser widens the whole page and the intro copy runs off the right edge */
+@media (max-width:480px){#topbar{gap:6px}#help .tc{display:none}.seg.lang button{min-width:28px;padding:0 7px}.brand .wm{font-size:18px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-</style></head><body>
+</style></head><body class="inhub chrome-off">
 
 <header id="topbar">
-  <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
   <div class="sp"></div>
-  <button class="pill" id="srcBtn" title="Sources · 資料出處"><i class="dot live"></i><span>Sources 資料</span></button>
-  <button class="btn btn-sm" id="help">Rules <span class="tc">規則</span></button>
-  <div class="seg" role="group" aria-label="Theme"><button id="thPaper" aria-pressed="true" title="Paper 紙">☀</button><button id="thInk" aria-pressed="false" title="Ink 墨">☾</button></div>
+  <button class="pill" id="srcBtn" data-i18n-title="top.sourcesTitle"><i class="dot live"></i><span data-i18n="top.sources">Sources 資料</span></button>
+  <button class="btn btn-sm" id="help" data-i18n-html="top.rules">Rules <span class="tc">規則</span></button>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
 </header>
 
-<nav id="navrow" aria-label="Product views">
-  <button aria-selected="true"><i class="stop">01</i><span class="t"><b>Entry game</b><s>入門遊戲</s></span></button>
-  <button disabled title="即將推出"><i class="stop">02</i><span class="t"><b>Lessons</b><s>互動教學 · 即將推出</s></span></button>
-  <button disabled title="即將推出"><i class="stop">03</i><span class="t"><b>Full sandbox</b><s>完整沙盤 · 即將推出</s></span></button>
-  <button disabled title="即將推出"><i class="stop">04</i><span class="t"><b>Observation deck</b><s>觀測台 · 即將推出</s></span></button>
-  <button disabled title="即將推出"><i class="stop">05</i><span class="t"><b>Leaderboard</b><s>排行榜 · 即將推出</s></span></button>
-  <button disabled title="即將推出"><i class="stop">06</i><span class="t"><b>Network console</b><s>數據台 · 即將推出</s></span></button>
+<nav id="navrow" data-i18n-aria="nav.aria">
+  <button data-mode="1" aria-selected="false"><i class="stop">01</i><span class="t"><b>Entry game</b><s data-i18n="nav.1">入門遊戲</s></span></button>
+  <button data-mode="2" aria-selected="false" class="soon"><i class="stop">02</i><span class="t"><b>Lessons</b><s data-i18n="nav.2">互動教學 · 即將推出</s></span></button>
+  <button data-mode="3" aria-selected="false" class="soon"><i class="stop">03</i><span class="t"><b>Full sandbox</b><s data-i18n="nav.3">完整沙盤 · 即將推出</s></span></button>
+  <button data-mode="4" aria-selected="false" class="soon"><i class="stop">04</i><span class="t"><b>Observation deck</b><s data-i18n="nav.4">觀測台 · 即將推出</s></span></button>
+  <button data-mode="5" aria-selected="false" class="soon"><i class="stop">05</i><span class="t"><b>Leaderboard</b><s data-i18n="nav.5">排行榜 · 即將推出</s></span></button>
+  <button data-mode="6" aria-selected="false" class="soon"><i class="stop">06</i><span class="t"><b>Network console</b><s data-i18n="nav.6">數據台 · 即將推出</s></span></button>
 </nav>
 
 <main id="app" class="eg">
   <aside class="side scol">
-    <div class="row"><span class="lbl">Mode 01 · Beginner</span><div class="sp"></div><span class="chip"><i></i>確定規則</span></div>
+    <div class="row"><button class="btn btn-sm" id="toMap" data-i18n="g.toMap" data-i18n-title="g.toMapTitle">← 地圖</button><span class="lbl" data-i18n="g.mode">Mode 01 · Entry game</span><div class="sp"></div><span class="chip"><i></i><span data-i18n="g.chip">確定規則</span></span></div>
     <h1 class="h1"><span id="titleEn">Feeder to the MTR</span><span class="h1tc" id="titleTc">接駁巴士 → 港鐵</span></h1>
-    <p class="lede">Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span></p>
-    <div class="row maps"><span class="lbl">Board · 地圖</span><div class="sp"></div><div class="seg" id="mapSeg" role="group" aria-label="地圖"></div></div>
+    <p class="lede" data-i18n-html="g.lede">Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span></p>
 
     <div class="box goal">
-      <div class="row"><span class="lbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">180</span></span></div>
+      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">180</span></span></div>
       <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
       <div class="note" id="goal"></div>
     </div>
 
     <div class="row controls">
       <button class="btn btn-p" id="start" disabled>▶ 開始</button>
-      <div class="seg" id="speedSeg" role="group" aria-label="速度"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button><button data-sp="8" aria-pressed="false">8×</button></div>
-      <button class="btn btn-sm" id="reset" title="重開">↺</button>
+      <div class="seg" id="speedSeg" role="group" data-i18n-aria="g.speed"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button><button data-sp="8" aria-pressed="false">8×</button></div>
+      <button class="btn btn-sm" id="reset" data-i18n-title="g.reset">↺</button>
     </div>
 
-    <div class="lbl">Stops · 接駁站 <span class="tc">1/2/3 選站 · 空格暫停</span></div>
+    <div class="lbl" data-i18n-html="g.stops">Stops · 接駁站 <span class="tc">1/2/3 選站 · 空格暫停</span></div>
     <div id="stations" class="stations"></div>
     <div id="stopPanel" class="box stopbox"></div>
 
-    <div class="lbl" style="margin-top:16px">Three rules · 三條規則</div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.rules">Three rules · 三條規則</div>
     <ol class="mini">
-      <li><b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。站要比港鐵近才有人去。</li>
-      <li><b>離港鐵越近，班次越密。</b>班距＝<span class="hwBase">60</span> 秒＋到港鐵每格 <span class="hwStep">10</span> 秒；每班 6 座，最多再排 8 人。正滿的站沒人會選；到站才發現滿了就近換站，換不了就回家想 20 秒，再從「最近的站」和「開車」中選一個。</li>
-      <li><b>看潮汐表。</b>每區一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。</li>
+      <li data-i18n-html="g.rule1"></li>
+      <li id="rule2"></li>
+      <li data-i18n-html="g.rule3"></li>
     </ol>
-    <div class="lbl" style="margin-top:14px">How to read the map · 怎麼看</div>
+    <div class="lbl" style="margin-top:14px" data-i18n="g.read">How to read the map · 怎麼看</div>
     <div class="legend">
-      <span><i style="background:var(--s-info);border-radius:50%"></i>去站</span>
-      <span><i style="background:var(--s-warn);border-radius:50%"></i>回家</span>
-      <span><i class="glowkey good"></i>送達 · 越亮越多人</span>
-      <span><i class="glowkey bad"></i>開車流失</span>
+      <span><i style="background:var(--s-info);border-radius:50%"></i><span data-i18n="g.legWalk">去站</span></span>
+      <span><i style="background:var(--s-warn);border-radius:50%"></i><span data-i18n="g.legHome">回家</span></span>
+      <span><i class="glowkey good"></i><span data-i18n="g.legGood">送達 · 越亮越多人</span></span>
+      <span><i class="glowkey bad"></i><span data-i18n="g.legBad">開車流失</span></span>
     </div>
   </aside>
 
   <div class="play">
     <div class="mapplate">
-      <svg id="board" viewBox="0 0 660 485" role="group" aria-label="接駁巴士棋盤"></svg>
+      <svg id="board" viewBox="0 0 660 485" role="group" data-i18n-aria="g.board"></svg>
       <svg id="fx" viewBox="0 0 660 485" aria-hidden="true"><defs>
         <radialGradient id="gGood"><stop offset="0" style="stop-color:var(--s-accent2);stop-opacity:.95"/><stop offset=".45" style="stop-color:var(--s-accent);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--s-accent);stop-opacity:0"/></radialGradient>
         <radialGradient id="gBad"><stop offset="0" style="stop-color:var(--s-bad);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--s-warn);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--s-warn);stop-opacity:0"/></radialGradient>
         <radialGradient id="gTide"><stop offset="0" style="stop-color:var(--s-warn);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--s-warn);stop-opacity:0"/></radialGradient>
       </defs><g id="fxl"></g></svg>
       <div class="clockbox ov"><div class="c" id="clock">00:00</div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
-      <div class="lanebox ov"><div class="h">Moves · 搬站 <b id="moves">6</b> / 6</div><div class="hint" id="mapHint"></div></div>
+      <div class="lanebox ov"><div class="h"><span data-i18n="g.moves">Moves · 搬站</span> <b id="moves">6</b> / 6</div><div class="hint" id="mapHint"></div></div>
       <div class="toast" id="toast" role="status" aria-live="polite"></div>
       <div class="hud">
-        <div class="good" id="hudGood"><b id="score">0</b><small>Delivered · 已送達</small></div>
-        <div><b id="onway">0</b><small>On the way · 路上</small></div>
-        <div class="bad" id="hudBad"><b id="cars">0</b><small>Drove · 開車流失</small></div>
-        <div><b id="notOut">0</b><small>Not out yet · 未出門</small></div>
+        <div class="good" id="hudGood"><b id="score">0</b><small data-i18n="hud.good">Delivered · 已送達</small></div>
+        <div><b id="onway">0</b><small data-i18n="hud.onway">On the way · 路上</small></div>
+        <div class="bad" id="hudBad"><b id="cars">0</b><small data-i18n="hud.bad">Drove · 開車流失</small></div>
+        <div><b id="notOut">0</b><small data-i18n="hud.notOut">Not out yet · 未出門</small></div>
       </div>
     </div>
   </div>
 
   <aside class="side right scol">
-    <div class="row"><span class="lbl">Tide table · 潮汐表</span><div class="sp"></div><span class="chip" title="每 2 分鐘一批"><i></i>8 批 · 每 2 分鐘</span></div>
-    <table id="tide" aria-label="每批出門人數與預計會來的人數"></table>
-    <div class="legend tidekey"><span><b class="mono">6</b>出門人數</span><span><b class="mono" style="color:var(--s-accent)">會來 6</b>按現在站位</span><span><i class="pk"></i>高峰</span><span><b class="mono" style="color:var(--s-bad)">會來 21</b>可能擠爆</span></div>
-    <div class="lbl" style="margin-top:16px">Dispatch log · 調度提示</div>
+    <div class="row"><span class="lbl" data-i18n="g.tide">Tide table · 潮汐表</span><div class="sp"></div><span class="chip" data-i18n-title="g.tideChipTitle"><i></i><span data-i18n="g.tideChip">8 批 · 每 2 分鐘</span></span></div>
+    <table id="tide" data-i18n-aria="g.tideAria"></table>
+    <div class="legend tidekey" data-i18n-html="g.tideKey"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
     <p id="notice" class="note" role="status" aria-live="polite"></p>
   </aside>
 </main>
 
-<div id="cover">
-  <div class="cv-stage"><canvas id="cvDots"></canvas><div class="tip" id="cvTip"></div><div class="cv-pin" id="cvPin"><i></i><span>朗屏 · LONG PING</span></div></div>
-  <div class="cv-copy">
+<!-- The hub: the opening (title + tide bar) and, after a scroll, the map every mode starts from. -->
+<div id="hub" data-i18n-aria="hub.aria">
+  <div class="cv-stage"><canvas id="cvDots"></canvas><div class="tip" id="cvTip"></div></div>
+  <div class="hub-marks" id="hubMarks"></div>
+  <aside class="hub-panel" id="hubPanel"></aside>
+  <div class="cv-copy" id="cvCopy">
     <img class="cv-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab · Green Genre" width="68" height="68">
-    <h1 class="cv-title">This city tides<br><em>twice</em> a day<span class="cv-tc">這座城市，一天漲潮兩次</span></h1>
-    <p class="cv-lede">761 trunk-road detectors, 24 weekdays, one reading every hour.<span class="cv-tc">運輸署實測，逐小時。</span></p>
-    <p class="cv-mode"><span class="lbl">Mode 01 · Entry game</span><span id="coverMode">入門遊戲：接駁巴士 → 港鐵</span></p>
-    <button class="cv-enter" id="coverEnter">Enter <span class="cv-tc2">進入</span> →</button>
+    <h1 class="cv-title">This city tides<br><em>twice</em> a day<span class="cv-tc" data-i18n="cv.titleTc">這座城市，一天漲潮兩次</span></h1>
+    <p class="cv-lede">761 trunk-road detectors, 24 weekdays, one reading every hour.<span class="cv-tc" data-i18n="cv.ledeTc">運輸署實測，逐小時。</span></p>
+    <p class="cv-mode"><span class="lbl">Mode 01 · Entry game</span><span data-i18n="cv.mode">入門遊戲：接駁巴士 · 三個港鐵站可以玩</span></p>
   </div>
+  <button class="cv-hint" id="cvHint"><i class="mouse" aria-hidden="true"></i><span data-i18n="cv.scroll">向下滾動，打開地圖</span></button>
   <footer class="cv-bar">
-    <button class="cv-play" id="cvPlay" title="Replay the tide" aria-label="Replay"><svg width="13" height="14" viewBox="0 0 11 12" fill="currentColor"><path d="M1 0.6 10 6 1 11.4z"/></svg></button>
+    <button class="cv-play" id="cvPlay" data-i18n-title="cv.replay" data-i18n-aria="cv.replay"><svg width="13" height="14" viewBox="0 0 11 12" fill="currentColor"><path d="M1 0.6 10 6 1 11.4z"/></svg></button>
     <div class="cv-hour"><div class="h" id="cvHour">03:00</div><div class="u" id="cvPhase">trough</div></div>
     <div class="cv-mid"><svg id="cvTide"></svg></div>
     <div class="cv-nums"><div><b id="cvFlow">—</b><span>veh/h</span></div><div><b id="cvSpeed">—</b><span>km/h</span></div></div>
   </footer>
 </div>
 
-<dialog id="info"><button class="close" data-close="info" aria-label="關閉">×</button>
-<span class="lbl">Rules &amp; sources · 規則與資料</span><h2 class="h1">規則</h2>
+<dialog id="info"><button class="close" data-close="info" data-i18n-aria="close">×</button>
+<span class="lbl" data-i18n="i.lbl">Rules &amp; sources · 規則與資料</span><h2 class="h1" data-i18n="i.h">規則</h2>
 <ol class="rules">
-<li><b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。<b>正在滿員（8 個排隊位都滿）的站，在他做決定的那一刻沒有吸引力</b>；已經在路上的人不會因為近的站空出來而回頭。</li>
-<li><b>站要比港鐵近。</b>這些人今天開車，就是因為走去港鐵太遠；要走得和去港鐵一樣遠（或要越過港鐵）的站，他們不會去。所以不會有人走過港鐵再坐車回來。</li>
-<li><b>定時發車。</b>每座站的班距＝<span class="hwBase">60</span> 秒＋到港鐵的道路格數×<span class="hwStep">10</span> 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。</li>
-<li><b>滿了、等久了就近換站。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，就在原地看另一座站：全程走路格數（已走的＋還要走的）按同一張表仍在他的意願內、而且仍比港鐵近，就直接走過去（每趟出門最多換一次）；不然就走回家，想 20 秒後再決定一次：最近的站夠近、而且那一刻沒有滿就再出門，否則開車。每人最多從家裡出門兩次。從出門起總耐心約 3.5 分鐘，不會重置。</li>
-<li><b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人就近換站，或走回家再考慮；已開出的巴士照常送達。</li>
-<li><b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：唐人新村每批 6 人，其他三區每批 3 人；每區一次高峰，那一批多 18 人。</li>
+<li data-i18n-html="i.r1"></li>
+<li data-i18n-html="i.r2"></li>
+<li id="infoR3"></li>
+<li data-i18n-html="i.r4"></li>
+<li data-i18n-html="i.r5"></li>
+<li id="infoR6"></li>
 </ol>
-<h3>哪些是真的</h3><p id="source"></p><p id="coverSource"></p><p>本關只表達接駁的步行距離、班次與運力怎樣影響大家坐不坐公共交通；土地開發（TOD）與真實減碳核算留待後續關卡。</p></dialog>
+<h3 data-i18n="i.real">哪些是真的</h3><p id="source"></p><p id="coverSource"></p><p data-i18n="i.scope"></p><p data-i18n="hub.enNames"></p></dialog>
 
 <dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
-<table class="result"><thead><tr><th>屋苑</th><th>送達</th><th>開車：太遠</th><th>站滿了</th><th>等太久</th><th>未完成</th></tr></thead><tbody id="resultRows"></tbody></table>
-<p id="resultHint" class="note"></p><div class="row"><button id="again" class="btn btn-p">再試一局 ↺</button><button data-close="result" class="btn">查看棋盤</button><button id="download" class="btn">保存本局紀錄</button></div></dialog>
+<table class="result"><thead id="resultHead"></thead><tbody id="resultRows"></tbody></table>
+<p id="resultHint" class="note"></p><div class="row"><button id="again" class="btn btn-p" data-i18n="r.again">再試一局 ↺</button><button data-close="result" class="btn" data-i18n="r.board">查看棋盤</button><button id="resultMap" class="btn" data-i18n="r.map">回到地圖</button><button id="download" class="btn" data-i18n="r.save">保存本局紀錄</button></div></dialog>
 
 <script>
 (function(root) {
-  // v3 · site boards. Each board is a real station and the estates around it that our model says have the
-  // most morning car commuters 0.6–3 km away (zones whose nearest station it is), laid out on a grid of
-  // about 350 m a block from their real walking distances (OpenStreetMap paths) and directions.
-  // Same rules on every board. Choose with #map=fanling|yuenlong|longping, or FEEDER_MAP for node.
+  // v3 · site boards and the hub map.
+  // Each level is a real station and the estates around it that our model says have the most morning car
+  // commuters 0.6–3 km away (zones whose nearest station it is), laid out on a grid of about 350 m a block
+  // from their real walking distances (OpenStreetMap paths) and directions. Same rules on every board.
+  // D is one object for the whole page; D.select(name) swaps the board in place (then call Tide.reset()).
+  // First board: #map=… in the browser, FEEDER_MAP for node, else Fanling.
   const pick=(typeof process!=='undefined'&&process.env&&process.env.FEEDER_MAP)||
     (typeof location!=='undefined'&&(/(?:^|[#&])map=(\w+)/.exec(location.hash)||[])[1])||'fanling';
   function build(lines){
@@ -425,59 +527,71 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
     return [...roads].map(s=>s.split(',').map(Number));
   }
   const MAPS={
-    // Fanling (East Rail): the station sits at the west edge and the estates fan out on its east side —
-    // a north pair, a south pair, and Shan Lai Court far to the north-east with by far the most drivers.
-    // East of the station, Fung Wong Ling and Wo Hop Shek can share a stop (real walks 1.28 / 0.90 km).
-    fanling:{label:'粉嶺',cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',headway:[60,5],tiers:[174,180,185],
-      station:{zh:'粉嶺港鐵',en:'FANLING',lon:114.138654,lat:22.492131},
+    // Fanling (East Rail): the station at the west edge, the estates fanned out on its east side — a north pair,
+    // a south pair and Shan Lai Court far to the north-east with by far the most drivers. Fung Wong Ling and
+    // Wo Hop Shek really can share a stop east of the station (real walks 1.28 / 0.90 km).
+    fanling:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',headway:[60,5],tiers:[174,180,185],
+      station:{'zh-Hant':'粉嶺港鐵','zh-Hans':'粉岭港铁',en:'FANLING',lon:114.138649,lat:22.492132},
       roads:build([[1,4,4,4],[2,2,2,6],[2,2,6,2],[6,1,6,2],[4,2,4,6],[2,6,4,6]]),
       candidates:[[2,3],[2,2],[3,2],[4,2],[5,2],[6,2],[6,1],[4,3],[4,4],[4,5],[2,5],[2,6],[3,6],[4,6]],
       estates:[
-        {name:'山麗苑',short:'山麗苑',zone:'634',cell:[6,1],house:[50,0],car:2006,walk:3073},
-        {name:'鳳凰嶺邨',short:'鳳凰嶺',zone:'625.2',cell:[3,2],house:[0,-40],car:372,walk:1337},
-        {name:'北區公園',short:'北區公園',zone:'625.3',cell:[2,2],house:[-50,0],car:311,walk:1073},
-        {name:'華明邨',short:'華明',zone:'628.4',cell:[2,6],house:[0,40],car:267,walk:1083},
-        {name:'和合石',short:'和合石',zone:'628.5',cell:[3,6],house:[0,40],car:203,walk:908}],
-      base:[6,3,3,3,3],peaks:[{origin:2,wave:1},{origin:4,wave:3},{origin:0,wave:5},{origin:3,wave:6},{origin:1,wave:7}],
-      geography:'粉嶺站、五個分區的名字與早高峰開車人數取自 TransitLab 本地模型；分區位置按真實步行距離（OpenStreetMap 行人路網）與方位畫成約 350 米一格的棋盤，略作遊戲化：山麗苑真實步行約 3.1 公里，棋盤縮為 8 格。車站在西、各區在東側一個扇形裡；鳳凰嶺邨與和合石之間真的有比去車站還近的共用位置。道路為示意，不是實測道路或獲准設站位置。'},
+        {name:'山麗苑',hans:'山丽苑',zone:'634',cell:[6,1],house:[50,0],car:2006,walk:3073},
+        {name:'鳳凰嶺邨',hans:'凤凰岭邨',short:'鳳凰嶺',shortHans:'凤凰岭',zone:'625.2',cell:[3,2],house:[0,-40],car:372,walk:1337},
+        {name:'北區公園',hans:'北区公园',zone:'625.3',cell:[2,2],house:[-50,0],car:311,walk:1073},
+        {name:'華明邨',hans:'华明邨',short:'華明',shortHans:'华明',zone:'628.4',cell:[2,6],house:[0,40],car:267,walk:1083},
+        {name:'和合石',hans:'和合石',zone:'628.5',cell:[3,6],house:[0,40],car:203,walk:908}],
+      base:[6,3,3,3,3],peaks:[{origin:2,wave:1},{origin:4,wave:3},{origin:0,wave:5},{origin:3,wave:6},{origin:1,wave:7}]},
     // Yuen Long (Tuen Ma): four estates in one corridor south of the station (Tai Tong Road / Shap Pat Heung).
-    yuenlong:{label:'元朗南',cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',headway:[60,7],tiers:[138,143,148],
-      station:{zh:'元朗港鐵',en:'YUEN LONG',lon:114.035311,lat:22.446253},
+    yuenlong:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',headway:[60,7],tiers:[138,143,148],
+      station:{'zh-Hant':'元朗港鐵','zh-Hans':'元朗港铁',en:'YUEN LONG',lon:114.03437,lat:22.445719},
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
       candidates:[[1,1],[2,1],[1,2],[1,3],[1,4],[2,4],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[2,8]],
       estates:[
-        {name:'崇山新村',short:'崇山',zone:'522',cell:[2,8],house:[0,40],car:1017,walk:3003},
-        {name:'朗善邨一帶',short:'朗善',zone:'523',cell:[3,6],house:[50,0],car:418,walk:2004},
-        {name:'蝶翠峰',short:'蝶翠峰',zone:'529',cell:[2,4],house:[0,40],car:388,walk:1563},
-        {name:'大棠路',short:'大棠路',zone:'524.3',cell:[1,1],house:[-50,0],car:383,walk:833}],
-      base:[6,3,3,3],peaks:[{origin:3,wave:1},{origin:2,wave:3},{origin:0,wave:5},{origin:1,wave:6}],
-      geography:'元朗站與四個分區的名字、早高峰開車人數取自 TransitLab 本地模型；按真實步行距離（大棠路 0.8、蝶翠峰 1.6、朗善邨一帶 2.0、崇山新村 3.0 公里）與方位畫成約 350 米一格的棋盤，略作遊戲化。四區都在車站南面一條走廊上，相鄰兩區可以共用接駁站。道路為示意。'},
+        {name:'崇山新村',hans:'崇山新村',short:'崇山',shortHans:'崇山',zone:'522',cell:[2,8],house:[0,40],car:1017,walk:3003},
+        {name:'朗善邨一帶',hans:'朗善邨一带',short:'朗善',shortHans:'朗善',zone:'523',cell:[3,6],house:[50,0],car:418,walk:2004},
+        {name:'蝶翠峰',hans:'蝶翠峰',zone:'529',cell:[2,4],house:[0,40],car:388,walk:1563},
+        {name:'大棠路',hans:'大棠路',zone:'524.3',cell:[1,1],house:[-50,0],car:383,walk:833}],
+      base:[6,3,3,3],peaks:[{origin:3,wave:1},{origin:2,wave:3},{origin:0,wave:5},{origin:1,wave:6}]},
     // The original v2.5 board, for comparison.
-    longping:{label:'朗屏（原版）',cols:10,rows:7,margin:[20,30],hub:[6,4],hubLabel:'right',headway:[60,10],tiers:[133,140,146],
-      station:{zh:'朗屏港鐵',en:'LONG PING',lon:114.025421,lat:22.447773},
+    longping:{cols:10,rows:7,margin:[20,30],hub:[6,4],hubLabel:'right',headway:[60,10],tiers:[133,140,146],
+      station:{'zh-Hant':'朗屏港鐵','zh-Hans':'朗屏港铁',en:'LONG PING',lon:114.025421,lat:22.447773},
       roads:build([[1,6,8,6],[3,3,3,6],[3,4,8,4],[5,4,5,6],[6,1,6,6],[8,3,8,6],[5,2,7,2]]),
       candidates:[[2,6],[3,6],[3,5],[3,4],[4,4],[5,4],[5,6],[6,6],[7,6],[8,6],[8,4],[6,2],[6,3]],
       estates:[
-        {name:'唐人新村',short:'唐人新村',zone:'519',cell:[1,6],house:[0,38]},
-        {name:'翹翠峰',short:'翹翠峰',zone:'527.4',cell:[5,6],house:[0,38]},
-        {name:'蝶翠峰',short:'蝶翠峰',zone:'529',cell:[7,6],house:[0,38]},
-        {name:'橫洲東頭圍',short:'橫洲',zone:'528',cell:[6,1],house:[0,-40]}],
-      base:[6,3,3,3],peaks:[{origin:3,wave:1},{origin:1,wave:3},{origin:0,wave:5},{origin:2,wave:6}],
-      geography:'v2.5 的原版棋盤：朗屏站與四個分區的相對方位取自 TransitLab 本地資料，道路重畫為棋盤示意。（後來核對發現唐人新村、蝶翠峰最近的港鐵站其實是天水圍和元朗。）'}
+        {name:'唐人新村',hans:'唐人新村',zone:'519',cell:[1,6],house:[0,38]},
+        {name:'翹翠峰',hans:'翘翠峰',zone:'527.4',cell:[5,6],house:[0,38]},
+        {name:'蝶翠峰',hans:'蝶翠峰',zone:'529',cell:[7,6],house:[0,38]},
+        {name:'橫洲東頭圍',hans:'横洲东头围',short:'橫洲',shortHans:'横洲',zone:'528',cell:[6,1],house:[0,-40]}],
+      base:[6,3,3,3],peaks:[{origin:3,wave:1},{origin:1,wave:3},{origin:0,wave:5},{origin:2,wave:6}]}
   };
-  const name=MAPS[pick]?pick:'fanling',M=MAPS[name];
-  // demand: every estate sends the same number of people every batch, plus one announced peak (+18)
+  // Places on the hub map. "play" opens a level; "soon" are candidates from the territory-wide site search
+  // (tools/site-search). side = where the name sits next to the pin, so neighbours do not collide.
+  const SITES=[
+    {key:'fanling',status:'play',map:'fanling',lon:114.138649,lat:22.492132,side:'right'},
+    {key:'yuenlong',status:'play',map:'yuenlong',lon:114.03437,lat:22.445719,side:'bottom'},
+    {key:'longping',status:'play',map:'longping',lon:114.025421,lat:22.447773,side:'topright',minor:true},
+    {key:'wahfu',status:'soon',lon:114.167572,lat:22.248241,side:'bottom'},
+    {key:'tsingyi',status:'soon',lon:114.107025,lat:22.358324,side:'left'},
+    {key:'chaiwan',status:'soon',lon:114.237122,lat:22.264599,side:'right'},
+    {key:'kwaihing',status:'soon',lon:114.131355,lat:22.363169,side:'right'},
+    {key:'taiwo',status:'soon',lon:114.161072,lat:22.451057,side:'right'},
+    {key:'tinshuiwai',status:'soon',lon:114.005959,lat:22.449448,side:'left'},
+    {key:'tuenmun',status:'soon',lon:113.973312,lat:22.393721,side:'left'},
+    {key:'sheungshui',status:'soon',lon:114.127861,lat:22.501383,side:'top'}
+  ].map(s=>s.map?{...s,estates:MAPS[s.map].estates.length,tiers:MAPS[s.map].tiers,station:MAPS[s.map].station}:s);
   const PEAK=18;
-  const peaks=M.peaks.map(p=>({...p,extra:PEAK})),base=M.base.slice();
-  const waves=Array.from({length:8},(_,w)=>base.map((b,o)=>b+peaks.filter(p=>p.origin===o&&p.wave===w).reduce((s,p)=>s+p.extra,0)));
-  const origins=M.estates.map((e,i)=>({...e,count:waves.reduce((s,w)=>s+w[i],0),base:base[i]}));
-  const D = {
-    map:name, maps:Object.fromEntries(Object.entries(MAPS).map(([k,v])=>[k,v.label])),
-    cols:M.cols, rows:M.rows, margin:M.margin, roads:M.roads, hub:M.hub, hubLabel:M.hubLabel, station:M.station,
-    candidates:M.candidates, headway:M.headway, tiers:M.tiers, origins, base, peaks, waves,
-    source:{geography:M.geography,
-      demand:'各區平時人數：開車最多的一區每批 6 人，其他每批 3 人；每區一次高峰（多 18 人）。人數與時間均為遊戲假設，不代表真實客流或減碳量。',date:'2026-10-07'}
-  };
+  function make(name){
+    const M=MAPS[name];
+    const peaks=M.peaks.map(p=>({...p,extra:PEAK})),base=M.base.slice();
+    const waves=Array.from({length:8},(_,w)=>base.map((b,o)=>b+peaks.filter(p=>p.origin===o&&p.wave===w).reduce((s,p)=>s+p.extra,0)));
+    const origins=M.estates.map((e,i)=>({...e,count:waves.reduce((s,w)=>s+w[i],0),base:base[i]}));
+    return {map:name,cols:M.cols,rows:M.rows,margin:M.margin,roads:M.roads,hub:M.hub,hubLabel:M.hubLabel,station:M.station,
+      candidates:M.candidates,headway:M.headway,tiers:M.tiers,origins,base,peaks,waves,levels:Object.keys(MAPS),sites:SITES};
+  }
+  const D=make(MAPS[pick]?pick:'fanling');
+  Object.defineProperty(D,'select',{enumerable:false,value(name){
+    if(!MAPS[name])return false;const next=make(name);
+    for(const k of Object.keys(D))delete D[k];Object.assign(D,next);return true;}});
   if(typeof module!=='undefined') module.exports=D;
   root.TIDE_DATA=D;
 })(typeof window!=='undefined'?window:globalThis);
@@ -493,14 +607,13 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,build:20,moves:6,
     willing:[1,1,.8,.6,.4,.2],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
     reconsider:4,target:133,highScore:140,masterScore:146};
-  // each board carries its own headway formula and score tiers
-  if(D.headway)[P.headwayBase,P.headwayStep]=D.headway;
-  if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
     let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
     return((t^t>>>14)>>>0)/4294967296;}; }
-  const graph=new Map(D.roads.map(c=>[key(c),c])), cache=new Map();
+  // Everything derived from the board. reset() rebuilds it after D.select() swaps the board in place.
+  let graph=new Map(), cache=new Map();
+  const toMTR=[];
   function route(a,b) {
     const k=key(a)+'>'+key(b);
     if(cache.has(k)) return cache.get(k).map(c=>c.slice());
@@ -519,7 +632,14 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
   const willing=steps=>steps<0?0:(P.willing[steps]??0);
   // These residents drive today because the MTR is too far to walk. A stop that is as far on foot as the MTR
   // itself (or lies beyond it) wins nobody — nobody walks past the station to ride back to it.
-  const toMTR=D.origins.map(o=>dist(o.cell,D.hub));
+  function reset() {
+    graph=new Map(D.roads.map(c=>[key(c),c]));cache=new Map();
+    // each board carries its own headway formula and score tiers
+    [P.headwayBase,P.headwayStep]=D.headway||[60,10];
+    if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
+    toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
+  }
+  reset();
   const shareAt=(origin,cell,walked=0,from=D.origins[origin].cell)=>{const total=walked+dist(from,cell);return total<toMTR[origin]?willing(total):0;};
   // How many of n people in one batch come when the share is w (thresholds are evenly spread).
   const comes=(n,w)=>Math.max(0,Math.min(n,Math.ceil(w*n-.5)));
@@ -732,8 +852,276 @@ table.result td:not(:first-child),table.result th:not(:first-child){text-align:r
       active:this.people.filter(p=>!['future','delivered','car','missed'].includes(p.state)).length,
       future:this.people.filter(p=>p.state==='future').length,total:this.people.length,time:this.t,moves:this.moves,done:this.done};}
   }
-  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt,shareAt,toMTR};
+  const API={D,P,Game,route,dist,along,length,rng,same,willing,comes,headwayAt,shareAt,toMTR,reset};
   if(typeof module!=='undefined')module.exports=API;root.Tide=API;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // v3.1 · three languages: 繁體中文 (default), 简体中文, English.
+  // Display titles stay in English in every language (the suite's design); the Chinese line under them follows
+  // the language and is left out in English. Estate names stay in Chinese in English, as on local signs.
+  // Static markup: data-i18n (text), data-i18n-html, data-i18n-title, data-i18n-aria. Dynamic text: I18N.t(key, vars).
+  const LANGS=['zh-Hant','zh-Hans','en'];
+  const L=(hant,hans,en)=>({'zh-Hant':hant,'zh-Hans':hans,en});
+  const S={
+    'doc.title':L('TransitLab HK · 接駁巴士','TransitLab HK · 接驳巴士','TransitLab HK · Feeder bus'),
+    'doc.game':L('TransitLab HK · 接駁巴士 · {s}','TransitLab HK · 接驳巴士 · {s}','TransitLab HK · Feeder bus · {s}'),
+    'sep':L('、','、',', '),
+    // top bar
+    'brand.sub':L('HK · Feeder bus · 接駁巴士','HK · Feeder bus · 接驳巴士','HK · Feeder bus'),
+    'top.sources':L('Sources 資料','Sources 资料','Sources'),
+    'top.sourcesTitle':L('資料出處','资料出处','Data sources'),
+    'top.rules':L('Rules <span class="tc">規則</span>','Rules <span class="tc">规则</span>','Rules'),
+    'top.paper':L('Paper 紙','Paper 纸','Paper'),'top.ink':L('Ink 墨','Ink 墨','Ink'),
+    'top.theme':L('主題','主题','Theme'),'top.lang':L('語言','语言','Language'),
+    // 01–06 menu
+    'nav.aria':L('產品功能','产品功能','Product views'),
+    'nav.1':L('入門遊戲','入门游戏','Feeder bus'),
+    'nav.2':L('互動教學 · 即將推出','互动教学 · 即将推出','Coming soon'),
+    'nav.3':L('完整沙盤 · 即將推出','完整沙盘 · 即将推出','Coming soon'),
+    'nav.4':L('觀測台 · 即將推出','观测台 · 即将推出','Coming soon'),
+    'nav.5':L('排行榜 · 即將推出','排行榜 · 即将推出','Coming soon'),
+    'nav.6':L('數據台 · 即將推出','数据台 · 即将推出','Coming soon'),
+    // opening
+    'cv.titleTc':L('這座城市，一天漲潮兩次','这座城市，一天涨潮两次',''),
+    'cv.ledeTc':L('運輸署實測，逐小時。','运输署实测，逐小时。',''),
+    'cv.mode':L('入門遊戲：接駁巴士 · 三個港鐵站可以玩','入门游戏：接驳巴士 · 三个港铁站可以玩','Entry game: feeder bus · three stations to play'),
+    'cv.scroll':L('向下滾動，打開地圖','向下滚动，打开地图','Scroll to open the map'),
+    'cv.replay':L('重播潮汐','重播潮汐','Replay the tide'),
+    'cv.crest':L('crest 滿潮','crest 满潮','crest'),'cv.trough':L('trough 低潮','trough 低潮','trough'),
+    'cv.rising':L('rising 漲潮','rising 涨潮','rising'),'cv.ebbing':L('ebbing 退潮','ebbing 退潮','ebbing'),
+    'cv.trips':L('Trips now 此刻出行','Trips now 此刻出行','Trips now'),
+    // hub (the map)
+    'hub.aria':L('香港地圖：選一個地點','香港地图：选一个地点','Map of Hong Kong: pick a place'),
+    'hub.start':L('Start · 開始','Start · 开始','Start'),
+    'hub.pickH':L('從上方選一個模式','从上方选一个模式','Pick a mode above'),
+    'hub.pickP':L('現在可以玩的是 <b>01 入門遊戲</b>。之後的模式也會從這張地圖進入。','现在可以玩的是 <b>01 入门游戏</b>。之后的模式也会从这张地图进入。','<b>01 Entry game</b> is ready to play. Later modes will open from this map too.'),
+    'hub.m1H':L('接駁巴士','接驳巴士','Feeder bus'),
+    'hub.m1P':L('在港鐵站周邊放三座接駁站，把原本開車的人接上港鐵。每一關是一個真實的站，和它附近早上開車最多的屋苑。點地圖上的站名開始。','在港铁站周边放三座接驳站，把原本开车的人接上港铁。每一关是一个真实的站，和它附近早上开车最多的屋苑。点地图上的站名开始。','Place three feeder stops around an MTR station and get people who drive today onto the train. Each level is a real station and the nearby estates with the most morning drivers. Click a station on the map to start.'),
+    'hub.levels':L('Levels · 關卡','Levels · 关卡','Levels'),
+    'hub.levelLine':L('{n} 個屋苑 · 過關 {pass}','{n} 个屋苑 · 过关 {pass}','{n} estates · pass {pass}'),
+    'hub.tiers':L('過關 {a} · 高分 {b} · 大師 {c}','过关 {a} · 高分 {b} · 大师 {c}','pass {a} · high {b} · master {c}'),
+    'hub.best':L('最佳 {n}','最佳 {n}','best {n}'),
+    'hub.resume':L('本局未完 · 點擊繼續','本局未完 · 点击继续','Game in progress · click to resume'),
+    'hub.hover':L('把滑鼠停在地圖上的站，看看那裡的情況。','把鼠标停在地图上的站，看看那里的情况。','Hover a station on the map to see what it is like.'),
+    'hub.play':L('可以玩','可以玩','Playable'),'hub.soon':L('未開發','未开发','Not built yet'),
+    'hub.soonNote':L('灰色的站來自全港 97 個港鐵站的選址檢索，還沒做成關卡。','灰色的站来自全港 97 个港铁站的选址检索，还没做成关卡。','Grey stations come from our search of 97 MTR stations; they are not levels yet.'),
+    'hub.enNames':L('','','Estate names stay in Chinese, as on local signs.'),
+    'hub.coming':L('即將推出','即将推出','Coming soon'),
+    'hub.m2H':L('互動教學','互动教学','Lessons'),
+    'hub.m2P':L('一課一個概念：步行距離、班距、運力、潮汐。之後從地圖上的站點進入。','一课一个概念：步行距离、班距、运力、潮汐。之后从地图上的站点进入。','One idea per lesson: walking distance, headway, capacity, the tide. They will open from places on this map.'),
+    'hub.m3H':L('完整沙盤','完整沙盘','Full sandbox'),
+    'hub.m3P':L('更大的地圖：幾個港鐵站、幾條接駁線一起規劃。','更大的地图：几个港铁站、几条接驳线一起规划。','Bigger maps: several stations and feeder lines planned together.'),
+    'hub.m4H':L('觀測台','观测台','Observation deck'),
+    'hub.m4P':L('看真實數據：全港逐小時的潮汐和各區出行量。','看真实数据：全港逐小时的潮汐和各区出行量。','Real data: the hourly tide and the trips of every district.'),
+    'hub.m5H':L('排行榜','排行榜','Leaderboard'),
+    'hub.m5P':L('同一張地圖比分數，只顯示暱稱。','同一张地图比分数，只显示昵称。','Compare scores on the same map — nicknames only.'),
+    'hub.m6H':L('數據台','数据台','Network console'),
+    'hub.m6P':L('資料出處、模型參數和路網。','资料出处、模型参数和路网。','Sources, model parameters and the network.'),
+    // places
+    'site.fanling':L('粉嶺','粉岭','Fanling'),'site.yuenlong':L('元朗南','元朗南','Yuen Long South'),
+    'site.longping':L('朗屏（原版）','朗屏（原版）','Long Ping (original)'),'site.wahfu':L('華富','华富','Wah Fu'),
+    'site.tsingyi':L('青衣','青衣','Tsing Yi'),'site.chaiwan':L('柴灣','柴湾','Chai Wan'),'site.kwaihing':L('葵興','葵兴','Kwai Hing'),
+    'site.taiwo':L('太和','太和','Tai Wo'),'site.tinshuiwai':L('天水圍','天水围','Tin Shui Wai'),'site.tuenmun':L('屯門','屯门','Tuen Mun'),
+    'site.sheungshui':L('上水','上水','Sheung Shui'),
+    'about.fanling':L('東鐵綫。五個屋苑在車站東面散開；北邊的山麗苑最遠、開車的人最多。','东铁线。五个屋苑在车站东面散开；北边的山丽苑最远、开车的人最多。','East Rail line. Five estates fan out east of the station; Shan Lai Court in the north is farthest and has the most drivers.'),
+    'about.yuenlong':L('屯馬綫。四個屋苑排成車站南面的一條走廊，相鄰兩區可以共用一座站。','屯马线。四个屋苑排成车站南面的一条走廊，相邻两区可以共用一座站。','Tuen Ma line. Four estates line up in a corridor south of the station; neighbours can share a stop.'),
+    'about.longping':L('第一版的棋盤，留作對照。','第一版的棋盘，留作对照。','The first board, kept for comparison.'),
+    'about.wahfu':L('華富一帶：港鐵站都在 2.5 公里以外，步行最近的是黃竹坑站。','华富一带：港铁站都在 2.5 公里以外，步行最近的是黄竹坑站。','Around Wah Fu every MTR station is over 2.5 km away; the nearest on foot is Wong Chuk Hang.'),
+    'about.tsingyi':L('四個屋苑擠在一起，一座站就接得完，挪站沒有意思。','四个屋苑挤在一起，一座站就接得完，挪站没有意思。','Four estates packed together: one stop serves them all, so moving stops means little.'),
+    'about.kwaihing':L('三個屋苑彼此只隔三四百米，太緊湊。','三个屋苑彼此只隔三四百米，太紧凑。','Three estates only 300–400 m apart — too compact.'),
+    'about.chaiwan':L('三個屋苑都在車站同一邊，彼此很近，太緊湊。','三个屋苑都在车站同一边，彼此很近，太紧凑。','Three estates on the same side, close together — too compact.'),
+    'about.taiwo':L('屋苑之間沒有共用的步行路，各自孤立。','屋苑之间没有共用的步行路，各自孤立。','No shared walking routes between the estates — each is on its own.'),
+    'about.tinshuiwai':L('輕鐵已經在接駁好幾個區。','轻铁已经在接驳好几个区。','Light Rail already feeds several of these areas.'),
+    'about.tuenmun':L('大部分區已經有輕鐵接駁。','大部分区已经有轻铁接驳。','Light Rail already feeds most of these areas.'),
+    'about.sheungshui':L('開車的人不多，東面的東塘新村又太孤立。','开车的人不多，东面的东塘新村又太孤立。','Few drivers, and 東塘新村 is cut off from the rest.'),
+    // the game, left column
+    'g.mode':L('Mode 01','Mode 01','Mode 01'),
+    'g.toMap':L('← 地圖','← 地图','← Map'),'g.toMapTitle':L('回到地圖選關','回到地图选关','Back to the map'),
+    'g.chip':L('確定規則','确定规则','Fixed rules'),
+    'g.titleTc':L('接駁巴士 → {s}','接驳巴士 → {s}',''),
+    'g.lede':L('Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span>',
+      'Three stops, one station. Get drivers onto the train.<span class="tcb">三座接驳站，把原本开车的人接上港铁。</span>',
+      'Three stops, one station. Get drivers onto the train.<span class="tcb">Estate names stay in Chinese, as on local signs.</span>'),
+    'g.goalLbl':L('Goal · 目標','Goal · 目标','Goal'),
+    'g.goal':L('<b>{pass}</b> 過關：開局三站要擺得很準，不然要靠中途挪站補救。<b>{high}</b> 高分：一定要跟著潮汐挪站。<b>{master}</b> 潮汐大師：每一步都挪得準。',
+      '<b>{pass}</b> 过关：开局三站要摆得很准，不然要靠中途挪站补救。<b>{high}</b> 高分：一定要跟着潮汐挪站。<b>{master}</b> 潮汐大师：每一步都挪得准。',
+      '<b>{pass}</b> to pass: the opening three stops must be spot on, or you rescue it by moving stops. <b>{high}</b> high score: you must move stops with the tide. <b>{master}</b> tide master: every move on time.'),
+    'g.tickPass':L('過關 {n}','过关 {n}','pass {n}'),'g.tickHigh':L('高分 {n}','高分 {n}','high {n}'),'g.tickMaster':L('大師 {n}','大师 {n}','master {n}'),
+    'g.start':L('▶ 開始','▶ 开始','▶ Start'),'g.pause':L('❚❚ 暫停','❚❚ 暂停','❚❚ Pause'),'g.resume':L('▶ 繼續','▶ 继续','▶ Resume'),'g.over':L('已結束','已结束','Finished'),
+    'g.speed':L('速度','速度','Speed'),'g.reset':L('重開','重开','Restart'),
+    'g.stops':L('Stops · 接駁站 <span class="tc">1/2/3 選站 · 空格暫停</span>','Stops · 接驳站 <span class="tc">1/2/3 选站 · 空格暂停</span>','Stops <span class="tc">1/2/3 to select · space to pause</span>'),
+    'g.rules':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'g.rule1':L('<b>離站越遠，越少人來。</b>1 格內全來，之後每多 1 格少 20%。圈上的比例就是真的會來的比例。站要比港鐵近才有人去。',
+      '<b>离站越远，越少人来。</b>1 格内全来，之后每多 1 格少 20%。圈上的比例就是真的会来的比例。站要比港铁近才有人去。',
+      '<b>The farther the stop, the fewer come.</b> Everyone within 1 block comes; each extra block loses 20%. The share on the circle is exactly who comes. A stop must be closer than the MTR itself.'),
+    'g.rule2':L('<b>離港鐵越近，班次越密。</b>班距＝{base} 秒＋到港鐵每格 {step} 秒；每班 6 座，最多再排 8 人。正滿的站沒人會選；到站才發現滿了就近換站，換不了就回家想 20 秒，再從「最近的站」和「開車」中選一個。',
+      '<b>离港铁越近，班次越密。</b>班距＝{base} 秒＋到港铁每格 {step} 秒；每班 6 座，最多再排 8 人。正满的站没人会选；到站才发现满了就近换站，换不了就回家想 20 秒，再从「最近的站」和「开车」中选一个。',
+      '<b>The closer to the MTR, the more frequent.</b> Headway = {base} s + {step} s per block to the MTR; 6 seats a bus, up to 8 more in the queue. Nobody picks a stop that is full; whoever finds it full on arrival tries the nearest other stop, or walks home, thinks for 20 s, then picks the nearest stop or the car.'),
+    'g.rule3':L('<b>看潮汐表。</b>每區一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。',
+      '<b>看潮汐表。</b>每区一次高峰（+18 人），高峰前可以搬站：6 次，每次重建 20 秒。',
+      '<b>Read the tide table.</b> Each estate has one peak (+18 people). Move stops before it: 6 moves, 20 s to rebuild each.'),
+    'g.read':L('How to read the map · 怎麼看','How to read the map · 怎么看','How to read the map'),
+    'g.legWalk':L('去站','去站','to a stop'),'g.legHome':L('回家','回家','going home'),
+    'g.legGood':L('送達 · 越亮越多人','送达 · 越亮越多人','delivered · brighter = more'),'g.legBad':L('開車流失','开车流失','lost to cars'),
+    // right column
+    'g.tide':L('Tide table · 潮汐表','Tide table · 潮汐表','Tide table'),
+    'g.tideChip':L('8 批 · 每 2 分鐘','8 批 · 每 2 分钟','8 batches · every 2 min'),
+    'g.tideChipTitle':L('每 2 分鐘一批','每 2 分钟一批','one batch every 2 minutes'),
+    'g.tideAria':L('每批出門人數與預計會來的人數','每批出门人数与预计会来的人数','People leaving home per batch, and how many will come'),
+    'g.tideKey':L('<span><b class="mono">6</b>出門人數</span><span><b class="mono" style="color:var(--s-accent)">會來 6</b>按現在站位</span><span><i class="pk"></i>高峰</span><span><b class="mono" style="color:var(--s-bad)">會來 21</b>可能擠爆</span>',
+      '<span><b class="mono">6</b>出门人数</span><span><b class="mono" style="color:var(--s-accent)">会来 6</b>按现在站位</span><span><i class="pk"></i>高峰</span><span><b class="mono" style="color:var(--s-bad)">会来 21</b>可能挤爆</span>',
+      '<span><b class="mono">6</b>leave home</span><span><b class="mono" style="color:var(--s-accent)">come 6</b>with these stops</span><span><i class="pk"></i>peak</span><span><b class="mono" style="color:var(--s-bad)">come 21</b>may overflow</span>'),
+    'g.log':L('Dispatch log · 調度提示','Dispatch log · 调度提示','Dispatch log'),
+    // map plate
+    'g.board':L('接駁巴士棋盤','接驳巴士棋盘','Feeder bus board'),
+    'g.moves':L('Moves · 搬站','Moves · 搬站','Moves'),
+    'hud.good':L('Delivered · 已送達','Delivered · 已送达','Delivered'),'hud.onway':L('On the way · 路上','On the way · 路上','On the way'),
+    'hud.bad':L('Drove · 開車流失','Drove · 开车流失','Drove'),'hud.notOut':L('Not out yet · 未出門','Not out yet · 未出门','Not out yet'),
+    'b.next':L('下批 {k}/{n} 人','下批 {k}/{n} 人','next {k}/{n}'),
+    'b.delivered':L('已送達 {n}','已送达 {n}','delivered {n}'),
+    'b.candAria':L('放置接駁站於 {c} 列 {r} 行','放置接驳站于 {c} 列 {r} 行','Place a stop at column {c}, row {r}'),
+    'b.full':L('FULL 滿','FULL 满','FULL'),
+    'b.rebuild':L('重建 {n}s','重建 {n}s','rebuild {n}s'),'b.depart':L('發車 {t}','发车 {t}','departs {t}'),'b.headway':L('班距 {n}s','班距 {n}s','every {n}s'),
+    'b.stopAria':L('接駁站 {s}：座位 {a}/{b}，排隊 {c}/{d}','接驳站 {s}：座位 {a}/{b}，排队 {c}/{d}','Stop {s}: seats {a}/{b}, queue {c}/{d}'),
+    'b.mtr':L('','','MTR'),
+    // tide table + stop panel + side
+    'tt.batch':L('批次','批次','Batch'),'tt.none':L('無站','无站','no stop'),'tt.come':L('會來 {n}','会来 {n}','come {n}'),
+    'sp.title':L('{s} 站','{s} 站','Stop {s}'),'sp.preview':L(' · 預覽',' · 预览',' · preview'),
+    'sp.empty':L('還沒放。滑鼠停在地圖的 ＋ 上先看預覽，再點擊放站。','还没放。鼠标停在地图的 ＋ 上先看预览，再点击放站。','Not placed. Hover a ＋ on the map to preview, then click to place.'),
+    'sp.toMTR':L('到港鐵','到港铁','To MTR'),'sp.toMTRv':L('{n} 格 → 班距 <b>{hw}s</b>','{n} 格 → 班距 <b>{hw}s</b>','{n} blocks → every <b>{hw}s</b>'),
+    'sp.who':L('誰會來','谁会来','Who comes'),'sp.nobody':L('沒有屋苑選這座站','没有屋苑选这座站','no estate picks this stop'),
+    'sp.not':L('不會來','不会来','Won’t come'),'sp.beyond':L('{list}（比走去港鐵還遠）','{list}（比走去港铁还远）','{list} (farther than the MTR)'),
+    'sp.next':L('下一班','下一班','Next bus'),'sp.opening':L('開局 +{n}s','开局 +{n}s','start +{n}s'),
+    'sp.seats':L('座位 {a}/{b}','座位 {a}/{b}','Seats {a}/{b}'),'sp.queue':L('排隊 {a}/{b}','排队 {a}/{b}','Queue {a}/{b}'),
+    'sp.rejected':L('被擠走 {n} 人次','被挤走 {n} 人次','turned away {n}×'),
+    'sp.hoverMove':L('點擊搬到這裡：重建 20 秒，剩 {n} 次。','点击搬到这里：重建 20 秒，剩 {n} 次。','Click to move here: 20 s to rebuild, {n} moves left. '),
+    'sp.hoverPlace':L('點擊放站（開局前不扣搬站次數）。','点击放站（开局前不扣搬站次数）。','Click to place (free before the start). '),
+    'sp.tip':L('離港鐵近 → 班次密；離屋苑近 → 來的人多。','离港铁近 → 班次密；离屋苑近 → 来的人多。','Near the MTR → frequent buses; near the estates → more people.'),
+    'w.first':L('第 1 批：開局後 {n} 秒','第 1 批：开局后 {n} 秒','Batch 1: {n} s after the start'),
+    'w.missed':L('未完成 {n} 人','未完成 {n} 人','{n} unfinished'),
+    'w.active':L('第 {n}/8 批正在出門','第 {n}/8 批正在出门','Batch {n}/8 leaving home'),
+    'w.next':L('第 {n}/8 批：{t} 後','第 {n}/8 批：{t} 后','Batch {n}/8 in {t}'),
+    'w.all':L('8 批都出門了','8 批都出门了','All 8 batches are out'),
+    'h.done':L('本局已結束。','本局已结束。','This game is over.'),
+    'h.running':L('運行中','运行中','Running'),'h.paused':L('已暫停','已暂停','Paused'),
+    'h.run':L('{state} · 選站再點 ＋，或直接拖動車站','{state} · 选站再点 ＋，或直接拖动车站','{state} · pick a stop then click ＋, or drag a stop'),
+    'h.place':L('放 {s} 站：停在 ＋ 上先看預覽，點擊放下','放 {s} 站：停在 ＋ 上先看预览，点击放下','Place stop {s}: hover a ＋ to preview, click to drop'),
+    'st.btn':L('座 {a}/{b} · 隊 {c}/{d}','座 {a}/{b} · 队 {c}/{d}','seats {a}/{b} · queue {c}/{d}'),'st.none':L('未放置','未放置','not placed'),
+    // dispatch log
+    'n.moved':L('{s} 站搬好了，重建 20 秒；站上還沒上車的人就近換站或走回家，已開出的巴士照常送達。','{s} 站搬好了，重建 20 秒；站上还没上车的人就近换站或走回家，已开出的巴士照常送达。','Stop {s} moved: 20 s to rebuild. People still waiting there try another stop or walk home; buses already out still arrive.'),
+    'n.placed':L('放好了。可以選另一座站，或拖動已放的站。','放好了。可以选另一座站，或拖动已放的站。','Placed. Pick another stop, or drag one you placed.'),
+    'n.noMoves':L('搬站次數已用完。','搬站次数已用完。','No moves left.'),
+    'n.taken':L('這格已有車站，請選另一個 ＋。','这格已有车站，请选另一个 ＋。','There is already a stop here — pick another ＋.'),
+    'n.reset':L('每次重開都是同一份需求，方便比較不同站位。','每次重开都是同一份需求，方便比较不同站位。','Every restart has the same demand, so layouts can be compared.'),
+    'n.info':L('看規則時已暫停，關閉後點繼續。','看规则时已暂停，关闭后点继续。','Paused while you read — press Resume afterwards.'),
+    'n.start':L('開始了。看右邊潮汐表：琥珀框是高峰，紅字是那座站可能擠爆。','开始了。看右边潮汐表：琥珀框是高峰，红字是那座站可能挤爆。','Running. Watch the tide table: amber boxes are peaks; red means that stop may overflow.'),
+    'n.pause':L('已暫停，可以慢慢看；搬站仍扣次數。','已暂停，可以慢慢看；搬站仍扣次数。','Paused — take your time; moves still count.'),
+    'n.speed':L('速度 {n}×；1× 是完整 18 分鐘。','速度 {n}×；1× 是完整 18 分钟。','Speed {n}×; 1× is the full 18 minutes.'),
+    'n.hidden':L('離開畫面時已自動暫停。','离开画面时已自动暂停。','Paused while you were away.'),
+    'n.toMap':L('回到地圖時已暫停。','回到地图时已暂停。','Paused while you were on the map.'),
+    'n.layout':L('布局不限時。先放好三座接駁站，再按「開始」。','布局不限时。先放好三座接驳站，再按「开始」。','No time limit to lay out. Place all three stops, then press Start.'),
+    'c.reset':L('重開會清除本局進度，是否重開？','重开会清除本局进度，是否重开？','Restarting clears this game. Restart?'),
+    'c.map':L('換地圖會清除本局進度，是否繼續？','换地图会清除本局进度，是否继续？','Switching maps clears this game. Continue?'),
+    // toasts
+    't.peakSoon':L('25 秒後 · {name} 高峰 {n} 人','25 秒后 · {name} 高峰 {n} 人','In 25 s · peak at {name}: {n} people'),
+    't.peakNow':L('漲潮 · {name} 這批 {n} 人出門','涨潮 · {name} 这批 {n} 人出门','Tide · {n} people leave {name}'),
+    't.pass':L('過關 · CLEARED  {n} 人送達','过关 · CLEARED  {n} 人送达','CLEARED · {n} delivered'),
+    't.high':L('高分 · HIGH SCORE  {n} 人送達','高分 · HIGH SCORE  {n} 人送达','HIGH SCORE · {n} delivered'),
+    't.master':L('潮汐大師 · TIDE MASTER  {n} 人送達','潮汐大师 · TIDE MASTER  {n} 人送达','TIDE MASTER · {n} delivered'),
+    // result
+    'r.t0':L('未過關','未过关','Not cleared'),'r.t1':L('過關','过关','Cleared'),'r.t2':L('高分 · 跟上了潮汐','高分 · 跟上了潮汐','High score · with the tide'),'r.t3':L('潮汐大師','潮汐大师','Tide master'),
+    'r.score':L('送達 {d} / {t} · 開車 {c} · 未完成 {m}','送达 {d} / {t} · 开车 {c} · 未完成 {m}','Delivered {d} / {t} · drove {c} · unfinished {m}'),
+    'r.head':L('<tr><th>屋苑</th><th>送達</th><th>開車：太遠</th><th>站滿了</th><th>等太久</th><th>未完成</th></tr>','<tr><th>屋苑</th><th>送达</th><th>开车：太远</th><th>站满了</th><th>等太久</th><th>未完成</th></tr>',
+      '<tr><th>Estate</th><th>Delivered</th><th>Drove: too far</th><th>stop full</th><th>waited too long</th><th>Unfinished</th></tr>'),
+    'r.h3':L('每一次漲潮都接住了。','每一次涨潮都接住了。','You caught every tide.'),
+    'r.h2':L('已經跟上了潮汐（挪站 {m} 次）。潮汐大師要 {n}：開局就把站擺在高峰最多的方向，再讓一座站跟著高峰走。','已经跟上了潮汐（挪站 {m} 次）。潮汐大师要 {n}：开局就把站摆在高峰最多的方向，再让一座站跟着高峰走。','You kept up with the tide ({m} moves). Tide master needs {n}: open with stops where most peaks come, then let one stop follow the peaks.'),
+    'r.h1moved':L('靠挪站過關了。高分 {n} 要每次高峰前約 30 秒就把站挪到位。','靠挪站过关了。高分 {n} 要每次高峰前约 30 秒就把站挪到位。','Cleared by moving stops. High score {n} needs each move in place about 30 s before a peak.'),
+    'r.h1static':L('開局擺得很準，一站不挪也過關了。高分 {n} 光靠擺站到不了，要跟著潮汐表挪站。','开局摆得很准，一站不挪也过关了。高分 {n} 光靠摆站到不了，要跟着潮汐表挪站。','A spot-on opening — cleared without a single move. High score {n} can’t be reached by placement alone: move stops with the tide table.'),
+    'r.h0far':L('開車的人裡，最多是因為「太遠」（{n} 人）：站離屋苑每近一格，願意來的人多 20%。','开车的人里，最多是因为「太远」（{n} 人）：站离屋苑每近一格，愿意来的人多 20%。','Most drivers left because no stop was near enough ({n}): each block closer brings 20% more people.'),
+    'r.h0other':L('開車的人裡，最多是因為「{why}」（{n} 人）：看潮汐表，在高峰前 30 秒把一座站搬到那個屋苑旁邊，分走一部分人。','开车的人里，最多是因为「{why}」（{n} 人）：看潮汐表，在高峰前 30 秒把一座站搬到那个屋苑旁边，分走一部分人。','Most drivers left because “{why}” ({n}): watch the tide table and move a stop next to that estate 30 s before its peak.'),
+    'why.far':L('沒有夠近的站','没有够近的站','no stop near enough'),'why.full':L('站滿了','站满了','stop full'),'why.wait':L('等太久','等太久','waited too long'),
+    'r.again':L('再試一局 ↺','再试一局 ↺','Play again ↺'),'r.board':L('查看棋盤','查看棋盘','View board'),'r.save':L('保存本局紀錄','保存本局记录','Save this run'),'r.map':L('回到地圖','回到地图','Back to map'),
+    // rules & sources
+    'i.lbl':L('Rules & sources · 規則與資料','Rules & sources · 规则与资料','Rules & sources'),'i.h':L('規則','规则','Rules'),
+    'i.r1':L('<b>意願只看走路距離。</b>從屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人裡正好這個比例的人會出門去站，其餘的人直接開車。有幾座站可選時，去比例最高的那座（一樣高就去班次密的）。<b>正在滿員（8 個排隊位都滿）的站，在他做決定的那一刻沒有吸引力</b>；已經在路上的人不會因為近的站空出來而回頭。',
+      '<b>意愿只看走路距离。</b>从屋苑沿道路走到站：0–1 格 100%，2 格 80%，3 格 60%，4 格 40%，5 格 20%，6 格以上 0%。每批人里正好这个比例的人会出门去站，其余的人直接开车。有几座站可选时，去比例最高的那座（一样高就去班次密的）。<b>正在满员（8 个排队位都满）的站，在他做决定的那一刻没有吸引力</b>；已经在路上的人不会因为近的站空出来而回头。',
+      '<b>Willingness depends only on walking distance.</b> Along the roads from the estate to the stop: 0–1 block 100%, 2 blocks 80%, 3 60%, 4 40%, 5 20%, 6 or more 0%. Exactly that share of each batch heads for the stop; the rest drive. With several stops to choose from, people pick the highest share (on a tie, the more frequent one). <b>A stop that is full (all 8 queue places taken) attracts nobody at the moment they decide</b>; people already walking never turn back because a nearer stop frees up.'),
+    'i.r2':L('<b>站要比港鐵近。</b>這些人今天開車，就是因為走去港鐵太遠；要走得和去港鐵一樣遠（或要越過港鐵）的站，他們不會去。所以不會有人走過港鐵再坐車回來。',
+      '<b>站要比港铁近。</b>这些人今天开车，就是因为走去港铁太远；要走得和去港铁一样远（或要越过港铁）的站，他们不会去。所以不会有人走过港铁再坐车回来。',
+      '<b>A stop must be closer than the MTR.</b> These people drive today because the station is too far to walk. A stop as far as the station, or beyond it, wins nobody — nobody walks past the MTR to ride back to it.'),
+    'i.r3':L('<b>定時發車。</b>每座站的班距＝{base} 秒＋到港鐵的道路格數×{step} 秒。車在站內上客，倒數到零才開；每班 6 座，另有 8 個排隊位。巴士每格行駛 10 秒，到港鐵下車才得 1 分。',
+      '<b>定时发车。</b>每座站的班距＝{base} 秒＋到港铁的道路格数×{step} 秒。车在站内上客，倒数到零才开；每班 6 座，另有 8 个排队位。巴士每格行驶 10 秒，到港铁下车才得 1 分。',
+      '<b>Buses run to a timetable.</b> Each stop’s headway = {base} s + {step} s × road blocks to the MTR. The bus boards at the stop and leaves when the countdown reaches zero; 6 seats, plus 8 queue places. Buses take 10 s a block; a point counts only when the passenger steps off at the MTR.'),
+    'i.r4':L('<b>滿了、等久了就近換站。</b>到站時隊伍已滿，或在站上等超過約 2 分鐘，就在原地看另一座站：全程走路格數（已走的＋還要走的）按同一張表仍在他的意願內、而且仍比港鐵近，就直接走過去（每趟出門最多換一次）；不然就走回家，想 20 秒後再決定一次：最近的站夠近、而且那一刻沒有滿就再出門，否則開車。每人最多從家裡出門兩次。從出門起總耐心約 3.5 分鐘，不會重置。',
+      '<b>满了、等久了就近换站。</b>到站时队伍已满，或在站上等超过约 2 分钟，就在原地看另一座站：全程走路格数（已走的＋还要走的）按同一张表仍在他的意愿内、而且仍比港铁近，就直接走过去（每趟出门最多换一次）；不然就走回家，想 20 秒后再决定一次：最近的站够近、而且那一刻没有满就再出门，否则开车。每人最多从家里出门两次。从出门起总耐心约 3.5 分钟，不会重置。',
+      '<b>Full, or waited too long? Try the nearest other stop.</b> If the queue is full on arrival, or they have waited about 2 minutes, people look at another stop from where they stand: if the whole walk (walked so far + still to go) is still within their willingness on the same table, and still closer than the MTR, they walk on (at most one switch per trip). Otherwise they walk home, think for 20 s and decide once more: out again to the nearest stop if it is near enough and not full at that moment, or drive. At most two trips out from home; total patience about 3.5 minutes from first leaving, never reset.'),
+    'i.r5':L('<b>可以搬站。</b>開局後一共 6 次，搬後重建 20 秒，重建好再等一個班距才發第一班。還在站上的人就近換站，或走回家再考慮；已開出的巴士照常送達。',
+      '<b>可以搬站。</b>开局后一共 6 次，搬后重建 20 秒，重建好再等一个班距才发第一班。还在站上的人就近换站，或走回家再考虑；已开出的巴士照常送达。',
+      '<b>You can move stops.</b> 6 moves after the start; a moved stop rebuilds for 20 s, then waits one headway before its first bus. People still at the stop try the nearest other stop or walk home to think again; buses already out still arrive.'),
+    'i.r6':L('<b>潮汐表。</b>8 批人，每 2 分鐘一批，每批在 30 秒內陸續出門。平時：{big}每批 6 人，其他各區每批 3 人；每區一次高峰，那一批多 18 人。',
+      '<b>潮汐表。</b>8 批人，每 2 分钟一批，每批在 30 秒内陆续出门。平时：{big}每批 6 人，其他各区每批 3 人；每区一次高峰，那一批多 18 人。',
+      '<b>The tide table.</b> 8 batches, one every 2 minutes, each leaving home over 30 s. Normally {big} sends 6 per batch and every other estate 3; each estate has one peak with 18 more.'),
+    'i.real':L('哪些是真的','哪些是真的','What is real'),
+    'i.scope':L('本關只表達接駁的步行距離、班次與運力怎樣影響大家坐不坐公共交通；土地開發（TOD）與真實減碳核算留待後續關卡。','本关只表达接驳的步行距离、班次与运力怎样影响大家坐不坐公共交通；土地开发（TOD）与真实减碳核算留待后续关卡。','This level only shows how the walking distance, frequency and capacity of feeders decide whether people take public transport; land use (TOD) and real carbon accounting are left to later levels.'),
+    'i.cover':L('開場地圖：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（{p}）；圓點是全港 455 個分區的出行量。','开场地图：组员「TransitLab 产品套件」的潮汐封面，运输署干道探测器逐小时车流（{p}）；圆点是全港 455 个分区的出行量。','Opening map: the tide cover from our team’s TransitLab product suite — hourly flows from Transport Department trunk-road detectors ({p}); the dots are trips in 455 zones across Hong Kong.'),
+    'src.fanling':L('粉嶺站、五個分區的名字與早高峰開車人數取自 TransitLab 本地模型；分區位置按真實步行距離（OpenStreetMap 行人路網）與方位畫成約 350 米一格的棋盤，略作遊戲化：山麗苑真實步行約 3.1 公里，棋盤縮為 8 格。車站在西、各區在東側一個扇形裡；鳳凰嶺邨與和合石之間真的有比去車站還近的共用位置。道路為示意，不是實測道路或獲准設站位置。',
+      '粉岭站、五个分区的名字与早高峰开车人数取自 TransitLab 本地模型；分区位置按真实步行距离（OpenStreetMap 行人路网）与方位画成约 350 米一格的棋盘，略作游戏化：山丽苑真实步行约 3.1 公里，棋盘缩为 8 格。车站在西、各区在东侧一个扇形里；凤凰岭邨与和合石之间真的有比去车站还近的共用位置。道路为示意，不是实测道路或获准设站位置。',
+      'Fanling station and the names and morning-peak car trips of five zones come from the TransitLab local model. The zones are placed on a board of about 350 m a block by real walking distance (OpenStreetMap footpaths) and bearing, lightly gamified: 山麗苑 is about 3.1 km on foot, shrunk to 8 blocks. The station sits to the west and the estates fan out to its east; 鳳凰嶺邨 and 和合石 really do share a spot nearer than the station. Roads are schematic, not surveyed roads or approved stop sites.'),
+    'src.yuenlong':L('元朗站與四個分區的名字、早高峰開車人數取自 TransitLab 本地模型；按真實步行距離（大棠路 0.8、蝶翠峰 1.6、朗善邨一帶 2.0、崇山新村 3.0 公里）與方位畫成約 350 米一格的棋盤，略作遊戲化。四區都在車站南面一條走廊上，相鄰兩區可以共用接駁站。道路為示意。',
+      '元朗站与四个分区的名字、早高峰开车人数取自 TransitLab 本地模型；按真实步行距离（大棠路 0.8、蝶翠峰 1.6、朗善邨一带 2.0、崇山新村 3.0 公里）与方位画成约 350 米一格的棋盘，略作游戏化。四区都在车站南面一条走廊上，相邻两区可以共用接驳站。道路为示意。',
+      'Yuen Long station and the names and morning-peak car trips of four zones come from the TransitLab local model, laid out on a board of about 350 m a block by real walking distance (大棠路 0.8, 蝶翠峰 1.6, 朗善邨一帶 2.0, 崇山新村 3.0 km) and bearing, lightly gamified. All four sit in one corridor south of the station; neighbours can share a feeder stop. Roads are schematic.'),
+    'src.longping':L('v2.5 的原版棋盤：朗屏站與四個分區的相對方位取自 TransitLab 本地資料，道路重畫為棋盤示意。（後來核對發現唐人新村、蝶翠峰最近的港鐵站其實是天水圍和元朗。）',
+      'v2.5 的原版棋盘：朗屏站与四个分区的相对方位取自 TransitLab 本地资料，道路重画为棋盘示意。（后来核对发现唐人新村、蝶翠峰最近的港铁站其实是天水围和元朗。）',
+      'The original v2.5 board: Long Ping station and the relative bearings of four zones come from TransitLab local data, with roads redrawn as a schematic grid. (A later check found that the nearest stations of 唐人新村 and 蝶翠峰 are really Tin Shui Wai and Yuen Long.)'),
+    'src.demand':L('各區平時人數：開車最多的一區每批 6 人，其他每批 3 人；每區一次高峰（多 18 人）。人數與時間均為遊戲假設，不代表真實客流或減碳量。',
+      '各区平时人数：开车最多的一区每批 6 人，其他每批 3 人；每区一次高峰（多 18 人）。人数与时间均为游戏假设，不代表真实客流或减碳量。',
+      'Normal numbers: the estate with the most drivers sends 6 per batch, the others 3; each estate has one peak (+18). Numbers and times are game assumptions, not real ridership or carbon savings.'),
+    'close':L('關閉','关闭','Close')
+  };
+  // district names in the cover data are simplified Chinese
+  const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
+    '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
+    '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
+    '荃湾区':['荃灣區','Tsuen Wan'],'葵青区':['葵青區','Kwai Tsing'],'西贡区':['西貢區','Sai Kung'],'观塘区':['觀塘區','Kwun Tong'],'黄大仙区':['黃大仙區','Wong Tai Sin']};
+  const pick=(/(?:^|[#&])lang=([\w-]+)/.exec(typeof location!=='undefined'?location.hash:'')||[])[1];
+  let saved=null;try{saved=localStorage.getItem('tl-lang');}catch(e){}
+  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:'zh-Hant';
+  function t(key,vars){
+    const e=S[key];let s=e?(e[lang]??e['zh-Hant']):key;
+    if(vars)s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!==undefined?vars[k]:m);
+    return s;
+  }
+  function apply(scope){
+    const el=scope||document;
+    el.querySelectorAll('[data-i18n]').forEach(n=>{n.textContent=t(n.dataset.i18n);});
+    el.querySelectorAll('[data-i18n-html]').forEach(n=>{n.innerHTML=t(n.dataset.i18nHtml);});
+    el.querySelectorAll('[data-i18n-title]').forEach(n=>{n.title=t(n.dataset.i18nTitle);});
+    el.querySelectorAll('[data-i18n-aria]').forEach(n=>{n.setAttribute('aria-label',t(n.dataset.i18nAria));});
+    // an empty translation (the Chinese line in English) hides its element
+    el.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(n=>{n.hidden=!n.textContent&&!n.children.length;});
+    document.documentElement.lang=lang;
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  }
+  function set(next){
+    if(!LANGS.includes(next)||next===lang)return;lang=next;
+    if(typeof document==='undefined')return;            // node tests
+    try{localStorage.setItem('tl-lang',lang);}catch(e){}
+    apply();root.dispatchEvent(new CustomEvent('tl:lang',{detail:lang}));
+  }
+  const hans=()=>lang==='zh-Hans';
+  const API={LANGS,t,apply,set,get lang(){return lang;},
+    name:o=>hans()?(o.hans||o.name):o.name,                                   // estates stay Chinese in English
+    short:o=>hans()?(o.shortHans||o.short||o.hans||o.name):(o.short||o.name),
+    station:st=>lang==='en'?st.en.charAt(0)+st.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase()):st[lang],
+    district:d=>{const v=DIST[d];return !v?d:lang==='zh-Hans'?d:lang==='en'?v[1]:v[0];}};
+  root.I18N=API;
+  if(typeof document!=='undefined'){
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.lang)));
+    apply();
+  }
 })(typeof window!=='undefined'?window:globalThis);
 
 </script><script>
@@ -743,9 +1131,12 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
 </script><script>
 (()=>{
   'use strict';
-  const {Game,D,P,route,dist,along,same,headwayAt}=Tide,$=id=>document.getElementById(id);
-  const letters=['A','B','C'],total=D.waves.flat().reduce((a,b)=>a+b,0);
-  const shortName=D.origins.map(o=>o.short||o.name);
+  const {Game,D,P,route,dist,along,same,headwayAt}=Tide,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
+  const letters=['A','B','C'];
+  // Everything that depends on the board. setupMap() recomputes it when the hub swaps the level (TL_GAME.loadMap).
+  let total=0,MX=20,MY=30,VBW=660,VBH=485;
+  const name=i=>I.name(D.origins[i]),short=i=>I.short(D.origins[i]);
+  const titleCase=s=>s.charAt(0)+s.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase());
   // Colours come from the CSS tokens so the Paper / Ink switch repaints the board too.
   let C={};
   function readTokens(){const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue('--s-'+n).trim();
@@ -754,10 +1145,7 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   readTokens();
   let game=new Game(),selected=0,playing=false,speed=1,hover=null,shown=false,drag=null,pointerPressed=false,restoringFocus=false;
   let last=performance.now(),lastDraw=0,lastSide=0,seen=0,lastDelivered=0,warned=new Set(),rang=new Set(),toastTimer=0;
-  const [MX,MY]=D.margin||[20,30],xy=c=>[MX+c[0]*72,MY+c[1]*62];
-  // board size follows the map: grid cells plus room for the buildings and labels around them
-  const VBW=MX+(D.cols-1)*72+Math.max(MX,120),VBH=MY+(D.rows-1)*62+86;
-  document.getElementById('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);document.getElementById('fx').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
+  const xy=c=>[MX+c[0]*72,MY+c[1]*62];
   const fmt=n=>`${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
   const pathStr=path=>path.map((c,i)=>(i?'L':'M')+xy(c).join(' ')).join(' ');
   const svg=(tag,attrs,content='')=>`<${tag} ${Object.entries(attrs).map(([k,v])=>`${k}="${v}"`).join(' ')}>${content}</${tag}>`;
@@ -768,7 +1156,33 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   // name label: above a building that sits above its road, otherwise below it
   const labelY=i=>{const [,hy]=houseAt(i),dy=(D.origins[i].house||[0,38])[1];return dy<0?hy-22:hy+28;};
   function note(s){$('notice').textContent=s;}
-  function toast(s,kind=''){const t=$('toast');t.className='toast on '+kind;t.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2600);}
+  function toast(s,kind=''){const el=$('toast');el.className='toast on '+kind;el.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('on'),2600);}
+  // the engine records why someone drove in Chinese; these are the keys for showing it
+  const WHY={'沒有夠近的站':'why.far','站滿了':'why.full','等太久':'why.wait'},reasons=Object.keys(WHY);
+
+  /* ------------------------------------------------------- board-dependent text */
+  function setupMap(){
+    total=D.waves.flat().reduce((a,b)=>a+b,0);[MX,MY]=D.margin||[20,30];
+    // board size follows the map: grid cells plus room for the buildings and labels around them
+    VBW=MX+(D.cols-1)*72+Math.max(MX,120);VBH=MY+(D.rows-1)*62+86;
+    for(const id of ['board','fx'])$(id).setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
+    texts();
+  }
+  function texts(){
+    $('titleEn').textContent=`Feeder to ${titleCase(D.station.en)}`;
+    $('titleTc').textContent=t('g.titleTc',{s:I.station(D.station)});$('titleTc').hidden=!$('titleTc').textContent;
+    if(!document.body.classList.contains('inhub'))document.title=t('doc.game',{s:t('site.'+D.map)});
+    $('totalN').textContent=total;
+    $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
+    for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){
+      $(id).style.left=`${100*v/total}%`;$(id).dataset.label=t(k,{n:v});}
+    $('rule2').innerHTML=t('g.rule2',{base:P.headwayBase,step:P.headwayStep});
+    $('infoR3').innerHTML=t('i.r3',{base:P.headwayBase,step:P.headwayStep});
+    const big=D.origins.reduce((b,o,i)=>o.base>D.origins[b].base?i:b,0);
+    $('infoR6').innerHTML=t('i.r6',{big:name(big)});
+    $('source').textContent=t('src.'+D.map)+' '+t('src.demand');
+    $('coverSource').textContent=window.COVER?t('i.cover',{p:window.COVER.tide.period||''}):'';
+  }
 
   /* ------------------------------------------------------------ feedback layer */
   let fxId=0;
@@ -790,7 +1204,7 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   // Someone turned away at a full stop: a quiet red ripple, no words (the stop itself carries the FULL chip).
   function fxFull(s){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
     fx(svg('circle',{class:'fx ring',cx:x,cy:y,r:24,stroke:C.bad,style:'--d:1s'}),1100);}
-  function fxDepart(s,n){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
+  function fxDepart(s){const st=game.stops[s];if(!st.cell)return;const [x,y]=xy(st.cell);
     fx(svg('circle',{class:'fx ring',cx:x,cy:y,r:22,stroke:C.accent,style:'--d:.9s'}),1000);}
   function fxTide(o){const [x,y]=houseAt(o);
     fx(svg('circle',{class:'fx glow',cx:x,cy:y,r:46,fill:'url(#gTide)',style:'--d:2s'})+[0,1,2].map(k=>svg('circle',{class:'fx ring',cx:x,cy:y,r:34,stroke:C.warn,style:`animation-delay:${k*.25}s;--d:1.6s`})).join(''),2600);}
@@ -803,19 +1217,19 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     let delivered=0;const cars={},full=new Set(),departs=[];
     for(let i=seen;i<ev.length;i++){const e=ev[i];
       if(e.type==='delivered')delivered++;else if(e.type==='car')cars[e.origin]=(cars[e.origin]||0)+1;
-      else if(e.type==='full')full.add(e.stop);else if(e.type==='dispatch'&&e.load>0)departs.push([e.stop,e.load]);
+      else if(e.type==='full')full.add(e.stop);else if(e.type==='dispatch'&&e.load>0)departs.push(e.stop);
       else if(e.type==='move')setTimeout(()=>fxBuilt(e.stop),P.build*1000/Math.max(1,speed));}
     seen=ev.length;
     if(delivered)fxArrive(delivered);
     for(const o in cars)fxLoss(+o,cars[o]);
-    full.forEach(fxFull);departs.forEach(([s,n])=>fxDepart(s,n));
+    full.forEach(fxFull);departs.forEach(fxDepart);
     // Peaks: warn 25 s ahead, then a tide ripple as the batch starts.
-    for(const pk of D.peaks){const t0=waveStart(pk.wave),n=D.waves[pk.wave][pk.origin],name=D.origins[pk.origin].name;
-      if(game.t>=t0-25&&game.t<t0&&!warned.has(pk.wave)){warned.add(pk.wave);toast(`25 秒後 · ${name} 高峰 ${n} 人`,'tide');}
-      if(game.t>=t0&&!rang.has(pk.wave)){rang.add(pk.wave);fxTide(pk.origin);toast(`漲潮 · ${name} 這批 ${n} 人出門`,'tide');}}
-    if(lastDelivered<P.target&&game.delivered>=P.target)toast(`過關 · CLEARED  ${P.target} 人送達`);
-    if(lastDelivered<P.highScore&&game.delivered>=P.highScore)toast(`高分 · HIGH SCORE  ${P.highScore} 人送達`);
-    if(lastDelivered<P.masterScore&&game.delivered>=P.masterScore)toast(`潮汐大師 · TIDE MASTER  ${P.masterScore} 人送達`);
+    for(const pk of D.peaks){const t0=waveStart(pk.wave),n=D.waves[pk.wave][pk.origin];
+      if(game.t>=t0-25&&game.t<t0&&!warned.has(pk.wave)){warned.add(pk.wave);toast(t('t.peakSoon',{name:name(pk.origin),n}),'tide');}
+      if(game.t>=t0&&!rang.has(pk.wave)){rang.add(pk.wave);fxTide(pk.origin);toast(t('t.peakNow',{name:name(pk.origin),n}),'tide');}}
+    if(lastDelivered<P.target&&game.delivered>=P.target)toast(t('t.pass',{n:P.target}));
+    if(lastDelivered<P.highScore&&game.delivered>=P.highScore)toast(t('t.high',{n:P.highScore}));
+    if(lastDelivered<P.masterScore&&game.delivered>=P.masterScore)toast(t('t.master',{n:P.masterScore}));
     lastDelivered=game.delivered;
   }
 
@@ -824,10 +1238,10 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     const was=game.started;
     if(game.place(selected,cell)){
       hover=null;
-      note(was?`${letters[selected]} 站搬好了，重建 20 秒；站上還沒上車的人要走回家，已開出的巴士照常送達。`:'放好了。可以選另一座站，或拖動已放的站。');
+      note(was?t('n.moved',{s:letters[selected]}):t('n.placed'));
       if(!was){fxBuilt(selected);const next=game.stops.find(s=>!s.cell);if(next)selected=next.id;}
       render();
-    }else note(was&&game.moves===0?'搬站次數已用完。':'這格已有車站，請選另一個 ＋。');
+    }else note(was&&game.moves===0?t('n.noMoves'):t('n.taken'));
   }
   function plan(fc){
     return D.waves.map((w,wi)=>{
@@ -845,11 +1259,11 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
         out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.08+.16*w).toFixed(2),stroke:C.accent,'stroke-width':1.5+2*w});
         const right=hx<VBW*.72,lx=right?hx+r+6:hx-r-6,anchor=right?'start':'end';   // keep the label inside the board
         out+=text(lx,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':anchor});
-        if(next>=0)out+=text(lx,hy+15,`下批 ${k[next]}/${D.waves[next][i]} 人`,12,C.accent,{'font-weight':500,'text-anchor':anchor});}}
+        if(next>=0)out+=text(lx,hy+15,t('b.next',{k:k[next],n:D.waves[next][i]}),12,C.accent,{'font-weight':500,'text-anchor':anchor});}}
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
-    out+=text(hx,labelY(i),o.name,14,C.ink,{'text-anchor':'middle','font-weight':600});
+    out+=text(hx,labelY(i),name(i),14,C.ink,{'text-anchor':'middle','font-weight':600});
     // people at home deciding: beside a building under its road, above a building beside its road
     const side=(o.house||[0,38])[0]!==0,[bx,by]=side?[hx-17,hy-46]:[hx+20,hy-12];
     if(h.home)out+=rect(bx,by,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(bx+17,by+15,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
@@ -871,13 +1285,13 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     out+=rect(mx-23,my-22,46,44,C.ink,C.ink,{rx:3})+svg('rect',{x:mx-23,y:my+15,width:46,height:7,fill:C.accent});
     out+=svg('text',{x:mx,y:my+8,'font-size':25,fill:C.paper,'text-anchor':'middle','font-family':'Bodoni Moda,Georgia,serif','font-weight':600},'M');
     const hl=D.hubLabel==='left',lx=hl?mx-32:mx+32,la=hl?'end':'start';   // station label on the open side
-    out+=text(lx,my-8,D.station.zh,15,C.ink,{'font-weight':600,'text-anchor':la});
-    out+=text(lx,my+7,D.station.en,9,C.ink3,{'letter-spacing':'.16em','font-family':'Geist Mono,monospace','text-anchor':la});
-    out+=text(lx,my+25,`已送達 ${game.delivered}`,13,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':la});
+    out+=text(lx,my-8,I.station(D.station),15,C.ink,{'font-weight':600,'text-anchor':la});
+    out+=text(lx,my+7,I.lang==='en'?t('b.mtr'):D.station.en,9,C.ink3,{'letter-spacing':'.16em','font-family':'Geist Mono,monospace','text-anchor':la});
+    out+=text(lx,my+25,t('b.delivered',{n:game.delivered}),13,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':la});
     for(const c of D.candidates){
       if(game.stops.some(s=>same(s.cell,c)))continue;
       const [x,y]=xy(c),on=hover&&same(hover,c);
-      out+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':`放置接駁站於 ${c[0]+1} 列 ${c[1]+1} 行`},
+      out+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':t('b.candAria',{c:c[0]+1,r:c[1]+1})},
         svg('circle',{cx:x,cy:y,r:11,fill:on?C.accent:C.panel,stroke:on?C.accent:C.ink3,'stroke-width':1.3})+svg('text',{x,y:y+5,'font-size':15,fill:on?C.paper:C.ink3,'text-anchor':'middle'},'＋'));
     }
     for(const p of game.people)if(['walk','return'].includes(p.state)){   // people walk under buses and stops
@@ -894,13 +1308,13 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
       let content='';
       if(full){const breathe=(.35+.3*Math.sin(performance.now()/380)).toFixed(2);   // a slow red breath while the queue is full
         content+=svg('circle',{cx:x,cy:y,r:27,fill:C.bad,'fill-opacity':(breathe*.18).toFixed(3),stroke:C.bad,'stroke-width':1.5,'stroke-opacity':breathe});
-        content+=rect(x+20,y-58,58,16,C.bad,C.bad,{rx:8})+svg('text',{x:x+49,y:y-46.5,'font-size':9.5,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace','letter-spacing':'.08em','font-weight':600},'FULL 滿');}
+        content+=rect(x+20,y-58,58,16,C.bad,C.bad,{rx:8})+svg('text',{x:x+49,y:y-46.5,'font-size':9.5,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace','letter-spacing':'.08em','font-weight':600},t('b.full'));}
       content+=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:5});
       content+=svg('text',{x,y:y+7,'font-size':19,fill:build?C.accent:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif'},letters[s.id]);
-      content+=text(x,y+31,game.done?'':build?`重建 ${Math.ceil(build)}s`:game.started?`發車 ${fmt(game.eta(s))}`:`班距 ${game.headway(s)}s`,11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
+      content+=text(x,y+31,game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
       for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-29+j*10,y:y-37,width:8,height:8,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1.1});
       for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-31+j*8,y:y-26,width:6,height:7,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1});
-      out+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':`接駁站 ${letters[s.id]}：座位 ${s.boarding.length}/${P.seats}，排隊 ${s.queue.length}/${P.queue}`},content);
+      out+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':t('b.stopAria',{s:letters[s.id],a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue})},content);
     }
     $('board').innerHTML=out;
     if(focusAttr){restoringFocus=true;try{$('board').querySelector(`[${focusAttr}="${focusVal}"]`)?.focus({preventScroll:true});}finally{restoringFocus=false;}}
@@ -910,69 +1324,71 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   function drawTide(){
     const fc=game.forecast(hover?selected:-1,hover),any=fc.some(f=>f.stop>=0),pl=plan(fc),w=game.waveInfo();
     const cur=game.started?(w.active>=0?w.active:w.next>=0?w.next:8):-1;
-    let h=`<thead><tr><th>批次</th>${shortName.map(n=>`<th>${n}</th>`).join('')}</tr></thead><tbody>`;
+    let h=`<thead><tr><th>${t('tt.batch')}</th>${D.origins.map((o,i)=>`<th>${short(i)}</th>`).join('')}</tr></thead><tbody>`;
     D.waves.forEach((wave,wi)=>{
       const past=game.started&&waveStart(wi)+P.release<=game.t;
       h+=`<tr class="${wi===cur?'now':''} ${past?'past':''}"><td>${fmt(waveStart(wi))}</td>`;
       wave.forEach((n,o)=>{const peak=D.peaks.some(p=>p.origin===o&&p.wave===wi),f=fc[o],hot=f.stop>=0&&pl[wi].hot[f.stop];
-        h+=`<td class="${peak?'peak':''} ${hot?'hot':''}"><b>${n}</b>${any?`<i>${f.stop<0?'無站':`會來 ${f.perWave[wi]}`}</i>`:''}</td>`;});
+        h+=`<td class="${peak?'peak':''} ${hot?'hot':''}"><b>${n}</b>${any?`<i>${f.stop<0?t('tt.none'):t('tt.come',{n:f.perWave[wi]})}</i>`:''}</td>`;});
       h+='</tr>';
     });
     $('tide').innerHTML=h+'</tbody>';
   }
   function drawStopPanel(){
     const s=game.stops[selected],cell=hover||s.cell;
-    let h=`<h3><span>${letters[selected]} 站${hover?' · 預覽':''}</span><span class="lbl">Stop ${letters[selected]}</span></h3>`;
-    if(!cell){$('stopPanel').innerHTML=h+'<p>還沒放。滑鼠停在地圖的 ＋ 上先看預覽，再點擊放站。</p>';return;}
+    let h=`<h3><span>${t('sp.title',{s:letters[selected]})}${hover?t('sp.preview'):''}</span><span class="lbl">Stop ${letters[selected]}</span></h3>`;
+    if(!cell){$('stopPanel').innerHTML=h+`<p>${t('sp.empty')}</p>`;return;}
     const steps=dist(cell,D.hub),hw=headwayAt(cell),fc=game.forecast(hover?selected:-1,hover);
-    const served=fc.filter(f=>f.stop===selected).map(f=>`${D.origins[f.origin].name} ${Math.round(f.share*100)}%`).join('、')||'沒有屋苑選這座站';
-    const beyond=D.origins.map((o,i)=>i).filter(i=>{const d=dist(D.origins[i].cell,cell);return d>=Tide.toMTR[i]&&Tide.willing(d)>0;}).map(i=>D.origins[i].name);
-    h+=`<div class="r"><span>到港鐵</span><span>${steps} 格 → 班距 <b>${hw}s</b></span></div><div class="r"><span>誰會來</span><span>${served}</span></div>`;
-    if(beyond.length)h+=`<div class="r"><span>不會來</span><span>${beyond.join('、')}（比走去港鐵還遠）</span></div>`;
+    const served=fc.filter(f=>f.stop===selected).map(f=>`${name(f.origin)} ${Math.round(f.share*100)}%`).join(t('sep'))||t('sp.nobody');
+    const beyond=D.origins.map((o,i)=>i).filter(i=>{const d=dist(D.origins[i].cell,cell);return d>=Tide.toMTR[i]&&Tide.willing(d)>0;}).map(name);
+    h+=`<div class="r"><span>${t('sp.toMTR')}</span><span>${t('sp.toMTRv',{n:steps,hw})}</span></div><div class="r"><span>${t('sp.who')}</span><span>${served}</span></div>`;
+    if(beyond.length)h+=`<div class="r"><span>${t('sp.not')}</span><span>${t('sp.beyond',{list:beyond.join(t('sep'))})}</span></div>`;
     if(!hover){
       const build=Math.max(0,s.ready-game.t);
-      h+=`<div class="r"><span>下一班</span><span class="big">${game.done?'—':!game.started?`開局 +${hw}s`:build?`重建 ${Math.ceil(build)}s`:fmt(game.eta(s))}</span></div>`;
-      h+=`<div class="r"><span>座位 ${s.boarding.length}/${P.seats}</span></div><div class="slots">${Array.from({length:P.seats},(_,j)=>`<i class="${j<s.boarding.length?'on':''}"></i>`).join('')}</div>`;
-      h+=`<div class="r"><span>排隊 ${s.queue.length}/${P.queue}</span><span>${s.rejected?`被擠走 ${s.rejected} 人次`:''}</span></div><div class="slots queue ${s.queue.length>=P.queue?'full':''}">${Array.from({length:P.queue},(_,j)=>`<i class="${j<s.queue.length?'on':''}"></i>`).join('')}</div>`;
-    }else h+=`<p>${game.started?`點擊搬到這裡：重建 20 秒，剩 ${game.moves} 次。`:'點擊放站（開局前不扣搬站次數）。'}離港鐵近 → 班次密；離屋苑近 → 來的人多。</p>`;
+      h+=`<div class="r"><span>${t('sp.next')}</span><span class="big">${game.done?'—':!game.started?t('sp.opening',{n:hw}):build?t('b.rebuild',{n:Math.ceil(build)}):fmt(game.eta(s))}</span></div>`;
+      h+=`<div class="r"><span>${t('sp.seats',{a:s.boarding.length,b:P.seats})}</span></div><div class="slots">${Array.from({length:P.seats},(_,j)=>`<i class="${j<s.boarding.length?'on':''}"></i>`).join('')}</div>`;
+      h+=`<div class="r"><span>${t('sp.queue',{a:s.queue.length,b:P.queue})}</span><span>${s.rejected?t('sp.rejected',{n:s.rejected}):''}</span></div><div class="slots queue ${s.queue.length>=P.queue?'full':''}">${Array.from({length:P.queue},(_,j)=>`<i class="${j<s.queue.length?'on':''}"></i>`).join('')}</div>`;
+    }else h+=`<p>${game.started?t('sp.hoverMove',{n:game.moves}):t('sp.hoverPlace')}${t('sp.tip')}</p>`;
     $('stopPanel').innerHTML=h;
   }
   function drawSide(){
     const st=game.stats(),w=game.waveInfo(),focusSelect=document.activeElement?.getAttribute('data-select');
-    const onway=st.active-game.people.filter(p=>p.state==='home').length;
+    const athome=game.people.filter(p=>p.state==='home').length,onway=st.active-athome;
     $('score').textContent=st.delivered;$('score2').textContent=st.delivered;$('scoreBar').style.width=`${100*st.delivered/total}%`;
-    $('cars').textContent=st.cars;$('onway').textContent=Math.max(0,onway);$('notOut').textContent=st.future+game.people.filter(p=>p.state==='home').length;
+    $('cars').textContent=st.cars;$('onway').textContent=Math.max(0,onway);$('notOut').textContent=st.future+athome;
     $('clock').textContent=`${fmt(game.t)} / ${fmt(P.duration)}`;$('clockProg').style.width=`${100*game.t/P.duration}%`;$('moves').textContent=game.moves;
-    $('wave').textContent=!game.started?`第 1 批：開局後 ${P.firstWave} 秒`:game.done?`未完成 ${game.missed} 人`:w.active>=0?`第 ${w.active+1}/8 批正在出門`:w.next>=0?`第 ${w.next+1}/8 批：${fmt(w.nextStart-game.t)} 後`:'8 批都出門了';
-    $('start').textContent=game.done?'已結束':game.started?(playing?'❚❚ 暫停':'▶ 繼續'):'▶ 開始';
+    $('wave').textContent=!game.started?t('w.first',{n:P.firstWave}):game.done?t('w.missed',{n:game.missed}):w.active>=0?t('w.active',{n:w.active+1}):w.next>=0?t('w.next',{n:w.next+1,t:fmt(w.nextStart-game.t)}):t('w.all');
+    $('start').textContent=game.done?t('g.over'):game.started?(playing?t('g.pause'):t('g.resume')):t('g.start');
     $('start').disabled=game.done||(!game.started&&game.stops.some(s=>!s.cell));
     document.querySelectorAll('#speedSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sp===speed)));
-    $('mapHint').textContent=game.done?'本局已結束。':game.started?`${playing?'運行中':'已暫停'} · 選站再點 ＋，或直接拖動車站`:`放 ${letters[selected]} 站：停在 ＋ 上先看預覽，點擊放下`;
-    $('stations').innerHTML=game.stops.map(s=>`<button class="station-button ${s.id===selected?'selected':''}" data-select="${s.id}" aria-pressed="${s.id===selected}"><b>${letters[s.id]}</b><small>${s.cell?`座 ${s.boarding.length}/${P.seats} · 隊 ${s.queue.length}/${P.queue}`:'未放置'}</small></button>`).join('');
+    $('mapHint').textContent=game.done?t('h.done'):game.started?t('h.run',{state:playing?t('h.running'):t('h.paused')}):t('h.place',{s:letters[selected]});
+    $('stations').innerHTML=game.stops.map(s=>`<button class="station-button ${s.id===selected?'selected':''}" data-select="${s.id}" aria-pressed="${s.id===selected}"><b>${letters[s.id]}</b><small>${s.cell?t('st.btn',{a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue}):t('st.none')}</small></button>`).join('');
     if(focusSelect)$('stations').querySelector(`[data-select="${focusSelect}"]`)?.focus({preventScroll:true});
     drawTide();drawStopPanel();
   }
   function render(){drawMap();drawSide();if(game.done&&!shown){shown=true;playing=false;showResult();drawSide();}}
-  const reasons=['沒有夠近的站','站滿了','等太久'];
-  function showResult(){
+  function fillResult(){
     const tier=game.delivered>=P.masterScore?3:game.delivered>=P.highScore?2:game.delivered>=P.target?1:0;
     $('result').classList.toggle('win',tier>0);
-    $('resultTitle').textContent=['未過關','過關','高分 · 跟上了潮汐','潮汐大師'][tier];$('resultEn').textContent=['Try again','Cleared','High score','Tide master'][tier];
-    $('resultScore').textContent=`送達 ${game.delivered} / ${total} · 開車 ${game.cars} · 未完成 ${game.missed}`;
+    $('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Tide master'][tier];
+    $('resultScore').textContent=t('r.score',{d:game.delivered,t:total,c:game.cars,m:game.missed});
+    $('resultHead').innerHTML=t('r.head');
     const cars=game.events.filter(e=>e.type==='car'),count=(o,r)=>cars.filter(e=>e.origin===o&&e.why===r).length;
-    $('resultRows').innerHTML=D.origins.map((o,i)=>{const h=game.homeStats(i);return `<tr><td>${o.name}</td><td>${h.delivered}/${h.total}</td>${reasons.map(r=>`<td>${count(i,r)||''}</td>`).join('')}<td>${h.missed||''}</td></tr>`;}).join('');
+    $('resultRows').innerHTML=D.origins.map((o,i)=>{const h=game.homeStats(i);return `<tr><td>${name(i)}</td><td>${h.delivered}/${h.total}</td>${reasons.map(r=>`<td>${count(i,r)||''}</td>`).join('')}<td>${h.missed||''}</td></tr>`;}).join('');
     const by=reasons.map(r=>cars.filter(e=>e.why===r).length),top=by.indexOf(Math.max(...by));
     const moved=game.commands.length;
-    $('resultHint').textContent=tier===3?'每一次漲潮都接住了。':
-      tier===2?`已經跟上了潮汐（挪站 ${moved} 次）。潮汐大師要 ${P.masterScore}：試試開局就把兩座站留在南邊（四次高峰有三次在南邊），再讓一座站跟著高峰走。`:
-      tier===1?(moved?`靠挪站過關了。高分 ${P.highScore} 要每次高峰前約 30 秒就把站挪到位。`:`開局擺得很準，一站不挪也過關了。高分 ${P.highScore} 光靠擺站到不了，要跟著潮汐表挪站。`):
-      top===0?`開車的人裡，最多是因為「太遠」（${by[0]} 人）：站離屋苑每近一格，願意來的人多 20%。`:
-      `開車的人裡，最多是因為「${reasons[top]}」（${by[top]} 人）：看潮汐表，在高峰前 30 秒把一座站搬到那個屋苑旁邊，分走一部分人。`;
-    $('result').showModal();
+    $('resultHint').textContent=tier===3?t('r.h3'):tier===2?t('r.h2',{m:moved,n:P.masterScore}):
+      tier===1?(moved?t('r.h1moved',{n:P.highScore}):t('r.h1static',{n:P.highScore})):
+      top===0?t('r.h0far',{n:by[0]}):t('r.h0other',{why:t(WHY[reasons[top]]),n:by[top]});
   }
-  function reset(){game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
-    $('fxl').innerHTML='';last=performance.now();note('每次重開都是同一份需求，方便比較不同站位。');render();}
-  function pauseForInfo(){if(playing){playing=false;render();note('看規則時已暫停，關閉後點繼續。');}}
+  function showResult(){
+    // best score per level, shown on the hub map (this browser only)
+    try{const k='tl-best-'+D.map;if(game.delivered>(+localStorage.getItem(k)||0))localStorage.setItem(k,game.delivered);}catch(e){}
+    fillResult();$('result').showModal();
+  }
+  function reset(msg){game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
+    $('fxl').innerHTML='';last=performance.now();note(msg||t('n.reset'));render();}
+  function pauseForInfo(){if(playing){playing=false;render();note(t('n.info'));}}
 
   /* ---------------------------------------------------------------- controls */
   $('stations').onclick=e=>{const el=e.target.closest('[data-select]');if(el){selected=+el.dataset.select;render();}};
@@ -989,26 +1405,29 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
   document.addEventListener('pointerup',()=>{pointerPressed=false;requestAnimationFrame(()=>drawMap());});
   board.onpointercancel=()=>{pointerPressed=false;drag=null;hover=null;render();};
   board.addEventListener('focusin',e=>{if(restoringFocus)return;const c=e.target.closest('[data-cell]'),next=c?c.dataset.cell.split(',').map(Number):null;if(JSON.stringify(next)!==JSON.stringify(hover)){hover=next;drawMap();drawTide();drawStopPanel();}});
-  $('start').onclick=()=>{if(!game.started&&!game.start())return;playing=!playing;last=performance.now();note(playing?'開始了。看右邊潮汐表：琥珀框是高峰，紅字是那座站可能擠爆。':'已暫停，可以慢慢看；搬站仍扣次數。');render();};
-  $('speedSeg').onclick=e=>{const b=e.target.closest('[data-sp]');if(!b)return;speed=+b.dataset.sp;note(`速度 ${speed}×；1× 是完整 18 分鐘。`);drawSide();};
-  $('reset').onclick=()=>{if(game.started&&!game.done&&!confirm('重開會清除本局進度，是否重開？'))return;reset();};
+  $('start').onclick=()=>{if(!game.started&&!game.start())return;playing=!playing;last=performance.now();note(playing?t('n.start'):t('n.pause'));render();};
+  $('speedSeg').onclick=e=>{const b=e.target.closest('[data-sp]');if(!b)return;speed=+b.dataset.sp;note(t('n.speed',{n:speed}));drawSide();};
+  $('reset').onclick=()=>{if(game.started&&!game.done&&!confirm(t('c.reset')))return;reset();};
   $('help').onclick=$('srcBtn').onclick=()=>{pauseForInfo();$('info').showModal();};
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
   $('again').onclick=()=>{$('result').close();reset();};
-  $('download').onclick=()=>{const run={version:'feeder-v2.1-2026-10-06',seed:game.seed,parameters:P,demand:D.waves,stats:game.stats(),stops:game.stops.map(s=>({id:s.id,cell:s.cell,peak:s.peak,rejected:s.rejected})),moves:game.commands,events:game.events};const url=URL.createObjectURL(new Blob([JSON.stringify(run,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='TransitLab-接駁v2-本局紀錄.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-  function setTheme(t){document.documentElement.setAttribute('data-theme',t);$('thPaper').setAttribute('aria-pressed',String(t==='light'));$('thInk').setAttribute('aria-pressed',String(t==='dark'));
-    try{localStorage.setItem('tl-theme',t);}catch(e){}readTokens();render();}
+  const toMap=()=>window.TL_HUB&&window.TL_HUB.show(1);
+  $('toMap').onclick=toMap;$('resultMap').onclick=()=>{$('result').close();toMap();};
+  $('download').onclick=()=>{const run={version:'feeder-v3.1-2026-10-07',map:D.map,seed:game.seed,parameters:P,demand:D.waves,stats:game.stats(),stops:game.stops.map(s=>({id:s.id,cell:s.cell,peak:s.peak,rejected:s.rejected})),moves:game.commands,events:game.events};const url=URL.createObjectURL(new Blob([JSON.stringify(run,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`TransitLab-feeder-${D.map}-run.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+  function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
+    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
-  // board switch: the board is read at load, so switching reloads straight into the game (no cover)
-  $('mapSeg').innerHTML=Object.entries(D.maps).map(([k,v])=>`<button data-map="${k}">${v}</button>`).join('');
-  // titles follow the board's station
-  const stationShort=D.station.zh.replace('港鐵','');
-  $('titleEn').textContent=`Feeder to ${D.station.en.charAt(0)+D.station.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase())}`;
-  $('titleTc').textContent=`接駁巴士 → ${D.station.zh}`;document.title=`TransitLab HK · 接駁巴士 · ${stationShort}`;
-  if($('coverMode'))$('coverMode').textContent=`入門遊戲：接駁巴士 → ${D.station.zh}`;
-  document.querySelectorAll('#mapSeg button').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.map===D.map));
-    b.onclick=()=>{if(b.dataset.map===D.map)return;if(game.started&&!game.done&&!confirm('換地圖會清除本局進度，是否繼續？'))return;location.hash=`map=${b.dataset.map}&intro=0`;location.reload();};});
-  // For the cover hand-off: every block of the board in screen pixels, so the cover's dots can land exactly on them.
+  window.addEventListener('tl:lang',()=>{texts();render();if($('result').open)fillResult();});
+  // The hub swaps the level and pauses the game through this.
+  window.TL_GAME={
+    loadMap(map){
+      if(map===D.map){if(game.done)reset(t('n.layout'));return true;}
+      if(game.started&&!game.done&&!confirm(t('c.map')))return false;
+      if(!D.select(map))return false;
+      Tide.reset();setupMap();reset(t('n.layout'));return true;},
+    pause(){if(playing){playing=false;note(t('n.toMap'));}render();},
+    map:()=>D.map,inProgress:()=>game.started&&!game.done,texts};
+  // For the hand-off: every block of the board in screen pixels, so the hub's dots can land exactly on them.
   window.TL_BOARD={targets(){
     const m=board.getScreenCTM();if(!m)return null;
     const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],isRoad=c=>D.roads.some(q=>same(q,c));
@@ -1019,169 +1438,185 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     const [mx,my]=xy(D.hub);items.push({p:at(mx,my),w:46*k,h:44*k,color:C.ink,kind:'hub'});
     return{items,hub:at(mx,my),k};
   }};
-  $('source').textContent=D.source.geography+' '+D.source.demand;
-  if(window.COVER)$('coverSource').textContent=`開場封面：組員「TransitLab 產品套件」的潮汐封面，運輸署幹道探測器逐小時車流（${window.COVER.tide.period||'24 個工作日'}）；圓點是全港 455 個分區的出行量。`;
-  $('totalN').textContent=total;
-  document.querySelectorAll('.hwBase').forEach(e=>e.textContent=P.headwayBase);document.querySelectorAll('.hwStep').forEach(e=>e.textContent=P.headwayStep);
-  $('goal').innerHTML=`<b>${P.target}</b> 過關：開局三站要擺得很準，不然要靠中途挪站補救。<b>${P.highScore}</b> 高分：一定要跟著潮汐挪站。<b>${P.masterScore}</b> 潮汐大師：每一步都挪得準。`;
-  $('tickMaster').style.left=`${100*P.masterScore/total}%`;$('tickMaster').dataset.label=`大師 ${P.masterScore}`;
-  $('tickPass').style.left=`${100*P.target/total}%`;$('tickPass').dataset.label=`過關 ${P.target}`;
-  $('tickHigh').style.left=`${100*P.highScore/total}%`;$('tickHigh').dataset.label=`高分 ${P.highScore}`;
-  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.getElementById('cover'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done){playing=!playing;last=performance.now();render();}}});
-  document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing){playing=false;note('離開畫面時已自動暫停。');render();}});
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.body.classList.contains('inhub'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done){playing=!playing;last=performance.now();render();}}});
+  document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing){playing=false;note(t('n.hidden'));render();}});
   function frame(now){const dt=Math.min(.5,(now-last)/1000);last=now;
     if(playing){game.advance(dt*speed);feedback();
       if(now-lastDraw>40){drawMap();lastDraw=now;}
       if(now-lastSide>200){drawSide();lastSide=now;}
       if(game.done&&!shown)render();}
     requestAnimationFrame(frame);}
-  // Test hook for screenshots and bots: #intro=0&layout=0-7-11&t=400&hover=3&sel=1&moves=125:1:11,365:1:6&theme=dark&fx=1
+  // Test hook for screenshots and bots: #intro=0&map=yuenlong&layout=0-7-11&t=400&hover=3&sel=1&moves=125:1:11,365:1:6&theme=dark&fx=1&lang=en
   const q=new URLSearchParams(location.hash.slice(1));
   let saved=null;try{saved=localStorage.getItem('tl-theme');}catch(e){}
+  setupMap();
   if(q.get('theme')||saved)setTheme(q.get('theme')||saved);
   if(q.get('layout')){q.get('layout').split('-').map(Number).forEach((c,id)=>game.place(id,D.candidates[c]));
     if(q.get('t')){game.start();const moves=(q.get('moves')||'').split(',').filter(Boolean).map(m=>m.split(':').map(Number)).sort((a,b)=>a[0]-b[0]);
-      for(const [t,id,to] of moves)if(t<+q.get('t')){game.advance(t-game.t);game.place(id,D.candidates[to]);}game.advance(+q.get('t')-game.t);}}
+      for(const [tm,id,to] of moves)if(tm<+q.get('t')){game.advance(tm-game.t);game.place(id,D.candidates[to]);}game.advance(+q.get('t')-game.t);}}
   seen=q.get('fx')?Math.max(0,game.events.length-Number(q.get('fx'))):game.events.length;lastDelivered=game.delivered;
   for(const pk of D.peaks)if(game.t>=waveStart(pk.wave)-25){warned.add(pk.wave);if(game.t>=waveStart(pk.wave))rang.add(pk.wave);}
   if(q.get('sel'))selected=+q.get('sel');if(q.get('hover'))hover=D.candidates[+q.get('hover')];
-  note('布局不限時。先放好三座接駁站，再按「開始」。');render();
+  note(t('n.layout'));render();
   if(q.get('fxfreeze'))document.body.classList.add('fxfreeze');if(q.get('fx'))feedback();
   requestAnimationFrame(frame);
 })();
 
 </script><script>
-/* Opening cover — adapted from the team product suite ("OPENING · THE TIDE").
-   The territory's trip field rises and falls with the 761-detector 24-hour tide.
-   v2.2 hand-off: on Enter the copy fades, the dots around Long Ping gather and fly onto the board one after
-   another (from the MTR outwards), turning from round ink dots into the board's coloured blocks; the rest of
-   the territory fades away, and the cover dissolves onto the real board underneath, block for block. */
+/* Hub — the opening and the map you come back to (v3.1). Adapted from the team product suite's tide cover.
+   Intro: title + tide bar over the territory's dot field. Scrolling (wheel, touch, ↓ / PgDn / Enter) carries it into
+   the hub: the copy and the tide bar move away, the dot map settles centred behind, the top bar and the 01–06 menu
+   slide in. Mode 01 puts the playable stations on the map; clicking one hands the dots around that station to the
+   board (they fly onto its blocks, from the MTR outwards), and "← Map" plays the same film backwards. Other places
+   are marked "not built yet"; modes 02–06 only change the glass panel for now. */
 (function () {
   'use strict';
-  var D = window.COVER, cover = document.getElementById('cover');
-  if (!cover) return;
-  var $ = function (id) { return document.getElementById(id); };
-  function finish() {
-    cover.classList.add('gone'); document.body.classList.add('entered');
-    window.dispatchEvent(new CustomEvent('tl:entered'));
-    setTimeout(function () { if (cover.parentNode) cover.parentNode.removeChild(cover); }, 700);
+  const CV = window.COVER, hub = document.getElementById('hub'), I = window.I18N, D = window.TIDE_DATA;
+  if (!hub) return;
+  const $ = id => document.getElementById(id), t = (k, v) => I.t(k, v), root = document.documentElement, body = document.body;
+  const q = new URLSearchParams(location.hash.slice(1));
+  const clamp = v => v < 0 ? 0 : v > 1 ? 1 : v;
+  const easeInOut = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+  const easeOut = u => 1 - Math.pow(1 - u, 3);
+  const grp = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const hh = x => (x < 10 ? '0' + x : '' + x) + ':00';
+  const EN = ['', 'Entry game', 'Lessons', 'Full sandbox', 'Observation deck', 'Leaderboard', 'Network console'];
+  function rgba(c) {                            // '#RRGGBB' or 'rgba(r,g,b,a)' → [r,g,b,a]
+    c = String(c).trim();
+    if (c.charAt(0) === '#') { const n = parseInt(c.slice(1, 7), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255, 1]; }
+    const m = c.match(/[\d.]+/g) || [0, 0, 0, 1]; return [+m[0], +m[1], +m[2], m[3] === undefined ? 1 : +m[3]];
   }
-  if (!D || /(^|[#&])intro=0/.test(location.hash)) { cover.parentNode.removeChild(cover); document.body.classList.add('entered'); return; }
 
-  function b64u8(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
-  function b64u16(s) { var b = b64u8(s); return new Uint16Array(b.buffer, b.byteOffset, b.byteLength >> 1); }
+  /* ---- the dot field (the suite's data) ---- */
+  function b64u8(s) { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function b64u16(s) { const b = b64u8(s); return new Uint16Array(b.buffer, b.byteOffset, b.byteLength >> 1); }
   function runsToPath(bytes, cols, rows, step) {
-    var p = new Path2D();
-    for (var j = 0; j < rows; j++) {
-      var run = -1;
-      for (var i = 0; i <= cols; i++) {
-        var k = j * cols + i, on = i < cols && ((bytes[k >> 3] >> (k & 7)) & 1);
+    const p = new Path2D();
+    for (let j = 0; j < rows; j++) {
+      let run = -1;
+      for (let i = 0; i <= cols; i++) {
+        const k = j * cols + i, on = i < cols && ((bytes[k >> 3] >> (k & 7)) & 1);
         if (on && run < 0) run = i;
         else if (!on && run >= 0) { p.rect(run * step, j * step, (i - run) * step, step); run = -1; }
       }
     }
     return p;
   }
-  function grp(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-  function hh(x) { return (x < 10 ? '0' + x : '' + x) + ':00'; }
-  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-  function easeInOut(u) { return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; }
-  function easeOut(u) { return 1 - Math.pow(1 - u, 3); }
-  function rgba(c) {                            // '#RRGGBB' or 'rgba(r,g,b,a)' → [r,g,b,a]
-    c = String(c).trim();
-    if (c.charAt(0) === '#') { var n = parseInt(c.slice(1, 7), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255, 1]; }
-    var m = c.match(/[\d.]+/g) || [0, 0, 0, 1]; return [+m[0], +m[1], +m[2], m[3] === undefined ? 1 : +m[3]];
-  }
-
-  var DOTS = (function () {
-    var idx = b64u16(D.dotsI), val = b64u16(D.dotsV), zi = b64u16(D.dotZ), n = idx.length;
-    var x = new Float32Array(n), y = new Float32Array(n), v = new Float32Array(n), z = new Int16Array(n);
-    for (var k = 0; k < n; k++) {
-      var c = idx[k];
-      x[k] = (c % D.dcols + 0.5) * D.STEP; y[k] = ((c / D.dcols) | 0) * D.STEP + 0.5 * D.STEP;
+  const DOTS = (function () {
+    const idx = b64u16(CV.dotsI), val = b64u16(CV.dotsV), zi = b64u16(CV.dotZ), n = idx.length;
+    const x = new Float32Array(n), y = new Float32Array(n), v = new Float32Array(n), z = new Int16Array(n);
+    for (let k = 0; k < n; k++) {
+      const c = idx[k];
+      x[k] = (c % CV.dcols + 0.5) * CV.STEP; y[k] = ((c / CV.dcols) | 0) * CV.STEP + 0.5 * CV.STEP;
       v[k] = val[k] / 65535; z[k] = zi[k] === 65535 ? -1 : zi[k];
     }
-    return { n: n, x: x, y: y, v: v, z: z };
+    return { n, x, y, v, z };
   })();
-  var LAND = runsToPath(b64u8(D.land), D.cols, D.rows, D.BORDER_STEP);
-  var COAST = new Path2D(); COAST.addPath(new Path2D(D.coast), new DOMMatrix([0.5, 0, 0, 0.5, 0, 0]));
-  var ST = (window.TIDE_DATA && window.TIDE_DATA.station) || { lon: 114.025421, lat: 22.447773 };
-  var G = D.geom, LP = { x: ST.lon * G.kx * G.scale + G.offx, y: -ST.lat * G.scale + G.offy };  // the board's station
+  const LAND = runsToPath(b64u8(CV.land), CV.cols, CV.rows, CV.BORDER_STEP);
+  const COAST = new Path2D(); COAST.addPath(new Path2D(CV.coast), new DOMMatrix([0.5, 0, 0, 0.5, 0, 0]));
+  const LANDX = [Infinity, -Infinity];             // west and east edge of the dot field, in map units
+  for (let i = 0; i < DOTS.n; i++) { if (DOTS.x[i] < LANDX[0]) LANDX[0] = DOTS.x[i]; if (DOTS.x[i] > LANDX[1]) LANDX[1] = DOTS.x[i]; }
+  const G = CV.geom, mapXY = (lon, lat) => [lon * G.kx * G.scale + G.offx, -lat * G.scale + G.offy];
 
-  var TIDE = D.tide.factor24, FLOW = D.tide.flow24, SPEED = D.tide.speed24, PH = 0, LH = 0, h;
-  for (h = 0; h < 24; h++) { if (TIDE[h] > TIDE[PH]) PH = h; if (TIDE[h] < TIDE[LH]) LH = h; }
-  var FMAX = TIDE[PH], baseMax = D.baseMax;
-  var tOf = function (v) { return Math.log(1 + v) / Math.log(1 + baseMax * FMAX); };
-  var POSV = [];
-  for (var k = 0; k < DOTS.n; k++) if (DOTS.v[k] * baseMax > 0.5) POSV.push(DOTS.v[k] * baseMax * FMAX);
-  POSV.sort(function (a, b) { return a - b; });
-  var TREF = Math.max(0.05, tOf(POSV[Math.floor(POSV.length * 0.85)] || baseMax));
-  var tVis = function (v) { var t = Math.min(1, tOf(v) / TREF); return t * t * (1.9 - 0.9 * t); };
+  const TIDE = CV.tide.factor24, FLOW = CV.tide.flow24, SPEED = CV.tide.speed24;
+  let PH = 0, LH = 0;
+  for (let h = 0; h < 24; h++) { if (TIDE[h] > TIDE[PH]) PH = h; if (TIDE[h] < TIDE[LH]) LH = h; }
+  const FMAX = TIDE[PH], baseMax = CV.baseMax;
+  const tOf = v => Math.log(1 + v) / Math.log(1 + baseMax * FMAX);
+  const POSV = [];
+  for (let k = 0; k < DOTS.n; k++) if (DOTS.v[k] * baseMax > 0.5) POSV.push(DOTS.v[k] * baseMax * FMAX);
+  POSV.sort((a, b) => a - b);
+  const TREF = Math.max(0.05, tOf(POSV[Math.floor(POSV.length * 0.85)] || baseMax));
+  const tVis = v => { const x = Math.min(1, tOf(v) / TREF); return x * x * (1.9 - 0.9 * x); };
 
-  var cv = $('cvDots'), ctx = cv.getContext('2d'), state = { hour: LH, raf: 0, leaving: false };
-  function light() { return document.documentElement.getAttribute('data-theme') !== 'dark'; }
-  function geom() {
-    var rc = cv.getBoundingClientRect(), s = rc.width / rc.height > D.W / D.H ? rc.width / D.W : rc.height / D.H;
-    return window.innerWidth < 1024 ? { s: s, ox: (rc.width - D.W * s) / 2, oy: (rc.height - D.H * s) / 2 } : { s: s, ox: rc.width - D.W * s, oy: (rc.height - D.H * s) / 2 };
+  /* ---- state ---- */
+  // mode: 'cover' (intro ↔ hub, driven by p), 'leaving' (dots fly onto the board), 'game', 'returning' (and back)
+  let mode = 'cover', p = 0, target = 0, frozen = false, nav = 0, hot = null, hour = LH, riseRaf = 0, loopRaf = 0, runId = 0;
+  const cv = $('cvDots'), ctx = cv.getContext('2d');
+  const light = () => root.getAttribute('data-theme') !== 'dark';
+  const chromeH = () => $('topbar').offsetHeight + $('navrow').offsetHeight;
+  // Intro: the territory fills the screen from the right (centred on narrow screens). Hub: the whole territory,
+  // centred in the space under the menu. Between them the geometry follows the scroll.
+  function gIntro(w, h) {
+    const s = w / h > CV.W / CV.H ? w / CV.W : h / CV.H;
+    return w < 1024 ? { s, ox: (w - CV.W * s) / 2, oy: (h - CV.H * s) / 2 } : { s, ox: w - CV.W * s, oy: (h - CV.H * s) / 2 };
   }
+  function gHub(w, h) {
+    const top = chromeH() + 6, pad = w < 760 ? 8 : 24, bot = w < 760 ? 210 : 14, aw = w - 2 * pad, ah = Math.max(160, h - top - bot);
+    const s = Math.min(aw / CV.W, ah / CV.H);
+    let ox = (w - CV.W * s) / 2;
+    // centred, but nudged right just enough that the glass panel does not cover the west of the territory
+    const panel = w >= 760 ? $('hubPanel').offsetLeft + $('hubPanel').offsetWidth + 14 : 0, west = ox + LANDX[0] * s;
+    if (panel > west) ox = Math.min(ox + panel - west, w - pad - LANDX[1] * s);
+    return { s, ox, oy: top + (ah - CV.H * s) / 2 };
+  }
+  function geom() {
+    const w = cv.clientWidth, h = cv.clientHeight, a = gIntro(w, h), b = gHub(w, h), e = easeInOut(p);
+    return { s: a.s + (b.s - a.s) * e, ox: a.ox + (b.ox - a.ox) * e, oy: a.oy + (b.oy - a.oy) * e };
+  }
+  const screenXY = (lon, lat, g) => { const [x, y] = mapXY(lon, lat); return [g.ox + x * g.s, g.oy + y * g.s]; };
   function size() {
-    var dpr = Math.min(2, window.devicePixelRatio || 1), rect = cv.getBoundingClientRect();
-    var W = Math.round(rect.width * dpr), H = Math.round(rect.height * dpr);
+    const dpr = Math.min(2, window.devicePixelRatio || 1), W = Math.round(cv.clientWidth * dpr), H = Math.round(cv.clientHeight * dpr);
     if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
     return dpr;
   }
   // The territory: land, coast and the dot field. `alpha` fades it; `skip` leaves out dots that are flying.
-  function drawMap(alpha, skip) {
-    var dpr = size(), g = geom(), L = light(), k = g.s * dpr, m = TIDE[state.hour];
+  function drawMap(alpha, skip, g) {
+    const dpr = size(), L = light(), m = TIDE[hour];
+    g = g || geom();
+    const k = g.s * dpr;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
     if (alpha <= 0) return;
     ctx.globalAlpha = alpha;
     ctx.setTransform(k, 0, 0, k, g.ox * dpr, g.oy * dpr);
     ctx.fillStyle = L ? '#FFFFFF' : '#1B1B1B'; ctx.fill(LAND);
     ctx.strokeStyle = L ? 'rgba(14,122,78,.85)' : 'rgba(110,217,150,.6)'; ctx.lineWidth = 1.1 / k; ctx.stroke(COAST);
-    var RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',';
-    for (var i = 0; i < DOTS.n; i++) {
+    const RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',';
+    for (let i = 0; i < DOTS.n; i++) {
       if (skip && skip[i]) continue;
-      var val = DOTS.v[i] * baseMax * m;
+      const val = DOTS.v[i] * baseMax * m;
       if (val <= 0.5) continue;
-      var t = tVis(val);
-      ctx.fillStyle = RGBA + (0.09 + 0.91 * t).toFixed(3) + ')';
-      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], 1.05 + 1.35 * t, 0, 6.2832); ctx.fill();
+      const v = tVis(val);
+      ctx.fillStyle = RGBA + (0.09 + 0.91 * v).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], 1.05 + 1.35 * v, 0, 6.2832); ctx.fill();
     }
     ctx.globalAlpha = 1;
   }
-  function draw() { if (!state.leaving) drawMap(1); }
+  const draw = () => { if (mode === 'cover') drawMap(1); };
 
-  (function () {                                // hover: one zone card
-    var tip = $('cvTip');
+  /* ---- hover: one zone card ---- */
+  (function () {
+    const tip = $('cvTip');
     cv.addEventListener('pointermove', function (e) {
-      if (state.leaving) return;
-      var rect = cv.getBoundingClientRect(), g = geom(), x = (e.clientX - rect.left - g.ox) / g.s, y = (e.clientY - rect.top - g.oy) / g.s;
-      var best = -1, bd = 256;
-      for (var i = 0; i < DOTS.n; i++) { var dx = DOTS.x[i] - x, dy = DOTS.y[i] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; best = i; } }
-      var z = best >= 0 ? DOTS.z[best] : -1;
+      if (mode !== 'cover') return;
+      const rect = cv.getBoundingClientRect(), g = geom(), x = (e.clientX - rect.left - g.ox) / g.s, y = (e.clientY - rect.top - g.oy) / g.s;
+      let best = -1, bd = 256;
+      for (let i = 0; i < DOTS.n; i++) { const dx = DOTS.x[i] - x, dy = DOTS.y[i] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; best = i; } }
+      const z = best >= 0 ? DOTS.z[best] : -1;
       if (z < 0) { tip.classList.remove('on'); return; }
-      var m = D.zones[z];
-      tip.innerHTML = '<div class="tt">' + m.l + ' <span class="tc">' + (D.distNames[m.di] || '') + '</span></div><div class="tv"><span>Trips now 此刻出行</span><b>' + grp(m.ti * TIDE[state.hour] / FMAX) + '</b></div>';
+      const m = CV.zones[z];
+      tip.innerHTML = '<div class="tt">' + m.l + ' <span class="tc">' + I.district(CV.distNames[m.di] || '') + '</span></div><div class="tv"><span>' + t('cv.trips') + '</span><b>' + grp(m.ti * TIDE[hour] / FMAX) + '</b></div>';
       tip.classList.add('on');
-      var lx = e.clientX - rect.left + 14, ly = e.clientY - rect.top + 12;
+      let lx = e.clientX - rect.left + 14; const ly = e.clientY - rect.top + 12;
       if (lx + tip.offsetWidth > rect.width - 6) lx = e.clientX - rect.left - tip.offsetWidth - 14;
       tip.style.left = lx + 'px'; tip.style.top = Math.max(6, Math.min(ly, rect.height - tip.offsetHeight - 6)) + 'px';
     });
-    cv.addEventListener('pointerleave', function () { tip.classList.remove('on'); });
+    cv.addEventListener('pointerleave', () => tip.classList.remove('on'));
   })();
 
-  var TW = 600, TH = 46, PAD = { t: 10, b: 8, l: 6, r: 6 };
-  function TX(i) { return PAD.l + i / 23 * (TW - PAD.l - PAD.r); }
-  function TY(v) { return PAD.t + (TH - PAD.t - PAD.b) * (1 - v / (FMAX * 1.06)); }
+  /* ---- the tide bar ---- */
+  let TW = 600, TH = 46;
+  const PAD = { t: 10, b: 8, l: 6, r: 6 };
+  const TX = i => PAD.l + i / 23 * (TW - PAD.l - PAD.r);
+  const TY = v => PAD.t + (TH - PAD.t - PAD.b) * (1 - v / (FMAX * 1.06));
   function renderTide() {
-    var mid = $('cvTide'), rect = mid.getBoundingClientRect();
+    const mid = $('cvTide'), rect = mid.getBoundingClientRect();
     TW = Math.max(220, Math.round(rect.width)); TH = Math.max(40, Math.round(rect.height));
     mid.setAttribute('viewBox', '0 0 ' + TW + ' ' + TH); mid.setAttribute('preserveAspectRatio', 'none');
-    var line = '', j;
-    for (j = 0; j < 24; j++) line += (j ? 'L' : 'M') + TX(j).toFixed(1) + ' ' + TY(TIDE[j]).toFixed(1);
-    var area = line + ' L' + TX(23).toFixed(1) + ' ' + (TH - PAD.b) + ' L' + TX(0).toFixed(1) + ' ' + (TH - PAD.b) + ' Z';
-    var s = '<defs><linearGradient id="cvtg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s-accent);stop-opacity:.38"/><stop offset="1" style="stop-color:var(--s-accent);stop-opacity:.02"/></linearGradient></defs>';
+    let line = '';
+    for (let j = 0; j < 24; j++) line += (j ? 'L' : 'M') + TX(j).toFixed(1) + ' ' + TY(TIDE[j]).toFixed(1);
+    const area = line + ' L' + TX(23).toFixed(1) + ' ' + (TH - PAD.b) + ' L' + TX(0).toFixed(1) + ' ' + (TH - PAD.b) + ' Z';
+    let s = '<defs><linearGradient id="cvtg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s-accent);stop-opacity:.38"/><stop offset="1" style="stop-color:var(--s-accent);stop-opacity:.02"/></linearGradient></defs>';
     s += '<path d="' + area + '" fill="url(#cvtg)"/>';
     s += '<line x1="' + PAD.l + '" y1="' + TY(1).toFixed(1) + '" x2="' + (TW - PAD.r) + '" y2="' + TY(1).toFixed(1) + '" style="stroke:var(--s-line2)" stroke-width="1" stroke-dasharray="3 4"/>';
     s += '<path d="' + line + '" fill="none" style="stroke:var(--s-accent)" stroke-width="1.7" stroke-linejoin="round"/>';
@@ -1193,96 +1628,296 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     mid.innerHTML = s; playhead();
   }
   function playhead() {
-    var g = $('cvPh'); if (!g) return;
-    var x = TX(state.hour).toFixed(1), y = TY(TIDE[state.hour]).toFixed(1);
+    const g = $('cvPh'); if (!g) return;
+    const x = TX(hour).toFixed(1), y = TY(TIDE[hour]).toFixed(1);
     g.innerHTML = '<line x1="' + x + '" y1="0" x2="' + x + '" y2="' + (TH - PAD.b) + '" style="stroke:var(--s-accent2)" stroke-width="1.3"/>' +
       '<circle cx="' + x + '" cy="' + y + '" r="4.2" style="fill:var(--s-accent2);stroke:var(--s-paper)" stroke-width="1.6"/>';
   }
   (function () {                                // scrub the curve
-    var mid = $('cvTide'), drag = false;
-    function set(e) { var rc = mid.getBoundingClientRect(); stop(); setHour(Math.round(clamp((e.clientX - rc.left) / rc.width) * 23)); }
-    mid.addEventListener('pointerdown', function (e) { drag = true; mid.setPointerCapture(e.pointerId); set(e); });
-    mid.addEventListener('pointermove', function (e) { if (drag) set(e); });
-    mid.addEventListener('pointerup', function () { drag = false; });
+    const mid = $('cvTide'); let drag = false;
+    function set(e) { const rc = mid.getBoundingClientRect(); stopRise(); setHour(Math.round(clamp((e.clientX - rc.left) / rc.width) * 23)); }
+    mid.addEventListener('pointerdown', e => { drag = true; mid.setPointerCapture(e.pointerId); set(e); });
+    mid.addEventListener('pointermove', e => { if (drag) set(e); });
+    mid.addEventListener('pointerup', () => { drag = false; });
   })();
-  function phaseTxt(x) { return x === PH ? 'crest 滿潮' : x === LH ? 'trough 低潮' : TIDE[x] >= 1 ? 'rising 漲潮' : 'ebbing 退潮'; }
+  const phaseTxt = x => t(x === PH ? 'cv.crest' : x === LH ? 'cv.trough' : TIDE[x] >= 1 ? 'cv.rising' : 'cv.ebbing');
   function setHour(x) {
-    state.hour = Math.max(0, Math.min(23, x));
-    $('cvHour').textContent = hh(state.hour); $('cvPhase').textContent = phaseTxt(state.hour);
-    $('cvFlow').textContent = grp(FLOW[state.hour]); $('cvSpeed').textContent = SPEED[state.hour].toFixed(1);
+    hour = Math.max(0, Math.min(23, x));
+    $('cvHour').textContent = hh(hour); $('cvPhase').textContent = phaseTxt(hour);
+    $('cvFlow').textContent = grp(FLOW[hour]); $('cvSpeed').textContent = SPEED[hour].toFixed(1);
     playhead(); draw();
   }
-  function stop() { if (state.raf) { cancelAnimationFrame(state.raf); state.raf = 0; } }
+  function stopRise() { if (riseRaf) { cancelAnimationFrame(riseRaf); riseRaf = 0; } }
   function rise() {                             // 03:00 ebb lifts to the 18:00 crest, then rests
-    stop();
-    var t0 = performance.now(), from = state.hour === PH ? LH : state.hour;
-    (function step(t) {
-      var u = Math.min(1, (t - t0) / 2600); u = 0.5 - 0.5 * Math.cos(Math.PI * u);
+    stopRise();
+    const t0 = performance.now(), from = hour === PH ? LH : hour;
+    (function step(now) {
+      let u = Math.min(1, (now - t0) / 2600); u = 0.5 - 0.5 * Math.cos(Math.PI * u);
       setHour(Math.round(from + (PH - from) * u));
-      state.raf = u < 1 ? requestAnimationFrame(step) : 0;
+      riseRaf = u < 1 ? requestAnimationFrame(step) : 0;
     })(t0);
   }
   $('cvPlay').addEventListener('click', rise);
-  window.addEventListener('resize', function () { if (cover.parentNode && !state.leaving) { renderTide(); draw(); } });
-  new MutationObserver(function () { if (cover.parentNode) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-  /* ---- the hand-off: dots gather onto the board ---- */
-  var FADE = 520, FLY = 760, SPREAD = 620, HOLD = 140;
-  function leave(frozenAt) {
-    var B = window.TL_BOARD && window.TL_BOARD.targets();
-    stop(); state.leaving = true; cover.classList.add('leaving'); $('cvTip').classList.remove('on');
-    if (!B || !B.items.length) { drawMap(0); setTimeout(finish, 300); return; }
-    var dpr = size(), g = geom(), m = TIDE[state.hour], L = light();
-    var lpx = g.ox + LP.x * g.s, lpy = g.oy + LP.y * g.s;
-    // the live dots nearest Long Ping, nearest first
-    var live = [];
-    for (var i = 0; i < DOTS.n; i++) {
-      var val = DOTS.v[i] * baseMax * m; if (val <= 0.5) continue;
-      var sx = g.ox + DOTS.x[i] * g.s, sy = g.oy + DOTS.y[i] * g.s, t = tVis(val);
-      live.push({ i: i, x: sx, y: sy, r: (1.05 + 1.35 * t) * g.s, a: 0.09 + 0.91 * t, d: (sx - lpx) * (sx - lpx) + (sy - lpy) * (sy - lpy) });
+  /* ---- scroll: intro ↔ hub ---- */
+  function applyP() {
+    hub.style.setProperty('--hub-p', p.toFixed(4));
+    const qv = mode === 'cover' ? clamp((p - .3) / .7) : 1;
+    root.style.setProperty('--hub-q', qv.toFixed(4)); root.style.setProperty('--chrome-h', chromeH() + 'px');
+    body.classList.toggle('chrome-off', qv < .5);
+    hub.classList.toggle('past', p > .5);
+    const open = p > .97;
+    if (open !== hub.classList.contains('open')) { hub.classList.toggle('open', open); renderNav(); }
+    draw();
+    if (open) placeMarks();
+  }
+  function tick() {
+    loopRaf = 0;
+    if (!frozen) { const d = target - p; p = Math.abs(d) < .002 ? target : p + d * .12; }
+    applyP();
+    if (p !== target && !frozen) loopRaf = requestAnimationFrame(tick);
+  }
+  const kick = () => { if (!loopRaf) loopRaf = requestAnimationFrame(tick); };
+  // One gesture opens or closes all the way: started from the intro, any scroll opens; from the hub, scrolling up closes.
+  let gesture = null, gestureTimer = 0, closedAt = -1e9;
+  function endGesture() {
+    const g = gesture; gesture = null;
+    if (g === 'open') target = target > .1 ? 1 : 0; else if (g === 'close') { target = target < .9 ? 0 : 1; if (!target) closedAt = performance.now(); }
+    kick();
+  }
+  function nudge(d) {
+    // a notched wheel turned slowly sends one event per notch, each its own gesture: the notches after the one that
+    // closed must not count as "any scroll opens", or scrolling up bounces straight back to the map. Each such notch
+    // extends the pause, so only an upward scroll after a real stop (1.2 s) opens again.
+    if (!gesture && target < .5 && d < 0 && performance.now() - closedAt < 1200) { closedAt = performance.now(); return; }
+    if (!gesture) gesture = target < .5 ? 'open' : 'close';
+    if (gesture === 'open') target = clamp(target + Math.abs(d) / 650);
+    else if (d < 0) target = clamp(target + d / 650);
+    clearTimeout(gestureTimer); gestureTimer = setTimeout(endGesture, 170);
+    kick();
+  }
+  const blocked = () => mode !== 'cover' || frozen || document.querySelector('dialog[open]');
+  window.addEventListener('wheel', function (e) {
+    if (blocked() || e.target.closest && e.target.closest('.hub-panel')) return;
+    e.preventDefault();
+    nudge(e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1));
+  }, { passive: false });
+  let ty = null;
+  hub.addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, { passive: true });
+  hub.addEventListener('touchmove', function (e) {
+    if (ty === null || blocked() || e.target.closest('.hub-panel,.cv-mid')) return;
+    const y = e.touches[0].clientY, d = ty - y; ty = y;
+    if (!gesture) gesture = target < .5 ? 'open' : 'close';
+    if (gesture === 'open' ? d > 0 : d < 0) nudge(d * 1.6);
+    e.preventDefault();
+  }, { passive: false });
+  hub.addEventListener('touchend', () => { ty = null; });
+  document.addEventListener('keydown', function (e) {
+    if (blocked()) return;
+    const k = e.key, onButton = e.target.closest && e.target.closest('button,a,input');
+    if (target < .5 && (['ArrowDown', 'PageDown'].includes(k) || ([' ', 'Enter'].includes(k) && !onButton))) { e.preventDefault(); target = 1; kick(); }
+    else if (target > .5 && ['ArrowUp', 'PageUp'].includes(k)) { e.preventDefault(); target = 0; kick(); }
+    else if (target > .5 && nav === 0 && k === 'Enter' && !onButton) { e.preventDefault(); selectNav(1); }
+  });
+  $('cvHint').addEventListener('click', () => { target = 1; kick(); });
+
+  /* ---- the 01–06 menu and the glass panel ---- */
+  const site = key => D.sites.find(s => s.key === key);
+  const plays = () => D.sites.filter(s => s.status === 'play');
+  const best = map => { try { return +localStorage.getItem('tl-best-' + map) || 0; } catch (e) { return 0; } };
+  const inGame = () => mode === 'game' || mode === 'leaving';
+  function renderNav() {
+    document.querySelectorAll('#navrow [data-mode]').forEach(b => {
+      const m = +b.dataset.mode, sel = inGame() ? m === 1 : (mode === 'returning' || mode === 'cover' && p > .5) && m === nav;
+      b.setAttribute('aria-selected', String(sel));
+      b.classList.toggle('invite', mode === 'cover' && hub.classList.contains('open') && nav === 0 && m === 1);
+    });
+  }
+  function selectNav(n) {
+    if (mode === 'game') { showHub(n); return; }
+    if (mode !== 'cover') return;
+    nav = n; target = 1; kick();
+    hub.classList.toggle('m1', nav === 1); hot = null;
+    renderNav(); renderPanel();
+  }
+  document.querySelectorAll('#navrow [data-mode]').forEach(b => b.addEventListener('click', () => selectNav(+b.dataset.mode)));
+  function levelButton(s) {
+    const b = best(s.map), resume = window.TL_GAME && window.TL_GAME.inProgress() && window.TL_GAME.map() === s.map;
+    return '<button class="lv' + (s.minor ? ' minor' : '') + '" data-site="' + s.key + '"><span class="lv-n"><b>' + t('site.' + s.key) + '</b><small>' + s.station.en + '</small></span>' +
+      '<span class="lv-m">' + t('hub.levelLine', { n: s.estates, pass: s.tiers[0] }) + (b ? ' · <em>' + t('hub.best', { n: b }) + '</em>' : '') + '</span>' +
+      (resume ? '<span class="lv-r">' + t('hub.resume') + '</span>' : '') + '</button>';
+  }
+  const tc = s => I.lang === 'en' ? '' : '<span class="hp-tc">' + s + '</span>';
+  function renderPanel() {
+    let h;
+    if (nav === 0) h = '<span class="lbl">' + t('hub.start') + '</span><h2 class="hp-h">' + t('hub.pickH') + ' <span class="hp-up">↑</span></h2><p class="note">' + t('hub.pickP') + '</p>';
+    else if (nav === 1) {
+      h = '<span class="lbl">Mode 01 · Entry game</span><h2 class="hp-h">Feeder bus' + tc(t('hub.m1H')) + '</h2><p class="note">' + t('hub.m1P') + '</p>' +
+        '<div class="lbl hp-sub">' + t('hub.levels') + '</div><div class="lvls">' + plays().map(levelButton).join('') + '</div>' +
+        '<div class="hp-detail" id="hubDetail" aria-live="polite"></div>' +
+        '<div class="hp-legend"><span><i class="k st-play"></i>' + t('hub.play') + '</span><span><i class="k st-soon"></i>' + t('hub.soon') + '</span></div>' +
+        '<p class="hp-fine">' + t('hub.soonNote') + (t('hub.enNames') ? ' ' + t('hub.enNames') : '') + '</p>';
+    } else h = '<span class="lbl">Mode 0' + nav + ' · ' + EN[nav] + '</span><h2 class="hp-h">' + EN[nav] + tc(t('hub.m' + nav + 'H')) + '</h2>' +
+      '<span class="chip"><i></i>' + t('hub.coming') + '</span><p class="note">' + t('hub.m' + nav + 'P') + '</p>';
+    $('hubPanel').innerHTML = h;
+    $('hubPanel').querySelectorAll('.lv').forEach(b => {
+      b.addEventListener('click', () => play(b.dataset.site));
+      b.addEventListener('pointerenter', () => setHot(b.dataset.site)); b.addEventListener('focus', () => setHot(b.dataset.site));
+      b.addEventListener('pointerleave', () => setHot(null)); b.addEventListener('blur', () => setHot(null));
+    });
+    renderDetail();
+  }
+  function renderDetail() {
+    const el = $('hubDetail'); if (!el) return;
+    const s = hot && site(hot);
+    if (!s) { el.innerHTML = '<p class="hp-idle">' + t('hub.hover') + '</p>'; return; }
+    el.innerHTML = '<div class="hp-dh"><b>' + t('site.' + s.key) + '</b><span class="tag st-' + s.status + '">' + t(s.status === 'play' ? 'hub.play' : 'hub.soon') + '</span></div>' +
+      '<p>' + t('about.' + s.key) + '</p>' + (s.status === 'play' ? '<p class="mono hp-tiers">' + t('hub.tiers', { a: s.tiers[0], b: s.tiers[1], c: s.tiers[2] }) + '</p>' : '');
+  }
+  function setHot(key) {
+    hot = key; renderDetail();
+    $('hubMarks').querySelectorAll('.hm').forEach(el => el.classList.toggle('hot', el.dataset.site === key));
+    $('hubPanel').querySelectorAll('.lv').forEach(el => el.classList.toggle('hot', el.dataset.site === key));
+  }
+
+  /* ---- markers on the map ---- */
+  function buildMarks() {
+    $('hubMarks').innerHTML = D.sites.map((s, i) => {
+      const playable = s.status === 'play', b = playable && best(s.map);
+      const sub = playable ? s.station.en + (b ? ' · ' + t('hub.best', { n: b }) : '') : t('hub.soon');
+      return '<button class="hm st-' + s.status + (s.minor ? ' minor' : '') + '" data-site="' + s.key + '" data-side="' + (s.side || 'right') + '" style="--i:' + i + '"' +
+        (playable ? '' : ' aria-disabled="true"') + ' aria-label="' + t('site.' + s.key) + ' · ' + sub + '"><i class="pin"></i><span class="lab"><b>' + t('site.' + s.key) + '</b><small>' + sub + '</small></span></button>';
+    }).join('');
+    $('hubMarks').querySelectorAll('.hm').forEach(el => {
+      el.addEventListener('click', () => { if (el.classList.contains('st-play')) play(el.dataset.site); else setHot(el.dataset.site); });
+      el.addEventListener('pointerenter', () => setHot(el.dataset.site)); el.addEventListener('focus', () => setHot(el.dataset.site));
+      el.addEventListener('pointerleave', () => setHot(null)); el.addEventListener('blur', () => setHot(null));
+    });
+    placeMarks();
+  }
+  function placeMarks() {
+    const g = geom();
+    $('hubMarks').querySelectorAll('.hm').forEach(el => {
+      const s = site(el.dataset.site), [x, y] = screenXY(s.lon, s.lat, g);
+      el.style.left = x.toFixed(1) + 'px'; el.style.top = y.toFixed(1) + 'px';
+    });
+  }
+
+  /* ---- the hand-off: dots gather onto the board (and back) ---- */
+  const FADE = 520, FLY = 760, SPREAD = 620, HOLD = 140, END = 160 + SPREAD + FLY + HOLD, BACK_HOLD = 420;
+  function play(key) {
+    const s = site(key);
+    if (!s || s.status !== 'play' || mode !== 'cover' || p < .97) return;
+    if (!window.TL_GAME || !window.TL_GAME.loadMap(s.map)) return;
+    handoff(1);
+  }
+  function handoff(dir, frozenAt) {
+    const run = ++runId;
+    stopRise(); mode = dir > 0 ? 'leaving' : 'returning';
+    hub.classList.add('leaving'); $('cvTip').classList.remove('on'); setHot(null);
+    body.classList.add('inhub'); renderNav();
+    const g = geom(), B = window.TL_BOARD && window.TL_BOARD.targets();
+    if (!B || !B.items.length) { if (dir > 0) setTimeout(enterGame, 300); else backToHub(); return; }
+    const dpr = size(), m = TIDE[hour], L = light(), [lpx, lpy] = screenXY(D.station.lon, D.station.lat, g);
+    // the live dots nearest the level's station, nearest first
+    const live = [];
+    for (let i = 0; i < DOTS.n; i++) {
+      const val = DOTS.v[i] * baseMax * m; if (val <= 0.5) continue;
+      const sx = g.ox + DOTS.x[i] * g.s, sy = g.oy + DOTS.y[i] * g.s, v = tVis(val);
+      live.push({ i, x: sx, y: sy, r: (1.05 + 1.35 * v) * g.s, a: 0.09 + 0.91 * v, d: (sx - lpx) * (sx - lpx) + (sy - lpy) * (sy - lpy) });
     }
-    live.sort(function (a, b) { return a.d - b.d; });
+    live.sort((a, b) => a.d - b.d);
     // blocks ordered from the MTR outwards, so the board assembles like a ripple leaving the station
-    var items = B.items.slice().sort(function (a, b) {
-      var da = Math.hypot(a.p[0] - B.hub[0], a.p[1] - B.hub[1]), db = Math.hypot(b.p[0] - B.hub[0], b.p[1] - B.hub[1]);
+    const items = B.items.slice().sort((a, b) => {
+      const da = Math.hypot(a.p[0] - B.hub[0], a.p[1] - B.hub[1]), db = Math.hypot(b.p[0] - B.hub[0], b.p[1] - B.hub[1]);
       return (a.kind === 'hub' ? -1 : 0) - (b.kind === 'hub' ? -1 : 0) || da - db;
     });
-    var ink = rgba(L ? '#0A0A0A' : '#F5F5F5'), skip = new Uint8Array(DOTS.n), parts = [], n = Math.min(items.length, live.length);
-    for (var j = 0; j < n; j++) {
-      var src = live[j], dst = items[j]; skip[src.i] = 1;
+    const ink = rgba(L ? '#0A0A0A' : '#F5F5F5'), skip = new Uint8Array(DOTS.n), parts = [], n = Math.min(items.length, live.length);
+    for (let j = 0; j < n; j++) {
+      const src = live[j], dst = items[j]; skip[src.i] = 1;
       parts.push({ x0: src.x, y0: src.y, r0: Math.max(1.4, src.r), a0: src.a, x1: dst.p[0], y1: dst.p[1], w1: dst.w, h1: dst.h,
         c1: rgba(dst.color), delay: 160 + SPREAD * (j / Math.max(1, n - 1)), house: dst.kind !== 'road' });
     }
     // roads underneath, buildings and the MTR on top — the same stacking as the board
-    var order = parts.filter(function (p) { return !p.house; }).concat(parts.filter(function (p) { return p.house; }));
-    var END = 160 + SPREAD + FLY + HOLD, T0 = performance.now(), done = false;
+    const order = parts.filter(x => !x.house).concat(parts.filter(x => x.house));
+    if (dir < 0) { hub.classList.remove('away'); void hub.offsetWidth; hub.classList.remove('gone'); }
+    const T0 = performance.now(); let done = false;
+    // rAF stops in background tabs and can crawl on slow machines: the hand-off always finishes on time anyway
+    if (frozenAt === undefined) setTimeout(() => { if (run !== runId || done) return; done = true; if (dir > 0) enterGame(); else backToHub(); }, (dir > 0 ? END : END + BACK_HOLD) + 500);
     function frame(now) {
-      var t = frozenAt === undefined ? now - T0 : frozenAt;
-      drawMap(1 - easeOut(clamp(t / FADE)), skip);
+      if (run !== runId) return;
+      const tt = frozenAt === undefined ? now - T0 : frozenAt;
+      // backwards: hold on the assembled board while the hub fades in over it, then play the film in reverse
+      const u = dir > 0 ? tt : END - Math.max(0, tt - BACK_HOLD);
+      drawMap(1 - easeOut(clamp(u / FADE)), skip, g);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      for (var q = 0; q < order.length; q++) {
-        var p = order[q], u = clamp((t - p.delay) / FLY), e = easeInOut(u), s = easeOut(clamp((u - .55) / .45));
-        var x = p.x0 + (p.x1 - p.x0) * e, y = p.y0 + (p.y1 - p.y0) * e;
+      for (const x of order) {
+        const v = clamp((u - x.delay) / FLY), e = easeInOut(v), s = easeOut(clamp((v - .55) / .45));
+        const px = x.x0 + (x.x1 - x.x0) * e, py = x.y0 + (x.y1 - x.y0) * e;
         // a dot first, then it opens out into its block as it lands
-        var w = 2 * p.r0 + (p.w1 - 2 * p.r0) * s, hgt = 2 * p.r0 + (p.h1 - 2 * p.r0) * s, rad = Math.min(w, hgt) / 2 * (1 - s) + (p.house ? 3 : 1.5) * s;
-        var c = [0, 1, 2].map(function (z) { return Math.round(ink[z] + (p.c1[z] - ink[z]) * s); }), a = p.a0 + (Math.max(.9, p.c1[3]) - p.a0) * easeOut(u);
+        const w = 2 * x.r0 + (x.w1 - 2 * x.r0) * s, hgt = 2 * x.r0 + (x.h1 - 2 * x.r0) * s, rad = Math.min(w, hgt) / 2 * (1 - s) + (x.house ? 3 : 1.5) * s;
+        const c = [0, 1, 2].map(z => Math.round(ink[z] + (x.c1[z] - ink[z]) * s)), a = x.a0 + (Math.max(.9, x.c1[3]) - x.a0) * easeOut(v);
         ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
         ctx.beginPath();
-        if (ctx.roundRect) ctx.roundRect(x - w / 2, y - hgt / 2, w, hgt, rad); else ctx.rect(x - w / 2, y - hgt / 2, w, hgt);
+        if (ctx.roundRect) ctx.roundRect(px - w / 2, py - hgt / 2, w, hgt, rad); else ctx.rect(px - w / 2, py - hgt / 2, w, hgt);
         ctx.fill();
       }
       if (frozenAt !== undefined) return;
-      if (t >= END && !done) { done = true; finish(); }
-      if (t < END + 700) requestAnimationFrame(frame);
+      if (dir > 0) { if (tt >= END && !done) { done = true; enterGame(); } if (tt < END + 700) requestAnimationFrame(frame); }
+      else if (tt >= END + BACK_HOLD) { if (!done) { done = true; backToHub(); } } else requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
-  $('coverEnter').addEventListener('click', function () { if (!state.leaving) leave(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && cover.parentNode && !state.leaving) leave(); });
+  function enterGame() {
+    mode = 'game'; hub.classList.add('gone'); hub.classList.remove('leaving');
+    body.classList.remove('inhub', 'chrome-off'); root.style.setProperty('--hub-q', '1');
+    body.classList.remove('entered'); void body.offsetWidth; body.classList.add('entered');   // the side columns glide in again
+    if (window.TL_GAME) window.TL_GAME.texts();
+    renderNav();
+    setTimeout(() => { if (mode === 'game') hub.classList.add('away'); }, 700);
+    window.dispatchEvent(new CustomEvent('tl:entered'));
+  }
+  function backToHub() {
+    runId++; mode = 'cover'; p = target = 1; hub.classList.remove('leaving', 'gone', 'away');
+    hub.classList.toggle('m1', nav === 1);
+    document.title = t('doc.title');
+    buildMarks(); renderPanel(); applyP(); renderNav();
+  }
+  // From the game: "← Map", the result's "Back to map" or any menu item.
+  function showHub(n) {
+    if (mode !== 'game') return;
+    if (window.TL_GAME) window.TL_GAME.pause();
+    nav = n || 1; handoff(-1);
+  }
+  window.TL_HUB = { show: showHub };
 
-  renderTide();
-  var held = /coverfx=(\d+)/.exec(location.hash);    // test hook: freeze the hand-off at t ms for screenshots
-  if (held) { setHour(8); setTimeout(function () { leave(+held[1]); }, 200); return; }
+  /* ---- language, theme, size ---- */
+  window.addEventListener('tl:lang', () => {
+    if (mode === 'cover') document.title = t('doc.title');
+    $('cvPhase').textContent = phaseTxt(hour); buildMarks(); renderPanel(); setHot(hot);
+  });
+  new MutationObserver(draw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  window.addEventListener('resize', () => { if (mode === 'cover') { renderTide(); applyP(); } });
+
+  /* ---- start ---- */
+  // Test hooks: #intro=0 (straight into the game) · #hub=1&nav=1 (the map) · #hubp=0.5 (frozen mid-scroll)
+  // · #coverfx=900 (hand-off frozen at 900 ms) · #hot=fanling (a marker's details)
+  buildMarks(); renderTide();
+  if (q.get('intro') === '0') {
+    mode = 'game'; p = target = 1; nav = 1; hub.classList.add('gone', 'away'); body.classList.remove('inhub'); body.classList.add('entered');
+    root.style.setProperty('--hub-q', '1'); renderNav(); setHour(PH);
+    return;
+  }
+  document.title = t('doc.title');
+  if (q.get('hubp')) { frozen = true; p = target = clamp(+q.get('hubp')); setHour(8); applyP(); return; }
+  if (q.get('hub') || q.get('coverfx')) {
+    p = target = 1; nav = q.has('nav') ? +q.get('nav') : 1; hub.classList.toggle('m1', nav === 1);
+    setHour(PH); applyP(); renderPanel(); renderNav();
+    if (q.get('hot')) setHot(q.get('hot'));
+    if (q.get('coverfx')) setTimeout(() => { if (window.TL_GAME.loadMap(D.map)) handoff(1, +q.get('coverfx')); }, 250);
+    return;
+  }
+  applyP(); renderPanel();
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setHour(PH);
   else { setHour(LH); setTimeout(rise, 650); }
 })();

@@ -162,4 +162,45 @@ test('Every board is well formed: candidates on roads, every estate reaches the 
   }
   process.env.FEEDER_MAP=BOARD||'';
 });
+test('Switching boards in place (the hub) plays exactly like loading that board fresh',()=>{
+  const fresh={};
+  for(const name of ['fanling','yuenlong','longping']){
+    for(const k of Object.keys(require.cache))if(/[\\/]v3[\\/](engine|data)\.js$/.test(k))delete require.cache[k];
+    process.env.FEEDER_MAP=name;const E=require('./engine.js');
+    const g=new E.Game();[0,1,2].forEach(id=>g.place(id,E.D.candidates[id*2+1]));g.start();g.advance(E.P.duration);
+    fresh[name]={stats:g.stats(),P:{...E.P},toMTR:E.toMTR.slice()};
+  }
+  for(const k of Object.keys(require.cache))if(/[\\/]v3[\\/](engine|data)\.js$/.test(k))delete require.cache[k];
+  process.env.FEEDER_MAP='longping';const E=require('./engine.js');
+  for(const name of ['yuenlong','fanling','longping','fanling']){
+    assert(E.D.select(name));E.reset();assert.equal(E.D.map,name);
+    const g=new E.Game();[0,1,2].forEach(id=>g.place(id,E.D.candidates[id*2+1]));g.start();g.advance(E.P.duration);
+    assert.deepEqual(g.stats(),fresh[name].stats,`${name}: different result after switching`);
+    assert.deepEqual({...E.P},fresh[name].P);assert.deepEqual(E.toMTR,fresh[name].toMTR);
+  }
+  assert(!E.D.select('nowhere'));assert.equal(E.D.map,'fanling');
+  assert(!Object.keys(E.D).includes('select'),'select must not be a data field');
+  process.env.FEEDER_MAP=BOARD||'';
+});
+test('Every text has all three languages, and every key the page uses exists',()=>{
+  const fs=require('node:fs'),path=require('node:path'),src=f=>fs.readFileSync(path.join(__dirname,f),'utf8');
+  require('./i18n.js');const T=globalThis.I18N,body=src('i18n.js');
+  const keys=[...body.matchAll(/'([\w.]+)':L\(/g)].map(m=>m[1]);
+  assert(keys.length>150);
+  const used=new Set();
+  for(const f of ['ui.js','hub.js'])for(const m of src(f).matchAll(/\bt\('([\w.]+)'[,)]/g))used.add(m[1]);
+  for(const m of src('index.html').matchAll(/data-i18n(?:-html|-title|-aria)?="([\w.]+)"/g))used.add(m[1]);
+  const D=require('./data.js');
+  for(const s of D.sites){used.add('site.'+s.key);used.add('about.'+s.key);}
+  for(const m of D.levels)used.add('src.'+m);
+  for(let n=2;n<=6;n++){used.add(`hub.m${n}H`);used.add(`hub.m${n}P`);}
+  for(let n=0;n<=3;n++)used.add('r.t'+n);
+  for(const k of used)assert(keys.includes(k),`missing text: ${k}`);
+  // every entry is written out in all three languages (an empty string is allowed only where English drops the Chinese line)
+  for(const lang of T.LANGS){T.set(lang);for(const k of keys){const v=T.t(k);assert(typeof v==='string'&&v!==k,`${k} in ${lang}`);
+    if(lang!=='en'&&!['hub.enNames','b.mtr'].includes(k))assert(v.length>0,`${k} is empty in ${lang}`);}}
+  T.set('zh-Hans');assert.equal(T.name({name:'鳳凰嶺邨',hans:'凤凰岭邨'}),'凤凰岭邨');
+  T.set('en');assert.equal(T.name({name:'鳳凰嶺邨',hans:'凤凰岭邨'}),'鳳凰嶺邨');assert.equal(T.station(D.station),D.station.en.charAt(0)+D.station.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase()));
+  T.set('zh-Hant');
+});
 console.log(`${passed} checks passed`);
