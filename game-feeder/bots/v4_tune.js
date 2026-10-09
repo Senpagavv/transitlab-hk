@@ -40,11 +40,11 @@ for(const [name,def] of Object.entries(defs)){
   let plan={moves:[],score:-1,start:null};
   for(const x of statics.slice(0,5)){const p=planner(x.l);if(p.score>plan.score)plan={...p,start:x.l};}
   const shift=dt=>B.play(plan.start,plan.moves.map(m=>({...m,time:Math.max(1,m.time+dt)}))).delivered;
-  const greedy=B.greedy(plan.start,P.moves,15);
+  const greedy=process.env.NOGREEDY?{delivered:null,moves:[]}:B.greedy(plan.start,P.moves,15);
   // idle tail on the planner's game
   const g=new E.Game();plan.start.forEach((c,id)=>g.place(id,D.candidates[c]));g.start();
   const mv=[...plan.moves].sort((a,b)=>a.time-b.time);let idle=0,cnt=0;
-  while(g.t<P.duration-1){while(mv.length&&mv[0].time<=g.t){const m=mv.shift();g.place(m.id,D.candidates[m.to]);}
+  while(g.t<P.duration-1&&!g.done){while(mv.length&&mv[0].time<=g.t){const m=mv.shift();g.place(m.id,D.candidates[m.to]);}
     g.advance(1);const into=(g.t-P.firstWave)%P.interval;
     if(g.t>P.firstWave+P.interval&&g.t<P.firstWave+D.waves.length*P.interval&&into>=P.interval-20)
       for(const s of g.stops){cnt++;if(s.ready<=g.t&&!s.queue.length&&!s.boarding.length&&!g.people.some(p=>p.state==='walk'&&p.target===s.id))idle++;}}

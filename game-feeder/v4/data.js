@@ -29,9 +29,10 @@
         {name:'東邨',hans:'东邨',cell:[6,1],house:[50,0]},
         {name:'西邨',hans:'西邨',cell:[1,4],house:[-50,0]},
         {name:'南苑',hans:'南苑',cell:[6,4],house:[50,0]}],
-      // the busy pair goes round the loop: top, right, bottom, left
-      waves:hold([[9,6,2,1],[2,9,1,6],[1,2,6,9],[6,1,9,2]]),
-      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[113,121,127]},
+      // the busy pair goes round the loop: top, right, bottom, left. The gentle level: neighbours are close, so people
+      // turned away at a moved stop simply walk to the next one and the countdown matters less than on level 2.
+      waves:hold([[14,9,3,2],[3,14,2,9],[2,3,9,14],[9,2,14,3]]),
+      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[198,204,207]},
     // Level 2 · across the river: three estates north of a river with two bridges, one south of it, the station
     // south. Middle Bank looks right above the station but has to go round by a bridge.
     l2:{cols:10,rows:9,margin:[90,50],hub:[6,8],hubLabel:'right',station:STATION,
@@ -43,23 +44,43 @@
         {name:'中岸',hans:'中岸',cell:[5,1],house:[0,-60]},
         {name:'東岸',hans:'东岸',cell:[8,2],house:[50,0]},
         {name:'南灣',hans:'南湾',cell:[3,6],house:[0,58]}],
-      // two estates busy at once, more people than level 1
-      waves:hold([[11,7,2,2],[2,7,11,2],[2,2,7,11],[11,2,2,7]]),
-      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[125,133,139]}
+      // two estates busy at once, more people than level 1; the river keeps people from simply walking to another stop
+      waves:hold([[16,10,3,3],[3,10,16,3],[3,3,10,16],[16,3,3,10]]),
+      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[196,206,215]}
   };
+  // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
+  // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
+  function fromEditor(def){
+    const roads=def.roads||build(def.lines||[]),k=c=>c.join(','),road=new Set(roads.map(k)),cells=def.waterCells||[];
+    const water=[],left=new Set(cells.map(k));
+    for(const [x,y] of [...cells].sort((a,b)=>a[1]-b[1]||a[0]-b[0])){if(!left.has(k([x,y])))continue;
+      let e=x;while(left.has(k([e+1,y])))e++;for(let i=x;i<=e;i++)left.delete(k([i,y]));water.push([x,y,e,y]);}
+    return {station:STATION,margin:[60,50],hubLabel:'right',firstWave:20,...def,roads,water,bridges:cells.filter(c=>road.has(k(c)))};
+  }
+  function customDef(){
+    const h=typeof location!=='undefined'?location.hash:'';
+    try{const m=/(?:^|[#&])lv=([^&]+)/.exec(h);if(m)return JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));}catch(e){}
+    try{if(/(?:^|[#&])map=custom/.test(h)){const s=localStorage.getItem('tl-v4-level');if(s)return JSON.parse(s);}}catch(e){}
+    return null;
+  }
+  const custom=customDef();if(custom)LEVELS.custom=fromEditor(custom);
   function make(key,L){
     const waves=L.waves.map(w=>w.slice());
     const origins=L.estates.map((e,i)=>({...e,count:waves.reduce((s,w)=>s+w[i],0),base:Math.min(...waves.map(w=>w[i]))}));
     const out={map:key,origins,waves,peaks:[],levels:Object.keys(LEVELS)};
-    for(const k of ['cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
-      'release','seats','queue','cool','moves','willing','tail'])if(L[k]!==undefined)out[k]=L[k];
+    for(const k of ['title','cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
+      'release','seats','queue','cool','moves','willing','patience','tail'])if(L[k]!==undefined)out[k]=L[k];
     return out;
   }
-  const D=make(LEVELS[pick]?pick:'l1',LEVELS[LEVELS[pick]?pick:'l1']);
+  const first=custom&&(/(?:^|[#&])lv=/.test(typeof location!=='undefined'?location.hash:'')||pick==='custom')?'custom':LEVELS[pick]?pick:'l1';
+  const D=make(first,LEVELS[first]);
   const swap=next=>{for(const k of Object.keys(D))delete D[k];Object.assign(D,next);return true;};
   Object.defineProperty(D,'select',{enumerable:false,value(name){return LEVELS[name]?swap(make(name,LEVELS[name])):false;}});
   Object.defineProperty(D,'use',{enumerable:false,value(def,key='custom'){return swap(make(key,{...def,roads:def.lines?build(def.lines):def.roads}));}});
   Object.defineProperty(D,'build',{enumerable:false,value:build});
+  // the editor: load its level in place, and read the built-in levels as starting points
+  Object.defineProperty(D,'loadEditor',{enumerable:false,value(def){return swap(make('custom',fromEditor(def)));}});
+  Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
   if(typeof module!=='undefined') module.exports=D;
   root.TIDE_DATA=D;
 })(typeof window!=='undefined'?window:globalThis);

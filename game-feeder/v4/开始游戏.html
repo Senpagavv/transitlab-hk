@@ -409,6 +409,44 @@ body.inhub{overflow:hidden}
 .countdown b{grid-row:1/3;font-size:38px}
 .countdown span{align-self:end;font-size:13.5px}
 .countdown small{align-self:start}
+
+/* v4 · level editor (editor.html) */
+.ed-in{appearance:none;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink);border-radius:4px;height:28px;padding:0 8px;font:inherit;font-size:13px;min-width:0}
+.ed-in:focus{outline:2px solid var(--s-info);outline-offset:1px}
+input.ed-in[type=number]{width:62px;text-align:right}
+.ed-title{width:100%;height:36px;font-family:var(--s-display);font-size:22px;font-weight:600;margin:6px 0 4px;padding:0 10px}
+.ed-h{margin:16px 0 6px}
+.ed-tools{width:100%}.ed-tools button{flex:1;font-size:12.5px;padding:0 4px}
+.ed-size{gap:14px;margin-top:8px}.ed-size label{display:flex;align-items:center;gap:6px;font-size:13px}
+.ed-est{display:grid;grid-template-columns:1fr auto auto auto;gap:6px;align-items:center;padding:5px 6px;border:1px solid var(--s-line);border-radius:5px;margin-bottom:5px;background:var(--s-panel)}
+.ed-est.sel{border-color:var(--s-accent)}
+.ed-est .ed-in{height:26px}.ed-est select.ed-in,.ed-est select{height:26px;font-size:12px;border:1px solid var(--s-line2);border-radius:4px;background:var(--s-panel);color:var(--s-ink)}
+.ed-est .mono{font-size:11px;color:var(--s-ink3);white-space:nowrap}
+.ed-problems{margin:0;padding-left:18px;font-size:12.5px;color:var(--s-bad);line-height:1.6}.ed-problems .ok{color:var(--s-accent);list-style:'✓  '}
+.ed-plate{background-image:none}
+#edBoard{position:absolute;left:0;right:0;top:0;bottom:40px;width:100%;height:calc(100% - 40px);display:block;touch-action:none;user-select:none;cursor:crosshair}
+#edBoard text{font-family:'Geist','PingFang HK','Microsoft JhengHei',sans-serif}
+.ed-cell{position:absolute;left:0;right:0;bottom:0;height:40px;display:flex;align-items:center;padding:0 14px;font-size:12px;color:var(--s-ink2);border-top:1px solid var(--s-line);background:var(--s-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ed-actions{gap:8px;margin-bottom:8px}.ed-actions .btn{flex:1}
+.ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}.ed-grid.three{grid-template-columns:1fr 1fr 1fr}
+.ed-grid label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--s-ink2)}
+.ed-grid input.ed-in[type=number]{width:100%}
+.ed-people{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.ed-people th{font-weight:500;color:var(--s-ink3);padding:2px;text-align:center;font-size:11px}
+.ed-people td{padding:2px;text-align:center}.ed-people td:first-child{text-align:left;color:var(--s-ink3);font-size:10.5px;white-space:nowrap}
+.ed-people input.ed-in[type=number]{width:46px;height:26px;padding:0 4px}
+.ed-willing{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.ed-willing label{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;color:var(--s-ink3)}
+.ed-willing input.ed-in[type=number]{width:100%;padding:0 3px;text-align:center}
+.ed-analysis .r{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:2px 0}
+.ed-analysis .note{font-size:12px;margin:4px 0}
+.ed-analysis .gauge{height:6px;border-radius:3px;background:var(--s-raise);overflow:hidden;margin-top:6px}.ed-analysis .gauge i{display:block;height:100%;background:var(--s-accent)}
+.ed-warn{color:var(--s-warn)!important}
+/* number boxes without spinner arrows, so three digits fit */
+.ed-in[type=number]{-moz-appearance:textfield;appearance:textfield}
+.ed-in[type=number]::-webkit-inner-spin-button,.ed-in[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.ed-willing input.ed-in[type=number]{padding:0 2px;font-size:12px}
+.ed-analysis{margin-bottom:4px}
 </style></head><body class="entered">
 
 <header id="topbar">
@@ -431,7 +469,7 @@ body.inhub{overflow:hidden}
 
 <main id="app" class="eg">
   <aside class="side scol">
-    <div class="row"><div class="seg lv" id="levelSeg" role="group" data-i18n-aria="g.level"><button data-level="l1" aria-pressed="true" data-i18n="g.l1">第一關</button><button data-level="l2" aria-pressed="false" data-i18n="g.l2">第二關</button></div><span class="lbl" data-i18n="g.mode">Mode 01 · Entry game</span><div class="sp"></div><span class="chip"><i></i><span data-i18n="g.chip">確定規則</span></span></div>
+    <div class="row"><div class="seg lv" id="levelSeg" role="group" data-i18n-aria="g.level"><button data-level="l1" aria-pressed="true" data-i18n="g.l1">第一關</button><button data-level="l2" aria-pressed="false" data-i18n="g.l2">第二關</button><button data-level="custom" aria-pressed="false" data-i18n="g.custom" hidden>自訂</button></div><a class="btn btn-sm" id="editLevel" href="editor.html">✎</a><span class="lbl" data-i18n="g.mode">Mode 01 · Entry game</span><div class="sp"></div><span class="chip"><i></i><span data-i18n="g.chip">確定規則</span></span></div>
     <h1 class="h1"><span id="titleEn">Feeder to the MTR</span><span class="h1tc" id="titleTc">接駁巴士 → 港鐵</span></h1>
     <p class="lede" data-i18n-html="g.lede">Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span></p>
 
@@ -545,9 +583,10 @@ body.inhub{overflow:hidden}
         {name:'東邨',hans:'东邨',cell:[6,1],house:[50,0]},
         {name:'西邨',hans:'西邨',cell:[1,4],house:[-50,0]},
         {name:'南苑',hans:'南苑',cell:[6,4],house:[50,0]}],
-      // the busy pair goes round the loop: top, right, bottom, left
-      waves:hold([[9,6,2,1],[2,9,1,6],[1,2,6,9],[6,1,9,2]]),
-      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[113,121,127]},
+      // the busy pair goes round the loop: top, right, bottom, left. The gentle level: neighbours are close, so people
+      // turned away at a moved stop simply walk to the next one and the countdown matters less than on level 2.
+      waves:hold([[14,9,3,2],[3,14,2,9],[2,3,9,14],[9,2,14,3]]),
+      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[198,204,207]},
     // Level 2 · across the river: three estates north of a river with two bridges, one south of it, the station
     // south. Middle Bank looks right above the station but has to go round by a bridge.
     l2:{cols:10,rows:9,margin:[90,50],hub:[6,8],hubLabel:'right',station:STATION,
@@ -559,23 +598,43 @@ body.inhub{overflow:hidden}
         {name:'中岸',hans:'中岸',cell:[5,1],house:[0,-60]},
         {name:'東岸',hans:'东岸',cell:[8,2],house:[50,0]},
         {name:'南灣',hans:'南湾',cell:[3,6],house:[0,58]}],
-      // two estates busy at once, more people than level 1
-      waves:hold([[11,7,2,2],[2,7,11,2],[2,2,7,11],[11,2,2,7]]),
-      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[125,133,139]}
+      // two estates busy at once, more people than level 1; the river keeps people from simply walking to another stop
+      waves:hold([[16,10,3,3],[3,10,16,3],[3,3,10,16],[16,3,3,10]]),
+      firstWave:20,interval:120,release:110,headway:[60,8],seats:8,moves:4,cool:20,tiers:[196,206,215]}
   };
+  // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
+  // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
+  function fromEditor(def){
+    const roads=def.roads||build(def.lines||[]),k=c=>c.join(','),road=new Set(roads.map(k)),cells=def.waterCells||[];
+    const water=[],left=new Set(cells.map(k));
+    for(const [x,y] of [...cells].sort((a,b)=>a[1]-b[1]||a[0]-b[0])){if(!left.has(k([x,y])))continue;
+      let e=x;while(left.has(k([e+1,y])))e++;for(let i=x;i<=e;i++)left.delete(k([i,y]));water.push([x,y,e,y]);}
+    return {station:STATION,margin:[60,50],hubLabel:'right',firstWave:20,...def,roads,water,bridges:cells.filter(c=>road.has(k(c)))};
+  }
+  function customDef(){
+    const h=typeof location!=='undefined'?location.hash:'';
+    try{const m=/(?:^|[#&])lv=([^&]+)/.exec(h);if(m)return JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));}catch(e){}
+    try{if(/(?:^|[#&])map=custom/.test(h)){const s=localStorage.getItem('tl-v4-level');if(s)return JSON.parse(s);}}catch(e){}
+    return null;
+  }
+  const custom=customDef();if(custom)LEVELS.custom=fromEditor(custom);
   function make(key,L){
     const waves=L.waves.map(w=>w.slice());
     const origins=L.estates.map((e,i)=>({...e,count:waves.reduce((s,w)=>s+w[i],0),base:Math.min(...waves.map(w=>w[i]))}));
     const out={map:key,origins,waves,peaks:[],levels:Object.keys(LEVELS)};
-    for(const k of ['cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
-      'release','seats','queue','cool','moves','willing','tail'])if(L[k]!==undefined)out[k]=L[k];
+    for(const k of ['title','cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
+      'release','seats','queue','cool','moves','willing','patience','tail'])if(L[k]!==undefined)out[k]=L[k];
     return out;
   }
-  const D=make(LEVELS[pick]?pick:'l1',LEVELS[LEVELS[pick]?pick:'l1']);
+  const first=custom&&(/(?:^|[#&])lv=/.test(typeof location!=='undefined'?location.hash:'')||pick==='custom')?'custom':LEVELS[pick]?pick:'l1';
+  const D=make(first,LEVELS[first]);
   const swap=next=>{for(const k of Object.keys(D))delete D[k];Object.assign(D,next);return true;};
   Object.defineProperty(D,'select',{enumerable:false,value(name){return LEVELS[name]?swap(make(name,LEVELS[name])):false;}});
   Object.defineProperty(D,'use',{enumerable:false,value(def,key='custom'){return swap(make(key,{...def,roads:def.lines?build(def.lines):def.roads}));}});
   Object.defineProperty(D,'build',{enumerable:false,value:build});
+  // the editor: load its level in place, and read the built-in levels as starting points
+  Object.defineProperty(D,'loadEditor',{enumerable:false,value(def){return swap(make('custom',fromEditor(def)));}});
+  Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
   if(typeof module!=='undefined') module.exports=D;
   root.TIDE_DATA=D;
 })(typeof window!=='undefined'?window:globalThis);
@@ -591,7 +650,7 @@ body.inhub{overflow:hidden}
   // Each level sets its own rhythm, willingness, capacity and tiers (reset()).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:4,
-    willing:[1,.9,.8,.7,.6,.5,.4,.3,.2,.1],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
+    willing:[1,.9,.8,.7,.6,.5,.4],homeGrace:50,homeThink:20,patience:210,
     reconsider:4,target:133,highScore:140,masterScore:146};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
@@ -623,9 +682,14 @@ body.inhub{overflow:hidden}
     // each board carries its own headway formula and score tiers
     [P.headwayBase,P.headwayStep]=D.headway||[60,10];
     if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
-    for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
-    // the last round's people still need time to walk, wait and ride
-    P.duration=P.firstWave+D.waves.length*P.interval+(D.tail??90);
+    for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing','patience'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
+    // after the last round people still walk, wait and ride: the game ends when everyone has an outcome
+    // (delivered or drove), or at the latest `tail` seconds after the last round
+    P.lastRound=P.firstWave+D.waves.length*P.interval;
+    // the latest anyone can still be on the way: full patience, then the slowest bus and the longest ride
+    const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
+    const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
+    P.duration=P.lastRound+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
   reset();
@@ -655,7 +719,7 @@ body.inhub{overflow:hidden}
         for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
           born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
           state:'future',preference:thresholds[j],budget:P.patience+40*(r()-.5),
-          queueLimit:P.queuePatience+20*(r()-.5),trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
+          trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
       this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
@@ -675,9 +739,11 @@ body.inhub{overflow:hidden}
       s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.cool:0;
       if(!this.started)s.departAt=Infinity;
       if(old) {
-        // People at the old spot look for another stop from where they stand; if none suits, they walk home
-        // and may try again once the new stop is built (the move was not their failure).
-        const waiting=[...s.queue,...s.boarding].map(pid=>this.person(pid)).filter(p=>['queue','seated'].includes(p.state));
+        // The bus loading at the old spot leaves at once: everyone aboard is delivered as usual.
+        if(this.started&&s.boarding.length)this.depart(s,old);
+        // People still queuing look for another stop from where they stand; if none suits, they walk home
+        // and may try again once the new stop is ready (the move was not their failure).
+        const waiting=s.queue.map(pid=>this.person(pid)).filter(p=>p.state==='queue');
         s.queue=[];s.boarding=[];
         for(const p of waiting)this.reroute(p,old,null,'搬站返家');
         for(const p of this.people) if(p.state==='walk'&&p.target===id) {
@@ -767,17 +833,18 @@ body.inhub{overflow:hidden}
       }
       for(const s of this.stops){if(!s.cell)continue;
         if(s.ready>this.t){while(this.t+1e-6>=s.departAt)s.departAt+=this.headway(s);continue;}   // cooling down: buses pass empty
-        for(const id of [...s.queue,...s.boarding]){const p=this.person(id);
-          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline)this.reroute(p,s.cell.slice(),s,'久候返家');}
+        for(const id of [...s.queue]){const p=this.person(id);if(this.t>=p.deadline)this.reroute(p,s.cell.slice(),s,'久候返家');}
         this.board(s);if(this.t+1e-6<s.departAt)continue;
-        const path=route(s.cell,D.hub),load=s.boarding.splice(0),serial=++s.serial;
-        // A scheduled departure. Fleet circulation is abstracted in the headway;
-        // the map displays only the loaded, one-way feeder trip to MTR.
-        if(load.length){this.trips.push({stop:s.id,serial,path,since:this.t,end:this.t+length(path)*P.busStep,load,done:false});
-          for(const id of load){const p=this.person(id);p.state='bus';p.since=this.t;this.emit('depart',p,{stop:s.id,serial});}}
-        this.emit('dispatch',null,{stop:s.id,serial,load:load.length});
-        s.departAt=this.t+this.headway(s);this.board(s);
+        this.depart(s,s.cell);s.departAt=this.t+this.headway(s);this.board(s);
       }
+    }
+    // A departure from `from` (the stop's cell, or its old cell when it is moved). Fleet circulation is abstracted in
+    // the headway; the map displays only the loaded, one-way feeder trip to MTR.
+    depart(s,from) {
+      const path=route(from,D.hub),load=s.boarding.splice(0),serial=++s.serial;
+      if(load.length){this.trips.push({stop:s.id,serial,path,since:this.t,end:this.t+length(path)*P.busStep,load,done:false});
+        for(const id of load){const p=this.person(id);p.state='bus';p.since=this.t;this.emit('depart',p,{stop:s.id,serial});}}
+      this.emit('dispatch',null,{stop:s.id,serial,load:load.length});
     }
     closeSession() {
       for(const p of this.people)if(!['car','delivered'].includes(p.state)){p.state='missed';this.missed++;}
@@ -802,14 +869,14 @@ body.inhub{overflow:hidden}
             if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
             if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
             else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}
-        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
+        } else if(p.state==='queue'&&this.t>=p.deadline){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           if(p.giveUp){this.car(p);continue;}
           // home again: think for a while, then one decision — the nearest suitable stop, or the car
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
         }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
-      if(this.t>=P.duration)this.closeSession();
+      if(this.t>=P.duration||this.t>=P.lastRound&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
     }
     advance(seconds) {
       if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);
@@ -1143,6 +1210,71 @@ body.inhub{overflow:hidden}
     'src.l2':L('示意關卡，不是真實地點：一條河隔開北岸三個屋苑和港鐵站，只有兩座橋。中岸看起來就在港鐵正上方，實際要繞橋。','示意关卡，不是真实地点：一条河隔开北岸三个屋苑和港铁站，只有两座桥。中岸看起来就在港铁正上方，实际要绕桥。','A practice board, not a real place: a river with two bridges separates three estates from the station. Middle Bank looks right above the station but must go round by a bridge.'),
     'src.demand':L('每輪各區人數由幾個固定數值輪換，兩輪換一次；人數與時間都是遊戲設定，不代表真實客流或減碳量。','每轮各区人数由几个固定数值轮换，两轮换一次；人数与时间都是游戏设定，不代表真实客流或减碳量。','Each round’s numbers swap a few fixed values between estates, changing every two rounds; numbers and times are game settings, not real ridership or carbon savings.')
   });
+  // v4 level editor (editor.html), and the game's side of it
+  Object.assign(S,{
+    'doc.editor':L('TransitLab HK · 關卡編輯器','TransitLab HK · 关卡编辑器','TransitLab HK · Level editor'),
+    'ed.brand':L('Level editor · 關卡編輯器','Level editor · 关卡编辑器','Level editor'),
+    'ed.lbl':L('Level editor · 關卡編輯器','Level editor · 关卡编辑器','Level editor'),
+    'ed.toGame':L('▶ 回到遊戲','▶ 回到游戏','▶ Back to the game'),
+    'ed.titleAria':L('關卡名稱','关卡名称','Level name'),'ed.titlePh':L('給這關起個名字','给这关起个名字','Name this level'),
+    'ed.boardAria':L('關卡地圖：按住拖動畫路或河，點擊放屋苑、港鐵站和站位','关卡地图：按住拖动画路或河，点击放屋苑、港铁站和站位','Level map: drag to draw roads or water, click to place estates, the station and stop spots'),
+    'ed.tools':L('工具 · 鍵 1–6','工具 · 键 1–6','Tools · keys 1–6'),
+    'ed.tool.road':L('道路','道路','Road'),'ed.tool.water':L('河','河','Water'),'ed.tool.estate':L('屋苑','屋苑','Estate'),
+    'ed.tool.hub':L('港鐵','港铁','MTR'),'ed.tool.cand':L('站位','站位','Stop spot'),'ed.tool.erase':L('擦','擦','Erase'),
+    'ed.t.road':L('按住拖動畫路，可以從已有的路接出去；擦路用「擦」。走路和巴士都只能沿路走，一格就是一個街口。','按住拖动画路，可以从已有的路接出去；擦路用「擦」。走路和巴士都只能沿路走，一格就是一个街口。','Drag to draw roads, also branching off existing ones; use Erase to remove. Walking and buses follow the roads; one cell is one block.'),
+    'ed.t.water':L('按住拖動畫河。路穿過河的地方就是橋。','按住拖动画河。路穿过河的地方就是桥。','Drag to draw water. Where a road crosses water is a bridge.'),
+    'ed.t.estate':L('點路上一格放屋苑；點已有的屋苑選中它。名字和樓的方向在下面改。','点路上一格放屋苑；点已有的屋苑选中它。名字和楼的方向在下面改。','Click a road cell to add an estate; click one to select it. Change its name and building side below.'),
+    'ed.t.hub':L('點路上一格放港鐵站（只有一個）。','点路上一格放港铁站（只有一个）。','Click a road cell for the MTR station (only one).'),
+    'ed.t.cand':L('點路上一格加／去掉一個可放站的位置（＋）。玩家只能在這些位置放站。','点路上一格加／去掉一个可放站的位置（＋）。玩家只能在这些位置放站。','Click a road cell to add or remove a stop spot (＋). Players can only place stops on these.'),
+    'ed.t.erase':L('點一格擦掉上面的東西（屋苑、站位、港鐵、路、河，逐層）；按住拖動擦路。','点一格擦掉上面的东西（屋苑、站位、港铁、路、河，逐层）；按住拖动擦路。','Click to erase what is on a cell (estate, stop spot, station, road, water, one layer at a time); drag to erase roads.'),
+    'ed.cols':L('寬','宽','Width'),'ed.rows':L('高','高','Height'),
+    'ed.estates':L('屋苑','屋苑','Estates'),'ed.noEstates':L('還沒有屋苑。選「屋苑」工具，點路上一格。','还没有屋苑。选「屋苑」工具，点路上一格。','No estates yet. Pick the Estate tool and click a road cell.'),
+    'ed.estName':L('屋苑名稱','屋苑名称','Estate name'),'ed.estSide':L('樓在路的哪一邊','楼在路的哪一边','Which side of the road the building is'),
+    'ed.side.left':L('樓在左','楼在左','left'),'ed.side.right':L('樓在右','楼在右','right'),'ed.side.up':L('樓在上','楼在上','above'),'ed.side.down':L('樓在下','楼在下','below'),
+    'ed.toMTR':L('到港鐵 {n} 格','到港铁 {n} 格','{n} to MTR'),'ed.del':L('刪除','删除','Delete'),
+    'ed.check':L('檢查','检查','Checks'),'ed.start':L('從這裡開始','从这里开始','Start from'),'ed.pick':L('選一個起點…','选一个起点…','Pick a starting point…'),'ed.blank':L('空白地圖','空白地图','Blank map'),
+    'ed.pNoHub':L('還沒有港鐵站。','还没有港铁站。','No MTR station yet.'),'ed.pHubOff':L('港鐵站不在路上。','港铁站不在路上。','The station is off the road.'),
+    'ed.pNoEstate':L('還沒有屋苑。','还没有屋苑。','No estates yet.'),'ed.pFewCand':L('站位少於 3 個（要放三座站）。','站位少于 3 个（要放三座站）。','Fewer than 3 stop spots (three stops are placed).'),
+    'ed.pEstateOff':L('{s} 不在路上。','{s} 不在路上。','{s} is off the road.'),'ed.pNoPath':L('{s} 沒有路通到港鐵。','{s} 没有路通到港铁。','{s} has no road to the station.'),
+    'ed.pCandCut':L('有站位沒有路通到港鐵。','有站位没有路通到港铁。','A stop spot has no road to the station.'),'ed.pNoPeople':L('每輪人數全是 0。','每轮人数全是 0。','Nobody leaves home in any round.'),
+    'ed.pNone':L('可以試玩。','可以试玩。','Ready to play.'),
+    'ed.needRoad':L('要放在路上。先用「道路」工具畫路。','要放在路上。先用「道路」工具画路。','It must be on a road. Draw roads first.'),
+    'ed.estDefault':L('屋苑{n}','屋苑{n}','Estate {n}'),
+    'ed.hoverNone':L('滑鼠停在一格上，看它到港鐵和各屋苑走幾格。','鼠标停在一格上，看它到港铁和各屋苑走几格。','Hover a cell to see how many blocks it is from the station and each estate.'),
+    'ed.hoverOff':L('第 {x} 列第 {y} 行：沒有路。','第 {x} 列第 {y} 行：没有路。','Column {x}, row {y}: no road.'),
+    'ed.hoverMTR':L('到港鐵 {n} 格（班距 {hw} 秒）','到港铁 {n} 格（班距 {hw} 秒）','{n} blocks to the MTR (every {hw} s)'),
+    'ed.blocks':L(' 格',' 格',' bl'),'ed.whyMTR':L('不來（走去港鐵更近）','不来（走去港铁更近）','won’t come (the MTR is as close)'),'ed.whyFar':L('不來（太遠）','不来（太远）','won’t come (too far)'),
+    'ed.play':L('▶ 試玩','▶ 试玩','▶ Test play'),'ed.analyse':L('分析難度','分析难度','Analyse'),'ed.export':L('導出 .json','导出 .json','Export .json'),'ed.import':L('導入','导入','Import'),
+    'ed.people':L('每輪人數','每轮人数','People per round'),'ed.roundsN':L('輪數','轮数','Rounds'),'ed.hold':L('每種組合持續（輪）','每种组合持续（轮）','Each mix lasts (rounds)'),
+    'ed.interval':L('每輪（秒）','每轮（秒）','Round (s)'),'ed.release':L('陸續出門（秒）','陆续出门（秒）','Leaving spread (s)'),
+    'ed.phase':L('輪','轮','Rounds'),'ed.sum':L('合計','合计','Sum'),'ed.rounds':L('{a}–{b}','{a}–{b}','{a}–{b}'),
+    'ed.total':L('全關 {n} 人，{r} 輪。每一行是一種組合，按上面的設定持續幾輪。','全关 {n} 人，{r} 轮。每一行是一种组合，按上面的设定持续几轮。','{n} people in {r} rounds. Each row is one mix, lasting the rounds set above.'),
+    'ed.rules':L('規則數字','规则数字','Rule numbers'),'ed.hw':L('班距：基本（秒）','班距：基本（秒）','Headway: base (s)'),'ed.hwStep':L('＋每格到港鐵（秒）','＋每格到港铁（秒）','+ per block to MTR (s)'),
+    'ed.seats':L('每班座位','每班座位','Seats a bus'),'ed.queue':L('排隊位','排队位','Queue places'),'ed.moves':L('挪站次數','挪站次数','Moves'),
+    'ed.cool':L('冷卻（秒）','冷却（秒）','Cool-down (s)'),'ed.patience':L('總耐心（秒）','总耐心（秒）','Patience (s)'),
+    'ed.willing':L('走幾格還願意來（%）','走几格还愿意来（%）','Share still willing by blocks walked (%)'),
+    'ed.tiers':L('門檻','门槛','Tiers'),'ed.pass':L('過關','过关','Pass'),'ed.high':L('高分','高分','High'),'ed.master':L('大師','大师','Master'),
+    'ed.analysis':L('機器人分析','机器人分析','Bot analysis'),
+    'ed.aIdle':L('按「分析難度」：機器人會試遍所有開局（不挪站），再從最好的三個開局出發、在每輪開始前的倒數裡試著挪站，最後建議門檻。大約半分鐘到兩分鐘。','按「分析难度」：机器人会试遍所有开局（不挪站），再从最好的三个开局出发、在每轮开始前的倒数里试着挪站，最后建议门槛。大约半分钟到两分钟。','Press Analyse: the bots try every opening without moving, then from the best three try moves in each countdown, and suggest tiers. About half a minute to two minutes.'),
+    'ed.aBusy':L('機器人在試…… {p}%','机器人在试…… {p}%','The bots are playing… {p}%'),
+    'ed.aStatic':L('不挪站最好','不挪站最好','Best without moving'),'ed.aMedian':L('一般開局（中位數）','一般开局（中位数）','A typical opening (median)'),
+    'ed.aPlan':L('倒數時挪站最好','倒数时挪站最好','Best with countdown moves'),
+    'ed.aPlanHow':L('開局 {o}；{m}','开局 {o}；{m}','Opening {o}; {m}'),'ed.aMove':L('第 {r} 輪前 {stop} 站→{to}','第 {r} 轮前 {stop} 站→{to}','before round {r} stop {stop}→{to}'),'ed.aNoMove':L('不挪','不挪','no moves'),
+    'ed.aTiers':L('建議門檻 過關/高分/大師','建议门槛 过关/高分/大师','Suggested pass/high/master'),
+    'ed.aPass':L('不挪站能過關的開局：{of} 種裡 {n} 種。','不挪站能过关的开局：{of} 种里 {n} 种。','Openings that pass without moving: {n} of {of}.'),
+    'ed.wMoves':L('挪站幫助很小：試試讓人多的屋苑輪換得更明顯，或者讓一座站接不完一個忙的屋苑（人多一點、座位少一點）。','挪站帮助很小：试试让人多的屋苑轮换得更明显，或者让一座站接不完一个忙的屋苑（人多一点、座位少一点）。','Moving helps little: make the busy estates change more clearly, or make one stop unable to carry a busy estate (more people or fewer seats).'),
+    'ed.wEasy':L('太容易：不挪站幾乎全部送到。加人，或者減座位、拉長班距。','太容易：不挪站几乎全部送到。加人，或者减座位、拉长班距。','Too easy: almost everyone is delivered without moving. Add people, or cut seats or lengthen headways.'),
+    'ed.wHard':L('太難：挪站也送不到六成。減人，或者加座位、縮短班距。','太难：挪站也送不到六成。减人，或者加座位、缩短班距。','Too hard: even with moves under 60% are delivered. Fewer people, more seats or shorter headways.'),
+    'ed.aEarly':L('同樣挪站，但提前 40 秒','同样挪站，但提前 40 秒','Same moves, 40 s early'),
+    'ed.wEarly':L('提前挪站不吃虧：玩家在上一輪就挪好也一樣分。想讓換輪前的倒數更重要，就讓每個屋苑在每一輪都有人（一輪快結束時站上還有人在用），或縮短耐心。','提前挪站不吃亏：玩家在上一轮就挪好也一样分。想让换轮前的倒数更重要，就让每个屋苑在每一轮都有人（一轮快结束时站上还有人在用），或缩短耐心。','Moving early costs nothing: moving a round ahead scores the same. To make the countdown matter, give every estate people in every round (stops still busy as a round ends), or shorten patience.'),
+    'ed.useTiers':L('套用建議門檻','套用建议门槛','Use these tiers'),
+    'ed.imported':L('已導入 {s}','已导入 {s}','Imported {s}'),'ed.badFile':L('讀不懂這個檔案。','读不懂这个文件。','Could not read that file.'),
+    // the game's side
+    'site.custom':L('自訂關卡','自订关卡','Custom level'),'lvEn.custom':L('Custom level','Custom level','Custom level'),'g.custom':L('自訂','自订','Custom'),
+    'g.edit':L('✎ 編輯這關','✎ 编辑这关','✎ Edit this level'),'g.editor':L('✎ 關卡編輯器','✎ 关卡编辑器','✎ Level editor'),
+    'src.custom':L('這關是用關卡編輯器做的，地圖和人數都是自訂的遊戲設定。','这关是用关卡编辑器做的，地图和人数都是自订的游戏设定。','Made in the level editor: map and numbers are custom game settings.'),
+    'b.whyMTR':L('走去港鐵更近','走去港铁更近','MTR as close'),'b.whyFar':L('太遠','太远','too far'),'b.whyOther':L('去 {s} 站','去 {s} 站','goes to {s}')
+  });
   // district names in the cover data are simplified Chinese
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
@@ -1233,9 +1365,12 @@ body.inhub{overflow:hidden}
     texts();
   }
   function texts(){
-    $('titleEn').textContent=t('lvEn.'+D.map);
+    const own=D.map==='custom'&&D.title;
+    $('titleEn').textContent=own||t('lvEn.'+D.map);
     $('titleTc').textContent=t('g.titleTc',{s:t('site.'+D.map)});$('titleTc').hidden=!$('titleTc').textContent;
-    document.title=t('doc.game',{s:t('site.'+D.map)});
+    document.title=t('doc.game',{s:own||t('site.'+D.map)});
+    $('levelSeg').querySelector('[data-level="custom"]').hidden=!D.levels.includes('custom');
+    $('editLevel').textContent=t(D.map==='custom'?'g.edit':'g.editor');
     $('totalN').textContent=total;
     $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
     for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){
@@ -1323,7 +1458,9 @@ body.inhub{overflow:hidden}
         out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.08+.16*w).toFixed(2),stroke:C.accent,'stroke-width':1.5+2*w});
         const right=hx<VBW*.72,lx=right?hx+r+6:hx-r-6,anchor=right?'start':'end';   // keep the label inside the board
         out+=text(lx,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':anchor});
-        if(next>=0)out+=text(lx,hy+15,t('b.next',{k:k[next],n:D.waves[next][i]}),12,C.accent,{'font-weight':500,'text-anchor':anchor});}}
+        if(next>=0)out+=text(lx,hy+15,t('b.next',{k:k[next],n:D.waves[next][i]}),12,C.accent,{'font-weight':500,'text-anchor':anchor});}
+      else{const d=dist(o.cell,hover),why=d>=0&&d>=Tide.toMTR[i]&&Tide.willing(d)>0?t('b.whyMTR'):!Tide.willing(d)?t('b.whyFar'):f.stop>=0?t('b.whyOther',{s:letters[f.stop]}):'';
+        const right=hx<VBW*.72;if(why)out+=text(right?hx+24:hx-24,hy-18,why,11.5,C.ink3,{'text-anchor':right?'start':'end'});}}
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
@@ -1343,11 +1480,12 @@ body.inhub{overflow:hidden}
     const fc=game.forecast(hover?selected:-1,hover);
     let out='';
     for(const [x1,y1,x2,y2] of D.water||[]){const [ax,ay]=xy([x1,y1]),[bx,by]=xy([x2,y2]);
-      out+=svg('rect',{x:ax-40,y:ay-24,width:bx-ax+80,height:by-ay+48,fill:C.info,'fill-opacity':.16,rx:8});}
+      out+=svg('rect',{x:ax-36,y:ay-28,width:bx-ax+72,height:by-ay+56,fill:C.info,'fill-opacity':.16,rx:6});}
     for(const pass of [[C.roadEdge,24],[C.road,20]])
       for(const c of D.roads)for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(D.roads.some(q=>same(q,n)))out+=svg('path',{d:pathStr([c,n]),stroke:pass[0],'stroke-width':pass[1],fill:'none','stroke-linecap':'square'});
-    for(const b of D.bridges||[]){const [x,y]=xy(b);   // rails either side of the road across the water
-      for(const dx of [-14,14])out+=svg('path',{d:`M${x+dx} ${y-24}L${x+dx} ${y+24}`,stroke:C.ink2,'stroke-width':2.2});}
+    const onRoad=c=>D.roads.some(q=>same(q,c));
+    for(const b of D.bridges||[]){const [x,y]=xy(b),v=onRoad([b[0],b[1]-1])||onRoad([b[0],b[1]+1]);   // rails either side of the road
+      for(const d of [-14,14])out+=svg('path',{d:v?`M${x+d} ${y-24}L${x+d} ${y+24}`:`M${x-30} ${y+d}L${x+30} ${y+d}`,stroke:C.ink2,'stroke-width':2.2});}
     const active=game.stops[selected];
     if(active.cell&&!hover)out+=svg('path',{d:pathStr(route(active.cell,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none',opacity:.35});
     if(hover)out+=svg('path',{d:pathStr(route(hover,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none','stroke-dasharray':'5 6'});
@@ -1427,7 +1565,7 @@ body.inhub{overflow:hidden}
     const athome=game.people.filter(p=>p.state==='home').length,onway=st.active-athome;
     $('score').textContent=st.delivered;$('score2').textContent=st.delivered;$('scoreBar').style.width=`${100*st.delivered/total}%`;
     $('cars').textContent=st.cars;$('onway').textContent=Math.max(0,onway);$('notOut').textContent=st.future+athome;
-    $('clock').textContent=`${fmt(game.t)} / ${fmt(P.duration)}`;$('clockProg').style.width=`${100*game.t/P.duration}%`;$('moves').textContent=game.moves;
+    $('clock').textContent=`${fmt(game.t)} / ${fmt(P.lastRound)}`;$('clockProg').style.width=`${Math.min(100,100*game.t/P.lastRound)}%`;$('moves').textContent=game.moves;
     const r=roundAt(game.t),nr=nextRound(),m=D.waves.length;
     $('wave').textContent=!game.started?t('w.first',{n:P.firstWave}):game.done?t('w.missed',{n:game.missed}):r>=0?t('w.active',{n:r+1,m,...roundStat(r)}):nr>=0?t('w.next',{n:nr+1,m,t:fmt(waveStart(nr)-game.t)}):t('w.all',{m});
     $('undoMoves').hidden=!(snap&&!playing&&!game.done&&game.commands.length>snap.commands.length);
@@ -1514,6 +1652,9 @@ body.inhub{overflow:hidden}
     if(!D.select(map))return false;
     Tide.reset();setupMap();reset(t('n.layout'));return true;}
   $('levelSeg').onclick=e=>{const b=e.target.closest('[data-level]');if(b)loadLevel(b.dataset.level);};
+  // the level editor sits next to this page (source pages or the bundled single files)
+  const page=decodeURIComponent(location.pathname.split('/').pop()||'');
+  $('editLevel').href=page==='开始游戏.html'?'关卡编辑器.html':'editor.html';
   $('download').onclick=()=>{const run={version:'feeder-v4-trial-2026-10-09',map:D.map,seed:game.seed,parameters:P,demand:D.waves,stats:game.stats(),stops:game.stops.map(s=>({id:s.id,cell:s.cell,peak:s.peak,rejected:s.rejected})),moves:game.commands,events:game.events};const url=URL.createObjectURL(new Blob([JSON.stringify(run,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`TransitLab-feeder-${D.map}-run.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
   function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
     try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}

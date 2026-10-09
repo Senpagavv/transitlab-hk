@@ -10,8 +10,8 @@ const total=()=>D.waves.flat().reduce((a,b)=>a+b,0);
 const roundStart=r=>P.firstWave+(r-1)*P.interval;
 // Best openings and countdown plans found by bots/v4_calibrate.js (moves 3 s before round r).
 const PLANS={
-  l1:{opening:[[6,1],[1,4],[6,4]],moves:[{r:2,id:1,cell:[1,3]},{r:5,id:0,cell:[1,4]},{r:8,id:1,cell:[1,2]}]},
-  l2:{opening:[[1,1],[7,1],[3,6]],moves:[{r:2,id:1,cell:[7,3]},{r:3,id:0,cell:[2,1]},{r:4,id:0,cell:[4,1]},{r:5,id:0,cell:[1,1]}]}};
+  l1:{opening:[[6,1],[1,3],[6,4]],moves:[{r:2,id:1,cell:[1,4]},{r:5,id:1,cell:[1,3]},{r:7,id:0,cell:[1,1]},{r:8,id:1,cell:[1,4]}]},
+  l2:{opening:[[1,1],[7,3],[2,6]],moves:[{r:3,id:0,cell:[2,1]},{r:4,id:1,cell:[8,1]},{r:5,id:2,cell:[3,6]},{r:6,id:1,cell:[7,1]}]}};
 function useLevel(name){assert(D.select(name));E.reset();}
 function play(plan,lead=3,moves=plan.moves){
   const g=new Game();plan.opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());
@@ -29,8 +29,8 @@ test('Every estate sends people every round, steadily through the whole round (n
     assert.equal(g.people.length,total());}
   useLevel('l1');
 });
-test('Willingness falls 10 points a block; exactly comes(n,share) people accept a share',()=>{
-  assert.deepEqual([0,1,2,3,4,5,6,9,10,12].map(willing),[1,.9,.8,.7,.6,.5,.4,.1,0,0]);
+test('Willingness falls 10 points a block to 40% at 6 blocks, nobody walks 7; exactly comes(n,share) people accept a share',()=>{
+  assert.deepEqual([0,1,2,3,4,5,6,7,9,12].map(willing),[1,.9,.8,.7,.6,.5,.4,0,0,0]);
   const g=new Game();
   D.waves.forEach((w,wi)=>w.forEach((n,o)=>{const ps=g.people.filter(p=>p.wave===wi&&p.origin===o);assert.equal(ps.length,n);
     for(const s of [1,.9,.7,.5,.3])assert.equal(ps.filter(p=>p.preference<s).length,comes(n,s));}));
@@ -56,21 +56,54 @@ test('Seats, queue and population are conserved through a full game; driving is 
     const st=g.stats();assert.equal(st.delivered+st.cars+st.missed+st.active+st.future,total());}
   assert(g.done);
 });
-test('A moved stop cools down: nobody queues or boards, the timetable keeps running, it boards right after',()=>{
-  const g=setup();g.advance(300);const s=g.stops[0],waiting=[...s.queue,...s.boarding],before=s.departAt,hw0=g.headway(s);
-  assert(waiting.length>0);
+test('Moving a stop: the bus loading there leaves at once; the queue goes elsewhere; the stop cools down, timetable running',()=>{
+  const g=setup();const s=g.stops[0];
+  while(!(s.boarding.length&&s.queue.length)&&g.t<P.lastRound)g.advance(1);   // a moment with people aboard and queuing
+  assert(s.boarding.length&&s.queue.length,'no moment with people aboard and a queue');
+  const t0=g.t,aboard=s.boarding.slice(),queued=s.queue.slice(),before=s.departAt,hw0=g.headway(s);
   const to=D.candidates.find(c=>!g.stops.some(x=>same(x.cell,c))&&g.forecast(0,c).some(f=>f.stop===0));
-  assert(g.place(0,to));assert.equal(g.moves,P.moves-1);assert.equal(s.ready,300+P.cool);assert.equal(s.departAt,before);
-  waiting.forEach(id=>{assert(['return','walk'].includes(g.person(id).state));assert(!g.person(id).giveUp,'a move is not the passenger\'s failure');});
+  assert(g.place(0,to));assert.equal(g.moves,P.moves-1);assert.equal(s.ready,t0+P.cool);assert.equal(s.departAt,before);
+  aboard.forEach(id=>assert.equal(g.person(id).state,'bus','everyone aboard leaves with the bus'));
+  assert(g.events.some(e=>e.type==='dispatch'&&e.stop===0&&e.time===t0&&e.load===aboard.length));
+  queued.forEach(id=>{assert(['return','walk'].includes(g.person(id).state));assert(!g.person(id).giveUp,'a move is not the passenger\'s failure');});
   const dispatches=()=>g.events.filter(e=>e.type==='dispatch'&&e.stop===0).length,d0=dispatches();
   for(let k=0;k<P.cool/P.tick-1;k++){g.advance(P.tick);assert.equal(s.queue.length+s.boarding.length,0);}
   assert.equal(dispatches(),d0,'no departures are recorded while cooling down');
   // the timetable kept its rhythm: the next departure is the old one plus whole headways
   const gap=s.departAt-before;assert(gap>=0);assert(Math.abs(gap/hw0-Math.round(gap/hw0))<1e-6||gap%g.headway(s)<1e-6);
   g.advance(150);assert(g.events.some(e=>e.type==='queue'&&e.stop===0&&e.time>=s.ready),'boards again after the cool-down');
+  g.advance(P.duration);aboard.forEach(id=>assert.equal(g.person(id).state,'delivered'));
 });
-test('Moving in the countdown beats moving 40 s early: stops are still busy at the end of a round',()=>{
-  for(const name of ['l1','l2']){useLevel(name);
+test('Once aboard, a passenger always reaches the MTR; a queue waits for a seat unless that is past their patience',()=>{
+  for(const name of ['l1','l2']){useLevel(name);const g=play(PLANS[name]);
+    for(const p of g.people){const ev=g.events.filter(e=>e.id===p.id),b=ev.findIndex(e=>e.type==='board');
+      if(b<0)continue;assert.equal(p.state,'delivered',`${name}: person ${p.id} boarded but ${p.state}`);
+      assert(!ev.slice(b).some(e=>['return','walk','car'].includes(e.type)),`${name}: person ${p.id} left the bus`);}
+    // anyone who gave up in a queue did so only once their patience had run out
+    for(const e of g.events.filter(e=>e.type==='return'&&e.why==='久候返家'))assert(e.time>=g.person(e.id).deadline-1e-6);}
+  useLevel('l1');
+});
+test('The game ends when everyone has an outcome (nobody left half-way), within the level\'s limit',()=>{
+  for(const name of ['l1','l2']){useLevel(name);const g=play(PLANS[name]);
+    assert(g.done);assert.equal(g.missed,0,`${name}: ${g.missed} unfinished`);assert(g.t<=P.duration);
+    assert(g.people.every(p=>p.state==='delivered'||p.state==='car'));}
+  useLevel('l1');
+});
+test('A level from the editor loads like a built-in one: water cells, bridges where a road crosses, plays to the end',()=>{
+  const def={title:'測試',cols:8,rows:6,roads:[[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[3,2],[3,3],[3,4],[3,5],[4,5],[5,5],[6,5]],
+    waterCells:[[0,3],[1,3],[2,3],[3,3],[4,3],[5,3]],hub:[6,5],candidates:[[1,1],[2,1],[4,1],[6,1],[3,2],[3,4],[4,5]],
+    estates:[{name:'甲',cell:[1,1],house:[0,-56]},{name:'乙',cell:[6,1],house:[0,-56]}],waves:[[5,3],[5,3],[3,5],[3,5]],
+    interval:100,release:90,headway:[40,4],seats:6,queue:6,cool:15,moves:2,patience:240,willing:[1,.9,.8,.7,.6,.5,.4],tiers:[10,12,14]};
+  assert(D.loadEditor(def));E.reset();
+  assert.equal(D.map,'custom');assert.deepEqual(D.bridges,[[3,3]]);assert.deepEqual(D.water,[[0,3,5,3]],'cells in a row become one stretch of river');
+  assert.equal(P.interval,100);assert.equal(P.moves,2);assert.equal(P.patience,240);assert.deepEqual(P.willing,def.willing);
+  const g=new Game();[[1,1],[6,1],[3,4]].forEach((c,id)=>assert(g.place(id,c)));assert(g.start());g.advance(P.duration+1);
+  const st=g.stats();assert(g.done);assert.equal(st.delivered+st.cars+st.missed,32);assert(st.delivered>0);
+  useLevel('l1');
+});
+// Level 1 is the gentle level: there people turned away at a moved stop walk on to a neighbour, so early moves cost little.
+test('On level 2, moving in the countdown beats moving 40 s early: stops are still busy at the end of a round',()=>{
+  for(const name of ['l2']){useLevel(name);
     const on=play(PLANS[name]).delivered,early=play(PLANS[name],43).delivered;
     assert(on>early,`${name}: countdown ${on} vs 40 s early ${early}`);}
   useLevel('l1');
@@ -135,11 +168,14 @@ test('Every text has all three languages, and every key the page uses exists',()
   require('./i18n.js');const T=globalThis.I18N,body=src('i18n.js');
   const keys=[...body.matchAll(/'([\w.]+)':L\(/g)].map(m=>m[1]);
   const used=new Set();
-  for(const m of src('ui.js').matchAll(/\bt\('([\w.]+)'[,)]/g))used.add(m[1]);
-  for(const m of src('ui.js').matchAll(/\bt\(([a-z]+)\?'([\w.]+)':'([\w.]+)'/g)){used.add(m[2]);used.add(m[3]);}
-  for(const m of src('index.html').matchAll(/data-i18n(?:-html|-title|-aria)?="([\w.]+)"/g))used.add(m[1]);
+  for(const f of ['ui.js','editor.js']){
+    for(const m of src(f).matchAll(/\bt\('([\w.]+)'[,)]/g))used.add(m[1]);
+    for(const m of src(f).matchAll(/\bt\(([a-z]+)\?'([\w.]+)':'([\w.]+)'/g)){used.add(m[2]);used.add(m[3]);}}
+  for(const tool of ['road','water','estate','hub','cand','erase'])used.add('ed.t.'+tool);
+  for(const side of ['left','right','up','down'])used.add('ed.side.'+side);
+  for(const f of ['index.html','editor.html'])for(const m of src(f).matchAll(/data-i18n(?:-html|-title|-aria)?="([\w.]+)"/g))used.add(m[1]);
   const L=require('./data.js');
-  for(const m of L.levels){used.add('src.'+m);used.add('site.'+m);used.add('lvEn.'+m);}
+  for(const m of [...L.levels,'custom']){used.add('src.'+m);used.add('site.'+m);used.add('lvEn.'+m);}
   for(let n=0;n<=3;n++)used.add('r.t'+n);
   for(const k of used)assert(keys.includes(k),`missing text: ${k}`);
   for(const lang of T.LANGS){T.set(lang);for(const k of keys){const v=T.t(k);assert(typeof v==='string'&&v!==k,`${k} in ${lang}`);

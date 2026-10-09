@@ -43,9 +43,12 @@
     texts();
   }
   function texts(){
-    $('titleEn').textContent=t('lvEn.'+D.map);
+    const own=D.map==='custom'&&D.title;
+    $('titleEn').textContent=own||t('lvEn.'+D.map);
     $('titleTc').textContent=t('g.titleTc',{s:t('site.'+D.map)});$('titleTc').hidden=!$('titleTc').textContent;
-    document.title=t('doc.game',{s:t('site.'+D.map)});
+    document.title=t('doc.game',{s:own||t('site.'+D.map)});
+    $('levelSeg').querySelector('[data-level="custom"]').hidden=!D.levels.includes('custom');
+    $('editLevel').textContent=t(D.map==='custom'?'g.edit':'g.editor');
     $('totalN').textContent=total;
     $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
     for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){
@@ -133,7 +136,9 @@
         out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.08+.16*w).toFixed(2),stroke:C.accent,'stroke-width':1.5+2*w});
         const right=hx<VBW*.72,lx=right?hx+r+6:hx-r-6,anchor=right?'start':'end';   // keep the label inside the board
         out+=text(lx,hy-2,`${Math.round(w*100)}%`,16,C.accent,{'font-weight':600,'font-family':'Geist Mono,monospace','text-anchor':anchor});
-        if(next>=0)out+=text(lx,hy+15,t('b.next',{k:k[next],n:D.waves[next][i]}),12,C.accent,{'font-weight':500,'text-anchor':anchor});}}
+        if(next>=0)out+=text(lx,hy+15,t('b.next',{k:k[next],n:D.waves[next][i]}),12,C.accent,{'font-weight':500,'text-anchor':anchor});}
+      else{const d=dist(o.cell,hover),why=d>=0&&d>=Tide.toMTR[i]&&Tide.willing(d)>0?t('b.whyMTR'):!Tide.willing(d)?t('b.whyFar'):f.stop>=0?t('b.whyOther',{s:letters[f.stop]}):'';
+        const right=hx<VBW*.72;if(why)out+=text(right?hx+24:hx-24,hy-18,why,11.5,C.ink3,{'text-anchor':right?'start':'end'});}}
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
@@ -153,11 +158,12 @@
     const fc=game.forecast(hover?selected:-1,hover);
     let out='';
     for(const [x1,y1,x2,y2] of D.water||[]){const [ax,ay]=xy([x1,y1]),[bx,by]=xy([x2,y2]);
-      out+=svg('rect',{x:ax-40,y:ay-24,width:bx-ax+80,height:by-ay+48,fill:C.info,'fill-opacity':.16,rx:8});}
+      out+=svg('rect',{x:ax-36,y:ay-28,width:bx-ax+72,height:by-ay+56,fill:C.info,'fill-opacity':.16,rx:6});}
     for(const pass of [[C.roadEdge,24],[C.road,20]])
       for(const c of D.roads)for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(D.roads.some(q=>same(q,n)))out+=svg('path',{d:pathStr([c,n]),stroke:pass[0],'stroke-width':pass[1],fill:'none','stroke-linecap':'square'});
-    for(const b of D.bridges||[]){const [x,y]=xy(b);   // rails either side of the road across the water
-      for(const dx of [-14,14])out+=svg('path',{d:`M${x+dx} ${y-24}L${x+dx} ${y+24}`,stroke:C.ink2,'stroke-width':2.2});}
+    const onRoad=c=>D.roads.some(q=>same(q,c));
+    for(const b of D.bridges||[]){const [x,y]=xy(b),v=onRoad([b[0],b[1]-1])||onRoad([b[0],b[1]+1]);   // rails either side of the road
+      for(const d of [-14,14])out+=svg('path',{d:v?`M${x+d} ${y-24}L${x+d} ${y+24}`:`M${x-30} ${y+d}L${x+30} ${y+d}`,stroke:C.ink2,'stroke-width':2.2});}
     const active=game.stops[selected];
     if(active.cell&&!hover)out+=svg('path',{d:pathStr(route(active.cell,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none',opacity:.35});
     if(hover)out+=svg('path',{d:pathStr(route(hover,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none','stroke-dasharray':'5 6'});
@@ -237,7 +243,7 @@
     const athome=game.people.filter(p=>p.state==='home').length,onway=st.active-athome;
     $('score').textContent=st.delivered;$('score2').textContent=st.delivered;$('scoreBar').style.width=`${100*st.delivered/total}%`;
     $('cars').textContent=st.cars;$('onway').textContent=Math.max(0,onway);$('notOut').textContent=st.future+athome;
-    $('clock').textContent=`${fmt(game.t)} / ${fmt(P.duration)}`;$('clockProg').style.width=`${100*game.t/P.duration}%`;$('moves').textContent=game.moves;
+    $('clock').textContent=`${fmt(game.t)} / ${fmt(P.lastRound)}`;$('clockProg').style.width=`${Math.min(100,100*game.t/P.lastRound)}%`;$('moves').textContent=game.moves;
     const r=roundAt(game.t),nr=nextRound(),m=D.waves.length;
     $('wave').textContent=!game.started?t('w.first',{n:P.firstWave}):game.done?t('w.missed',{n:game.missed}):r>=0?t('w.active',{n:r+1,m,...roundStat(r)}):nr>=0?t('w.next',{n:nr+1,m,t:fmt(waveStart(nr)-game.t)}):t('w.all',{m});
     $('undoMoves').hidden=!(snap&&!playing&&!game.done&&game.commands.length>snap.commands.length);
@@ -324,6 +330,9 @@
     if(!D.select(map))return false;
     Tide.reset();setupMap();reset(t('n.layout'));return true;}
   $('levelSeg').onclick=e=>{const b=e.target.closest('[data-level]');if(b)loadLevel(b.dataset.level);};
+  // the level editor sits next to this page (source pages or the bundled single files)
+  const page=decodeURIComponent(location.pathname.split('/').pop()||'');
+  $('editLevel').href=page==='开始游戏.html'?'关卡编辑器.html':'editor.html';
   $('download').onclick=()=>{const run={version:'feeder-v4-trial-2026-10-09',map:D.map,seed:game.seed,parameters:P,demand:D.waves,stats:game.stats(),stops:game.stops.map(s=>({id:s.id,cell:s.cell,peak:s.peak,rejected:s.rejected})),moves:game.commands,events:game.events};const url=URL.createObjectURL(new Blob([JSON.stringify(run,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`TransitLab-feeder-${D.map}-run.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
   function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
     try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}

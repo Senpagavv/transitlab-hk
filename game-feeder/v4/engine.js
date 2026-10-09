@@ -8,7 +8,7 @@
   // Each level sets its own rhythm, willingness, capacity and tiers (reset()).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:4,
-    willing:[1,.9,.8,.7,.6,.5,.4,.3,.2,.1],homeGrace:50,homeThink:20,patience:210,queuePatience:120,
+    willing:[1,.9,.8,.7,.6,.5,.4],homeGrace:50,homeThink:20,patience:210,
     reconsider:4,target:133,highScore:140,masterScore:146};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
   function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
@@ -40,9 +40,14 @@
     // each board carries its own headway formula and score tiers
     [P.headwayBase,P.headwayStep]=D.headway||[60,10];
     if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
-    for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
-    // the last round's people still need time to walk, wait and ride
-    P.duration=P.firstWave+D.waves.length*P.interval+(D.tail??90);
+    for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing','patience'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
+    // after the last round people still walk, wait and ride: the game ends when everyone has an outcome
+    // (delivered or drove), or at the latest `tail` seconds after the last round
+    P.lastRound=P.firstWave+D.waves.length*P.interval;
+    // the latest anyone can still be on the way: full patience, then the slowest bus and the longest ride
+    const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
+    const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
+    P.duration=P.lastRound+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
   reset();
@@ -72,7 +77,7 @@
         for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
           born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
           state:'future',preference:thresholds[j],budget:P.patience+40*(r()-.5),
-          queueLimit:P.queuePatience+20*(r()-.5),trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
+          trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
       this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
@@ -92,9 +97,11 @@
       s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.cool:0;
       if(!this.started)s.departAt=Infinity;
       if(old) {
-        // People at the old spot look for another stop from where they stand; if none suits, they walk home
-        // and may try again once the new stop is built (the move was not their failure).
-        const waiting=[...s.queue,...s.boarding].map(pid=>this.person(pid)).filter(p=>['queue','seated'].includes(p.state));
+        // The bus loading at the old spot leaves at once: everyone aboard is delivered as usual.
+        if(this.started&&s.boarding.length)this.depart(s,old);
+        // People still queuing look for another stop from where they stand; if none suits, they walk home
+        // and may try again once the new stop is ready (the move was not their failure).
+        const waiting=s.queue.map(pid=>this.person(pid)).filter(p=>p.state==='queue');
         s.queue=[];s.boarding=[];
         for(const p of waiting)this.reroute(p,old,null,'搬站返家');
         for(const p of this.people) if(p.state==='walk'&&p.target===id) {
@@ -184,17 +191,18 @@
       }
       for(const s of this.stops){if(!s.cell)continue;
         if(s.ready>this.t){while(this.t+1e-6>=s.departAt)s.departAt+=this.headway(s);continue;}   // cooling down: buses pass empty
-        for(const id of [...s.queue,...s.boarding]){const p=this.person(id);
-          if(this.t-p.since>=p.queueLimit||this.t>=p.deadline)this.reroute(p,s.cell.slice(),s,'久候返家');}
+        for(const id of [...s.queue]){const p=this.person(id);if(this.t>=p.deadline)this.reroute(p,s.cell.slice(),s,'久候返家');}
         this.board(s);if(this.t+1e-6<s.departAt)continue;
-        const path=route(s.cell,D.hub),load=s.boarding.splice(0),serial=++s.serial;
-        // A scheduled departure. Fleet circulation is abstracted in the headway;
-        // the map displays only the loaded, one-way feeder trip to MTR.
-        if(load.length){this.trips.push({stop:s.id,serial,path,since:this.t,end:this.t+length(path)*P.busStep,load,done:false});
-          for(const id of load){const p=this.person(id);p.state='bus';p.since=this.t;this.emit('depart',p,{stop:s.id,serial});}}
-        this.emit('dispatch',null,{stop:s.id,serial,load:load.length});
-        s.departAt=this.t+this.headway(s);this.board(s);
+        this.depart(s,s.cell);s.departAt=this.t+this.headway(s);this.board(s);
       }
+    }
+    // A departure from `from` (the stop's cell, or its old cell when it is moved). Fleet circulation is abstracted in
+    // the headway; the map displays only the loaded, one-way feeder trip to MTR.
+    depart(s,from) {
+      const path=route(from,D.hub),load=s.boarding.splice(0),serial=++s.serial;
+      if(load.length){this.trips.push({stop:s.id,serial,path,since:this.t,end:this.t+length(path)*P.busStep,load,done:false});
+        for(const id of load){const p=this.person(id);p.state='bus';p.since=this.t;this.emit('depart',p,{stop:s.id,serial});}}
+      this.emit('dispatch',null,{stop:s.id,serial,load:load.length});
     }
     closeSession() {
       for(const p of this.people)if(!['car','delivered'].includes(p.state)){p.state='missed';this.missed++;}
@@ -219,14 +227,14 @@
             if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
             if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
             else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}
-        } else if(['queue','seated'].includes(p.state)&&(this.t-p.since>=p.queueLimit||this.t>=p.deadline)){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
+        } else if(p.state==='queue'&&this.t>=p.deadline){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           if(p.giveUp){this.car(p);continue;}
           // home again: think for a while, then one decision — the nearest suitable stop, or the car
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
         }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
-      if(this.t>=P.duration)this.closeSession();
+      if(this.t>=P.duration||this.t>=P.lastRound&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
     }
     advance(seconds) {
       if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);
