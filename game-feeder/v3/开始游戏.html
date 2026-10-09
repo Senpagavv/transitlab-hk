@@ -674,7 +674,8 @@ body.inhub{overflow:hidden}
     emit(type,p,extra={}) {this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
     person(id) {return this.people.find(p=>p.id===id);}
     headway(s) {return headwayAt(s.cell);}
-    start() {if(this.started||this.stops.some(s=>!s.cell))return false;this.started=true;for(const s of this.stops)s.departAt=this.headway(s);return true;}
+    // opening + commands + seed is the whole round: replaying them gives the same score (verify_result.js)
+    start() {if(this.started||this.stops.some(s=>!s.cell))return false;this.started=true;this.opening=this.stops.map(s=>s.cell.slice());for(const s of this.stops)s.departAt=this.headway(s);return true;}
     place(id,cell) {
       const s=this.stops[id];
       if(this.done||!s||!D.candidates.some(c=>same(c,cell))||this.stops.some(x=>x.id!==id&&same(x.cell,cell))||same(s.cell,cell))return false;
@@ -1087,8 +1088,9 @@ body.inhub{overflow:hidden}
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
     '荃湾区':['荃灣區','Tsuen Wan'],'葵青区':['葵青區','Kwai Tsing'],'西贡区':['西貢區','Sai Kung'],'观塘区':['觀塘區','Kwun Tong'],'黄大仙区':['黃大仙區','Wong Tai Sin']};
   const pick=(/(?:^|[#&])lang=([\w-]+)/.exec(typeof location!=='undefined'?location.hash:'')||[])[1];
-  let saved=null;try{saved=localStorage.getItem('tl-lang');}catch(e){}
-  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:'zh-Hant';
+  // tlhk-lang: the language a hosting TransitLab site saved (same codes); used until the player picks one here
+  let saved=null;try{saved=localStorage.getItem('tl-lang')||localStorage.getItem('tlhk-lang');}catch(e){}
+  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:saved?'en':'zh-Hant';   // a site language the game lacks → English
   function t(key,vars){
     const e=S[key];let s=e?(e[lang]??e['zh-Hant']):key;
     if(vars)s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!==undefined?vars[k]:m);
@@ -1367,8 +1369,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     drawTide();drawStopPanel();
   }
   function render(){drawMap();drawSide();if(game.done&&!shown){shown=true;playing=false;showResult();drawSide();}}
+  const tierOf=n=>n>=P.masterScore?3:n>=P.highScore?2:n>=P.target?1:0;
   function fillResult(){
-    const tier=game.delivered>=P.masterScore?3:game.delivered>=P.highScore?2:game.delivered>=P.target?1:0;
+    const tier=tierOf(game.delivered);
     $('result').classList.toggle('win',tier>0);
     $('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Tide master'][tier];
     $('resultScore').textContent=t('r.score',{d:game.delivered,t:total,c:game.cars,m:game.missed});
@@ -1385,6 +1388,11 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     // best score per level, shown on the hub map (this browser only)
     try{const k='tl-best-'+D.map;if(game.delivered>(+localStorage.getItem(k)||0))localStorage.setItem(k,game.delivered);}catch(e){}
     fillResult();$('result').showModal();
+    // For a site that hosts the game (accounts, leaderboard): one event per finished round. The game itself sends
+    // nothing anywhere. seed + opening + moves let a server replay the round and check the score (verify_result.js).
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',version:'3.1',map:D.map,
+      score:game.delivered,total,tier:tierOf(game.delivered),tiers:[P.target,P.highScore,P.masterScore],cars:game.cars,missed:game.missed,
+      seed:game.seed,opening:game.opening,moves:game.commands.map(c=>({time:c.time,id:c.id,cell:c.cell.slice()})),lang:I.lang}}));
   }
   function reset(msg){game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
     $('fxl').innerHTML='';last=performance.now();note(msg||t('n.reset'));render();}

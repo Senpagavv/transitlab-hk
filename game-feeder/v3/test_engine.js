@@ -203,4 +203,23 @@ test('Every text has all three languages, and every key the page uses exists',()
   T.set('en');assert.equal(T.name({name:'鳳凰嶺邨',hans:'凤凰岭邨'}),'鳳凰嶺邨');assert.equal(T.station(D.station),D.station.en.charAt(0)+D.station.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase()));
   T.set('zh-Hant');
 });
+test('A finished round replays from its record to the same score (the leaderboard check), and a forged record fails',()=>{
+  const verify=require('./verify_result.js'),E=require('./engine.js'),before=E.D.map;
+  for(const name of ['fanling','yuenlong','longping']){
+    assert(E.D.select(name));E.reset();
+    const C=E.D.candidates,g=new E.Game();[0,1,2].forEach(id=>g.place(id,C[id*2+1]));g.start();
+    // uneven frame-sized steps like the page, two moves mid-round
+    const run=until=>{while(g.t<until&&!g.done)g.advance(.37);};
+    run(200);assert(g.place(0,C[C.length-1]));run(520);assert(g.place(1,C[C.length-2]));run(Infinity);
+    const r={game:'feeder',map:name,score:g.delivered,seed:g.seed,opening:g.opening,moves:g.commands.map(c=>({time:c.time,id:c.id,cell:c.cell}))};
+    const json=JSON.parse(JSON.stringify(r));                       // as it arrives at a server
+    const v=verify(json);assert(v.ok,`${name}: ${JSON.stringify(v)}`);assert.equal(v.score,g.delivered);
+    assert(!verify({...json,score:json.score+1}).ok,'a raised score must fail');
+    assert(!verify({...json,seed:7}).ok,'another seed must fail');
+    assert(!verify({...json,moves:Array(7).fill(json.moves[0])}).ok,'more moves than allowed must fail');
+    assert(!verify({...json,moves:[{...json.moves[0],cell:json.opening[1]}]}).ok,'a move onto another stop must fail');
+  }
+  assert(!verify({map:'nowhere'}).ok);
+  E.D.select(before);E.reset();
+});
 console.log(`${passed} checks passed`);

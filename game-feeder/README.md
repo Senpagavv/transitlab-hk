@@ -21,7 +21,8 @@ Codex 自己的工作目录（`Documents\Codex\...\接驳巴士长局Demo\`）�
 - **玩 v3**：双击 `v3/开始游戏.html`（单文件，离线可玩；联网时会加载品牌字体）。打开是开场页，**往下滚（或按 ↓）**进入全港波点地图和顶部菜单；在「01 入門遊戲」里点地图上的粉嶺、元朗南或朗屏（原版）进入关卡。左栏「← 地圖」或点顶部菜单回到地图，这一局暂停，再点同一站接着玩。右上角切换 繁 / 简 / EN 和日 / 夜。
 - **玩 v2**：双击 `v2/开始游戏.html`（桌面「接驳巴士 v2」）。
 - **改 v3**：`engine.js`（规则）、`data.js`（三张地图 `MAPS`、全港选址点 `SITES`）、`i18n.js`（繁 / 简 / 英全部文字）、`hub.js`（开场 → 地图 → 进关卡：滚动、站点标记、圆点飞成棋盘的过渡）、`ui.js` / `style.css` / `index.html`（游戏画面与反馈动画），然后 `python v3/build.py` 重新生成 `开始游戏.html`。v2 同理（v2 的开场在 `cover.js`）。
-- **测规则**：`node v3/test_engine.js`（21 项，含地图原地切换、三种语言词条齐全）；`node v2/test_engine.js`（18 项）。
+- **放到网站、接登录和排行榜**：见 [`v3/INTEGRATION.md`](v3/INTEGRATION.md)（English: `INTEGRATION.en.md`）——原样放进网站子目录；每局结束页面发出 `tl:result` 成绩事件，服务器用 `v3/verify_result.js` 重算核分。
+- **测规则**：`node v3/test_engine.js`（22 项，含地图原地切换、三种语言词条齐全、成绩记录回放核分）；`node v2/test_engine.js`（18 项）。
 - **AI 试玩**：`FEEDER_MAP=fanling node bots/evaluate.js v3 --write`（地图 `fanling` / `yuenlong` / `longping`；也可对 `v2`、`v1-codex` 跑），报告写到 `bots/reports/`。选址地图调参：`node bots/site_tune.js v3`。
 - **截图 / 指定局面**：网址后加 `#intro=0&map=yuenlong&layout=0-7-11&t=400&hover=3&sel=1&moves=125:1:11`（`intro=0` 跳过开场直接进关卡；数字是 `data.js` 里候选格的序号）。开场与地图：`#hubp=0.5`（滚动进度定格）、`#hub=1&nav=1&hot=fanling`（直接停在地图页并选中某站）、`#coverfx=900`（进关卡的过渡定格在第 900 毫秒）。另有 `theme=dark`、`fx=60&fxfreeze=1`（把最近 60 个事件的反馈动画定格）。
 - **封面数据**：`python tools/extract_cover.py "<组员的 TransitLab-產品套件.html>"` 重新生成 `cover-data.js`（只抽封面要的圆点、陆地、海岸线和 24 小时潮汐）。

@@ -236,8 +236,9 @@
     drawTide();drawStopPanel();
   }
   function render(){drawMap();drawSide();if(game.done&&!shown){shown=true;playing=false;showResult();drawSide();}}
+  const tierOf=n=>n>=P.masterScore?3:n>=P.highScore?2:n>=P.target?1:0;
   function fillResult(){
-    const tier=game.delivered>=P.masterScore?3:game.delivered>=P.highScore?2:game.delivered>=P.target?1:0;
+    const tier=tierOf(game.delivered);
     $('result').classList.toggle('win',tier>0);
     $('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Tide master'][tier];
     $('resultScore').textContent=t('r.score',{d:game.delivered,t:total,c:game.cars,m:game.missed});
@@ -254,6 +255,11 @@
     // best score per level, shown on the hub map (this browser only)
     try{const k='tl-best-'+D.map;if(game.delivered>(+localStorage.getItem(k)||0))localStorage.setItem(k,game.delivered);}catch(e){}
     fillResult();$('result').showModal();
+    // For a site that hosts the game (accounts, leaderboard): one event per finished round. The game itself sends
+    // nothing anywhere. seed + opening + moves let a server replay the round and check the score (verify_result.js).
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',version:'3.1',map:D.map,
+      score:game.delivered,total,tier:tierOf(game.delivered),tiers:[P.target,P.highScore,P.masterScore],cars:game.cars,missed:game.missed,
+      seed:game.seed,opening:game.opening,moves:game.commands.map(c=>({time:c.time,id:c.id,cell:c.cell.slice()})),lang:I.lang}}));
   }
   function reset(msg){game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
     $('fxl').innerHTML='';last=performance.now();note(msg||t('n.reset'));render();}

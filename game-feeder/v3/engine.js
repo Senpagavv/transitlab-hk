@@ -75,7 +75,8 @@
     emit(type,p,extra={}) {this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
     person(id) {return this.people.find(p=>p.id===id);}
     headway(s) {return headwayAt(s.cell);}
-    start() {if(this.started||this.stops.some(s=>!s.cell))return false;this.started=true;for(const s of this.stops)s.departAt=this.headway(s);return true;}
+    // opening + commands + seed is the whole round: replaying them gives the same score (verify_result.js)
+    start() {if(this.started||this.stops.some(s=>!s.cell))return false;this.started=true;this.opening=this.stops.map(s=>s.cell.slice());for(const s of this.stops)s.departAt=this.headway(s);return true;}
     place(id,cell) {
       const s=this.stops[id];
       if(this.done||!s||!D.candidates.some(c=>same(c,cell))||this.stops.some(x=>x.id!==id&&same(x.cell,cell))||same(s.cell,cell))return false;

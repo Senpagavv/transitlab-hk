@@ -228,8 +228,9 @@
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
     '荃湾区':['荃灣區','Tsuen Wan'],'葵青区':['葵青區','Kwai Tsing'],'西贡区':['西貢區','Sai Kung'],'观塘区':['觀塘區','Kwun Tong'],'黄大仙区':['黃大仙區','Wong Tai Sin']};
   const pick=(/(?:^|[#&])lang=([\w-]+)/.exec(typeof location!=='undefined'?location.hash:'')||[])[1];
-  let saved=null;try{saved=localStorage.getItem('tl-lang');}catch(e){}
-  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:'zh-Hant';
+  // tlhk-lang: the language a hosting TransitLab site saved (same codes); used until the player picks one here
+  let saved=null;try{saved=localStorage.getItem('tl-lang')||localStorage.getItem('tlhk-lang');}catch(e){}
+  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:saved?'en':'zh-Hant';   // a site language the game lacks → English
   function t(key,vars){
     const e=S[key];let s=e?(e[lang]??e['zh-Hant']):key;
     if(vars)s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!==undefined?vars[k]:m);

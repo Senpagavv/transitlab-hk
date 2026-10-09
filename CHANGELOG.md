@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-09
+
+### 10:35 · 接驳巴士 v3.1 对外接口：成绩事件 + 服务器核分 + 部署对接说明 / Feeder v3.1 hooks: result event, server-side score check, integration guide
+- **改了什么**：`game-feeder/v3/ui.js` 每局结束发出 `tl:result` 事件（关卡、分数、开局三站、挪站记录等）；`engine.js` 开局时记下三站位置（规则不变）；新 `verify_result.js` 让服务器重放整局核对分数；`i18n.js` 读网站语言键 `tlhk-lang`，网站有、游戏没有的语言显示英文。新 `INTEGRATION.md` / `.en.md`：部署到网站子目录、接登录和排行榜、核分、协作规矩。
+- **为什么**：发起人要把游戏交给有公网服务器的组员原样搬上去，再加注册登录和排行榜；这样组员不用改游戏代码，排行榜也不怕伪造成绩。
+- **验证**：`node game-feeder/v3/test_engine.js` 22 项通过（新增回放核分与伪造检查）；无界面 Edge 三张地图各结束一局，事件只发一次、记录核对通过，改高分数核对失败；网站语言 `ja` / `zh-Hans` / `en` 对应英文 / 简体 / 英文。详见 `game-feeder/LOG.md` v3 线。
+
 ## 2026-10-07
 
 ### 14:20 · `edcb1c3` 接驳巴士 v3.1：滚动开场 → 全港地图选关 + 繁 / 简 / 英三语 / Feeder v3.1: scroll intro → territory map level picker + three languages
