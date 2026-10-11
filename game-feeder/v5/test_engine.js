@@ -1,0 +1,250 @@
+'use strict';
+// Rule checks for v5 (shares trial). Run: node test_engine.js
+// Difficulty is tuned with ../bots/v5_tune.js and ../bots/v5_sweep.js; the last checks guard what they found.
+const assert=require('node:assert/strict');
+const BOARD=process.env.FEEDER_MAP;process.env.FEEDER_MAP='l1';
+const E=require('./engine.js'),{Game,D,P,dist,same,willing,headwayAt,slice,split}=E;
+let passed=0;
+function test(name,fn){fn();passed++;console.log('ok',name);}
+const LEVELS=['l1','l2','l3'];
+const total=()=>D.waves.flat().reduce((a,b)=>a+b,0);
+const roundStart=r=>P.firstWave+(r-1)*P.interval;
+// Openings and countdown plans found by bots/v5_tune.js (moves 3 s before round r).
+const PLANS={
+  l1:{opening:[[6,6],[7,6],[6,2]],moves:[]},
+  l2:{opening:[[1,1],[3,3],[3,4]],moves:[{r:4,id:2,cell:[3,6]},{r:5,id:1,cell:[2,4]},{r:8,id:0,cell:[2,1]}]},
+  l3:{opening:[[2,3],[2,2],[2,5]],moves:[{r:4,id:1,cell:[3,2]},{r:5,id:0,cell:[2,2]},{r:6,id:1,cell:[4,4]}]}};
+function useLevel(name){assert(D.select(name));E.reset();}
+function play(plan,lead=3,moves=plan.moves){
+  const g=new Game();plan.opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());
+  for(const m of moves){g.advance(roundStart(m.r)-lead-g.t);assert(g.place(m.id,m.cell),`move to ${m.cell}`);}
+  g.advance(P.duration-g.t+1);return g;
+}
+function setup(){const g=new Game();PLANS[D.map].opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());return g;}
+const allLayouts=()=>{const C=D.candidates,out=[];for(let a=0;a<C.length;a++)for(let b=a+1;b<C.length;b++)for(let c=b+1;c<C.length;c++)out.push([C[a],C[b],C[c]]);return out;};
+function playLayout(cells){const g=new Game();cells.forEach((c,id)=>g.place(id,c));g.start();g.advance(P.duration+1);return g;}
+
+test('Every estate sends people every round, steadily through the whole round',()=>{
+  for(const name of LEVELS){useLevel(name);
+    assert(P.release>=P.interval-15,`${name}: release ${P.release} leaves a gap`);
+    D.waves.forEach(w=>w.forEach(n=>assert(n>0,`${name}: an estate sends nobody in a round`)));
+    const g=new Game();
+    for(const p of g.people){const s=P.firstWave+p.wave*P.interval;assert(p.born>=s&&p.born<s+P.release);}
+    assert.equal(g.people.length,total());}
+  useLevel('l1');
+});
+test('Pull falls 10 points a block to 40% at 6 blocks, nothing beyond; a batch splits exactly by pull (80 : 40 → 8 : 4)',()=>{
+  assert.deepEqual([0,1,2,3,4,5,6,7,9,12].map(willing),[1,.9,.8,.7,.6,.5,.4,0,0,0]);
+  assert.deepEqual(split(12,[.8,.4,0]),[8,4,0]);assert.deepEqual(split(10,[.8,.8,0]),[5,5,0]);assert.deepEqual(split(9,[.9,0,.9]),[4,0,5]);
+  assert.deepEqual(split(5,[0,0,0]),[0,0,0]);
+  // the people of every batch carry exactly those picks, whatever the pulls
+  const g=new Game();
+  D.waves.forEach((w,wi)=>w.forEach((n,o)=>{const ps=g.people.filter(p=>p.wave===wi&&p.origin===o);assert.equal(ps.length,n);
+    for(const pulls of [[.8,.4,0],[.9,.9,.9],[1,0,.4],[.5,.7,.6]]){const want=split(n,pulls);
+      pulls.forEach((x,s)=>assert.equal(ps.filter(p=>slice(pulls,p.pick)===s).length,want[s]));}}));
+});
+test('Everyone with a stop near enough takes the bus: with room at every stop, all of them arrive by bus',()=>{
+  const def={cols:8,rows:3,roads:[[0,1],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1]],hub:[7,1],candidates:[[0,1],[1,1],[2,1],[3,1],[4,1]],
+    estates:[{name:'甲',cell:[0,1],house:[0,-40]},{name:'乙',cell:[3,1],house:[0,-40]}],waves:[[3,2],[2,3],[3,3]],
+    interval:120,release:110,headway:[30,2],seats:8,queue:8,cool:20,moves:2,tiers:[1,2,3]};
+  D.use(def,'tiny');E.reset();
+  const g=playLayout([[0,1],[2,1],[3,1]]);assert.equal(g.delivered,16);assert.equal(g.cars,0);
+  useLevel('l1');
+});
+test('What the map shows is who walks out on the first try (stops ready, nobody turned away yet)',()=>{
+  for(const name of LEVELS){useLevel(name);
+    const g=setup(),fc=g.forecast(),t=P.firstWave+40;g.advance(t);
+    D.origins.forEach((o,i)=>{const born=g.people.filter(p=>p.wave===0&&p.origin===i&&p.born<=t-P.tick);
+      for(let s=0;s<3;s++){
+        const want=born.filter(p=>slice(fc.estates[i].pull,p.pick)===s).length;
+        const went=born.filter(p=>g.events.some(e=>e.type==='walk'&&e.id===p.id&&e.stop===s)).length;
+        assert.equal(went,want,`${name}: ${o.name} → ${'ABC'[s]}`);}});
+    // and the shares on the lines add up to the whole estate
+    fc.estates.forEach(e=>{const sum=e.share.reduce((a,b)=>a+b,0);assert(e.drives?sum===0:Math.abs(sum-1)<1e-9);});}
+  useLevel('l1');
+});
+test('A full stop drops out of the split; with every stop near them full, people wait at home, then drive',()=>{
+  const g=setup(),fc=g.forecast();
+  const i=fc.estates.findIndex(e=>e.share.filter(x=>x>0).length>=2),pulls=fc.estates[i].pull;
+  const a=pulls.findIndex(x=>x>0),b=pulls.findIndex((x,k)=>k!==a&&x>0);
+  const p=g.people.find(q=>q.origin===i&&slice(pulls,q.pick)===a);
+  const fill=s=>{s.queue=Array(P.queue).fill(-1);s.boarding=Array(P.seats).fill(-1);};
+  fill(g.stops[a]);
+  const c=g.choose(p,D.origins[i].cell);assert(c&&c.id!==a,'goes to another stop');
+  // its slice of the others: same proportions among the stops still open
+  const open=pulls.map((x,k)=>k===a?0:x);assert.equal(c.id,slice(open,p.pick));
+  for(const s of g.stops)if(pulls[s.id]>0)fill(s);
+  assert.equal(g.choose(p,D.origins[i].cell),null);
+  // a person deciding now waits, and drives once the wait at home runs out, for "stop full"
+  Object.assign(p,{state:'home',deadline:g.t+999,homeUntil:g.t+P.homeGrace,retryAt:g.t});
+  g.decide(p);assert.equal(p.state,'home');assert.equal(p.lastWhy,'站滿了');
+});
+test('Back and forth: whoever used up their patience, or their last try, drives as soon as they are home',()=>{
+  useLevel('l3');
+  const g=playLayout([[2,3],[4,4],[2,5]]);let n=0;
+  for(const p of g.people){const ev=g.events.filter(e=>e.id===p.id);let outings=0;
+    ev.forEach((e,k)=>{if(e.type==='walk'&&k>0&&['spawn','home'].includes(ev[k-1].type))outings++;
+      if(e.type!=='return'||['搬站返家','原站搬遷'].includes(e.why))return;
+      if(e.why==='耐心耗盡'||outings>=2){n++;assert.equal(ev[k+1]?.type,'car',`person ${p.id} thought again after their last try`);}
+      else assert.equal(ev[k+1]?.type,'home',`person ${p.id} drove after a first try`);});}
+  assert(n>0,'no one used up their tries on this crowded board');
+  useLevel('l1');
+});
+test('Headway is the level\'s base + step per block to the town centre',()=>{
+  for(const name of LEVELS){useLevel(name);
+    for(const c of D.candidates)assert.equal(headwayAt(c),D.headway[0]+D.headway[1]*dist(c,D.hub));}
+  useLevel('l1');
+});
+test('Seats, queue and population are conserved through a full game; driving is permanent',()=>{
+  for(const name of LEVELS){useLevel(name);
+    const g=setup(),lost=new Set();
+    for(let i=0;i<P.duration/P.tick;i++){g.advance(P.tick);
+      for(const s of g.stops){assert(s.queue.length<=P.queue);assert(s.boarding.length<=P.seats);}
+      for(const b of g.trips)assert(b.load.length<=P.seats);
+      for(const p of g.people){if(lost.has(p.id))assert.equal(p.state,'car');if(p.state==='car')lost.add(p.id);}
+      const st=g.stats();assert.equal(st.delivered+st.cars+st.missed+st.active+st.future,total());}
+    assert(g.done);}
+  useLevel('l1');
+});
+test('Moving a stop: the bus loading there leaves at once; the queue goes elsewhere; the stop cools down, timetable running',()=>{
+  useLevel('l3');
+  const g=setup();const s=g.stops[0];
+  while(!(s.boarding.length&&s.queue.length)&&g.t<P.lastRound)g.advance(1);   // a moment with people aboard and queuing
+  assert(s.boarding.length&&s.queue.length,'no moment with people aboard and a queue');
+  const t0=g.t,aboard=s.boarding.slice(),queued=s.queue.slice(),before=s.departAt;
+  const to=D.candidates.find(c=>!g.stops.some(x=>same(x.cell,c))&&g.forecast(0,c).estates.some(e=>e.share[0]>0));
+  assert(g.place(0,to));assert.equal(g.moves,P.moves-1);assert.equal(s.ready,t0+P.cool);assert.equal(s.departAt,before);
+  aboard.forEach(id=>assert.equal(g.person(id).state,'bus','everyone aboard leaves with the bus'));
+  assert(g.events.some(e=>e.type==='dispatch'&&e.stop===0&&e.time===t0&&e.load===aboard.length));
+  queued.forEach(id=>{assert(['return','walk'].includes(g.person(id).state));assert(!g.person(id).giveUp,'a move is not the passenger\'s failure');});
+  for(let k=0;k<P.cool/P.tick-1;k++){g.advance(P.tick);assert.equal(s.queue.length+s.boarding.length,0);}
+  g.advance(150);assert(g.events.some(e=>e.type==='queue'&&e.stop===0&&e.time>=s.ready),'boards again after the cool-down');
+  g.advance(P.duration);aboard.forEach(id=>assert.equal(g.person(id).state,'delivered'));
+  useLevel('l1');
+});
+test('Once aboard, a passenger always arrives; nobody is left half-way when the game ends',()=>{
+  for(const name of LEVELS){useLevel(name);const g=play(PLANS[name]);
+    for(const p of g.people){const ev=g.events.filter(e=>e.id===p.id),b=ev.findIndex(e=>e.type==='board');
+      if(b<0)continue;assert.equal(p.state,'delivered',`${name}: person ${p.id} boarded but ${p.state}`);
+      assert(!ev.slice(b).some(e=>['return','walk','car'].includes(e.type)),`${name}: person ${p.id} left the bus`);}
+    for(const e of g.events.filter(e=>e.type==='return'&&e.why==='久候返家'))assert(e.time>=g.person(e.id).deadline-1e-6);
+    assert(g.done);assert.equal(g.missed,0,`${name}: ${g.missed} unfinished`);assert(g.t<=P.duration);}
+  useLevel('l1');
+});
+test('The overflow warning: on level 1 every opening with no warning at all carries everyone by bus',()=>{
+  useLevel('l1');let calm=0;
+  for(const cells of allLayouts()){const f=new Game();cells.forEach((c,id)=>f.place(id,c));const fc=f.forecast();
+    if(fc.estates.some(e=>e.drives)||fc.stops.some(s=>s.over.some(v=>v>0)))continue;
+    calm++;assert.equal(playLayout(cells).delivered,total(),`calm opening ${JSON.stringify(cells)} still loses people`);}
+  assert(calm>=1,'no calm opening on level 1');
+});
+test('A level from the editor loads like a built-in one: water cells, bridges where a road crosses, plays to the end',()=>{
+  const def={title:'測試',cols:8,rows:6,roads:[[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[3,2],[3,3],[3,4],[3,5],[4,5],[5,5],[6,5]],
+    waterCells:[[0,3],[1,3],[2,3],[3,3],[4,3],[5,3]],hub:[6,5],candidates:[[1,1],[2,1],[4,1],[6,1],[3,2],[3,4],[4,5]],
+    estates:[{name:'甲',cell:[1,1],house:[0,-56]},{name:'乙',cell:[6,1],house:[0,-56]}],waves:[[5,3],[5,3],[3,5],[3,5]],
+    interval:100,release:90,headway:[40,4],seats:6,queue:6,cool:15,moves:2,patience:240,willing:[1,.9,.8,.7,.6,.5,.4],tiers:[10,12,14]};
+  assert(D.loadEditor(def));E.reset();
+  assert.equal(D.map,'custom');assert.deepEqual(D.bridges,[[3,3]]);assert.deepEqual(D.water,[[0,3,5,3]],'cells in a row become one stretch of river');
+  assert.equal(P.interval,100);assert.equal(P.moves,2);assert.equal(P.patience,240);assert.deepEqual(P.willing,def.willing);
+  const g=new Game();[[1,1],[6,1],[3,4]].forEach((c,id)=>assert(g.place(id,c)));assert(g.start());g.advance(P.duration+1);
+  const st=g.stats();assert(g.done);assert.equal(st.delivered+st.cars+st.missed,32);assert(st.delivered>0);
+  useLevel('l1');
+});
+test('On levels 2 and 3, moving in the countdown beats moving 40 s early',()=>{
+  for(const name of ['l2','l3']){useLevel(name);
+    const on=play(PLANS[name]).delivered,early=play(PLANS[name],43).delivered;
+    assert(on>early,`${name}: countdown ${on} vs 40 s early ${early}`);}
+  useLevel('l1');
+});
+test('Moves are limited by the level; occupied cells are rejected; starting needs three stops',()=>{
+  const g=new Game();assert(!g.start());g.place(0,D.candidates[0]);assert(!g.place(1,D.candidates[0]));
+  g.place(1,D.candidates[7]);g.place(2,D.candidates[9]);g.start();
+  for(let i=0;i<P.moves;i++)assert(g.place(0,D.candidates[i%2?0:1]));assert(!g.place(0,D.candidates[2]));
+});
+test('Frame rate does not change the result',()=>{
+  const a=setup(),b=setup();a.advance(P.duration);for(let t=0;t<P.duration*10;t++)b.advance(.1);
+  assert.deepEqual(a.stats(),b.stats());
+});
+test('Every level is well formed: candidates on roads, every estate reaches the town centre, neighbours can share a stop',()=>{
+  for(const name of LEVELS){useLevel(name);
+    const onRoad=c=>D.roads.some(r=>same(r,c));
+    assert(onRoad(D.hub));
+    D.candidates.forEach(c=>{assert(onRoad(c),`${name}: candidate ${c} off road`);assert(!same(c,D.hub));});
+    D.origins.forEach((o,i)=>{assert(onRoad(o.cell));assert(E.toMTR[i]>0,`${name}: ${o.name} cannot reach the town centre`);
+      assert(D.candidates.some(c=>E.shareAt(i,c)>=.8),`${name}: ${o.name} has no good stop`);
+});
+    // most estates can share a stop with a neighbour (Long Ping keeps its lone estate up north, as in v2)
+    const sharing=D.origins.filter((o,i)=>D.candidates.some(c=>E.shareAt(i,c)>0&&D.origins.some((q,j)=>j!==i&&E.shareAt(j,c)>0))).length;
+    assert(sharing>=D.origins.length-1,`${name}: only ${sharing} estates can share a stop`);
+    const g=play({opening:D.candidates.slice(0,3),moves:[]});const st=g.stats();assert.equal(st.delivered+st.cars+st.missed,st.total);}
+  useLevel('l1');
+});
+test('Switching levels in place plays exactly like loading that level fresh',()=>{
+  const fresh={},rx=/[\\/]v5[\\/](engine|data)\.js$/;
+  for(const name of LEVELS){
+    for(const k of Object.keys(require.cache))if(rx.test(k))delete require.cache[k];
+    process.env.FEEDER_MAP=name;const F=require('./engine.js');
+    const g=new F.Game();[0,1,2].forEach(id=>g.place(id,F.D.candidates[id*2+1]));g.start();g.advance(F.P.duration);
+    fresh[name]={stats:g.stats(),P:{...F.P},toMTR:F.toMTR.slice()};
+  }
+  for(const k of Object.keys(require.cache))if(rx.test(k))delete require.cache[k];
+  process.env.FEEDER_MAP='l1';const F=require('./engine.js');
+  for(const name of ['l2','l3','l1','l3']){
+    assert(F.D.select(name));F.reset();assert.equal(F.D.map,name);
+    const g=new F.Game();[0,1,2].forEach(id=>g.place(id,F.D.candidates[id*2+1]));g.start();g.advance(F.P.duration);
+    assert.deepEqual(g.stats(),fresh[name].stats,`${name}: different result after switching`);
+    assert.deepEqual({...F.P},fresh[name].P);assert.deepEqual(F.toMTR,fresh[name].toMTR);
+  }
+  assert(!F.D.select('nowhere'));assert(!Object.keys(F.D).includes('select'));
+  process.env.FEEDER_MAP=BOARD||'';
+});
+test('Difficulty holds: level 1 has a few perfect openings; levels 2 and 3 have none, and the countdown plan reaches master',()=>{
+  const F=require('./engine.js');           // the instance loaded last
+  for(const name of LEVELS){F.D.select(name);F.reset();
+    const C=F.D.candidates,scores=[],all=F.D.waves.flat().reduce((a,b)=>a+b,0);
+    for(let a=0;a<C.length;a++)for(let b=a+1;b<C.length;b++)for(let c=b+1;c<C.length;c++){
+      const g=new F.Game();[a,b,c].forEach((k,id)=>g.place(id,C[k]));g.start();g.advance(F.P.duration+1);scores.push(g.delivered);}
+    const perfect=scores.filter(s=>s===all).length,pass=scores.filter(s=>s>=F.P.target).length;
+    assert(pass>=1&&pass<=0.12*scores.length,`${name}: ${pass} openings pass without moving`);
+    if(name==='l1')assert(perfect>=1&&perfect<=8,`l1: ${perfect} perfect openings`);
+    else{assert.equal(perfect,0,`${name}: an opening carries everyone`);assert(Math.max(...scores)<F.P.masterScore,`${name}: master without moving`);
+      const g=new F.Game(),plan=PLANS[name];plan.opening.forEach((c,id)=>g.place(id,c));g.start();
+      for(const m of plan.moves){g.advance(F.P.firstWave+(m.r-1)*F.P.interval-3-g.t);g.place(m.id,m.cell);}
+      g.advance(F.P.duration-g.t+1);
+      assert(g.delivered>=F.P.masterScore,`${name}: the countdown plan ${g.delivered} < master ${F.P.masterScore}`);}}
+});
+test('Every text has all three languages, and every key the page uses exists',()=>{
+  const fs=require('node:fs'),path=require('node:path'),src=f=>fs.readFileSync(path.join(__dirname,f),'utf8');
+  require('./i18n.js');const T=globalThis.I18N,body=src('i18n.js');
+  const keys=[...body.matchAll(/'([\w.]+)':L\(/g)].map(m=>m[1]);
+  const used=new Set();
+  for(const f of ['ui.js','editor.js']){
+    for(const m of src(f).matchAll(/\bt\('([\w.]+)'[,)]/g))used.add(m[1]);
+    for(const m of src(f).matchAll(/\bt\(([a-z]+)\?'([\w.]+)':'([\w.]+)'/g)){used.add(m[2]);used.add(m[3]);}}
+  for(const tool of ['road','water','estate','hub','cand','erase'])used.add('ed.t.'+tool);
+  for(const side of ['left','right','up','down'])used.add('ed.side.'+side);
+  for(const f of ['index.html','editor.html'])for(const m of src(f).matchAll(/data-i18n(?:-html|-title|-aria)?="([\w.]+)"/g))used.add(m[1]);
+  const L=require('./data.js');
+  for(const m of [...L.levels,'custom']){used.add('src.'+m);used.add('site.'+m);used.add('lvEn.'+m);}
+  for(let n=0;n<=3;n++)used.add('r.t'+n);
+  for(const k of used)assert(keys.includes(k),`missing text: ${k}`);
+  for(const lang of T.LANGS){T.set(lang);for(const k of keys){const v=T.t(k);assert(typeof v==='string'&&v!==k,`${k} in ${lang}`);
+    if(lang!=='en'&&!['hub.enNames','b.mtr'].includes(k))assert(v.length>0,`${k} is empty in ${lang}`);}}
+  T.set('zh-Hant');
+});
+test('A finished game replays from its record to the same score (the leaderboard check), and a forged record fails',()=>{
+  const verify=require('./verify_result.js'),F=require('./engine.js');
+  for(const name of LEVELS){F.D.select(name);F.reset();
+    const C=F.D.candidates,g=new F.Game();[0,1,2].forEach(id=>g.place(id,C[id*2+1]));g.start();
+    const run=until=>{while(g.t<until&&!g.done)g.advance(.37);};
+    run(230);assert(g.place(0,C[C.length-1]));run(470);assert(g.place(1,C[C.length-2]));run(Infinity);
+    const json=JSON.parse(JSON.stringify({map:name,score:g.delivered,seed:g.seed,opening:g.opening,moves:g.commands}));
+    const v=verify(json);assert(v.ok,`${name}: ${JSON.stringify(v)}`);
+    assert(!verify({...json,score:json.score+1}).ok);
+    assert(!verify({...json,moves:Array(P.moves+1).fill(json.moves[0])}).ok);}
+});
+test('Random levels like the editor makes (settings at their limits) never lose people, strand passengers or run on',()=>{
+  const fuzz=require('./fuzz_engine.js');assert(fuzz(60,4242)>=180);   // node fuzz_engine.js 1500 for the long run
+  useLevel('l1');
+});
+console.log(`${passed} checks passed`);
