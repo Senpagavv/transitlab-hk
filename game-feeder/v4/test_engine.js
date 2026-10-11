@@ -193,4 +193,8 @@ test('A finished game replays from its record to the same score (the leaderboard
     assert(!verify({...json,score:json.score+1}).ok);
     assert(!verify({...json,moves:Array(P.moves+1).fill(json.moves[0])}).ok);}
 });
+test('Random levels like the editor makes (settings at their limits) never lose people, strand passengers or run on',()=>{
+  const fuzz=require('./fuzz_engine.js');assert(fuzz(60,4242)>=180);   // node fuzz_engine.js 1500 for the long run
+  useLevel('l1');
+});
 console.log(`${passed} checks passed`);

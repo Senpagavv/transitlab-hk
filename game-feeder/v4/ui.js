@@ -38,9 +38,15 @@
   function setupMap(){
     total=D.waves.flat().reduce((a,b)=>a+b,0);[MX,MY]=D.margin||[20,30];
     // board size follows the map: grid cells plus room for the buildings and labels around them
-    VBW=MX+(D.cols-1)*72+Math.max(MX,120);VBH=MY+(D.rows-1)*62+86;
+    VBW=MX+(D.cols-1)*72+Math.max(MX,140);VBH=MY+(D.rows-1)*62+Math.max(96,MY);
     for(const id of ['board','fx'])$(id).setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
-    texts();
+    texts();fitBoard();
+  }
+  // grow the board's frame to fit every name and label (an estate on the outer edge with a long name)
+  function fitBoard(){
+    if(typeof game==='undefined'||!game)return;
+    drawMap();try{const bb=$('board').getBBox(),x0=Math.min(0,bb.x-10),y0=Math.min(0,bb.y-10),x1=Math.max(VBW,bb.x+bb.width+10),y1=Math.max(VBH,bb.y+bb.height+10);
+      for(const id of ['board','fx'])$(id).setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}
   }
   function texts(){
     const own=D.map==='custom'&&D.title;
@@ -50,7 +56,7 @@
     $('levelSeg').querySelector('[data-level="custom"]').hidden=!D.levels.includes('custom');
     $('editLevel').textContent=t(D.map==='custom'?'g.edit':'g.editor');
     $('totalN').textContent=total;
-    $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
+    $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore})+(D.tiersGuess?' '+t('g.tiersGuess'):'');
     for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){
       $(id).style.left=`${100*v/total}%`;$(id).dataset.label=t(k,{n:v});}
     const nums={base:P.headwayBase,step:P.headwayStep,seats:P.seats,queue:P.queue,moves:P.moves,cool:P.cool,n:D.waves.length};
@@ -191,7 +197,7 @@
       out+=rect(x-19,y-11,38,22,C.accent,C.accent,{rx:11})+svg('text',{x,y:y+5,'font-size':12.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
     }
     for(const s of game.stops){if(!s.cell)continue;
-      const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue;
+      const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue&&s.boarding.length>=P.seats;
       let content='';
       if(full){const breathe=(.35+.3*Math.sin(performance.now()/380)).toFixed(2);   // a slow red breath while the queue is full
         content+=svg('circle',{cx:x,cy:y,r:27,fill:C.bad,'fill-opacity':(breathe*.18).toFixed(3),stroke:C.bad,'stroke-width':1.5,'stroke-opacity':breathe});
@@ -234,7 +240,7 @@
       const build=Math.max(0,s.ready-game.t);
       h+=`<div class="r"><span>${t('sp.next')}</span><span class="big">${game.done?'—':!game.started?t('sp.opening',{n:hw}):build?t('b.rebuild',{n:Math.ceil(build)}):fmt(game.eta(s))}</span></div>`;
       h+=`<div class="r"><span>${t('sp.seats',{a:s.boarding.length,b:P.seats})}</span></div><div class="slots">${Array.from({length:P.seats},(_,j)=>`<i class="${j<s.boarding.length?'on':''}"></i>`).join('')}</div>`;
-      h+=`<div class="r"><span>${t('sp.queue',{a:s.queue.length,b:P.queue})}</span><span>${s.rejected?t('sp.rejected',{n:s.rejected}):''}</span></div><div class="slots queue ${s.queue.length>=P.queue?'full':''}">${Array.from({length:P.queue},(_,j)=>`<i class="${j<s.queue.length?'on':''}"></i>`).join('')}</div>`;
+      h+=`<div class="r"><span>${t('sp.queue',{a:s.queue.length,b:P.queue})}</span><span>${s.rejected?t('sp.rejected',{n:s.rejected}):''}</span></div><div class="slots queue ${s.queue.length>=P.queue&&s.boarding.length>=P.seats?'full':''}">${Array.from({length:P.queue},(_,j)=>`<i class="${j<s.queue.length?'on':''}"></i>`).join('')}</div>`;
     }else h+=`<p>${game.started?t('sp.hoverMove',{n:game.moves,cool:P.cool}):t('sp.hoverPlace')}${t('sp.tip')}</p>`;
     $('stopPanel').innerHTML=h;
   }

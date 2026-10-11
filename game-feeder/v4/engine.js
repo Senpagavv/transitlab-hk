@@ -47,7 +47,9 @@
     // the latest anyone can still be on the way: full patience, then the slowest bus and the longest ride
     const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
     const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
-    P.duration=P.lastRound+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
+    // counted from the last person to leave home (a level may spread departures past the end of its last round)
+    const lastBorn=Math.max(P.lastRound,P.firstWave+(D.waves.length-1)*P.interval+P.release);
+    P.duration=lastBorn+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
   reset();
@@ -130,7 +132,7 @@
     // after this person was turned away there, or if they cannot make a bus in time.
     attraction(p,s,from=D.origins[p.origin].cell,walked=0) {
       if(!s.cell||s.ready>this.t||p.avoid.includes(s.id+':'+s.version))return 0;
-      if(s.queue.length>=P.queue)return 0;          // a full stop attracts nobody at the moment they decide
+      if(s.queue.length>=P.queue&&s.boarding.length>=P.seats)return 0;   // a full stop attracts nobody at the moment they decide
       const steps=dist(from,s.cell);if(steps<0)return 0;
       const share=shareAt(p.origin,s.cell,walked,from);if(!share)return 0;
       const walk=steps*P.walkStep,cycle=this.headway(s);
@@ -151,7 +153,7 @@
       if(choice){p.trips++;p.switched=false;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
       else{p.retryAt=this.t+P.reconsider;
         // nothing chosen because the stop they would use is full right now — that is the reason if they end up driving
-        if(this.stops.some(s=>s.cell&&s.ready<=this.t&&s.queue.length>=P.queue&&shareAt(p.origin,s.cell)>p.preference))p.lastWhy='站滿了';}
+        if(this.stops.some(s=>s.cell&&s.ready<=this.t&&s.queue.length>=P.queue&&s.boarding.length>=P.seats&&shareAt(p.origin,s.cell)>p.preference))p.lastWhy='站滿了';}
     }
     leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
     // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
@@ -223,7 +225,7 @@
             p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
             this.board(s);
             s.peak=Math.max(s.peak,s.queue.length);
-          }else{const full=s&&s.queue.length>=P.queue,here=p.path.at(-1).slice();
+          }else{const full=s&&s.queue.length>=P.queue&&s.boarding.length>=P.seats,here=p.path.at(-1).slice();
             if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
             if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
             else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}

@@ -5,7 +5,7 @@
   // The level is a plain object (same fields as a level in data.js; water as a list of cells). It is saved in this
   // browser on every change and can be exported to / imported from a .json file.
   const {D,P}=Tide,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
-  const SAVE='tl-v4-editor',LEVEL='tl-v4-level',GW=72,GH=62,MX=60,MY=50;
+  const SAVE='tl-v4-editor',LEVEL='tl-v4-level',GW=72,GH=62,MX=110,MY=90;
   const HOUSE={left:[-50,0],right:[50,0],up:[0,-56],down:[0,56]};
   const k=c=>c.join(','),un=s=>s.split(',').map(Number);
   // the page that plays a level: the source pages or the bundled single files, side by side in one folder
@@ -100,6 +100,9 @@
       svg('text',{x,y:y+8,'font-size':25,fill:C.paper,'text-anchor':'middle','font-family':'Bodoni Moda,Georgia,serif','font-weight':600},'M');}
     if(hover){const [x,y]=xy(hover);out+=svg('rect',{x:x-GW/2+3,y:y-GH/2+3,width:GW-6,height:GH-6,rx:6,fill:'none',stroke:C.accent,'stroke-width':2,'stroke-dasharray':'4 3'});}
     $('edBoard').innerHTML=out;
+    // grow the frame to fit everything drawn (names beside buildings on the outer edges); coordinates stay put
+    try{const bb=$('edBoard').getBBox(),x0=Math.min(0,bb.x-12),y0=Math.min(0,bb.y-12),x1=Math.max(W,bb.x+bb.width+12),y1=Math.max(H,bb.y+bb.height+12);
+      $('edBoard').setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}
   }
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
   // what a cell means to each estate: blocks, the share that would come, or why nobody would
@@ -158,16 +161,21 @@
     if(tool==='road'||tool==='water'){const list=tool==='road'?lv.roads:lv.waterCells;paint='on';
       for(const d of last?run(last,c):[c])if(!has(list,d))list.push(d);
       last=c;return;}
-    if(tool==='erase'&&!first){for(const d of last?run(last,c):[c]){del(lv.candidates,d);if(!del(lv.roads,d))del(lv.waterCells,d);}last=c;return;}
+    // dragging the eraser clears roads, water and stop spots, but steps round estates and the station (click those)
+    if(tool==='erase'&&!first){for(const d of last?run(last,c):[c]){if(lv.estates.some(e=>k(e.cell)===k(d))||lv.hub&&k(lv.hub)===k(d))continue;
+      del(lv.candidates,d);if(!del(lv.roads,d))del(lv.waterCells,d);}last=c;return;}
     if(tool==='erase')paint='erase';
     if(!first)return;
-    const onRoad=has(lv.roads,c);
-    if(tool==='estate'){const i=lv.estates.findIndex(e=>k(e.cell)===k(c));
-      if(i>=0){selEstate=i;return;}
-      if(!onRoad){flash(t('ed.needRoad'));return;}
-      lv.estates.push({name:t('ed.estDefault',{n:lv.estates.length+1}),cell:c,side:c[1]===0?'down':'up'});selEstate=lv.estates.length-1;}
-    else if(tool==='hub'){if(!onRoad){flash(t('ed.needRoad'));return;}lv.hub=c;del(lv.candidates,c);}
-    else if(tool==='cand'){if(!onRoad){flash(t('ed.needRoad'));return;}if(lv.hub&&k(lv.hub)===k(c))return;if(!del(lv.candidates,c))lv.candidates.push(c);}
+    // an estate, the station and a stop spot stand on a road: lay one there if there is none (the checks say if it
+    // is not joined to the rest); on water that makes a bridge
+    const lay=()=>{if(!has(lv.roads,c)){lv.roads.push(c.slice());flash(t('ed.laidRoad'));}};
+    const estAt=lv.estates.findIndex(e=>k(e.cell)===k(c)),isHub=lv.hub&&k(lv.hub)===k(c);
+    if(tool==='estate'){
+      if(estAt>=0){selEstate=estAt;moving=estAt;return;}                   // pick it up: release on another cell to move it
+      if(isHub){flash(t('ed.onHub'));return;}
+      lay();lv.estates.push({name:t('ed.estDefault',{n:lv.estates.length+1}),cell:c,side:c[1]===0?'down':'up'});selEstate=lv.estates.length-1;}
+    else if(tool==='hub'){if(estAt>=0){flash(t('ed.onEstate'));return;}lay();lv.hub=c;del(lv.candidates,c);}
+    else if(tool==='cand'){if(isHub){flash(t('ed.onHub'));return;}if(!del(lv.candidates,c)){lay();lv.candidates.push(c);}}
     else if(tool==='erase'){const i=lv.estates.findIndex(e=>k(e.cell)===k(c));
       if(i>=0){lv.estates.splice(i,1);for(const ph of lv.phases)ph.splice(i,1);selEstate=-1;}
       else if(del(lv.candidates,c)){}else if(lv.hub&&k(lv.hub)===k(c))lv.hub=null;else if(!del(lv.roads,c))del(lv.waterCells,c);}
@@ -175,8 +183,16 @@
   board.addEventListener('pointerdown',e=>{const c=cellAt(e);if(!c)return;board.setPointerCapture(e.pointerId);last=null;apply(c,true);last=c;changed();});
   board.addEventListener('pointermove',e=>{const c=cellAt(e);const moved=k(c||[-1,-1])!==k(hover||[-1,-1]);hover=c;
     if(paint&&c&&e.buttons){apply(c,false);changed();}else if(moved){drawBoard();$('edCell').textContent=cellInfo(hover);}});
-  const stop=()=>{paint=null;last=null;};
-  board.addEventListener('pointerup',stop);board.addEventListener('pointercancel',stop);
+  let moving=null;
+  const stop=()=>{paint=null;last=null;moving=null;};
+  board.addEventListener('pointerup',e=>{
+    // an estate picked up with the estate tool moves to the cell where the button is released
+    if(moving!==null){const c=cellAt(e),est=lv.estates[moving];
+      if(c&&est&&k(c)!==k(est.cell)){
+        if(lv.estates.some(x=>k(x.cell)===k(c))||lv.hub&&k(lv.hub)===k(c))flash(t('ed.taken'));
+        else{if(!has(lv.roads,c)){lv.roads.push(c.slice());flash(t('ed.laidRoad'));}est.cell=c;changed();}}}
+    stop();});
+  board.addEventListener('pointercancel',stop);
   board.addEventListener('pointerleave',()=>{hover=null;drawBoard();$('edCell').textContent=cellInfo(null);});
   $('edTools').onclick=e=>{const b=e.target.closest('[data-tool]');if(b){tool=b.dataset.tool;render();}};
   document.addEventListener('keydown',e=>{if(e.target.closest('input,select,textarea'))return;const i='123456'.indexOf(e.key);
@@ -199,7 +215,9 @@
     if(e.target.dataset.f==='name')est.name=e.target.value.trim().slice(0,8)||est.name;if(e.target.dataset.f==='side')est.side=e.target.value;changed();});
   $('edEstates').addEventListener('click',e=>{const b=e.target.closest('[data-f="del"]');if(!b)return;const i=+b.closest('[data-i]').dataset.i;
     lv.estates.splice(i,1);for(const ph of lv.phases)ph.splice(i,1);selEstate=-1;changed();});
-  function flash(s){$('edNote').textContent=s;}
+  let toastTimer=0;
+  function flash(s){const el=$('edToast');el.textContent=s;el.classList.toggle('on',!!s);clearTimeout(toastTimer);
+    if(s)toastTimer=setTimeout(()=>el.classList.remove('on'),2800);}
 
   /* ----------------------------------------------------------- bots, in the page */
   // The same checks as bots/v4_calibrate.js, smaller: every opening without moving, then from the best three openings a
@@ -211,7 +229,8 @@
   async function analyse(){
     if(busy||problems().length)return;busy=true;analysis={progress:0};render();
     D.loadEditor(toLevel(lv));Tide.reset();
-    const n=D.candidates.length,opens=[];for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)for(let c=b+1;c<n;c++)opens.push([a,b,c]);
+    const n=D.candidates.length,all=[];for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)for(let c=b+1;c<n;c++)all.push([a,b,c]);
+    const LIMIT=1200,step=Math.max(1,all.length/LIMIT),opens=all.length>LIMIT?Array.from({length:LIMIT},(_,i)=>all[Math.floor(i*step)]):all;
     const total=D.waves.flat().reduce((x,y)=>x+y,0),start=P.firstWave,rounds=D.waves.length;
     const plannerWork=3*(rounds-1)*3*n,work=opens.length+plannerWork;let done=0;
     const statics=[];
@@ -230,7 +249,7 @@
     // the same moves 40 s early (still in the previous round): if that is not worse, timing does not matter
     const early=best.moves.length?playLevel(best.open,best.moves.map(m=>({...m,time:Math.max(1,m.time-40)}))):null;
     const pass=sc[Math.min(4,sc.length-1)],high=Math.max(S+1,S+Math.round((B-S)/2)),master=B-S>=3?B-1:B;
-    analysis={total,openings:sc.length,staticBest:S,early,median:sc[Math.floor(sc.length/2)],passCount:sc.filter(s=>s>=pass).length,
+    analysis={total,openings:sc.length,sampled:all.length>LIMIT?all.length:0,staticBest:S,early,median:sc[Math.floor(sc.length/2)],passCount:sc.filter(s=>s>=pass).length,
       planBest:B,plan:best,tiers:[pass,Math.min(high,master),master],
       bestOpen:best.open.map(i=>k(D.candidates[i])),moves:best.moves.map(m=>({r:Math.round((m.time+3-start)/P.interval)+1,stop:'ABC'[m.id],to:k(D.candidates[m.to])}))};
     busy=false;render();
@@ -250,7 +269,7 @@
       <p class="note">${t('ed.aPlanHow',{o:a.bestOpen.join(' · '),m:a.moves.length?a.moves.map(m=>t('ed.aMove',m)).join('；'):t('ed.aNoMove')})}</p>
       ${a.early!==null?`<div class="r"><span>${t('ed.aEarly')}</span><b class="mono">${a.early}</b></div>`:''}
       <div class="r"><span>${t('ed.aTiers')}</span><b class="mono">${a.tiers.join(' / ')}</b></div>
-      <p class="note">${t('ed.aPass',{n:a.passCount,of:a.openings})}</p>
+      <p class="note">${t('ed.aPass',{n:a.passCount,of:a.openings})}${a.sampled?' '+t('ed.sampled',{n:a.openings,all:a.sampled}):''}</p>
       ${warn.map(w=>`<p class="note ed-warn">${w}</p>`).join('')}
       <button class="btn btn-sm" id="edUseTiers">${t('ed.useTiers')}</button>`;
     $('edUseTiers').onclick=()=>{lv.tiers=a.tiers.slice();const keep=analysis;changed();analysis=keep;renderAnalysis();};
@@ -276,6 +295,6 @@
     try{localStorage.setItem('tl-theme',th);}catch(e){}render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   try{const th=localStorage.getItem('tl-theme');if(th)document.documentElement.setAttribute('data-theme',th);}catch(e){}
-  window.TL_EDITOR={get level(){return lv;},toLevel:()=>toLevel(lv),analyse,get analysis(){return analysis;}};
+  window.TL_EDITOR={pad:[MX,MY],get level(){return lv;},toLevel:()=>toLevel(lv),analyse,get analysis(){return analysis;}};
   fixPhases();render();
 })();

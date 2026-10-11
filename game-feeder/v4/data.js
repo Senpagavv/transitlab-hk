@@ -55,7 +55,9 @@
     const water=[],left=new Set(cells.map(k));
     for(const [x,y] of [...cells].sort((a,b)=>a[1]-b[1]||a[0]-b[0])){if(!left.has(k([x,y])))continue;
       let e=x;while(left.has(k([e+1,y])))e++;for(let i=x;i<=e;i++)left.delete(k([i,y]));water.push([x,y,e,y]);}
-    return {station:STATION,margin:[60,50],hubLabel:'right',firstWave:20,...def,roads,water,bridges:cells.filter(c=>road.has(k(c)))};
+    const total=(def.waves||[]).flat().reduce((a,b)=>a+b,0),guess=!(def.tiers||[]).some(x=>x>0);
+    const tiers=guess?[.6,.75,.9].map(f=>Math.ceil(f*total)):def.tiers;
+    return {station:STATION,margin:[60,50],hubLabel:'right',firstWave:20,...def,tiers,tiersGuess:guess,roads,water,bridges:cells.filter(c=>road.has(k(c)))};
   }
   function customDef(){
     const h=typeof location!=='undefined'?location.hash:'';
@@ -68,7 +70,7 @@
     const waves=L.waves.map(w=>w.slice());
     const origins=L.estates.map((e,i)=>({...e,count:waves.reduce((s,w)=>s+w[i],0),base:Math.min(...waves.map(w=>w[i]))}));
     const out={map:key,origins,waves,peaks:[],levels:Object.keys(LEVELS)};
-    for(const k of ['title','cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
+    for(const k of ['title','tiersGuess','cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
       'release','seats','queue','cool','moves','willing','patience','tail'])if(L[k]!==undefined)out[k]=L[k];
     return out;
   }

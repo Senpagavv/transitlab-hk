@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-11
+
+### 22:57 · `待补` 接驳巴士 v4.2：编辑器放置修正 + 自查 bug / Feeder v4.2: editor placement fixes + bug sweep
+- **改了什么**：`game-feeder/v4/`：编辑器放屋苑 / 港铁 / 站位时自动铺路、提示显示在地图上、屋苑可拖动、路和河的笔只加不减；编辑器和游戏画框自动放大，边上的屋苑名不再被切；「站满」要排队位和座位都满；结束时间按最后出门的人算；自做关卡没填门槛时暂定 60/75/90% 并注明；河与桥的说明改清楚；新 `fuzz_engine.js` 随机关卡压力测试。
+- **为什么**：发起人反馈编辑器「屋苑和站放不出来」（提示看不到），要求自己查一遍类似 bug。
+- **验证**：`node game-feeder/v4/test_engine.js` 18 项通过；随机关卡 3,500 个 / 10,500 局无问题；无界面 Edge 乱点编辑器 400 步、四边放屋苑的边界测试都无报错、无出框。详见 `game-feeder/LOG.md` v4 线。
+
 ## 2026-10-09
 
 ### 19:20 · `a07d92e` 接驳巴士 v4.1：修正等车算法 + 关卡编辑器 + 两关加人 / Feeder v4.1: waiting fixes, level editor, more people

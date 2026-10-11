@@ -447,6 +447,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .ed-in[type=number]::-webkit-inner-spin-button,.ed-in[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 .ed-willing input.ed-in[type=number]{padding:0 2px;font-size:12px}
 .ed-analysis{margin-bottom:4px}
+
+.ed-toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-6px);z-index:8;opacity:0;pointer-events:none;max-width:80%;
+  padding:7px 14px;border-radius:999px;background:var(--s-ink);color:var(--s-paper);font-size:13px;transition:opacity .15s,transform .15s}
+.ed-toast.on{opacity:1;transform:translate(-50%,0)}
 </style></head><body class="entered">
 
 <header id="topbar">
@@ -609,7 +613,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
     const water=[],left=new Set(cells.map(k));
     for(const [x,y] of [...cells].sort((a,b)=>a[1]-b[1]||a[0]-b[0])){if(!left.has(k([x,y])))continue;
       let e=x;while(left.has(k([e+1,y])))e++;for(let i=x;i<=e;i++)left.delete(k([i,y]));water.push([x,y,e,y]);}
-    return {station:STATION,margin:[60,50],hubLabel:'right',firstWave:20,...def,roads,water,bridges:cells.filter(c=>road.has(k(c)))};
+    const total=(def.waves||[]).flat().reduce((a,b)=>a+b,0),guess=!(def.tiers||[]).some(x=>x>0);
+    const tiers=guess?[.6,.75,.9].map(f=>Math.ceil(f*total)):def.tiers;
+    return {station:STATION,margin:[60,50],hubLabel:'right',firstWave:20,...def,tiers,tiersGuess:guess,roads,water,bridges:cells.filter(c=>road.has(k(c)))};
   }
   function customDef(){
     const h=typeof location!=='undefined'?location.hash:'';
@@ -622,7 +628,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
     const waves=L.waves.map(w=>w.slice());
     const origins=L.estates.map((e,i)=>({...e,count:waves.reduce((s,w)=>s+w[i],0),base:Math.min(...waves.map(w=>w[i]))}));
     const out={map:key,origins,waves,peaks:[],levels:Object.keys(LEVELS)};
-    for(const k of ['title','cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
+    for(const k of ['title','tiersGuess','cols','rows','margin','hub','hubLabel','station','roads','water','bridges','candidates','headway','tiers','firstWave','interval',
       'release','seats','queue','cool','moves','willing','patience','tail'])if(L[k]!==undefined)out[k]=L[k];
     return out;
   }
@@ -689,7 +695,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
     // the latest anyone can still be on the way: full patience, then the slowest bus and the longest ride
     const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
     const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
-    P.duration=P.lastRound+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
+    // counted from the last person to leave home (a level may spread departures past the end of its last round)
+    const lastBorn=Math.max(P.lastRound,P.firstWave+(D.waves.length-1)*P.interval+P.release);
+    P.duration=lastBorn+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
   reset();
@@ -772,7 +780,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
     // after this person was turned away there, or if they cannot make a bus in time.
     attraction(p,s,from=D.origins[p.origin].cell,walked=0) {
       if(!s.cell||s.ready>this.t||p.avoid.includes(s.id+':'+s.version))return 0;
-      if(s.queue.length>=P.queue)return 0;          // a full stop attracts nobody at the moment they decide
+      if(s.queue.length>=P.queue&&s.boarding.length>=P.seats)return 0;   // a full stop attracts nobody at the moment they decide
       const steps=dist(from,s.cell);if(steps<0)return 0;
       const share=shareAt(p.origin,s.cell,walked,from);if(!share)return 0;
       const walk=steps*P.walkStep,cycle=this.headway(s);
@@ -793,7 +801,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
       if(choice){p.trips++;p.switched=false;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
       else{p.retryAt=this.t+P.reconsider;
         // nothing chosen because the stop they would use is full right now — that is the reason if they end up driving
-        if(this.stops.some(s=>s.cell&&s.ready<=this.t&&s.queue.length>=P.queue&&shareAt(p.origin,s.cell)>p.preference))p.lastWhy='站滿了';}
+        if(this.stops.some(s=>s.cell&&s.ready<=this.t&&s.queue.length>=P.queue&&s.boarding.length>=P.seats&&shareAt(p.origin,s.cell)>p.preference))p.lastWhy='站滿了';}
     }
     leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
     // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
@@ -865,7 +873,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
             p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
             this.board(s);
             s.peak=Math.max(s.peak,s.queue.length);
-          }else{const full=s&&s.queue.length>=P.queue,here=p.path.at(-1).slice();
+          }else{const full=s&&s.queue.length>=P.queue&&s.boarding.length>=P.seats,here=p.path.at(-1).slice();
             if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
             if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
             else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}
@@ -1222,10 +1230,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
     'ed.tool.road':L('道路','道路','Road'),'ed.tool.water':L('河','河','Water'),'ed.tool.estate':L('屋苑','屋苑','Estate'),
     'ed.tool.hub':L('港鐵','港铁','MTR'),'ed.tool.cand':L('站位','站位','Stop spot'),'ed.tool.erase':L('擦','擦','Erase'),
     'ed.t.road':L('按住拖動畫路，可以從已有的路接出去；擦路用「擦」。走路和巴士都只能沿路走，一格就是一個街口。','按住拖动画路，可以从已有的路接出去；擦路用「擦」。走路和巴士都只能沿路走，一格就是一个街口。','Drag to draw roads, also branching off existing ones; use Erase to remove. Walking and buses follow the roads; one cell is one block.'),
-    'ed.t.water':L('按住拖動畫河。路穿過河的地方就是橋。','按住拖动画河。路穿过河的地方就是桥。','Drag to draw water. Where a road crosses water is a bridge.'),
-    'ed.t.estate':L('點路上一格放屋苑；點已有的屋苑選中它。名字和樓的方向在下面改。','点路上一格放屋苑；点已有的屋苑选中它。名字和楼的方向在下面改。','Click a road cell to add an estate; click one to select it. Change its name and building side below.'),
-    'ed.t.hub':L('點路上一格放港鐵站（只有一個）。','点路上一格放港铁站（只有一个）。','Click a road cell for the MTR station (only one).'),
-    'ed.t.cand':L('點路上一格加／去掉一個可放站的位置（＋）。玩家只能在這些位置放站。','点路上一格加／去掉一个可放站的位置（＋）。玩家只能在这些位置放站。','Click a road cell to add or remove a stop spot (＋). Players can only place stops on these.'),
+    'ed.t.water':L('按住拖動畫河。河本身不擋人，人和車只看路走；河是讓玩家看懂路為甚麼要繞——河上除了橋沒有路。路穿過河的格子就是橋。','按住拖动画河。河本身不挡人，人和车只看路走；河是让玩家看懂路为什么要绕——河上除了桥没有路。路穿过河的格子就是桥。','Drag to draw water. Water stops nobody by itself — people and buses only follow roads; it shows players why roads go round: no road crosses it except at bridges. A road across water is a bridge.'),
+    'ed.t.estate':L('點一格放屋苑（沒有路會自動補一段）；按住已有的屋苑拖到別格就是搬家。名字和樓的方向在左邊列表改。','点一格放屋苑（没有路会自动补一段）；按住已有的屋苑拖到别格就是搬家。名字和楼的方向在左边列表改。','Click a cell to add an estate (a road is laid if there is none); drag an estate to move it. Name and building side are in the list.'),
+    'ed.t.hub':L('點一格放港鐵站（只有一個，沒有路會自動補一段）。','点一格放港铁站（只有一个，没有路会自动补一段）。','Click a cell for the MTR station (only one; a road is laid if there is none).'),
+    'ed.t.cand':L('點一格加／去掉一個可放站的位置（＋，沒有路會自動補一段）。玩家只能在這些位置放站。','点一格加／去掉一个可放站的位置（＋，没有路会自动补一段）。玩家只能在这些位置放站。','Click a cell to add or remove a stop spot (＋; a road is laid if there is none). Players can only place stops on these.'),
     'ed.t.erase':L('點一格擦掉上面的東西（屋苑、站位、港鐵、路、河，逐層）；按住拖動擦路。','点一格擦掉上面的东西（屋苑、站位、港铁、路、河，逐层）；按住拖动擦路。','Click to erase what is on a cell (estate, stop spot, station, road, water, one layer at a time); drag to erase roads.'),
     'ed.cols':L('寬','宽','Width'),'ed.rows':L('高','高','Height'),
     'ed.estates':L('屋苑','屋苑','Estates'),'ed.noEstates':L('還沒有屋苑。選「屋苑」工具，點路上一格。','还没有屋苑。选「屋苑」工具，点路上一格。','No estates yet. Pick the Estate tool and click a road cell.'),
@@ -1238,6 +1246,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
     'ed.pEstateOff':L('{s} 不在路上。','{s} 不在路上。','{s} is off the road.'),'ed.pNoPath':L('{s} 沒有路通到港鐵。','{s} 没有路通到港铁。','{s} has no road to the station.'),
     'ed.pCandCut':L('有站位沒有路通到港鐵。','有站位没有路通到港铁。','A stop spot has no road to the station.'),'ed.pNoPeople':L('每輪人數全是 0。','每轮人数全是 0。','Nobody leaves home in any round.'),
     'ed.pNone':L('可以試玩。','可以试玩。','Ready to play.'),
+    'ed.laidRoad':L('這格沒有路，已經補上一段；記得把它接到路網上。','这格没有路，已经补上一段；记得把它接到路网上。','No road here, so one was laid; remember to join it to the network.'),
+    'ed.onHub':L('這格是港鐵站。','这格是港铁站。','That cell is the station.'),'ed.onEstate':L('這格已經有屋苑。','这格已经有屋苑。','That cell has an estate.'),
+    'ed.taken':L('那一格已經有屋苑或港鐵站了。','那一格已经有屋苑或港铁站了。','That cell already has an estate or the station.'),
+    'ed.sampled':L('站位很多：從 {all} 種開局裡平均抽了 {n} 種來試。','站位很多：从 {all} 种开局里平均抽了 {n} 种来试。','Many stop spots: {n} of {all} openings were tried, spread evenly.'),
     'ed.needRoad':L('要放在路上。先用「道路」工具畫路。','要放在路上。先用「道路」工具画路。','It must be on a road. Draw roads first.'),
     'ed.estDefault':L('屋苑{n}','屋苑{n}','Estate {n}'),
     'ed.hoverNone':L('滑鼠停在一格上，看它到港鐵和各屋苑走幾格。','鼠标停在一格上，看它到港铁和各屋苑走几格。','Hover a cell to see how many blocks it is from the station and each estate.'),
@@ -1271,6 +1283,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
     'ed.imported':L('已導入 {s}','已导入 {s}','Imported {s}'),'ed.badFile':L('讀不懂這個檔案。','读不懂这个文件。','Could not read that file.'),
     // the game's side
     'site.custom':L('自訂關卡','自订关卡','Custom level'),'lvEn.custom':L('Custom level','Custom level','Custom level'),'g.custom':L('自訂','自订','Custom'),
+    'g.tiersGuess':L('（這關還沒分析，門檻是按總人數的 60%／75%／90% 暫定的；在編輯器按「分析難度」可以得到建議門檻。）','（这关还没分析，门槛是按总人数的 60%／75%／90% 暂定的；在编辑器按「分析难度」可以得到建议门槛。）','(Not analysed yet: tiers are a guess at 60 / 75 / 90 % of everyone; press Analyse in the editor for suggested tiers.)'),
     'g.edit':L('✎ 編輯這關','✎ 编辑这关','✎ Edit this level'),'g.editor':L('✎ 關卡編輯器','✎ 关卡编辑器','✎ Level editor'),
     'src.custom':L('這關是用關卡編輯器做的，地圖和人數都是自訂的遊戲設定。','这关是用关卡编辑器做的，地图和人数都是自订的游戏设定。','Made in the level editor: map and numbers are custom game settings.'),
     'b.whyMTR':L('走去港鐵更近','走去港铁更近','MTR as close'),'b.whyFar':L('太遠','太远','too far'),'b.whyOther':L('去 {s} 站','去 {s} 站','goes to {s}')
@@ -1360,9 +1373,15 @@ input.ed-in[type=number]{width:62px;text-align:right}
   function setupMap(){
     total=D.waves.flat().reduce((a,b)=>a+b,0);[MX,MY]=D.margin||[20,30];
     // board size follows the map: grid cells plus room for the buildings and labels around them
-    VBW=MX+(D.cols-1)*72+Math.max(MX,120);VBH=MY+(D.rows-1)*62+86;
+    VBW=MX+(D.cols-1)*72+Math.max(MX,140);VBH=MY+(D.rows-1)*62+Math.max(96,MY);
     for(const id of ['board','fx'])$(id).setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
-    texts();
+    texts();fitBoard();
+  }
+  // grow the board's frame to fit every name and label (an estate on the outer edge with a long name)
+  function fitBoard(){
+    if(typeof game==='undefined'||!game)return;
+    drawMap();try{const bb=$('board').getBBox(),x0=Math.min(0,bb.x-10),y0=Math.min(0,bb.y-10),x1=Math.max(VBW,bb.x+bb.width+10),y1=Math.max(VBH,bb.y+bb.height+10);
+      for(const id of ['board','fx'])$(id).setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}
   }
   function texts(){
     const own=D.map==='custom'&&D.title;
@@ -1372,7 +1391,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
     $('levelSeg').querySelector('[data-level="custom"]').hidden=!D.levels.includes('custom');
     $('editLevel').textContent=t(D.map==='custom'?'g.edit':'g.editor');
     $('totalN').textContent=total;
-    $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
+    $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore})+(D.tiersGuess?' '+t('g.tiersGuess'):'');
     for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){
       $(id).style.left=`${100*v/total}%`;$(id).dataset.label=t(k,{n:v});}
     const nums={base:P.headwayBase,step:P.headwayStep,seats:P.seats,queue:P.queue,moves:P.moves,cool:P.cool,n:D.waves.length};
@@ -1513,7 +1532,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
       out+=rect(x-19,y-11,38,22,C.accent,C.accent,{rx:11})+svg('text',{x,y:y+5,'font-size':12.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
     }
     for(const s of game.stops){if(!s.cell)continue;
-      const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue;
+      const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue&&s.boarding.length>=P.seats;
       let content='';
       if(full){const breathe=(.35+.3*Math.sin(performance.now()/380)).toFixed(2);   // a slow red breath while the queue is full
         content+=svg('circle',{cx:x,cy:y,r:27,fill:C.bad,'fill-opacity':(breathe*.18).toFixed(3),stroke:C.bad,'stroke-width':1.5,'stroke-opacity':breathe});
@@ -1556,7 +1575,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
       const build=Math.max(0,s.ready-game.t);
       h+=`<div class="r"><span>${t('sp.next')}</span><span class="big">${game.done?'—':!game.started?t('sp.opening',{n:hw}):build?t('b.rebuild',{n:Math.ceil(build)}):fmt(game.eta(s))}</span></div>`;
       h+=`<div class="r"><span>${t('sp.seats',{a:s.boarding.length,b:P.seats})}</span></div><div class="slots">${Array.from({length:P.seats},(_,j)=>`<i class="${j<s.boarding.length?'on':''}"></i>`).join('')}</div>`;
-      h+=`<div class="r"><span>${t('sp.queue',{a:s.queue.length,b:P.queue})}</span><span>${s.rejected?t('sp.rejected',{n:s.rejected}):''}</span></div><div class="slots queue ${s.queue.length>=P.queue?'full':''}">${Array.from({length:P.queue},(_,j)=>`<i class="${j<s.queue.length?'on':''}"></i>`).join('')}</div>`;
+      h+=`<div class="r"><span>${t('sp.queue',{a:s.queue.length,b:P.queue})}</span><span>${s.rejected?t('sp.rejected',{n:s.rejected}):''}</span></div><div class="slots queue ${s.queue.length>=P.queue&&s.boarding.length>=P.seats?'full':''}">${Array.from({length:P.queue},(_,j)=>`<i class="${j<s.queue.length?'on':''}"></i>`).join('')}</div>`;
     }else h+=`<p>${game.started?t('sp.hoverMove',{n:game.moves,cool:P.cool}):t('sp.hoverPlace')}${t('sp.tip')}</p>`;
     $('stopPanel').innerHTML=h;
   }
