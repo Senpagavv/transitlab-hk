@@ -467,6 +467,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .gauge[data-lo]:not([data-lo=""])::before{content:attr(data-lo);position:absolute;left:0;top:15px;font:500 10px var(--s-mono);color:var(--s-ink3)}
 #tickHigh::after{left:50%;transform:translateX(-50%);top:15px;bottom:auto}
 #tickMaster::after{left:auto;right:-1px;transform:none;top:auto;bottom:15px}
+/* v5.2 · ring keys in the legend */
+.legend i.ringkey{width:12px;height:12px;border-radius:50%;background:none;border:3px solid var(--s-accent);box-sizing:border-box}
+.legend i.ringkey.bad{border-color:var(--s-bad);border-right-color:var(--s-line2);border-bottom-color:var(--s-line2)}
+.legend i.ringkey.good{border-left-color:var(--s-line2)}
 </style></head><body class="entered ed">
 
 <header id="topbar">
@@ -573,9 +577,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
         {name:'翹翠峰',hans:'翘翠峰',cell:[5,6],house:[0,38]},
         {name:'蝶翠峰',hans:'蝶翠峰',cell:[7,6],house:[0,38]},
         {name:'橫洲東頭圍',hans:'横洲东头围',short:'橫洲',shortHans:'横洲',cell:[6,1],house:[0,-40]}],
-      // 6 a round from each estate, one estate +6 in turn: 240 people; two openings keep every stop calm and carry everyone
-      waves:hold([[12,6,6,6],[6,12,6,6],[6,6,12,6],[6,6,6,12]]),
-      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:3,cool:20,tiers:[225,235,240]},
+      // four rounds, two estates busy in each (6 → 18): 192 people; six openings keep every round's red rings open,
+      // and exactly those carry everyone by bus
+      waves:[[18,18,6,6],[6,6,18,18],[18,6,18,6],[6,18,6,18]],
+      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:3,cool:20,tiers:[183,188,192]},
     // Level 2 · Yuen Long South (v3): four estates strung along one road south of the town centre.
     l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:STATION,
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
@@ -585,9 +590,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
         {name:'朗善邨一帶',hans:'朗善邨一带',short:'朗善',shortHans:'朗善',cell:[3,6],house:[50,0]},
         {name:'蝶翠峰',hans:'蝶翠峰',cell:[2,4],house:[0,40]},
         {name:'大棠路',hans:'大棠路',cell:[1,1],house:[-50,0]}],
-      // 6 a round, one estate +12 in turn: 288; no opening carries everyone, moves before the busy rounds do better
-      waves:hold([[18,6,6,6],[6,18,6,6],[6,6,18,6],[6,6,6,18]]),
-      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:3,cool:20,tiers:[266,279,285]},
+      // four rounds, two estates busy in each (12 → 28): 320; no opening carries everyone, moves in the breaks do better
+      waves:[[28,28,12,12],[12,12,28,28],[28,12,28,12],[12,28,12,28]],
+      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:3,cool:20,tiers:[296,311,316]},
     // Level 3 · Fanling (v3): five estates fanned out east of the town centre, more people than the stops can take.
     l3:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',station:STATION,
       roads:build([[1,4,4,4],[2,2,2,6],[2,2,6,2],[6,1,6,2],[4,2,4,6],[2,6,4,6]]),
@@ -598,9 +603,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
         {name:'北區公園',hans:'北区公园',cell:[2,2],house:[-50,0]},
         {name:'華明邨',hans:'华明邨',short:'華明',shortHans:'华明',cell:[2,6],house:[0,40]},
         {name:'和合石',hans:'和合石',cell:[3,6],house:[0,40]}],
-      // 7 a round, one estate +12 in turn: 376, more than the stops can take — every layout overflows somewhere
-      waves:hold([[19,7,7,7,7],[7,19,7,7,7],[7,7,19,7,7],[7,7,7,19,7]]),
-      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:3,cool:20,tiers:[326,344,356]}
+      // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows
+      waves:[[26,26,10,10,10],[10,26,26,10,10],[10,10,10,26,26],[10,10,26,10,26]],
+      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:3,cool:20,tiers:[289,302,310]}
   };
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
@@ -653,7 +658,8 @@ input.ed-in[type=number]{width:62px;text-align:right}
   // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
   // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
   // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
-  // Rounds as in v4: people leave steadily through each round; moving a stop costs `cool` seconds.
+  // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
+  // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:4,
@@ -697,8 +703,8 @@ input.ed-in[type=number]{width:62px;text-align:right}
     const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
     const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
     // counted from the last person to leave home (a level may spread departures past the end of its last round)
-    const lastBorn=Math.max(P.lastRound,P.firstWave+(D.waves.length-1)*P.interval+P.release);
-    P.duration=lastBorn+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
+    const settle=Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10;
+    P.duration=P.firstWave+D.waves.length*(P.release+settle)+(D.tail??0);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
   reset();
@@ -728,7 +734,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
   }
   class Game {
     constructor(seed=1781) {
-      Object.assign(this,{seed,t:0,started:false,done:false,moves:P.moves,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
+      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
       this.trips=[];
       this.stops=[0,1,2].map(id=>({id,cell:null,version:0,ready:0,queue:[],boarding:[],peak:0,rejected:0,serial:0,departAt:Infinity}));
       const r=rng(seed);let id=0;
@@ -736,13 +742,14 @@ input.ed-in[type=number]{width:62px;text-align:right}
         // Evenly spread picks, shuffled: a stop with a third of the pull gets exactly a third of the batch (split()).
         const picks=Array.from({length:n},(_,k)=>(k+.5)/n);
         for(let k=n-1;k>0;k--){const j=Math.floor(r()*(k+1));[picks[k],picks[j]]=[picks[j],picks[k]];}
-        for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
-          born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
+        for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,offset:(j+.5)/n*P.release,
+          born:wi===0?P.firstWave+(j+.5)/n*P.release:Infinity,
           state:'future',pick:picks[j],budget:P.patience+40*(r()-.5),
           trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
-      this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
+      this.people.sort((a,b)=>a.wave-b.wave||a.offset-b.offset||a.id-b.id);
+      this.round=0;this.roundStart=[P.firstWave];
     }
     emit(type,p,extra={}) {this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
     person(id) {return this.people.find(p=>p.id===id);}
@@ -896,55 +903,63 @@ input.ed-in[type=number]{width:62px;text-align:right}
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
         }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
-      if(this.t>=P.duration||this.t>=P.lastRound&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
+      const R=D.waves.length,settled=r=>this.people.every(p=>p.wave!==r||['delivered','car','bus'].includes(p.state));
+      if(this.t>=this.roundStart[this.round]&&this.round<R-1&&settled(this.round)){
+        const r=++this.round;this.roundStart[r]=this.t;
+        for(const p of this.people)if(p.wave===r)p.born=this.t+p.offset;
+        this.emit('round',null,{round:r});
+      }
+      if(this.t>=P.duration||this.round===R-1&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
     }
-    advance(seconds) {
-      if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);
-      while(this.acc+1e-8>=P.tick&&!this.done){this.acc-=P.tick;this.step();}
+    advance(seconds,opt={}) {
+      if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);const r0=this.round;
+      while(this.acc+1e-8>=P.tick&&!this.done){this.acc-=P.tick;this.step();if(opt.stopAtRound&&this.round!==r0){this.acc=0;return;}}
     }
+    // run until round r has started (or the game ends): for bots and tests that move in the break before a round
+    runTo(r){while(this.started&&!this.done&&this.round<r)this.step();}
     waveInfo() {
-      const active=D.waves.findIndex((w,i)=>this.t>=P.firstWave+i*P.interval&&this.t<P.firstWave+i*P.interval+P.release);
-      const next=D.waves.findIndex((w,i)=>P.firstWave+i*P.interval>this.t);
-      return{active,next,activeEnd:active<0?null:P.firstWave+active*P.interval+P.release,
-        nextStart:next<0?null:P.firstWave+next*P.interval};
+      const s=this.roundStart[this.round],active=this.t>=s&&this.t<s+P.release?this.round:-1,next=this.round+1<D.waves.length?this.round+1:-1;
+      return{active,next,activeEnd:active<0?null:s+P.release,nextStart:null};
     }
-    // Map preview for a set of stop cells (replace stop `id` by `cell` to preview a placement), all stops open:
-    // each estate's pull and share per stop and head count per round; and, played forward from now with this layout,
-    // each stop's most people waiting and how many would find it full, per round. The play-forward uses the real
-    // people (their departure times and picks), walking times and the bus timetable, but not what people do once a
-    // stop is full (they would spread to the other stops) — so it is a warning, not a promise.
+    // Who goes where with a set of stop cells (replace stop `id` by `cell` to preview a placement), all stops open:
+    // each estate's pull and share per stop and head count per round, and each stop's load per round.
+    // How full a stop gets in a round: forecastRound().
     forecast(id=-1,cell=null) {
-      const cells=this.stops.map(s=>s.id===id?cell:s.cell),room=P.seats+P.queue,R=D.waves.length;
-      const pullsOf=D.origins.map((o,i)=>cells.map(c=>c?shareAt(i,c):0));
+      const cells=this.stops.map(s=>s.id===id?cell:s.cell);
       const estates=D.origins.map((o,i)=>{
-        const pull=pullsOf[i],sum=pull.reduce((a,b)=>a+b,0);
+        const pull=cells.map(c=>c?shareAt(i,c):0),sum=pull.reduce((a,b)=>a+b,0);
         return{origin:i,pull,share:pull.map(w=>sum?w/sum:0),steps:cells.map(c=>c?dist(o.cell,c):null),
           perWave:D.waves.map(w=>split(w[i],pull)),drives:!sum};
       });
-      const t0=this.started?this.t:0,roundOf=tt=>Math.max(0,Math.min(R-1,Math.floor((tt-P.firstWave)/P.interval)));
+      const stops=cells.map((c,s)=>({cell:c,load:D.waves.map((w,wi)=>estates.reduce((n,e)=>n+e.perWave[wi][s],0))}));
+      return{estates,stops};
+    }
+    // v5.2 · the preview between rounds: round r on its own with this layout (replace stop `id` by `cell` to preview a
+    // placement) — nothing else. The stops start the round empty; only round r's people, their picks, walking times
+    // and each stop's timetable. Per stop: who comes from which estate, how full it gets at its busiest, how many
+    // would find it full. Per estate: how many of its people get a place (the rest: no stop near, or a full stop).
+    forecastRound(r,id=-1,cell=null) {
+      const cells=this.stops.map(s=>s.id===id?cell:s.cell),room=P.seats+P.queue,t0=this.roundStart[r]??Math.max(this.t,P.firstWave);
+      const pullsOf=D.origins.map((o,i)=>cells.map(c=>c?shareAt(i,c):0));
+      const estates=D.origins.map((o,i)=>{const pull=pullsOf[i],sum=pull.reduce((a,b)=>a+b,0);
+        return{origin:i,pull,share:pull.map(w=>sum?w/sum:0),steps:cells.map(c=>c?dist(o.cell,c):null),n:D.waves[r]?.[i]??0,served:0,drives:!sum,to:cells.map(()=>0)};});
+      const people=this.people.filter(p=>p.wave===r);
       const stops=cells.map((c,s)=>{
-        const out={cell:c,room,capacity:c?P.seats*P.interval/headwayAt(c):0,
-          load:D.waves.map((w,wi)=>estates.reduce((n,e)=>n+e.perWave[wi][s],0)),peak:D.waves.map(()=>0),over:D.waves.map(()=>0)};
-        if(!c)return out;
-        // arrivals from now on: people still to leave home (their pick decides the stop), and people walking here now
-        const st=this.stops[s],moved=s===id,arrive=[];
-        for(const p of this.people){
-          if(p.state==='future'||p.state==='home'&&!this.started){if(slice(pullsOf[p.origin],p.pick)===s)arrive.push(p.born+dist(D.origins[p.origin].cell,c)*P.walkStep);}
-          else if(!moved&&p.state==='walk'&&p.target===s)arrive.push(p.since+length(p.path)*P.walkStep);
-        }
-        arrive.sort((a,b)=>a-b);
-        const hw=headwayAt(c);let wait=moved||!this.started?0:st.queue.length+st.boarding.length;
-        let next=this.started&&!moved?st.departAt:t0+hw;
-        const ready=moved?t0+P.cool:this.started?st.ready:0;
-        for(const at of arrive){
-          while(next<=at){if(next>=ready)wait=Math.max(0,wait-P.seats);next+=hw;}
-          const r=roundOf(at);
-          if(at<ready||wait>=room){out.over[r]++;continue;}
-          wait++;out.peak[r]=Math.max(out.peak[r],wait);
+        const out={cell:c,room,load:0,peak:0,over:0,from:D.origins.map(()=>0)};if(!c)return out;
+        const arrive=[];
+        for(const p of people)if(slice(pullsOf[p.origin],p.pick)===s)arrive.push([t0+p.offset+dist(D.origins[p.origin].cell,c)*P.walkStep,p.origin]);
+        arrive.sort((a,b)=>a[0]-b[0]);out.load=arrive.length;
+        const hw=headwayAt(c);let next=this.started?this.stops[s].departAt:hw;
+        while(next<t0)next+=hw;
+        let wait=0;
+        for(const [at,o] of arrive){
+          while(next<=at){wait=Math.max(0,wait-P.seats);next+=hw;}
+          if(wait>=room){out.over++;continue;}
+          wait++;out.peak=Math.max(out.peak,wait);out.from[o]++;estates[o].served++;estates[o].to[s]++;
         }
         return out;
       });
-      return{estates,stops};
+      return{round:r,estates,stops};
     }
     homeStats(origin) {
       const ps=this.people.filter(p=>p.origin===origin),w=this.waveInfo(),count=state=>ps.filter(p=>p.state===state).length;
@@ -1407,6 +1422,37 @@ input.ed-in[type=number]{width:62px;text-align:right}
     'src.l3':L('地圖取自 v3 的粉嶺示意圖（山麗苑、鳳凰嶺邨、北區公園、華明邨、和合石），終點改為市中心。','地图取自 v3 的粉岭示意图（山丽苑、凤凰岭邨、北区公园、华明邨、和合石），终点改为市中心。','The v3 Fanling board (Shan Lai Court, Fung Wong Ling, North District Park, Wah Ming, Wo Hop Shek); the end of the line is now the town centre.'),
     'src.demand':L('每輪各區人數：平時固定，輪流有一區人多，兩輪換一次。人數與時間都是遊戲設定，不代表真實客流。','每轮各区人数：平时固定，轮流有一区人多，两轮换一次。人数与时间都是游戏设定，不代表真实客流。','Each round: a steady number per estate, one estate busier in turn, changing every two rounds. Numbers and times are game settings, not real ridership.')
   });
+  // v5.2 · rings instead of numbers, a break between rounds, four rounds
+  Object.assign(S,{
+    'g.lede':L('Three stops, one town centre, four rounds.<span class="tcb">三座接駁站，把原本開車去市中心的人接上巴士。看圓圈擺站：綠圈補滿、紅圈別滿。</span>',
+      'Three stops, one town centre, four rounds.<span class="tcb">三座接驳站，把原本开车去市中心的人接上巴士。看圆圈摆站：绿圈补满、红圈别满。</span>',
+      'Three stops, one town centre, four rounds. Place stops by the rings: fill the green ones, keep the red ones from closing.'),
+    'g.rule1':L('<b>人人都想坐巴士，按吸引力分去各站。</b>站在屋苑門口吸引力 100%，每多走 1 格少 10%，6 格以外沒有；站要比走去市中心近。停在 ＋ 上會顯示這個位置對每個屋苑的吸引力。兩座站 80% 和 40%，人就按 2 : 1 分；細線越粗，去的人越多。',
+      '<b>人人都想坐巴士，按吸引力分去各站。</b>站在屋苑门口吸引力 100%，每多走 1 格少 10%，6 格以外没有；站要比走去市中心近。停在 ＋ 上会显示这个位置对每个屋苑的吸引力。两座站 80% 和 40%，人就按 2 : 1 分；细线越粗，去的人越多。',
+      '<b>Everyone wants the bus; they split between stops by pull.</b> A stop at the door pulls 100%, each extra block 10% less, nothing beyond 6 blocks; it must be nearer than walking to town. Hover a ＋ to see what that spot pulls from each estate. Stops at 80% and 40% split an estate 2 : 1; the thicker the thin line, the more people.'),
+    'g.rule3':L('<b>看圓圈。</b>屋苑的綠圈＝這一輪的人有多少接得走，缺口＝接不走；站的紅圈＝站會被填多滿，一段段是從不同屋苑來的人，整圈閃紅＝會爆。只算這一輪、這個擺法。這一輪的人都坐上車或開車走了，下一輪才開始；兩輪之間遊戲停 5 秒給你看；這時按暫停可以慢慢調，按繼續馬上開始。可以挪站 {moves} 次，挪完冷卻 {cool} 秒；輪中間也能挪，但不顯示圓圈。',
+      '<b>看圆圈。</b>屋苑的绿圈＝这一轮的人有多少接得走，缺口＝接不走；站的红圈＝站会被填多满，一段段是从不同屋苑来的人，整圈闪红＝会爆。只算这一轮、这个摆法。这一轮的人都坐上车或开车走了，下一轮才开始；两轮之间游戏停 5 秒给你看；这时按暂停可以慢慢调，按继续马上开始。可以挪站 {moves} 次，挪完冷却 {cool} 秒；轮中间也能挪，但不显示圆圈。',
+      '<b>Read the rings.</b> An estate’s green ring = how many of this round’s people get a place; a gap = people left out. A stop’s red ring = how full it gets, in parts by the estate people come from; a whole ring flashing red = it overflows. This round and this layout only. A round ends once all its people are on a bus or have driven off; then the game stops for 5 s; pause then to adjust at leisure, resume to start at once. {moves} moves, each cools down {cool} s; you can also move during a round, without the rings.'),
+    'g.tideKey':L('<span><b class="mono">9</b>這輪出門人數</span><span><i class="pk"></i>人多</span>','<span><b class="mono">9</b>这轮出门人数</span><span><i class="pk"></i>人多</span>','<span><b class="mono">9</b>leave home this round</span><span><i class="pk"></i>busy</span>'),
+    'g.tideChip':L('4 輪 · 每輪清完才下一輪','4 轮 · 每轮清完才下一轮','4 rounds · each settles first'),
+    'g.tideChipTitle':L('每輪的人在 2 分鐘裡陸續出門；這一輪的人都坐上車或開車走了，才開始下一輪','每轮的人在 2 分钟里陆续出门；这一轮的人都坐上车或开车走了，才开始下一轮','People leave over 2 minutes; the next round starts once everyone of this one is on a bus or has driven off'),
+    'w.break':L('第 {n}/{m} 輪 · 開始前','第 {n}/{m} 轮 · 开始前','Round {n}/{m} · about to start'),
+    'w.first':L('第 1 輪：{n} 秒後','第 1 轮：{n} 秒后','Round 1 in {n} s'),
+    'g.legEstate':L('綠圈：接得走的人','绿圈：接得走的人','green: people who get a place'),'g.legStop':L('紅圈：站有多滿','红圈：站有多满','red: how full a stop gets'),
+    'cd.hint':L('按空格暫停，慢慢調站','按空格暂停，慢慢调站','Space to pause and adjust'),
+    'cd.adjust':L('調整中 · 圓圈按現在的站顯示這一輪 · 按繼續馬上開始','调整中 · 圆圈按现在的站显示这一轮 · 按继续马上开始','Adjusting · the rings show this round with your stops · Resume to start it'),
+    'sp.overN':L('會爆（{n} 人擠不上）','会爆（{n} 人挤不上）','overflows ({n} turned away)'),
+    'i.r6':L('<b>潮汐表、圓圈和每輪之間。</b>{n} 輪。每輪各區的人在 2 分鐘裡陸續出門，每輪有兩個屋苑人多；這一輪的人都坐上車或開車走了，才開始下一輪（所以每輪長短不一）。開局前和每輪之間，地圖用圓圈顯示這一輪：綠圈是屋苑的人接得走多少，紅圈是站最滿時有多滿。只算這一輪、這個擺法，不算上一輪還沒運完的人，也不算被擠走的人去哪。每輪之間遊戲停 5 秒；在這 5 秒裡暫停就變成調整時間，不限時，按繼續直接開始這一輪。',
+      '<b>潮汐表、圆圈和每轮之间。</b>{n} 轮。每轮各区的人在 2 分钟里陆续出门，每轮有两个屋苑人多；这一轮的人都坐上车或开车走了，才开始下一轮（所以每轮长短不一）。开局前和每轮之间，地图用圆圈显示这一轮：绿圈是屋苑的人接得走多少，红圈是站最满时有多满。只算这一轮、这个摆法，不算上一轮还没运完的人，也不算被挤走的人去哪。每轮之间游戏停 5 秒；在这 5 秒里暂停就变成调整时间，不限时，按继续直接开始这一轮。',
+      '<b>Tide table, rings and the break between rounds.</b> {n} rounds. People leave over 2 minutes, two estates busier each round; the next round starts once everyone of this one is on a bus or has driven off (so rounds differ in length). Before the start and between rounds the rings show that round: green, how many of an estate’s people get a place; red, how full a stop gets at its busiest. This round and this layout only — not people left over from the last round, nor where people turned away go. Between rounds the game stops for 5 s; pause in it to adjust with no time limit, and resume to start the round at once.'),
+    'src.demand':L('每輪各區人數：平時固定，每輪兩個屋苑人多。人數與時間都是遊戲設定，不代表真實客流。','每轮各区人数：平时固定，每轮两个屋苑人多。人数与时间都是游戏设定，不代表真实客流。','Each round: a steady number per estate, two estates busier. Numbers and times are game settings, not real ridership.')
+  });
+  // v5.3 · the editor's analysis moves in the breaks between rounds
+  Object.assign(S,{
+    'n.start':L('開始了。每一輪的人都有結果後，遊戲停 5 秒顯示下一輪；想慢慢調，就在那時按空格暫停。','开始了。每一轮的人都有结果后，游戏停 5 秒显示下一轮；想慢慢调，就在那时按空格暂停。','Running. When a round has settled the game stops for 5 s to show the next one; press Space then to adjust at leisure.'),
+    'ed.aEarly':L('同樣挪站，但在上一輪中間挪','同样挪站，但在上一轮中间挪','Same moves, mid-round instead'),
+    'ed.wEarly':L('在輪中間挪站不吃虧：兩輪之間看圓圈再挪沒有好處。想讓兩輪之間的停頓更重要，就讓每一輪人多的屋苑不一樣，或讓站更容易爆。','在轮中间挪站不吃亏：两轮之间看圆圈再挪没有好处。想让两轮之间的停顿更重要，就让每一轮人多的屋苑不一样，或让站更容易爆。','Moving mid-round costs nothing: looking at the rings in the break gains nothing. To make the break matter, change which estates are busy from round to round, or make stops overflow more easily.')
+  });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
@@ -1673,18 +1719,20 @@ input.ed-in[type=number]{width:62px;text-align:right}
     if(s)toastTimer=setTimeout(()=>el.classList.remove('on'),2800);}
 
   /* ----------------------------------------------------------- bots, in the page */
-  // The same checks as bots/v4_calibrate.js, smaller: every opening without moving, then from the best three openings a
-  // player who moves one stop at most in each countdown (3 s before a round). Runs in slices so the page stays usable.
+  // The same checks as bots/v5_tune.js, smaller: every opening without moving, then from the best three openings a
+  // player who moves one stop at most in each break between rounds. Runs in slices so the page stays usable.
+  // A move {r,id,to} is made in the break before round r (0-based); with mid, that many seconds into round r-1 instead.
   let analysis=null,busy=false;
   const tick=()=>new Promise(r=>setTimeout(r,0));
-  function playLevel(open,moves=[]){const g=new Tide.Game();open.forEach((c,id)=>g.place(id,D.candidates[c]));g.start();
-    for(const m of moves){g.advance(m.time-g.t);g.place(m.id,D.candidates[m.to]);}g.advance(P.duration-g.t+1);return g.delivered;}
+  function playLevel(open,moves=[],mid=0){const g=new Tide.Game();open.forEach((c,id)=>g.place(id,D.candidates[c]));g.start();
+    for(const m of [...moves].sort((a,b)=>a.r-b.r)){if(mid){g.runTo(m.r-1);g.advance(mid);}else g.runTo(m.r);g.place(m.id,D.candidates[m.to]);}
+    g.advance(P.duration+1);return g.delivered;}
   async function analyse(){
     if(busy||problems().length)return;busy=true;analysis={progress:0};render();
     D.loadEditor(toLevel(lv));Tide.reset();
     const n=D.candidates.length,all=[];for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)for(let c=b+1;c<n;c++)all.push([a,b,c]);
     const LIMIT=1200,step=Math.max(1,all.length/LIMIT),opens=all.length>LIMIT?Array.from({length:LIMIT},(_,i)=>all[Math.floor(i*step)]):all;
-    const total=D.waves.flat().reduce((x,y)=>x+y,0),start=P.firstWave,rounds=D.waves.length;
+    const total=D.waves.flat().reduce((x,y)=>x+y,0),rounds=D.waves.length;
     const plannerWork=3*(rounds-1)*3*n,work=opens.length+plannerWork;let done=0;
     const statics=[];
     for(let i=0;i<opens.length;i++){statics.push({o:opens[i],s:playLevel(opens[i])});done++;if(i%6===5){analysis.progress=done/work;renderAnalysis();await tick();}}
@@ -1692,19 +1740,19 @@ input.ed-in[type=number]{width:62px;text-align:right}
     let best={score:statics[0].s,moves:[],open:statics[0].o};
     for(const x of statics.slice(0,3)){
       const moves=[],cells=x.o.slice();let score=x.s;
-      for(let r=1;r<rounds;r++){const time=start+r*P.interval-3;let pick=null;
+      for(let r=1;r<rounds;r++){let pick=null;
         if(moves.length<P.moves)for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
-          const s=playLevel(x.o,[...moves,{time,id,to}]);if(s>score&&(!pick||s>pick.s))pick={s,m:{time,id,to}};}
+          const s=playLevel(x.o,[...moves,{r,id,to}]);if(s>score&&(!pick||s>pick.s))pick={s,m:{r,id,to}};}
         done+=3*n;analysis.progress=Math.min(1,done/work);renderAnalysis();await tick();
         if(pick){moves.push(pick.m);cells[pick.m.id]=pick.m.to;score=pick.s;}}
       if(score>best.score)best={score,moves,open:x.o};}
     const S=statics[0].s,B=best.score,sc=statics.map(x=>x.s);
-    // the same moves 40 s early (still in the previous round): if that is not worse, timing does not matter
-    const early=best.moves.length?playLevel(best.open,best.moves.map(m=>({...m,time:Math.max(1,m.time-40)}))):null;
+    // the same moves made 60 s into the round before (no rings then): if that is not worse, the break does not matter
+    const early=best.moves.length?playLevel(best.open,best.moves,60):null;
     const pass=sc[Math.min(4,sc.length-1)],high=Math.max(S+1,S+Math.round((B-S)/2)),master=B-S>=3?B-1:B;
     analysis={total,openings:sc.length,sampled:all.length>LIMIT?all.length:0,staticBest:S,early,median:sc[Math.floor(sc.length/2)],passCount:sc.filter(s=>s>=pass).length,
       planBest:B,plan:best,tiers:[pass,Math.min(high,master),master],
-      bestOpen:best.open.map(i=>k(D.candidates[i])),moves:best.moves.map(m=>({r:Math.round((m.time+3-start)/P.interval)+1,stop:'ABC'[m.id],to:k(D.candidates[m.to])}))};
+      bestOpen:best.open.map(i=>k(D.candidates[i])),moves:best.moves.map(m=>({r:m.r+1,stop:'ABC'[m.id],to:k(D.candidates[m.to])}))};
     busy=false;render();
   }
   function renderAnalysis(){

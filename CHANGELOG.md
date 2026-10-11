@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-12
+
+### 01:02 · `待补` 接驳巴士 v5.2：圆圈代替数字、每轮清完才下一轮、两轮之间停 5 秒可调整、4 轮 / Feeder v5.2: rings, rounds that settle, a break to adjust, four rounds
+- **改了什么**：`game-feeder/v5/`：开局和两轮之间，屋苑外的绿圈＝这一轮的人有多少接得走（缺口＝接不走），站外的红圈＝最满时多满（按来自哪个屋苑分段，整圈闪＝会爆），只算这一轮、这个摆法；线不再写数字；轮中间不显示。一轮的人都有结果（上车或开车走）下一轮才开始；两轮之间游戏停 5 秒，期间暂停＝调整模式，继续马上开始、挪过的站照样冷却。三关改为 4 轮、每轮两个屋苑人多：192 / 320 / 328 人。编辑器分析同步。
+- **为什么**：发起人要预告只看当下这一轮、视觉化不读数字（怕满红、怕缺绿）、两轮之间有看和调整的环节、轮数少一点；又提出一轮按「车站清运完毕」结束，这样只看一轮的预告才和实际对得上。
+- **验证**：`node game-feeder/v5/test_engine.js` 22 项通过（含：下一轮只在上一轮所有人有结果时开始；第一关每轮红圈都不满的开局都是满分）；无界面 Edge 跑通开局、停顿、调整、继续到结算，无报错。详见 `game-feeder/LOG.md` v5 线。
+
 ## 2026-10-11
 
 ### 23:59 · `24e2bb0` 接驳巴士 v5.1：线上显示按格数的吸引力，预览时屋苑显示这个位置的吸引力 / Feeder v5.1: lines show the pull by blocks again

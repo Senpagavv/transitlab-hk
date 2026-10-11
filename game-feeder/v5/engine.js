@@ -9,7 +9,8 @@
   // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
   // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
   // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
-  // Rounds as in v4: people leave steadily through each round; moving a stop costs `cool` seconds.
+  // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
+  // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
     walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:4,
@@ -53,8 +54,8 @@
     const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
     const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
     // counted from the last person to leave home (a level may spread departures past the end of its last round)
-    const lastBorn=Math.max(P.lastRound,P.firstWave+(D.waves.length-1)*P.interval+P.release);
-    P.duration=lastBorn+(D.tail??Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10);
+    const settle=Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10;
+    P.duration=P.firstWave+D.waves.length*(P.release+settle)+(D.tail??0);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
   reset();
@@ -84,7 +85,7 @@
   }
   class Game {
     constructor(seed=1781) {
-      Object.assign(this,{seed,t:0,started:false,done:false,moves:P.moves,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
+      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
       this.trips=[];
       this.stops=[0,1,2].map(id=>({id,cell:null,version:0,ready:0,queue:[],boarding:[],peak:0,rejected:0,serial:0,departAt:Infinity}));
       const r=rng(seed);let id=0;
@@ -92,13 +93,14 @@
         // Evenly spread picks, shuffled: a stop with a third of the pull gets exactly a third of the batch (split()).
         const picks=Array.from({length:n},(_,k)=>(k+.5)/n);
         for(let k=n-1;k>0;k--){const j=Math.floor(r()*(k+1));[picks[k],picks[j]]=[picks[j],picks[k]];}
-        for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,
-          born:P.firstWave+wi*P.interval+(j+.5)/n*P.release,
+        for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,offset:(j+.5)/n*P.release,
+          born:wi===0?P.firstWave+(j+.5)/n*P.release:Infinity,
           state:'future',pick:picks[j],budget:P.patience+40*(r()-.5),
           trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
           path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
       }));
-      this.people.sort((a,b)=>a.born-b.born||a.id-b.id);
+      this.people.sort((a,b)=>a.wave-b.wave||a.offset-b.offset||a.id-b.id);
+      this.round=0;this.roundStart=[P.firstWave];
     }
     emit(type,p,extra={}) {this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
     person(id) {return this.people.find(p=>p.id===id);}
@@ -252,55 +254,63 @@
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
         }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
       }
-      if(this.t>=P.duration||this.t>=P.lastRound&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
+      const R=D.waves.length,settled=r=>this.people.every(p=>p.wave!==r||['delivered','car','bus'].includes(p.state));
+      if(this.t>=this.roundStart[this.round]&&this.round<R-1&&settled(this.round)){
+        const r=++this.round;this.roundStart[r]=this.t;
+        for(const p of this.people)if(p.wave===r)p.born=this.t+p.offset;
+        this.emit('round',null,{round:r});
+      }
+      if(this.t>=P.duration||this.round===R-1&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
     }
-    advance(seconds) {
-      if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);
-      while(this.acc+1e-8>=P.tick&&!this.done){this.acc-=P.tick;this.step();}
+    advance(seconds,opt={}) {
+      if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);const r0=this.round;
+      while(this.acc+1e-8>=P.tick&&!this.done){this.acc-=P.tick;this.step();if(opt.stopAtRound&&this.round!==r0){this.acc=0;return;}}
     }
+    // run until round r has started (or the game ends): for bots and tests that move in the break before a round
+    runTo(r){while(this.started&&!this.done&&this.round<r)this.step();}
     waveInfo() {
-      const active=D.waves.findIndex((w,i)=>this.t>=P.firstWave+i*P.interval&&this.t<P.firstWave+i*P.interval+P.release);
-      const next=D.waves.findIndex((w,i)=>P.firstWave+i*P.interval>this.t);
-      return{active,next,activeEnd:active<0?null:P.firstWave+active*P.interval+P.release,
-        nextStart:next<0?null:P.firstWave+next*P.interval};
+      const s=this.roundStart[this.round],active=this.t>=s&&this.t<s+P.release?this.round:-1,next=this.round+1<D.waves.length?this.round+1:-1;
+      return{active,next,activeEnd:active<0?null:s+P.release,nextStart:null};
     }
-    // Map preview for a set of stop cells (replace stop `id` by `cell` to preview a placement), all stops open:
-    // each estate's pull and share per stop and head count per round; and, played forward from now with this layout,
-    // each stop's most people waiting and how many would find it full, per round. The play-forward uses the real
-    // people (their departure times and picks), walking times and the bus timetable, but not what people do once a
-    // stop is full (they would spread to the other stops) — so it is a warning, not a promise.
+    // Who goes where with a set of stop cells (replace stop `id` by `cell` to preview a placement), all stops open:
+    // each estate's pull and share per stop and head count per round, and each stop's load per round.
+    // How full a stop gets in a round: forecastRound().
     forecast(id=-1,cell=null) {
-      const cells=this.stops.map(s=>s.id===id?cell:s.cell),room=P.seats+P.queue,R=D.waves.length;
-      const pullsOf=D.origins.map((o,i)=>cells.map(c=>c?shareAt(i,c):0));
+      const cells=this.stops.map(s=>s.id===id?cell:s.cell);
       const estates=D.origins.map((o,i)=>{
-        const pull=pullsOf[i],sum=pull.reduce((a,b)=>a+b,0);
+        const pull=cells.map(c=>c?shareAt(i,c):0),sum=pull.reduce((a,b)=>a+b,0);
         return{origin:i,pull,share:pull.map(w=>sum?w/sum:0),steps:cells.map(c=>c?dist(o.cell,c):null),
           perWave:D.waves.map(w=>split(w[i],pull)),drives:!sum};
       });
-      const t0=this.started?this.t:0,roundOf=tt=>Math.max(0,Math.min(R-1,Math.floor((tt-P.firstWave)/P.interval)));
+      const stops=cells.map((c,s)=>({cell:c,load:D.waves.map((w,wi)=>estates.reduce((n,e)=>n+e.perWave[wi][s],0))}));
+      return{estates,stops};
+    }
+    // v5.2 · the preview between rounds: round r on its own with this layout (replace stop `id` by `cell` to preview a
+    // placement) — nothing else. The stops start the round empty; only round r's people, their picks, walking times
+    // and each stop's timetable. Per stop: who comes from which estate, how full it gets at its busiest, how many
+    // would find it full. Per estate: how many of its people get a place (the rest: no stop near, or a full stop).
+    forecastRound(r,id=-1,cell=null) {
+      const cells=this.stops.map(s=>s.id===id?cell:s.cell),room=P.seats+P.queue,t0=this.roundStart[r]??Math.max(this.t,P.firstWave);
+      const pullsOf=D.origins.map((o,i)=>cells.map(c=>c?shareAt(i,c):0));
+      const estates=D.origins.map((o,i)=>{const pull=pullsOf[i],sum=pull.reduce((a,b)=>a+b,0);
+        return{origin:i,pull,share:pull.map(w=>sum?w/sum:0),steps:cells.map(c=>c?dist(o.cell,c):null),n:D.waves[r]?.[i]??0,served:0,drives:!sum,to:cells.map(()=>0)};});
+      const people=this.people.filter(p=>p.wave===r);
       const stops=cells.map((c,s)=>{
-        const out={cell:c,room,capacity:c?P.seats*P.interval/headwayAt(c):0,
-          load:D.waves.map((w,wi)=>estates.reduce((n,e)=>n+e.perWave[wi][s],0)),peak:D.waves.map(()=>0),over:D.waves.map(()=>0)};
-        if(!c)return out;
-        // arrivals from now on: people still to leave home (their pick decides the stop), and people walking here now
-        const st=this.stops[s],moved=s===id,arrive=[];
-        for(const p of this.people){
-          if(p.state==='future'||p.state==='home'&&!this.started){if(slice(pullsOf[p.origin],p.pick)===s)arrive.push(p.born+dist(D.origins[p.origin].cell,c)*P.walkStep);}
-          else if(!moved&&p.state==='walk'&&p.target===s)arrive.push(p.since+length(p.path)*P.walkStep);
-        }
-        arrive.sort((a,b)=>a-b);
-        const hw=headwayAt(c);let wait=moved||!this.started?0:st.queue.length+st.boarding.length;
-        let next=this.started&&!moved?st.departAt:t0+hw;
-        const ready=moved?t0+P.cool:this.started?st.ready:0;
-        for(const at of arrive){
-          while(next<=at){if(next>=ready)wait=Math.max(0,wait-P.seats);next+=hw;}
-          const r=roundOf(at);
-          if(at<ready||wait>=room){out.over[r]++;continue;}
-          wait++;out.peak[r]=Math.max(out.peak[r],wait);
+        const out={cell:c,room,load:0,peak:0,over:0,from:D.origins.map(()=>0)};if(!c)return out;
+        const arrive=[];
+        for(const p of people)if(slice(pullsOf[p.origin],p.pick)===s)arrive.push([t0+p.offset+dist(D.origins[p.origin].cell,c)*P.walkStep,p.origin]);
+        arrive.sort((a,b)=>a[0]-b[0]);out.load=arrive.length;
+        const hw=headwayAt(c);let next=this.started?this.stops[s].departAt:hw;
+        while(next<t0)next+=hw;
+        let wait=0;
+        for(const [at,o] of arrive){
+          while(next<=at){wait=Math.max(0,wait-P.seats);next+=hw;}
+          if(wait>=room){out.over++;continue;}
+          wait++;out.peak=Math.max(out.peak,wait);out.from[o]++;estates[o].served++;estates[o].to[s]++;
         }
         return out;
       });
-      return{estates,stops};
+      return{round:r,estates,stops};
     }
     homeStats(origin) {
       const ps=this.people.filter(p=>p.origin===origin),w=this.waveInfo(),count=state=>ps.filter(p=>p.state===state).length;

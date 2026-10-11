@@ -8,28 +8,32 @@ let passed=0;
 function test(name,fn){fn();passed++;console.log('ok',name);}
 const LEVELS=['l1','l2','l3'];
 const total=()=>D.waves.flat().reduce((a,b)=>a+b,0);
-const roundStart=r=>P.firstWave+(r-1)*P.interval;
-// Openings and countdown plans found by bots/v5_tune.js (moves 3 s before round r).
+// Openings and plans found by bots/v5_tune.js (moves in the break before round r, counted from 1).
 const PLANS={
-  l1:{opening:[[6,6],[7,6],[6,2]],moves:[]},
-  l2:{opening:[[1,1],[3,3],[3,4]],moves:[{r:4,id:2,cell:[3,6]},{r:5,id:1,cell:[2,4]},{r:8,id:0,cell:[2,1]}]},
-  l3:{opening:[[2,3],[2,2],[2,5]],moves:[{r:4,id:1,cell:[3,2]},{r:5,id:0,cell:[2,2]},{r:6,id:1,cell:[4,4]}]}};
+  l1:{opening:[[5,6],[6,6],[6,2]],moves:[]},
+  l2:{opening:[[1,2],[3,5],[3,6]],moves:[{r:2,id:0,cell:[1,1]}]},
+  l3:{opening:[[2,3],[4,4],[2,5]],moves:[{r:2,id:0,cell:[2,2]},{r:3,id:2,cell:[2,6]}]}};
 function useLevel(name){assert(D.select(name));E.reset();}
-function play(plan,lead=3,moves=plan.moves){
+// moves in the break before round m.r (1-based); with mid, that many seconds into the round before instead
+function play(plan,mid=0,moves=plan.moves){
   const g=new Game();plan.opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());
-  for(const m of moves){g.advance(roundStart(m.r)-lead-g.t);assert(g.place(m.id,m.cell),`move to ${m.cell}`);}
-  g.advance(P.duration-g.t+1);return g;
+  for(const m of moves){if(mid){g.runTo(m.r-2);g.advance(mid);}else g.runTo(m.r-1);assert(g.place(m.id,m.cell),`move to ${m.cell}`);}
+  g.advance(P.duration+1);return g;
 }
 function setup(){const g=new Game();PLANS[D.map].opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());return g;}
 const allLayouts=()=>{const C=D.candidates,out=[];for(let a=0;a<C.length;a++)for(let b=a+1;b<C.length;b++)for(let c=b+1;c<C.length;c++)out.push([C[a],C[b],C[c]]);return out;};
 function playLayout(cells){const g=new Game();cells.forEach((c,id)=>g.place(id,c));g.start();g.advance(P.duration+1);return g;}
 
-test('Every estate sends people every round, steadily through the whole round',()=>{
+test('A round starts only when everyone of the round before is on a bus, arrived or drove; people leave through 110 s of it',()=>{
   for(const name of LEVELS){useLevel(name);
-    assert(P.release>=P.interval-15,`${name}: release ${P.release} leaves a gap`);
     D.waves.forEach(w=>w.forEach(n=>assert(n>0,`${name}: an estate sends nobody in a round`)));
-    const g=new Game();
-    for(const p of g.people){const s=P.firstWave+p.wave*P.interval;assert(p.born>=s&&p.born<s+P.release);}
+    const g=setup(),seen=[];
+    while(!g.done){const r=g.round;g.advance(P.tick);
+      if(g.round!==r){seen.push(g.round);
+        for(const p of g.people)if(p.wave===r)assert(['delivered','car','bus'].includes(p.state),`${name}: round ${r+2} began with person ${p.id} ${p.state}`);
+        assert(g.events.some(e=>e.type==='round'&&e.round===g.round&&e.time===g.t));}}
+    assert.deepEqual(seen,D.waves.slice(1).map((w,i)=>i+1),`${name}: rounds ${seen}`);
+    for(const p of g.people){const s=g.roundStart[p.wave];assert(p.born>=s&&p.born<s+P.release);}
     assert.equal(g.people.length,total());}
   useLevel('l1');
 });
@@ -53,7 +57,7 @@ test('Everyone with a stop near enough takes the bus: with room at every stop, a
 });
 test('What the map shows is who walks out on the first try (stops ready, nobody turned away yet)',()=>{
   for(const name of LEVELS){useLevel(name);
-    const g=setup(),fc=g.forecast(),t=P.firstWave+40;g.advance(t);
+    const g=setup(),fc=g.forecast(),t=P.firstWave+40;g.advance(t-g.t);
     D.origins.forEach((o,i)=>{const born=g.people.filter(p=>p.wave===0&&p.origin===i&&p.born<=t-P.tick);
       for(let s=0;s<3;s++){
         const want=born.filter(p=>slice(fc.estates[i].pull,p.pick)===s).length;
@@ -109,7 +113,7 @@ test('Seats, queue and population are conserved through a full game; driving is 
 test('Moving a stop: the bus loading there leaves at once; the queue goes elsewhere; the stop cools down, timetable running',()=>{
   useLevel('l3');
   const g=setup();const s=g.stops[0];
-  while(!(s.boarding.length&&s.queue.length)&&g.t<P.lastRound)g.advance(1);   // a moment with people aboard and queuing
+  while(!(s.boarding.length&&s.queue.length)&&!g.done)g.advance(1);   // a moment with people aboard and queuing
   assert(s.boarding.length&&s.queue.length,'no moment with people aboard and a queue');
   const t0=g.t,aboard=s.boarding.slice(),queued=s.queue.slice(),before=s.departAt;
   const to=D.candidates.find(c=>!g.stops.some(x=>same(x.cell,c))&&g.forecast(0,c).estates.some(e=>e.share[0]>0));
@@ -131,12 +135,24 @@ test('Once aboard, a passenger always arrives; nobody is left half-way when the 
     assert(g.done);assert.equal(g.missed,0,`${name}: ${g.missed} unfinished`);assert(g.t<=P.duration);}
   useLevel('l1');
 });
-test('The overflow warning: on level 1 every opening with no warning at all carries everyone by bus',()=>{
+test('The rings: on level 1 every opening whose rounds all keep their red rings open carries everyone by bus',()=>{
   useLevel('l1');let calm=0;
-  for(const cells of allLayouts()){const f=new Game();cells.forEach((c,id)=>f.place(id,c));const fc=f.forecast();
-    if(fc.estates.some(e=>e.drives)||fc.stops.some(s=>s.over.some(v=>v>0)))continue;
+  for(const cells of allLayouts()){const f=new Game();cells.forEach((c,id)=>f.place(id,c));
+    if(!D.waves.every((w,r)=>{const fc=f.forecastRound(r);return !fc.estates.some(e=>e.drives)&&fc.stops.every(s=>!s.over);}))continue;
     calm++;assert.equal(playLayout(cells).delivered,total(),`calm opening ${JSON.stringify(cells)} still loses people`);}
   assert(calm>=1,'no calm opening on level 1');
+});
+test('The round preview is that round alone: who comes from where, how full each stop gets, who is left out',()=>{
+  for(const name of LEVELS){useLevel(name);
+    const g=setup();
+    for(let r=0;r<D.waves.length;r++){g.runTo(r);const fc=g.forecastRound(r);
+      fc.estates.forEach((e,i)=>{assert.equal(e.n,D.waves[r][i]);assert.equal(e.served,e.to.reduce((a,b)=>a+b,0));assert(e.served<=e.n);
+        if(e.drives)assert.equal(e.served,0);});
+      fc.stops.forEach((st,s)=>{assert.equal(st.from.reduce((a,b)=>a+b,0)+st.over,st.load);assert(st.peak<=st.room);
+        fc.estates.forEach((e,i)=>assert.equal(e.to[s],st.from[i]));});
+      // the people it counts are exactly that round's, split as the lines show
+      const fw=g.forecast();fc.estates.forEach((e,i)=>assert.deepEqual(e.to.map((v,s)=>v+0),e.to)&&assert.equal(fw.estates[i].perWave[r].reduce((a,b)=>a+b,0),e.drives?0:e.n));}}
+  useLevel('l1');
 });
 test('A level from the editor loads like a built-in one: water cells, bridges where a road crosses, plays to the end',()=>{
   const def={title:'測試',cols:8,rows:6,roads:[[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[3,2],[3,3],[3,4],[3,5],[4,5],[5,5],[6,5]],
@@ -150,10 +166,10 @@ test('A level from the editor loads like a built-in one: water cells, bridges wh
   const st=g.stats();assert(g.done);assert.equal(st.delivered+st.cars+st.missed,32);assert(st.delivered>0);
   useLevel('l1');
 });
-test('On levels 2 and 3, moving in the countdown beats moving 40 s early',()=>{
+test('On levels 2 and 3, moving in the break beats making the same moves in the middle of the round before',()=>{
   for(const name of ['l2','l3']){useLevel(name);
-    const on=play(PLANS[name]).delivered,early=play(PLANS[name],43).delivered;
-    assert(on>early,`${name}: countdown ${on} vs 40 s early ${early}`);}
+    const on=play(PLANS[name]).delivered,mid=play(PLANS[name],60).delivered;
+    assert(on>mid,`${name}: in the break ${on} vs mid-round ${mid}`);}
   useLevel('l1');
 });
 test('Moves are limited by the level; occupied cells are rejected; starting needs three stops',()=>{
@@ -209,8 +225,8 @@ test('Difficulty holds: level 1 has a few perfect openings; levels 2 and 3 have 
     if(name==='l1')assert(perfect>=1&&perfect<=8,`l1: ${perfect} perfect openings`);
     else{assert.equal(perfect,0,`${name}: an opening carries everyone`);assert(Math.max(...scores)<F.P.masterScore,`${name}: master without moving`);
       const g=new F.Game(),plan=PLANS[name];plan.opening.forEach((c,id)=>g.place(id,c));g.start();
-      for(const m of plan.moves){g.advance(F.P.firstWave+(m.r-1)*F.P.interval-3-g.t);g.place(m.id,m.cell);}
-      g.advance(F.P.duration-g.t+1);
+      for(const m of plan.moves){g.runTo(m.r-1);g.place(m.id,m.cell);}
+      g.advance(F.P.duration+1);
       assert(g.delivered>=F.P.masterScore,`${name}: the countdown plan ${g.delivered} < master ${F.P.masterScore}`);}}
 });
 test('Every text has all three languages, and every key the page uses exists',()=>{

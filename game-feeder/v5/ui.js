@@ -19,22 +19,17 @@
   const svg=(tag,attrs,content='')=>`<${tag} ${Object.entries(attrs).map(([k,v])=>`${k}="${v}"`).join(' ')}>${content}</${tag}>`;
   const text=(x,y,s,size=13,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.panel,'stroke-width':3.5,...extra},s);
   const rect=(x,y,w,h,fill,stroke=C.line2,extra={})=>svg('rect',{x,y,width:w,height:h,rx:4,fill,stroke,...extra});
-  const waveStart=w=>P.firstWave+w*P.interval;
+  // v5.3: rounds have no fixed times; a round starts when the one before has settled (game.roundStart)
+  const waveStart=w=>game.roundStart[w]??Infinity;
   // v4: rounds. The round running at time t, the next one to start, and its numbers as a short list.
-  const roundAt=tt=>{const k=Math.floor((tt-P.firstWave)/P.interval);return tt>=P.firstWave&&k<D.waves.length?k:-1;};
-  const nextRound=()=>{for(let k=0;k<D.waves.length;k++)if(waveStart(k)>game.t)return k;return -1;};
+  const roundAt=tt=>tt>=waveStart(game.round)?game.round:-1;
   const roundList=r=>D.waves[r].map((n,o)=>`${short(o)} ${n}`).join(' · ');
   const roundStat=r=>{let d=0,c=0;for(const p of game.people)if(p.wave===r){if(p.state==='delivered')d++;else if(p.state==='car')c++;}return{d,c};};
   const busyCut=()=>Math.ceil(.6*Math.max(...D.waves.flat()));
-  // v5: which round the map's warnings are about — before the start the worst round of the whole game (you place for
-  // all of it); while playing the round people are leaving in, or the next one between rounds and in the countdown.
-  const inRelease=tt=>{const r=roundAt(tt);return r>=0&&tt<waveStart(r)+P.release?r:-1;};
-  function focusRound(){if(!game.started)return -1;const r=inRelease(game.t);if(r>=0&&!(nextRound()>=0&&waveStart(nextRound())-game.t<=3*speed+1e-6))return r;return nextRound();}
-  // how strongly a stop's own forecast warns in round r (-1 = its worst round): 0 calm, 1 nearly full, 2 overflows
-  function warnOf(st,r){if(!st.cell)return{level:0,over:0,peak:0};
-    const rounds=r>=0?[r]:st.over.map((v,i)=>i),over=Math.max(0,...rounds.map(i=>st.over[i])),peak=Math.max(0,...rounds.map(i=>st.peak[i]));
-    return{level:over>0?2:peak>=.75*st.room?1:0,over,peak};}
-  const overRounds=st=>st.over.map((v,i)=>v>0?i+1:0).filter(Boolean);
+  // v5.2 · between rounds the game stops for INTER_MS (real time) and the map shows the coming round. Pausing in that
+  // break turns it into an adjusting break with no time limit; resuming starts the round at once.
+  const INTER_MS=5000;let inter=null;            // {r: coming round, end: performance.now() when it starts, adjust}
+  const vizRound=()=>game.done?-1:!game.started?0:inter?inter.r:-1;
   const houseAt=i=>{const [x,y]=xy(D.origins[i].cell),[dx,dy]=D.origins[i].house||[0,38];return[x+dx,y+dy];};
   // name label: above a building that sits above its road, otherwise below it
   const labelY=i=>{const [,hy]=houseAt(i),dy=(D.origins[i].house||[0,38])[1];return dy<0?hy-22:hy+28;};
@@ -121,7 +116,7 @@
     full.forEach(fxFull);departs.forEach(fxDepart);
     // A new round: a tide ripple at its busy estates and a toast with its numbers.
     const r=roundAt(game.t);
-    if(r>=0&&!rang.has(r)){rang.add(r);D.waves[r].forEach((n,o)=>{if(n>=busyCut())fxTide(o);});toast(t('t.round',{n:r+1,list:roundList(r)}),'tide');}
+    if(r>=0&&!rang.has(r)&&!inter){rang.add(r);D.waves[r].forEach((n,o)=>{if(n>=busyCut())fxTide(o);});toast(t('t.round',{n:r+1,list:roundList(r)}),'tide');}
     if(lastDelivered<P.target&&game.delivered>=P.target)toast(t('t.pass',{n:P.target}));
     if(lastDelivered<P.highScore&&game.delivered>=P.highScore)toast(t('t.high',{n:P.highScore}));
     if(lastDelivered<P.masterScore&&game.delivered>=P.masterScore)toast(t('t.master',{n:P.masterScore}));
@@ -138,19 +133,18 @@
       render();
     }else note(was&&game.moves===0?t('n.noMoves'):t('n.taken'));
   }
-  function plan(fc){return D.waves.map((w,wi)=>({load:fc.stops.map(st=>st.load[wi]),level:fc.stops.map(st=>warnOf(st,wi).level)}));}
   function drawHouse(i,fc){
     const o=D.origins[i],h=game.homeStats(i),[hx,hy]=houseAt(i),[cx,cy]=xy(o.cell);
     let out=svg('path',{d:`M${cx} ${cy}L${hx} ${hy}`,stroke:C.ink3,'stroke-width':1.5,'stroke-dasharray':'2 3'});
     const right=hx<VBW*.72,ax=right?hx+24:hx-24,anchor=right?'start':'end';
-    if(hover){const d=dist(o.cell,hover),w=Tide.shareAt(i,hover);
-      // the spot under the pointer: its pull here by blocks, in a ring that grows with it
-      if(w>0){const r=18+18*w;out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.06+.12*w).toFixed(2),stroke:C.accent,'stroke-width':1.2+1.5*w,'stroke-dasharray':'4 3'});
-        out+=text(right?hx+r+6:hx-r-6,hy-4,t('b.pull',{p:Math.round(w*100),n:d}),12.5,C.accent,{'text-anchor':anchor,'font-weight':600});}
-      else{const why=d>=0&&d>=Tide.toMTR[i]&&Tide.willing(d)>0?t('b.whyMTR'):t('b.whyFarN',{n:d});
-        out+=text(ax,hy-20,why,11.5,C.ink3,{'text-anchor':anchor});}}
-    // nobody here has a stop near enough: they will all drive
-    else if(fc.estates[i].drives&&fc.stops.some(st=>st.cell))out+=text(ax,hy-20,t('b.drives'),12,C.bad,{'text-anchor':anchor,'font-weight':600});
+    if(fc){const e=fc.estates[i];
+      // green ring: how many of this round's people here get a place (a gap = people left without one)
+      if(e.n)out+=ring(hx,hy-2,27,[e.served/e.n],C.accent,C.line2,6);
+      if(hover){const d=dist(o.cell,hover),w=Tide.shareAt(i,hover);
+        // the spot under the pointer: what it pulls here, by blocks (the core rule)
+        if(w>0)out+=text(ax+(right?8:-8),hy-24,t('b.pull',{p:Math.round(w*100),n:d}),12.5,C.accent,{'text-anchor':anchor,'font-weight':600});
+        else out+=text(ax+(right?8:-8),hy-24,d>=0&&d>=Tide.toMTR[i]&&Tide.willing(d)>0?t('b.whyMTR'):t('b.whyFarN',{n:d}),11.5,C.ink3,{'text-anchor':anchor});}
+      else if(e.drives&&fc.stops.some(st=>st.cell))out+=text(ax+(right?8:-8),hy-24,t('b.drives'),12,C.bad,{'text-anchor':anchor,'font-weight':600});}
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
@@ -163,40 +157,45 @@
     if(h.home)out+=rect(bx,by,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(bx+17,by+15,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
     return out;
   }
-  // v5 · who goes where: a line from each estate to every stop it uses. The number is the stop's pull on that estate
-  // by walking blocks (100 at the door, 10 less a block); the line is thicker for a bigger share of the people.
-  // Drawn for the stops as they are, or as they would be with the stop being placed / dragged (hover).
-  function drawFlows(fc){
-    let out='';flowLabels='';
+  // v5.2 · rings instead of numbers. arc() draws a part of a circle from turn a0 to a1, clockwise from the top.
+  function arc(cx,cy,r,a0,a1){
+    if(a1-a0>=.999)return `M${cx} ${cy-r}A${r} ${r} 0 1 1 ${cx-.01} ${cy-r}`;
+    const pt=a=>[(cx+r*Math.sin(2*Math.PI*a)).toFixed(1),(cy-r*Math.cos(2*Math.PI*a)).toFixed(1)],[x0,y0]=pt(a0),[x1,y1]=pt(a1);
+    return `M${x0} ${y0}A${r} ${r} 0 ${a1-a0>.5?1:0} 1 ${x1} ${y1}`;}
+  // a ring: a pale track, then the parts (fractions of a full turn) one after another with a hairline gap between them
+  function ring(cx,cy,r,parts,color,track,w){
+    let out=svg('circle',{cx,cy,r,fill:'none',stroke:track,'stroke-width':w,'stroke-opacity':.7}),a=0;
+    const n=parts.filter(f=>f>0).length,gap=n>1?.014:0;
+    for(const f of parts){if(f<=0)continue;const a1=Math.min(1,a+f);
+      if(a1-a>gap+.004)out+=svg('path',{d:arc(cx,cy,r,a+gap/2,a1-gap/2),fill:'none',stroke:color,'stroke-width':w});a=a1;if(a>=1)break;}
+    return out;}
+  // who goes where: a thin line from each estate to each stop it uses, thicker for more people (no numbers)
+  function drawLines(fc){
+    let out='';
     fc.estates.forEach((e,i)=>{const [hx,hy]=houseAt(i);
       e.share.forEach((sh,sid)=>{const c=fc.stops[sid].cell;if(!c||sh<=0)return;
-        const [x,y]=xy(c),dx=x-hx,dy=y-hy,len=Math.hypot(dx,dy)||1,bend=Math.min(44,len*.24)*(sid%2?1:-1);
+        const [x,y]=xy(c),dx=x-hx,dy=y-hy,len=Math.hypot(dx,dy)||1,bend=Math.min(30,len*.16)*(sid%2?1:-1);
         const mx=(hx+x)/2-dy/len*bend,my=(hy+y)/2+dx/len*bend,preview=hover&&sid===selected;
-        out+=svg('path',{d:`M${hx} ${hy}Q${mx} ${my} ${x} ${y}`,fill:'none',stroke:C.accent,'stroke-width':(1.5+9*sh).toFixed(1),
-          'stroke-opacity':preview?.6:.38,'stroke-linecap':'round','stroke-dasharray':preview?'7 5':'none'});
-        // the share, a third of the way along from the estate
-        const u=.36,lx=(1-u)*(1-u)*hx+2*u*(1-u)*mx+u*u*x,ly=(1-u)*(1-u)*hy+2*u*(1-u)*my+u*u*y;
-        flowLabels+=rect(lx-17,ly-10,34,19,C.panel,C.accent,{rx:9.5,'stroke-width':1})+
-          svg('text',{x:lx,y:ly+4.5,'font-size':11.5,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${Math.round(e.pull[sid]*100)}%`);});});
+        out+=svg('path',{d:`M${hx} ${hy}Q${mx} ${my} ${x} ${y}`,fill:'none',stroke:C.ink3,'stroke-width':(1+4*sh).toFixed(1),
+          'stroke-opacity':preview?.55:.3,'stroke-linecap':'round','stroke-dasharray':preview?'6 5':'none'});});});
     return out;
   }
-  let flowLabels='';
-  // v5 · will a stop overflow? A faint red haze when it nearly fills, a clearer breathing glow when it overflows —
-  // for the stop on its own (people pushed away to other stops are not followed; that shows when it runs).
-  function drawWarnings(fc){
-    const r=focusRound(),now=performance.now();let out='';
-    fc.stops.forEach((st,sid)=>{const w=warnOf(st,r);if(!w.level)return;const [x,y]=xy(st.cell);
-      const breathe=.75+.25*Math.sin(now/(w.level>1?420:700)),a=w.level>1?Math.min(.6,.3+.03*w.over):.12;
-      out+=svg('circle',{cx:x,cy:y,r:w.level>1?40:34,fill:'url(#gWarn)','fill-opacity':(a*breathe*2).toFixed(3)});
-      if(w.level>1)out+=svg('circle',{cx:x,cy:y,r:30,fill:'none',stroke:C.bad,'stroke-width':1.2,'stroke-opacity':(.35*breathe).toFixed(2),'stroke-dasharray':'3 4'});});
+  // red ring round each stop: how full it gets at its busiest this round, in parts by the estate people come from;
+  // a full ring that breathes = it overflows (people find it full)
+  function drawStopRings(fc){
+    let out='';const now=performance.now();
+    fc.stops.forEach(st=>{if(!st.cell)return;const [x,y]=xy(st.cell),sum=st.from.reduce((a,b)=>a+b,0),fill=st.peak/st.room;
+      if(st.over>0){const b=.6+.4*Math.sin(now/380);
+        out+=svg('circle',{cx:x,cy:y,r:36,fill:C.bad,'fill-opacity':(.10+.08*b).toFixed(3)})+svg('circle',{cx:x,cy:y,r:35,fill:'none',stroke:C.bad,'stroke-width':1.5,'stroke-opacity':(.3+.4*b).toFixed(2)});}
+      out+=ring(x,y,27,sum?st.from.map(n=>n/sum*fill):[],C.bad,C.line2,6);});
     return out;
   }
   function drawMap(){
     if(pointerPressed&&!drag?.moved)return;           // keep the node under the pointer alive for the click
     const focused=document.activeElement,attrs=['data-cell','data-stop'];
     const focusAttr=attrs.find(a=>focused?.hasAttribute(a)),focusVal=focusAttr?focused.getAttribute(focusAttr):null;
-    const fc=game.forecast(hover?selected:-1,hover);
-    let out=svg('defs',{},svg('radialGradient',{id:'gWarn'},svg('stop',{offset:0,'stop-color':C.bad,'stop-opacity':.9})+svg('stop',{offset:.55,'stop-color':C.bad,'stop-opacity':.35})+svg('stop',{offset:1,'stop-color':C.bad,'stop-opacity':0})));
+    const vr=vizRound(),fc=vr>=0?game.forecastRound(vr,hover?selected:-1,hover):null;
+    let out='';
     for(const [x1,y1,x2,y2] of D.water||[]){const [ax,ay]=xy([x1,y1]),[bx,by]=xy([x2,y2]);
       out+=svg('rect',{x:ax-36,y:ay-28,width:bx-ax+72,height:by-ay+56,fill:C.info,'fill-opacity':.16,rx:6});}
     for(const pass of [[C.roadEdge,24],[C.road,20]])
@@ -207,7 +206,7 @@
     const active=game.stops[selected];
     if(active.cell&&!hover)out+=svg('path',{d:pathStr(route(active.cell,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none',opacity:.35});
     if(hover)out+=svg('path',{d:pathStr(route(hover,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none','stroke-dasharray':'5 6'});
-    out+=drawFlows(fc);
+    if(fc)out+=drawLines(fc);
     for(let i=0;i<D.origins.length;i++)out+=drawHouse(i,fc);
     const [mx,my]=xy(D.hub);
     out+=rect(mx-23,my-22,46,44,C.ink,C.ink,{rx:3})+svg('rect',{x:mx-23,y:my+15,width:46,height:7,fill:C.accent});
@@ -222,7 +221,6 @@
       out+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':t('b.candAria',{c:c[0]+1,r:c[1]+1})},
         svg('circle',{cx:x,cy:y,r:11,fill:on?C.accent:C.panel,stroke:on?C.accent:C.ink3,'stroke-width':1.3})+svg('text',{x,y:y+5,'font-size':15,fill:on?C.paper:C.ink3,'text-anchor':'middle'},'＋'));
     }
-    out+=flowLabels;
     for(const p of game.people)if(['walk','return'].includes(p.state)){   // people walk under buses and stops
       const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
       out+=svg('circle',{cx:x+ox,cy:y+oy,r:3.6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1});
@@ -232,7 +230,7 @@
       out+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.25});
       out+=rect(x-19,y-11,38,22,C.accent,C.accent,{rx:11})+svg('text',{x,y:y+5,'font-size':12.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
     }
-    out+=drawWarnings(fc);
+    if(fc)out+=drawStopRings(fc);
     for(const s of game.stops){if(!s.cell)continue;
       const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue&&s.boarding.length>=P.seats;
       let content='';
@@ -241,10 +239,10 @@
         content+=rect(x+20,y-58,58,16,C.bad,C.bad,{rx:8})+svg('text',{x:x+49,y:y-46.5,'font-size':9.5,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace','letter-spacing':'.08em','font-weight':600},t('b.full'));}
       content+=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:5});
       content+=svg('text',{x,y:y+7,'font-size':19,fill:build?C.accent:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif'},letters[s.id]);
-      content+=text(x,y+31,game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
+      if(!fc)content+=text(x,y+31,game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
       const sw=Math.min(8,64/Math.max(1,P.seats)),qw=Math.min(7,60/Math.max(1,P.queue));
-      for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-P.seats*sw/2+j*sw,y:y-37,width:sw-1.6,height:7,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1.1});
-      for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-P.queue*qw/2+j*qw,y:y-26,width:qw-1.6,height:6,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1});
+      if(!fc)for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-P.seats*sw/2+j*sw,y:y-37,width:sw-1.6,height:7,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1.1});
+      if(!fc)for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-P.queue*qw/2+j*qw,y:y-26,width:qw-1.6,height:6,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1});
       out+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':t('b.stopAria',{s:letters[s.id],a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue})},content);
     }
     $('board').innerHTML=out;
@@ -253,15 +251,12 @@
 
   /* ------------------------------------------------------------ side columns */
   function drawTide(){
-    const fc=game.forecast(hover?selected:-1,hover),pl=plan(fc),placed=fc.stops.map(st=>!!st.cell);
-    const cur=game.started?roundAt(game.t):-1,nr=game.started?nextRound():-1,soon=nr>=0&&waveStart(nr)-game.t<=3*speed+1e-6,cut=busyCut();
-    let h=`<thead><tr><th>${t('tt.batch')}</th>${D.origins.map((o,i)=>`<th>${short(i)}</th>`).join('')}${letters.map((l,s)=>`<th class="stopcol">${t('tt.stop',{s:l})}</th>`).join('')}</tr></thead><tbody>`;
+    const cur=game.started&&!inter?roundAt(game.t):-1,vr=vizRound(),cut=busyCut();
+    let h=`<thead><tr><th>${t('tt.batch')}</th>${D.origins.map((o,i)=>`<th>${short(i)}</th>`).join('')}</tr></thead><tbody>`;
     D.waves.forEach((wave,wi)=>{
-      const past=game.started&&waveStart(wi)+P.interval<=game.t;
-      h+=`<tr class="${wi===cur?'now':''} ${wi===nr&&(soon||!playing)?'next':''} ${past?'past':''}"><td>${t('tt.round',{n:wi+1})}<small>${fmt(waveStart(wi))}</small></td>`;
-      wave.forEach((n,o)=>{h+=`<td class="${n>=cut?'peak':''}"><b>${n}</b></td>`;});
-      pl[wi].load.forEach((l,s)=>{const lv=pl[wi].level[s];
-        h+=`<td class="stopcol ${lv>1?'hot':lv?'warm':''}">${placed[s]?`<b>${l}</b>`:'<i>—</i>'}</td>`;});
+      const past=game.started&&wi<game.round,start=game.roundStart[wi];
+      h+=`<tr class="${wi===cur?'now':''} ${wi===vr?'next':''} ${past?'past':''}"><td>${t('tt.round',{n:wi+1})}<small>${game.started&&start!==undefined?fmt(start):''}</small></td>`;
+      wave.forEach(n=>{h+=`<td class="${n>=cut?'peak':''}"><b>${n}</b></td>`;});
       h+='</tr>';
     });
     $('tide').innerHTML=h+'</tbody>';
@@ -270,14 +265,12 @@
     const s=game.stops[selected],cell=hover||s.cell;
     let h=`<h3><span>${t('sp.title',{s:letters[selected]})}${hover?t('sp.preview'):''}</span><span class="lbl">Stop ${letters[selected]}</span></h3>`;
     if(!cell){$('stopPanel').innerHTML=h+`<p>${t('sp.empty')}</p>`;return;}
-    const steps=dist(cell,D.hub),hw=headwayAt(cell),fc=game.forecast(hover?selected:-1,hover),st=fc.stops[selected];
+    const steps=dist(cell,D.hub),hw=headwayAt(cell),vr=vizRound(),fc=game.forecastRound(Math.max(0,vr),hover?selected:-1,hover),st=fc.stops[selected];
     const served=fc.estates.filter(e=>e.share[selected]>0).map(e=>t('sp.served',{name:name(e.origin),n:e.steps[selected],p:Math.round(e.pull[selected]*100),s:Math.round(e.share[selected]*100)})).join('<br>')||t('sp.nobody');
     const beyond=D.origins.map((o,i)=>i).filter(i=>{const d=dist(D.origins[i].cell,cell);return d>=Tide.toMTR[i]&&Tide.willing(d)>0;}).map(name);
-    const fr=focusRound(),over=overRounds(st);
     h+=`<div class="r"><span>${t('sp.toMTR')}</span><span>${t('sp.toMTRv',{n:steps,hw})}</span></div><div class="r"><span>${t('sp.who')}</span><span>${served}</span></div>`;
     if(beyond.length)h+=`<div class="r"><span>${t('sp.not')}</span><span>${t('sp.beyond',{list:beyond.join(t('sep'))})}</span></div>`;
-    h+=`<div class="r"><span>${fr>=0?t('sp.loadR',{n:fr+1}):t('sp.loadMax')}</span><span>${t('sp.loadV',{n:fr>=0?st.load[fr]:Math.max(...st.load),p:fr>=0?st.peak[fr]:Math.max(...st.peak),room:st.room})}</span></div>`;
-    h+=`<div class="r"><span>${t('sp.overflow')}</span><span class="${over.length?'badtxt':''}">${over.length?t('sp.overRounds',{list:over.join(t('sep'))}):t('sp.noOver')}</span></div>`;
+    if(vr>=0)h+=`<div class="r"><span>${t('sp.loadR',{n:vr+1})}</span><span>${t('sp.loadV',{n:st.load,p:st.peak,room:st.room})}</span></div><div class="r"><span>${t('sp.overflow')}</span><span class="${st.over?'badtxt':''}">${st.over?t('sp.overN',{n:st.over}):t('sp.noOver')}</span></div>`;
     if(!hover){
       const build=Math.max(0,s.ready-game.t);
       h+=`<div class="r"><span>${t('sp.next')}</span><span class="big">${game.done?'—':!game.started?t('sp.opening',{n:hw}):build?t('b.rebuild',{n:Math.ceil(build)}):fmt(game.eta(s))}</span></div>`;
@@ -291,9 +284,9 @@
     const athome=game.people.filter(p=>p.state==='home').length,onway=st.active-athome;
     $('score').textContent=st.delivered;$('score2').textContent=st.delivered;$('scoreBar').style.width=`${gaugeAt(st.delivered)}%`;
     $('cars').textContent=st.cars;$('onway').textContent=Math.max(0,onway);$('notOut').textContent=st.future+athome;
-    $('clock').textContent=`${fmt(game.t)} / ${fmt(P.lastRound)}`;$('clockProg').style.width=`${Math.min(100,100*game.t/P.lastRound)}%`;$('moves').textContent=game.moves;
-    const r=roundAt(game.t),nr=nextRound(),m=D.waves.length;
-    $('wave').textContent=!game.started?t('w.first',{n:P.firstWave}):game.done?t('w.missed',{n:game.missed}):r>=0?t('w.active',{n:r+1,m,...roundStat(r)}):nr>=0?t('w.next',{n:nr+1,m,t:fmt(waveStart(nr)-game.t)}):t('w.all',{m});
+    const m=D.waves.length,r=roundAt(game.t);
+    $('clock').textContent=fmt(game.t);$('clockProg').style.width=`${game.done?100:Math.min(100,100*(game.round+(r>=0?.5:0))/m)}%`;$('moves').textContent=game.moves;
+    $('wave').textContent=!game.started?t('w.first',{n:P.firstWave}):game.done?t('w.missed',{n:game.missed}):inter?t('w.break',{n:inter.r+1,m}):r>=0?t('w.active',{n:r+1,m,...roundStat(r)}):t('w.first',{n:Math.ceil(P.firstWave-game.t)});
     $('undoMoves').hidden=!(snap&&!playing&&!game.done&&game.commands.length>snap.commands.length);
     $('start').textContent=game.done?t('g.over'):game.started?(playing?t('g.pause'):t('g.resume')):t('g.start');
     $('start').disabled=game.done||(!game.started&&game.stops.some(s=>!s.cell));
@@ -303,14 +296,15 @@
     if(focusSelect)$('stations').querySelector(`[data-select="${focusSelect}"]`)?.focus({preventScroll:true});
     drawTide();drawStopPanel();
   }
-  // The 3-second countdown before each round, in real seconds whatever the speed (so 3 × speed game seconds).
+  // The break before each round: 5 real seconds (the game stands still), or as long as you like once paused in it.
   function drawCountdown(){
-    const el=$('cdown'),nr=nextRound();
-    if(!game.started||game.done||nr<0||waveStart(nr)-game.t>3*speed+1e-6){el.classList.remove('on');return;}
-    el.classList.add('on');el.classList.toggle('paused',!playing);
-    $('cdNum').textContent=Math.max(1,Math.ceil((waveStart(nr)-game.t)/speed-1e-6));
-    $('cdText').textContent=t('cd.next',{n:nr+1,list:roundList(nr)});
-    $('cdHint').textContent=playing?t('cd.hint'):t('cd.paused');
+    const el=$('cdown');
+    if(!inter||game.done){el.classList.remove('on');return;}
+    const still=inter.adjust||!playing;
+    el.classList.add('on');el.classList.toggle('paused',still);
+    $('cdNum').textContent=still?'❚❚':Math.max(1,Math.ceil((inter.end-performance.now())/1000-1e-6));
+    $('cdText').textContent=t('cd.next',{n:inter.r+1,list:roundList(inter.r)});
+    $('cdHint').textContent=still?t('cd.adjust'):t('cd.hint');
   }
   function render(){drawMap();drawSide();drawCountdown();if(game.done&&!shown){shown=true;playing=false;showResult();drawSide();}}
   const tierOf=n=>n>=P.masterScore?3:n>=P.highScore?2:n>=P.target?1:0;
@@ -341,12 +335,13 @@
   let snap=null;
   function setPlaying(v,msg){
     if(v===playing)return;playing=v;last=performance.now();
+    if(inter){if(v)inter=null;else inter.adjust=true;}
     snap=!v&&game.started&&!game.done?structuredClone({...game}):null;
     if(msg)note(msg);render();}
   function undoMoves(){
     if(!snap)return;game=Object.assign(Object.create(Game.prototype),structuredClone(snap));
     seen=game.events.length;lastDelivered=game.delivered;hover=null;note(t('n.undone'));render();}
-  function reset(msg){snap=null;game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
+  function reset(msg){snap=null;inter=null;game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
     $('fxl').innerHTML='';last=performance.now();note(msg||t('n.reset'));render();}
   function pauseForInfo(){if(playing)setPlaying(false,t('n.info'));}
 
@@ -386,7 +381,8 @@
     try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   window.addEventListener('tl:lang',()=>{texts();render();if($('result').open)fillResult();});
-  window.TL_GAME={loadMap:loadLevel,pause(){if(playing)setPlaying(false);},map:()=>D.map,inProgress:()=>game.started&&!game.done,texts};
+  window.TL_GAME={loadMap:loadLevel,pause(){if(playing)setPlaying(false);},map:()=>D.map,inProgress:()=>game.started&&!game.done,texts,
+    state:()=>({t:game.t,round:game.round,playing,inter:inter&&{...inter},done:game.done,acc:game.acc,speed})};
   // For the hand-off: every block of the board in screen pixels, so the hub's dots can land exactly on them.
   window.TL_BOARD={targets(){
     const m=board.getScreenCTM();if(!m)return null;
@@ -401,7 +397,11 @@
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.body.classList.contains('inhub'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(game.started&&!game.done)setPlaying(!playing,playing?t('n.pause'):t('n.start'));}});
   document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing)setPlaying(false,t('n.hidden'));});
   function frame(now){const dt=Math.min(.5,(now-last)/1000);last=now;
-    if(playing){game.advance(dt*speed);feedback();drawCountdown();
+    if(playing){
+      if(inter){if(now>=inter.end){inter=null;render();}}
+      else{const r0=game.round;game.advance(dt*speed,{stopAtRound:true});
+        if(game.round!==r0&&!game.done){inter={r:game.round,end:now+INTER_MS,adjust:false};render();}}
+      feedback();drawCountdown();
       if(now-lastDraw>40){drawMap();lastDraw=now;}
       if(now-lastSide>200){drawSide();lastSide=now;}
       if(game.done&&!shown)render();}
@@ -415,7 +415,7 @@
     if(q.get('t')){game.start();const moves=(q.get('moves')||'').split(',').filter(Boolean).map(m=>m.split(':').map(Number)).sort((a,b)=>a[0]-b[0]);
       for(const [tm,id,to] of moves)if(tm<+q.get('t')){game.advance(tm-game.t);game.place(id,D.candidates[to]);}game.advance(+q.get('t')-game.t);}}
   seen=q.get('fx')?Math.max(0,game.events.length-Number(q.get('fx'))):game.events.length;lastDelivered=game.delivered;
-  for(let k=0;k<D.waves.length;k++)if(game.t>=waveStart(k))rang.add(k);
+  for(let k=0;k<=game.round;k++)if(game.t>=waveStart(k))rang.add(k);
   if(q.get('paused')&&game.started)snap=structuredClone({...game});
   if(q.get('sel'))selected=+q.get('sel');if(q.get('hover'))hover=D.candidates[+q.get('hover')];
   note(t('n.layout'));render();

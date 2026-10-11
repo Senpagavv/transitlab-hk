@@ -463,3 +463,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .gauge[data-lo]:not([data-lo=""])::before{content:attr(data-lo);position:absolute;left:0;top:15px;font:500 10px var(--s-mono);color:var(--s-ink3)}
 #tickHigh::after{left:50%;transform:translateX(-50%);top:15px;bottom:auto}
 #tickMaster::after{left:auto;right:-1px;transform:none;top:auto;bottom:15px}
+/* v5.2 · ring keys in the legend */
+.legend i.ringkey{width:12px;height:12px;border-radius:50%;background:none;border:3px solid var(--s-accent);box-sizing:border-box}
+.legend i.ringkey.bad{border-color:var(--s-bad);border-right-color:var(--s-line2);border-bottom-color:var(--s-line2)}
+.legend i.ringkey.good{border-left-color:var(--s-line2)}

@@ -220,18 +220,20 @@
     if(s)toastTimer=setTimeout(()=>el.classList.remove('on'),2800);}
 
   /* ----------------------------------------------------------- bots, in the page */
-  // The same checks as bots/v4_calibrate.js, smaller: every opening without moving, then from the best three openings a
-  // player who moves one stop at most in each countdown (3 s before a round). Runs in slices so the page stays usable.
+  // The same checks as bots/v5_tune.js, smaller: every opening without moving, then from the best three openings a
+  // player who moves one stop at most in each break between rounds. Runs in slices so the page stays usable.
+  // A move {r,id,to} is made in the break before round r (0-based); with mid, that many seconds into round r-1 instead.
   let analysis=null,busy=false;
   const tick=()=>new Promise(r=>setTimeout(r,0));
-  function playLevel(open,moves=[]){const g=new Tide.Game();open.forEach((c,id)=>g.place(id,D.candidates[c]));g.start();
-    for(const m of moves){g.advance(m.time-g.t);g.place(m.id,D.candidates[m.to]);}g.advance(P.duration-g.t+1);return g.delivered;}
+  function playLevel(open,moves=[],mid=0){const g=new Tide.Game();open.forEach((c,id)=>g.place(id,D.candidates[c]));g.start();
+    for(const m of [...moves].sort((a,b)=>a.r-b.r)){if(mid){g.runTo(m.r-1);g.advance(mid);}else g.runTo(m.r);g.place(m.id,D.candidates[m.to]);}
+    g.advance(P.duration+1);return g.delivered;}
   async function analyse(){
     if(busy||problems().length)return;busy=true;analysis={progress:0};render();
     D.loadEditor(toLevel(lv));Tide.reset();
     const n=D.candidates.length,all=[];for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)for(let c=b+1;c<n;c++)all.push([a,b,c]);
     const LIMIT=1200,step=Math.max(1,all.length/LIMIT),opens=all.length>LIMIT?Array.from({length:LIMIT},(_,i)=>all[Math.floor(i*step)]):all;
-    const total=D.waves.flat().reduce((x,y)=>x+y,0),start=P.firstWave,rounds=D.waves.length;
+    const total=D.waves.flat().reduce((x,y)=>x+y,0),rounds=D.waves.length;
     const plannerWork=3*(rounds-1)*3*n,work=opens.length+plannerWork;let done=0;
     const statics=[];
     for(let i=0;i<opens.length;i++){statics.push({o:opens[i],s:playLevel(opens[i])});done++;if(i%6===5){analysis.progress=done/work;renderAnalysis();await tick();}}
@@ -239,19 +241,19 @@
     let best={score:statics[0].s,moves:[],open:statics[0].o};
     for(const x of statics.slice(0,3)){
       const moves=[],cells=x.o.slice();let score=x.s;
-      for(let r=1;r<rounds;r++){const time=start+r*P.interval-3;let pick=null;
+      for(let r=1;r<rounds;r++){let pick=null;
         if(moves.length<P.moves)for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
-          const s=playLevel(x.o,[...moves,{time,id,to}]);if(s>score&&(!pick||s>pick.s))pick={s,m:{time,id,to}};}
+          const s=playLevel(x.o,[...moves,{r,id,to}]);if(s>score&&(!pick||s>pick.s))pick={s,m:{r,id,to}};}
         done+=3*n;analysis.progress=Math.min(1,done/work);renderAnalysis();await tick();
         if(pick){moves.push(pick.m);cells[pick.m.id]=pick.m.to;score=pick.s;}}
       if(score>best.score)best={score,moves,open:x.o};}
     const S=statics[0].s,B=best.score,sc=statics.map(x=>x.s);
-    // the same moves 40 s early (still in the previous round): if that is not worse, timing does not matter
-    const early=best.moves.length?playLevel(best.open,best.moves.map(m=>({...m,time:Math.max(1,m.time-40)}))):null;
+    // the same moves made 60 s into the round before (no rings then): if that is not worse, the break does not matter
+    const early=best.moves.length?playLevel(best.open,best.moves,60):null;
     const pass=sc[Math.min(4,sc.length-1)],high=Math.max(S+1,S+Math.round((B-S)/2)),master=B-S>=3?B-1:B;
     analysis={total,openings:sc.length,sampled:all.length>LIMIT?all.length:0,staticBest:S,early,median:sc[Math.floor(sc.length/2)],passCount:sc.filter(s=>s>=pass).length,
       planBest:B,plan:best,tiers:[pass,Math.min(high,master),master],
-      bestOpen:best.open.map(i=>k(D.candidates[i])),moves:best.moves.map(m=>({r:Math.round((m.time+3-start)/P.interval)+1,stop:'ABC'[m.id],to:k(D.candidates[m.to])}))};
+      bestOpen:best.open.map(i=>k(D.candidates[i])),moves:best.moves.map(m=>({r:m.r+1,stop:'ABC'[m.id],to:k(D.candidates[m.to])}))};
     busy=false;render();
   }
   function renderAnalysis(){

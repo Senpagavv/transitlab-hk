@@ -26,9 +26,10 @@
         {name:'翹翠峰',hans:'翘翠峰',cell:[5,6],house:[0,38]},
         {name:'蝶翠峰',hans:'蝶翠峰',cell:[7,6],house:[0,38]},
         {name:'橫洲東頭圍',hans:'横洲东头围',short:'橫洲',shortHans:'横洲',cell:[6,1],house:[0,-40]}],
-      // 6 a round from each estate, one estate +6 in turn: 240 people; two openings keep every stop calm and carry everyone
-      waves:hold([[12,6,6,6],[6,12,6,6],[6,6,12,6],[6,6,6,12]]),
-      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:3,cool:20,tiers:[225,235,240]},
+      // four rounds, two estates busy in each (6 → 18): 192 people; six openings keep every round's red rings open,
+      // and exactly those carry everyone by bus
+      waves:[[18,18,6,6],[6,6,18,18],[18,6,18,6],[6,18,6,18]],
+      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:3,cool:20,tiers:[183,188,192]},
     // Level 2 · Yuen Long South (v3): four estates strung along one road south of the town centre.
     l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:STATION,
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
@@ -38,9 +39,9 @@
         {name:'朗善邨一帶',hans:'朗善邨一带',short:'朗善',shortHans:'朗善',cell:[3,6],house:[50,0]},
         {name:'蝶翠峰',hans:'蝶翠峰',cell:[2,4],house:[0,40]},
         {name:'大棠路',hans:'大棠路',cell:[1,1],house:[-50,0]}],
-      // 6 a round, one estate +12 in turn: 288; no opening carries everyone, moves before the busy rounds do better
-      waves:hold([[18,6,6,6],[6,18,6,6],[6,6,18,6],[6,6,6,18]]),
-      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:3,cool:20,tiers:[266,279,285]},
+      // four rounds, two estates busy in each (12 → 28): 320; no opening carries everyone, moves in the breaks do better
+      waves:[[28,28,12,12],[12,12,28,28],[28,12,28,12],[12,28,12,28]],
+      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:3,cool:20,tiers:[296,311,316]},
     // Level 3 · Fanling (v3): five estates fanned out east of the town centre, more people than the stops can take.
     l3:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',station:STATION,
       roads:build([[1,4,4,4],[2,2,2,6],[2,2,6,2],[6,1,6,2],[4,2,4,6],[2,6,4,6]]),
@@ -51,9 +52,9 @@
         {name:'北區公園',hans:'北区公园',cell:[2,2],house:[-50,0]},
         {name:'華明邨',hans:'华明邨',short:'華明',shortHans:'华明',cell:[2,6],house:[0,40]},
         {name:'和合石',hans:'和合石',cell:[3,6],house:[0,40]}],
-      // 7 a round, one estate +12 in turn: 376, more than the stops can take — every layout overflows somewhere
-      waves:hold([[19,7,7,7,7],[7,19,7,7,7],[7,7,19,7,7],[7,7,7,19,7]]),
-      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:3,cool:20,tiers:[326,344,356]}
+      // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows
+      waves:[[26,26,10,10,10],[10,26,26,10,10],[10,10,10,26,26],[10,10,26,10,26]],
+      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:3,cool:20,tiers:[289,302,310]}
   };
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
