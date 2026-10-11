@@ -165,11 +165,11 @@
       for(let j=0;j<7;j++){const ph=(now/2600+j/7+seed*.31)%1,an=j/7*TAU+now/5200+seed,d=27+24*ph;
         out+=svg('circle',{cx:(x+Math.cos(an)*d).toFixed(1),cy:(y+Math.sin(an)*d-5*ph).toFixed(1),r:(1.9-.8*ph).toFixed(2),fill:C.bad,'fill-opacity':((1-ph)*.55).toFixed(3)});}}
     return out;}
-  // where an estate's name, the "pull" hint and the count of people at home go: never on top of each other
+  // where an estate's name and the "pull" hint go: never on top of each other (people at home: a badge on the building)
   function spots(i){
     const [hx,hy]=houseAt(i),[dx,dy]=D.origins[i].house||[0,38],right=hx<VBW*.72;
-    if(dx)return{name:[hx+(dx>0?34:-34),hy+5,dx>0?'start':'end'],hint:[hx,hy+44,'middle'],home:[hx-17,hy-52]};
-    return{name:[hx,dy<0?hy-36:hy+44,'middle'],hint:[right?hx+32:hx-32,hy+4,right?'start':'end'],home:[right?hx-66:hx+32,hy-12]};
+    if(dx)return{name:[hx+(dx>0?34:-34),hy+5,dx>0?'start':'end'],hint:[hx,hy+44,'middle']};
+    return{name:[hx,dy<0?hy-36:hy+44,'middle'],hint:[right?hx+32:hx-32,hy+4,right?'start':'end']};
   }
   const pill=(x,y,s,color,anchor='middle',size=12)=>{const w=s.length*size*.62+14,x0=anchor==='start'?x-4:anchor==='end'?x-w+4:x-w/2;
     return rect(x0,y-size+1,w,size+8,C.panel,color,{rx:(size+8)/2,'stroke-width':1,'stroke-opacity':.55,'fill-opacity':.92})+text(anchor==='start'?x0+7:anchor==='end'?x0+w-7:x,y+2,s,size,color,{'text-anchor':anchor,'font-weight':600});};
@@ -187,9 +187,7 @@
     const onRoad=c=>D.roads.some(q=>same(q,c));
     for(const b of D.bridges||[]){const [x,y]=xy(b),v=onRoad([b[0],b[1]-1])||onRoad([b[0],b[1]+1]);   // rails either side of the road
       for(const d of [-14,14])ground+=svg('path',{d:v?`M${x+d} ${y-24}L${x+d} ${y+24}`:`M${x-30} ${y+d}L${x+30} ${y+d}`,stroke:C.ink2,'stroke-width':2.2});}
-    // the selected stop's (or the hovered spot's) way to the centre
-    const active=game.stops[selected];
-    if(active.cell&&!hover)lines+=svg('path',{d:pathStr(route(active.cell,D.hub)),stroke:C.accent,'stroke-width':3,fill:'none',opacity:.28,'stroke-linecap':'round'});
+    // previewing a spot: the way its buses would take to the centre (only then; a stop's route is not drawn otherwise)
     if(hover)lines+=svg('path',{d:pathStr(route(hover,D.hub)),stroke:C.accent,'stroke-width':2.5,fill:'none','stroke-dasharray':'5 6',opacity:.6,'stroke-linecap':'round'});
     // the round preview (before the start and between rounds): who goes where, how full stops get, who is left out
     if(fc){
@@ -214,7 +212,9 @@
       things+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
       for(let k=0;k<3;k++)things+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
       labels+=text(sp.name[0],sp.name[1],name(i),14,C.ink,{'text-anchor':sp.name[2],'font-weight':600});
-      if(h.home&&!fc)labels+=rect(sp.home[0],sp.home[1],34,20,C.panel,C.warn,{'stroke-width':1.2,rx:10})+text(sp.home[0]+17,sp.home[1]+14.5,`${h.home}`,12,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});});
+      // people at home still deciding: a small badge on the building's lower right corner (clear of roads and stops)
+      const bx=hx+((o.house||[0,38])[0]<0?-19:19);   // the corner away from the road
+      if(h.home&&!fc)labels+=svg('circle',{cx:bx,cy:hy+11,r:h.home>9?10:8.5,fill:C.panel,stroke:C.warn,'stroke-width':1.3})+text(bx,hy+15,`${h.home}`,11,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace','stroke-width':0});});
     // the town centre
     const [mx,my]=xy(D.hub);
     things+=rect(mx-23,my-22,46,44,C.ink,C.ink,{rx:6})+svg('rect',{x:mx-23,y:my+15,width:46,height:7,fill:C.accent,rx:2});
@@ -250,7 +250,9 @@
         const sw=Math.min(8,64/Math.max(1,P.seats)),qw=Math.min(7,60/Math.max(1,P.queue));
         for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-P.seats*sw/2+j*sw,y:y-37,width:sw-1.6,height:7,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1,'stroke-opacity':.7});
         for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-P.queue*qw/2+j*qw,y:y-26,width:qw-1.6,height:6,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1,'stroke-opacity':.6});
-        labels+=text(x,y+31,game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});}
+        // under the stop, unless a building stands there (a stop at an estate's door): then above the seats
+        const under=D.origins.some((o,i)=>{const [hx,hy]=houseAt(i);return Math.abs(hx-x)<34&&hy-y>8&&hy-y<56;});
+        labels+=text(x,under?y-44:y+31,game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});}
       things+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':t('b.stopAria',{s:letters[s.id],a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue})},content);
     }
     $('board').innerHTML=defs()+ground+glow+lines+rings+things+labels;
