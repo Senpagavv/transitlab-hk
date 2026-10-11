@@ -395,7 +395,12 @@
     'b.hubMark':L('市','市','C'),'b.mtr':L('','',''),
     'b.delivered':L('坐巴士到 {n}','坐巴士到 {n}','by bus {n}'),
     'b.whyMTR':L('走去市中心更近','走去市中心更近','town is as close'),
-    'b.pull':L('吸引 {p}% · {n} 格','吸引 {p}% · {n} 格','pull {p}% · {n} blocks'),
+    'sp.far':L('{list}（超過 6 格，太遠）','{list}（超过 6 格，太远）','{list} (beyond 6 blocks)'),
+    'cd.round':L('第 {n} 輪 · 看看圓圈','第 {n} 轮 · 看看圆圈','Round {n} · read the rings'),
+    'cd.hint':L('空格暫停慢慢調','空格暂停慢慢调','Space to pause'),
+    'cd.adjust':L('調整中 · 按繼續開始','调整中 · 按继续开始','Adjusting · Resume to start'),
+    'b.fullShort':L('滿','满','full'),
+    'b.pull':L('{p}% · {n} 格','{p}% · {n} 格','{p}% · {n} blocks'),
     'b.whyFarN':L('{n} 格，太遠（0%）','{n} 格，太远（0%）','{n} blocks: too far (0%)'),
     'sp.served':L('{name}：{n} 格，吸引 {p}% → 分到 {s}%','{name}：{n} 格，吸引 {p}% → 分到 {s}%','{name}: {n} blocks, pull {p}% → gets {s}%'),
     'b.drives':L('沒有站夠近 → 全部開車','没有站够近 → 全部开车','no stop near → all drive'),
@@ -444,27 +449,27 @@
   });
   // v5.2 · rings instead of numbers, a break between rounds, four rounds
   Object.assign(S,{
-    'g.lede':L('Three stops, one town centre, four rounds.<span class="tcb">三座接駁站，把原本開車去市中心的人接上巴士。看圓圈擺站：綠圈補滿、紅圈別滿。</span>',
-      'Three stops, one town centre, four rounds.<span class="tcb">三座接驳站，把原本开车去市中心的人接上巴士。看圆圈摆站：绿圈补满、红圈别满。</span>',
-      'Three stops, one town centre, four rounds. Place stops by the rings: fill the green ones, keep the red ones from closing.'),
+    'g.lede':L('Three stops, one town centre, four rounds.<span class="tcb">三座接駁站，把原本開車去市中心的人接上巴士。看圓圈擺站：屋苑的綠圈補滿，站別冒紅光。</span>',
+      'Three stops, one town centre, four rounds.<span class="tcb">三座接驳站，把原本开车去市中心的人接上巴士。看圆圈摆站：屋苑的绿圈补满，站别冒红光。</span>',
+      'Three stops, one town centre, four rounds. Place stops by the rings: close the green rings round the estates, keep the stops from glowing red.'),
     'g.rule1':L('<b>人人都想坐巴士，按吸引力分去各站。</b>站在屋苑門口吸引力 100%，每多走 1 格少 10%，6 格以外沒有；站要比走去市中心近。停在 ＋ 上會顯示這個位置對每個屋苑的吸引力。兩座站 80% 和 40%，人就按 2 : 1 分；細線越粗，去的人越多。',
       '<b>人人都想坐巴士，按吸引力分去各站。</b>站在屋苑门口吸引力 100%，每多走 1 格少 10%，6 格以外没有；站要比走去市中心近。停在 ＋ 上会显示这个位置对每个屋苑的吸引力。两座站 80% 和 40%，人就按 2 : 1 分；细线越粗，去的人越多。',
       '<b>Everyone wants the bus; they split between stops by pull.</b> A stop at the door pulls 100%, each extra block 10% less, nothing beyond 6 blocks; it must be nearer than walking to town. Hover a ＋ to see what that spot pulls from each estate. Stops at 80% and 40% split an estate 2 : 1; the thicker the thin line, the more people.'),
-    'g.rule3':L('<b>看圓圈。</b>屋苑的綠圈＝這一輪的人有多少接得走，缺口＝接不走；站的紅圈＝站會被填多滿，一段段是從不同屋苑來的人，整圈閃紅＝會爆。只算這一輪、這個擺法。這一輪的人都坐上車或開車走了，下一輪才開始；兩輪之間遊戲停 5 秒給你看；這時按暫停可以慢慢調，按繼續馬上開始。可以挪站 {moves} 次，挪完冷卻 {cool} 秒；輪中間也能挪，但不顯示圓圈。',
-      '<b>看圆圈。</b>屋苑的绿圈＝这一轮的人有多少接得走，缺口＝接不走；站的红圈＝站会被填多满，一段段是从不同屋苑来的人，整圈闪红＝会爆。只算这一轮、这个摆法。这一轮的人都坐上车或开车走了，下一轮才开始；两轮之间游戏停 5 秒给你看；这时按暂停可以慢慢调，按继续马上开始。可以挪站 {moves} 次，挪完冷却 {cool} 秒；轮中间也能挪，但不显示圆圈。',
-      '<b>Read the rings.</b> An estate’s green ring = how many of this round’s people get a place; a gap = people left out. A stop’s red ring = how full it gets, in parts by the estate people come from; a whole ring flashing red = it overflows. This round and this layout only. A round ends once all its people are on a bus or have driven off; then the game stops for 5 s; pause then to adjust at leisure, resume to start at once. {moves} moves, each cools down {cool} s; you can also move during a round, without the rings.'),
+    'g.rule3':L('<b>看圓圈。</b>屋苑的綠圈＝這一輪的人有多少接得走，缺口＝接不走；站周圍的暖光＝站會被填多滿（細線一段段是從不同屋苑來的人），越濃越滿，紅光向外泛起波紋＝會爆。只算這一輪、這個擺法。這一輪的人都坐上車或開車走了，下一輪才開始；兩輪之間遊戲停 5 秒給你看；這時按暫停可以慢慢調，按繼續馬上開始。可以挪站 {moves} 次，挪完冷卻 {cool} 秒；輪中間也能挪，但不顯示圓圈。',
+      '<b>看圆圈。</b>屋苑的绿圈＝这一轮的人有多少接得走，缺口＝接不走；站周围的暖光＝站会被填多满（细线一段段是从不同屋苑来的人），越浓越满，红光向外泛起波纹＝会爆。只算这一轮、这个摆法。这一轮的人都坐上车或开车走了，下一轮才开始；两轮之间游戏停 5 秒给你看；这时按暂停可以慢慢调，按继续马上开始。可以挪站 {moves} 次，挪完冷却 {cool} 秒；轮中间也能挪，但不显示圆圈。',
+      '<b>Read the rings.</b> An estate’s green ring = how many of this round’s people get a place; a gap = people left out. A stop’s warm glow = how full it gets (the thin arc in parts by the estate people come from); the thicker the fuller, red ripples = it overflows. This round and this layout only. A round ends once all its people are on a bus or have driven off; then the game stops for 5 s; pause then to adjust at leisure, resume to start at once. {moves} moves, each cools down {cool} s; you can also move during a round, without the rings.'),
     'g.tideKey':L('<span><b class="mono">9</b>這輪出門人數</span><span><i class="pk"></i>人多</span>','<span><b class="mono">9</b>这轮出门人数</span><span><i class="pk"></i>人多</span>','<span><b class="mono">9</b>leave home this round</span><span><i class="pk"></i>busy</span>'),
     'g.tideChip':L('4 輪 · 每輪清完才下一輪','4 轮 · 每轮清完才下一轮','4 rounds · each settles first'),
     'g.tideChipTitle':L('每輪的人在 2 分鐘裡陸續出門；這一輪的人都坐上車或開車走了，才開始下一輪','每轮的人在 2 分钟里陆续出门；这一轮的人都坐上车或开车走了，才开始下一轮','People leave over 2 minutes; the next round starts once everyone of this one is on a bus or has driven off'),
     'w.break':L('第 {n}/{m} 輪 · 開始前','第 {n}/{m} 轮 · 开始前','Round {n}/{m} · about to start'),
     'w.first':L('第 1 輪：{n} 秒後','第 1 轮：{n} 秒后','Round 1 in {n} s'),
-    'g.legEstate':L('綠圈：接得走的人','绿圈：接得走的人','green: people who get a place'),'g.legStop':L('紅圈：站有多滿','红圈：站有多满','red: how full a stop gets'),
-    'cd.hint':L('按空格暫停，慢慢調站','按空格暂停，慢慢调站','Space to pause and adjust'),
-    'cd.adjust':L('調整中 · 圓圈按現在的站顯示這一輪 · 按繼續馬上開始','调整中 · 圆圈按现在的站显示这一轮 · 按继续马上开始','Adjusting · the rings show this round with your stops · Resume to start it'),
+    'g.legEstate':L('綠圈：接得走的人','绿圈：接得走的人','green: people who get a place'),'g.legStop':L('暖光：站有多滿','暖光：站有多满','warm glow: how full a stop gets'),
+
+
     'sp.overN':L('會爆（{n} 人擠不上）','会爆（{n} 人挤不上）','overflows ({n} turned away)'),
-    'i.r6':L('<b>潮汐表、圓圈和每輪之間。</b>{n} 輪。每輪各區的人在 2 分鐘裡陸續出門，每輪有兩個屋苑人多；這一輪的人都坐上車或開車走了，才開始下一輪（所以每輪長短不一）。開局前和每輪之間，地圖用圓圈顯示這一輪：綠圈是屋苑的人接得走多少，紅圈是站最滿時有多滿。只算這一輪、這個擺法，不算上一輪還沒運完的人，也不算被擠走的人去哪。每輪之間遊戲停 5 秒；在這 5 秒裡暫停就變成調整時間，不限時，按繼續直接開始這一輪。',
-      '<b>潮汐表、圆圈和每轮之间。</b>{n} 轮。每轮各区的人在 2 分钟里陆续出门，每轮有两个屋苑人多；这一轮的人都坐上车或开车走了，才开始下一轮（所以每轮长短不一）。开局前和每轮之间，地图用圆圈显示这一轮：绿圈是屋苑的人接得走多少，红圈是站最满时有多满。只算这一轮、这个摆法，不算上一轮还没运完的人，也不算被挤走的人去哪。每轮之间游戏停 5 秒；在这 5 秒里暂停就变成调整时间，不限时，按继续直接开始这一轮。',
-      '<b>Tide table, rings and the break between rounds.</b> {n} rounds. People leave over 2 minutes, two estates busier each round; the next round starts once everyone of this one is on a bus or has driven off (so rounds differ in length). Before the start and between rounds the rings show that round: green, how many of an estate’s people get a place; red, how full a stop gets at its busiest. This round and this layout only — not people left over from the last round, nor where people turned away go. Between rounds the game stops for 5 s; pause in it to adjust with no time limit, and resume to start the round at once.'),
+    'i.r6':L('<b>潮汐表、圓圈和每輪之間。</b>{n} 輪。每輪各區的人在 2 分鐘裡陸續出門，每輪有兩個屋苑人多；這一輪的人都坐上車或開車走了，才開始下一輪（所以每輪長短不一）。開局前和每輪之間，地圖用圓圈顯示這一輪：綠圈是屋苑的人接得走多少，站周圍的暖光是站最滿時有多滿。只算這一輪、這個擺法，不算上一輪還沒運完的人，也不算被擠走的人去哪。每輪之間遊戲停 5 秒；在這 5 秒裡暫停就變成調整時間，不限時，按繼續直接開始這一輪。',
+      '<b>潮汐表、圆圈和每轮之间。</b>{n} 轮。每轮各区的人在 2 分钟里陆续出门，每轮有两个屋苑人多；这一轮的人都坐上车或开车走了，才开始下一轮（所以每轮长短不一）。开局前和每轮之间，地图用圆圈显示这一轮：绿圈是屋苑的人接得走多少，站周围的暖光是站最满时有多满。只算这一轮、这个摆法，不算上一轮还没运完的人，也不算被挤走的人去哪。每轮之间游戏停 5 秒；在这 5 秒里暂停就变成调整时间，不限时，按继续直接开始这一轮。',
+      '<b>Tide table, rings and the break between rounds.</b> {n} rounds. People leave over 2 minutes, two estates busier each round; the next round starts once everyone of this one is on a bus or has driven off (so rounds differ in length). Before the start and between rounds the rings show that round: green, how many of an estate’s people get a place; the warm glow, how full a stop gets at its busiest. This round and this layout only — not people left over from the last round, nor where people turned away go. Between rounds the game stops for 5 s; pause in it to adjust with no time limit, and resume to start the round at once.'),
     'src.demand':L('每輪各區人數：平時固定，每輪兩個屋苑人多。人數與時間都是遊戲設定，不代表真實客流。','每轮各区人数：平时固定，每轮两个屋苑人多。人数与时间都是游戏设定，不代表真实客流。','Each round: a steady number per estate, two estates busier. Numbers and times are game settings, not real ridership.')
   });
   // v5.3 · the editor's analysis moves in the breaks between rounds
