@@ -142,9 +142,15 @@
   function drawHouse(i,fc){
     const o=D.origins[i],h=game.homeStats(i),[hx,hy]=houseAt(i),[cx,cy]=xy(o.cell);
     let out=svg('path',{d:`M${cx} ${cy}L${hx} ${hy}`,stroke:C.ink3,'stroke-width':1.5,'stroke-dasharray':'2 3'});
+    const right=hx<VBW*.72,ax=right?hx+24:hx-24,anchor=right?'start':'end';
+    if(hover){const d=dist(o.cell,hover),w=Tide.shareAt(i,hover);
+      // the spot under the pointer: its pull here by blocks, in a ring that grows with it
+      if(w>0){const r=18+18*w;out+=svg('circle',{cx:hx,cy:hy,r,fill:C.accent2,'fill-opacity':(.06+.12*w).toFixed(2),stroke:C.accent,'stroke-width':1.2+1.5*w,'stroke-dasharray':'4 3'});
+        out+=text(right?hx+r+6:hx-r-6,hy-4,t('b.pull',{p:Math.round(w*100),n:d}),12.5,C.accent,{'text-anchor':anchor,'font-weight':600});}
+      else{const why=d>=0&&d>=Tide.toMTR[i]&&Tide.willing(d)>0?t('b.whyMTR'):t('b.whyFarN',{n:d});
+        out+=text(ax,hy-20,why,11.5,C.ink3,{'text-anchor':anchor});}}
     // nobody here has a stop near enough: they will all drive
-    if(fc.estates[i].drives&&fc.stops.some(st=>st.cell)){const right=hx<VBW*.72;
-      out+=text(right?hx+24:hx-24,hy-20,t('b.drives'),12,C.bad,{'text-anchor':right?'start':'end','font-weight':600});}
+    else if(fc.estates[i].drives&&fc.stops.some(st=>st.cell))out+=text(ax,hy-20,t('b.drives'),12,C.bad,{'text-anchor':anchor,'font-weight':600});
     // pixel building
     out+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
     for(let k=0;k<3;k++)out+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
@@ -157,7 +163,8 @@
     if(h.home)out+=rect(bx,by,34,20,C.panel,C.warn,{'stroke-width':1.5})+text(bx+17,by+15,`${h.home}`,12.5,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});
     return out;
   }
-  // v5 · who goes where: a line from each estate to every stop it uses, thicker for a bigger share, with the share.
+  // v5 · who goes where: a line from each estate to every stop it uses. The number is the stop's pull on that estate
+  // by walking blocks (100 at the door, 10 less a block); the line is thicker for a bigger share of the people.
   // Drawn for the stops as they are, or as they would be with the stop being placed / dragged (hover).
   function drawFlows(fc){
     let out='';flowLabels='';
@@ -170,7 +177,7 @@
         // the share, a third of the way along from the estate
         const u=.36,lx=(1-u)*(1-u)*hx+2*u*(1-u)*mx+u*u*x,ly=(1-u)*(1-u)*hy+2*u*(1-u)*my+u*u*y;
         flowLabels+=rect(lx-17,ly-10,34,19,C.panel,C.accent,{rx:9.5,'stroke-width':1})+
-          svg('text',{x:lx,y:ly+4.5,'font-size':11.5,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${Math.round(sh*100)}%`);});});
+          svg('text',{x:lx,y:ly+4.5,'font-size':11.5,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${Math.round(e.pull[sid]*100)}%`);});});
     return out;
   }
   let flowLabels='';
@@ -264,7 +271,7 @@
     let h=`<h3><span>${t('sp.title',{s:letters[selected]})}${hover?t('sp.preview'):''}</span><span class="lbl">Stop ${letters[selected]}</span></h3>`;
     if(!cell){$('stopPanel').innerHTML=h+`<p>${t('sp.empty')}</p>`;return;}
     const steps=dist(cell,D.hub),hw=headwayAt(cell),fc=game.forecast(hover?selected:-1,hover),st=fc.stops[selected];
-    const served=fc.estates.filter(e=>e.share[selected]>0).map(e=>`${name(e.origin)} ${Math.round(e.share[selected]*100)}%`).join(t('sep'))||t('sp.nobody');
+    const served=fc.estates.filter(e=>e.share[selected]>0).map(e=>t('sp.served',{name:name(e.origin),n:e.steps[selected],p:Math.round(e.pull[selected]*100),s:Math.round(e.share[selected]*100)})).join('<br>')||t('sp.nobody');
     const beyond=D.origins.map((o,i)=>i).filter(i=>{const d=dist(D.origins[i].cell,cell);return d>=Tide.toMTR[i]&&Tide.willing(d)>0;}).map(name);
     const fr=focusRound(),over=overRounds(st);
     h+=`<div class="r"><span>${t('sp.toMTR')}</span><span>${t('sp.toMTRv',{n:steps,hw})}</span></div><div class="r"><span>${t('sp.who')}</span><span>${served}</span></div>`;
