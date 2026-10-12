@@ -6,7 +6,7 @@
 
 ## 2026-10-12
 
-### 16:44 · `待补` 接驳巴士 v5.7：排队等车不扣耐心 + 第二、三关加人 / Feeder v5.7: no patience lost in a queue; levels 2 and 3 rebalanced
+### 16:44 · `21a02e4` 接驳巴士 v5.7：排队等车不扣耐心 + 第二、三关加人 / Feeder v5.7: no patience lost in a queue; levels 2 and 3 rebalanced
 - **改了什么**：`game-feeder/v5/`：排队时耐心不减、挑站只看走路；第二关 352 人（门槛 321/340/350）、第三关 360 人（304/335/347）、第一关过关线 185；时间上限按清队计算；说明文字同步。
 - **为什么**：发起人认为坐着等车应该安心，耐心只该在路上扣；改后游戏变容易，按机器人结果加人恢复难度。
 - **验证**：`node game-feeder/v5/test_engine.js` 23 项通过；随机关卡 1200 个无问题；无界面 Edge 跑完一局无报错。
