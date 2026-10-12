@@ -15,7 +15,7 @@
 
   /* ------------------------------------------------------------------ the level */
   function blank(){return{v:4,title:'',cols:12,rows:8,roads:[],waterCells:[],hub:null,candidates:[],estates:[],
-    rounds:8,hold:2,phases:[],firstWave:20,interval:120,release:110,headway:[40,4],seats:8,queue:8,cool:20,moves:4,
+    rounds:4,hold:1,phases:[],firstWave:20,interval:120,release:110,headway:[40,4],seats:8,queue:8,cool:20,moves:1,
     patience:210,willing:[100,90,80,70,60,50,40],tiers:[0,0,0]};}
   // a built-in level as an editor level
   function fromLevel(L,title){
@@ -26,7 +26,7 @@
       candidates:L.candidates.map(c=>c.slice()),estates:L.estates.map(e=>({name:e.name,cell:e.cell.slice(),side:side(e.house||[0,40])})),
       rounds:L.waves.length,hold,phases:L.waves.filter((w,i)=>i%hold===0).map(w=>w.slice()),
       firstWave:L.firstWave??20,interval:L.interval??120,release:L.release??110,headway:L.headway.slice(),seats:L.seats??8,
-      queue:L.queue??8,cool:L.cool??20,moves:L.moves??4,patience:L.patience??210,
+      queue:L.queue??8,cool:L.cool??20,moves:L.moves??1,patience:L.patience??210,
       willing:(L.willing||[1,.9,.8,.7,.6,.5,.4]).map(w=>Math.round(w*100)),tiers:(L.tiers||[0,0,0]).slice()};}
   const waves=lv=>Array.from({length:lv.rounds},(_,r)=>(lv.phases[Math.floor(r/lv.hold)]||lv.phases.at(-1)||[]).slice(0,lv.estates.length));
   // what the game reads
@@ -242,7 +242,7 @@
     for(const x of statics.slice(0,3)){
       const moves=[],cells=x.o.slice();let score=x.s;
       for(let r=1;r<rounds;r++){let pick=null;
-        if(moves.length<P.moves)for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
+        for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;   // one move in each break
           const s=playLevel(x.o,[...moves,{r,id,to}]);if(s>score&&(!pick||s>pick.s))pick={s,m:{r,id,to}};}
         done+=3*n;analysis.progress=Math.min(1,done/work);renderAnalysis();await tick();
         if(pick){moves.push(pick.m);cells[pick.m.id]=pick.m.to;score=pick.s;}}

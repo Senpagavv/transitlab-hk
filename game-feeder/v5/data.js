@@ -13,12 +13,16 @@
         for(let y=Math.min(y1,y2); y<=Math.max(y1,y2); y++) roads.add(`${x},${y}`);
     return [...roads].map(s=>s.split(',').map(Number));
   }
-  const STATION={'zh-Hant':'市中心','zh-Hans':'市中心',en:'TOWN CENTRE'};
+  const STATION={'zh-Hant':'市中心','zh-Hans':'市中心',en:'TOWN CENTRE'};   // editor levels
+  // where people go on each board: the well-known place by the station the board was drawn from
+  const PLACE={l1:{'zh-Hant':'元朗市中心','zh-Hans':'元朗市中心',en:'YUEN LONG'},
+    l2:{'zh-Hant':'元朗大馬路','zh-Hans':'元朗大马路',en:'CASTLE PEAK RD'},
+    l3:{'zh-Hant':'聯和墟','zh-Hans':'联和墟',en:'LUEN WO HUI'}};
   const hold=(phases,n=2)=>phases.flatMap(w=>Array(n).fill(w));      // each demand mix lasts n rounds
   // Tuned with bots/v5_tune.js (see LOG.md v5).
   const LEVELS={
     // Level 1 · Long Ping (the v2 board): four estates round the town centre; learn to share an estate between two stops.
-    l1:{cols:10,rows:7,margin:[40,40],hub:[6,4],hubLabel:'right',station:STATION,
+    l1:{cols:10,rows:7,margin:[40,40],hub:[6,4],hubLabel:'right',station:PLACE.l1,
       roads:build([[1,6,8,6],[3,3,3,6],[3,4,8,4],[5,4,5,6],[6,1,6,6],[8,3,8,6],[5,2,7,2]]),
       candidates:[[2,6],[3,6],[3,5],[3,4],[4,4],[5,4],[5,6],[6,6],[7,6],[8,6],[8,4],[6,2],[6,3]],
       estates:[
@@ -29,9 +33,9 @@
       // four rounds, two estates busy in each (6 → 18): 192 people; six openings keep every round's red rings open,
       // and exactly those carry everyone by bus
       waves:[[18,18,6,6],[6,6,18,18],[18,6,18,6],[6,18,6,18]],
-      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:3,cool:20,tiers:[183,188,192]},
+      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:1,cool:20,tiers:[183,188,192]},
     // Level 2 · Yuen Long South (v3): four estates strung along one road south of the town centre.
-    l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:STATION,
+    l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:PLACE.l2,
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
       candidates:[[1,1],[2,1],[1,2],[1,3],[1,4],[2,4],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[2,8]],
       estates:[
@@ -41,9 +45,9 @@
         {name:'大棠路',hans:'大棠路',cell:[1,1],house:[-50,0]}],
       // four rounds, two estates busy in each (12 → 28): 320; no opening carries everyone, moves in the breaks do better
       waves:[[28,28,12,12],[12,12,28,28],[28,12,28,12],[12,28,12,28]],
-      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:3,cool:20,tiers:[296,311,316]},
+      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:1,cool:20,tiers:[296,311,316]},
     // Level 3 · Fanling (v3): five estates fanned out east of the town centre, more people than the stops can take.
-    l3:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',station:STATION,
+    l3:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',station:PLACE.l3,
       roads:build([[1,4,4,4],[2,2,2,6],[2,2,6,2],[6,1,6,2],[4,2,4,6],[2,6,4,6]]),
       candidates:[[2,3],[2,2],[3,2],[4,2],[5,2],[6,2],[6,1],[4,3],[4,4],[4,5],[2,5],[2,6],[3,6],[4,6]],
       estates:[
@@ -54,7 +58,7 @@
         {name:'和合石',hans:'和合石',cell:[3,6],house:[0,40]}],
       // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows
       waves:[[26,26,10,10,10],[10,26,26,10,10],[10,10,10,26,26],[10,10,26,10,26]],
-      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:3,cool:20,tiers:[289,302,310]}
+      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[289,302,310]}
   };
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.

@@ -400,14 +400,19 @@
     'cd.hint':L('空格暫停慢慢調','空格暂停慢慢调','Space to pause'),
     'cd.adjust':L('調整中 · 按繼續開始','调整中 · 按继续开始','Adjusting · Resume to start'),
     'h.move':L('選中 {s} 站 · 點 ＋ 挪過去，或直接拖動 · 還能挪 {n} 次','选中 {s} 站 · 点 ＋ 挪过去，或直接拖动 · 还能挪 {n} 次','Stop {s} selected · click a ＋ to move it, or drag it · {n} moves left'),
-    'h.noMoves':L('挪站次數用完了：這一局不能再挪站','挪站次数用完了：这一局不能再挪站','No moves left in this game'),
-    'n.noMoves':L('挪站次數用完了（這一關最多挪 {max} 次）。','挪站次数用完了（这一关最多挪 {max} 次）。','No moves left (this level allows {max}).'),
-    'g.moves':L('Moves · 還能挪','Moves · 还能挪','Moves left'),
+    'g.moves':L('Moves · 挪站','Moves · 挪站','Moves'),
+    'tk.break':L('輪前','轮前','break'),'tk.extra':L('機動','机动','extra'),
+    'tk.breakTip':L('第 {n} 輪開始前可以挪 1 次（不用就作廢）','第 {n} 轮开始前可以挪 1 次（不用就作废）','one move in the break before round {n} (use it or lose it)'),
+    'tk.extraTip':L('機動：隨時可用一次（輪中間，或兩輪之間的第二次）','机动：随时可用一次（轮中间，或两轮之间的第二次）','extra: one move at any time (mid-round, or a second one in a break)'),
+    'h.moveBreak':L('選中 {s} 站 · 這一輪前可以挪 1 次：點 ＋ 或拖動','选中 {s} 站 · 这一轮前可以挪 1 次：点 ＋ 或拖动','Stop {s} selected · one move in this break: click a ＋ or drag'),
+    'h.moveExtra':L('選中 {s} 站 · 現在挪會用掉機動（剩 {n} 次）','选中 {s} 站 · 现在挪会用掉机动（剩 {n} 次）','Stop {s} selected · moving now uses an extra move ({n} left)'),
+    'n.noMovesBreak':L('這一輪前已經挪過了，機動也用完了','这一轮前已经挪过了，机动也用完了','This break’s move is used and no extra moves are left'),
+    'n.noMovesMid':L('輪中間只能用機動，機動用完了：等下一輪開始前再挪','轮中间只能用机动，机动用完了：等下一轮开始前再挪','Mid-round only extra moves work, and none are left: move in the next break'),
     'b.fullShort':L('滿','满','full'),
     'b.pull':L('{p}% · {n} 格','{p}% · {n} 格','{p}% · {n} blocks'),
     'b.whyFarN':L('{n} 格，太遠（0%）','{n} 格，太远（0%）','{n} blocks: too far (0%)'),
     'sp.served':L('{name}：{n} 格，吸引 {p}% → 分到 {s}%','{name}：{n} 格，吸引 {p}% → 分到 {s}%','{name}: {n} blocks, pull {p}% → gets {s}%'),
-    'b.drives':L('沒有站夠近 → 全部開車','没有站够近 → 全部开车','no stop near → all drive'),
+    'b.drives':L('太遠，全部開車','太远，全部开车','too far: all drive'),
     'sp.toMTR':L('到市中心','到市中心','To town'),'sp.beyond':L('{list}（比走去市中心還遠）','{list}（比走去市中心还远）','{list} (farther than walking to town)'),
     'sp.tip':L('離市中心近 → 班次密；離屋苑近 → 吸引力大。','离市中心近 → 班次密；离屋苑近 → 吸引力大。','Near the town centre → frequent buses; near the estates → a stronger pull.'),
     'sp.who':L('誰會來','谁会来','Who comes'),
@@ -446,9 +451,9 @@
     'i.scope':L('這一版只試「分流」：站放在哪，人怎樣分去各站，站會不會爆。目的地暫時統一叫市中心；以後可以換成學校、街市、商場、招聘會等不同目的地。',
       '这一版只试「分流」：站放在哪，人怎样分去各站，站会不会爆。目的地暂时统一叫市中心；以后可以换成学校、街市、商场、招聘会等不同目的地。',
       'This version tries out shares only: where the stops go, how people split between them, whether a stop overflows. The destination is simply the town centre for now; later it can be schools, markets, malls, job fairs.'),
-    'src.l1':L('地圖取自 v2 的朗屏示意圖（唐人新村、翹翠峰、蝶翠峰、橫洲東頭圍），終點改為市中心。','地图取自 v2 的朗屏示意图（唐人新村、翘翠峰、蝶翠峰、横洲东头围），终点改为市中心。','The v2 Long Ping board (Tong Yan San Tsuen, Kiu Tsui Fung, Tip Tsui Fung, Wang Chau Tung Tau Wai); the end of the line is now the town centre.'),
-    'src.l2':L('地圖取自 v3 的元朗南示意圖（崇山新村、朗善邨一帶、蝶翠峰、大棠路），終點改為市中心。','地图取自 v3 的元朗南示意图（崇山新村、朗善邨一带、蝶翠峰、大棠路），终点改为市中心。','The v3 Yuen Long South board (Sung Shan San Tsuen, Long Sin area, Tip Tsui Fung, Tai Tong Road); the end of the line is now the town centre.'),
-    'src.l3':L('地圖取自 v3 的粉嶺示意圖（山麗苑、鳳凰嶺邨、北區公園、華明邨、和合石），終點改為市中心。','地图取自 v3 的粉岭示意图（山丽苑、凤凰岭邨、北区公园、华明邨、和合石），终点改为市中心。','The v3 Fanling board (Shan Lai Court, Fung Wong Ling, North District Park, Wah Ming, Wo Hop Shek); the end of the line is now the town centre.'),
+    'src.l1':L('地圖取自 v2 的朗屏示意圖（唐人新村、翹翠峰、蝶翠峰、橫洲東頭圍），終點是朗屏站旁的元朗市中心（購物、上學、上班）。','地图取自 v2 的朗屏示意图（唐人新村、翘翠峰、蝶翠峰、横洲东头围），终点是朗屏站旁的元朗市中心（购物、上学、上班）。','The v2 Long Ping board (Tong Yan San Tsuen, Kiu Tsui Fung, Tip Tsui Fung, Wang Chau Tung Tau Wai); people go to Yuen Long town centre by Long Ping station (shops, school, work).'),
+    'src.l2':L('地圖取自 v3 的元朗南示意圖（崇山新村、朗善邨一帶、蝶翠峰、大棠路），終點是元朗站一帶的元朗大馬路。','地图取自 v3 的元朗南示意图（崇山新村、朗善邨一带、蝶翠峰、大棠路），终点是元朗站一带的元朗大马路。','The v3 Yuen Long South board (Sung Shan San Tsuen, Long Sin area, Tip Tsui Fung, Tai Tong Road); people go to Castle Peak Road in Yuen Long, by Yuen Long station.'),
+    'src.l3':L('地圖取自 v3 的粉嶺示意圖（山麗苑、鳳凰嶺邨、北區公園、華明邨、和合石），終點是粉嶺站旁的聯和墟。','地图取自 v3 的粉岭示意图（山丽苑、凤凰岭邨、北区公园、华明邨、和合石），终点是粉岭站旁的联和墟。','The v3 Fanling board (Shan Lai Court, Fung Wong Ling, North District Park, Wah Ming, Wo Hop Shek); people go to Luen Wo Hui by Fanling station.'),
     'src.demand':L('每輪各區人數：平時固定，輪流有一區人多，兩輪換一次。人數與時間都是遊戲設定，不代表真實客流。','每轮各区人数：平时固定，轮流有一区人多，两轮换一次。人数与时间都是游戏设定，不代表真实客流。','Each round: a steady number per estate, one estate busier in turn, changing every two rounds. Numbers and times are game settings, not real ridership.')
   });
   // v5.2 · rings instead of numbers, a break between rounds, four rounds
@@ -481,6 +486,17 @@
     'n.start':L('開始了。每一輪的人都有結果後，遊戲停 5 秒顯示下一輪；想慢慢調，就在那時按空格暫停。','开始了。每一轮的人都有结果后，游戏停 5 秒显示下一轮；想慢慢调，就在那时按空格暂停。','Running. When a round has settled the game stops for 5 s to show the next one; press Space then to adjust at leisure.'),
     'ed.aEarly':L('同樣挪站，但在上一輪中間挪','同样挪站，但在上一轮中间挪','Same moves, mid-round instead'),
     'ed.wEarly':L('在輪中間挪站不吃虧：兩輪之間看圓圈再挪沒有好處。想讓兩輪之間的停頓更重要，就讓每一輪人多的屋苑不一樣，或讓站更容易爆。','在轮中间挪站不吃亏：两轮之间看圆圈再挪没有好处。想让两轮之间的停顿更重要，就让每一轮人多的屋苑不一样，或让站更容易爆。','Moving mid-round costs nothing: looking at the rings in the break gains nothing. To make the break matter, change which estates are busy from round to round, or make stops overflow more easily.')
+  });
+  // v5.4 · moves: one in each break, plus extra ones
+  Object.assign(S,{
+    'g.rule3':L('<b>看圓圈，在兩輪之間挪站。</b>屋苑的綠圈＝這一輪的人有多少接得走，缺口＝接不走；站周圍的暖光＝站會被填多滿，越濃越滿，紅光泛起波紋＝會爆。只算這一輪、這個擺法。一輪的人都有結果才進下一輪，中間停 5 秒（按空格可慢慢調）。開局隨便擺；第 2 輪起，每輪開始前可以挪 1 次（不用就作廢）；另有 {moves} 次機動，輪中間也能用。挪過的站冷卻 {cool} 秒。',
+      '<b>看圆圈，在两轮之间挪站。</b>屋苑的绿圈＝这一轮的人有多少接得走，缺口＝接不走；站周围的暖光＝站会被填多满，越浓越满，红光泛起波纹＝会爆。只算这一轮、这个摆法。一轮的人都有结果才进下一轮，中间停 5 秒（按空格可慢慢调）。开局随便摆；第 2 轮起，每轮开始前可以挪 1 次（不用就作废）；另有 {moves} 次机动，轮中间也能用。挪过的站冷却 {cool} 秒。',
+      '<b>Read the rings; move between rounds.</b> Green ring round an estate = how many of this round’s people get a place (a gap = left out); warm glow round a stop = how full it gets, red ripples = it overflows. This round and this layout only. A round ends once all its people have an outcome, then the game stops for 5 s (Space to take your time). The opening is free; from round 2, one move before each round (use it or lose it), plus {moves} extra move(s) for any time, mid-round too. A moved stop cools down {cool} s.'),
+    'i.r5':L('<b>挪站與冷卻。</b>開局隨便擺。第 2 輪起，每一輪開始前（兩輪之間的停頓裡）可以挪 1 次，不用就作廢；另有 {moves} 次機動，隨時可用（輪中間，或同一個停頓裡的第二次）。右上角的格子：亮的是現在能用的，空心是用過的，劃掉的是錯過的。挪完冷卻 {cool} 秒：期間不上客，班車照原來的時刻表開。暫停時挪的站可以按「撤銷挪站」退回。',
+      '<b>挪站与冷却。</b>开局随便摆。第 2 轮起，每一轮开始前（两轮之间的停顿里）可以挪 1 次，不用就作废；另有 {moves} 次机动，随时可用（轮中间，或同一个停顿里的第二次）。右上角的格子：亮的是现在能用的，空心是用过的，划掉的是错过的。挪完冷却 {cool} 秒：期间不上客，班车照原来的时刻表开。暂停时挪的站可以按「撤销挪站」退回。',
+      '<b>Moving and cooling down.</b> The opening is free. From round 2, one move before each round (in the break), use it or lose it; plus {moves} extra move(s) for any time (mid-round, or a second move in a break). The squares top right: lit = usable now, hollow = used, struck = missed. A moved stop cools down {cool} s: no boarding, buses keep their timetable. Moves made while paused can be undone.'),
+    'ed.moves':L('機動挪站（每輪前另有 1 次）','机动挪站（每轮前另有 1 次）','Extra moves (plus one per break)'),
+    'cd.hint':L('空格暫停慢慢調 · 這一輪前可挪 1 次','空格暂停慢慢调 · 这一轮前可挪 1 次','Space to pause · one move in this break')
   });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],

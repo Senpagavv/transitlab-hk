@@ -478,3 +478,19 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .toast.warn{top:auto;bottom:86px;background:var(--s-panel);color:var(--s-bad);border:1px solid color-mix(in srgb,var(--s-bad) 55%,transparent);
   box-shadow:0 8px 24px color-mix(in srgb,var(--s-bad) 18%,transparent);font-weight:600}
 #board [role=button]:focus:not(:focus-visible){outline:none}
+/* v5.4 · move tokens: pixel squares */
+.lanebox .tokens{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:4px 0 6px}
+.lanebox .tokens .tl{font:500 9.5px var(--s-mono);letter-spacing:.06em;color:var(--s-ink3);margin:0 2px 0 4px}
+.lanebox .tokens .tl:first-child{margin-left:0}
+.tk{position:relative;width:18px;height:18px;display:inline-grid;place-items:center;font-style:normal;image-rendering:pixelated;
+  background:var(--s-accent);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--s-ink) 25%,transparent);clip-path:polygon(2px 0,calc(100% - 2px) 0,100% 2px,100% calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,0 calc(100% - 2px),0 2px)}
+.tk b{font:600 10px var(--s-mono);color:var(--s-on-accent);line-height:1}
+.tk.ahead{opacity:.55}
+.tk.now{opacity:1;animation:tkGlow 1.2s ease-in-out infinite}
+.tk.used{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2)}
+.tk.used b{color:var(--s-ink3)}
+.tk.lost{background:var(--s-raise);box-shadow:inset 0 0 0 2px var(--s-line2)}
+.tk.lost b{color:var(--s-ink3);text-decoration:line-through}
+.tk.x{background:var(--s-warn)}
+.tk.x.used{background:transparent}
+@keyframes tkGlow{50%{filter:brightness(1.25);transform:translateY(-1px)}}

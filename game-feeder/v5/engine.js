@@ -9,11 +9,13 @@
   // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
   // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
   // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
+  // Moves (v5.4): the opening is free; in the break before each later round one move (use it or lose it); plus
+  // `moves` extra moves (1) for any time — mid-round, or a second move in a break.
   // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
   // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
-    walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:4,
+    walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:1,
     willing:[1,.9,.8,.7,.6,.5,.4],homeGrace:50,homeThink:20,patience:210,
     reconsider:4,target:133,highScore:140,masterScore:146};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
@@ -85,7 +87,7 @@
   }
   class Game {
     constructor(seed=1781) {
-      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
+      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,breakUsed:[],breakOpen:-1,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
       this.trips=[];
       this.stops=[0,1,2].map(id=>({id,cell:null,version:0,ready:0,queue:[],boarding:[],peak:0,rejected:0,serial:0,departAt:Infinity}));
       const r=rng(seed);let id=0;
@@ -110,9 +112,9 @@
     place(id,cell) {
       const s=this.stops[id];
       if(this.done||!s||!D.candidates.some(c=>same(c,cell))||this.stops.some(x=>x.id!==id&&same(x.cell,cell))||same(s.cell,cell))return false;
-      if(this.started&&this.moves<=0)return false;
+      const kind=this.moveKind();if(this.started&&!kind)return false;
       const old=s.cell?.slice();
-      if(this.started){this.moves--;this.commands.push({time:this.t,id,cell:cell.slice()});}
+      if(this.started){if(kind==='break')this.breakUsed[this.breakOpen]=true;else this.moves--;this.commands.push({time:this.t,id,cell:cell.slice(),kind});}
       // a moved stop cools down for P.cool seconds; its timetable keeps running (see buses())
       s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.cool:0;
       if(!this.started)s.departAt=Infinity;
@@ -132,6 +134,9 @@
       }
       this.emit(this.started?'move':'place',null,{stop:id,cell:cell.slice()});return true;
     }
+    // which move a placement now would use: the break's own move, the extra one, or none (null)
+    moveKind(){if(!this.started)return 'opening';if(this.done)return null;
+      if(this.breakOpen>=1&&!this.breakUsed[this.breakOpen])return 'break';return this.moves>0?'extra':null;}
     pos(p) {return along(p.path,this.t-p.since,P.walkStep);}
     currentNode(p) {
       let left=Math.max(0,(this.t-p.since)/P.walkStep);
@@ -230,7 +235,7 @@
       this.done=true;this.emit('finish');
     }
     step() {
-      this.steps++;this.t=+(this.steps*P.tick).toFixed(4);this.buses();
+      this.breakOpen=-1;this.steps++;this.t=+(this.steps*P.tick).toFixed(4);this.buses();
       for(const p of this.people){
         if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});this.emit('spawn',p);}
         if(p.state==='home'){
@@ -256,7 +261,7 @@
       }
       const R=D.waves.length,settled=r=>this.people.every(p=>p.wave!==r||['delivered','car','bus'].includes(p.state));
       if(this.t>=this.roundStart[this.round]&&this.round<R-1&&settled(this.round)){
-        const r=++this.round;this.roundStart[r]=this.t;
+        const r=++this.round;this.roundStart[r]=this.t;this.breakOpen=r;
         for(const p of this.people)if(p.wave===r)p.born=this.t+p.offset;
         this.emit('round',null,{round:r});
       }

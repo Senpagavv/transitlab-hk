@@ -27,14 +27,21 @@ for(const [name,def] of Object.entries(defs)){
     return D.waves.every((w,r)=>{const fc=f.forecastRound(r);return !fc.estates.some(e=>e.drives)&&fc.stops.every(s=>!s.over);});};
   const statics=layouts.map(l=>({l,s:play(l).delivered,calm:calmOf(l)})).sort((a,b)=>b.s-a.s);
   const sc=statics.map(x=>x.s),q=f=>sc[Math.floor(f*(sc.length-1))];
+  // v5.4 moves: one in each break (greedy, round by round), then the extra one as a second move in the best break
   function planner(start){
     const moves=[];let score=play(start).delivered;
-    for(let r=1;r<R&&moves.length<P.moves;r++){
-      const cells=start.slice();for(const m of moves)cells[m.id]=m.to;let pick=null;
+    const cellsAt=r=>{const cells=start.slice();for(const m of moves.filter(m=>m.r<=r).sort((a,b)=>a.r-b.r))cells[m.id]=m.to;return cells;};
+    for(let r=1;r<R;r++){
+      const cells=cellsAt(r);let pick=null;
       for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
         const d=play(start,[...moves,{r,id,to}]).delivered;if(d>score&&(!pick||d>pick.d))pick={d,m:{r,id,to}};}
       if(pick){moves.push(pick.m);score=pick.d;}
     }
+    let extra=null;
+    for(let k=0;k<P.moves;k++)for(let r=1;r<R;r++){const cells=cellsAt(r);
+      for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
+        const d=play(start,[...moves,{r,id,to}]).delivered;if(d>score&&(!extra||d>extra.d))extra={d,m:{r,id,to}};}}
+    if(extra){moves.push(extra.m);score=extra.d;}
     return{moves,score};
   }
   let plan={moves:[],score:-1,start:null};

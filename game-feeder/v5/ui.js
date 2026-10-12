@@ -69,7 +69,6 @@
     const nums={base:P.headwayBase,step:P.headwayStep,seats:P.seats,queue:P.queue,moves:P.moves,cool:P.cool,n:D.waves.length};
     $('rule2').innerHTML=t('g.rule2',nums);$('rule3').innerHTML=t('g.rule3',nums);
     $('infoR3').innerHTML=t('i.r3',nums);$('infoR5').innerHTML=t('i.r5',nums);$('infoR6').innerHTML=t('i.r6',nums);
-    $('movesMax').textContent=P.moves;
     document.querySelectorAll('#levelSeg [data-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.level===D.map)));
     $('source').textContent=t('src.'+D.map)+' '+t('src.demand');
     $('coverSource').textContent='';
@@ -131,7 +130,7 @@
       note(was?t(playing?'n.moved':'n.pausedMove',{s:letters[selected],cool:P.cool}):t('n.placed'));
       if(!was){fxBuilt(selected);const next=game.stops.find(s=>!s.cell);if(next)selected=next.id;}
       render();
-    }else{const why=was&&game.moves<=0?t('n.noMoves',{max:P.moves}):t('n.taken');note(why);toast(why,'warn');}
+    }else{const why=was&&!game.moveKind()?t(game.breakOpen>=1?'n.noMovesBreak':'n.noMovesMid'):t('n.taken');note(why);toast(why,'warn');}
   }
   // v5.4 · the board in layers, bottom to top: ground (water, roads) · glow (soft halos) · lines · arcs (thin rings) ·
   // things (＋, buildings, the centre, people, buses, stops) · labels (every word and number, last, on a paper halo).
@@ -150,6 +149,21 @@
       if(a1-a>gap+.012)out+=svg('path',{d:arc(cx,cy,r,a+gap/2,a1-gap/2),fill:'none',stroke:color,'stroke-width':w,'stroke-linecap':'round','stroke-opacity':op});
       a=a1;if(a>=1)break;}
     return out;}
+  // v5.4 · pixel icons. A sprite is rows of characters, one per pixel ('.' = empty), drawn with crisp edges;
+  // runs of one colour in a row become one rectangle.
+  function sprite(rows,x0,y0,u,pal){let out='';
+    rows.forEach((row,j)=>{for(let i=0;i<row.length;){const ch=row[i];if(ch==='.'||!pal[ch]){i++;continue;}let k=i;while(k+1<row.length&&row[k+1]===ch)k++;
+      out+=`<rect x="${(x0+i*u).toFixed(1)}" y="${(y0+j*u).toFixed(1)}" width="${((k-i+1)*u).toFixed(1)}" height="${u}" fill="${pal[ch]}"/>`;i=k+1;}});
+    return `<g shape-rendering="crispEdges">${out}</g>`;}
+  const ESTATE=["....kkkkk...","....kwklk...","....kkkkk...","....kwkwk.kk","kkk.kkkkk.kl","klk.kwkwk.kk","kkk.kkkkk.kw","kwk.klkwk.kk","kkk.kkkkk.kw","kwk.kwkwk.kk","kkk.kkkkk.kl","gggggggggggg"];
+  const MARKET=["......kkkk......","....kkaaaakk....","..kkaaaaaaaakk..","kkaaaaaaaaaaaakk","kaaaaaaaaaaaaaak",
+    "rprprprprprprprp","prprprprprprprpr",".kkkkkkkkkkkkkk.",".kllkkkddkkkllk.",".kllkkkddkkkllk.",".kkkkkkddkkkkkk.","gggggggggggggggg"];
+  const BUS=[".aaaaaaaaaaa.","aawwaawwaawwa","aawwaawwaawwa","aaaaaaaaaaaaa","aaaaaaaaaaaaa","aaaaaaaaaaaaa","..kk.....kk.."];
+  const PLUS=["..kkk..","..kpk..","kkkpkkk","kpppppk","kkkpkkk","..kpk..","..kkk.."];
+  // a stop's sign: a plate with pixel-cut corners and a darker foot
+  const plate=(x,y,fill,edge,w=32,h=30,c=3)=>`<path shape-rendering="crispEdges" d="M${x-w/2+c} ${y-h/2}H${x+w/2-c}V${y-h/2+c}H${x+w/2}V${y+h/2-c}H${x+w/2-c}V${y+h/2}H${x-w/2+c}V${y+h/2-c}H${x-w/2}V${y-h/2+c}H${x-w/2+c}Z" fill="${fill}" stroke="${edge}"/>`;
+  // how wide a line of text is: Chinese characters a full em, others about 0.6
+  const textW=(s,size)=>[...String(s)].reduce((w,ch)=>w+(ch.charCodeAt(0)>0x2e7f?size:ch===' '?size*.32:size*.6),0);
   const halo=(x,y,r,id,a)=>svg('circle',{cx:x,cy:y,r:r.toFixed(1),fill:`url(#${id})`,'fill-opacity':Math.max(0,Math.min(1,a)).toFixed(3)});
   function defs(){
     const band=(id,c,mid)=>svg('radialGradient',{id},svg('stop',{offset:0,'stop-color':c,'stop-opacity':.05})+svg('stop',{offset:mid,'stop-color':c,'stop-opacity':.5})+svg('stop',{offset:1,'stop-color':c,'stop-opacity':0}));
@@ -173,7 +187,7 @@
     if(dx)return{name:[hx+(dx>0?34:-34),hy+5,dx>0?'start':'end'],hint:[hx,hy+44,'middle']};
     return{name:[hx,dy<0?hy-36:hy+44,'middle'],hint:[right?hx+32:hx-32,hy+4,right?'start':'end']};
   }
-  const pill=(x,y,s,color,anchor='middle',size=12)=>{const w=s.length*size*.62+14,x0=anchor==='start'?x-4:anchor==='end'?x-w+4:x-w/2;
+  const pill=(x,y,s,color,anchor='middle',size=12)=>{const w=textW(s,size)+16,x0=anchor==='start'?x-4:anchor==='end'?x-w+4:x-w/2;
     return rect(x0,y-size+1,w,size+8,C.panel,color,{rx:(size+8)/2,'stroke-width':1,'stroke-opacity':.55,'fill-opacity':.92})+text(anchor==='start'?x0+7:anchor==='end'?x0+w-7:x,y+2,s,size,color,{'text-anchor':anchor,'font-weight':600});};
   function drawMap(){
     if(pointerPressed&&!drag?.moved)return;           // keep the node under the pointer alive for the click
@@ -211,16 +225,14 @@
     // estates: building, name, people deciding at home
     D.origins.forEach((o,i)=>{const [hx,hy]=houseAt(i),[cx,cy]=xy(o.cell),sp=spots(i),h=game.homeStats(i);
       things+=svg('path',{d:`M${cx} ${cy}L${hx} ${hy}`,stroke:C.ink3,'stroke-width':1.5,'stroke-dasharray':'2 3'});
-      things+=rect(hx-17,hy-10,12,22,C.ink2,C.ink,{rx:1})+rect(hx-4,hy-16,10,28,C.ink,C.ink,{rx:1})+rect(hx+7,hy-6,10,18,C.ink2,C.ink,{rx:1});
-      for(let k=0;k<3;k++)things+=svg('rect',{x:hx-1+(k%2)*3,y:hy-12+k*7,width:2,height:3,fill:C.paper});
+      things+=sprite(ESTATE,hx-18,hy-24,3,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
       labels+=text(sp.name[0],sp.name[1],name(i),14,C.ink,{'text-anchor':sp.name[2],'font-weight':600});
       // people at home still deciding: a small badge on the building's lower right corner (clear of roads and stops)
       const bx=hx+((o.house||[0,38])[0]<0?-19:19);   // the corner away from the road
-      if(h.home&&!fc)labels+=svg('circle',{cx:bx,cy:hy+11,r:h.home>9?10:8.5,fill:C.panel,stroke:C.warn,'stroke-width':1.3})+text(bx,hy+15,`${h.home}`,11,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace','stroke-width':0});});
+      if(h.home&&!fc)labels+=plate(bx,hy+11,C.panel,C.warn,h.home>9?22:18,16,2).replace('/>',' stroke-width="1.3"/>')+text(bx,hy+15,`${h.home}`,11,C.warn,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace','stroke-width':0});});
     // the town centre
     const [mx,my]=xy(D.hub);
-    things+=rect(mx-23,my-22,46,44,C.ink,C.ink,{rx:6})+svg('rect',{x:mx-23,y:my+15,width:46,height:7,fill:C.accent,rx:2});
-    things+=svg('text',{x:mx,y:my+8,'font-size':I.lang==='en'?25:21,fill:C.paper,'text-anchor':'middle','font-family':I.lang==='en'?'Bodoni Moda,Georgia,serif':'Noto Serif TC,serif','font-weight':600},t('b.hubMark'));
+    things+=sprite(MARKET,mx-24,my-20,3,{k:C.ink,a:C.accent,r:C.accent2,p:C.paper,l:C.warn,d:C.accent,g:C.ink2});
     const hl=D.hubLabel==='left',lx=hl?mx-34:mx+34,la=hl?'end':'start';   // its label on the open side
     labels+=text(lx,my-8,I.station(D.station),15,C.ink,{'font-weight':600,'text-anchor':la});
     labels+=text(lx,my+7,I.lang==='en'?t('b.mtr'):D.station.en,9,C.ink3,{'letter-spacing':'.16em','font-family':'Geist Mono,monospace','text-anchor':la});
@@ -230,23 +242,23 @@
       if(game.stops.some(s=>same(s.cell,c)))continue;
       const [x,y]=xy(c),on=hover&&same(hover,c);
       things+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':t('b.candAria',{c:c[0]+1,r:c[1]+1}),opacity:canMove()?1:.3},
-        svg('circle',{cx:x,cy:y,r:on?13:10,fill:on?C.accent:C.panel,stroke:on?C.accent:C.ink3,'stroke-width':1.2,'stroke-opacity':on?1:.7})+svg('text',{x,y:y+5,'font-size':on?16:14,fill:on?C.paper:C.ink3,'text-anchor':'middle'},'＋'));
+        svg('rect',{x:x-13,y:y-13,width:26,height:26,fill:'transparent'})+sprite(PLUS,x-(on?12.25:9.1),y-(on?12.25:9.1),on?3.5:2.6,{k:on?C.accent:C.ink3,p:on?C.accent2:C.panel}));
     }
     // people walking, buses
     for(const p of game.people)if(['walk','return'].includes(p.state)){
       const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
-      things+=svg('circle',{cx:x+ox,cy:y+oy,r:3.4,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1});
+      things+=svg('rect',{x:(x+ox-3).toFixed(1),y:(y+oy-3).toFixed(1),width:6,height:6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1,'shape-rendering':'crispEdges'});
     }
     for(const b of game.trips.filter(b=>!b.done)){
       const [x,y]=xy(along(b.path,game.t-b.since,P.busStep));
       lines+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.18});
-      things+=rect(x-19,y-11,38,22,C.accent,C.accent,{rx:11})+svg('text',{x,y:y+5,'font-size':12.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
+      things+=sprite(BUS,x-19.5,y-12,3,{a:C.accent,w:C.paper,k:C.ink})+svg('text',{x,y:y+6,'font-size':10.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
     }
     const moving=game.stops[selected];
     if(hover){const [gx,gy]=xy(hover);
       if(moving.cell){const [sx,sy]=xy(moving.cell),dx=gx-sx,dy=gy-sy,len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len;
         lines+=svg('path',{d:`M${(sx+ux*24).toFixed(1)} ${(sy+uy*24).toFixed(1)}Q${((sx+gx)/2-uy*26).toFixed(1)} ${((sy+gy)/2+ux*26).toFixed(1)} ${(gx-ux*22).toFixed(1)} ${(gy-uy*22).toFixed(1)}`,fill:'none',stroke:C.accent,'stroke-width':2,'stroke-dasharray':'6 5','marker-end':'url(#mHead)',opacity:.85});}
-      things+=rect(gx-16,gy-15,32,30,C.panel,C.accent,{'stroke-width':1.6,'stroke-dasharray':'4 3',rx:7,'fill-opacity':.85})+svg('text',{x:gx,y:gy+7,'font-size':19,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif',opacity:.75},letters[selected]);}
+      things+=plate(gx,gy,C.panel,C.accent).replace('/>',' stroke-width="1.6" stroke-dasharray="4 3" fill-opacity=".85"/>')+svg('text',{x:gx,y:gy+7,'font-size':19,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif',opacity:.75},letters[selected]);}
     // stops: the box, and while the game runs its seats, queue and next bus (a full stop: the same warm haze, breathing)
     for(const s of game.stops){if(!s.cell)continue;
       const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue&&s.boarding.length>=P.seats;
@@ -254,7 +266,8 @@
       if(sel){glow+=halo(x,y,34,'hAura',.9+.1*Math.sin(now/700));
         rings+=svg('circle',{cx:x,cy:y,r:31,fill:'none',stroke:C.accent2,'stroke-width':2,'stroke-dasharray':'6 5','stroke-dashoffset':(-now/60%22).toFixed(1),'stroke-opacity':.9,'stroke-linecap':'round'});}
       else if(hoverStop===s.id)rings+=svg('circle',{cx:x,cy:y,r:27,fill:'none',stroke:C.ink3,'stroke-width':1.5,'stroke-opacity':.5});
-      let content=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.2:1.2,'stroke-dasharray':build?'4 3':'none',rx:7,...(sel?{filter:'url(#fLift)'}:{})});
+      let content=`<g${sel?' filter="url(#fLift)"':''}>`+plate(x,y,build?C.panel:C.accent,sel?C.ink:C.accent).replace('/>',` stroke-width="${sel?2.2:1.2}"${build?' stroke-dasharray="4 3"':''}/>`)+
+        (build?'':svg('rect',{x:x-13,y:y+10,width:26,height:3,fill:C.ink,'fill-opacity':.25,'shape-rendering':'crispEdges'}))+'</g>';
       content+=svg('text',{x,y:y+7,'font-size':19,fill:build?C.accent:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif'},letters[s.id]);
       if(!fc){
         const sw=Math.min(8,64/Math.max(1,P.seats)),qw=Math.min(7,60/Math.max(1,P.queue));
@@ -302,20 +315,34 @@
     }else h+=`<p>${game.started?t('sp.hoverMove',{n:game.moves,cool:P.cool}):t('sp.hoverPlace')}${t('sp.tip')}</p>`;
     $('stopPanel').innerHTML=h;
   }
+  // v5.4 · moves as pixel squares: one for the break before each round from round 2 (lit when it can be used now,
+  // hollow once used, crossed out if its round began unused), then the extra moves
+  function drawTokens(){
+    let h=`<span class="tl">${t('tk.break')}</span>`;
+    for(let r=1;r<D.waves.length;r++){
+      const st=game.breakUsed[r]?'used':game.breakOpen===r?'now':game.started&&game.round>=r?'lost':'ahead';
+      h+=`<i class="tk ${st}" title="${t('tk.breakTip',{n:r+1})}"><b>${r+1}</b></i>`;}
+    h+=`<span class="tl">${t('tk.extra')}</span>`;
+    for(let k=0;k<P.moves;k++)h+=`<i class="tk x ${k<game.moves?(game.started&&!game.done&&game.moveKind()==='extra'?'now':'ahead'):'used'}" title="${t('tk.extraTip')}"><b>★</b></i>`;
+    $('moveTokens').innerHTML=h;
+  }
   function drawSide(){
     const st=game.stats(),w=game.waveInfo(),focusSelect=document.activeElement?.getAttribute('data-select');
     const athome=game.people.filter(p=>p.state==='home').length,onway=st.active-athome;
     $('score').textContent=st.delivered;$('score2').textContent=st.delivered;$('scoreBar').style.width=`${gaugeAt(st.delivered)}%`;
     $('cars').textContent=st.cars;$('onway').textContent=Math.max(0,onway);$('notOut').textContent=st.future+athome;
     const m=D.waves.length,r=roundAt(game.t);
-    $('clock').textContent=fmt(game.t);$('clockProg').style.width=`${game.done?100:Math.min(100,100*(game.round+(r>=0?.5:0))/m)}%`;$('moves').textContent=game.moves;
+    $('clock').textContent=fmt(game.t);$('clockProg').style.width=`${game.done?100:Math.min(100,100*(game.round+(r>=0?.5:0))/m)}%`;drawTokens();
     $('wave').textContent=!game.started?t('w.first',{n:P.firstWave}):game.done?t('w.missed',{n:game.missed}):inter?t('w.break',{n:inter.r+1,m}):r>=0?t('w.active',{n:r+1,m,...roundStat(r)}):t('w.first',{n:Math.ceil(P.firstWave-game.t)});
     $('undoMoves').hidden=!(snap&&!playing&&!game.done&&game.commands.length>snap.commands.length);
     $('start').textContent=game.done?t('g.over'):game.started?(playing?t('g.pause'):t('g.resume')):t('g.start');
     $('start').disabled=game.done||(!game.started&&game.stops.some(s=>!s.cell));
     document.querySelectorAll('#speedSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sp===speed)));
-    $('mapHint').textContent=game.done?t('h.done'):!game.started?t('h.place',{s:letters[selected]}):game.moves<=0?t('h.noMoves'):t('h.move',{s:letters[selected],n:game.moves});
-    $('mapHint').classList.toggle('bad',game.started&&!game.done&&game.moves<=0);$('moves').parentElement.classList.toggle('none',game.started&&game.moves<=0);
+    const kind=game.moveKind();
+    $('mapHint').textContent=game.done?t('h.done'):!game.started?t('h.place',{s:letters[selected]}):
+      kind==='break'?t('h.moveBreak',{s:letters[selected],n:game.moves}):kind==='extra'?t('h.moveExtra',{s:letters[selected],n:game.moves}):
+      t(game.breakOpen>=1?'n.noMovesBreak':'n.noMovesMid');
+    $('mapHint').classList.toggle('bad',game.started&&!game.done&&!kind);
     $('stations').innerHTML=game.stops.map(s=>`<button class="station-button ${s.id===selected?'selected':''}" data-select="${s.id}" aria-pressed="${s.id===selected}"><b>${letters[s.id]}</b><small>${s.cell?t('st.btn',{a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue}):t('st.none')}</small></button>`).join('');
     if(focusSelect)$('stations').querySelector(`[data-select="${focusSelect}"]`)?.focus({preventScroll:true});
     drawTide();drawStopPanel();
@@ -377,7 +404,7 @@
   const board=$('board');
   board.onclick=e=>{if(drag?.moved)return;const stop=e.target.closest('[data-stop]'),cell=e.target.closest('[data-cell]');if(stop){selected=+stop.dataset.stop;render();}else{const c=cell?cell.dataset.cell.split(',').map(Number):pointCell(e);if(c)put(c);}};
   board.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const s=e.target.closest('[data-stop]'),c=e.target.closest('[data-cell]');if(s){selected=+s.dataset.stop;render();}else if(c)put(c.dataset.cell.split(',').map(Number));}};
-  const canMove=()=>!game.done&&(!game.started||game.moves>0);
+  const canMove=()=>!!game.moveKind();
   board.onpointermove=e=>{if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;const c=canMove()?pointCell(e)||null:null;
     const hs=pointStop(e)?.id??-1;if(hs!==hoverStop){hoverStop=hs;if(!(JSON.stringify(c)!==JSON.stringify(hover)))drawMap();}if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;drawMap();drawTide();drawStopPanel();}};
   board.onpointerleave=()=>{hoverStop=-1;if(!drag){hover=null;drawMap();drawTide();drawStopPanel();}};
