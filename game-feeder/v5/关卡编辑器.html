@@ -475,6 +475,13 @@ input.ed-in[type=number]{width:62px;text-align:right}
 #fx{z-index:0}
 .countdown{top:12px;max-width:300px}
 .legend i.ringkey.bad{border:none;background:radial-gradient(circle,transparent 20%,color-mix(in srgb,var(--s-bad) 55%,transparent) 55%,transparent 75%)}
+/* v5.5 · moves left, readable; the hint turns red when none are left; a warning toast */
+.lanebox .h b#moves{font:600 20px var(--s-mono);color:var(--s-accent);vertical-align:-2px;margin:0 2px}
+.lanebox .h.none b#moves{color:var(--s-bad)}
+.lanebox .hint.bad{color:var(--s-bad);font-weight:600}
+.toast.warn{top:auto;bottom:86px;background:var(--s-panel);color:var(--s-bad);border:1px solid color-mix(in srgb,var(--s-bad) 55%,transparent);
+  box-shadow:0 8px 24px color-mix(in srgb,var(--s-bad) 18%,transparent);font-weight:600}
+#board [role=button]:focus:not(:focus-visible){outline:none}
 </style></head><body class="entered ed">
 
 <header id="topbar">
@@ -1383,6 +1390,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
     'cd.round':L('第 {n} 輪 · 看看圓圈','第 {n} 轮 · 看看圆圈','Round {n} · read the rings'),
     'cd.hint':L('空格暫停慢慢調','空格暂停慢慢调','Space to pause'),
     'cd.adjust':L('調整中 · 按繼續開始','调整中 · 按继续开始','Adjusting · Resume to start'),
+    'h.move':L('選中 {s} 站 · 點 ＋ 挪過去，或直接拖動 · 還能挪 {n} 次','选中 {s} 站 · 点 ＋ 挪过去，或直接拖动 · 还能挪 {n} 次','Stop {s} selected · click a ＋ to move it, or drag it · {n} moves left'),
+    'h.noMoves':L('挪站次數用完了：這一局不能再挪站','挪站次数用完了：这一局不能再挪站','No moves left in this game'),
+    'n.noMoves':L('挪站次數用完了（這一關最多挪 {max} 次）。','挪站次数用完了（这一关最多挪 {max} 次）。','No moves left (this level allows {max}).'),
+    'g.moves':L('Moves · 還能挪','Moves · 还能挪','Moves left'),
     'b.fullShort':L('滿','满','full'),
     'b.pull':L('{p}% · {n} 格','{p}% · {n} 格','{p}% · {n} blocks'),
     'b.whyFarN':L('{n} 格，太遠（0%）','{n} 格，太远（0%）','{n} blocks: too far (0%)'),

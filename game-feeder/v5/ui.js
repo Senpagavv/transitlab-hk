@@ -11,7 +11,7 @@
     C={paper:v('paper'),panel:v('panel'),soft:v('soft'),raise:v('raise'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line:v('line'),line2:v('line2'),
       accent:v('accent'),accent2:v('accent2'),warn:v('warn'),bad:v('bad'),info:v('info'),road:v('road'),roadEdge:v('road-edge')};}
   readTokens();
-  let game=new Game(),selected=0,playing=false,speed=1,hover=null,shown=false,drag=null,pointerPressed=false,restoringFocus=false;
+  let game=new Game(),selected=0,playing=false,speed=1,hover=null,hoverStop=-1,shown=false,drag=null,pointerPressed=false,restoringFocus=false;
   let last=performance.now(),lastDraw=0,lastSide=0,seen=0,lastDelivered=0,warned=new Set(),rang=new Set(),toastTimer=0;
   const xy=c=>[MX+c[0]*72,MY+c[1]*62];
   const fmt=n=>`${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
@@ -131,7 +131,7 @@
       note(was?t(playing?'n.moved':'n.pausedMove',{s:letters[selected],cool:P.cool}):t('n.placed'));
       if(!was){fxBuilt(selected);const next=game.stops.find(s=>!s.cell);if(next)selected=next.id;}
       render();
-    }else note(was&&game.moves===0?t('n.noMoves'):t('n.taken'));
+    }else{const why=was&&game.moves<=0?t('n.noMoves',{max:P.moves}):t('n.taken');note(why);toast(why,'warn');}
   }
   // v5.4 · the board in layers, bottom to top: ground (water, roads) · glow (soft halos) · lines · arcs (thin rings) ·
   // things (＋, buildings, the centre, people, buses, stops) · labels (every word and number, last, on a paper halo).
@@ -153,7 +153,9 @@
   const halo=(x,y,r,id,a)=>svg('circle',{cx:x,cy:y,r:r.toFixed(1),fill:`url(#${id})`,'fill-opacity':Math.max(0,Math.min(1,a)).toFixed(3)});
   function defs(){
     const band=(id,c,mid)=>svg('radialGradient',{id},svg('stop',{offset:0,'stop-color':c,'stop-opacity':.05})+svg('stop',{offset:mid,'stop-color':c,'stop-opacity':.5})+svg('stop',{offset:1,'stop-color':c,'stop-opacity':0}));
-    return svg('defs',{},band('hWarm',C.warn,.5)+band('hHot',C.bad,.55)+
+    const lift=svg('filter',{id:'fLift',x:'-50%',y:'-50%',width:'200%',height:'200%'},svg('feDropShadow',{dx:0,dy:3,stdDeviation:3.2,'flood-color':C.ink,'flood-opacity':.32}));
+    const head=svg('marker',{id:'mHead',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},svg('path',{d:'M0 0L10 5L0 10z',fill:C.accent}));
+    return svg('defs',{},lift+head+band('hWarm',C.warn,.5)+band('hHot',C.bad,.55)+
       svg('radialGradient',{id:'hAura'},svg('stop',{offset:0,'stop-color':C.accent2,'stop-opacity':.32})+svg('stop',{offset:.7,'stop-color':C.accent2,'stop-opacity':.1})+svg('stop',{offset:1,'stop-color':C.accent2,'stop-opacity':0})));}
   // a stop under pressure: a warm haze that thickens as it fills (amber → coral), ripples and specks when it overflows
   function pressure(x,y,fill,over,seed,now){
@@ -227,7 +229,7 @@
     for(const c of D.candidates){
       if(game.stops.some(s=>same(s.cell,c)))continue;
       const [x,y]=xy(c),on=hover&&same(hover,c);
-      things+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':t('b.candAria',{c:c[0]+1,r:c[1]+1})},
+      things+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,'aria-label':t('b.candAria',{c:c[0]+1,r:c[1]+1}),opacity:canMove()?1:.3},
         svg('circle',{cx:x,cy:y,r:on?13:10,fill:on?C.accent:C.panel,stroke:on?C.accent:C.ink3,'stroke-width':1.2,'stroke-opacity':on?1:.7})+svg('text',{x,y:y+5,'font-size':on?16:14,fill:on?C.paper:C.ink3,'text-anchor':'middle'},'＋'));
     }
     // people walking, buses
@@ -240,19 +242,29 @@
       lines+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.18});
       things+=rect(x-19,y-11,38,22,C.accent,C.accent,{rx:11})+svg('text',{x,y:y+5,'font-size':12.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
     }
+    const moving=game.stops[selected];
+    if(hover){const [gx,gy]=xy(hover);
+      if(moving.cell){const [sx,sy]=xy(moving.cell),dx=gx-sx,dy=gy-sy,len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len;
+        lines+=svg('path',{d:`M${(sx+ux*24).toFixed(1)} ${(sy+uy*24).toFixed(1)}Q${((sx+gx)/2-uy*26).toFixed(1)} ${((sy+gy)/2+ux*26).toFixed(1)} ${(gx-ux*22).toFixed(1)} ${(gy-uy*22).toFixed(1)}`,fill:'none',stroke:C.accent,'stroke-width':2,'stroke-dasharray':'6 5','marker-end':'url(#mHead)',opacity:.85});}
+      things+=rect(gx-16,gy-15,32,30,C.panel,C.accent,{'stroke-width':1.6,'stroke-dasharray':'4 3',rx:7,'fill-opacity':.85})+svg('text',{x:gx,y:gy+7,'font-size':19,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif',opacity:.75},letters[selected]);}
     // stops: the box, and while the game runs its seats, queue and next bus (a full stop: the same warm haze, breathing)
     for(const s of game.stops){if(!s.cell)continue;
       const [x,y]=xy(s.cell),build=Math.max(0,s.ready-game.t),sel=selected===s.id,full=s.queue.length>=P.queue&&s.boarding.length>=P.seats;
       if(full&&!fc){glow+=pressure(x,y,1,true,s.id,now);labels+=text(x+21,y-14,t('b.fullShort'),12,C.bad,{'font-weight':600});}
-      let content=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.5:1.2,'stroke-dasharray':build?'4 3':'none',rx:7});
+      if(sel){glow+=halo(x,y,34,'hAura',.9+.1*Math.sin(now/700));
+        rings+=svg('circle',{cx:x,cy:y,r:31,fill:'none',stroke:C.accent2,'stroke-width':2,'stroke-dasharray':'6 5','stroke-dashoffset':(-now/60%22).toFixed(1),'stroke-opacity':.9,'stroke-linecap':'round'});}
+      else if(hoverStop===s.id)rings+=svg('circle',{cx:x,cy:y,r:27,fill:'none',stroke:C.ink3,'stroke-width':1.5,'stroke-opacity':.5});
+      let content=rect(x-16,y-15,32,30,build?C.panel:C.accent,sel?C.ink:C.accent,{'stroke-width':sel?2.2:1.2,'stroke-dasharray':build?'4 3':'none',rx:7,...(sel?{filter:'url(#fLift)'}:{})});
       content+=svg('text',{x,y:y+7,'font-size':19,fill:build?C.accent:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif'},letters[s.id]);
       if(!fc){
         const sw=Math.min(8,64/Math.max(1,P.seats)),qw=Math.min(7,60/Math.max(1,P.queue));
         for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-P.seats*sw/2+j*sw,y:y-37,width:sw-1.6,height:7,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1,'stroke-opacity':.7});
         for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-P.queue*qw/2+j*qw,y:y-26,width:qw-1.6,height:6,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1,'stroke-opacity':.6});
-        // under the stop, unless a building stands there (a stop at an estate's door): then above the seats
-        const under=D.origins.some((o,i)=>{const [hx,hy]=houseAt(i);return Math.abs(hx-x)<34&&hy-y>8&&hy-y<56;});
-        labels+=text(x,under?y-44:y+31,game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});}
+        // under the stop if that is free; else beside it (right, then left); else above the seats
+        const near=(px,py,w,h)=>D.origins.some((o,i)=>{const [hx,hy]=houseAt(i);return Math.abs(hx-px)<w&&Math.abs(hy-py)<h;})||
+          game.stops.some(q=>q.id!==s.id&&q.cell&&(()=>{const [qx,qy]=xy(q.cell);return Math.abs(qx-px)<w&&Math.abs(qy-py)<h;})());
+        const cap=!near(x,y+40,40,24)?[x,y+31,'middle']:!near(x+60,y,44,26)?[x+22,y+5,'start']:!near(x-60,y,44,26)?[x-22,y+5,'end']:[x,y-44,'middle'];
+        labels+=text(cap[0],cap[1],game.done?'':build?t('b.rebuild',{n:Math.ceil(build)}):game.started?t('b.depart',{t:fmt(game.eta(s))}):t('b.headway',{n:game.headway(s)}),11.5,C.accent,{'text-anchor':cap[2],'font-weight':600,'font-family':'Geist Mono,monospace'});}
       things+=svg('g',{class:'stop','data-stop':s.id,role:'button',tabindex:0,'aria-label':t('b.stopAria',{s:letters[s.id],a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue})},content);
     }
     $('board').innerHTML=defs()+ground+glow+lines+rings+things+labels;
@@ -302,7 +314,8 @@
     $('start').textContent=game.done?t('g.over'):game.started?(playing?t('g.pause'):t('g.resume')):t('g.start');
     $('start').disabled=game.done||(!game.started&&game.stops.some(s=>!s.cell));
     document.querySelectorAll('#speedSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sp===speed)));
-    $('mapHint').textContent=game.done?t('h.done'):game.started?t('h.run',{state:playing?t('h.running'):t('h.paused')}):t('h.place',{s:letters[selected]});
+    $('mapHint').textContent=game.done?t('h.done'):!game.started?t('h.place',{s:letters[selected]}):game.moves<=0?t('h.noMoves'):t('h.move',{s:letters[selected],n:game.moves});
+    $('mapHint').classList.toggle('bad',game.started&&!game.done&&game.moves<=0);$('moves').parentElement.classList.toggle('none',game.started&&game.moves<=0);
     $('stations').innerHTML=game.stops.map(s=>`<button class="station-button ${s.id===selected?'selected':''}" data-select="${s.id}" aria-pressed="${s.id===selected}"><b>${letters[s.id]}</b><small>${s.cell?t('st.btn',{a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue}):t('st.none')}</small></button>`).join('');
     if(focusSelect)$('stations').querySelector(`[data-select="${focusSelect}"]`)?.focus({preventScroll:true});
     drawTide();drawStopPanel();
@@ -364,8 +377,10 @@
   const board=$('board');
   board.onclick=e=>{if(drag?.moved)return;const stop=e.target.closest('[data-stop]'),cell=e.target.closest('[data-cell]');if(stop){selected=+stop.dataset.stop;render();}else{const c=cell?cell.dataset.cell.split(',').map(Number):pointCell(e);if(c)put(c);}};
   board.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const s=e.target.closest('[data-stop]'),c=e.target.closest('[data-cell]');if(s){selected=+s.dataset.stop;render();}else if(c)put(c.dataset.cell.split(',').map(Number));}};
-  board.onpointermove=e=>{if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;const c=pointCell(e)||null;if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;drawMap();drawTide();drawStopPanel();}};
-  board.onpointerleave=()=>{if(!drag){hover=null;drawMap();drawTide();drawStopPanel();}};
+  const canMove=()=>!game.done&&(!game.started||game.moves>0);
+  board.onpointermove=e=>{if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;const c=canMove()?pointCell(e)||null:null;
+    const hs=pointStop(e)?.id??-1;if(hs!==hoverStop){hoverStop=hs;if(!(JSON.stringify(c)!==JSON.stringify(hover)))drawMap();}if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;drawMap();drawTide();drawStopPanel();}};
+  board.onpointerleave=()=>{hoverStop=-1;if(!drag){hover=null;drawMap();drawTide();drawStopPanel();}};
   board.onpointerdown=e=>{pointerPressed=true;const el=e.target.closest('[data-stop]'),s=el?game.stops[+el.dataset.stop]:pointStop(e);if(s){selected=s.id;drag={x:e.clientX,y:e.clientY,moved:false};board.setPointerCapture(e.pointerId);render();}};
   board.onpointerup=()=>{pointerPressed=false;if(drag?.moved&&hover)put(hover);const moved=drag?.moved;drag=null;hover=null;if(moved)render();};
   document.addEventListener('pointerup',()=>{pointerPressed=false;requestAnimationFrame(()=>drawMap());});
@@ -416,7 +431,7 @@
       if(now-lastDraw>40){drawMap();lastDraw=now;}
       if(now-lastSide>200){drawSide();lastSide=now;}
       if(game.done&&!shown)render();}
-    else if(vizRound()>=0&&now-lastDraw>50&&!pointerPressed){drawMap();lastDraw=now;}
+    else if(!game.done&&now-lastDraw>50&&!pointerPressed){drawMap();lastDraw=now;}
     requestAnimationFrame(frame);}
   // Test hook for screenshots and bots: #intro=0&map=yuenlong&layout=0-7-11&t=400&hover=3&sel=1&moves=125:1:11,365:1:6&theme=dark&fx=1&lang=en
   const q=new URLSearchParams(location.hash.slice(1));
