@@ -6,6 +6,11 @@
 
 ## 2026-10-12
 
+### 16:52 · `待补` 接驳巴士实验：最多到站 N 次 vs 现行规则（默认不变） / Feeder experiment: a cap on stop visits vs the current rule
+- **改了什么**：`game-feeder/v5/engine.js` 加实验开关 `maxArrivals`（默认 0＝现行规则）；`bots/v5_arrivals.js` 对比 N = 2–6。
+- **为什么**：发起人想用「最多抵达几次车站」统一规则，并防止来回挪站逼人来回跑，要求先算几种 N。
+- **验证**：开关关闭时 23 项测试照常通过；对比结果见 `game-feeder/LOG.md` v5 线。
+
 ### 16:44 · `21a02e4` 接驳巴士 v5.7：排队等车不扣耐心 + 第二、三关加人 / Feeder v5.7: no patience lost in a queue; levels 2 and 3 rebalanced
 - **改了什么**：`game-feeder/v5/`：排队时耐心不减、挑站只看走路；第二关 352 人（门槛 321/340/350）、第三关 360 人（304/335/347）、第一关过关线 185；时间上限按清队计算；说明文字同步。
 - **为什么**：发起人认为坐着等车应该安心，耐心只该在路上扣；改后游戏变容易，按机器人结果加人恢复难度。

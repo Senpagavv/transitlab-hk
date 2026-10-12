@@ -19,7 +19,7 @@
   // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
   const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
-    walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:1,
+    walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:1,maxArrivals:0,
     willing:[1,.9,.8,.7,.6,.5,.4],homeGrace:50,homeThink:20,patience:210,
     reconsider:4,target:133,highScore:140,masterScore:146};
   const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
@@ -193,7 +193,8 @@
     reroute(p,here,failed,why,excluded=-1) {
       this.leave(p);
       if(failed){p.avoid.push(failed.id+':'+failed.version);p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
-      const choice=p.switched?null:this.choose(p,here,excluded,p.walked);
+      const cap=P.maxArrivals>0,spent=cap&&(p.arrivals||0)>=P.maxArrivals;
+      const choice=cap?(spent?null:this.choose(p,here,excluded,p.walked)):p.switched?null:this.choose(p,here,excluded,p.walked);
       if(choice){p.switched=true;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
       this.goHome(p,why,here);
     }
@@ -249,21 +250,23 @@
         if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});this.emit('spawn',p);}
         if(p.state==='home'){
           if(this.t>=p.deadline||this.t>=p.homeUntil)this.car(p);
-          else if(p.trips<2&&this.t>=p.retryAt)this.decide(p);
+          else if((P.maxArrivals>0?(p.arrivals||0)<P.maxArrivals:p.trips<2)&&this.t>=p.retryAt)this.decide(p);
         } else if(p.state==='walk'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           const s=this.stops[p.target];p.walked+=length(p.path);
           if(s&&s.ready<=this.t&&(s.boarding.length<P.seats||s.queue.length<P.queue)&&this.t<p.deadline){
+            p.arrivals=(p.arrivals||0)+1;
             p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
             this.board(s);
             s.peak=Math.max(s.peak,s.queue.length);
           }else{const full=s&&s.queue.length>=P.queue&&s.boarding.length>=P.seats,here=p.path.at(-1).slice();
+            if(s&&s.ready<=this.t)p.arrivals=(p.arrivals||0)+1;
             if(full){s.rejected++;this.emit('full',p,{stop:s.id});}
             if(this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
             else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}
         } else if(p.state==='queue'&&this.t>=p.deadline){const s=this.stops[p.target];this.reroute(p,s.cell.slice(),s,'久候返家');}
         else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*P.walkStep){
           // patience used up on the way, or this was their last try (a stop moved away does not count): drive at once
-          if(p.giveUp||p.trips>=2&&!['搬站返家','原站搬遷'].includes(p.returnWhy)){this.car(p);continue;}
+          if(p.giveUp||(P.maxArrivals>0?(p.arrivals||0)>=P.maxArrivals:p.trips>=2&&!['搬站返家','原站搬遷'].includes(p.returnWhy))){this.car(p);continue;}
           // home again: think for a while, then one decision — the nearest suitable stop, or the car
           Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
         }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy='等太久';this.goHome(p,'耐心耗盡');}
