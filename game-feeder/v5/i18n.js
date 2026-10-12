@@ -512,6 +512,24 @@
       '<b>数值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一辆车：停站 <b>{base}</b> 秒上客，再开去终点、空车开回 → 离终点越近，来回越快、班次越密<br>每班 <b>{seats}</b> 座，另排队 <b>{queue}</b> 人<br>耐心 约 <b>{pat}</b> 分钟：从出门那一刻开始扣，走路、排队、走回家都算；颜色从蓝变橙再变红。用完了，回到家就开车。',
       '<b>Numbers at a glance</b><br>Walking <b>{walk}</b> s a block · bus <b>{bus}</b> s a block (out and back)<br>One bus per stop: it waits <b>{base}</b> s to load, drives to the centre and back empty → the nearer the centre, the shorter the loop, the more often it comes<br><b>{seats}</b> seats, plus <b>{queue}</b> in the queue<br>Patience about <b>{pat}</b> min, counted from leaving home: walking, queuing and walking back all use it; colours go blue → amber → red. Once it is gone, people drive as soon as they are home.')
   });
+  // v5.6 · the breaks are free; only moves during a round cost an extra move
+  Object.assign(S,{
+    'tk.break':L('停頓','停顿','break'),
+    'tk.breakTip':L('停頓：兩輪之間隨便挪，不扣次數（挪過的站要冷卻）','停顿：两轮之间随便挪，不扣次数（挪过的站要冷却）','Break: move freely between rounds, no count (a moved stop still cools down)'),
+    'tk.extraTip':L('機動：輪中間挪站要用掉它（停頓時不用）','机动：轮中间挪站要用掉它（停顿时不用）','Extra: needed to move during a round (not in a break)'),
+    'h.moveBreak':L('選中 {s} 站 · 停頓中隨便挪：點 ＋ 或拖動','选中 {s} 站 · 停顿中随便挪：点 ＋ 或拖动','Stop {s} selected · move freely in the break: click a ＋ or drag'),
+    'h.moveExtra':L('選中 {s} 站 · 輪中間挪站會用掉機動（剩 {n} 次）','选中 {s} 站 · 轮中间挪站会用掉机动（剩 {n} 次）','Stop {s} selected · moving during a round uses an extra move ({n} left)'),
+    'n.noMovesMid':L('機動用完了：等這一輪結束，停頓時再挪','机动用完了：等这一轮结束，停顿时再挪','No extra moves left: move in the break after this round'),
+    'n.noMovesMid0':L('這一關輪中間不能挪站：等這一輪結束，停頓時隨便挪','这一关轮中间不能挪站：等这一轮结束，停顿时随便挪','No moves during a round on this level: move freely in the next break'),
+    'cd.hint':L('空格暫停慢慢調 · 停頓中隨便挪','空格暂停慢慢调 · 停顿中随便挪','Space to pause · move freely in the break'),
+    'g.rule3':L('<b>看圓圈，在兩輪之間調站。</b>屋苑的綠圈＝這一輪的人有多少接得走，缺口＝接不走；站周圍的暖光＝站會被填多滿，紅光泛起波紋＝會爆。只算這一輪、這個擺法。一輪的人都有結果才進下一輪，中間停 7 秒（按空格可慢慢調）。開局和兩輪之間都可以隨便挪；輪中間挪站要用「機動」（這一關 {moves} 次）。挪過的站冷卻 {cool} 秒。',
+      '<b>看圆圈，在两轮之间调站。</b>屋苑的绿圈＝这一轮的人有多少接得走，缺口＝接不走；站周围的暖光＝站会被填多满，红光泛起波纹＝会爆。只算这一轮、这个摆法。一轮的人都有结果才进下一轮，中间停 7 秒（按空格可慢慢调）。开局和两轮之间都可以随便挪；轮中间挪站要用「机动」（这一关 {moves} 次）。挪过的站冷却 {cool} 秒。',
+      '<b>Read the rings; adjust between rounds.</b> Green ring round an estate = how many of this round’s people get a place (a gap = left out); warm glow round a stop = how full it gets, red ripples = it overflows. This round and this layout only. A round ends once all its people have an outcome, then the game stops for 7 s (Space to take your time). Move freely at the start and between rounds; moving during a round uses an extra move ({moves} on this level). A moved stop cools down {cool} s.'),
+    'i.r5':L('<b>挪站與冷卻。</b>開局和兩輪之間的停頓裡都可以隨便挪，不限次數；輪中間挪站要用「機動」，這一關 {moves} 次。右上角：停頓時「∞」亮起；機動格輪中間亮、停頓時灰。挪完冷卻 {cool} 秒：期間不上客，班車照原來的時刻表開。暫停時挪的站可以按「撤銷挪站」退回。',
+      '<b>挪站与冷却。</b>开局和两轮之间的停顿里都可以随便挪，不限次数；轮中间挪站要用「机动」，这一关 {moves} 次。右上角：停顿时「∞」亮起；机动格轮中间亮、停顿时灰。挪完冷却 {cool} 秒：期间不上客，班车照原来的时刻表开。暂停时挪的站可以按「撤销挪站」退回。',
+      '<b>Moving and cooling down.</b> At the start and in every break between rounds you may move as often as you like; moving during a round uses an extra move ({moves} on this level). Top right: “∞” lights up in a break; the extra squares light up during a round. A moved stop cools down {cool} s: no boarding, buses keep their timetable. Moves made while paused can be undone.'),
+    'ed.moves':L('輪中機動挪站次數','轮中机动挪站次数','Extra moves during a round')
+  });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],

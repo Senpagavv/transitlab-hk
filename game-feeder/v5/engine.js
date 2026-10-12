@@ -9,8 +9,8 @@
   // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
   // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
   // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
-  // Moves (v5.5): the opening is free; in the break before each later round one move (use it or lose it); plus
-  // `moves` extra moves that work only during a round (not in a break). Level 1 has none, levels 2 and 3 one.
+  // Moves (v5.6): the opening and the breaks between rounds are free (move as often as you like; a moved stop still
+  // cools down); during a round only `moves` extra moves (level 1 none, levels 2 and 3 one).
   // Buses (v5.5): one bus per stop shuttles: it waits `headwayBase` seconds at the stop, drives to the centre and back
   // (busStep = headwayStep / 2 seconds a block each way), so the headway base + step × blocks is exactly its loop.
   // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
@@ -89,7 +89,7 @@
   }
   class Game {
     constructor(seed=1781) {
-      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,breakUsed:[],breakOpen:-1,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
+      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,breakOpen:-1,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
       this.trips=[];
       this.stops=[0,1,2].map(id=>({id,cell:null,version:0,ready:0,queue:[],boarding:[],peak:0,rejected:0,serial:0,departAt:Infinity}));
       const r=rng(seed);let id=0;
@@ -116,7 +116,7 @@
       if(this.done||!s||!D.candidates.some(c=>same(c,cell))||this.stops.some(x=>x.id!==id&&same(x.cell,cell))||same(s.cell,cell))return false;
       const kind=this.moveKind();if(this.started&&!kind)return false;
       const old=s.cell?.slice();
-      if(this.started){if(kind==='break')this.breakUsed[this.breakOpen]=true;else this.moves--;this.commands.push({time:this.t,id,cell:cell.slice(),kind});}
+      if(this.started){if(kind==='extra')this.moves--;this.commands.push({time:this.t,id,cell:cell.slice(),kind});}
       // a moved stop cools down for P.cool seconds; its timetable keeps running (see buses())
       s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.cool:0;
       if(!this.started)s.departAt=Infinity;
@@ -138,7 +138,7 @@
     }
     // which move a placement now would use: the break's own move, the extra one, or none (null)
     moveKind(){if(!this.started)return 'opening';if(this.done)return null;
-      if(this.breakOpen>=1)return this.breakUsed[this.breakOpen]?null:'break';
+      if(this.breakOpen>=1)return 'break';
       return this.moves>0?'extra':null;}
     pos(p) {return along(p.path,this.t-p.since,P.walkStep);}
     currentNode(p) {

@@ -16,7 +16,7 @@ function verify(r) {
   const cell = c => Array.isArray(c) && c.length === 2 && D.candidates.some(k => same(k, c));
   const moves = Array.isArray(r.moves) ? r.moves : [];
   if (!Array.isArray(r.opening) || r.opening.length !== 3 || !r.opening.every(cell)) return no('bad opening');
-  if (moves.length > D.waves.length - 1 + P.moves) return no('too many moves');   // one per break + the extra ones
+  if (moves.length > 300) return no('too many moves');   // breaks are free; the replay refuses extra moves beyond the level's
   if (!moves.every(m => m && cell(m.cell) && [0, 1, 2].includes(m.id) && Number.isFinite(m.time))) return no('bad move');
   const g = new Game();                                            // the page always plays the default seed
   if (r.seed !== undefined && r.seed !== g.seed) return no('wrong seed');

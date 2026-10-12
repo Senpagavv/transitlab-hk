@@ -350,10 +350,11 @@
   }
   // v5.4 · moves as pixel squares: one for the break before each round from round 2 (lit when it can be used now,
   // hollow once used, crossed out if its round began unused), then the extra moves
-  const noMoveWhy=()=>t(game.breakOpen>=1?'n.noMovesBreak':P.moves>0?'n.noMovesMid':'n.noMovesMid0');
+  const noMoveWhy=()=>t(P.moves>0?'n.noMovesMid':'n.noMovesMid0');
   function drawTokens(){
-    const br=game.breakOpen>=1?game.breakOpen:-1,st=br<0?'empty':game.breakUsed[br]?'used':'now',inRound=game.started&&!game.done&&br<0;
-    let h=`<span class="tl">${t('tk.break')}</span><i class="tk ${st}" title="${t('tk.breakTip')}"><b>${br>=0?br+1:''}</b></i>`;
+    // the break: free moves (lit while it lasts); the extra moves: only during a round
+    const br=game.breakOpen>=1,inRound=game.started&&!game.done&&!br;
+    let h=`<span class="tl">${t('tk.break')}</span><i class="tk ${br?'now':'empty'}" title="${t('tk.breakTip')}"><b>${br?'∞':''}</b></i>`;
     if(P.moves>0){h+=`<span class="tl">${t('tk.extra')}</span>`;
       for(let k=0;k<P.moves;k++)h+=`<i class="tk x ${k<game.moves?(inRound?'now':'locked'):'used'}" title="${t('tk.extraTip')}"><b>★</b></i>`;}
     const el=$('moveTokens');if(el.innerHTML!==h)el.innerHTML=h;

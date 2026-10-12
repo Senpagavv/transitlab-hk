@@ -175,17 +175,16 @@ test('Moving pays: on levels 2 and 3 the moves in the breaks beat not moving; on
     if(name==='l3')assert(all>inBreaks,`l3: with the extra move ${all} vs breaks only ${inBreaks}`);}
   useLevel('l1');
 });
-test('Moves: the opening is free; one move in the break before each later round (use it or lose it); extra moves only mid-round',()=>{
+test('Moves: the opening and every break are free; during a round only the level’s extra moves',()=>{
   useLevel('l2');
   const g=new Game();assert(!g.start());g.place(0,D.candidates[0]);assert(!g.place(1,D.candidates[0]),'an occupied cell is refused');
   g.place(1,D.candidates[7]);g.place(2,D.candidates[9]);assert(g.place(0,D.candidates[1])&&g.place(0,D.candidates[0]),'the opening is free');g.start();
   const free=()=>D.candidates.find(c=>!g.stops.some(s=>same(s.cell,c)));
   g.advance(40);assert.equal(g.moveKind(),'extra');assert(g.place(0,free()),'mid-round: the extra move');assert(!g.place(0,free()),'mid-round: nothing left');
-  g.runTo(1);assert.equal(g.moveKind(),'break');assert(g.place(1,free()),'the break move');assert(!g.place(1,free()),'one per break; extras do not work in a break');
-  g.advance(1);assert.equal(g.moveKind(),null,'the break is over');
-  g.runTo(2);assert(g.place(2,free()),'next break: a new move');
-  g.runTo(3);g.advance(1);assert(!g.place(2,free()),'round 4 began unused: lost');
-  assert.deepEqual(g.commands.map(c=>c.kind),['extra','break','break']);
+  g.runTo(1);assert.equal(g.moveKind(),'break');for(let k=0;k<5;k++)assert(g.place(k%3,free()),`break move ${k+1}: free`);
+  assert.equal(g.moves,0,'breaks do not use the extra moves');
+  g.advance(1);assert.equal(g.moveKind(),null,'the round has begun and the extra is used');
+  assert.deepEqual(g.commands.map(c=>c.kind),['extra','break','break','break','break','break']);
   useLevel('l1');const h=setup();h.advance(40);assert.equal(h.moveKind(),null,'level 1 has no extra moves');h.runTo(1);assert.equal(h.moveKind(),'break');
 });
 test('Frame rate does not change the result',()=>{

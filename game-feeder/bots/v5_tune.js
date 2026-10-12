@@ -34,12 +34,13 @@ for(const [name,def] of Object.entries(defs)){
   // v5.4 moves: one in each break (greedy, round by round), then the extra one as a second move in the best break
   function planner(start){
     const moves=[];let score=play(start).delivered;
-    const cellsAt=r=>{const cells=start.slice();for(const m of moves.filter(m=>m.r<=r).sort((a,b)=>a.r-b.r))cells[m.id]=m.to;return cells;};
-    for(let r=1;r<R;r++){
-      const cells=cellsAt(r);let pick=null;
-      for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
-        const d=play(start,[...moves,{r,id,to}]).delivered;if(d>score&&(!pick||d>pick.d))pick={d,m:{r,id,to}};}
-      if(pick){moves.push(pick.m);score=pick.d;}
+    const cellsAt=r=>{const cells=start.slice();for(const m of moves.filter(m=>m.r<=r).sort((a,b)=>a.r-b.r||(a.at??-1)-(b.at??-1)))cells[m.id]=m.to;return cells;};
+    // v5.6: breaks are free — in each break, keep making the best single move while it helps (at most one per stop)
+    for(let r=1;r<R;r++)for(let k=0;k<3;k++){
+      const cells=cellsAt(r),done=moves.filter(m=>m.r===r&&m.at===undefined).map(m=>m.id);let pick=null;
+      for(let id=0;id<3;id++){if(done.includes(id))continue;for(let to=0;to<n;to++){if(cells.includes(to))continue;
+        const d=play(start,[...moves,{r,id,to}]).delivered;if(d>score&&(!pick||d>pick.d))pick={d,m:{r,id,to}};}}
+      if(!pick)break;moves.push(pick.m);score=pick.d;
     }
     // the extra move(s): during a round only — try 30 / 60 / 90 s into each round
     for(let k=0;k<P.moves;k++){let extra=null;
