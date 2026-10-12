@@ -6,7 +6,7 @@
 
 ## 2026-10-12
 
-### 16:52 · `待补` 接驳巴士实验：最多到站 N 次 vs 现行规则（默认不变） / Feeder experiment: a cap on stop visits vs the current rule
+### 16:52 · `ec8b229` 接驳巴士实验：最多到站 N 次 vs 现行规则（默认不变） / Feeder experiment: a cap on stop visits vs the current rule
 - **改了什么**：`game-feeder/v5/engine.js` 加实验开关 `maxArrivals`（默认 0＝现行规则）；`bots/v5_arrivals.js` 对比 N = 2–6。
 - **为什么**：发起人想用「最多抵达几次车站」统一规则，并防止来回挪站逼人来回跑，要求先算几种 N。
 - **验证**：开关关闭时 23 项测试照常通过；对比结果见 `game-feeder/LOG.md` v5 线。
