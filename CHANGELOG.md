@@ -6,7 +6,7 @@
 
 ## 2026-10-12
 
-### 16:06 · `待补` 接驳巴士 v5.6.1：两轮之间随便挪，轮中间才扣机动 / Feeder v5.6.1: free moves between rounds, extra moves only mid-round
+### 16:06 · `6e7bbea` 接驳巴士 v5.6.1：两轮之间随便挪，轮中间才扣机动 / Feeder v5.6.1: free moves between rounds, extra moves only mid-round
 - **改了什么**：`game-feeder/v5/`：停顿里挪站不限次数（照样冷却），轮中间挪站才用机动（第一关 0、第二三关 1）；右上角「停顿」格停顿时亮出 ∞；核分按回放判；机器人允许停顿里连挪。门槛不变。
 - **为什么**：发起人更正——上一版把「两轮之间随便挪」做成了「每轮前只能挪 1 次」。
 - **验证**：`node game-feeder/v5/test_engine.js` 22 项通过；无界面 Edge 第二关停顿连挪、轮中间扣机动，跑到结算无报错。
