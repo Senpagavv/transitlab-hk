@@ -6,7 +6,7 @@
 
 ## 2026-10-12
 
-### 19:17 · `待补` 接驳巴士 v5.8：停顿里挪回原位不冷却、点空白处取消选中 / Feeder v5.8: no cool-down when a stop returns home in a break; deselect on empty ground
+### 19:17 · `f46c628` 接驳巴士 v5.8：停顿里挪回原位不冷却、点空白处取消选中 / Feeder v5.8: no cool-down when a stop returns home in a break; deselect on empty ground
 - **改了什么**：`game-feeder/v5/`：停顿里把站挪回停顿开始时的位置不冷却；点地图空白处取消选中，没选中时左栏改为「接驳站概况」（不写预估），去掉点击后的焦点框。
 - **为什么**：发起人交代的两项体验问题。
 - **验证**：`node game-feeder/v5/test_engine.js` 24 项通过；无界面 Edge 验证取消选中与冷却，无报错。
