@@ -530,6 +530,15 @@
       '<b>Moving and cooling down.</b> At the start and in every break between rounds you may move as often as you like; moving during a round uses an extra move ({moves} on this level). Top right: “∞” lights up in a break; the extra squares light up during a round. A moved stop cools down {cool} s: no boarding, buses keep their timetable. Moves made while paused can be undone.'),
     'ed.moves':L('輪中機動挪站次數','轮中机动挪站次数','Extra moves during a round')
   });
+  // v5.7 · waiting in a queue costs no patience
+  Object.assign(S,{
+    'g.facts':L('<b>數值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一輛車：停站 <b>{base}</b> 秒上客，再開去終點、空車開回 → 離終點越近，來回越快、班次越密<br>每班 <b>{seats}</b> 座，另排隊 <b>{queue}</b> 人<br>耐心 約 <b>{pat}</b> 分鐘，<b>只在路上扣</b>：走去車站、換站、走回家；在站上排隊等車不扣，排進隊就一定等到車。顏色從藍變橙再變紅，用完了回到家就開車。<br>每人最多出門兩次：兩次都碰到滿站，就開車。',
+      '<b>数值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一辆车：停站 <b>{base}</b> 秒上客，再开去终点、空车开回 → 离终点越近，来回越快、班次越密<br>每班 <b>{seats}</b> 座，另排队 <b>{queue}</b> 人<br>耐心 约 <b>{pat}</b> 分钟，<b>只在路上扣</b>：走去车站、换站、走回家；在站上排队等车不扣，排进队就一定等到车。颜色从蓝变橙再变红，用完了回到家就开车。<br>每人最多出门两次：两次都碰到满站，就开车。',
+      '<b>Numbers at a glance</b><br>Walking <b>{walk}</b> s a block · bus <b>{bus}</b> s a block (out and back)<br>One bus per stop: it waits <b>{base}</b> s to load, drives to the centre and back empty → the nearer the centre, the shorter the loop, the more often it comes<br><b>{seats}</b> seats, plus <b>{queue}</b> in the queue<br>Patience about <b>{pat}</b> min, <b>used only on foot</b>: walking to a stop, on to another, back home. Waiting in a queue costs none — once in the queue, people wait for a bus. Colours go blue → amber → red; once it is gone, people drive as soon as they are home.<br>Everyone leaves home at most twice: turned away by a full stop both times, they drive.'),
+    'i.r4':L('<b>站爆了會怎樣。</b>出門那一刻正滿的站，不算在分流裡（改按其他站的比例分）；附近的站都滿，就在家等，約 50 秒還等不到就開車。走到站才發現滿了：從原地改去別的站（每趟一次），不行就走回家，想 20 秒再試一次。每人最多出門兩次。耐心約 3.5 分鐘，只在路上扣（排隊等車不扣）；在路上耗光了，回到家直接開車。',
+      '<b>站爆了会怎样。</b>出门那一刻正满的站，不算在分流里（改按其他站的比例分）；附近的站都满，就在家等，约 50 秒还等不到就开车。走到站才发现满了：从原地改去别的站（每趟一次），不行就走回家，想 20 秒再试一次。每人最多出门两次。耐心约 3.5 分钟，只在路上扣（排队等车不扣）；在路上耗光了，回到家直接开车。',
+      '<b>When a stop overflows.</b> A stop that is full the moment someone leaves home is left out of their split; if every stop near them is full they wait at home, and drive after about 50 s. Arriving at a full stop: walk on to another one (once per trip), else walk home, think 20 s, try once more. Everyone leaves home at most twice. Patience (about 3.5 min) runs only on foot — waiting in a queue costs none; used up on the way, people drive as soon as they are home.')
+  });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],

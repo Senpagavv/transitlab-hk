@@ -657,7 +657,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
       // four rounds, two estates busy in each (6 → 18): 192 people; six openings keep every round's red rings open,
       // and exactly those carry everyone by bus
       waves:[[18,18,6,6],[6,6,18,18],[18,6,18,6],[6,18,6,18]],
-      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:0,cool:20,tiers:[183,188,192]},
+      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:0,cool:20,tiers:[185,189,192]},
     // Level 2 · Yuen Long South (v3): four estates strung along one road south of the town centre.
     l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:PLACE.l2,
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
@@ -667,9 +667,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
         {name:'朗善邨一帶',hans:'朗善邨一带',short:'朗善',shortHans:'朗善',cell:[3,6],house:[50,0]},
         {name:'蝶翠峰',hans:'蝶翠峰',cell:[2,4],house:[0,40]},
         {name:'大棠路',hans:'大棠路',cell:[1,1],house:[-50,0]}],
-      // four rounds, two estates busy in each (12 → 28): 320; no opening carries everyone, moves in the breaks do better
-      waves:[[28,28,12,12],[12,12,28,28],[28,12,28,12],[12,28,12,28]],
-      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:1,cool:20,tiers:[296,311,316]},
+      // four rounds, two estates busy in each (12 → 32): 352; best opening 335, the right moves in the breaks reach 352
+      waves:[[32,32,12,12],[12,12,32,32],[32,12,32,12],[12,32,12,32]],
+      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:1,cool:20,tiers:[321,340,350]},
     // Level 3 · Fanling (v3): five estates fanned out east of the town centre, more people than the stops can take.
     l3:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',station:PLACE.l3,
       roads:build([[1,4,4,4],[2,2,2,6],[2,2,6,2],[6,1,6,2],[4,2,4,6],[2,6,4,6]]),
@@ -680,10 +680,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
         {name:'北區公園',hans:'北区公园',cell:[2,2],house:[-50,0]},
         {name:'華明邨',hans:'华明邨',short:'華明',shortHans:'华明',cell:[2,6],house:[0,40]},
         {name:'和合石',hans:'和合石',cell:[3,6],house:[0,40]}],
-      // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows;
-      // high needs moves in the breaks (312), master also the extra move mid-round to rescue a swamped stop (319)
-      waves:[[26,26,10,10,10],[10,26,26,10,10],[10,10,10,26,26],[10,10,26,10,26]],
-      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[289,308,316]}
+      // four rounds, two estates busy in each (10 → 30): 360, more than the stops can take — every layout overflows;
+      // best opening 327, moves in the breaks 343, plus the extra move mid-round to rescue a swamped stop 350
+      waves:[[30,30,10,10,10],[10,30,30,10,10],[10,10,10,30,30],[10,10,30,10,30]],
+      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[304,335,347]}
   };
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
@@ -740,6 +740,8 @@ input.ed-in[type=number]{width:62px;text-align:right}
   // cools down); during a round only `moves` extra moves (level 1 none, levels 2 and 3 one).
   // Buses (v5.5): one bus per stop shuttles: it waits `headwayBase` seconds at the stop, drives to the centre and back
   // (busStep = headwayStep / 2 seconds a block each way), so the headway base + step × blocks is exactly its loop.
+  // Patience (v5.7): it runs only while people are on their feet (walking to a stop, on to another, back home) or
+  // deciding at home; waiting in a stop's queue does not use it — once in the queue they stay until a bus comes.
   // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
   // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
@@ -785,7 +787,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
     const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
     const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
     // counted from the last person to leave home (a level may spread departures past the end of its last round)
-    const settle=Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10;
+    // a round settles at the latest after everyone's patience on foot, plus clearing a full queue (it never gives up,
+    // v5.7) bus by bus, plus the ride
+    const settle=Math.ceil((P.patience+20+(Math.ceil(P.queue/Math.max(1,P.seats))+1)*hwMax+rideMax+30)/10)*10;
     P.duration=P.firstWave+D.waves.length*(P.release+settle)+(D.tail??0);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
@@ -892,7 +896,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
       let eta=this.eta(s);
       if(walk>eta)eta+=Math.ceil((walk-eta)/cycle)*cycle;
       const wait=Math.max(0,eta-walk);
-      return this.t+walk+wait<p.deadline?share:0;
+      return this.t+walk<p.deadline?share:0;   // the wait at the stop costs no patience (v5.7)
     }
     // Split by pull among the stops open to this person right now (pick decides which slice they fall in).
     choose(p,from,excluded=-1,walked=0) {
@@ -965,7 +969,9 @@ input.ed-in[type=number]{width:62px;text-align:right}
       this.done=true;this.emit('finish');
     }
     step() {
-      this.breakOpen=-1;this.steps++;this.t=+(this.steps*P.tick).toFixed(4);this.buses();
+      this.breakOpen=-1;this.steps++;this.t=+(this.steps*P.tick).toFixed(4);
+      for(const p of this.people)if(p.state==='queue')p.deadline+=P.tick;   // queuing: the patience clock stands still
+      this.buses();
       for(const p of this.people){
         if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});this.emit('spawn',p);}
         if(p.state==='home'){
@@ -1595,6 +1601,15 @@ input.ed-in[type=number]{width:62px;text-align:right}
       '<b>挪站与冷却。</b>开局和两轮之间的停顿里都可以随便挪，不限次数；轮中间挪站要用「机动」，这一关 {moves} 次。右上角：停顿时「∞」亮起；机动格轮中间亮、停顿时灰。挪完冷却 {cool} 秒：期间不上客，班车照原来的时刻表开。暂停时挪的站可以按「撤销挪站」退回。',
       '<b>Moving and cooling down.</b> At the start and in every break between rounds you may move as often as you like; moving during a round uses an extra move ({moves} on this level). Top right: “∞” lights up in a break; the extra squares light up during a round. A moved stop cools down {cool} s: no boarding, buses keep their timetable. Moves made while paused can be undone.'),
     'ed.moves':L('輪中機動挪站次數','轮中机动挪站次数','Extra moves during a round')
+  });
+  // v5.7 · waiting in a queue costs no patience
+  Object.assign(S,{
+    'g.facts':L('<b>數值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一輛車：停站 <b>{base}</b> 秒上客，再開去終點、空車開回 → 離終點越近，來回越快、班次越密<br>每班 <b>{seats}</b> 座，另排隊 <b>{queue}</b> 人<br>耐心 約 <b>{pat}</b> 分鐘，<b>只在路上扣</b>：走去車站、換站、走回家；在站上排隊等車不扣，排進隊就一定等到車。顏色從藍變橙再變紅，用完了回到家就開車。<br>每人最多出門兩次：兩次都碰到滿站，就開車。',
+      '<b>数值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一辆车：停站 <b>{base}</b> 秒上客，再开去终点、空车开回 → 离终点越近，来回越快、班次越密<br>每班 <b>{seats}</b> 座，另排队 <b>{queue}</b> 人<br>耐心 约 <b>{pat}</b> 分钟，<b>只在路上扣</b>：走去车站、换站、走回家；在站上排队等车不扣，排进队就一定等到车。颜色从蓝变橙再变红，用完了回到家就开车。<br>每人最多出门两次：两次都碰到满站，就开车。',
+      '<b>Numbers at a glance</b><br>Walking <b>{walk}</b> s a block · bus <b>{bus}</b> s a block (out and back)<br>One bus per stop: it waits <b>{base}</b> s to load, drives to the centre and back empty → the nearer the centre, the shorter the loop, the more often it comes<br><b>{seats}</b> seats, plus <b>{queue}</b> in the queue<br>Patience about <b>{pat}</b> min, <b>used only on foot</b>: walking to a stop, on to another, back home. Waiting in a queue costs none — once in the queue, people wait for a bus. Colours go blue → amber → red; once it is gone, people drive as soon as they are home.<br>Everyone leaves home at most twice: turned away by a full stop both times, they drive.'),
+    'i.r4':L('<b>站爆了會怎樣。</b>出門那一刻正滿的站，不算在分流裡（改按其他站的比例分）；附近的站都滿，就在家等，約 50 秒還等不到就開車。走到站才發現滿了：從原地改去別的站（每趟一次），不行就走回家，想 20 秒再試一次。每人最多出門兩次。耐心約 3.5 分鐘，只在路上扣（排隊等車不扣）；在路上耗光了，回到家直接開車。',
+      '<b>站爆了会怎样。</b>出门那一刻正满的站，不算在分流里（改按其他站的比例分）；附近的站都满，就在家等，约 50 秒还等不到就开车。走到站才发现满了：从原地改去别的站（每趟一次），不行就走回家，想 20 秒再试一次。每人最多出门两次。耐心约 3.5 分钟，只在路上扣（排队等车不扣）；在路上耗光了，回到家直接开车。',
+      '<b>When a stop overflows.</b> A stop that is full the moment someone leaves home is left out of their split; if every stop near them is full they wait at home, and drive after about 50 s. Arriving at a full stop: walk on to another one (once per trip), else walk home, think 20 s, try once more. Everyone leaves home at most twice. Patience (about 3.5 min) runs only on foot — waiting in a queue costs none; used up on the way, people drive as soon as they are home.')
   });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],

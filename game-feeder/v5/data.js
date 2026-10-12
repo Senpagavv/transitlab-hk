@@ -33,7 +33,7 @@
       // four rounds, two estates busy in each (6 → 18): 192 people; six openings keep every round's red rings open,
       // and exactly those carry everyone by bus
       waves:[[18,18,6,6],[6,6,18,18],[18,6,18,6],[6,18,6,18]],
-      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:0,cool:20,tiers:[183,188,192]},
+      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:0,cool:20,tiers:[185,189,192]},
     // Level 2 · Yuen Long South (v3): four estates strung along one road south of the town centre.
     l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:PLACE.l2,
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
@@ -43,9 +43,9 @@
         {name:'朗善邨一帶',hans:'朗善邨一带',short:'朗善',shortHans:'朗善',cell:[3,6],house:[50,0]},
         {name:'蝶翠峰',hans:'蝶翠峰',cell:[2,4],house:[0,40]},
         {name:'大棠路',hans:'大棠路',cell:[1,1],house:[-50,0]}],
-      // four rounds, two estates busy in each (12 → 28): 320; no opening carries everyone, moves in the breaks do better
-      waves:[[28,28,12,12],[12,12,28,28],[28,12,28,12],[12,28,12,28]],
-      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:1,cool:20,tiers:[296,311,316]},
+      // four rounds, two estates busy in each (12 → 32): 352; best opening 335, the right moves in the breaks reach 352
+      waves:[[32,32,12,12],[12,12,32,32],[32,12,32,12],[12,32,12,32]],
+      firstWave:20,interval:120,release:110,headway:[60,7],seats:8,queue:8,moves:1,cool:20,tiers:[321,340,350]},
     // Level 3 · Fanling (v3): five estates fanned out east of the town centre, more people than the stops can take.
     l3:{cols:7,rows:7,margin:[132,58],hub:[1,4],hubLabel:'left',station:PLACE.l3,
       roads:build([[1,4,4,4],[2,2,2,6],[2,2,6,2],[6,1,6,2],[4,2,4,6],[2,6,4,6]]),
@@ -56,10 +56,10 @@
         {name:'北區公園',hans:'北区公园',cell:[2,2],house:[-50,0]},
         {name:'華明邨',hans:'华明邨',short:'華明',shortHans:'华明',cell:[2,6],house:[0,40]},
         {name:'和合石',hans:'和合石',cell:[3,6],house:[0,40]}],
-      // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows;
-      // high needs moves in the breaks (312), master also the extra move mid-round to rescue a swamped stop (319)
-      waves:[[26,26,10,10,10],[10,26,26,10,10],[10,10,10,26,26],[10,10,26,10,26]],
-      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[289,308,316]}
+      // four rounds, two estates busy in each (10 → 30): 360, more than the stops can take — every layout overflows;
+      // best opening 327, moves in the breaks 343, plus the extra move mid-round to rescue a swamped stop 350
+      waves:[[30,30,10,10,10],[10,30,30,10,10],[10,10,10,30,30],[10,10,30,10,30]],
+      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[304,335,347]}
   };
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.

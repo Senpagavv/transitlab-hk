@@ -11,8 +11,8 @@ const total=()=>D.waves.flat().reduce((a,b)=>a+b,0);
 // Openings and plans found by bots/v5_tune.js (moves in the break before round r, counted from 1).
 const PLANS={
   l1:{opening:[[5,6],[6,6],[6,2]],moves:[]},
-  l2:{opening:[[1,2],[3,5],[3,6]],moves:[{r:2,id:0,cell:[1,1]}]},
-  l3:{opening:[[2,3],[2,2],[2,5]],moves:[{r:2,id:0,cell:[4,4]},{r:2,at:60,id:1,cell:[2,3]},{r:3,id:2,cell:[2,6]}]}};
+  l2:{opening:[[1,1],[3,4],[3,5]],moves:[{r:2,id:2,cell:[1,3]},{r:3,id:2,cell:[3,5]},{r:3,id:1,cell:[3,6]},{r:4,id:0,cell:[2,1]}]},
+  l3:{opening:[[2,2],[3,2],[2,5]],moves:[{r:2,id:1,cell:[4,4]},{r:3,id:2,cell:[2,6]},{r:3,at:60,id:2,cell:[2,5]}]}};
 function useLevel(name){assert(D.select(name));E.reset();}
 // moves in the break before round m.r (1-based); with mid, that many seconds into the round before instead
 // (with at: that many seconds into round m.r instead — an extra move)
@@ -94,6 +94,13 @@ test('Back and forth: whoever used up their patience, or their last try, drives 
       if(e.why==='耐心耗盡'||outings>=2){n++;assert.equal(ev[k+1]?.type,'car',`person ${p.id} thought again after their last try`);}
       else assert.equal(ev[k+1]?.type,'home',`person ${p.id} drove after a first try`);});}
   assert(n>0,'no one used up their tries on this crowded board');
+  useLevel('l1');
+});
+test('Waiting in a queue costs no patience: the patience left stays the same while queuing; nobody leaves a queue',()=>{
+  for(const name of LEVELS){useLevel(name);const g=setup(),left=new Map();
+    for(let i=0;i<P.duration/P.tick&&!g.done;i++){g.advance(P.tick);
+      for(const p of g.people){if(p.state==='queue'){const l=+(p.deadline-g.t).toFixed(3);if(left.has(p.id))assert.equal(l,left.get(p.id),`${name}: person ${p.id} lost patience in a queue`);left.set(p.id,l);}else left.delete(p.id);}}
+    assert(!g.events.some(e=>e.type==='return'&&e.why==='久候返家'),`${name}: someone left a queue`);}
   useLevel('l1');
 });
 test('Headway is the level\'s base + step per block to the town centre',()=>{

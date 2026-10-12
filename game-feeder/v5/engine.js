@@ -13,6 +13,8 @@
   // cools down); during a round only `moves` extra moves (level 1 none, levels 2 and 3 one).
   // Buses (v5.5): one bus per stop shuttles: it waits `headwayBase` seconds at the stop, drives to the centre and back
   // (busStep = headwayStep / 2 seconds a block each way), so the headway base + step × blocks is exactly its loop.
+  // Patience (v5.7): it runs only while people are on their feet (walking to a stop, on to another, back home) or
+  // deciding at home; waiting in a stop's queue does not use it — once in the queue they stay until a bus comes.
   // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
   // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
@@ -58,7 +60,9 @@
     const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
     const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
     // counted from the last person to leave home (a level may spread departures past the end of its last round)
-    const settle=Math.ceil((P.patience+20+hwMax+rideMax+30)/10)*10;
+    // a round settles at the latest after everyone's patience on foot, plus clearing a full queue (it never gives up,
+    // v5.7) bus by bus, plus the ride
+    const settle=Math.ceil((P.patience+20+(Math.ceil(P.queue/Math.max(1,P.seats))+1)*hwMax+rideMax+30)/10)*10;
     P.duration=P.firstWave+D.waves.length*(P.release+settle)+(D.tail??0);
     toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
   }
@@ -165,7 +169,7 @@
       let eta=this.eta(s);
       if(walk>eta)eta+=Math.ceil((walk-eta)/cycle)*cycle;
       const wait=Math.max(0,eta-walk);
-      return this.t+walk+wait<p.deadline?share:0;
+      return this.t+walk<p.deadline?share:0;   // the wait at the stop costs no patience (v5.7)
     }
     // Split by pull among the stops open to this person right now (pick decides which slice they fall in).
     choose(p,from,excluded=-1,walked=0) {
@@ -238,7 +242,9 @@
       this.done=true;this.emit('finish');
     }
     step() {
-      this.breakOpen=-1;this.steps++;this.t=+(this.steps*P.tick).toFixed(4);this.buses();
+      this.breakOpen=-1;this.steps++;this.t=+(this.steps*P.tick).toFixed(4);
+      for(const p of this.people)if(p.state==='queue')p.deadline+=P.tick;   // queuing: the patience clock stands still
+      this.buses();
       for(const p of this.people){
         if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});this.emit('spawn',p);}
         if(p.state==='home'){
