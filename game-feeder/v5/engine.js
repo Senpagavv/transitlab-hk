@@ -9,8 +9,10 @@
   // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
   // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
   // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
-  // Moves (v5.4): the opening is free; in the break before each later round one move (use it or lose it); plus
-  // `moves` extra moves (1) for any time — mid-round, or a second move in a break.
+  // Moves (v5.5): the opening is free; in the break before each later round one move (use it or lose it); plus
+  // `moves` extra moves that work only during a round (not in a break). Level 1 has none, levels 2 and 3 one.
+  // Buses (v5.5): one bus per stop shuttles: it waits `headwayBase` seconds at the stop, drives to the centre and back
+  // (busStep = headwayStep / 2 seconds a block each way), so the headway base + step × blocks is exactly its loop.
   // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
   // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
@@ -46,7 +48,7 @@
   function reset() {
     graph=new Map(D.roads.map(c=>[key(c),c]));cache=new Map();
     // each board carries its own headway formula and score tiers
-    [P.headwayBase,P.headwayStep]=D.headway||[60,10];
+    [P.headwayBase,P.headwayStep]=D.headway||[60,10];P.busStep=D.busStep??P.headwayStep/2;
     if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
     for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing','patience'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
     // after the last round people still walk, wait and ride: the game ends when everyone has an outcome
@@ -136,7 +138,8 @@
     }
     // which move a placement now would use: the break's own move, the extra one, or none (null)
     moveKind(){if(!this.started)return 'opening';if(this.done)return null;
-      if(this.breakOpen>=1&&!this.breakUsed[this.breakOpen])return 'break';return this.moves>0?'extra':null;}
+      if(this.breakOpen>=1)return this.breakUsed[this.breakOpen]?null:'break';
+      return this.moves>0?'extra':null;}
     pos(p) {return along(p.path,this.t-p.since,P.walkStep);}
     currentNode(p) {
       let left=Math.max(0,(this.t-p.since)/P.walkStep);

@@ -12,12 +12,14 @@ const total=()=>D.waves.flat().reduce((a,b)=>a+b,0);
 const PLANS={
   l1:{opening:[[5,6],[6,6],[6,2]],moves:[]},
   l2:{opening:[[1,2],[3,5],[3,6]],moves:[{r:2,id:0,cell:[1,1]}]},
-  l3:{opening:[[2,3],[4,4],[2,5]],moves:[{r:2,id:0,cell:[2,2]},{r:3,id:2,cell:[2,6]}]}};
+  l3:{opening:[[2,3],[2,2],[2,5]],moves:[{r:2,id:0,cell:[4,4]},{r:2,at:60,id:1,cell:[2,3]},{r:3,id:2,cell:[2,6]}]}};
 function useLevel(name){assert(D.select(name));E.reset();}
 // moves in the break before round m.r (1-based); with mid, that many seconds into the round before instead
+// (with at: that many seconds into round m.r instead — an extra move)
 function play(plan,mid=0,moves=plan.moves){
   const g=new Game();plan.opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());
-  for(const m of moves){if(mid){g.runTo(m.r-2);g.advance(mid);}else g.runTo(m.r-1);assert(g.place(m.id,m.cell),`move to ${m.cell}`);}
+  for(const m of moves){if(mid){g.runTo(m.r-2);g.advance(mid);}else{g.runTo(m.r-1);if(m.at!==undefined)g.advance(g.roundStart[m.r-1]+m.at-g.t);}
+    assert(g.place(m.id,m.cell),`move to ${m.cell}`);}
   g.advance(P.duration+1);return g;
 }
 function setup(){const g=new Game();PLANS[D.map].opening.forEach((c,id)=>assert(g.place(id,c)));assert(g.start());return g;}
@@ -166,22 +168,25 @@ test('A level from the editor loads like a built-in one: water cells, bridges wh
   const st=g.stats();assert(g.done);assert.equal(st.delivered+st.cars+st.missed,32);assert(st.delivered>0);
   useLevel('l1');
 });
-test('On levels 2 and 3, a move made in its break beats the same move made 60 s into the round before (the extra move)',()=>{
-  for(const name of ['l2','l3']){useLevel(name);const first={...PLANS[name],moves:PLANS[name].moves.slice(0,1)};
-    const on=play(first).delivered,mid=play(first,60).delivered;
-    assert(on>mid,`${name}: in the break ${on} vs mid-round ${mid}`);}
+test('Moving pays: on levels 2 and 3 the moves in the breaks beat not moving; on level 3 the extra move mid-round adds more',()=>{
+  for(const name of ['l2','l3']){useLevel(name);const plan=PLANS[name],breaks={...plan,moves:plan.moves.filter(m=>m.at===undefined)};
+    const none=play({...plan,moves:[]}).delivered,inBreaks=play(breaks).delivered,all=play(plan).delivered;
+    assert(inBreaks>none,`${name}: moving in the breaks ${inBreaks} vs not moving ${none}`);
+    if(name==='l3')assert(all>inBreaks,`l3: with the extra move ${all} vs breaks only ${inBreaks}`);}
   useLevel('l1');
 });
-test('Moves: the opening is free; one move in the break before each later round (use it or lose it); one extra at any time',()=>{
+test('Moves: the opening is free; one move in the break before each later round (use it or lose it); extra moves only mid-round',()=>{
+  useLevel('l2');
   const g=new Game();assert(!g.start());g.place(0,D.candidates[0]);assert(!g.place(1,D.candidates[0]),'an occupied cell is refused');
   g.place(1,D.candidates[7]);g.place(2,D.candidates[9]);assert(g.place(0,D.candidates[1])&&g.place(0,D.candidates[0]),'the opening is free');g.start();
   const free=()=>D.candidates.find(c=>!g.stops.some(s=>same(s.cell,c)));
   g.advance(40);assert.equal(g.moveKind(),'extra');assert(g.place(0,free()),'mid-round: the extra move');assert(!g.place(0,free()),'mid-round: nothing left');
-  g.runTo(1);assert.equal(g.moveKind(),'break');assert(g.place(1,free()),'the break move');assert(!g.place(1,free()),'one per break');
+  g.runTo(1);assert.equal(g.moveKind(),'break');assert(g.place(1,free()),'the break move');assert(!g.place(1,free()),'one per break; extras do not work in a break');
   g.advance(1);assert.equal(g.moveKind(),null,'the break is over');
   g.runTo(2);assert(g.place(2,free()),'next break: a new move');
   g.runTo(3);g.advance(1);assert(!g.place(2,free()),'round 4 began unused: lost');
   assert.deepEqual(g.commands.map(c=>c.kind),['extra','break','break']);
+  useLevel('l1');const h=setup();h.advance(40);assert.equal(h.moveKind(),null,'level 1 has no extra moves');h.runTo(1);assert.equal(h.moveKind(),'break');
 });
 test('Frame rate does not change the result',()=>{
   const a=setup(),b=setup();a.advance(P.duration);for(let t=0;t<P.duration*10;t++)b.advance(.1);
@@ -231,7 +236,7 @@ test('Difficulty holds: level 1 has a few perfect openings; levels 2 and 3 have 
     if(name==='l1')assert(perfect>=1&&perfect<=8,`l1: ${perfect} perfect openings`);
     else{assert.equal(perfect,0,`${name}: an opening carries everyone`);assert(Math.max(...scores)<F.P.masterScore,`${name}: master without moving`);
       const g=new F.Game(),plan=PLANS[name];plan.opening.forEach((c,id)=>g.place(id,c));g.start();
-      for(const m of plan.moves){g.runTo(m.r-1);g.place(m.id,m.cell);}
+      for(const m of plan.moves){g.runTo(m.r-1);if(m.at!==undefined)g.advance(g.roundStart[m.r-1]+m.at-g.t);g.place(m.id,m.cell);}
       g.advance(F.P.duration+1);
       assert(g.delivered>=F.P.masterScore,`${name}: the countdown plan ${g.delivered} < master ${F.P.masterScore}`);}}
 });
@@ -259,12 +264,12 @@ test('A finished game replays from its record to the same score (the leaderboard
   for(const name of LEVELS){F.D.select(name);F.reset();
     const C=F.D.candidates,g=new F.Game();[0,1,2].forEach(id=>g.place(id,C[id*2+1]));g.start();
     const run=until=>{while(g.t<until&&!g.done)g.advance(.37);};
-    run(230);assert(g.place(0,C[C.length-1]),'extra');g.runTo(1);assert(g.place(1,C[C.length-2]),'break');run(Infinity);
+    g.runTo(1);assert(g.place(0,C[C.length-1]),'break');run(g.t+60);if(F.P.moves)assert(g.place(1,C[C.length-2]),'extra');run(Infinity);
     const json=JSON.parse(JSON.stringify({map:name,score:g.delivered,seed:g.seed,opening:g.opening,moves:g.commands}));
     const v=verify(json);assert(v.ok,`${name}: ${JSON.stringify(v)}`);
     assert(!verify({...json,score:json.score+1}).ok);
     assert(!verify({...json,moves:Array(D.waves.length+P.moves).fill(json.moves[0])}).ok);
-    assert(!verify({...json,moves:[{...json.moves[0]},{...json.moves[0],cell:C[0]}]}).ok,'two mid-round moves');}
+    assert(!verify({...json,moves:[{...json.moves[0],time:json.moves[0].time+30},{...json.moves[0],time:json.moves[0].time+40,cell:C[0]}]}).ok,'two mid-round moves');}
 });
 test('Random levels like the editor makes (settings at their limits) never lose people, strand passengers or run on',()=>{
   const fuzz=require('./fuzz_engine.js');assert(fuzz(60,4242)>=180);   // node fuzz_engine.js 1500 for the long run

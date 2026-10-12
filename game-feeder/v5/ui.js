@@ -28,7 +28,8 @@
   const busyCut=()=>Math.ceil(.6*Math.max(...D.waves.flat()));
   // v5.2 · between rounds the game stops for INTER_MS (real time) and the map shows the coming round. Pausing in that
   // break turns it into an adjusting break with no time limit; resuming starts the round at once.
-  const INTER_MS=5000;let inter=null;            // {r: coming round, end: performance.now() when it starts, adjust}
+  const INTER_MS=7000;let inter=null;
+  const SPEED_BASE=4,FAST=8;let fastHeld=false;   // v5.5: 1× here = the old 4×; holding F runs 8× faster still            // {r: coming round, end: performance.now() when it starts, adjust}
   const vizRound=()=>game.done?-1:!game.started?0:inter?inter.r:-1;
   const houseAt=i=>{const [x,y]=xy(D.origins[i].cell),[dx,dy]=D.origins[i].house||[0,38];return[x+dx,y+dy];};
   // name label: above a building that sits above its road, otherwise below it
@@ -60,6 +61,7 @@
     document.title=t('doc.game',{s:own||t('site.'+D.map)});
     $('levelSeg').querySelector('[data-level="custom"]').hidden=!D.levels.includes('custom');
     $('editLevel').textContent=t(D.map==='custom'?'g.edit':'g.editor');
+    $('facts').innerHTML=t('g.facts',{walk:P.walkStep,bus:P.busStep,base:P.headwayBase,seats:P.seats,queue:P.queue,pat:Math.round(P.patience/60*10)/10});
     $('totalN').textContent=total;
     $('goal').innerHTML=t('g.goal',{pass:P.target,high:P.highScore,master:P.masterScore})+(D.tiersGuess?' '+t('g.tiersGuess'):'');
     gaugeLo=Math.max(0,Math.min(P.target-1,2*P.target-P.highScore-(total-P.masterScore)-10));
@@ -130,7 +132,7 @@
       note(was?t(playing?'n.moved':'n.pausedMove',{s:letters[selected],cool:P.cool}):t('n.placed'));
       if(!was){fxBuilt(selected);const next=game.stops.find(s=>!s.cell);if(next)selected=next.id;}
       render();
-    }else{const why=was&&!game.moveKind()?t(game.breakOpen>=1?'n.noMovesBreak':'n.noMovesMid'):t('n.taken');note(why);toast(why,'warn');}
+    }else{const why=was&&!game.moveKind()?noMoveWhy():t('n.taken');note(why);toast(why,'warn');}
   }
   // v5.4 · the board in layers, bottom to top: ground (water, roads) · glow (soft halos) · lines · arcs (thin rings) ·
   // things (＋, buildings, the centre, people, buses, stops) · labels (every word and number, last, on a paper halo).
@@ -189,6 +191,32 @@
   }
   const pill=(x,y,s,color,anchor='middle',size=12)=>{const w=textW(s,size)+16,x0=anchor==='start'?x-4:anchor==='end'?x-w+4:x-w/2;
     return rect(x0,y-size+1,w,size+8,C.panel,color,{rx:(size+8)/2,'stroke-width':1,'stroke-opacity':.55,'fill-opacity':.92})+text(anchor==='start'?x0+7:anchor==='end'?x0+w-7:x,y+2,s,size,color,{'text-anchor':anchor,'font-weight':600});};
+  // v5.5 · patience as a colour: plenty (blue), half gone (amber), nearly out (red)
+  const patienceCol=p=>{const f=(p.deadline-game.t)/Math.max(1,p.budget);return f>.5?C.info:f>.22?C.warn:C.bad;};
+  // pixel ground: speckles on the roads; trees, bushes and flowers on empty ground, away from roads, buildings and
+  // names. Fixed for a board (a hash of the position), so nothing jumps from frame to frame.
+  const TREE=["..g..",".ggg.","ggggg",".ggg.","ggggg","..t..","..t.."],BUSH=[".gg.","gggg",".gg."],FLOWER=["f.f.",".g.f","..g."];
+  let decorKey='',decorSvg='';
+  function decor(){
+    const key=D.map+'|'+C.accent2+'|'+VBW+'x'+VBH;if(key===decorKey)return decorSvg;
+    const hash=(a,b)=>{let h=Math.imul(Math.imul(a|0,73856093)^Math.imul(b|0,19349663)^Math.imul(D.map.charCodeAt(1)|0,83492791),2654435761)>>>0;h=(h^(h>>>15))>>>0;return(h%1000)/1000;};   // 0…1
+    const roads=D.roads.map(xy),houses=D.origins.map((o,i)=>houseAt(i)),[hx0,hy0]=xy(D.hub);
+    const way=[...roads];   // road cells and the middle of every stretch between two of them
+    for(const c of D.roads)for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(D.roads.some(q=>same(q,n))){const [a,b]=xy(c),[e,f]=xy(n);way.push([(a+e)/2,(b+f)/2]);}
+    const clear=(x,y)=>way.every(([rx,ry])=>Math.hypot(rx-x,ry-y)>40)&&houses.every(([hx,hy])=>Math.abs(hx-x)>60||Math.abs(hy-y)>62)&&Math.hypot(hx0-x,hy0-y)>90;
+    let out='';
+    for(let gx=-1;gx<=D.cols;gx+=.5)for(let gy=-.5;gy<=D.rows-.5;gy+=.5){
+      const h=hash(Math.round(gx*2)+7,Math.round(gy*2)+11);if(h>.2)continue;
+      const [cx,cy]=xy([gx,gy]),x=cx+(hash(gy*2+3,gx*2+5)-.5)*18,y=cy+(hash(gx*2+9,gy*2+1)-.5)*14;
+      if(x<12||y<10||x>VBW-12||y>VBH-14||!clear(x,y))continue;
+      const pick=h<.06?TREE:h<.12?BUSH:FLOWER,f=[C.warn,C.bad,C.info][Math.floor(hash(gx*2,gy*2)*3)];
+      out+=sprite(pick,x-5,y-8,2.2,{g:C.accent2,t:C.ink2,f});
+    }
+    for(const [rx,ry] of roads){const h=hash(rx|0,ry|0);   // speckles on the road surface
+      out+=svg('rect',{x:(rx-6+h*10).toFixed(1),y:(ry-3+h*5).toFixed(1),width:2.2,height:2.2,fill:C.ink,'fill-opacity':.07,'shape-rendering':'crispEdges'})+
+        svg('rect',{x:(rx+2-h*6).toFixed(1),y:(ry+4-h*7).toFixed(1),width:2.2,height:2.2,fill:C.ink,'fill-opacity':.05,'shape-rendering':'crispEdges'});}
+    decorKey=key;decorSvg=`<g opacity=".6">${out}</g>`;return decorSvg;
+  }
   function drawMap(){
     if(pointerPressed&&!drag?.moved)return;           // keep the node under the pointer alive for the click
     const focused=document.activeElement,attrs=['data-cell','data-stop'];
@@ -201,6 +229,7 @@
     for(const pass of [[C.roadEdge,24],[C.road,20]])
       for(const c of D.roads)for(const n of [[c[0]+1,c[1]],[c[0],c[1]+1]])if(D.roads.some(q=>same(q,n)))ground+=svg('path',{d:pathStr([c,n]),stroke:pass[0],'stroke-width':pass[1],fill:'none','stroke-linecap':'square'});
     const onRoad=c=>D.roads.some(q=>same(q,c));
+    ground+=decor();
     for(const b of D.bridges||[]){const [x,y]=xy(b),v=onRoad([b[0],b[1]-1])||onRoad([b[0],b[1]+1]);   // rails either side of the road
       for(const d of [-14,14])ground+=svg('path',{d:v?`M${x+d} ${y-24}L${x+d} ${y+24}`:`M${x-30} ${y+d}L${x+30} ${y+d}`,stroke:C.ink2,'stroke-width':2.2});}
     // previewing a spot: the way its buses would take to the centre (only then; a stop's route is not drawn otherwise)
@@ -247,12 +276,15 @@
     // people walking, buses
     for(const p of game.people)if(['walk','return'].includes(p.state)){
       const [x,y]=xy(game.pos(p)),ox=(p.id%3-1)*5,oy=(p.id%2?1:-1)*4;
-      things+=svg('rect',{x:(x+ox-3).toFixed(1),y:(y+oy-3).toFixed(1),width:6,height:6,fill:p.state==='walk'?C.info:C.warn,stroke:C.panel,'stroke-width':1,'shape-rendering':'crispEdges'});
+      const col=patienceCol(p),home=p.state==='return';
+      things+=svg('rect',{x:(x+ox-3).toFixed(1),y:(y+oy-3).toFixed(1),width:6,height:6,fill:home?C.panel:col,stroke:home?col:C.panel,'stroke-width':home?1.6:1,'shape-rendering':'crispEdges'});
     }
-    for(const b of game.trips.filter(b=>!b.done)){
-      const [x,y]=xy(along(b.path,game.t-b.since,P.busStep));
-      lines+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.18});
-      things+=sprite(BUS,x-19.5,y-12,3,{a:C.accent,w:C.paper,k:C.ink})+svg('text',{x,y:y+6,'font-size':10.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);
+    for(const b of game.trips){const ride=b.end-b.since;if(game.t>=b.end+ride)continue;
+      if(game.t<b.end){const [x,y]=xy(along(b.path,game.t-b.since,P.busStep));
+        lines+=svg('path',{d:pathStr(b.path),fill:'none',stroke:C.accent,'stroke-width':2,opacity:.18});
+        things+=sprite(BUS,x-19.5,y-12,3,{a:C.accent,w:C.paper,k:C.ink})+svg('text',{x,y:y+6,'font-size':10.5,fill:C.paper,'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'},`${letters[b.stop]}·${b.load.length}`);}
+      else{const back=[...b.path].reverse(),[x,y]=xy(along(back,game.t-b.end,P.busStep));   // empty, on its way back to the stop
+        things+=`<g opacity=".42">`+sprite(BUS,x-16.25,y-10,2.5,{a:C.accent,w:C.paper,k:C.ink})+'</g>';}
     }
     const moving=game.stops[selected];
     if(hover){const [gx,gy]=xy(hover);
@@ -272,7 +304,8 @@
       if(!fc){
         const sw=Math.min(8,64/Math.max(1,P.seats)),qw=Math.min(7,60/Math.max(1,P.queue));
         for(let j=0;j<P.seats;j++)content+=svg('rect',{x:x-P.seats*sw/2+j*sw,y:y-37,width:sw-1.6,height:7,rx:1.5,fill:j<s.boarding.length?C.accent:C.panel,stroke:C.accent,'stroke-width':1,'stroke-opacity':.7});
-        for(let j=0;j<P.queue;j++)content+=svg('rect',{x:x-P.queue*qw/2+j*qw,y:y-26,width:qw-1.6,height:6,rx:1,fill:j<s.queue.length?(full?C.bad:C.warn):C.panel,stroke:full?C.bad:C.warn,'stroke-width':1,'stroke-opacity':.6});
+        for(let j=0;j<P.queue;j++){const q=j<s.queue.length?game.person(s.queue[j]):null;
+          content+=svg('rect',{x:x-P.queue*qw/2+j*qw,y:y-26,width:qw-1.6,height:6,rx:1,fill:q?patienceCol(q):C.panel,stroke:q?patienceCol(q):C.ink3,'stroke-width':1,'stroke-opacity':.6,'shape-rendering':'crispEdges'});}
         // under the stop if that is free; else beside it (right, then left); else above the seats
         const near=(px,py,w,h)=>D.origins.some((o,i)=>{const [hx,hy]=houseAt(i);return Math.abs(hx-px)<w&&Math.abs(hy-py)<h;})||
           game.stops.some(q=>q.id!==s.id&&q.cell&&(()=>{const [qx,qy]=xy(q.cell);return Math.abs(qx-px)<w&&Math.abs(qy-py)<h;})());
@@ -317,14 +350,13 @@
   }
   // v5.4 · moves as pixel squares: one for the break before each round from round 2 (lit when it can be used now,
   // hollow once used, crossed out if its round began unused), then the extra moves
+  const noMoveWhy=()=>t(game.breakOpen>=1?'n.noMovesBreak':P.moves>0?'n.noMovesMid':'n.noMovesMid0');
   function drawTokens(){
-    let h=`<span class="tl">${t('tk.break')}</span>`;
-    for(let r=1;r<D.waves.length;r++){
-      const st=game.breakUsed[r]?'used':game.breakOpen===r?'now':game.started&&game.round>=r?'lost':'ahead';
-      h+=`<i class="tk ${st}" title="${t('tk.breakTip',{n:r+1})}"><b>${r+1}</b></i>`;}
-    h+=`<span class="tl">${t('tk.extra')}</span>`;
-    for(let k=0;k<P.moves;k++)h+=`<i class="tk x ${k<game.moves?(game.started&&!game.done&&game.moveKind()==='extra'?'now':'ahead'):'used'}" title="${t('tk.extraTip')}"><b>★</b></i>`;
-    $('moveTokens').innerHTML=h;
+    const br=game.breakOpen>=1?game.breakOpen:-1,st=br<0?'empty':game.breakUsed[br]?'used':'now',inRound=game.started&&!game.done&&br<0;
+    let h=`<span class="tl">${t('tk.break')}</span><i class="tk ${st}" title="${t('tk.breakTip')}"><b>${br>=0?br+1:''}</b></i>`;
+    if(P.moves>0){h+=`<span class="tl">${t('tk.extra')}</span>`;
+      for(let k=0;k<P.moves;k++)h+=`<i class="tk x ${k<game.moves?(inRound?'now':'locked'):'used'}" title="${t('tk.extraTip')}"><b>★</b></i>`;}
+    const el=$('moveTokens');if(el.innerHTML!==h)el.innerHTML=h;
   }
   function drawSide(){
     const st=game.stats(),w=game.waveInfo(),focusSelect=document.activeElement?.getAttribute('data-select');
@@ -341,8 +373,8 @@
     const kind=game.moveKind();
     $('mapHint').textContent=game.done?t('h.done'):!game.started?t('h.place',{s:letters[selected]}):
       kind==='break'?t('h.moveBreak',{s:letters[selected],n:game.moves}):kind==='extra'?t('h.moveExtra',{s:letters[selected],n:game.moves}):
-      t(game.breakOpen>=1?'n.noMovesBreak':'n.noMovesMid');
-    $('mapHint').classList.toggle('bad',game.started&&!game.done&&!kind);
+      noMoveWhy();
+    $('mapHint').classList.toggle('wait',game.started&&!game.done&&!kind);   // waiting for the next break: quiet, not an error
     $('stations').innerHTML=game.stops.map(s=>`<button class="station-button ${s.id===selected?'selected':''}" data-select="${s.id}" aria-pressed="${s.id===selected}"><b>${letters[s.id]}</b><small>${s.cell?t('st.btn',{a:s.boarding.length,b:P.seats,c:s.queue.length,d:P.queue}):t('st.none')}</small></button>`).join('');
     if(focusSelect)$('stations').querySelector(`[data-select="${focusSelect}"]`)?.focus({preventScroll:true});
     drawTide();drawStopPanel();
@@ -448,11 +480,14 @@
     return{items,hub:at(mx,my),k};
   }};
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||document.body.classList.contains('inhub'))return;if(['1','2','3'].includes(e.key)){selected=+e.key-1;render();}else if(e.code==='Space'&&!e.target.closest?.('button,input,select,textarea')){e.preventDefault();if(game.started&&!game.done)setPlaying(!playing,playing?t('n.pause'):t('n.start'));}});
+  document.addEventListener('keydown',e=>{if(e.code==='KeyF'&&!e.target.closest?.('input,textarea')){fastHeld=true;$('fastHint')?.classList.add('on');}});
+  document.addEventListener('keyup',e=>{if(e.code==='KeyF'){fastHeld=false;$('fastHint')?.classList.remove('on');}});
+  window.addEventListener('blur',()=>{fastHeld=false;$('fastHint')?.classList.remove('on');});
   document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing)setPlaying(false,t('n.hidden'));});
   function frame(now){const dt=Math.min(.5,(now-last)/1000);last=now;
     if(playing){
       if(inter){if(now>=inter.end){inter=null;render();}}
-      else{const r0=game.round;game.advance(dt*speed,{stopAtRound:true});
+      else{const r0=game.round;game.advance(dt*speed*SPEED_BASE*(fastHeld?FAST:1),{stopAtRound:true});
         if(game.round!==r0&&!game.done){inter={r:game.round,end:now+INTER_MS,adjust:false};render();}}
       feedback();drawCountdown();
       if(now-lastDraw>40){drawMap();lastDraw=now;}

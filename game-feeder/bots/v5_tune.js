@@ -16,10 +16,14 @@ for(const [name,def] of Object.entries(defs)){
   E.reset();
   const n=D.candidates.length,total=D.waves.flat().reduce((a,b)=>a+b,0),R=D.waves.length;
   const layouts=[];for(let a=0;a<n-2;a++)for(let b=a+1;b<n-1;b++)for(let c=b+1;c<n;c++)layouts.push([a,b,c]);
+  // a move {r,id,to} is made in the break before round r; with `at`, that many seconds into round r instead (an extra
+  // move); with mid, every move is made that many seconds into the round before its break
   function play(layout,moves=[],mid=0){
     const g=new E.Game();layout.forEach((c,id)=>g.place(id,D.candidates[c]));g.start();
-    for(const m of [...moves].sort((a,b)=>a.r-b.r)){
-      if(mid){g.runTo(m.r-1);g.advance(mid);}else g.runTo(m.r);
+    for(const m of [...moves].sort((a,b)=>a.r-b.r||(a.at??-1)-(b.at??-1))){
+      if(mid){g.runTo(m.r-1);g.advance(Math.max(0,g.roundStart[m.r-1]+mid-g.t));}
+      else if(m.at!==undefined){g.runTo(m.r);g.advance(Math.max(0,g.roundStart[m.r]+m.at-g.t));}
+      else g.runTo(m.r);
       g.place(m.id,D.candidates[m.to]);}
     g.advance(P.duration+1);return g;
   }
@@ -37,11 +41,12 @@ for(const [name,def] of Object.entries(defs)){
         const d=play(start,[...moves,{r,id,to}]).delivered;if(d>score&&(!pick||d>pick.d))pick={d,m:{r,id,to}};}
       if(pick){moves.push(pick.m);score=pick.d;}
     }
-    let extra=null;
-    for(let k=0;k<P.moves;k++)for(let r=1;r<R;r++){const cells=cellsAt(r);
-      for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
-        const d=play(start,[...moves,{r,id,to}]).delivered;if(d>score&&(!extra||d>extra.d))extra={d,m:{r,id,to}};}}
-    if(extra){moves.push(extra.m);score=extra.d;}
+    // the extra move(s): during a round only — try 30 / 60 / 90 s into each round
+    for(let k=0;k<P.moves;k++){let extra=null;
+      for(let r=0;r<R;r++)for(const at of [30,60,90]){const cells=cellsAt(r);
+        for(let id=0;id<3;id++)for(let to=0;to<n;to++){if(cells.includes(to))continue;
+          const d=play(start,[...moves,{r,at,id,to}]).delivered;if(d>score&&(!extra||d>extra.d))extra={d,m:{r,at,id,to}};}}
+      if(extra){moves.push(extra.m);score=extra.d;}}
     return{moves,score};
   }
   let plan={moves:[],score:-1,start:null};
@@ -50,6 +55,6 @@ for(const [name,def] of Object.entries(defs)){
   console.log(JSON.stringify({level:name,total,candidates:n,rounds:R,
     statics:{best:sc[0],bestLayout:statics[0].l.map(cellOf),p90:q(.1),median:q(.5),worst:sc.at(-1),perfect:sc.filter(s=>s===total).length,within5:sc.filter(s=>s>=sc[0]-5).length,of:sc.length},
     calm:{count:calm.length,scores:calm.slice(0,8).map(x=>x.s)},
-    planner:{score:plan.score,gain:plan.score-sc[0],opening:plan.start.map(cellOf),moves:plan.moves.map(m=>`r${m.r+1}:${'ABC'[m.id]}->${cellOf(m.to)}`)},
+    planner:{score:plan.score,gain:plan.score-sc[0],opening:plan.start.map(cellOf),moves:plan.moves.map(m=>`r${m.r+1}${m.at!==undefined?'+'+m.at+'s':''}:${'ABC'[m.id]}->${cellOf(m.to)}`)},
     mid:plan.moves.length?play(plan.start,plan.moves,60).delivered:null}));
 }

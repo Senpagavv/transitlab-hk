@@ -471,8 +471,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .legend i.ringkey{width:12px;height:12px;border-radius:50%;background:none;border:3px solid var(--s-accent);box-sizing:border-box}
 .legend i.ringkey.bad{border-color:var(--s-bad);border-right-color:var(--s-line2);border-bottom-color:var(--s-line2)}
 .legend i.ringkey.good{border-left-color:var(--s-line2)}
-/* v5.4 · effects play under the board (they never cover a word); the break box sits below the clock / moves boxes */
-#fx{z-index:0}
+/* v5.5 · effects float over the board again, but soft and see-through (blurred glows) so they never hide anything */
+#fx{z-index:4;opacity:.7}
+#fx .glow{filter:blur(3px)}
+#fx .float{font-size:12.5px}
 .countdown{top:12px;max-width:300px}
 .legend i.ringkey.bad{border:none;background:radial-gradient(circle,transparent 20%,color-mix(in srgb,var(--s-bad) 55%,transparent) 55%,transparent 75%)}
 /* v5.5 · moves left, readable; the hint turns red when none are left; a warning toast */
@@ -498,6 +500,19 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .tk.x{background:var(--s-warn)}
 .tk.x.used{background:transparent}
 @keyframes tkGlow{50%{filter:brightness(1.25);transform:translateY(-1px)}}
+/* v5.5 · break square: lights up in the break; extra moves locked in the break; the rule numbers; hold-F hint */
+.tk.empty{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2);opacity:.7}
+.tk.now{animation:tkPop .45s cubic-bezier(.2,1.6,.4,1),tkGlow 1.2s ease-in-out .45s infinite}
+@keyframes tkPop{0%{transform:scale(.4);filter:brightness(1.8)}100%{transform:scale(1)}}
+.tk.locked{opacity:.38;filter:grayscale(.6)}
+.box.facts{margin-top:10px;padding:9px 12px;font-size:11.5px;line-height:1.65;color:var(--s-ink2)}
+.box.facts b{color:var(--s-ink);font-family:var(--s-mono);font-weight:600}
+.fasthint{font:500 10px var(--s-mono);color:var(--s-ink3);letter-spacing:.04em;margin-left:2px;transition:color .2s}
+.fasthint.on{color:var(--s-accent);font-weight:600}
+.legend i.pkey{width:8px;height:8px;background:var(--s-info);border-radius:0}
+.legend i.pkey.home{background:transparent;box-shadow:inset 0 0 0 1.6px var(--s-info)}
+.legend i.pkey.pat{background:linear-gradient(90deg,var(--s-info) 33%,var(--s-warn) 33% 66%,var(--s-bad) 66%);width:18px}
+.lanebox .hint.wait{color:var(--s-ink3)}
 </style></head><body class="entered ed">
 
 <header id="topbar">
@@ -611,7 +626,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
       // four rounds, two estates busy in each (6 → 18): 192 people; six openings keep every round's red rings open,
       // and exactly those carry everyone by bus
       waves:[[18,18,6,6],[6,6,18,18],[18,6,18,6],[6,18,6,18]],
-      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:1,cool:20,tiers:[183,188,192]},
+      firstWave:20,interval:120,release:110,headway:[60,10],seats:8,queue:8,moves:0,cool:20,tiers:[183,188,192]},
     // Level 2 · Yuen Long South (v3): four estates strung along one road south of the town centre.
     l2:{cols:4,rows:9,margin:[120,48],hub:[3,0],hubLabel:'right',station:PLACE.l2,
       roads:build([[3,0,3,8],[1,1,3,1],[1,1,1,4],[1,4,3,4],[2,8,3,8]]),
@@ -634,9 +649,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
         {name:'北區公園',hans:'北区公园',cell:[2,2],house:[-50,0]},
         {name:'華明邨',hans:'华明邨',short:'華明',shortHans:'华明',cell:[2,6],house:[0,40]},
         {name:'和合石',hans:'和合石',cell:[3,6],house:[0,40]}],
-      // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows
+      // four rounds, two estates busy in each (10 → 26): 328, more than the stops can take — every layout overflows;
+      // high needs moves in the breaks (312), master also the extra move mid-round to rescue a swamped stop (319)
       waves:[[26,26,10,10,10],[10,26,26,10,10],[10,10,10,26,26],[10,10,26,10,26]],
-      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[289,302,310]}
+      firstWave:20,interval:120,release:110,headway:[60,5],seats:8,queue:8,moves:1,cool:20,tiers:[289,308,316]}
   };
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
@@ -689,8 +705,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
   // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
   // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
   // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
-  // Moves (v5.4): the opening is free; in the break before each later round one move (use it or lose it); plus
-  // `moves` extra moves (1) for any time — mid-round, or a second move in a break.
+  // Moves (v5.5): the opening is free; in the break before each later round one move (use it or lose it); plus
+  // `moves` extra moves that work only during a round (not in a break). Level 1 has none, levels 2 and 3 one.
+  // Buses (v5.5): one bus per stop shuttles: it waits `headwayBase` seconds at the stop, drives to the centre and back
+  // (busStep = headwayStep / 2 seconds a block each way), so the headway base + step × blocks is exactly its loop.
   // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
   // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
   // Each level sets its own rhythm, pull, capacity and tiers (reset()).
@@ -726,7 +744,7 @@ input.ed-in[type=number]{width:62px;text-align:right}
   function reset() {
     graph=new Map(D.roads.map(c=>[key(c),c]));cache=new Map();
     // each board carries its own headway formula and score tiers
-    [P.headwayBase,P.headwayStep]=D.headway||[60,10];
+    [P.headwayBase,P.headwayStep]=D.headway||[60,10];P.busStep=D.busStep??P.headwayStep/2;
     if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
     for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing','patience'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
     // after the last round people still walk, wait and ride: the game ends when everyone has an outcome
@@ -816,7 +834,8 @@ input.ed-in[type=number]{width:62px;text-align:right}
     }
     // which move a placement now would use: the break's own move, the extra one, or none (null)
     moveKind(){if(!this.started)return 'opening';if(this.done)return null;
-      if(this.breakOpen>=1&&!this.breakUsed[this.breakOpen])return 'break';return this.moves>0?'extra':null;}
+      if(this.breakOpen>=1)return this.breakUsed[this.breakOpen]?null:'break';
+      return this.moves>0?'extra':null;}
     pos(p) {return along(p.path,this.t-p.since,P.walkStep);}
     currentNode(p) {
       let left=Math.max(0,(this.t-p.since)/P.walkStep);
@@ -1513,6 +1532,20 @@ input.ed-in[type=number]{width:62px;text-align:right}
       '<b>Moving and cooling down.</b> The opening is free. From round 2, one move before each round (in the break), use it or lose it; plus {moves} extra move(s) for any time (mid-round, or a second move in a break). The squares top right: lit = usable now, hollow = used, struck = missed. A moved stop cools down {cool} s: no boarding, buses keep their timetable. Moves made while paused can be undone.'),
     'ed.moves':L('機動挪站（每輪前另有 1 次）','机动挪站（每轮前另有 1 次）','Extra moves (plus one per break)'),
     'cd.hint':L('空格暫停慢慢調 · 這一輪前可挪 1 次','空格暂停慢慢调 · 这一轮前可挪 1 次','Space to pause · one move in this break')
+  });
+  // v5.5 · break square and extra moves, speed, patience at a glance
+  Object.assign(S,{
+    'tk.breakTip':L('輪前：每一輪開始前的停頓裡可以挪 1 次，挪了或下一輪開始就消失','轮前：每一轮开始前的停顿里可以挪 1 次，挪了或下一轮开始就消失','Break: one move in the stop before each round; gone once used or when the round starts'),
+    'tk.extraTip':L('機動：只能在輪中間用（停頓時鎖住）','机动：只能在轮中间用（停顿时锁住）','Extra: only during a round (locked in the break)'),
+    'n.noMovesBreak':L('這一輪前已經挪過了（機動只能在輪中間用）','这一轮前已经挪过了（机动只能在轮中间用）','This break’s move is used (extra moves work only during a round)'),
+    'n.noMovesMid':L('機動用完了：等下一輪開始前再挪','机动用完了：等下一轮开始前再挪','No extra moves left: move in the next break'),
+    'n.noMovesMid0':L('這一關輪中間不能挪站：等下一輪開始前','这一关轮中间不能挪站：等下一轮开始前','No moves during a round on this level: wait for the next break'),
+    'n.speed':L('速度 {n}×；按住 F 可以快進。','速度 {n}×；按住 F 可以快进。','Speed {n}×; hold F to fast-forward.'),
+    'g.fast':L('按住 F 快進','按住 F 快进','hold F: fast'),
+    'g.legWalk':L('去站','去站','to a stop'),'g.legHome':L('回家','回家','going home'),'g.legPat':L('顏色＝耐心','颜色＝耐心','colour = patience'),
+    'g.facts':L('<b>數值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一輛車：停站 <b>{base}</b> 秒上客，再開去終點、空車開回 → 離終點越近，來回越快、班次越密<br>每班 <b>{seats}</b> 座，另排隊 <b>{queue}</b> 人<br>耐心 約 <b>{pat}</b> 分鐘：從出門那一刻開始扣，走路、排隊、走回家都算；顏色從藍變橙再變紅。用完了，回到家就開車。',
+      '<b>数值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一辆车：停站 <b>{base}</b> 秒上客，再开去终点、空车开回 → 离终点越近，来回越快、班次越密<br>每班 <b>{seats}</b> 座，另排队 <b>{queue}</b> 人<br>耐心 约 <b>{pat}</b> 分钟：从出门那一刻开始扣，走路、排队、走回家都算；颜色从蓝变橙再变红。用完了，回到家就开车。',
+      '<b>Numbers at a glance</b><br>Walking <b>{walk}</b> s a block · bus <b>{bus}</b> s a block (out and back)<br>One bus per stop: it waits <b>{base}</b> s to load, drives to the centre and back empty → the nearer the centre, the shorter the loop, the more often it comes<br><b>{seats}</b> seats, plus <b>{queue}</b> in the queue<br>Patience about <b>{pat}</b> min, counted from leaving home: walking, queuing and walking back all use it; colours go blue → amber → red. Once it is gone, people drive as soon as they are home.')
   });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],

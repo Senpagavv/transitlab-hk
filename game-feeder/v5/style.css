@@ -467,8 +467,10 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .legend i.ringkey{width:12px;height:12px;border-radius:50%;background:none;border:3px solid var(--s-accent);box-sizing:border-box}
 .legend i.ringkey.bad{border-color:var(--s-bad);border-right-color:var(--s-line2);border-bottom-color:var(--s-line2)}
 .legend i.ringkey.good{border-left-color:var(--s-line2)}
-/* v5.4 · effects play under the board (they never cover a word); the break box sits below the clock / moves boxes */
-#fx{z-index:0}
+/* v5.5 · effects float over the board again, but soft and see-through (blurred glows) so they never hide anything */
+#fx{z-index:4;opacity:.7}
+#fx .glow{filter:blur(3px)}
+#fx .float{font-size:12.5px}
 .countdown{top:12px;max-width:300px}
 .legend i.ringkey.bad{border:none;background:radial-gradient(circle,transparent 20%,color-mix(in srgb,var(--s-bad) 55%,transparent) 55%,transparent 75%)}
 /* v5.5 · moves left, readable; the hint turns red when none are left; a warning toast */
@@ -494,3 +496,16 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .tk.x{background:var(--s-warn)}
 .tk.x.used{background:transparent}
 @keyframes tkGlow{50%{filter:brightness(1.25);transform:translateY(-1px)}}
+/* v5.5 · break square: lights up in the break; extra moves locked in the break; the rule numbers; hold-F hint */
+.tk.empty{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2);opacity:.7}
+.tk.now{animation:tkPop .45s cubic-bezier(.2,1.6,.4,1),tkGlow 1.2s ease-in-out .45s infinite}
+@keyframes tkPop{0%{transform:scale(.4);filter:brightness(1.8)}100%{transform:scale(1)}}
+.tk.locked{opacity:.38;filter:grayscale(.6)}
+.box.facts{margin-top:10px;padding:9px 12px;font-size:11.5px;line-height:1.65;color:var(--s-ink2)}
+.box.facts b{color:var(--s-ink);font-family:var(--s-mono);font-weight:600}
+.fasthint{font:500 10px var(--s-mono);color:var(--s-ink3);letter-spacing:.04em;margin-left:2px;transition:color .2s}
+.fasthint.on{color:var(--s-accent);font-weight:600}
+.legend i.pkey{width:8px;height:8px;background:var(--s-info);border-radius:0}
+.legend i.pkey.home{background:transparent;box-shadow:inset 0 0 0 1.6px var(--s-info)}
+.legend i.pkey.pat{background:linear-gradient(90deg,var(--s-info) 33%,var(--s-warn) 33% 66%,var(--s-bad) 66%);width:18px}
+.lanebox .hint.wait{color:var(--s-ink3)}

@@ -36,7 +36,7 @@
 
     <div class="row controls">
       <button class="btn btn-p" id="start" disabled>▶ 開始</button>
-      <div class="seg" id="speedSeg" role="group" data-i18n-aria="g.speed"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button><button data-sp="8" aria-pressed="false">8×</button></div>
+      <div class="seg" id="speedSeg" role="group" data-i18n-aria="g.speed"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button></div><span class="fasthint" id="fastHint" data-i18n="g.fast">按住 F 快進</span>
       <button class="btn btn-sm" id="undoMoves" hidden data-i18n="g.undo" data-i18n-title="g.undoTitle">↶</button>
       <button class="btn btn-sm" id="reset" data-i18n-title="g.reset">↺</button>
     </div>
@@ -51,10 +51,12 @@
       <li id="rule2"></li>
       <li id="rule3"></li>
     </ol>
+    <div class="box facts" id="facts"></div>
     <div class="lbl" style="margin-top:14px" data-i18n="g.read">How to read the map · 怎麼看</div>
     <div class="legend">
-      <span><i style="background:var(--s-info);border-radius:50%"></i><span data-i18n="g.legWalk">去站</span></span>
-      <span><i style="background:var(--s-warn);border-radius:50%"></i><span data-i18n="g.legHome">回家</span></span>
+      <span><i class="pkey"></i><span data-i18n="g.legWalk">去站</span></span>
+      <span><i class="pkey home"></i><span data-i18n="g.legHome">回家</span></span>
+      <span><i class="pkey pat"></i><span data-i18n="g.legPat">顏色＝耐心</span></span>
       <span><i class="ringkey good"></i><span data-i18n="g.legEstate">綠圈：接得走的人</span></span>
       <span><i class="ringkey bad"></i><span data-i18n="g.legStop">紅圈：站有多滿</span></span>
       <span><i class="glowkey good"></i><span data-i18n="g.legGood">送達 · 越亮越多人</span></span>

@@ -498,6 +498,20 @@
     'ed.moves':L('機動挪站（每輪前另有 1 次）','机动挪站（每轮前另有 1 次）','Extra moves (plus one per break)'),
     'cd.hint':L('空格暫停慢慢調 · 這一輪前可挪 1 次','空格暂停慢慢调 · 这一轮前可挪 1 次','Space to pause · one move in this break')
   });
+  // v5.5 · break square and extra moves, speed, patience at a glance
+  Object.assign(S,{
+    'tk.breakTip':L('輪前：每一輪開始前的停頓裡可以挪 1 次，挪了或下一輪開始就消失','轮前：每一轮开始前的停顿里可以挪 1 次，挪了或下一轮开始就消失','Break: one move in the stop before each round; gone once used or when the round starts'),
+    'tk.extraTip':L('機動：只能在輪中間用（停頓時鎖住）','机动：只能在轮中间用（停顿时锁住）','Extra: only during a round (locked in the break)'),
+    'n.noMovesBreak':L('這一輪前已經挪過了（機動只能在輪中間用）','这一轮前已经挪过了（机动只能在轮中间用）','This break’s move is used (extra moves work only during a round)'),
+    'n.noMovesMid':L('機動用完了：等下一輪開始前再挪','机动用完了：等下一轮开始前再挪','No extra moves left: move in the next break'),
+    'n.noMovesMid0':L('這一關輪中間不能挪站：等下一輪開始前','这一关轮中间不能挪站：等下一轮开始前','No moves during a round on this level: wait for the next break'),
+    'n.speed':L('速度 {n}×；按住 F 可以快進。','速度 {n}×；按住 F 可以快进。','Speed {n}×; hold F to fast-forward.'),
+    'g.fast':L('按住 F 快進','按住 F 快进','hold F: fast'),
+    'g.legWalk':L('去站','去站','to a stop'),'g.legHome':L('回家','回家','going home'),'g.legPat':L('顏色＝耐心','颜色＝耐心','colour = patience'),
+    'g.facts':L('<b>數值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一輛車：停站 <b>{base}</b> 秒上客，再開去終點、空車開回 → 離終點越近，來回越快、班次越密<br>每班 <b>{seats}</b> 座，另排隊 <b>{queue}</b> 人<br>耐心 約 <b>{pat}</b> 分鐘：從出門那一刻開始扣，走路、排隊、走回家都算；顏色從藍變橙再變紅。用完了，回到家就開車。',
+      '<b>数值速查</b><br>走路 每格 <b>{walk}</b> 秒 · 巴士 每格 <b>{bus}</b> 秒（去、回各一次）<br>每站一辆车：停站 <b>{base}</b> 秒上客，再开去终点、空车开回 → 离终点越近，来回越快、班次越密<br>每班 <b>{seats}</b> 座，另排队 <b>{queue}</b> 人<br>耐心 约 <b>{pat}</b> 分钟：从出门那一刻开始扣，走路、排队、走回家都算；颜色从蓝变橙再变红。用完了，回到家就开车。',
+      '<b>Numbers at a glance</b><br>Walking <b>{walk}</b> s a block · bus <b>{bus}</b> s a block (out and back)<br>One bus per stop: it waits <b>{base}</b> s to load, drives to the centre and back empty → the nearer the centre, the shorter the loop, the more often it comes<br><b>{seats}</b> seats, plus <b>{queue}</b> in the queue<br>Patience about <b>{pat}</b> min, counted from leaving home: walking, queuing and walking back all use it; colours go blue → amber → red. Once it is gone, people drive as soon as they are home.')
+  });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
