@@ -539,6 +539,15 @@
       '<b>站爆了会怎样。</b>出门那一刻正满的站，不算在分流里（改按其他站的比例分）；附近的站都满，就在家等，约 50 秒还等不到就开车。走到站才发现满了：从原地改去别的站（每趟一次），不行就走回家，想 20 秒再试一次。每人最多出门两次。耐心约 3.5 分钟，只在路上扣（排队等车不扣）；在路上耗光了，回到家直接开车。',
       '<b>When a stop overflows.</b> A stop that is full the moment someone leaves home is left out of their split; if every stop near them is full they wait at home, and drive after about 50 s. Arriving at a full stop: walk on to another one (once per trip), else walk home, think 20 s, try once more. Everyone leaves home at most twice. Patience (about 3.5 min) runs only on foot — waiting in a queue costs none; used up on the way, people drive as soon as they are home.')
   });
+  // v5.8 · nothing selected
+  Object.assign(S,{
+    'sp.overview':L('接駁站概況','接驳站概况','Your stops'),
+    'sp.ovNone':L('還沒放','还没放','not placed'),
+    'sp.ovWhere':L('{n} 格到終點 · 班距 {hw} 秒','{n} 格到终点 · 班距 {hw} 秒','{n} blocks to town · every {hw} s'),
+    'sp.ovTip':L('點一座站看詳情、挪站；點地圖空白處取消選中。','点一座站看详情、挪站；点地图空白处取消选中。','Click a stop for details and to move it; click empty ground to deselect.'),
+    'h.pick':L('點一座站選中它再挪；點空白處取消選中','点一座站选中它再挪；点空白处取消选中','Click a stop to select it, then move it; click empty ground to deselect'),
+    'n.pickFirst':L('先點一座站，再點 ＋ 把它挪過去','先点一座站，再点 ＋ 把它挪过去','Click a stop first, then a ＋ to move it there')
+  });
   const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
     '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
     '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],

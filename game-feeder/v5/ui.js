@@ -127,10 +127,11 @@
   /* ---------------------------------------------------------------- the board */
   function put(cell){
     const was=game.started;
+    if(selected<0){const free=game.stops.find(s=>!s.cell);if(free)selected=free.id;else{toast(t('n.pickFirst'),'warn');return;}}
     if(game.place(selected,cell)){
       hover=null;
       note(was?t(playing?'n.moved':'n.pausedMove',{s:letters[selected],cool:P.cool}):t('n.placed'));
-      if(!was){fxBuilt(selected);const next=game.stops.find(s=>!s.cell);if(next)selected=next.id;}
+      if(!was){fxBuilt(selected);const next=game.stops.find(s=>!s.cell);selected=next?next.id:-1;}   // all placed: nothing selected
       render();
     }else{const why=was&&!game.moveKind()?noMoveWhy():t('n.taken');note(why);toast(why,'warn');}
   }
@@ -221,7 +222,7 @@
     if(pointerPressed&&!drag?.moved)return;           // keep the node under the pointer alive for the click
     const focused=document.activeElement,attrs=['data-cell','data-stop'];
     const focusAttr=attrs.find(a=>focused?.hasAttribute(a)),focusVal=focusAttr?focused.getAttribute(focusAttr):null;
-    const vr=vizRound(),fc=vr>=0?game.forecastRound(vr,hover?selected:-1,hover):null,now=performance.now();
+    const pv=hover&&selected>=0,vr=vizRound(),fc=vr>=0?game.forecastRound(vr,pv?selected:-1,pv?hover:null):null,now=performance.now();
     let ground='',glow='',lines='',rings='',things='',labels='';
     // ground
     for(const [x1,y1,x2,y2] of D.water||[]){const [ax,ay]=xy([x1,y1]),[bx,by]=xy([x2,y2]);
@@ -287,7 +288,7 @@
         things+=`<g opacity=".42">`+sprite(BUS,x-16.25,y-10,2.5,{a:C.accent,w:C.paper,k:C.ink})+'</g>';}
     }
     const moving=game.stops[selected];
-    if(hover){const [gx,gy]=xy(hover);
+    if(pv){const [gx,gy]=xy(hover);
       if(moving.cell){const [sx,sy]=xy(moving.cell),dx=gx-sx,dy=gy-sy,len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len;
         lines+=svg('path',{d:`M${(sx+ux*24).toFixed(1)} ${(sy+uy*24).toFixed(1)}Q${((sx+gx)/2-uy*26).toFixed(1)} ${((sy+gy)/2+ux*26).toFixed(1)} ${(gx-ux*22).toFixed(1)} ${(gy-uy*22).toFixed(1)}`,fill:'none',stroke:C.accent,'stroke-width':2,'stroke-dasharray':'6 5','marker-end':'url(#mHead)',opacity:.85});}
       things+=plate(gx,gy,C.panel,C.accent).replace('/>',' stroke-width="1.6" stroke-dasharray="4 3" fill-opacity=".85"/>')+svg('text',{x:gx,y:gy+7,'font-size':19,fill:C.accent,'text-anchor':'middle','font-weight':600,'font-family':'Bodoni Moda,Georgia,serif',opacity:.75},letters[selected]);}
@@ -330,7 +331,14 @@
     $('tide').innerHTML=h+'</tbody>';
   }
   function drawStopPanel(){
-    const s=game.stops[selected],cell=hover||s.cell;
+    if(selected<0){
+      const fc=game.forecast();
+      let h=`<h3><span>${t('sp.overview')}</span><span class="lbl">Stops</span></h3>`;
+      game.stops.forEach((s,i)=>{if(!s.cell){h+=`<div class="r"><span><b>${letters[i]}</b></span><span>${t('sp.ovNone')}</span></div>`;return;}
+        const who=fc.estates.filter(e=>e.share[i]>0).map(e=>short(e.origin)).join(t('sep'))||t('sp.nobody');
+        h+=`<div class="r"><span><b>${letters[i]}</b> · ${t('sp.ovWhere',{n:dist(s.cell,D.hub),hw:headwayAt(s.cell)})}</span><span>${who}</span></div>`;});
+      $('stopPanel').innerHTML=h+`<p>${t('sp.ovTip')}</p>`;return;}
+    const s=game.stops[selected],cell=(selected>=0&&hover)||s.cell;
     let h=`<h3><span>${t('sp.title',{s:letters[selected]})}${hover?t('sp.preview'):''}</span><span class="lbl">Stop ${letters[selected]}</span></h3>`;
     if(!cell){$('stopPanel').innerHTML=h+`<p>${t('sp.empty')}</p>`;return;}
     const steps=dist(cell,D.hub),hw=headwayAt(cell),vr=vizRound(),fc=game.forecastRound(Math.max(0,vr),hover?selected:-1,hover),st=fc.stops[selected];
@@ -372,7 +380,8 @@
     $('start').disabled=game.done||(!game.started&&game.stops.some(s=>!s.cell));
     document.querySelectorAll('#speedSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sp===speed)));
     const kind=game.moveKind();
-    $('mapHint').textContent=game.done?t('h.done'):!game.started?t('h.place',{s:letters[selected]}):
+    const first=game.stops.find(s=>!s.cell);
+    $('mapHint').textContent=game.done?t('h.done'):selected<0?(first&&!game.started?t('h.place',{s:letters[first.id]}):t('h.pick')):!game.started?t('h.place',{s:letters[selected]}):
       kind==='break'?t('h.moveBreak',{s:letters[selected],n:game.moves}):kind==='extra'?t('h.moveExtra',{s:letters[selected],n:game.moves}):
       noMoveWhy();
     $('mapHint').classList.toggle('wait',game.started&&!game.done&&!kind);   // waiting for the next break: quiet, not an error
@@ -435,7 +444,8 @@
   function pointCell(e){const p=svgPoint(e);return D.candidates.find(c=>{const [x,y]=xy(c);return Math.hypot(p.x-x,p.y-y)<22&&!game.stops.some(s=>same(s.cell,c));});}
   function pointStop(e){const p=svgPoint(e);return game.stops.find(s=>{if(!s.cell)return false;const [x,y]=xy(s.cell);return Math.hypot(p.x-x,p.y-y)<22;});}
   const board=$('board');
-  board.onclick=e=>{if(drag?.moved)return;const stop=e.target.closest('[data-stop]'),cell=e.target.closest('[data-cell]');if(stop){selected=+stop.dataset.stop;render();}else{const c=cell?cell.dataset.cell.split(',').map(Number):pointCell(e);if(c)put(c);}};
+  board.onclick=e=>{if(drag?.moved)return;const stop=e.target.closest('[data-stop]'),cell=e.target.closest('[data-cell]');if(stop){selected=+stop.dataset.stop;render();}
+    else{const c=cell?cell.dataset.cell.split(',').map(Number):pointCell(e);if(c)put(c);else if(!pointStop(e)&&selected>=0){selected=-1;hover=null;render();}}};   // empty ground: nothing selected
   board.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const s=e.target.closest('[data-stop]'),c=e.target.closest('[data-cell]');if(s){selected=+s.dataset.stop;render();}else if(c)put(c.dataset.cell.split(',').map(Number));}};
   const canMove=()=>!!game.moveKind();
   board.onpointermove=e=>{if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;const c=canMove()?pointCell(e)||null:null;
@@ -468,7 +478,7 @@
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   window.addEventListener('tl:lang',()=>{texts();render();if($('result').open)fillResult();});
   window.TL_GAME={loadMap:loadLevel,pause(){if(playing)setPlaying(false);},map:()=>D.map,inProgress:()=>game.started&&!game.done,texts,
-    state:()=>({t:game.t,round:game.round,playing,inter:inter&&{...inter},done:game.done,acc:game.acc,speed})};
+    state:()=>({t:game.t,round:game.round,playing,inter:inter&&{...inter},done:game.done,acc:game.acc,speed,selected,cooling:game.stops.map(s=>Math.max(0,+(s.ready-game.t).toFixed(1)))})};
   // For the hand-off: every block of the board in screen pixels, so the hub's dots can land exactly on them.
   window.TL_BOARD={targets(){
     const m=board.getScreenCTM();if(!m)return null;

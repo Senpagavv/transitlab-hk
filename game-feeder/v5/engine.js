@@ -122,7 +122,9 @@
       const old=s.cell?.slice();
       if(this.started){if(kind==='extra')this.moves--;this.commands.push({time:this.t,id,cell:cell.slice(),kind});}
       // a moved stop cools down for P.cool seconds; its timetable keeps running (see buses())
-      s.version++;s.cell=cell.slice();s.ready=this.started?this.t+P.cool:0;
+      // back where it stood when the break began: it has not really moved, so no cool-down (v5.8)
+      const back=kind==='break'&&s.breakFrom&&same(cell,s.breakFrom);
+      s.version++;s.cell=cell.slice();s.ready=!this.started?0:back?s.breakReady:this.t+P.cool;
       if(!this.started)s.departAt=Infinity;
       if(old) {
         // The bus loading at the old spot leaves at once: everyone aboard is delivered as usual.
@@ -274,6 +276,7 @@
       const R=D.waves.length,settled=r=>this.people.every(p=>p.wave!==r||['delivered','car','bus'].includes(p.state));
       if(this.t>=this.roundStart[this.round]&&this.round<R-1&&settled(this.round)){
         const r=++this.round;this.roundStart[r]=this.t;this.breakOpen=r;
+        for(const s of this.stops){s.breakFrom=s.cell?s.cell.slice():null;s.breakReady=s.ready;}
         for(const p of this.people)if(p.wave===r)p.born=this.t+p.offset;
         this.emit('round',null,{round:r});
       }

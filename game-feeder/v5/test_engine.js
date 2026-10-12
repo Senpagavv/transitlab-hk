@@ -103,6 +103,14 @@ test('Waiting in a queue costs no patience: the patience left stays the same whi
     assert(!g.events.some(e=>e.type==='return'&&e.why==='久候返家'),`${name}: someone left a queue`);}
   useLevel('l1');
 });
+test('A stop moved in a break and put back where it began the break does not cool down; one left elsewhere does',()=>{
+  useLevel('l2');const g=setup();g.runTo(1);const s=g.stops[0],home=s.cell.slice(),ready=s.ready;
+  const free=()=>D.candidates.find(c=>!same(c,home)&&!g.stops.some(q=>same(q.cell,c)));
+  assert(g.place(0,free()));assert(s.ready>g.t,'moved away: cooling');assert(g.place(0,free()));assert(g.place(0,home));
+  assert.equal(s.ready,ready,'back home: no cool-down');assert(s.ready<=g.t);
+  const t1=g.stops[1];assert(g.place(1,free()));assert.equal(t1.ready,g.t+P.cool,'left elsewhere: cools down');
+  useLevel('l1');
+});
 test('Headway is the level\'s base + step per block to the town centre',()=>{
   for(const name of LEVELS){useLevel(name);
     for(const c of D.candidates)assert.equal(headwayAt(c),D.headway[0]+D.headway[1]*dist(c,D.hub));}

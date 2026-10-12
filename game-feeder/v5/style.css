@@ -509,3 +509,5 @@ input.ed-in[type=number]{width:62px;text-align:right}
 .legend i.pkey.home{background:transparent;box-shadow:inset 0 0 0 1.6px var(--s-info)}
 .legend i.pkey.pat{background:linear-gradient(90deg,var(--s-info) 33%,var(--s-warn) 33% 66%,var(--s-bad) 66%);width:18px}
 .lanebox .hint.wait{color:var(--s-ink3)}
+/* v5.8 · clicking empty ground focuses the board: no frame for mouse clicks (keyboard focus still shows) */
+#board:focus:not(:focus-visible){outline:none}

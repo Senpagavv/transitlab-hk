@@ -6,6 +6,11 @@
 
 ## 2026-10-12
 
+### 19:17 · `待补` 接驳巴士 v5.8：停顿里挪回原位不冷却、点空白处取消选中 / Feeder v5.8: no cool-down when a stop returns home in a break; deselect on empty ground
+- **改了什么**：`game-feeder/v5/`：停顿里把站挪回停顿开始时的位置不冷却；点地图空白处取消选中，没选中时左栏改为「接驳站概况」（不写预估），去掉点击后的焦点框。
+- **为什么**：发起人交代的两项体验问题。
+- **验证**：`node game-feeder/v5/test_engine.js` 24 项通过；无界面 Edge 验证取消选中与冷却，无报错。
+
 ### 16:52 · `ec8b229` 接驳巴士实验：最多到站 N 次 vs 现行规则（默认不变） / Feeder experiment: a cap on stop visits vs the current rule
 - **改了什么**：`game-feeder/v5/engine.js` 加实验开关 `maxArrivals`（默认 0＝现行规则）；`bots/v5_arrivals.js` 对比 N = 2–6。
 - **为什么**：发起人想用「最多抵达几次车站」统一规则，并防止来回挪站逼人来回跑，要求先算几种 N。
