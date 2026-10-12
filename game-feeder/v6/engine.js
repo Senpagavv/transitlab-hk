@@ -1,0 +1,410 @@
+(function(root) {
+  'use strict';
+  const D=typeof module!=='undefined'?require('./data.js'):root.TIDE_DATA;
+  // Seconds are game time, not real transport calibration.
+  // v5 (shares): everyone in an estate takes the bus if any stop is near enough; they split between the stops in
+  // proportion to each stop's pull (100 % next door, 10 points less per block, nothing beyond 6 blocks). Stops 80 %
+  // and 40 % share an estate 2 : 1. The split is fixed for each batch (evenly spread picks, no dice), so the same
+  // plan always plays the same way and the map can show exactly who goes where.
+  // A full stop drops out of the split for whoever decides at that moment; if every stop near them is full they wait
+  // at home a while, then drive. Turned away at a stop: walk on to another one once, else go home, think, try once
+  // more; whoever used up their patience on the way drives as soon as they are home. Score: arrivals by bus.
+  // Moves (v5.6): the opening and the breaks between rounds are free (move as often as you like; a moved stop still
+  // cools down); during a round only `moves` extra moves (level 1 none, levels 2 and 3 one).
+  // Buses (v5.5): one bus per stop shuttles: it waits `headwayBase` seconds at the stop, drives to the centre and back
+  // (busStep = headwayStep / 2 seconds a block each way), so the headway base + step × blocks is exactly its loop.
+  // v6 · two mechanics a level may switch on (both off on levels 1–3, which play exactly as in v5):
+  //   habit (level 4): the game runs over days (one round = one day). Each estate has a bus habit — the share of
+  //     its people who even try the bus today (the rest drive by habit) — and a reputation for each stop spot. After
+  //     each day both move towards what that day's people lived through (exponential smoothing, rate `rate`):
+  //     habit towards the share who got on a bus at the first stop they reached; a spot's reputation towards `good`
+  //     (got on there) or `bad` (turned away there). The split between stops uses pull × reputation. Popular stops
+  //     draw more people until they overflow and lose them again — over the days it settles (day-to-day learning
+  //     towards an equilibrium, as in the model's congestion feedback, step 27b).
+  //   groups (level 5): elders walk slower and less far, students must board before the school bell (waiting counts
+  //     for them), workers skip stops whose buses come too seldom. Each estate's mix is from the 2026 zone figures.
+  // Patience (v5.7): it runs only while people are on their feet (walking to a stop, on to another, back home) or
+  // deciding at home; waiting in a stop's queue does not use it — once in the queue they stay until a bus comes.
+  // Rounds (v5.3): people leave steadily through a round; the next round starts only when everyone of this round has
+  // an outcome (on a bus, arrived, or drove) — so each round settles on its own. Moving a stop costs `cool` seconds.
+  // Each level sets its own rhythm, pull, capacity and tiers (reset()).
+  const P={tick:.5,duration:1080,firstWave:35,interval:120,release:110,
+    walkStep:12,busStep:10,headwayBase:60,headwayStep:10,seats:6,queue:8,cool:20,moves:1,maxArrivals:0,
+    willing:[1,.9,.8,.7,.6,.5,.4],homeGrace:50,homeThink:20,patience:210,
+    reconsider:4,target:133,highScore:140,masterScore:146};
+  const key=c=>c.join(','), same=(a,b)=>a&&b&&key(a)===key(b);
+  function rng(seed) { return ()=>{seed|=0;seed=seed+0x6D2B79F5|0;
+    let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;
+    return((t^t>>>14)>>>0)/4294967296;}; }
+  // Everything derived from the board. reset() rebuilds it after D.select() swaps the board in place.
+  let graph=new Map(), cache=new Map();
+  const toMTR=[];
+  function route(a,b) {
+    const k=key(a)+'>'+key(b);
+    if(cache.has(k)) return cache.get(k).map(c=>c.slice());
+    const q=[a],parent=new Map([[key(a),null]]);
+    for(let i=0;i<q.length;i++) {
+      const c=q[i]; if(same(c,b)) break;
+      for(const n of [[c[0]+1,c[1]],[c[0]-1,c[1]],[c[0],c[1]+1],[c[0],c[1]-1]])
+        if(graph.has(key(n))&&!parent.has(key(n))) {parent.set(key(n),c);q.push(n);}
+    }
+    if(!parent.has(key(b))) return [];
+    const out=[];let c=b;while(c){out.push(c);c=parent.get(key(c));}
+    out.reverse();cache.set(k,out);return out.map(c=>c.slice());
+  }
+  const dist=(a,b)=>route(a,b).length-1;
+  const length=path=>path.slice(1).reduce((n,c,i)=>n+Math.abs(c[0]-path[i][0])+Math.abs(c[1]-path[i][1]),0);
+  const willing=steps=>steps<0?0:(P.willing[steps]??0);
+  // These residents drive today because the MTR is too far to walk. A stop that is as far on foot as the MTR
+  // itself (or lies beyond it) wins nobody — nobody walks past the station to ride back to it.
+  function reset() {
+    graph=new Map(D.roads.map(c=>[key(c),c]));cache=new Map();
+    // each board carries its own headway formula and score tiers
+    [P.headwayBase,P.headwayStep]=D.headway||[60,10];P.busStep=D.busStep??P.headwayStep/2;
+    if(D.tiers)[P.target,P.highScore,P.masterScore]=D.tiers;
+    for(const k of ['firstWave','interval','release','seats','queue','cool','moves','willing','patience'])if(D[k]!==undefined)P[k]=Array.isArray(D[k])?D[k].slice():D[k];
+    // after the last round people still walk, wait and ride: the game ends when everyone has an outcome
+    // (delivered or drove), or at the latest `tail` seconds after the last round
+    P.lastRound=P.firstWave+D.waves.length*P.interval;
+    // the latest anyone can still be on the way: full patience, then the slowest bus and the longest ride
+    const hwMax=Math.max(...D.candidates.map(c=>P.headwayBase+dist(c,D.hub)*P.headwayStep));
+    const rideMax=Math.max(...D.candidates.map(c=>length(route(c,D.hub))*P.busStep));
+    // counted from the last person to leave home (a level may spread departures past the end of its last round)
+    // a round settles at the latest after everyone's patience on foot, plus clearing a full queue (it never gives up,
+    // v5.7) bus by bus, plus the ride
+    const settle=Math.ceil((P.patience+20+(Math.ceil(P.queue/Math.max(1,P.seats))+1)*hwMax+rideMax+30)/10)*10;
+    P.duration=P.firstWave+D.waves.length*(P.release+settle)+(D.tail??0);
+    toMTR.splice(0,toMTR.length,...D.origins.map(o=>dist(o.cell,D.hub)));
+  }
+  reset();
+  // the pull of a walk of `steps` blocks for a group (default: the level's 10-point steps)
+  const willingG=(g,steps)=>{const G=g&&D.groups?.[g];if(steps<0)return 0;
+    if(G?.drop)return Math.max(0,+(1-G.drop*steps).toFixed(4));return willing(steps);};
+  const shareAt=(origin,cell,walked=0,from=D.origins[origin].cell,g)=>{const total=walked+dist(from,cell);return total<toMTR[origin]?willingG(g,total):0;};
+  const ws=p=>p.walkStep||P.walkStep;   // this person's seconds per block on foot
+  // How many of n people in one batch come when the share is w (thresholds are evenly spread).
+  const comes=(n,w)=>Math.max(0,Math.min(n,Math.ceil(w*n-.5)));
+  const headwayAt=cell=>P.headwayBase+dist(cell,D.hub)*P.headwayStep;
+  // The stop whose slice of the pull holds `pick` (stops in order A, B, C; -1 if no stop pulls at all).
+  function slice(pulls,pick){
+    const sum=pulls.reduce((a,b)=>a+b,0);if(!sum)return -1;
+    let acc=0,last=-1;
+    for(let s=0;s<pulls.length;s++){if(!pulls[s])continue;last=s;acc+=pulls[s]/sum;if(pick<acc-1e-9)return s;}
+    return last;
+  }
+  // How a batch of n splits over the stops (the same picks the people get): counts per stop.
+  function split(n,pulls){const out=pulls.map(()=>0);for(let j=0;j<n;j++){const s=slice(pulls,(j+.5)/n);if(s>=0)out[s]++;}return out;}
+  // Roughly how many one stop can take in a round: the buses that leave while people come out, plus its queue.
+  const capacityAt=cell=>P.seats*P.release/headwayAt(cell)+P.queue;
+  function along(path,elapsed,step) {
+    let left=Math.max(0,elapsed/step);
+    for(let i=1;i<path.length;i++) {
+      const a=path[i-1],b=path[i],d=Math.abs(b[0]-a[0])+Math.abs(b[1]-a[1]);
+      if(left<d) return[a[0]+(b[0]-a[0])*left/d,a[1]+(b[1]-a[1])*left/d];
+      left-=d;
+    }
+    return(path.at(-1)||[0,0]).slice();
+  }
+  class Game {
+    constructor(seed=1781) {
+      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],moves:P.moves,breakOpen:-1,delivered:0,cars:0,missed:0,steps:0,acc:0,events:[],commands:[],people:[]});
+      this.trips=[];
+      this.stops=[0,1,2].map(id=>({id,cell:null,version:0,ready:0,queue:[],boarding:[],peak:0,rejected:0,serial:0,departAt:Infinity}));
+      const r=rng(seed);let id=0;
+      const spread=n=>{const a=Array.from({length:n},(_,k)=>(k+.5)/n);for(let k=n-1;k>0;k--){const j=Math.floor(r()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
+      D.waves.forEach((w,wi)=>w.forEach((n,o)=>{
+        // Evenly spread picks, shuffled: a stop with a third of the pull gets exactly a third of the batch (split()).
+        const picks=spread(n);
+        for(let j=0;j<n;j++) this.people.push({id:id++,origin:o,wave:wi,offset:(j+.5)/n*P.release,
+          born:wi===0?P.firstWave+(j+.5)/n*P.release:Infinity,
+          state:'future',pick:picks[j],budget:P.patience+40*(r()-.5),
+          trips:0,switched:false,retryAt:0,avoid:[],walked:0,giveUp:false,
+          path:[D.origins[o].cell],since:0,target:null,deadline:Infinity});
+        const batch=this.people.slice(-n);
+        // groups: exactly the estate's mix in every batch; habit: an evenly spread "try" pick per person
+        if(D.groups){const order=D.groups.order,g=spread(n);batch.forEach((p,j)=>{p.group=order[slice(Array.isArray(D.mix[0][0])?D.mix[wi][o]:D.mix[o],g[j])];
+          const G=D.groups[p.group];if(G.walk)p.walkStep=P.walkStep*G.walk;});}
+        if(D.habit){const tp=spread(n);batch.forEach((p,j)=>p.tpick=tp[j]);}
+      }));
+      this.people.sort((a,b)=>a.wave-b.wave||a.offset-b.offset||a.id-b.id);
+      this.round=0;this.roundStart=[P.firstWave];
+      if(D.habit){this.habit=D.origins.map(()=>D.habit.start);this.rep=D.origins.map(()=>({}));this.habitLog=[{round:0,habit:this.habit.slice(),rep:this.rep.map(r=>({...r}))}];}
+    }
+    // v6 · a stop spot's reputation with an estate (1 = neutral)
+    repOf(o,cell){return this.rep?.[o]?.[key(cell)]??1;}
+    emit(type,p,extra={}) {this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
+    person(id) {return this.people.find(p=>p.id===id);}
+    headway(s) {return headwayAt(s.cell);}
+    // opening + commands + seed is the whole round: replaying them gives the same score (verify_result.js)
+    start() {if(this.started||this.stops.some(s=>!s.cell))return false;this.started=true;this.opening=this.stops.map(s=>s.cell.slice());for(const s of this.stops)s.departAt=this.headway(s);return true;}
+    place(id,cell) {
+      const s=this.stops[id];
+      if(this.done||!s||!D.candidates.some(c=>same(c,cell))||this.stops.some(x=>x.id!==id&&same(x.cell,cell))||same(s.cell,cell))return false;
+      const kind=this.moveKind();if(this.started&&!kind)return false;
+      const old=s.cell?.slice();
+      if(this.started){if(kind==='extra')this.moves--;this.commands.push({time:this.t,id,cell:cell.slice(),kind});}
+      // a moved stop cools down for P.cool seconds; its timetable keeps running (see buses())
+      // back where it stood when the break began: it has not really moved, so no cool-down (v5.8)
+      const back=kind==='break'&&s.breakFrom&&same(cell,s.breakFrom);
+      s.version++;s.cell=cell.slice();s.ready=!this.started?0:back?s.breakReady:this.t+P.cool;
+      if(!this.started)s.departAt=Infinity;
+      if(old) {
+        // The bus loading at the old spot leaves at once: everyone aboard is delivered as usual.
+        if(this.started&&s.boarding.length)this.depart(s,old);
+        // People still queuing look for another stop from where they stand; if none suits, they walk home
+        // and may try again once the new stop is ready (the move was not their failure).
+        const waiting=s.queue.map(pid=>this.person(pid)).filter(p=>p.state==='queue');
+        s.queue=[];s.boarding=[];
+        for(const p of waiting)this.reroute(p,old,null,'搬站返家');
+        for(const p of this.people) if(p.state==='walk'&&p.target===id) {
+          const anchor=this.currentNode(p),pos=this.pos(p);
+          p.walked+=(this.t-p.since)/ws(p);p.path=[pos];p.since=this.t;
+          this.reroute(p,anchor,null,'原站搬遷',id);
+        }
+      }
+      this.emit(this.started?'move':'place',null,{stop:id,cell:cell.slice()});return true;
+    }
+    // which move a placement now would use: the break's own move, the extra one, or none (null)
+    moveKind(){if(!this.started)return 'opening';if(this.done)return null;
+      if(this.breakOpen>=1)return 'break';
+      return this.moves>0?'extra':null;}
+    pos(p) {return along(p.path,this.t-p.since,ws(p));}
+    currentNode(p) {
+      let left=Math.max(0,(this.t-p.since)/ws(p));
+      for(let i=1;i<p.path.length;i++) {
+        const d=length([p.path[i-1],p.path[i]]);
+        if(left<d-1e-8)return p.path[i].slice();left-=d;
+      }
+      return p.path.at(-1).slice();
+    }
+    walkingPath(p,from,to) {
+      const path=route(from,to),pos=['walk','return','queue','seated'].includes(p.state)?this.pos(p):from;
+      return same(pos,from)?path:[pos,...path];
+    }
+    eta(s) {return s.cell?Math.max(0,s.departAt-this.t):Infinity;}
+    // Share of people willing to walk to stop s; zero while it is being built,
+    // after this person was turned away there, or if they cannot make a bus in time.
+    attraction(p,s,from=D.origins[p.origin].cell,walked=0) {
+      if(!s.cell||s.ready>this.t||p.avoid.includes(s.id+':'+s.version))return 0;
+      if(s.queue.length>=P.queue&&s.boarding.length>=P.seats)return 0;   // a full stop attracts nobody at the moment they decide
+      const steps=dist(from,s.cell);if(steps<0)return 0;
+      const share=shareAt(p.origin,s.cell,walked,from,p.group);if(!share)return 0;
+      const G=p.group&&D.groups[p.group];
+      if(G?.maxHeadway&&this.headway(s)>G.maxHeadway)return 0;   // workers: buses too seldom here
+      const walk=steps*ws(p),cycle=this.headway(s);
+      let eta=this.eta(s);
+      if(walk>eta)eta+=Math.ceil((walk-eta)/cycle)*cycle;
+      const wait=Math.max(0,eta-walk);
+      // the wait at the stop costs no patience (v5.7) — except for students, whose bell does not wait
+      if(!(this.t+(G?.bell?walk+wait:walk)<p.deadline))return 0;
+      return share*this.repOf(p.origin,s.cell);
+    }
+    // Split by pull among the stops open to this person right now (pick decides which slice they fall in).
+    choose(p,from,excluded=-1,walked=0) {
+      const pulls=this.stops.map(s=>s.id===excluded?0:this.attraction(p,s,from,walked)),id=slice(pulls,p.pick);
+      return id<0?null:{id,appeal:pulls[id]};
+    }
+    walk(p,id,from) {const path=this.walkingPath(p,from,this.stops[id].cell);Object.assign(p,{state:'walk',target:id,path,since:this.t});this.emit('walk',p,{stop:id});}
+    decide(p) {
+      const choice=this.choose(p,D.origins[p.origin].cell);
+      if(choice){p.trips++;p.switched=false;p.walked=0;this.walk(p,choice.id,D.origins[p.origin].cell);}
+      else{p.retryAt=this.t+P.reconsider;
+        // nothing chosen because the stop they would use is full right now — that is the reason if they end up driving
+        if(this.stops.some(s=>s.cell&&s.ready<=this.t&&s.queue.length>=P.queue&&s.boarding.length>=P.seats&&shareAt(p.origin,s.cell,0,undefined,p.group)>0))p.lastWhy='站滿了';
+        // v6 groups: a stop near enough, but a worker finds its buses too seldom / a student cannot board before the bell
+        else if(p.group){const G=D.groups[p.group],near=this.stops.filter(s=>s.cell&&s.ready<=this.t&&shareAt(p.origin,s.cell,0,undefined,p.group)>0);
+          if(near.length&&G.maxHeadway&&near.every(s=>this.headway(s)>G.maxHeadway))p.lastWhy='班次太疏';
+          else if(near.length&&G.bell)p.lastWhy='趕不上課';}}
+    }
+    // out of time in a queue: a student has missed the bell (parents drive); others look elsewhere as before
+    timeUp(p,s){if(p.group&&D.groups[p.group]?.bell){p.giveUp=true;p.lastWhy='趕不上課';this.leave(p);this.goHome(p,'趕不上課',s.cell.slice());}
+      else this.reroute(p,s.cell.slice(),s,'久候返家');}
+    leave(p){for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}}
+    // Full, waited too long, or the stop moved: from where they stand, walk on to another stop if the whole
+    // walk (already walked + still to walk) is still within their willingness — once per trip; otherwise walk
+    // home, think for homeThink seconds, then choose once between the nearest stop that suits them (by the same
+    // distance rule; the stop that was full counts again unless it is still full) and driving. At most two trips
+    // out from home. Whoever is already walking never turns back, even if a nearer stop frees up.
+    reroute(p,here,failed,why,excluded=-1) {
+      this.leave(p);
+      if(failed){p.avoid.push(failed.id+':'+failed.version);p.lastWhy=why==='久候返家'?'等太久':'站滿了';}
+      const cap=P.maxArrivals>0,spent=cap&&(p.arrivals||0)>=P.maxArrivals;
+      const choice=cap?(spent?null:this.choose(p,here,excluded,p.walked)):p.switched?null:this.choose(p,here,excluded,p.walked);
+      if(choice){p.switched=true;this.walk(p,choice.id,here);this.emit('switch',p,{stop:choice.id,from:failed?failed.id:-1,why});return;}
+      this.goHome(p,why,here);
+    }
+    goHome(p,why,from,turnedAway) {
+      if(['car','delivered','bus','missed'].includes(p.state))return;
+      if(turnedAway)p.avoid.push(turnedAway.id+':'+turnedAway.version);
+      for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}
+      const anchor=from||this.currentNode(p),path=this.walkingPath(p,anchor,D.origins[p.origin].cell);
+      Object.assign(p,{state:'return',target:null,path,since:this.t,returnWhy:why});this.emit('return',p,{why});
+    }
+    car(p) {
+      if(['car','delivered','bus','missed'].includes(p.state))return;
+      for(const s of this.stops){s.queue=s.queue.filter(id=>id!==p.id);s.boarding=s.boarding.filter(id=>id!==p.id);}
+      p.state='car';p.since=this.t;this.cars++;this.emit('car',p,{why:p.lastWhy||'沒有夠近的站'});
+    }
+    board(s) {
+      if(s.ready>this.t)return;
+      while(s.boarding.length<P.seats&&s.queue.length){const id=s.queue.shift(),p=this.person(id);
+        if(p.state!=='queue'||p.deadline<=this.t)continue;
+        s.boarding.push(id);p.state='seated';this.emit('board',p,{stop:s.id});}
+    }
+    buses() {
+      for(const b of this.trips.filter(b=>!b.done))if(this.t>=b.end){
+        for(const id of b.load){const p=this.person(id);p.state='delivered';p.since=this.t;this.delivered++;this.emit('delivered',p,{stop:b.stop});}
+        b.done=true;
+      }
+      for(const s of this.stops){if(!s.cell)continue;
+        if(s.ready>this.t){while(this.t+1e-6>=s.departAt)s.departAt+=this.headway(s);continue;}   // cooling down: buses pass empty
+        for(const id of [...s.queue]){const p=this.person(id);if(this.t>=p.deadline)this.timeUp(p,s);}
+        this.board(s);if(this.t+1e-6<s.departAt)continue;
+        this.depart(s,s.cell);s.departAt=this.t+this.headway(s);this.board(s);
+      }
+    }
+    // A departure from `from` (the stop's cell, or its old cell when it is moved). Fleet circulation is abstracted in
+    // the headway; the map displays only the loaded, one-way feeder trip to MTR.
+    depart(s,from) {
+      const path=route(from,D.hub),load=s.boarding.splice(0),serial=++s.serial;
+      if(load.length){this.trips.push({stop:s.id,serial,path,since:this.t,end:this.t+length(path)*P.busStep,load,done:false});
+        for(const id of load){const p=this.person(id);p.state='bus';p.since=this.t;this.emit('depart',p,{stop:s.id,serial});}}
+      this.emit('dispatch',null,{stop:s.id,serial,load:load.length});
+    }
+    closeSession() {
+      for(const p of this.people)if(!['car','delivered'].includes(p.state)){p.state='missed';this.missed++;}
+      for(const s of this.stops){s.queue=[];s.boarding=[];}
+      for(const b of this.trips)b.done=true;
+      this.done=true;this.emit('finish');
+    }
+    step() {
+      this.breakOpen=-1;this.steps++;this.t=+(this.steps*P.tick).toFixed(4);
+      for(const p of this.people)if(p.state==='queue'&&!(p.group&&D.groups[p.group]?.bell))p.deadline+=P.tick;   // queuing: the patience clock stands still (not a student's bell)
+      this.buses();
+      for(const p of this.people){
+        if(p.state==='future'&&this.t>=p.born){Object.assign(p,{state:'home',deadline:this.t+p.budget,homeUntil:this.t+P.homeGrace,retryAt:this.t});
+          const G=p.group&&D.groups[p.group];if(G?.bell)p.deadline=Math.min(p.deadline,this.t+G.bell);
+          this.emit('spawn',p);
+          if(D.habit){p.tried=p.tpick<this.habit[p.origin];if(!p.tried){p.lastWhy='習慣開車';this.car(p);continue;}}}
+        if(p.state==='home'){
+          if(this.t>=p.deadline||this.t>=p.homeUntil)this.car(p);
+          else if((P.maxArrivals>0?(p.arrivals||0)<P.maxArrivals:p.trips<2)&&this.t>=p.retryAt)this.decide(p);
+        } else if(p.state==='walk'&&this.t-p.since+1e-6>=length(p.path)*ws(p)){
+          const s=this.stops[p.target];p.walked+=length(p.path);
+          if(s&&s.ready<=this.t&&p.firstCell===undefined)p.firstCell=key(s.cell);   // habit: where this person first tried
+          if(s&&s.ready<=this.t&&(s.boarding.length<P.seats||s.queue.length<P.queue)&&this.t<p.deadline){
+            p.arrivals=(p.arrivals||0)+1;
+            p.state='queue';p.path=[s.cell.slice()];p.since=this.t;s.queue.push(p.id);this.emit('queue',p,{stop:s.id});
+            this.board(s);
+            s.peak=Math.max(s.peak,s.queue.length);
+          }else{const full=s&&s.queue.length>=P.queue&&s.boarding.length>=P.seats,here=p.path.at(-1).slice();
+            if(s&&s.ready<=this.t)p.arrivals=(p.arrivals||0)+1;
+            if(full){s.rejected++;p.turned=true;this.emit('full',p,{stop:s.id});}
+            if(this.t>=p.deadline){p.giveUp=true;p.lastWhy=p.group&&D.groups[p.group]?.bell?'趕不上課':'等太久';this.leave(p);this.goHome(p,'耐心耗盡',here);}
+            else this.reroute(p,here,full?s:null,full?'站已滿員':'站還在重建');}
+        } else if(p.state==='queue'&&this.t>=p.deadline){const s=this.stops[p.target];this.timeUp(p,s);}
+        else if(p.state==='return'&&this.t-p.since+1e-6>=length(p.path)*ws(p)){
+          // patience used up on the way, or this was their last try (a stop moved away does not count): drive at once
+          if(p.giveUp||(P.maxArrivals>0?(p.arrivals||0)>=P.maxArrivals:p.trips>=2&&!['搬站返家','原站搬遷'].includes(p.returnWhy))){this.car(p);continue;}
+          // home again: think for a while, then one decision — the nearest suitable stop, or the car
+          Object.assign(p,{state:'home',path:[D.origins[p.origin].cell],since:this.t,avoid:[],homeUntil:Math.min(p.deadline,this.t+P.homeThink+P.tick),retryAt:this.t+P.homeThink});this.emit('home',p);
+        }else if(p.state==='walk'&&this.t>=p.deadline){p.giveUp=true;p.lastWhy=p.group&&D.groups[p.group]?.bell?'趕不上課':'等太久';this.goHome(p,'耐心耗盡');}
+      }
+      const R=D.waves.length,settled=r=>this.people.every(p=>p.wave!==r||['delivered','car','bus'].includes(p.state));
+      if(this.t>=this.roundStart[this.round]&&this.round<R-1&&settled(this.round)){
+        const r=++this.round;this.roundStart[r]=this.t;this.breakOpen=r;
+        if(D.habit)this.learn(r-1);
+        for(const s of this.stops){s.breakFrom=s.cell?s.cell.slice():null;s.breakReady=s.ready;}
+        for(const p of this.people)if(p.wave===r)p.born=this.t+p.offset;
+        this.emit('round',null,{round:r});
+      }
+      if(this.t>=P.duration||this.round===R-1&&this.people.every(p=>p.state==='delivered'||p.state==='car'))this.closeSession();
+    }
+    // v6 · overnight: each estate's habit and its stop spots' reputations move towards what day `d` brought
+    learn(d){const H=D.habit,clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+      const ok=p=>!p.turned&&['delivered','bus'].includes(p.state),day=[];
+      D.origins.forEach((o,i)=>{const ps=this.people.filter(p=>p.wave===d&&p.origin===i&&p.tried);
+        const sat=ps.length?ps.filter(ok).length/ps.length:1,b0=this.habit[i];
+        this.habit[i]=+clamp(b0+H.rate*(sat-b0),H.floor??.1,1).toFixed(4);
+        const by={};for(const p of ps)if(p.firstCell!==undefined)(by[p.firstCell]??=[]).push(ok(p)?H.good:H.bad);
+        for(const [k,xs] of Object.entries(by)){const m=xs.reduce((a,b)=>a+b,0)/xs.length,old=this.rep[i][k]??1;
+          this.rep[i][k]=+clamp(old+H.rate*(m-old),H.min,H.max).toFixed(4);}
+        day.push({tried:ps.length,ok:ps.filter(ok).length,sat:+sat.toFixed(3),from:b0,to:this.habit[i]});});
+      this.habitLog.push({round:d+1,habit:this.habit.slice(),rep:this.rep.map(r=>({...r})),day});
+      this.emit('habit',null,{day:d});
+    }
+    advance(seconds,opt={}) {
+      if(!this.started||this.done)return;this.acc+=Math.max(0,seconds);const r0=this.round;
+      while(this.acc+1e-8>=P.tick&&!this.done){this.acc-=P.tick;this.step();if(opt.stopAtRound&&this.round!==r0){this.acc=0;return;}}
+    }
+    // run until round r has started (or the game ends): for bots and tests that move in the break before a round
+    runTo(r){while(this.started&&!this.done&&this.round<r)this.step();}
+    waveInfo() {
+      const s=this.roundStart[this.round],active=this.t>=s&&this.t<s+P.release?this.round:-1,next=this.round+1<D.waves.length?this.round+1:-1;
+      return{active,next,activeEnd:active<0?null:s+P.release,nextStart:null};
+    }
+    // Who goes where with a set of stop cells (replace stop `id` by `cell` to preview a placement), all stops open:
+    // each estate's pull and share per stop and head count per round, and each stop's load per round.
+    // How full a stop gets in a round: forecastRound().
+    forecast(id=-1,cell=null) {
+      const cells=this.stops.map(s=>s.id===id?cell:s.cell);
+      const estates=D.origins.map((o,i)=>{
+        const pull=cells.map(c=>c?shareAt(i,c)*this.repOf(i,c):0),sum=pull.reduce((a,b)=>a+b,0);
+        return{origin:i,pull,share:pull.map(w=>sum?w/sum:0),steps:cells.map(c=>c?dist(o.cell,c):null),
+          perWave:D.waves.map(w=>split(w[i],pull)),drives:!sum};
+      });
+      const stops=cells.map((c,s)=>({cell:c,load:D.waves.map((w,wi)=>estates.reduce((n,e)=>n+e.perWave[wi][s],0))}));
+      return{estates,stops};
+    }
+    // v5.2 · the preview between rounds: round r on its own with this layout (replace stop `id` by `cell` to preview a
+    // placement) — nothing else. The stops start the round empty; only round r's people, their picks, walking times
+    // and each stop's timetable. Per stop: who comes from which estate, how full it gets at its busiest, how many
+    // would find it full. Per estate: how many of its people get a place (the rest: no stop near, or a full stop).
+    forecastRound(r,id=-1,cell=null) {
+      const cells=this.stops.map(s=>s.id===id?cell:s.cell),room=P.seats+P.queue,t0=this.roundStart[r]??Math.max(this.t,P.firstWave);
+      // one person's pulls (their group; workers skip stops whose buses come too seldom; reputation)
+      const pullOf=(p,i)=>cells.map(c=>{if(!c)return 0;const G=p?.group&&D.groups[p.group];if(G?.maxHeadway&&headwayAt(c)>G.maxHeadway)return 0;
+        return shareAt(i,c,0,undefined,p?.group)*this.repOf(i,c);});
+      const pullsOf=D.origins.map((o,i)=>pullOf(null,i));
+      const estates=D.origins.map((o,i)=>{const pull=pullsOf[i],sum=pull.reduce((a,b)=>a+b,0);
+        return{origin:i,pull,share:pull.map(w=>sum?w/sum:0),steps:cells.map(c=>c?dist(o.cell,c):null),n:D.waves[r]?.[i]??0,served:0,drives:!sum,to:cells.map(()=>0),
+          tries:0,go:cells.map(()=>0),left:0,groups:D.groups?Object.fromEntries(D.groups.order.map(g=>[g,{n:0,go:0,served:0}])):null};});
+      // today's people who will try the bus (habit), each with their own pulls
+      const people=this.people.filter(p=>p.wave===r&&(!D.habit||p.tpick<(this.habit?.[p.origin]??1)));
+      const mine=new Map(people.map(p=>[p.id,D.groups?pullOf(p,p.origin):pullsOf[p.origin]]));
+      // v6: per estate, who tries today (habit), where each goes (go), who has no stop at all (left), and per group
+      for(const p of people){const e=estates[p.origin],s=slice(mine.get(p.id),p.pick),G=e.groups?.[p.group];e.tries++;
+        if(s>=0)e.go[s]++;else e.left++;if(G){G.n++;if(s>=0)G.go++;}}
+      for(const e of estates)if(e.tries)e.drives=e.left===e.tries;
+      const stops=cells.map((c,s)=>{
+        const out={cell:c,room,load:0,peak:0,over:0,from:D.origins.map(()=>0)};if(!c)return out;
+        const arrive=[];
+        for(const p of people)if(slice(mine.get(p.id),p.pick)===s)arrive.push([t0+p.offset+dist(D.origins[p.origin].cell,c)*ws(p),p.origin,p.group]);
+        arrive.sort((a,b)=>a[0]-b[0]);out.load=arrive.length;
+        const hw=headwayAt(c);let next=this.started?this.stops[s].departAt:hw;
+        while(next<t0)next+=hw;
+        let wait=0;
+        for(const [at,o,g] of arrive){
+          while(next<=at){wait=Math.max(0,wait-P.seats);next+=hw;}
+          if(wait>=room){out.over++;continue;}
+          wait++;out.peak=Math.max(out.peak,wait);out.from[o]++;estates[o].served++;estates[o].to[s]++;if(g&&estates[o].groups)estates[o].groups[g].served++;
+        }
+        return out;
+      });
+      return{round:r,estates,stops};
+    }
+    homeStats(origin) {
+      const ps=this.people.filter(p=>p.origin===origin),w=this.waveInfo(),count=state=>ps.filter(p=>p.state===state).length;
+      const home=ps.filter(p=>p.state==='home');
+      return{total:ps.length,future:count('future'),home:home.length,walking:count('walk'),queue:count('queue'),seated:count('seated'),returning:count('return'),aboard:count('bus'),delivered:count('delivered'),cars:count('car'),missed:count('missed'),
+        firstDrive:home.length?Math.max(0,Math.min(...home.map(p=>Math.min(p.homeUntil,p.deadline)))-this.t):null,
+        active:w.active,activeTotal:w.active<0?0:D.waves[w.active][origin],activeRemaining:w.active<0?0:ps.filter(p=>p.wave===w.active&&p.state==='future').length,
+        next:w.next,nextCount:w.next<0?0:D.waves[w.next][origin],nextIn:w.nextStart===null?null:w.nextStart-this.t};
+    }
+    stats(){return{delivered:this.delivered,cars:this.cars,missed:this.missed,
+      active:this.people.filter(p=>!['future','delivered','car','missed'].includes(p.state)).length,
+      future:this.people.filter(p=>p.state==='future').length,total:this.people.length,time:this.t,moves:this.moves,done:this.done};}
+  }
+  const API={D,P,Game,route,dist,along,length,rng,same,willing,willingG,comes,headwayAt,shareAt,toMTR,reset,slice,split,capacityAt,key};
+  if(typeof module!=='undefined')module.exports=API;root.Tide=API;
+})(typeof window!=='undefined'?window:globalThis);
