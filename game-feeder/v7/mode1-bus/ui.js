@@ -39,7 +39,7 @@
   // the engine records why someone drove in Chinese; these are the keys for showing it
   // v7 · the teaching level's one-line tips (shared/tips.js): the moment → its text
   const TIPS={l1:{start:'tip.start',placed:'tip.placed',full:'tip.full',break:'tip.break'}};
-  const tip=(id,anchor)=>window.Tips&&Tips.fire(id,anchor);
+  const tip=(id,anchor)=>window.Tips&&!window.TL_DEMO?.active&&Tips.fire(id,anchor);   // (no tips while the AI demo plays)
   const boardAt=c=>{const m=$('board').getScreenCTM();if(!m)return null;const [x,y]=xy(c);return{x:m.a*x+m.c*y+m.e,y:m.b*x+m.d*y+m.f+18};};
   const tipStart=()=>{if(!game.started)tip('start',$('stations'));};   // under the A / B / C buttons, clear of the map
   const WHY={'沒有夠近的站':'why.far','站滿了':'why.full','等太久':'why.wait','習慣開車':'why.habit','趕不上課':'why.bell','班次太疏':'why.seldom'};
@@ -63,6 +63,7 @@
     for(const id of ['board','fx'])$(id).setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
     texts();fitBoard();
     if(window.Tips)Tips.setup('m1-'+D.map,TIPS[D.map]||{});
+    window.dispatchEvent(new CustomEvent('tl:level',{detail:D.map}));   // (AI demo: its button follows the level)
   }
   // grow the board's frame to fit every name and label (an estate on the outer edge with a long name)
   function fitBoard(){
@@ -164,6 +165,7 @@
 
   /* ---------------------------------------------------------------- the board */
   function put(cell){
+    if(window.TL_DEMO?.active)return;   // AI demo: the AI is moving the stops
     const was=game.started;
     if(selected<0){const free=game.stops.find(s=>!s.cell);if(free)selected=free.id;else{toast(t('n.pickFirst'),'warn');return;}}
     if(game.place(selected,cell)){
@@ -567,7 +569,7 @@
   function undoMoves(){
     if(!snap)return;game=Object.assign(Object.create(Game.prototype),structuredClone(snap));
     seen=game.events.length;lastDelivered=game.delivered;hover=null;note(t('n.undone'));render();}
-  function reset(msg){snap=null;inter=null;game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
+  function reset(msg){window.TL_DEMO?.stop();snap=null;inter=null;game=new Game();selected=0;playing=false;speed=1;shown=false;hover=null;seen=0;lastDelivered=0;warned=new Set();rang=new Set();
     $('fxl').innerHTML='';last=performance.now();note(msg||t('n.reset'));render();}
   function pauseForInfo(){if(playing)setPlaying(false,t('n.info'));}
 
@@ -619,7 +621,11 @@
     try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   window.addEventListener('tl:lang',()=>{texts();render();if($('result').open)fillResult();if($('lvIntro').open)fillIntro();});
-  window.TL_GAME={loadMap:loadLevel,pause(){if(playing)setPlaying(false);},map:()=>D.map,inProgress:()=>game.started&&!game.done,texts,
+  // AI demo (demo.js): start a replay from an opening; make one move (break or extra) as the AI
+  const demo={start(opening){if($('result').open)$('result').close();reset(t('n.layout'));hover=null;
+      opening.forEach((c,id)=>game.place(id,c));selected=-1;game.start();speed=2;setPlaying(true,t('n.start'));render();},
+    move(id,cell){const ok=game.place(id,cell);if(ok){selected=-1;fxBuilt(id);render();}return ok;}};
+  window.TL_GAME={demo,loadMap:loadLevel,pause(){if(playing)setPlaying(false);},map:()=>D.map,inProgress:()=>game.started&&!game.done,texts,
     state:()=>({t:game.t,round:game.round,playing,inter:inter&&{...inter},done:game.done,acc:game.acc,speed,selected,cooling:game.stops.map(s=>Math.max(0,+(s.ready-game.t).toFixed(1)))})};
   // For the hand-off: every block of the board in screen pixels, so the hub's dots can land exactly on them.
   window.TL_BOARD={targets(){
@@ -640,8 +646,10 @@
   function frame(now){const dt=Math.min(.5,(now-last)/1000);last=now;
     if(playing){
       if(inter){if(now>=inter.end){inter=null;render();}}
-      else{const r0=game.round;game.advance(dt*speed*SPEED_BASE*(fastHeld?FAST:1),{stopAtRound:true});
-        if(game.round!==r0&&!game.done){inter={r:game.round,end:now+INTER_MS,adjust:false};render();tip('break',$('cdown'));}}
+      else{const r0=game.round,demo=window.TL_DEMO?.active?TL_DEMO:null;let dg=dt*speed*SPEED_BASE*(fastHeld?FAST:1);
+        if(demo)dg=demo.clamp(game,dg);   // AI demo: stop exactly on its next move
+        game.advance(dg,{stopAtRound:true});if(demo)demo.tick(game);
+        if(game.round!==r0&&!game.done){inter={r:game.round,end:now+INTER_MS,adjust:false};render();tip('break',$('cdown'));if(demo)demo.onBreak(game);}}
       feedback();drawCountdown();
       if(now-lastDraw>40){drawMap();lastDraw=now;}
       if(now-lastSide>200){drawSide();lastSide=now;}

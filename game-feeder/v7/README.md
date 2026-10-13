@@ -47,6 +47,12 @@ v7/
 
 在模式的 `ui.js` 裡列出「時刻 → 文字」（例如 `TIPS={l1:{start:'tip.start',placed:'tip.placed',full:'tip.full',break:'tip.break'}}`），在那個時刻呼叫 `Tips.fire('placed', 旁邊的元素)`。文字放在 `strings.js`。每條提示每個瀏覽器只出一次；玩家按「不再提示」就全部關掉。
 
+## AI 示範（臨時，之後會刪）
+
+模式 1 每一關左上有「AI 示範」：選一條分數線（過關 / 高分 / 大師），AI 從開局開始把它的擺法和每一次挪站演一遍，左欄逐條寫為什麼（這一輪哪個屋苑人多、新位置接哪些屋苑）。打法由 `bots/v7_demo_plans.js` 算好寫進 `mode1-bus/demo-plans.js`（改了關卡數值要重跑），頁面重演的分數和機器人算的一致（12 套都核對過）。
+
+**刪除方法**：刪 `mode1-bus/demo.js`、`mode1-bus/demo-plans.js`；`mode1-bus/index.html` 和 `build.py` 裡標「AI demo」的兩個檔名；`ui.js` 裡標「AI demo」的幾行（`TL_GAME.demo`、frame 裡的 `clamp / tick / onBreak`、`put` 和 `reset` 開頭各一句、`tl:level` 事件）。不刪也不影響遊戲：沒有 `demo.js` 時這些行什麼都不做。
+
 ## 和 v6 的關係
 
 v7 模式 1 的規則和數值與 v6 相同（v6 第 1–3 關和第 5 關）。v6 第 4 關（青衣 · 習慣）沒有放進模式 1：習慣是「一週一週地變」，屬於之後的地鐵模式。v6 原樣保留。
