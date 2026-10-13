@@ -31,3 +31,29 @@
 #trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
 #trips tfoot td b{color:var(--s-metro);font-size:15px}
 #board{cursor:crosshair;touch-action:none}
+/* v7.4 · six years: the year box, money, experience */
+.yearbox{margin-top:10px;padding:10px 12px}
+.yearbox #yearNum{font:600 15px 'Geist',sans-serif}
+.ychart{display:flex;align-items:flex-end;gap:6px;height:78px;margin-top:8px}
+.ychart .yb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-family:var(--s-mono)}
+.ychart .yb i{display:block;width:100%;max-width:30px;background:var(--s-raise);border:1px dashed var(--s-line2);border-radius:3px 3px 0 0}
+.ychart .yb.done i{background:var(--s-metro);border:none}
+.ychart .yb.next i{background:color-mix(in srgb,var(--s-metro) 22%,transparent);border:1.5px dashed var(--s-metro)}
+.ychart .yb.crowd i{box-shadow:inset 0 3px 0 var(--s-bad)}
+.ychart .yb b{font-size:10.5px;color:var(--s-ink);order:-1;margin-bottom:2px}
+.ychart .yb small{font-size:9.5px;color:var(--s-ink3);margin-top:3px}
+.money{margin-top:10px;padding:10px 12px}
+.money #money{font-size:22px;color:var(--s-metro)}
+.money .note{font-size:12px;line-height:1.55;margin:4px 0}
+.trainrow{margin-top:6px;gap:6px;font-size:13px}
+.trainrow .btn{min-width:32px}
+.expbox{margin-top:8px;padding:10px 12px}
+.xr{display:grid;grid-template-columns:3.6em auto 2.2em 1fr;align-items:center;gap:6px;font-size:12.5px;margin:4px 0}
+.xr .xn{color:var(--s-ink2)}
+.xbar{display:flex;gap:2px}.xbar i{width:11px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.xbar i.neg.on{background:var(--s-bad)}.xbar i.zero.on{background:var(--s-ink3)}.xbar i.pos.on{background:var(--s-accent)}
+.xr b{font:600 13px var(--s-mono);text-align:right}.xr b.pos{color:var(--s-accent)}.xr b.neg{color:var(--s-bad)}
+.xr em{font-style:normal;font-size:11px;color:var(--s-ink3)}.xr em.up{color:var(--s-accent)}.xr em.down{color:var(--s-bad)}
+.maplegend .lk.crowd{background:var(--s-bad)}
+#trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
+.mapplate .toast{z-index:5}

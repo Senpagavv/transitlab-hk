@@ -618,6 +618,32 @@ dialog.intro .row{margin-top:16px}
 #trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
 #trips tfoot td b{color:var(--s-metro);font-size:15px}
 #board{cursor:crosshair;touch-action:none}
+/* v7.4 · six years: the year box, money, experience */
+.yearbox{margin-top:10px;padding:10px 12px}
+.yearbox #yearNum{font:600 15px 'Geist',sans-serif}
+.ychart{display:flex;align-items:flex-end;gap:6px;height:78px;margin-top:8px}
+.ychart .yb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-family:var(--s-mono)}
+.ychart .yb i{display:block;width:100%;max-width:30px;background:var(--s-raise);border:1px dashed var(--s-line2);border-radius:3px 3px 0 0}
+.ychart .yb.done i{background:var(--s-metro);border:none}
+.ychart .yb.next i{background:color-mix(in srgb,var(--s-metro) 22%,transparent);border:1.5px dashed var(--s-metro)}
+.ychart .yb.crowd i{box-shadow:inset 0 3px 0 var(--s-bad)}
+.ychart .yb b{font-size:10.5px;color:var(--s-ink);order:-1;margin-bottom:2px}
+.ychart .yb small{font-size:9.5px;color:var(--s-ink3);margin-top:3px}
+.money{margin-top:10px;padding:10px 12px}
+.money #money{font-size:22px;color:var(--s-metro)}
+.money .note{font-size:12px;line-height:1.55;margin:4px 0}
+.trainrow{margin-top:6px;gap:6px;font-size:13px}
+.trainrow .btn{min-width:32px}
+.expbox{margin-top:8px;padding:10px 12px}
+.xr{display:grid;grid-template-columns:3.6em auto 2.2em 1fr;align-items:center;gap:6px;font-size:12.5px;margin:4px 0}
+.xr .xn{color:var(--s-ink2)}
+.xbar{display:flex;gap:2px}.xbar i{width:11px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.xbar i.neg.on{background:var(--s-bad)}.xbar i.zero.on{background:var(--s-ink3)}.xbar i.pos.on{background:var(--s-accent)}
+.xr b{font:600 13px var(--s-mono);text-align:right}.xr b.pos{color:var(--s-accent)}.xr b.neg{color:var(--s-bad)}
+.xr em{font-style:normal;font-size:11px;color:var(--s-ink3)}.xr em.up{color:var(--s-accent)}.xr em.down{color:var(--s-bad)}
+.maplegend .lk.crowd{background:var(--s-bad)}
+#trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
+.mapplate .toast{z-index:5}
 </style></head><body class="entered">
 
 <header id="topbar">
@@ -632,19 +658,23 @@ dialog.intro .row{margin-top:16px}
   <aside class="side scol">
     <div class="row"><a class="btn btn-sm" href="../开始.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="m.mode">Mode 02 · 地鐵</span></div>
     <h1 class="h1"><span>The metro</span><span class="h1tc" data-i18n="m.levelTitle">新界西北 · 一條新線</span></h1>
-    <p class="lede" data-i18n-html="m.lede"></p>
 
     <div class="box bigscore">
-      <div class="lbl" data-i18n="m.scoreLbl">每天少開</div>
-      <div class="row"><b id="score">0</b><span class="unit" data-i18n="m.scoreUnit">車次</span><div class="sp"></div><span class="mono" id="ofTotal"></span></div>
+      <div class="lbl" data-i18n="m.scoreLbl">六年累計少開</div>
+      <div class="row"><b id="score">0</b><span class="unit" data-i18n="m.scoreUnit">車次</span><div class="sp"></div><span class="mono" id="thisYear"></span></div>
       <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
       <div class="note" id="goal"></div>
     </div>
 
-    <div class="box budget">
-      <div class="row"><span class="lbl" data-i18n="m.budgetLbl">預算</span><div class="sp"></div><span class="mono" id="budgetNum"></span></div>
-      <div class="bbar"><i id="bbLine"></i><i id="bbStation"></i></div>
-      <div class="note mono" id="budgetSum"></div>
+    <div class="box yearbox">
+      <div class="row"><b id="yearNum"></b><div class="sp"></div><button class="btn btn-p" id="run"></button></div>
+      <div class="ychart" id="yChart"></div>
+    </div>
+
+    <div class="box money">
+      <div class="row"><span class="lbl" data-i18n="m.moneyLbl">錢</span><div class="sp"></div><b class="mono" id="money"></b></div>
+      <div class="note" id="moneyNote"></div>
+      <div class="row trainrow"><span id="trainsTxt"></span><div class="sp"></div><button class="btn btn-sm" id="trainMinus">−</button><button class="btn btn-sm" id="trainPlus">＋</button></div>
     </div>
 
     <div class="row tools">
@@ -652,13 +682,13 @@ dialog.intro .row{margin-top:16px}
       <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="m.clear">清空</button>
     </div>
     <p class="hint" id="toolHint"></p>
-    <button class="btn btn-p" id="submit" data-i18n="m.submit">完成方案</button>
 
-    <div class="lbl" style="margin-top:18px" data-i18n="m.rulesH">Three rules · 三條規則</div>
+    <div class="lbl" style="margin-top:14px" data-i18n="m.rulesH">Four rules · 四條規則</div>
     <ol class="mini">
       <li data-i18n-html="m.rule1"></li>
       <li id="rule2"></li>
       <li id="rule3"></li>
+      <li id="rule4"></li>
     </ol>
   </aside>
 
@@ -666,12 +696,15 @@ dialog.intro .row{margin-top:16px}
     <div class="mapplate">
       <svg id="board" viewBox="0 0 1000 620" role="group"></svg>
       <div class="maplegend" id="mapLegend"></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
     </div>
   </div>
 
   <aside class="side right scol">
-    <div class="lbl" data-i18n="m.tripsH">Trips · 每條愿望線</div>
-    <p class="note" data-i18n="m.tripsNote">點一行，地圖上會亮出那條線。</p>
+    <div class="lbl" data-i18n="m.expH">Experience · 經驗常數</div>
+    <div class="box expbox" id="expBox"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="m.tripsH">Trips · 每條愿望線</div>
+    <p class="note" data-i18n="m.tripsNote">點一行，地圖上會亮出那條線和它怎麼走。</p>
     <table id="trips"></table>
   </aside>
 </main>
@@ -680,7 +713,7 @@ dialog.intro .row{margin-top:16px}
 <span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="m.infoH">地鐵模式的規則</h2><div id="infoBody"></div></dialog>
 
 <dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
-<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.keep">繼續改</button><button id="again" class="btn" data-i18n="m.restart">從頭來過 ↺</button></div></dialog>
+<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.seeBoard">看看地圖</button><button id="again" class="btn" data-i18n="m.restart">從頭來過 ↺</button></div></dialog>
 
 <dialog id="lvIntro" class="intro"><span class="lbl">MODE 02 · THE METRO</span><h2 class="h1" data-i18n="m.levelTitle"></h2>
 <p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m2.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m2.course"></p>
@@ -706,7 +739,9 @@ dialog.intro .row{margin-top:16px}
     destinations:[
       {name:'元朗市中心',hans:'元朗市中心',kind:'town',cell:[13,4],house:[1,0]},
       {name:'洪水橋新發展區',hans:'洪水桥新发展区',kind:'jobs',cell:[7,2],house:[0,-1]}],
-    wait:2,lineCost:1,stationCost:3,budget:30,tiers:[65,90,105]};   // bots/v7_metro_static.js: best 108, local optima p90 94, median 62
+    wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,fare:10,budget:30,years:6,exp:{start:-3,min:-3,max:3},
+    // bots/v7_metro_years.js (six years): never spending 333, trains only 579, trains + extensions 694
+    tiers:[450,600,680]};
   NW.car=carTable(NW.origins,NW.destinations);
   const LEVELS={'m2-1':NW};
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
@@ -724,64 +759,102 @@ dialog.intro .row{margin-top:16px}
 (function(root) {
   'use strict';
   const D=typeof module!=='undefined'?require('./data.js'):root.METRO_DATA;
-  // v7 · mode 2 «the metro», static version (2026-10-13, after the lead's review of the first draft — that one, with
-  // weeks, trains and habit, is commit c1ba721). One rule, counted in blocks:
-  //   a metro trip = walk to a station (blocks) + wait 2 + 1 for every station the train passes on the way + walk from
-  //   the station (blocks). The car trip is a number on each desire line. Every block the metro saves on the car,
-  //   one in ten people switch: 3 blocks saved → 3 in 10 (capped at 10 in 10).
-  //   You draw one line on the grid (it may turn, never branches) and put stations on it, within a budget: each block
-  //   of line costs `lineCost`, each station `stationCost`.
-  //   Score: people a day who leave the car for the metro (car trips saved).
-  const P={wait:2,lineCost:1,stationCost:3,budget:30,target:0,highScore:0,masterScore:0};
+  // v7 · mode 2 «the metro» — six years of one line (2026-10-13: the static version, commit b36f747, was too quick to
+  // solve; the lead asked for the experience constant to iterate). Everything is counted in blocks:
+  //   a metro trip = walk to a station + wait 2 + 1 for every station passed + walk from the station; the car trip is
+  //   the blocks apart + 2 to park. Tenths who switch = blocks saved + the estate's EXPERIENCE (0…10).
+  //   Experience (the mode constant of a choice model, made visible): each estate starts at `exp.start` (a new line,
+  //   nobody knows it). After every year it moves 1 step: +1 if the estate's riders rode in comfort, −1 if more than a
+  //   third of them sat in a crowded section (between `exp.min` and `exp.max`). An estate nobody of which rides
+  //   doesn't change.
+  //   Crowding: every section of line (between two neighbouring cells) carries everyone whose ride passes it; it holds
+  //   `trains` × `perTrain` a day. Over that, the section is crowded.
+  //   Money: you open with `budget`. After each year the fares bring 1 for every `fare` riders a day. Between years you
+  //   may extend the line at either end, add stations, add trains — never remove what is built.
+  //   Score: the riders of all years added up (car trips saved).
+  const P={wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,fare:10,budget:30,years:6,crowdShare:1/3,
+    exp:{start:-3,min:-3,max:3},target:0,highScore:0,masterScore:0};
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
   const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
   const adj=(a,b)=>walk(a,b)===1;
-  function reset(){for(const k of ['wait','lineCost','stationCost','budget'])if(D[k]!==undefined)P[k]=D[k];[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
+  function reset(){for(const k of ['wait','lineCost','stationCost','trainCost','perTrain','fare','budget','years','crowdShare'])if(D[k]!==undefined)P[k]=D[k];
+    if(D.exp)P.exp={...P.exp,...D.exp};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
   reset();
   // every desire line: from estate i to destination k, people a day and the car trip in blocks
   function trips(){const out=[];D.origins.forEach((o,i)=>o.to.forEach((n,k)=>{if(n>0)out.push({i,k,people:n,car:D.car[i][k]});}));return out;}
-  const cost=(line,stations)=>line.length*P.lineCost+stations.length*P.stationCost;
   // the best metro trip for one desire line: the station pair (board, alight) with the fewest blocks
   function best(trip,line,stations){
-    const o=D.origins[trip.i].cell,d=D.destinations[trip.k].cell,order=stations.map(s=>line.findIndex(c=>same(c,s))).map((x,j)=>({x,c:stations[j]})).sort((a,b)=>a.x-b.x);
+    const o=D.origins[trip.i].cell,d=D.destinations[trip.k].cell,order=stations.map(s=>({x:line.findIndex(c=>same(c,s)),c:s})).sort((a,b)=>a.x-b.x);
     let b=null;
     order.forEach((a,ia)=>order.forEach((z,iz)=>{if(ia===iz)return;
       const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,metro=wa+P.wait+pass+wz;
-      if(!b||metro<b.metro)b={from:a.c,to:z.c,walkA:wa,pass,walkB:wz,metro};}));
+      if(!b||metro<b.metro)b={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,metro};}));
     return b;
   }
-  // the whole board: every desire line's metro trip, blocks saved, share (tenths) and riders; the total
-  function evaluate(line,stations){
-    const rows=trips().map(tr=>{const b=best(tr,line,stations);
-      if(!b)return{...tr,metro:null,save:0,tenths:0,riders:0};
-      const save=Math.max(0,tr.car-b.metro),tenths=Math.min(10,save);
-      return{...tr,...b,save,tenths,riders:Math.round(tr.people*tenths/10)};});
-    return{rows,riders:rows.reduce((a,r)=>a+r.riders,0),cost:cost(line,stations),people:rows.reduce((a,r)=>a+r.people,0)};
+  // a year with this line, these stations, these trains and this experience: every desire line, every section's load
+  function evaluate(line,stations,exp=D.origins.map(()=>0),trains=1){
+    const rows=trips().map(tr=>{const b=best(tr,line,stations),e=exp[tr.i];
+      if(!b)return{...tr,metro:null,save:0,exp:e,tenths:0,riders:0};
+      const save=Math.max(0,tr.car-b.metro),tenths=Math.max(0,Math.min(10,save>0?save+e:0));
+      return{...tr,...b,save,exp:e,tenths,riders:Math.round(tr.people*tenths/10)};});
+    // section j joins line[j] and line[j+1]
+    const load=Array(Math.max(0,line.length-1)).fill(0),cap=trains*P.perTrain;
+    for(const r of rows)if(r.riders)for(let j=Math.min(r.fx,r.tx);j<Math.max(r.fx,r.tx);j++)load[j]+=r.riders;
+    const crowded=load.map(n=>n>cap);
+    for(const r of rows){r.crowded=false;if(r.riders)for(let j=Math.min(r.fx,r.tx);j<Math.max(r.fx,r.tx);j++)if(crowded[j]){r.crowded=true;break;}}
+    const riders=rows.reduce((a,r)=>a+r.riders,0);
+    return{rows,riders,load,cap,crowded,people:rows.reduce((a,r)=>a+r.people,0)};
   }
-  // the plan being drawn: one line of cells (each next to the one before, none twice) and stations on it
+  // how each estate's experience moves after a year
+  function nextExp(ev,exp){return D.origins.map((o,i)=>{const rs=ev.rows.filter(r=>r.i===i&&r.riders),n=rs.reduce((a,r)=>a+r.riders,0);
+    if(!n)return exp[i];const bad=rs.filter(r=>r.crowded).reduce((a,r)=>a+r.riders,0)/n;
+    return Math.max(P.exp.min,Math.min(P.exp.max,exp[i]+(bad>P.crowdShare?-1:1)));});}
+  // the game: year 0 is planning (draw freely within the budget); then each year runs, the fares come in, and you may
+  // only add to what is built
   class Plan {
-    constructor(){this.line=[];this.stations=[];}
-    cost(){return cost(this.line,this.stations);}
-    left(){return P.budget-this.cost();}
+    constructor(){Object.assign(this,{line:[],stations:[],trains:1,money:P.budget,year:0,exp:D.origins.map(()=>P.exp.start),
+      builtLine:0,builtStations:[],log:[],total:0,done:false});}
+    get open(){return this.year>0;}
+    cost(){return this.open?0:this.line.length*P.lineCost+this.stations.length*P.stationCost+(this.trains-1)*P.trainCost;}
+    left(){return this.money;}
     inside(c){return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows;}
     onLine(c){return this.line.some(x=>same(x,c));}
     isStation(c){return this.stations.some(x=>same(x,c));}
-    // a cell the line can grow into: empty, next to one end (any free cell to begin with)
-    canExtend(c){if(!this.inside(c)||this.onLine(c)||this.left()<P.lineCost)return false;
+    built(c){return this.open&&(this.builtStations.some(x=>same(x,c)));}
+    canExtend(c){if(this.done||!this.inside(c)||this.onLine(c)||this.money<P.lineCost)return false;
       if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
-    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());return true;}
-    // take an end cell off (its station goes with it)
+    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());
+      this.money-=P.lineCost;return true;}
     isEnd(c){return this.line.length>0&&(same(c,this.line[0])||same(c,this.line.at(-1)));}
-    shorten(c){if(!this.isEnd(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else this.line.shift();this.stations=this.stations.filter(s=>!same(s,c));return true;}
-    canStation(c){return this.onLine(c)&&!this.isStation(c)&&this.left()>=P.stationCost;}
-    toggleStation(c){if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));return true;}if(!this.canStation(c))return false;this.stations.push(c.slice());return true;}
-    clear(){this.line=[];this.stations=[];}
-    evaluate(){return evaluate(this.line,this.stations);}
-    // what one more station / one less would do (the preview)
-    withStation(c){const s=this.isStation(c)?this.stations.filter(x=>!same(x,c)):[...this.stations,c];return evaluate(this.line,s);}
-    copy(){const p=new Plan();p.line=this.line.map(c=>c.slice());p.stations=this.stations.map(c=>c.slice());return p;}
+    // an end cell comes off only while it isn't built yet (in year 0 anything; later only this year's additions)
+    canShorten(c){if(!this.isEnd(c)||this.done)return false;if(!this.open)return true;const i=this.line.findIndex(x=>same(x,c));return !this.builtCells().has(key(this.line[i]));}
+    shorten(c){if(!this.canShorten(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else{this.line.shift();}
+      if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;}this.money+=P.lineCost;return true;}
+    builtCells(){return new Set(this.open?this.builtSet:[]);}
+    canStation(c){return !this.done&&this.onLine(c)&&!this.isStation(c)&&this.money>=P.stationCost;}
+    toggleStation(c){
+      if(this.isStation(c)){if(this.built(c)||this.done)return false;this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;return true;}
+      if(!this.canStation(c))return false;this.stations.push(c.slice());this.money-=P.stationCost;return true;}
+    canTrain(){return !this.done&&this.money>=P.trainCost;}
+    addTrain(){if(!this.canTrain())return false;this.trains++;this.money-=P.trainCost;return true;}
+    canUntrain(){return !this.done&&this.trains>(this.open?this.builtTrains:1);}
+    removeTrain(){if(!this.canUntrain())return false;this.trains--;this.money+=P.trainCost;return true;}
+    clear(){if(this.open)return false;Object.assign(this,{line:[],stations:[],trains:1,money:P.budget});return true;}
+    evaluate(){return evaluate(this.line,this.stations,this.exp,this.trains);}
+    // what one more station / one less would do this year (the preview)
+    withStation(c){const s=this.isStation(c)?this.stations.filter(x=>!same(x,c)):[...this.stations,c];return evaluate(this.line,s,this.exp,this.trains);}
+    withTrains(n){return evaluate(this.line,this.stations,this.exp,n);}
+    // run a year: count it, collect the fares, move every estate's experience; what was planned is now built
+    canRun(){return !this.done&&this.stations.length>=2;}
+    runYear(){if(!this.canRun())return null;
+      const ev=this.evaluate(),income=Math.floor(ev.riders/P.fare),before=this.exp.slice(),after=nextExp(ev,this.exp);
+      this.year++;this.total+=ev.riders;this.money+=income;this.exp=after;
+      this.builtSet=this.line.map(key);this.builtStations=this.stations.map(c=>c.slice());this.builtTrains=this.trains;
+      const entry={year:this.year,riders:ev.riders,income,before,after,trains:this.trains,crowdedSections:ev.crowded.filter(Boolean).length,stations:this.stations.length,line:this.line.length};
+      this.log.push(entry);if(this.year>=P.years)this.done=true;return{...entry,ev};}
+    copy(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));return p;}
   }
-  const API={D,P,Plan,evaluate,trips,best,walk,same,key,adj,reset,cost};
+  const API={D,P,Plan,evaluate,nextExp,trips,best,walk,same,key,adj,reset};
   if(typeof module!=='undefined')module.exports=API;root.Metro=API;
 })(typeof window!=='undefined'?window:globalThis);
 
@@ -910,16 +983,76 @@ dialog.intro .row{margin-top:16px}
       '<li>Today <b>everybody drives</b>. The grey lines are desire lines: who goes from which estate to where each day (thicker = more).</li><li>Draw one metro line (it may turn, never branch) and put stations on it: {lc} a block, {sc} a station, budget {b}.</li><li>A metro trip = walk to a station + wait {w} + stations passed + walk to the destination. <b>Every block saved on the car, one in ten switch.</b></li><li>More stations mean shorter walks — but everyone riding through pays 1 per stop. Hover a cell to see whether a station pays before you place it.</li>'),
     'iv.m2.course':L('課程連結：出行分佈（愿望線）、方式選擇（和開車比時間）、站距的取捨（覆蓋 vs 速度）。','课程链接：出行分布（愿望线）、方式选择（和开车比时间）、站距的取舍（覆盖 vs 速度）。','Course link: trip distribution (desire lines), mode choice (time against the car), stop spacing (coverage vs speed).')
   });
+  // v7.4 · six years with the experience constant
+  I18N.add({
+    'm.scoreLbl':L('六年累計少開','六年累计少开','Car trips saved, six years'),
+    'm.firstYear':L('第 1 年預計每天 {n} 人','第 1 年预计每天 {n} 人','year 1: {n} a day expected'),
+    'm.thisYear':L('第 {y} 年預計每天 {n} 人','第 {y} 年预计每天 {n} 人','year {y}: {n} a day expected'),
+    'm.yearPlan':L('第 0 年 · 規劃','第 0 年 · 规划','Year 0 · planning'),'m.yearN':L('第 {y} / {m} 年過去了','第 {y} / {m} 年过去了','Year {y} / {m} done'),
+    'm.yearDone':L('{m} 年都過去了','{m} 年都过去了','All {m} years done'),
+    'm.run0':L('開通 · 跑第 1 年 ▶','开通 · 跑第 1 年 ▶','Open · run year 1 ▶'),'m.runN':L('跑第 {n} 年 ▶','跑第 {n} 年 ▶','Run year {n} ▶'),'m.runDone':L('看結果','看结果','Results'),
+    'm.yShort':L('第{y}年','第{y}年','Y{y}'),
+    'm.moneyLbl':L('錢','钱','Money'),
+    'm.money0':L('開通前：線每格 {lc} · 站 {sc} · 多一列車 {tc}','开通前：线每格 {lc} · 站 {sc} · 多一列车 {tc}','Before opening: {lc} a block · {sc} a station · {tc} a train'),
+    'm.moneyN':L('去年票價 <b>+{n}</b>（每天每 {f} 人收 1）。延長每格 {lc} · 加站 {sc} · 加車 {tc}；建好的不能拆。','去年票价 <b>+{n}</b>（每天每 {f} 人收 1）。延长每格 {lc} · 加站 {sc} · 加车 {tc}；建好的不能拆。',
+      'Fares last year <b>+{n}</b> (1 for every {f} riders a day). Extend {lc} a block · station {sc} · train {tc}; nothing built comes down.'),
+    'm.trains':L('列車 <b>{n}</b> 列 · 每段每天最多載 <b>{c}</b> 人','列车 <b>{n}</b> 列 · 每段每天最多载 <b>{c}</b> 人','<b>{n}</b> trains · each section carries <b>{c}</b> a day'),
+    'm.hintGrow':L('這一年可以從兩頭延長線（虛線框的格子）、加站、加列車。今年新加的會畫成虛線，跑完這一年才算建好。','这一年可以从两头延长线（虚线框的格子）、加站、加列车。今年新加的会画成虚线，跑完这一年才算建好。',
+      'This year you may extend from either end (dashed cells), add stations, add trains. New work is dashed until the year has run.'),
+    'm.hintDone':L('六年結束。可以看結果，或從頭來過。','六年结束。可以看结果，或从头来过。','Six years done. See the results, or start over.'),
+    'm.expH':L('Experience · 經驗常數','Experience · 经验常数','Experience'),
+    'm.expUp':L('→ +1 舒服','→ +1 舒服','→ +1 comfy'),'m.expDown':L('→ −1 太擠','→ −1 太挤','→ −1 crowded'),
+    'm.expSame':L('→ 不變','→ 不变','→ same'),
+    'm.expNote':L('經驗常數＝大家對地鐵的感覺，加在「省幾格」上。新線開始是 −3（還不熟，當作多走 3 格）；每過一年，坐得舒服的屋苑 +1，挨擠的 −1，在 −3 到 +3 之間。','经验常数＝大家对地铁的感觉，加在「省几格」上。新线开始是 −3（还不熟，当作多走 3 格）；每过一年，坐得舒服的屋苑 +1，挨挤的 −1，在 −3 到 +3 之间。',
+      'Experience = how people feel about the metro, added to the blocks saved. A new line starts at −3 (unfamiliar: as if 3 blocks longer); each year an estate that rode in comfort gets +1, a crowded one −1, between −3 and +3.'),
+    'm.tExp':L('經驗','经验','exp.'),'m.expChip':L('經驗 {e}','经验 {e}','exp {e}'),
+    'm.dlFull':L('省 {s} 格 {e} 經驗 → {n} 成 · {p} 人','省 {s} 格 {e} 经验 → {n} 成 · {p} 人','saves {s} {e} exp → {n}/10 · {p}'),
+    'm.crowd':L('擠！{a} / {b} 人','挤！{a} / {b} 人','crowded! {a} / {b}'),'m.nearly':L('快滿 {a} / {b} 人','快满 {a} / {b} 人','nearly full {a} / {b}'),
+    'm.pvBuilt':L('已經建好，不能拆','已经建好，不能拆','built — cannot remove'),'m.nBuilt':L('已經建好的不能拆。','已经建好的不能拆。','What is built stays.'),
+    'm.tYear':L('第 {y} 年：每天 {r} 人坐地鐵 · 票價 +{f}','第 {y} 年：每天 {r} 人坐地铁 · 票价 +{f}','Year {y}: {r} a day by metro · fares +{f}'),
+    'm.tCrowd':L('{n} 段太擠','{n} 段太挤','{n} sections crowded'),
+    'm.rScore':L('六年累計少開 {d} 車次 · 剩下的錢 {m}','六年累计少开 {d} 车次 · 剩下的钱 {m}','{d} car trips saved over six years · money left {m}'),
+    'm.ryYear':L('年','年','Year'),'m.ryRiders':L('每天坐地鐵','每天坐地铁','By metro a day'),'m.ryIncome':L('票價','票价','Fares'),'m.ryTrains':L('列車','列车','Trains'),
+    'm.ryStations':L('站','站','Stations'),'m.ryCrowd':L('擠的段','挤的段','Crowded'),'m.ryExp':L('經驗（各屋苑）','经验（各屋苑）','Experience (estates)'),
+    'm.tipCrowd':L('有 <b>{n}</b> 年車廂太擠：擠過的屋苑經驗 −1，第二年坐的人就少了。看到快滿（橙色）就先加列車。','有 <b>{n}</b> 年车厢太挤：挤过的屋苑经验 −1，第二年坐的人就少了。看到快满（橙色）就先加列车。',
+      'Crowded in <b>{n}</b> years: the estates squeezed lose 1 experience, and fewer ride the year after. Add a train when a section turns orange.'),
+    'm.tipNever':L('<b>{a}</b> 六年都沒人坐：經驗一直是 −3。從線頭延長過去、放一個站，它才會開始變好。','<b>{a}</b> 六年都没人坐：经验一直是 −3。从线头延长过去、放一个站，它才会开始变好。',
+      '<b>{a}</b> never rode in six years: its experience stayed −3. Extend an end towards it and add a station to get it started.'),
+    'm.tipMoney':L('最後還剩 <b>{n}</b> 錢：早幾年把它用來延長線或加車，會多收更多票價。','最后还剩 <b>{n}</b> 钱：早几年把它用来延长线或加车，会多收更多票价。',
+      '<b>{n}</b> money left at the end: spent earlier on extensions or trains, it would have brought more fares.'),
+    'm.tip3':L('線、站、車都安排得好：經驗一路上升，車廂從沒擠過。','线、站、车都安排得好：经验一路上升，车厢从没挤过。','Line, stations and trains well planned: experience rose every year, never a crowded section.'),
+    'm.seeBoard':L('看看地圖','看看地图','See the board'),
+    'm.rulesH':L('Four rules · 四條規則','Four rules · 四条规则','Four rules'),
+    'm.rule1':L('<b>換的成數＝比開車省的格數 ＋ 經驗常數。</b>開車要幾格，寫在右邊的表裡。','<b>换的成数＝比开车省的格数 ＋ 经验常数。</b>开车要几格，写在右边的表里。','<b>Tenths who switch = blocks saved on the car + experience.</b> The car trip is in the table on the right.'),
+    'm.rule2':L('<b>坐地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾個站 ＋ 走到目的地。</b>走路一格算 1；地鐵快，只在每停一站多 1。','<b>坐地铁＝走到站 ＋ 等车 {w} ＋ 路过几个站 ＋ 走到目的地。</b>走路一格算 1；地铁快，只在每停一站多 1。',
+      '<b>Metro = walk to a station + wait {w} + stations passed + walk to the destination.</b> Walking is 1 a block; the metro is fast — each stop on the way adds 1.'),
+    'm.rule3':L('<b>經驗會變。</b>新線從 {e} 開始；每過一年，坐得舒服的屋苑 +1，車廂太擠的 −1。每段線每天最多載「列車數 × {pt}」人，超過就擠。','<b>经验会变。</b>新线从 {e} 开始；每过一年，坐得舒服的屋苑 +1，车厢太挤的 −1。每段线每天最多载「列车数 × {pt}」人，超过就挤。',
+      '<b>Experience moves.</b> A new line starts at {e}; each year an estate that rode in comfort gets +1, a crowded one −1. A section carries trains × {pt} a day; more than that is crowded.'),
+    'm.rule4':L('<b>錢。</b>開通前有 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}。之後每年按坐車人數收票價（每天每 {f} 人收 1），可以延長、加站、加車，建好的不能拆。一共 {y} 年。','<b>钱。</b>开通前有 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}。之后每年按坐车人数收票价（每天每 {f} 人收 1），可以延长、加站、加车，建好的不能拆。一共 {y} 年。',
+      '<b>Money.</b> {b} before opening: {lc} a block, {sc} a station, {tc} a train. Then fares each year (1 for every {f} riders a day) pay for extensions, stations and trains; nothing built comes down. {y} years.'),
+    'm.legend':L('<span><i class="lk car"></i>愿望線：灰＝還在開車</span><span><i class="lk metro"></i>棕色＝改坐地鐵的幾成</span><span><i class="lk crowd"></i>紅色線段＝車廂太擠</span>',
+      '<span><i class="lk car"></i>愿望线：灰＝还在开车</span><span><i class="lk metro"></i>棕色＝改坐地铁的几成</span><span><i class="lk crowd"></i>红色线段＝车厢太挤</span>',
+      '<span><i class="lk car"></i>desire line: grey = still driving</span><span><i class="lk metro"></i>brown = the tenths by metro</span><span><i class="lk crowd"></i>red section = crowded</span>'),
+    'm.info':L('<ol class="rules"><li><b>愿望線。</b>每個屋苑每天有人要去元朗市中心和洪水橋新發展區（越粗越多），今天全部開車；開車要幾格＝兩地相隔幾格 ＋ 2 格泊車。</li><li><b>第 0 年規劃。</b>在棋盤上畫一條線（可拐彎，不分叉、不走回頭）、在線上放站；開通前有 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}（開始有 1 列）。</li><li><b>坐地鐵要幾格。</b>走到站（每格 1）＋ 等車 {w} ＋ 路過幾個站（每個 1）＋ 從站走到目的地（每格 1），每個人挑最快的上落車站。</li><li><b>幾成人換。</b>換的成數＝比開車省的格數 ＋ 該屋苑的經驗常數（0 到 10 成；不比開車快就沒人換）。</li><li><b>經驗常數。</b>每個屋苑一個數，新線開始是 {e}。每跑完一年：這個屋苑坐地鐵的人裡，三分之一以上坐過太擠的線段就 −1，不然 +1；沒人坐就不變；在 −3 到 +3 之間。</li><li><b>擠。</b>每段線（相鄰兩格之間）每天載經過它的所有人；最多「列車數 × {pt}」人，超過就算太擠。</li><li><b>一年一年。</b>每年結束按每天坐車人數收票價：每 {f} 人收 1。兩年之間可以延長線頭、加站、加列車；已經建好的不能拆。一共 {y} 年。</li><li><b>分數。</b>{y} 年每天坐地鐵的人數加起來＝少開的車次。</li></ol>',
+      '<ol class="rules"><li><b>愿望线。</b>每个屋苑每天有人要去元朗市中心和洪水桥新发展区（越粗越多），今天全部开车；开车要几格＝两地相隔几格 ＋ 2 格泊车。</li><li><b>第 0 年规划。</b>在棋盘上画一条线（可拐弯，不分叉、不走回头）、在线上放站；开通前有 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}（开始有 1 列）。</li><li><b>坐地铁要几格。</b>走到站（每格 1）＋ 等车 {w} ＋ 路过几个站（每个 1）＋ 从站走到目的地（每格 1），每个人挑最快的上落车站。</li><li><b>几成人换。</b>换的成数＝比开车省的格数 ＋ 该屋苑的经验常数（0 到 10 成；不比开车快就没人换）。</li><li><b>经验常数。</b>每个屋苑一个数，新线开始是 {e}。每跑完一年：这个屋苑坐地铁的人里，三分之一以上坐过太挤的线段就 −1，不然 +1；没人坐就不变；在 −3 到 +3 之间。</li><li><b>挤。</b>每段线（相邻两格之间）每天载经过它的所有人；最多「列车数 × {pt}」人，超过就算太挤。</li><li><b>一年一年。</b>每年结束按每天坐车人数收票价：每 {f} 人收 1。两年之间可以延长线头、加站、加列车；已经建好的不能拆。一共 {y} 年。</li><li><b>分数。</b>{y} 年每天坐地铁的人数加起来＝少开的车次。</li></ol>',
+      '<ol class="rules"><li><b>Desire lines.</b> Each estate sends people every day to Yuen Long town centre and the Hung Shui Kiu new town (thicker = more); today they all drive. The car trip = blocks apart + 2 to park.</li><li><b>Year 0: plan.</b> Draw a line on the grid (it may turn, never branch or double back) and put stations on it. {b} to spend: {lc} a block, {sc} a station, {tc} a train (you start with 1).</li><li><b>A metro trip.</b> Walk to a station (1 a block) + wait {w} + stations passed (1 each) + walk from the station (1 a block); everyone takes the fastest pair.</li><li><b>How many switch.</b> Tenths = blocks saved + the estate\'s experience (0–10; no faster than the car, nobody).</li><li><b>Experience.</b> One number per estate, {e} on a new line. After each year: if more than a third of the estate\'s riders sat in a crowded section, −1, else +1; nobody riding, no change; between −3 and +3.</li><li><b>Crowding.</b> Each section (between two neighbouring cells) carries everyone riding through it; it holds trains × {pt} a day; more is crowded.</li><li><b>Year by year.</b> After each year the fares come in: 1 for every {f} riders a day. Between years extend an end, add stations, add trains; nothing built comes down. {y} years.</li><li><b>Score.</b> Daily metro riders of all {y} years added up = car trips saved.</li></ol>'),
+    'iv.m2.new':L('<b>地鐵</b>：畫線、放站，再經營六年——大家對地鐵的「經驗」會一年一年變。','<b>地铁</b>：画线、放站，再经营六年——大家对地铁的「经验」会一年一年变。','<b>The metro</b>: draw a line, place stations, then run it for six years — people\'s experience of it changes year by year.'),
+    'iv.m2.body':L('<li>今天大家<b>全部開車</b>。灰線是「愿望線」：每天從哪裡去哪裡、多少人。</li><li>第 0 年：畫一條線、放站（預算 {b}）。坐地鐵要幾格＝走到站 ＋ 等車 {w} ＋ 路過幾個站 ＋ 走到目的地；<b>換的成數＝比開車省的格數 ＋ 經驗常數</b>。</li><li>新線大家還不熟，經驗從 {e} 開始。每過一年，坐得舒服 +1，車廂太擠 −1——所以車要夠，線段別變紅。</li><li>每年收票價，兩年之間可以延長、加站、加車。六年加起來，看你讓多少車次不用開。</li>',
+      '<li>今天大家<b>全部开车</b>。灰线是「愿望线」：每天从哪里去哪里、多少人。</li><li>第 0 年：画一条线、放站（预算 {b}）。坐地铁要几格＝走到站 ＋ 等车 {w} ＋ 路过几个站 ＋ 走到目的地；<b>换的成数＝比开车省的格数 ＋ 经验常数</b>。</li><li>新线大家还不熟，经验从 {e} 开始。每过一年，坐得舒服 +1，车厢太挤 −1——所以车要够，线段别变红。</li><li>每年收票价，两年之间可以延长、加站、加车。六年加起来，看你让多少车次不用开。</li>',
+      '<li>Today <b>everybody drives</b>. The grey lines are desire lines: who goes where each day, and how many.</li><li>Year 0: draw a line and place stations (budget {b}). A metro trip = walk + wait {w} + stations passed + walk; <b>tenths who switch = blocks saved + experience</b>.</li><li>A new line is unfamiliar: experience starts at {e}. Each year a comfortable estate gets +1, a crowded one −1 — so run enough trains, keep sections from turning red.</li><li>Fares come in every year; between years extend, add stations or trains. Six years added up: how many car trips did you save?</li>'),
+    'iv.m2.course':L('課程連結：方式選擇的常數（經驗常數）、服務水平與擁擠的回饋、分期建設與票價收入。','课程链接：方式选择的常数（经验常数）、服务水平与拥挤的回馈、分期建设与票价收入。','Course link: the mode constant in choice models (experience), level of service and crowding feedback, staged construction and fare revenue.')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();
 
 </script><script>
 (()=>{
   'use strict';
-  // v7 · mode 2 «the metro», static version — the page. Draw one line on the grid, put stations on it, and every
-  // desire line shows at once how many people leave the car. Nothing runs in time: the score is the plan.
-  const {Plan,D,P,evaluate,walk,same}=Metro,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
-  const CS=60,MX=60,MY=70;   // a square cell
+  // v7 · mode 2 «the metro», six years — the page. Year 0: draw a line and its stations within the budget. Then run
+  // the years one at a time: each estate's experience moves (+1 in comfort, −1 when crowded), the fares come in, and
+  // between years you add to the line (never remove), add stations or trains.
+  const {Plan,D,P,evaluate,nextExp,walk,same,key}=Metro,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
+  const CS=60,MX=60,MY=70;
   const xy=c=>[MX+c[0]*CS,MY+c[1]*CS];
   const svg=(tag,a,c='')=>`<${tag} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}>${c}</${tag}>`;
   let C={};
@@ -940,121 +1073,144 @@ dialog.intro .row{margin-top:16px}
   const TRAIN=[".mmmmmmmmmmmmmmmmm.","mmwwmmwwmmwwmmwwmmm","mmwwmmwwmmwwmmwwmmm","mmmmmmmmmmmmmmmmmmm","mkkmmmmmmmmmmmmkkmm","..k.............k.."];
   const DEST={town:TOWN,jobs:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info})[k];
   const nameO=i=>I.name(D.origins[i]),nameD=k=>I.name(D.destinations[k]),shortD=k=>{const d=D.destinations[k];return I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name);};
-  let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],toastTimer=0;
+  const sgn=n=>n>0?'+'+n:n<0?'−'+(-n):'0';
+  let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],toastTimer=0,fx=null;
   const VBW=MX*2+(D.cols-1)*CS,VBH=MY*2+(D.rows-1)*CS;
-  function snapshot(){history.push(plan.copy());if(history.length>200)history.shift();}
-  function toast(s,kind=''){let el=$('toast');if(!el){el=document.createElement('div');el.id='toast';el.className='toast';$('board').parentElement.appendChild(el);}
-    el.className='toast on '+kind;el.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('on'),2400);}
-  // a desire line drawn as a gentle curve from the estate to the destination (alternating sides so they don't sit on each other)
+  function snapshot(){history.push(JSON.stringify({...plan}));if(history.length>200)history.shift();}
+  function restore(s){const p=new Plan();Object.assign(p,JSON.parse(s));plan=p;}
+  function toast(s,kind=''){const el=$('toast');el.className='toast on '+kind;el.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('on'),3200);}
   function curve(a,b,j){const [x1,y1]=xy(a),[x2,y2]=xy(b),dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,bend=Math.min(60,L*.12)*(j%2?1:-1);
     const cx=(x1+x2)/2-dy/L*bend,cy=(y1+y2)/2+dx/L*bend;return{d:`M${x1} ${y1}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`,mid:[(x1+2*cx+x2)/4,(y1+2*cy+y2)/4]};}
+  const isBuiltCell=c=>plan.open&&(plan.builtSet||[]).includes(key(c));
+  const isBuiltStation=c=>plan.open&&plan.builtStations.some(x=>same(x,c));
 
   /* -------------------------------------------------------------- the board */
   function draw(now=performance.now()){
     const ev=plan.evaluate();
     let ground='',desire='',lines='',things='',labels='';
-    // the chessboard: every cell a soft square; in the drawing tool, the cells the line can grow into are marked
-    for(let x=0;x<D.cols;x++)for(let y=0;y<D.rows;y++){const [cx,cy]=xy([x,y]),can=tool==='draw'&&plan.canExtend([x,y])&&plan.line.length>0;
+    for(let x=0;x<D.cols;x++)for(let y=0;y<D.rows;y++){const [cx,cy]=xy([x,y]),can=tool==='draw'&&!plan.done&&plan.canExtend([x,y])&&plan.line.length>0;
       ground+=svg('rect',{x:cx-CS/2+3,y:cy-CS/2+3,width:CS-6,height:CS-6,rx:5,fill:can?C.metro:C.soft,'fill-opacity':can?.10:.55,stroke:can?C.metro:C.line,'stroke-opacity':can?.45:1,'stroke-dasharray':can?'4 3':''});}
-    // desire lines: grey = still by car; the metro-coloured core = the share that switches
     ev.rows.forEach((r,j)=>{const o=D.origins[r.i],d=D.destinations[r.k],{d:path,mid}=curve(o.cell,d.cell,j),w=2+r.people/7,on=sel===j;
       desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:.28,'stroke-linecap':'round'});
       if(r.tenths)desire+=svg('path',{d:path,fill:'none',stroke:C.metro,'stroke-width':(w*r.tenths/10).toFixed(1),'stroke-opacity':sel>=0&&!on?.25:.85,'stroke-linecap':'round'});
-      if(r.tenths&&(sel<0||on))labels+=pill(mid[0],mid[1],t('m.dl',{n:r.tenths,p:r.riders}),C.metro,12.5);
-      else if(on)labels+=pill(mid[0],mid[1],t('m.dlCar',{c:r.car}),C.ink2,12.5);});
-    // the selected trip, step by step: walk (dashed) → ride → walk (dashed)
-    if(sel>=0){const r=ev.rows[sel];if(r.metro!==null){const o=D.origins[r.i].cell,d=D.destinations[r.k].cell;
-      const seg=(a,b)=>`M${xy(a).join(' ')}L${xy([b[0],a[1]]).join(' ')}L${xy(b).join(' ')}`;
-      lines+=svg('path',{d:seg(o,r.from),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});
-      lines+=svg('path',{d:seg(r.to,d),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});}}
-    // the line
-    if(plan.line.length){const pts=plan.line.map(c=>xy(c).join(' ')).join(' L');
-      lines+=svg('path',{d:'M'+pts,fill:'none',stroke:C.metro,'stroke-width':12,'stroke-linecap':'round','stroke-linejoin':'round'});
-      if(plan.line.length===1){const [x,y]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:y,r:7,fill:C.metro});}
-      if(tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)]){const [x,y]=xy(e);things+=svg('circle',{cx:x,cy:y,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}}
+      if(on)labels+=pill(mid[0],mid[1],r.metro===null?t('m.dlCar',{c:r.car}):t('m.dlFull',{s:r.save,e:sgn(r.exp),n:r.tenths,p:r.riders}),r.tenths?C.metro:C.ink2,12.5);
+      else if(r.tenths&&sel<0)labels+=pill(mid[0],mid[1],t('m.dl',{n:r.tenths,p:r.riders}),C.metro,12);});
+    if(sel>=0){const r=ev.rows[sel];if(r.metro!==null){const o=D.origins[r.i].cell,d=D.destinations[r.k].cell,seg=(a,b)=>`M${xy(a).join(' ')}L${xy([b[0],a[1]]).join(' ')}L${xy(b).join(' ')}`;
+      lines+=svg('path',{d:seg(o,r.from),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'})+svg('path',{d:seg(r.to,d),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});}}
+    // the line, section by section: how full each one gets this year (red = crowded); this year's additions dashed
+    let worst=-1;
+    for(let j=0;j+1<plan.line.length;j++){const a=plan.line[j],b=plan.line[j+1],[x1,y1]=xy(a),[x2,y2]=xy(b),f=ev.load[j]/ev.cap,col=f>1?C.bad:f>.8?C.warn:C.metro,isNew=!(isBuiltCell(a)&&isBuiltCell(b));
+      if(f>1)lines+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:C.bad,'stroke-width':22,'stroke-opacity':(.15+.06*Math.sin(now/300)).toFixed(3),'stroke-linecap':'round'});
+      lines+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:col,'stroke-width':12,'stroke-linecap':'round','stroke-opacity':isNew&&plan.open?.55:1,'stroke-dasharray':isNew&&plan.open?'10 6':''});
+      if(worst<0||ev.load[j]>ev.load[worst])worst=j;}
+    if(plan.line.length===1){const [x,y]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:y,r:7,fill:C.metro});}
+    if(worst>=0&&plan.stations.length>=2&&ev.load[worst]>.8*ev.cap){const a=xy(plan.line[worst]),b=xy(plan.line[worst+1]),f=ev.load[worst]/ev.cap;
+      labels+=pill((a[0]+b[0])/2,(a[1]+b[1])/2-24,t(f>1?'m.crowd':'m.nearly',{a:ev.load[worst],b:ev.cap}),f>1?C.bad:C.warn,12.5);}
+    if(tool==='draw'&&!plan.done)for(const e of [plan.line[0],plan.line.at(-1)])if(e){const [x,y]=xy(e);things+=svg('circle',{cx:x,cy:y,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}
     // hover preview
-    if(hover){const [hx,hy]=xy(hover);
+    if(hover&&!plan.done){const [hx,hy]=xy(hover);
       if(tool==='draw'){
         if(plan.canExtend(hover)){const end=!plan.line.length?null:Metro.adj(hover,plan.line.at(-1))?plan.line.at(-1):plan.line[0];
           if(end)lines+=svg('path',{d:`M${xy(end).join(' ')}L${hx} ${hy}`,stroke:C.metro,'stroke-width':12,'stroke-opacity':.35,'stroke-linecap':'round'});
           else lines+=svg('circle',{cx:hx,cy:hy,r:7,fill:C.metro,'fill-opacity':.4});
           labels+=pill(hx,hy-22,t('m.pvExtend',{c:P.lineCost}),C.metro,12);}
-        else if(plan.isEnd(hover))labels+=pill(hx,hy-22,t('m.pvShorten'),C.ink2,12);}
-      else if(plan.onLine(hover)){const after=plan.withStation(hover),dv=after.riders-ev.riders,has=plan.isStation(hover);
-        if(!has&&plan.left()<P.stationCost)labels+=pill(hx,hy-24,t('m.pvNoMoney'),C.bad,12);
-        else{if(!has)things+=svg('circle',{cx:hx,cy:hy,r:15,fill:C.panel,stroke:C.metro,'stroke-width':5,'stroke-opacity':.5,'stroke-dasharray':'4 3'});
+        else if(plan.canShorten(hover))labels+=pill(hx,hy-22,t('m.pvShorten'),C.ink2,12);}
+      else if(plan.onLine(hover)){const has=plan.isStation(hover);
+        if(has&&isBuiltStation(hover))labels+=pill(hx,hy-26,t('m.pvBuilt'),C.ink2,12);
+        else if(!has&&plan.money<P.stationCost)labels+=pill(hx,hy-24,t('m.pvNoMoney'),C.bad,12);
+        else{const dv=plan.withStation(hover).riders-ev.riders;
+          if(!has)things+=svg('circle',{cx:hx,cy:hy,r:15,fill:C.panel,stroke:C.metro,'stroke-width':5,'stroke-opacity':.5,'stroke-dasharray':'4 3'});
           labels+=pill(hx,hy-26,(has?t('m.pvRemove'):t('m.pvAdd'))+' '+t(dv>=0?'m.pvGain':'m.pvLoss',{n:Math.abs(dv)})+' · '+t(has?'m.pvRefund':'m.pvCost',{c:P.stationCost}),dv>0?C.accent:dv<0?C.bad:C.ink2,12.5);}}}
-    // estates and destinations
-    D.origins.forEach((o,i)=>{const [cx,cy]=xy(o.cell),up=o.house[1]<0,ppl=o.to.reduce((a,b)=>a+b,0),rode=ev.rows.filter(r=>r.i===i).reduce((a,r)=>a+r.riders,0);
+    // estates: name, experience, riders
+    D.origins.forEach((o,i)=>{const [cx,cy]=xy(o.cell),up=o.house[1]<0,ppl=o.to.reduce((a,b)=>a+b,0),rode=ev.rows.filter(r=>r.i===i).reduce((a,r)=>a+r.riders,0),e=plan.exp[i];
       things+=sprite(ESTATE,cx-18,cy-24,3,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
       labels+=text(cx,up?cy-34:cy+32,nameO(i),15.5,C.ink,{'text-anchor':'middle','font-weight':700});
-      labels+=text(cx,up?cy-52:cy+50,rode?t('m.estRode',{n:ppl,r:rode}):t('m.estAll',{n:ppl}),12.5,rode?C.metro:C.ink2,{'text-anchor':'middle','font-weight':600});});
+      labels+=svg('text',{x:cx,y:up?cy-52:cy+50,'font-size':12.5,'text-anchor':'middle','font-weight':600,stroke:C.paper,'stroke-width':4,'paint-order':'stroke'},
+        `<tspan fill="${rode?C.metro:C.ink2}">${rode?t('m.estRode',{n:ppl,r:rode}):t('m.estAll',{n:ppl})}</tspan><tspan fill="${e>0?C.accent:e<0?C.bad:C.ink2}"> · ${t('m.expChip',{e:sgn(e)})}</tspan>`);
+      if(fx&&now<fx.until&&fx.d[i]){const k=(fx.until-now)/1800;labels+=svg('text',{x:cx+52,y:(cy-28-18*(1-k)).toFixed(1),'font-size':20,'font-weight':700,fill:fx.d[i]>0?C.accent:C.bad,opacity:Math.min(1,k*1.5).toFixed(2),'text-anchor':'middle'},sgn(fx.d[i]));}});
     D.destinations.forEach((o,k)=>{const [cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*3,came=ev.rows.filter(r=>r.k===k).reduce((a,r)=>a+r.riders,0),ppl=ev.rows.filter(r=>r.k===k).reduce((a,r)=>a+r.people,0);
       things+=sprite(sp,cx-w/2,cy-24,3,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
       const side=o.house[0]>0,lx=side?cx+w/2+8:cx,ly=side?cy-8:cy-34,la=side?'start':'middle';
       labels+=text(lx,ly,nameD(k),15.5,DCOL(o.kind),{'text-anchor':la,'font-weight':700});
       labels+=text(lx,ly+(side?18:-18),came?t('m.dstRode',{n:ppl,r:came}):t('m.dstAll',{n:ppl}),12.5,came?C.metro:C.ink2,{'text-anchor':la,'font-weight':600});});
-    // stations, numbered along the line
+    // trains (as many as run), under the stations
     const order=plan.stations.map(s=>({s,x:plan.line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
-    // a train running between the end stations, just to show it is a railway (under the stations)
-    if(order.length>=2){const a=order[0].x,b=order.at(-1).x,span=b-a,ph=(now/1000*1.6)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.floor(pos),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
-      const [x1,y1]=xy(c1),[x2,y2]=xy(c2),x=x1+(x2-x1)*f,y=y1+(y2-y1)*f;
-      lines+=`<g opacity=".9" transform="translate(${(x-28.5).toFixed(1)} ${(y-9).toFixed(1)})">`+sprite(TRAIN,0,0,3,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}
+    if(order.length>=2){const a=order[0].x,b=order.at(-1).x,span=Math.max(1,b-a);
+      for(let k=0;k<plan.trains;k++){const ph=(now/1000*1.6+k*2*span/plan.trains)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.min(plan.line.length-1,Math.floor(pos)),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
+        const [x1,y1]=xy(c1),[x2,y2]=xy(c2);lines+=`<g opacity=".9" transform="translate(${(x1+(x2-x1)*f-28.5).toFixed(1)} ${(y1+(y2-y1)*f-9).toFixed(1)})">`+sprite(TRAIN,0,0,3,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
     const building=c=>D.origins.some(o=>same(o.cell,c))||D.destinations.some(o=>same(o.cell,c));
-    order.forEach(({s},n)=>{const [x,y]=xy(s);
-      if(building(s))labels+=svg('circle',{cx:x,cy:y-6,r:26,fill:'none',stroke:C.metro,'stroke-width':4})+svg('circle',{cx:x+21,cy:y-25,r:10,fill:C.metro})+
+    order.forEach(({s},n)=>{const [x,y]=xy(s),isNew=plan.open&&!isBuiltStation(s),dash=isNew?'4 3':'';
+      if(building(s))labels+=svg('circle',{cx:x,cy:y-6,r:26,fill:'none',stroke:C.metro,'stroke-width':4,'stroke-dasharray':dash})+svg('circle',{cx:x+21,cy:y-25,r:10,fill:C.metro})+
         svg('text',{x:x+21,y:y-21,'font-size':12,'font-weight':700,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);
-      else things+=svg('circle',{cx:x,cy:y,r:15,fill:C.panel,stroke:C.metro,'stroke-width':5})+svg('text',{x,y:y+5,'font-size':14,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);});
+      else things+=svg('circle',{cx:x,cy:y,r:15,fill:C.panel,stroke:C.metro,'stroke-width':5,'stroke-dasharray':dash})+svg('text',{x,y:y+5,'font-size':14,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);});
     $('board').innerHTML=ground+desire+lines+things+labels;
   }
 
-  /* -------------------------------------------------------------- the side panels */
+  /* -------------------------------------------------------------- side panels */
   function side(){
-    const ev=plan.evaluate(),lo=0,hi=Math.round(P.masterScore*1.15),at=v=>Math.max(0,Math.min(100,100*(v-lo)/(hi-lo)));
-    $('score').textContent=ev.riders;$('ofTotal').textContent=t('m.ofTotal',{n:ev.people});$('scoreBar').style.width=`${at(ev.riders)}%`;
+    const ev=plan.evaluate(),nx=nextExp(ev,plan.exp),hi=Math.round(P.masterScore*1.12),at=v=>Math.max(0,Math.min(100,100*v/hi));
+    $('score').textContent=plan.total;$('thisYear').textContent=plan.done?'':t(plan.open?'m.thisYear':'m.firstYear',{n:ev.riders,y:plan.year+1});
+    $('scoreBar').style.width=`${at(plan.total)}%`;
     for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){$(id).style.left=`${at(v)}%`;$(id).dataset.label=t(k,{n:v});}
-    const lc=plan.line.length*P.lineCost,sc=plan.stations.length*P.stationCost;
-    $('budgetNum').textContent=`${ev.cost} / ${P.budget}`;$('bbLine').style.width=`${100*lc/P.budget}%`;$('bbStation').style.width=`${100*sc/P.budget}%`;
-    $('budgetSum').textContent=t('m.budgetSum',{l:plan.line.length,lc:P.lineCost,s:plan.stations.length,sc:P.stationCost,left:plan.left()});
+    $('yearNum').textContent=plan.done?t('m.yearDone',{m:P.years}):plan.open?t('m.yearN',{y:plan.year,m:P.years}):t('m.yearPlan');
+    $('run').textContent=plan.done?t('m.runDone'):t(plan.open?'m.runN':'m.run0',{n:plan.year+1});$('run').disabled=!plan.done&&!plan.canRun();
+    // riders per year: past years solid, the coming one as an outline
+    const top=Math.max(P.masterScore/P.years*1.4,...plan.log.map(l=>l.riders),ev.riders);
+    let yc='';for(let y=1;y<=P.years;y++){const l=plan.log[y-1],v=l?l.riders:y===plan.year+1&&!plan.done?ev.riders:0,h=Math.round(46*v/top);
+      yc+=`<div class="yb ${l?'done':y===plan.year+1?'next':''} ${l&&l.crowdedSections?'crowd':''}"><i style="height:${h}px"></i><b>${v||''}</b><small>${t('m.yShort',{y})}</small></div>`;}
+    $('yChart').innerHTML=yc;
+    $('money').textContent=plan.money;
+    $('moneyNote').innerHTML=plan.open?t('m.moneyN',{n:plan.log.at(-1)?.income??0,f:P.fare,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost}):t('m.money0',{lc:P.lineCost,sc:P.stationCost,tc:P.trainCost});
+    $('trainsTxt').innerHTML=t('m.trains',{n:plan.trains,c:plan.trains*P.perTrain});
+    $('trainPlus').disabled=!plan.canTrain();$('trainMinus').disabled=!plan.canUntrain();
     document.querySelectorAll('#toolSeg [data-tool]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tool===tool)));
-    $('toolHint').textContent=tool==='draw'?(plan.line.length?t('m.hintDraw2'):t('m.hintDraw1')):(plan.line.length<2?t('m.hintNeedLine'):plan.stations.length<2?t('m.hintStation1'):t('m.hintStation2'));
-    $('undo').disabled=!history.length;$('submit').disabled=plan.stations.length<2;
-    // every desire line, with its sum spelled out
-    let h=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tPeople')}</th><th>${t('m.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
-    ev.rows.forEach((r,j)=>{
-      h+=`<tr data-row="${j}" class="${sel===j?'sel':''} ${r.riders?'on':''}"><td>${nameO(r.i)}<small>→ ${shortD(r.k)}</small></td><td>${r.people}</td><td>${r.car}</td>`+
-        `<td>${r.metro===null?'—':`${r.metro}<small>${r.walkA}+${P.wait}+${r.pass}+${r.walkB}</small>`}</td><td>${r.metro===null?'':r.save}</td><td><b>${r.riders||''}</b>${r.tenths?`<small>${t('m.tenths',{n:r.tenths})}</small>`:''}</td></tr>`;});
-    $('trips').innerHTML=h+`</tbody><tfoot><tr><td colspan="5">${t('m.tTotal')}</td><td><b>${ev.riders}</b></td></tr></tfoot>`;
+    $('toolHint').textContent=plan.done?t('m.hintDone'):tool==='draw'?(plan.line.length?(plan.open?t('m.hintGrow'):t('m.hintDraw2')):t('m.hintDraw1')):
+      (plan.line.length<2?t('m.hintNeedLine'):plan.stations.length<2?t('m.hintStation1'):t('m.hintStation2'));
+    $('undo').disabled=!history.length||plan.done;$('clear').disabled=plan.open;
+    // experience: −3 … +3 per estate, and where it goes next year with this plan
+    let h='';D.origins.forEach((o,i)=>{const e=plan.exp[i],d=nx[i]-e;
+      h+=`<div class="xr"><span class="xn">${nameO(i)}</span><span class="xbar">${[-3,-2,-1,0,1,2,3].map(v=>`<i class="${v===e?'on':''} ${v<0?'neg':v>0?'pos':'zero'}"></i>`).join('')}</span><b class="${e>0?'pos':e<0?'neg':''}">${sgn(e)}</b>`+
+        `<em class="${d>0?'up':d<0?'down':''}">${plan.done?'':d>0?t('m.expUp'):d<0?t('m.expDown'):t('m.expSame')}</em></div>`;});
+    $('expBox').innerHTML=h+`<p class="hbnote">${t('m.expNote')}</p>`;
+    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tPeople')}</th><th>${t('m.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tExp')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
+    ev.rows.forEach((r,j)=>{tb+=`<tr data-row="${j}" class="${sel===j?'sel':''} ${r.riders?'on':''} ${r.crowded?'crowd':''}"><td>${nameO(r.i)}<small>→ ${shortD(r.k)}</small></td><td>${r.people}</td><td>${r.car}</td>`+
+      `<td>${r.metro===null?'—':`${r.metro}<small>${r.walkA}+${P.wait}+${r.pass}+${r.walkB}</small>`}</td><td>${r.metro===null?'':r.save}</td><td>${r.metro===null?'':sgn(r.exp)}</td><td><b>${r.riders||''}</b>${r.tenths?`<small>${t('m.tenths',{n:r.tenths})}</small>`:''}</td></tr>`;});
+    $('trips').innerHTML=tb+`</tbody><tfoot><tr><td colspan="6">${t('m.tTotal')}</td><td><b>${ev.riders}</b></td></tr></tfoot>`;
   }
   function render(){draw();side();}
   function fit(){draw();try{const bb=$('board').getBBox(),x0=Math.min(0,bb.x-14),y0=Math.min(0,bb.y-14),x1=Math.max(VBW,bb.x+bb.width+14),y1=Math.max(VBH,bb.y+bb.height+14);
     $('board').setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}}
   function texts(){
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
-    $('rule2').innerHTML=t('m.rule2',{w:P.wait});$('rule3').innerHTML=t('m.rule3',{lc:P.lineCost,sc:P.stationCost,b:P.budget});
-    $('infoBody').innerHTML=t('m.info',{w:P.wait,lc:P.lineCost,sc:P.stationCost,b:P.budget});
-    $('ivBody').innerHTML=t('iv.m2.body',{w:P.wait,lc:P.lineCost,sc:P.stationCost,b:P.budget});
+    const v={w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,f:P.fare,b:P.budget,y:P.years,e:sgn(P.exp.start)};
+    $('rule2').innerHTML=t('m.rule2',v);$('rule3').innerHTML=t('m.rule3',v);$('rule4').innerHTML=t('m.rule4',v);
+    $('infoBody').innerHTML=t('m.info',v);$('ivBody').innerHTML=t('iv.m2.body',v);
     $('mapLegend').innerHTML=t('m.legend');document.title=t('m.doc');
   }
 
-  /* -------------------------------------------------------------- the result: the score, and what would help most */
+  /* -------------------------------------------------------------- a year, and the end */
+  function runYear(){
+    if(plan.done){result();return;}
+    const before=plan.exp.slice(),r=plan.runYear();if(!r)return;
+    history=[];fx={until:performance.now()+1800,d:plan.exp.map((e,i)=>e-before[i])};
+    toast(t('m.tYear',{y:r.year,r:r.riders,f:r.income})+(r.crowdedSections?' · '+t('m.tCrowd',{n:r.crowdedSections}):''),r.crowdedSections?'warn':'tide');
+    render();if(plan.done)setTimeout(result,1400);
+  }
   function result(){
-    const ev=plan.evaluate(),tier=ev.riders>=P.masterScore?3:ev.riders>=P.highScore?2:ev.riders>=P.target?1:0;
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
-    $('resultScore').textContent=t('m.rScore',{d:ev.riders,n:ev.people,c:ev.cost,b:P.budget});
-    const tips=[];
-    // a station that slows more people than it brings
-    for(const s of plan.stations){const dv=evaluate(plan.line,plan.stations.filter(x=>!same(x,s))).riders-ev.riders;
-      if(dv>0)tips.push(t('m.tipStation',{n:dv,sc:P.stationCost}));}
-    // the biggest desire lines left by car
-    const missed=ev.rows.filter(r=>!r.riders).sort((a,b)=>b.people-a.people).slice(0,2);
-    for(const r of missed)tips.push(t(r.metro===null?'m.tipMissNo':'m.tipMissSlow',{a:nameO(r.i),b:shortD(r.k),n:r.people,car:r.car,m:r.metro??''}));
-    if(plan.left()>=P.stationCost)tips.push(t('m.tipBudget',{n:plan.left()}));
-    if(tier===3&&!tips.length)tips.push(t('m.tip3'));
-    $('resultBody').innerHTML=`<ul class="ivlist">${tips.slice(0,4).map(s=>`<li>${s}</li>`).join('')}</ul>`;
-    try{const k='tl-best-m2-'+D.map;if(ev.riders>(+localStorage.getItem(k)||0))localStorage.setItem(k,ev.riders);}catch(e){}
-    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m2-metro',version:'7.3-static',map:D.map,score:ev.riders,total:ev.people,tier,
-      tiers:[P.target,P.highScore,P.masterScore],cost:ev.cost,line:plan.line,stations:plan.stations,lang:I.lang}}));
+    $('resultScore').textContent=t('m.rScore',{d:plan.total,y:P.years,m:plan.money});
+    let h=`<table class="result"><thead><tr><th>${t('m.ryYear')}</th><th>${t('m.ryRiders')}</th><th>${t('m.ryIncome')}</th><th>${t('m.ryTrains')}</th><th>${t('m.ryStations')}</th><th>${t('m.ryCrowd')}</th><th>${t('m.ryExp')}</th></tr></thead><tbody>`;
+    for(const l of plan.log)h+=`<tr><td>${t('m.yShort',{y:l.year})}</td><td>${l.riders}</td><td>+${l.income}</td><td>${l.trains}</td><td>${l.stations}</td><td>${l.crowdedSections||''}</td><td>${l.after.map(sgn).join(' ')}</td></tr>`;
+    h+='</tbody></table>';
+    const tips=[],crowdYears=plan.log.filter(l=>l.crowdedSections).length;
+    if(crowdYears)tips.push(t('m.tipCrowd',{n:crowdYears}));
+    D.origins.forEach((o,i)=>{if(plan.log.every(l=>l.after[i]===P.exp.start))tips.push(t('m.tipNever',{a:nameO(i)}));});
+    if(plan.money>=8)tips.push(t('m.tipMoney',{n:plan.money}));
+    if(!tips.length)tips.push(t('m.tip3'));
+    $('resultBody').innerHTML=h+`<ul class="ivlist">${tips.slice(0,4).map(s=>`<li>${s}</li>`).join('')}</ul>`;
+    try{const k='tl-best-m2-'+D.map;if(plan.total>(+localStorage.getItem(k)||0))localStorage.setItem(k,plan.total);}catch(e){}
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m2-metro',version:'7.4-years',map:D.map,score:plan.total,tier,tiers:[P.target,P.highScore,P.masterScore],log:plan.log,lang:I.lang}}));
     $('result').showModal();
   }
 
@@ -1063,14 +1219,17 @@ dialog.intro .row{margin-top:16px}
   function cellAt(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(board.getScreenCTM().inverse());
     const c=[Math.round((p.x-MX)/CS),Math.round((p.y-MY)/CS)];return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows?c:null;}
   function act(c){
+    if(plan.done)return false;
     if(tool==='draw'){
       if(plan.canExtend(c)){snapshot();plan.extend(c);return true;}
-      if(plan.isEnd(c)){snapshot();plan.shorten(c);return true;}
-      if(plan.left()<P.lineCost)toast(t('m.nNoMoney'),'warn');
+      if(plan.canShorten(c)){snapshot();plan.shorten(c);return true;}
+      if(plan.isEnd(c)&&plan.open)toast(t('m.nBuilt'),'warn');
+      else if(plan.money<P.lineCost)toast(t('m.nNoMoney'),'warn');
       else if(plan.line.length&&!plan.onLine(c))toast(t('m.nAdjacent'),'warn');
       return false;}
     if(!plan.onLine(c)){toast(t('m.nOnLine'),'warn');return false;}
-    if(!plan.isStation(c)&&plan.left()<P.stationCost){toast(t('m.nNoMoney'),'warn');return false;}
+    if(plan.isStation(c)&&isBuiltStation(c)){toast(t('m.nBuilt'),'warn');return false;}
+    if(!plan.isStation(c)&&plan.money<P.stationCost){toast(t('m.nNoMoney'),'warn');return false;}
     snapshot();plan.toggleStation(c);return true;
   }
   board.onpointerdown=e=>{const c=cellAt(e);if(!c)return;drag=tool==='draw';if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
@@ -1080,35 +1239,40 @@ dialog.intro .row{margin-top:16px}
   board.onpointerup=()=>{drag=false;};
   board.onpointerleave=()=>{if(!drag&&hover){hover=null;draw();}};
   $('toolSeg').onclick=e=>{const b=e.target.closest('[data-tool]');if(b){tool=b.dataset.tool;hover=null;render();}};
-  $('undo').onclick=()=>{const p=history.pop();if(p){plan=p;render();}};
-  $('clear').onclick=()=>{if(!plan.line.length)return;snapshot();plan.clear();tool='draw';render();};
-  $('submit').onclick=result;
+  $('undo').onclick=()=>{const s=history.pop();if(s){restore(s);render();}};
+  $('clear').onclick=()=>{if(plan.open||!plan.line.length)return;snapshot();plan.clear();tool='draw';render();};
+  $('trainPlus').onclick=()=>{snapshot();if(plan.addTrain())render();};
+  $('trainMinus').onclick=()=>{snapshot();if(plan.removeTrain())render();};
+  $('run').onclick=runYear;
   $('trips').onclick=e=>{const r=e.target.closest('[data-row]');if(!r)return;const j=+r.dataset.row;sel=sel===j?-1:j;render();};
-  $('again').onclick=()=>{$('result').close();snapshot();plan.clear();tool='draw';sel=-1;render();};
+  $('again').onclick=()=>{$('result').close();plan=new Plan();history=[];tool='draw';sel=-1;render();};
   $('help').onclick=()=>$('info').showModal();
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
   $('lvInfo').onclick=()=>$('lvIntro').showModal();$('ivGo').onclick=()=>$('lvIntro').close();
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;
     if(e.key==='1'){tool='draw';render();}else if(e.key==='2'){tool='station';render();}
     else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$('undo').click();}
+    else if(e.key==='Enter'&&!e.target.closest?.('button')){e.preventDefault();$('run').click();}
     else if(e.key==='Escape'&&sel>=0){sel=-1;render();}});
   function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
     try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   window.addEventListener('tl:lang',()=>{texts();fit();render();});
-  // the train moves: redraw a few times a second while there is a line with two stations
-  let lastFrame=0;(function loop(now){if(plan.stations.length>=2&&now-lastFrame>60&&!drag){draw(now);lastFrame=now;}requestAnimationFrame(loop);})(0);
-  // test hook: #intro=0&line=2,2;3,2;4,2&stations=2,2;4,2&tool=station&sel=0&theme=dark&lang=en
+  let lastFrame=0;(function loop(now){if((plan.stations.length>=2||(fx&&now<fx.until))&&now-lastFrame>60&&!drag){draw(now);lastFrame=now;}requestAnimationFrame(loop);})(0);
+  // test hook: #intro=0&line=2,2;3,2;4,2&stations=2,2;4,2&trains=2&years=2&tool=station&sel=0&theme=dark&lang=en
   const q=new URLSearchParams(location.hash.slice(1));
   let saved=null;try{saved=localStorage.getItem('tl-theme');}catch(e){}
   board.setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
   if(q.get('theme')||saved)setTheme(q.get('theme')||saved);
   if(q.get('line'))for(const s of q.get('line').split(';'))plan.extend(s.split(',').map(Number));
   if(q.get('stations'))for(const s of q.get('stations').split(';'))plan.toggleStation(s.split(',').map(Number));
+  for(let k=1;k<+(q.get('trains')||1);k++)plan.addTrain();
+  for(let k=0;k<+(q.get('years')||0);k++)plan.runYear();
   if(q.get('tool'))tool=q.get('tool');if(q.get('sel'))sel=+q.get('sel');
   texts();fit();render();
   if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
-  window.TL_METRO={plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),...plan.evaluate()}),cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
+  window.TL_METRO={plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,exp:plan.exp.slice(),done:plan.done,...plan.evaluate()}),
+    cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();
 
 </script></body></html>
