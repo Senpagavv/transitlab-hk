@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 關卡編輯器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../shared/style.css"></head><body class="entered ed">
+
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="../shared/logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="ed.brand">Level editor · 關卡編輯器</span></div>
+  <div class="sp"></div>
+  <a class="btn btn-sm" id="edToGame" href="index.html" data-i18n="ed.toGame">▶ 回到遊戲</a>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
+</header>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <span class="lbl" data-i18n="ed.lbl">Level editor · 關卡編輯器</span>
+    <input id="edTitle" class="ed-in ed-title" maxlength="24" data-i18n-aria="ed.titleAria" data-i18n-title="ed.titleAria" placeholder="">
+    <div class="lbl ed-h" data-i18n="ed.tools">工具 · 1–6</div>
+    <div class="seg ed-tools" id="edTools" role="group">
+      <button data-tool="road" data-i18n="ed.tool.road">道路</button><button data-tool="water" data-i18n="ed.tool.water">河</button>
+      <button data-tool="estate" data-i18n="ed.tool.estate">屋苑</button><button data-tool="hub" data-i18n="ed.tool.hub">港鐵</button>
+      <button data-tool="cand" data-i18n="ed.tool.cand">站位</button><button data-tool="erase" data-i18n="ed.tool.erase">擦</button>
+    </div>
+    <p class="note" id="edToolHint"></p>
+    <div class="row ed-size"><label><span data-i18n="ed.cols">寬</span> <input id="edCols" class="ed-num ed-in mono" type="number" min="4" max="20"></label>
+      <label><span data-i18n="ed.rows">高</span> <input id="edRows" class="ed-num ed-in mono" type="number" min="4" max="16"></label></div>
+    <div class="lbl ed-h" data-i18n="ed.estates">屋苑</div>
+    <div id="edEstates"></div>
+    <div class="lbl ed-h" data-i18n="ed.check">檢查</div>
+    <ul id="edProblems" class="ed-problems"></ul>
+    <p id="edNote" class="note" role="status" aria-live="polite"></p>
+    <div class="lbl ed-h" data-i18n="ed.start">從這裡開始</div>
+    <select id="edExample" class="ed-in" data-i18n-aria="ed.start"><option value="" data-i18n="ed.pick">選一個起點…</option><option value="l1" data-i18n="site.l1">第一關</option><option value="l2" data-i18n="site.l2">第二關</option><option value="l3" data-i18n="site.l3">第三關</option><option value="blank" data-i18n="ed.blank">空白地圖</option></select>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate ed-plate">
+      <svg id="edBoard" viewBox="0 0 900 560" role="application" data-i18n-aria="ed.boardAria"></svg>
+      <div class="ed-cell mono" id="edCell"></div>
+      <div class="ed-toast" id="edToast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="row ed-actions"><button class="btn btn-p" id="edPlay" data-i18n="ed.play">▶ 試玩</button><button class="btn" id="edAnalyse" data-i18n="ed.analyse">分析難度</button></div>
+    <div class="row ed-actions"><button class="btn btn-sm" id="edExport" data-i18n="ed.export">導出</button><button class="btn btn-sm" id="edImport" data-i18n="ed.import">導入</button><input type="file" id="edFile" accept=".json,application/json" hidden></div>
+
+    <div class="lbl ed-h" data-i18n="ed.analysis">機器人分析</div>
+    <div id="edAnalysis" class="box ed-analysis"></div>
+    <div class="lbl ed-h" data-i18n="ed.people">每輪人數</div>
+    <div class="ed-grid">
+      <label><span data-i18n="ed.roundsN">輪數</span><input id="edRounds" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.hold">每種組合持續（輪）</span><input id="edHold" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.interval">每輪（秒）</span><input id="edInterval" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.release">陸續出門（秒）</span><input id="edRelease" class="ed-num ed-in mono" type="number"></label>
+    </div>
+    <table id="edPeople" class="ed-people"></table>
+    <p class="note" id="edTotal"></p>
+
+    <div class="lbl ed-h" data-i18n="ed.rules">規則數字</div>
+    <div class="ed-grid">
+      <label><span data-i18n="ed.hw">班距：基本（秒）</span><input id="edHwBase" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.hwStep">＋每格到港鐵（秒）</span><input id="edHwStep" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.seats">每班座位</span><input id="edSeats" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.queue">排隊位</span><input id="edQueue" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.moves">挪站次數</span><input id="edMoves" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.cool">冷卻（秒）</span><input id="edCool" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.patience">總耐心（秒）</span><input id="edPatience" class="ed-num ed-in mono" type="number"></label>
+    </div>
+    <div class="lbl ed-h" data-i18n="ed.willing">走幾格還願意來（%）</div>
+    <div id="edWilling" class="ed-willing"></div>
+    <div class="lbl ed-h" data-i18n="ed.tiers">門檻</div>
+    <div class="ed-grid three">
+      <label><span data-i18n="ed.pass">過關</span><input id="edPass" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.high">高分</span><input id="edHigh" class="ed-num ed-in mono" type="number"></label>
+      <label><span data-i18n="ed.master">大師</span><input id="edMaster" class="ed-num ed-in mono" type="number"></label>
+    </div>
+  </aside>
+</main>
+
+<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="strings.js"></script><script src="editor.js"></script></body></html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 接駁巴士</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../shared/style.css"></head><body class="entered">
+
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="../shared/logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="sp"></div>
+  <button class="pill" id="srcBtn" data-i18n-title="top.sourcesTitle"><i class="dot live"></i><span data-i18n="top.sources">Sources 資料</span></button>
+  <button class="btn btn-sm" id="help" data-i18n-html="top.rules">Rules <span class="tc">規則</span></button>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
+</header>
+
+<nav id="navrow" data-i18n-aria="nav.aria">
+  <button data-mode="1" aria-selected="true"><i class="stop">01</i><span class="t"><b>Entry game</b><s data-i18n="nav.1">入門遊戲</s></span></button>
+  <button data-mode="2" aria-selected="false" class="soon"><i class="stop">02</i><span class="t"><b>Lessons</b><s data-i18n="nav.2">互動教學 · 即將推出</s></span></button>
+  <button data-mode="3" aria-selected="false" class="soon"><i class="stop">03</i><span class="t"><b>Full sandbox</b><s data-i18n="nav.3">完整沙盤 · 即將推出</s></span></button>
+  <button data-mode="4" aria-selected="false" class="soon"><i class="stop">04</i><span class="t"><b>Observation deck</b><s data-i18n="nav.4">觀測台 · 即將推出</s></span></button>
+  <button data-mode="5" aria-selected="false" class="soon"><i class="stop">05</i><span class="t"><b>Leaderboard</b><s data-i18n="nav.5">排行榜 · 即將推出</s></span></button>
+  <button data-mode="6" aria-selected="false" class="soon"><i class="stop">06</i><span class="t"><b>Network console</b><s data-i18n="nav.6">數據台 · 即將推出</s></span></button>
+</nav>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <div class="row"><div class="seg lv" id="levelSeg" role="group" data-i18n-aria="g.level"><button data-level="l1" aria-pressed="true" data-i18n="g.l1">第一關</button><button data-level="l2" aria-pressed="false" data-i18n="g.l2">第二關</button><button data-level="l3" aria-pressed="false" data-i18n="g.l3">第三關</button><button data-level="l4" aria-pressed="false" data-i18n="g.l4">1-4</button><button data-level="custom" aria-pressed="false" data-i18n="g.custom" hidden>自訂</button></div><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><a class="btn btn-sm" id="editLevel" href="editor.html">✎</a><span class="lbl" data-i18n="g.mode">Mode 01 · Entry game</span><div class="sp"></div><span class="chip"><i></i><span data-i18n="g.chip">確定規則</span></span></div>
+    <h1 class="h1"><span id="titleEn">Feeder bus</span><span class="h1tc" id="titleTc">接駁巴士</span></h1>
+    <p class="lede" id="lede" data-i18n-html="g.lede">Three stops, one station. Get drivers onto the train.<span class="tcb">三座接駁站，把原本開車的人接上港鐵。</span></p>
+
+    <div class="box goal">
+      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">180</span></span></div>
+      <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
+      <div class="note" id="goal"></div>
+    </div>
+
+    <div class="row controls">
+      <button class="btn btn-p" id="start" disabled>▶ 開始</button>
+      <div class="seg" id="speedSeg" role="group" data-i18n-aria="g.speed"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button></div><span class="fasthint" id="fastHint" data-i18n="g.fast">按住 F 快進</span>
+      <button class="btn btn-sm" id="undoMoves" hidden data-i18n="g.undo" data-i18n-title="g.undoTitle">↶</button>
+      <button class="btn btn-sm" id="reset" data-i18n-title="g.reset">↺</button>
+    </div>
+
+    <div class="lbl" data-i18n-html="g.stops">Stops · 接駁站 <span class="tc">1/2/3 選站 · 空格暫停</span></div>
+    <div id="stations" class="stations"></div>
+    <div id="stopPanel" class="box stopbox"></div>
+
+    <div class="lbl" style="margin-top:16px" data-i18n="g.rules">Three rules · 三條規則</div>
+    <ol class="mini">
+      <li data-i18n-html="g.rule1"></li>
+      <li id="rule2"></li>
+      <li id="rule3"></li>
+      <li id="rule4" hidden></li>
+    </ol>
+    <div class="box facts" id="facts"></div>
+    <div class="lbl" style="margin-top:14px" data-i18n="g.read">How to read the map · 怎麼看</div>
+    <div class="legend">
+      <span><i class="pkey"></i><span data-i18n="g.legWalk">去站</span></span>
+      <span><i class="pkey home"></i><span data-i18n="g.legHome">回家</span></span>
+      <span><i class="pkey pat"></i><span data-i18n="g.legPat">顏色＝耐心</span></span>
+      <span><i class="ringkey good"></i><span data-i18n="g.legEstate">綠圈：接得走的人</span></span>
+      <span><i class="ringkey bad"></i><span data-i18n="g.legStop">紅圈：站有多滿</span></span>
+      <span><i class="glowkey good"></i><span data-i18n="g.legGood">送達 · 越亮越多人</span></span>
+      <span><i class="glowkey bad"></i><span data-i18n="g.legBad">開車流失</span></span>
+      <span id="legGroups" class="gleg" hidden></span>
+    </div>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate">
+      <svg id="board" viewBox="0 0 660 485" role="group" data-i18n-aria="g.board"></svg>
+      <svg id="fx" viewBox="0 0 660 485" aria-hidden="true"><defs>
+        <radialGradient id="gGood"><stop offset="0" style="stop-color:var(--s-accent2);stop-opacity:.95"/><stop offset=".45" style="stop-color:var(--s-accent);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--s-accent);stop-opacity:0"/></radialGradient>
+        <radialGradient id="gBad"><stop offset="0" style="stop-color:var(--s-bad);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--s-warn);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--s-warn);stop-opacity:0"/></radialGradient>
+        <radialGradient id="gTide"><stop offset="0" style="stop-color:var(--s-warn);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--s-warn);stop-opacity:0"/></radialGradient>
+      </defs><g id="fxl"></g></svg>
+      <div class="clockbox ov"><div class="c" id="clock">00:00</div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
+      <div class="lanebox ov"><div class="h"><span data-i18n="g.moves">Moves · 挪站</span></div><div class="tokens" id="moveTokens"></div><div class="hint" id="mapHint"></div></div>
+      <div class="countdown" id="cdown" aria-live="polite"><b id="cdNum">3</b><span id="cdText"></span><small id="cdHint"></small></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="hud">
+        <div class="good" id="hudGood"><b id="score">0</b><small data-i18n="hud.good">Delivered · 已送達</small></div>
+        <div><b id="onway">0</b><small data-i18n="hud.onway">On the way · 路上</small></div>
+        <div class="bad" id="hudBad"><b id="cars">0</b><small data-i18n="hud.bad">Drove · 開車流失</small></div>
+        <div><b id="notOut">0</b><small data-i18n="hud.notOut">Not out yet · 未出門</small></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="row"><span class="lbl" data-i18n="g.tide">Tide table · 潮汐表</span><div class="sp"></div><span class="chip" data-i18n-title="g.tideChipTitle"><i></i><span id="tideChip">4 輪</span></span></div>
+    <table id="tide" data-i18n-aria="g.tideAria"></table>
+    <div class="legend tidekey" id="tideKey" data-i18n-html="g.tideKey"></div>
+    <div id="habitWrap" hidden><div class="lbl" style="margin-top:16px" data-i18n="g.habit">Habit · 坐巴士習慣</div><div class="box habit" id="habitBox"></div></div>
+    <div id="groupWrap" hidden><div class="lbl" style="margin-top:16px" data-i18n="g.groups">People · 三種人</div><div class="box groups" id="groupBox"></div></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
+    <p id="notice" class="note" role="status" aria-live="polite"></p>
+  </aside>
+</main>
+
+<dialog id="info"><button class="close" data-close="info" data-i18n-aria="close">×</button>
+<span class="lbl" data-i18n="i.lbl">Rules &amp; sources · 規則與資料</span><h2 class="h1" data-i18n="i.h">規則</h2>
+<ol class="rules">
+<li data-i18n-html="i.r1"></li>
+<li data-i18n-html="i.r2"></li>
+<li id="infoR3"></li>
+<li data-i18n-html="i.r4"></li>
+<li id="infoR5"></li>
+<li id="infoR6"></li>
+<li id="infoR7" hidden></li>
+</ol>
+<h3 data-i18n="i.real">哪些是真的</h3><p id="source"></p><p id="coverSource"></p><p data-i18n="i.scope"></p><p data-i18n="hub.enNames"></p></dialog>
+
+<dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
+<table class="result"><thead id="resultHead"></thead><tbody id="resultRows"></tbody></table>
+<div id="resultExtra"></div><p id="resultHint" class="note"></p><div class="row"><button id="again" class="btn btn-p" data-i18n="r.again">再試一局 ↺</button><button data-close="result" class="btn" data-i18n="r.board">查看棋盤</button><button id="download" class="btn" data-i18n="r.save">保存本局紀錄</button></div></dialog>
+
+<dialog id="lvIntro" class="intro"><span class="lbl" id="ivEn"></span><h2 class="h1" id="ivTitle"></h2>
+<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span id="ivNew"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" id="ivCourse"></p>
+<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始佈置 →</button></div></dialog>
+
+<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="strings.js"></script><script src="../shared/tips.js"></script><script src="ui.js"></script></body></html>
