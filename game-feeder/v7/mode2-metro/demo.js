@@ -29,7 +29,7 @@
       '{d} of the {n} stations sit right at an estate or destination: walking is {w} a cell, so one cell off costs every trip {w}.'),
     'demo.wBend':L('線故意繞路（{l} 格）：坐車不按距離算，只有路過的站才多 1 格，所以繞去多接一個屋苑很划算。','线故意绕路（{l} 格）：坐车不按距离算，只有路过的站才多 1 格，所以绕去多接一个屋苑很划算。',
       'The line winds ({l} cells): the ride doesn\'t count distance, only stations passed, so a detour to pick up another estate pays.'),
-    'demo.wBoth':L('兩個目的地都接上：{a}和{b}都會變近，兩邊都多人去。','两个目的地都接上：{a}和{b}都会变近，两边都多人去。','Both destinations on the line: {a} and {b} both come nearer and both draw more.'),
+    'demo.wBoth':L('兩個目的地都接上：{a}和{b}都會變近，兩邊都多人去；兩地之間順路來回的人，大家都知道以後每天約 {n} 人坐地鐵。','两个目的地都接上：{a}和{b}都会变近，两边都多人去；两地之间顺路来回的人，大家都知道以后每天约 {n} 人坐地铁。','Both destinations on the line: {a} and {b} both come nearer and draw more; people going on between them add about {n} metro trips a day once everyone knows.'),
     'demo.wSkip':L('離站遠的屋苑：{list}——走過去太貴，坐的人少。預算 {b} 只夠這麼多，先接人多、開車又遠的。','离站远的屋苑：{list}——走过去太贵，坐的人少。预算 {b} 只够这么多，先接人多、开车又远的。','Far from a station: {list} — too long a walk, few ride. A budget of {b} only goes so far: serve big estates far from the destinations first.'),
     'demo.far':L('{a}（走 {c} 格）','{a}（走 {c} 格）','{a} ({c} cells)'),
     'demo.wLeft':L('還剩 {m} 沒用。','还剩 {m} 没用。','{m} left unspent.'),
@@ -101,7 +101,7 @@
     why.push(t('demo.wDoor',{n:plan.stations.length,d:atDoor,w:P.walkPer}));
     const a=order[0].s,z=order.at(-1).s;if(plan.line.length-1>walk(a,z)+2)why.push(t('demo.wBend',{l:plan.line.length}));
     const served=x=>plan.stations.some(s=>walk(s,x.cell)<=1);
-    if(D.destinations.every((d,k2)=>served({cell:d.cell})))why.push(t('demo.wBoth',{a:I.name(D.destinations[0]),b:I.name(D.destinations[1])}));
+    if(D.destinations.every((d,k2)=>served({cell:d.cell})))why.push(t('demo.wBoth',{a:I.name(D.destinations[0]),b:I.name(D.destinations[1]),n:Math.round(pot.chain.reduce((s2,q)=>s2+q.metro,0))}));
     const skip=places.filter(x=>x.estate!==undefined&&!served(x)).map(x=>t('demo.far',{a:x.name,c:Math.min(...plan.stations.map(s=>walk(s,x.cell)))}));
     if(skip.length)why.push(t('demo.wSkip',{list:skip.join(t('sep')),b:P.budget}));
     if(api.plan.money>0)why.push(t('demo.wLeft',{m:api.plan.money}));

@@ -18,11 +18,12 @@
     destinations:[
       {name:'元朗市中心',hans:'元朗市中心',short:'元朗',shortHans:'元朗',kind:'town',cell:[13,4],house:[1,0],attraction:24,carExtra:3},
       {name:'洪水橋新發展區',hans:'洪水桥新发展区',short:'洪水橋',shortHans:'洪水桥',kind:'jobs',cell:[7,2],house:[0,-1],attraction:22,carExtra:7}],
-    walkPer:2,nearby:10,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:40,years:8,crowdBlocks:4,aware:{start:.2,spread:2},
-    // bots/v7_metro_grow.js (local search from routes through the estates, eight-year totals): best 646 (a U through
-    // 天耀邨 → 洪水橋 → 元朗 → 天恆邨, 4 stations, 2 trains, never crowded); local optima p90 ~470, median ~230; the plain
-    // 天耀邨 → 洪水橋 → 元朗 line with 3 stations and 2 trains: 328
-    tiers:[400,520,620]};
+    walkPer:2,nearby:10,stay:40,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:40,years:8,crowdBlocks:4,aware:{start:.2,spread:2},
+    // stay: the fixed pull of «done, home» for people at one destination deciding whether to go on to the other
+    // bots/v7_metro_grow.js (local search from routes through the estates, eight-year totals): best 969 (元朗 → 洪水橋 →
+    // down to 天瑞邨, 4 stations, 3 trains, never crowded); local optima p90 ~690, median ~260; the plain 天耀邨 → 洪水橋 →
+    // 元朗 line with 3 stations: 473 with 1 train (crowded), 636 with 2; the two centres alone with 2 trains: 289
+    tiers:[550,760,900]};
   const LEVELS={'m2-1':NW};
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
   const D={};

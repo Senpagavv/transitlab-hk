@@ -79,6 +79,20 @@ test('Score: the years’ daily riders added up; simulate() and year-by-year agr
   while(!p.done)p.runYear();near(p.total,s.total);near(build().simulate().total,s.total);
   assert(P.target<P.highScore&&P.highScore<P.masterScore);
 });
+test('Going on: some who reach one destination go on to the other — the same pull and tenths rules, against «done, home»',()=>{
+  assert(P.stay>0,'the level has trips between destinations');
+  const p=build(),y=p.now();assert.equal(y.chain.length,2);
+  for(const q of y.chain){const dist=walk(D.destinations[q.a].cell,D.destinations[q.b].cell);
+    assert.equal(q.car,dist+(D.destinations[q.b].carExtra??2));assert.equal(q.foot,P.walkPer*dist);assert.equal(q.tenths,Math.min(10,q.save));
+    near(q.shareBefore,M.onward(q.a,q.b,q.alt).share);near(q.shareNow,Math.max(0,D.destinations[q.b].attraction-Math.min(q.alt,q.trip.blocks))/(Math.max(0,D.destinations[q.b].attraction-Math.min(q.alt,q.trip.blocks))+P.stay));
+    y.est.forEach((e,i)=>{const c=e.chain[y.chain.indexOf(q)],x=e.to[q.a];near(c.go,x.knowGo*q.shareNow+x.dontGo*q.shareBefore);near(c.metro,x.knowGo*q.shareNow*q.tenths/10);});}
+  y.est.forEach(e=>near(e.metro,e.to.reduce((s,x)=>s+x.metro,0)+e.chain.reduce((s,c)=>s+c.metro,0)));
+  y.dest.forEach((d,k)=>near(d.go,y.est.reduce((s,e)=>s+e.to[k].go,0)+y.chain.filter(q=>q.b===k).reduce((s,q)=>s+q.go,0)));
+  // a line joining only the two centres: hardly anyone from the estates, but the trips between them ride it
+  const c=build([[7,2],[8,2],[9,2],[10,2],[11,2],[12,2],[13,2],[13,3],[13,4]],[[7,2],[13,4]],2),pot=c.potential();
+  assert(pot.chain.every(q=>q.metro>10&&q.go>q.before),'induced and on the metro');assert(pot.chain.reduce((s,q)=>s+q.metro,0)>3*pot.est.reduce((s,e)=>s+e.direct,0));
+  const none=year(c.line,c.stations,D.origins.map(()=>0),c.trains);none.chain.forEach(q=>{near(q.go,q.before);assert.equal(q.metro,0);});
+});
 test('AI demo plans: each fits the budget, scores what demo-plans.js says and clears its line',()=>{
   require('./demo-plans.js');const L=globalThis.TL_METRO_DEMO[D.map];assert.deepEqual(L.tiers,[P.target,P.highScore,P.masterScore]);
   ['pass','high','master'].forEach((name,j)=>{const d=L[name],p=build(d.line,d.stations,d.trains);assert(p.money>=0);

@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-14
+
+### 00:18 · `待补` 接驳巴士 v7.7：模式 2「地铁」加「顺路再去」——两个中心之间的来回 / Feeder v7.7: metro — trips between the two centres
+- **改了什么**：`game-feeder/v7/mode2-metro/`：到了一个目的地的人，按同样的规则决定要不要再去另一个（拉力＝吸引力 − 两地格数，和「办完就回家」固定 40 按比例分；省几格几成坐地铁），计入来客、分数和线段载客。地图上两中心之间的愿望线、算式表「顺路」行、规则文字、AI 示范说明。重新调参：门槛 550/760/900，AI 示范三套 581/813/969。
+- **为什么**：发起人发现只连两个目的地时来回的人很少，现实里两个功能不同的中心之间会有很多人来回。
+- **验证**：11 项规则检查通过；三套 AI 示范浏览器分数与方案一致，无报错。
+
 ## 2026-10-13
 
 ### 23:57 · `c776853` 接驳巴士 v7.6：模式 2「地铁」加走路、口耳相传加快、AI 示范 / Feeder v7.6: metro — walking, faster word of mouth, AI demo

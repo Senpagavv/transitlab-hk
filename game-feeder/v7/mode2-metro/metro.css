@@ -56,6 +56,7 @@
 .xr em{font-style:normal;font-size:11px;color:var(--s-ink3)}.xr em.up{color:var(--s-accent)}.xr em.down{color:var(--s-bad)}
 .maplegend .lk.crowd{background:var(--s-bad)}
 #trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
+#trips tr.chain td:first-child{box-shadow:inset 3px 0 0 var(--s-info)}
 .mapplate .toast{z-index:5}
 /* v7.5 · build once, watch it grow: the plan box locks, the year card, awareness and where-people-go bars */
 #planBox.locked{opacity:.45;pointer-events:none}

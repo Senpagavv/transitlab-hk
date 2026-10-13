@@ -55,10 +55,11 @@ console.log('  destinations before → full potential:',pot.dest.map((d,k)=>`${D
 const walkers=pot.est.reduce((s,e)=>s+e.to.reduce((a,x)=>a+x.walkers,0),0);console.log(`  on foot a day (potential) ${Math.round(walkers)}`);
 // the demo plans: the lowest optimum that clears each line, the best for master
 const tiers=D.tiers,plans={tiers,best:Math.round(found[0].s)};
-// clean plans read well in a demo: never crowded, no two stations side by side
+// clean plans read well in a demo: never crowded, no two stations side by side; pass and high take the simplest
 const clean=f=>{const r=f.p.simulate();return !r.log.some(l=>l.crowdedSections)&&!f.p.line.some((c,j)=>j&&f.p.isStation(c)&&f.p.isStation(f.p.line[j-1]));};
 ['pass','high','master'].forEach((name,j)=>{const above=found.filter(f=>f.s>=tiers[j]&&(j===2||f.s<tiers[j+1]));
-  const c=name==='master'?found[0]:above.filter(clean).at(-1)||above.at(-1);
+  const size=f=>f.p.stations.length+f.p.trains,simple=above.filter(clean).sort((x,y)=>size(x)-size(y)||x.s-y.s)[0];   // the simplest clean plan
+  const c=name==='master'?found[0]:simple||above.at(-1);
   if(!c){console.log(`  ${name}: no plan clears ${tiers[j]}`);return;}
   plans[name]={line:c.p.line,stations:c.p.stations,trains:c.p.trains,score:Math.round(c.s)};console.log(`  ${name} ${tiers[j]} → ${Math.round(c.s)}: ${fmt(c.p)}`);});
 if(write){const f=path.join(__dirname,'../v7/mode2-metro/demo-plans.js');

@@ -33,6 +33,10 @@
   function curve(a,b,j){const [x1,y1]=xy(a),[x2,y2]=xy(b),dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,bend=Math.min(60,L*.12)*(j%2?1:-1);
     const cx=(x1+x2)/2-dy/L*bend,cy=(y1+y2)/2+dx/L*bend;return{d:`M${x1} ${y1}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`,mid:[(x1+2*cx+x2)/4,(y1+2*cy+y2)/4]};}
 
+  // every desire line of a year: estate → destination, then destination → destination (people going on)
+  const rowsOf=y=>[...y.est.flatMap(e=>e.to.map(x=>({from:D.origins[e.i].cell,to:D.destinations[x.k].cell,x,who:nameO(e.i)}))),
+    ...(y.chain||[]).map(q=>({from:D.destinations[q.a].cell,to:D.destinations[q.b].cell,x:q,who:shortD(q.a),chain:true}))];
+
   /* -------------------------------------------------------------- the board */
   function draw(now=performance.now()){
     const y=plan.now(),placing=!plan.open;
@@ -41,16 +45,14 @@
       ground+=svg('rect',{x:cx-CS/2+3,y:cy-CS/2+3,width:CS-6,height:CS-6,rx:5,fill:can?C.metro:C.soft,'fill-opacity':can?.10:.55,stroke:can?C.metro:C.line,'stroke-opacity':can?.45:1,'stroke-dasharray':can?'4 3':''});}
     // desire lines: thickness = people going there now; the brown core = those on the metro
     // the pills: only the four busiest metro desire lines (the table has them all)
-    const busy=y.est.flatMap(e=>e.to.map(x=>x.metro)).map((m,k)=>[m,k]).filter(([m])=>m>=1).sort((a,b)=>b[0]-a[0]).slice(0,4).map(([,k])=>k);
-    let j=0;
-    for(const e of y.est)for(const x of e.to){const o=D.origins[e.i],d=D.destinations[x.k],{d:path,mid}=curve(o.cell,d.cell,j),w=1.5+x.go/4,on=sel===j;
+    const rows=rowsOf(y),busy=rows.map(r=>r.x.metro).map((m,k)=>[m,k]).filter(([m])=>m>=1).sort((a,b)=>b[0]-a[0]).slice(0,4).map(([,k])=>k);
+    rows.forEach(({from,to,x,chain},j)=>{const {d:path,mid}=curve(from,to,j),w=1.5+x.go/4,on=sel===j;
       desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:x.byFoot?.4:.28,'stroke-linecap':'round','stroke-dasharray':x.byFoot?`0.1 ${(w+6).toFixed(1)}`:''});
       if(x.metro>.5)desire+=svg('path',{d:path,fill:'none',stroke:C.metro,'stroke-width':(w*x.metro/x.go).toFixed(1),'stroke-opacity':sel>=0&&!on?.25:.85,'stroke-linecap':'round'});
       if(on)labels+=pill(mid[0],mid[1],t('m.dlFull',{g:R(x.go),b:R(x.before),m:R(x.metro)}),x.metro>.5?C.metro:C.ink2,12.5);
-      else if(sel<0&&busy.includes(j))labels+=pill(mid[0],mid[1],t('m.dl',{g:R(x.go),m:R(x.metro)}),C.metro,12);
-      j++;}
-    if(sel>=0){let k=0;for(const e of y.est)for(const x of e.to){if(k++!==sel||!x.trip)continue;const o=D.origins[e.i].cell,d=D.destinations[x.k].cell,seg=(a,b)=>`M${xy(a).join(' ')}L${xy([b[0],a[1]]).join(' ')}L${xy(b).join(' ')}`;
-      lines+=svg('path',{d:seg(o,x.trip.from),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'})+svg('path',{d:seg(x.trip.to,d),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});}}
+      else if(sel<0&&busy.includes(j))labels+=pill(mid[0],mid[1],t(chain?'m.dlOn':'m.dl',{g:R(x.go),m:R(x.metro)}),C.metro,12);});
+    if(sel>=0&&rows[sel]&&rows[sel].x.trip){const {from:o,to:d,x}=rows[sel],seg=(a,b)=>`M${xy(a).join(' ')}L${xy([b[0],a[1]]).join(' ')}L${xy(b).join(' ')}`;
+      lines+=svg('path',{d:seg(o,x.trip.from),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'})+svg('path',{d:seg(x.trip.to,d),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});}
     // the line, section by section (orange: nearly full, red: crowded)
     let worst=-1;
     for(let s=0;s+1<plan.line.length;s++){const [x1,y1]=xy(plan.line[s]),[x2,y2]=xy(plan.line[s+1]),f=y.load[s]/y.cap,col=f>1?C.bad:f>.8?C.warn:C.metro;
@@ -132,9 +134,10 @@
       let acc=0,bacc=0,ticks='';const bars=seg.map(s=>{const el=`<i style="flex:${s.v.toFixed(3)};background:${s.c}"></i>`;bacc+=s.b;if(bacc<.999)ticks+=`<u style="left:${(100*bacc).toFixed(1)}%"></u>`;return el;}).join('');
       w+=`<div class="wr"><span class="xn">${nameO(e.i)}</span><span class="wbar">${bars}${ticks}</span><b>${R(100*(n-e.nearby)/n)}%</b></div>`;});
     $('whereBox').innerHTML=w+`<p class="hbnote">${t('m.whereNote',{a:sw(DCOL(D.destinations[0].kind))+shortD(0),b:sw(DCOL(D.destinations[1].kind))+shortD(1),c:sw(C.ink3)+t('m.nearbyName')})}</p>`;
-    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tAlt')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`,k=0;
-    for(const e of y.est)for(const x of e.to){tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''}"><td>${nameO(e.i)}<small>→ ${shortD(x.k)}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.alt}<small>${t(x.byFoot?'m.byFoot':'m.byCar')}</small></td>`+
-      `<td>${x.trip?`${x.trip.blocks}<small>${P.walkPer*x.trip.walkA}+${P.wait}+${x.trip.pass}+${P.walkPer*x.trip.walkB}${x.trip.crowd?'+'+x.trip.crowd:''}</small>`:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b>${x.tenths?`<small>${t('m.tenths',{n:x.tenths})}×${t('m.tenths',{n:tenth(e.aware)})}</small>`:''}</td></tr>`;k++;}
+    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tAlt')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
+    rowsOf(y).forEach(({x,who,chain},k)=>{const e=chain?null:y.est.find(z=>z.to.includes(x));
+      tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''} ${chain?'chain':''}"><td>${who}<small>→ ${shortD(x.k)}${chain?' · '+t('m.chainTag'):''}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.alt}<small>${t(x.byFoot?'m.byFoot':'m.byCar')}</small></td>`+
+      `<td>${x.trip?`${x.trip.blocks}<small>${P.walkPer*x.trip.walkA}+${P.wait}+${x.trip.pass}+${P.walkPer*x.trip.walkB}${x.trip.crowd?'+'+x.trip.crowd:''}</small>`:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b>${x.tenths?`<small>${t('m.tenths',{n:x.tenths})}${e?'×'+t('m.tenths',{n:tenth(e.aware)}):''}</small>`:''}</td></tr>`;});
     $('trips').innerHTML=tb+'</tbody>';
   }
   function render(){draw();side();}
@@ -142,9 +145,9 @@
     $('board').setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}}
   function texts(){
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
-    const v={wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
+    const v={st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
       sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction,e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2,d0:shortD(0),d1:shortD(1)};
-    $('rules').innerHTML=['m.r0','m.r1','m.r2','m.r3','m.r4','m.r5'].map(k=>`<li>${t(k,v)}</li>`).join('');
+    $('rules').innerHTML=['m.r0','m.r1','m.r2','m.rOn','m.r3','m.r4','m.r5'].map(k=>`<li>${t(k,v)}</li>`).join('');
     $('infoBody').innerHTML=t('m.info',v);$('ivBody').innerHTML=t('iv.m2.body',v);
     $('mapLegend').innerHTML=t('m.legend');document.title=t('m.doc');
   }
