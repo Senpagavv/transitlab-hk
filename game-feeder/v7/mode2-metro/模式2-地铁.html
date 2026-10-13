@@ -585,24 +585,39 @@ dialog.intro .row{margin-top:16px}
 .tipbox .tipbtns{display:flex;justify-content:flex-end;gap:8px}
 .tipbox .tipoff{color:var(--s-ink3)}
 @keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-/* v7 · mode 2 «the metro» — only what this mode adds to shared/style.css */
+/* v7 · mode 2 «the metro», static version — only what this mode adds to shared/style.css */
 :root{--s-metro:#9A3B26}
 [data-theme="dark"]{--s-metro:#E0896B}
-.mbox{margin-top:10px;padding:10px 12px}
-.mbox h3{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;font:600 14px 'Geist',sans-serif}
-.mbox p{margin:4px 0;font-size:12.5px;line-height:1.6;color:var(--s-ink2)}
-.mbox .r{display:flex;justify-content:space-between;font-size:12.5px;margin-top:6px}
-.mbox .mnote{font-size:11.5px;color:var(--s-ink3)}
-.tsel{margin-top:4px}.tsel button{min-width:38px;font:600 13px var(--s-mono)}
-.tsel button:disabled{opacity:.3;cursor:default}
-#weeks{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12.5px}
-#weeks th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 5px;text-align:right}
-#weeks th:first-child,#weeks td:first-child{text-align:left}
-#weeks td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono)}
-#weeks tr.now td{background:var(--s-raise)}
-#weeks tr.next td{background:color-mix(in srgb,var(--s-warn) 12%,transparent)}
-#weeks tr.past{opacity:.5}
-#board .candidate,#board .stationhit{cursor:pointer}
+.bigscore{margin-top:12px}
+.bigscore b#score{font:600 40px var(--s-mono);color:var(--s-metro);line-height:1}
+.bigscore .unit{font-size:14px;color:var(--s-ink2);margin-left:6px}
+.budget{margin-top:10px;padding:10px 12px}
+.bbar{display:flex;height:10px;border-radius:5px;background:var(--s-raise);overflow:hidden;margin:6px 0}
+.bbar i{display:block;height:100%}
+#bbLine{background:var(--s-metro);opacity:.55}#bbStation{background:var(--s-metro)}
+.tools{margin-top:12px;gap:8px;flex-wrap:wrap}
+.tools .seg button{height:32px;font-size:13px;padding:0 12px}
+.hint{font-size:12.5px;line-height:1.6;color:var(--s-ink2);margin:8px 0 10px;min-height:3.2em}
+#submit{width:100%}
+#submit:disabled{opacity:.4}
+.mapplate{position:relative}
+.maplegend{position:absolute;left:16px;bottom:12px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--s-ink2);background:var(--s-chrome);padding:6px 10px;border-radius:6px}
+.maplegend span{display:inline-flex;align-items:center;gap:6px}
+.maplegend .lk{display:inline-block;width:22px;height:8px;border-radius:4px}
+.maplegend .lk.car{background:var(--s-ink3);opacity:.5}
+.maplegend .lk.metro{background:linear-gradient(var(--s-ink3) 0 30%,var(--s-metro) 30% 70%,var(--s-ink3) 70%);opacity:.9}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:13px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}
+#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:6px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top;cursor:pointer}
+#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3);font-family:var(--s-mono)}
+#trips tr.on td b{color:var(--s-metro)}
+#trips tr.sel td{background:color-mix(in srgb,var(--s-metro) 10%,transparent)}
+#trips tbody tr:hover td{background:var(--s-raise)}
+#trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
+#trips tfoot td b{color:var(--s-metro);font-size:15px}
+#board{cursor:crosshair;touch-action:none}
 </style></head><body class="entered">
 
 <header id="topbar">
@@ -616,105 +631,90 @@ dialog.intro .row{margin-top:16px}
 <main id="app" class="eg">
   <aside class="side scol">
     <div class="row"><a class="btn btn-sm" href="../开始.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="m.mode">Mode 02 · 地鐵</span></div>
-    <h1 class="h1"><span id="titleEn">The metro</span><span class="h1tc" id="titleTc">新界西北 · 東西線</span></h1>
+    <h1 class="h1"><span>The metro</span><span class="h1tc" data-i18n="m.levelTitle">新界西北 · 一條新線</span></h1>
     <p class="lede" data-i18n-html="m.lede"></p>
 
-    <div class="box goal">
-      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">0</span></span></div>
+    <div class="box bigscore">
+      <div class="lbl" data-i18n="m.scoreLbl">每天少開</div>
+      <div class="row"><b id="score">0</b><span class="unit" data-i18n="m.scoreUnit">車次</span><div class="sp"></div><span class="mono" id="ofTotal"></span></div>
       <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
       <div class="note" id="goal"></div>
     </div>
 
-    <div class="row controls">
-      <button class="btn btn-p" id="start" disabled>▶</button>
-      <div class="seg" id="speedSeg" role="group"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button></div><span class="fasthint" id="fastHint" data-i18n="g.fast">按住 F 快進</span>
-      <button class="btn btn-sm" id="reset">↺</button>
+    <div class="box budget">
+      <div class="row"><span class="lbl" data-i18n="m.budgetLbl">預算</span><div class="sp"></div><span class="mono" id="budgetNum"></span></div>
+      <div class="bbar"><i id="bbLine"></i><i id="bbStation"></i></div>
+      <div class="note mono" id="budgetSum"></div>
     </div>
 
-    <div class="box mbox" id="buildBox"></div>
-    <div class="box mbox" id="trainBox"></div>
+    <div class="row tools">
+      <div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="true" data-i18n="m.toolDraw">✏ 畫線</button><button data-tool="station" aria-pressed="false" data-i18n="m.toolStation">● 放站</button></div>
+      <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="m.clear">清空</button>
+    </div>
+    <p class="hint" id="toolHint"></p>
+    <button class="btn btn-p" id="submit" data-i18n="m.submit">完成方案</button>
 
-    <div class="lbl" style="margin-top:16px" data-i18n="m.rulesH">Four rules · 四條規則</div>
+    <div class="lbl" style="margin-top:18px" data-i18n="m.rulesH">Three rules · 三條規則</div>
     <ol class="mini">
       <li data-i18n-html="m.rule1"></li>
-      <li data-i18n-html="m.rule2"></li>
+      <li id="rule2"></li>
       <li id="rule3"></li>
-      <li data-i18n-html="m.rule4"></li>
     </ol>
-    <div class="legend" id="legend"></div>
   </aside>
 
   <div class="play">
     <div class="mapplate">
-      <svg id="board" viewBox="0 0 1060 600" role="group"></svg>
-      <div class="clockbox ov"><div class="c" id="clock">00:00</div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
-      <div class="countdown" id="cdown" aria-live="polite"><b id="cdNum">7</b><span id="cdText"></span><small id="cdHint"></small></div>
-      <div class="toast" id="toast" role="status" aria-live="polite"></div>
-      <div class="hud">
-        <div class="good" id="hudGood"><b id="score">0</b><small data-i18n="m.hudGood">By metro · 坐地鐵到達</small></div>
-        <div><b id="onway">0</b><small data-i18n="m.hudWay">On the way · 路上</small></div>
-        <div class="bad" id="hudBad"><b id="cars">0</b><small data-i18n="m.hudBad">Drove · 開車</small></div>
-        <div><b id="walked">0</b><small data-i18n="m.hudWalk">Walked · 走路就到</small></div>
-      </div>
+      <svg id="board" viewBox="0 0 1000 620" role="group"></svg>
+      <div class="maplegend" id="mapLegend"></div>
     </div>
   </div>
 
   <aside class="side right scol">
-    <div class="row"><span class="lbl" data-i18n="m.weeksH">Weeks · 每週</span><div class="sp"></div><span class="chip"><i></i><span id="weeksChip"></span></span></div>
-    <table id="weeks"></table>
-    <div class="lbl" style="margin-top:16px" data-i18n="m.habitH">Habit · 坐地鐵習慣</div>
-    <div class="box habit" id="habitBox"></div>
-    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
-    <p id="notice" class="note" role="status" aria-live="polite"></p>
+    <div class="lbl" data-i18n="m.tripsH">Trips · 每條愿望線</div>
+    <p class="note" data-i18n="m.tripsNote">點一行，地圖上會亮出那條線。</p>
+    <table id="trips"></table>
   </aside>
 </main>
 
 <dialog id="info"><button class="close" data-close="info">×</button>
-<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="m.infoH">地鐵模式的規則</h2>
-<div id="infoBody"></div></dialog>
+<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="m.infoH">地鐵模式的規則</h2><div id="infoBody"></div></dialog>
 
 <dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
-<div id="resultBody"></div><p id="resultHint" class="note"></p>
-<div class="row"><button id="again" class="btn btn-p" data-i18n="r.again">再試一局 ↺</button><button data-close="result" class="btn" data-i18n="r.board">查看棋盤</button></div></dialog>
+<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.keep">繼續改</button><button id="again" class="btn" data-i18n="m.restart">從頭來過 ↺</button></div></dialog>
 
-<dialog id="lvIntro" class="intro"><span class="lbl">MODE 02 · THE METRO</span><h2 class="h1" id="ivTitle"></h2>
-<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span id="ivNew"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" id="ivCourse"></p>
-<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始佈置 →</button></div></dialog>
+<dialog id="lvIntro" class="intro"><span class="lbl">MODE 02 · THE METRO</span><h2 class="h1" data-i18n="m.levelTitle"></h2>
+<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m2.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m2.course"></p>
+<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始畫線 →</button></div></dialog>
 
 <script>
 (function(root) {
   'use strict';
-  // v7 · mode 2 «the metro» — levels. First draft: one board, a schematic of north-west New Territories (Tin Shui Wai
-  // → Hung Shui Kiu → Yuen Long) with a planned east–west line. Names are real places; positions, numbers and the line
-  // itself are a game sketch (not the real Tuen Ma line). One block ≈ 400 m.
-  //   line          the planned alignment, west → east, one cell after another (stations go on these cells)
-  //   origins       estates: people a week (if every one of them tried the metro) and where they go (shares of
-  //                 `destinations`, in order)
+  // v7 · mode 2 «the metro» (static version) — levels. A schematic of north-west New Territories: five estates, two
+  // places people go each morning. Names are real; positions and numbers are a game sketch. One block ≈ 400 m.
+  //   origins       estates: people a day to each destination (in the order of `destinations`)
   //   destinations  where people go
-  const LEVELS={
-    'm2-1':{title:'新界西北 · 東西線',cols:15,rows:9,
-      line:[[1,5],[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[7,4],[8,4],[9,4],[10,4],[11,4],[12,4],[13,4]],
-      origins:[
-        {name:'天瑞邨',hans:'天瑞邨',cell:[1,7],house:[0,40],people:42,to:[.5,.3,.2]},
-        {name:'天耀邨',hans:'天耀邨',cell:[3,2],house:[0,-40],people:48,to:[.5,.3,.2]},
-        {name:'天恆邨',hans:'天恒邨',cell:[5,8],house:[0,40],people:39,to:[.55,.3,.15]},
-        {name:'洪福邨',hans:'洪福邨',cell:[9,6],house:[0,40],people:34,to:[.6,.25,.15]},
-        {name:'朗屏邨',hans:'朗屏邨',cell:[11,1],house:[0,-40],people:36,to:[.45,.35,.2]},
-        {name:'水邊圍',hans:'水边围',cell:[13,7],house:[0,40],people:28,to:[.45,.35,.2]}],
-      destinations:[
-        {name:'元朗市中心',hans:'元朗市中心',short:'元朗',shortHans:'元朗',en:'Yuen Long town centre',kind:'town',cell:[14,4],house:[40,0]},
-        {name:'洪水橋新發展區',hans:'洪水桥新发展区',short:'洪水橋',shortHans:'洪水桥',en:'Hung Shui Kiu new town',kind:'jobs',cell:[7,1],house:[0,-40]},
-        {name:'天水圍醫院 · 學校',hans:'天水围医院 · 学校',short:'天水圍北',shortHans:'天水围北',en:'Tin Shui Wai hospital · schools',kind:'school',cell:[0,3],house:[0,40]}],
-      weeks:6,habit:{start:.35,rate:.5,floor:.1},
-      stationsMax:4,trainsMin:1,trainsMax:5,budget:15,cap:10,platform:16,trainStep:2.5,dwell:4,turn:10,
-      firstWave:20,release:110,tiers:[760,880,930]}   // bots/v7_metro_tune.js: default trains best 845 (p90 720, median 607); best plan 939
-  };
+  //   car           the car trip in blocks for each estate → destination: the blocks apart + `park` (finding a space
+  //                 and walking from it) — written out so the board can show it
+  function carTable(origins,dests,park=2){return origins.map(o=>dests.map(d=>Math.abs(o.cell[0]-d.cell[0])+Math.abs(o.cell[1]-d.cell[1])+park));}
+  const NW={title:'新界西北 · 一條新線',cols:14,rows:9,
+    origins:[
+      {name:'天耀邨',hans:'天耀邨',cell:[2,2],house:[0,-1],to:[40,20]},
+      {name:'天瑞邨',hans:'天瑞邨',cell:[1,7],house:[0,1],to:[36,18]},
+      {name:'天恆邨',hans:'天恒邨',cell:[5,6],house:[0,1],to:[30,20]},
+      {name:'洪福邨',hans:'洪福邨',cell:[8,7],house:[0,1],to:[24,22]},
+      {name:'朗屏邨',hans:'朗屏邨',cell:[10,1],house:[0,-1],to:[30,14]}],
+    destinations:[
+      {name:'元朗市中心',hans:'元朗市中心',kind:'town',cell:[13,4],house:[1,0]},
+      {name:'洪水橋新發展區',hans:'洪水桥新发展区',kind:'jobs',cell:[7,2],house:[0,-1]}],
+    wait:2,lineCost:1,stationCost:3,budget:30,tiers:[65,90,105]};   // bots/v7_metro_static.js: best 108, local optima p90 94, median 62
+  NW.car=carTable(NW.origins,NW.destinations);
+  const LEVELS={'m2-1':NW};
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
   swap(LEVELS[pick]?pick:'m2-1');
   Object.defineProperty(D,'select',{enumerable:false,value(name){return LEVELS[name]?swap(name):false;}});
-  Object.defineProperty(D,'use',{enumerable:false,value(def,name='draft'){LEVELS[name]=def;return swap(name);}});
+  Object.defineProperty(D,'use',{enumerable:false,value(def,name='draft'){if(!def.car)def.car=carTable(def.origins,def.destinations,def.park);LEVELS[name]=def;return swap(name);}});
   Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
   if(typeof module!=='undefined')module.exports=D;
   root.METRO_DATA=D;
@@ -724,155 +724,64 @@ dialog.intro .row{margin-top:16px}
 (function(root) {
   'use strict';
   const D=typeof module!=='undefined'?require('./data.js'):root.METRO_DATA;
-  // v7 · mode 2 «the metro» (first draft for discussion). Seconds are game time, not real calibration.
-  // The board: estates (where people live), destinations (where they go: jobs, schools), and a planned alignment.
-  //   Stations: up to `stationsMax` on the alignment's spots, built once at the start (they cannot move later).
-  //   Trains: `trains` sets shuttle between the two outermost stations, stopping at every station; a loop is
-  //     travel (trainStep a block, both ways) + a dwell at every stop + a turn at each end, so a longer line or more
-  //     stations means a longer loop and, for the same trains, a train less often. Each train carries `cap`.
-  //   People: each estate sends people to the destinations in fixed shares. Someone rides only if a station is near
-  //     their home AND a station is near where they are going (walking pull as in mode 1: 100 % next door, 10 points
-  //     less a block, nothing beyond 6 blocks); they split over every usable (home station → destination station)
-  //     pair in proportion to pull × pull — evenly spread picks, no dice. No usable pair: they drive.
-  //   Weeks: one round is a morning of one week. A new line: only `habit.start` of each estate even tries it; each
-  //     night the habit moves halfway towards the share of that week's riders who got on without trouble (v6 rule).
-  //   Each week the player sets how many trains run (1–5) out of a budget for the whole game.
-  //   A platform holds `platform` people per direction; arriving at a full one, people give up and drive. In the
-  //     queue they wait for a train with room (no patience used, as in mode 1).
-  // Score: people who reached their destination by metro.
-  const P={tick:.5,walkStep:12,trainStep:2.5,dwell:4,turn:10,cap:24,platform:30,release:110,firstWave:20,
-    willing:[1,.9,.8,.7,.6,.5,.4],stationsMax:4,trainsMin:1,trainsMax:5,budget:18,target:0,highScore:0,masterScore:0};
+  // v7 · mode 2 «the metro», static version (2026-10-13, after the lead's review of the first draft — that one, with
+  // weeks, trains and habit, is commit c1ba721). One rule, counted in blocks:
+  //   a metro trip = walk to a station (blocks) + wait 2 + 1 for every station the train passes on the way + walk from
+  //   the station (blocks). The car trip is a number on each desire line. Every block the metro saves on the car,
+  //   one in ten people switch: 3 blocks saved → 3 in 10 (capped at 10 in 10).
+  //   You draw one line on the grid (it may turn, never branches) and put stations on it, within a budget: each block
+  //   of line costs `lineCost`, each station `stationCost`.
+  //   Score: people a day who leave the car for the metro (car trips saved).
+  const P={wait:2,lineCost:1,stationCost:3,budget:30,target:0,highScore:0,masterScore:0};
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
-  const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);           // on foot: blocks along the street grid
-  const willing=n=>n<0?0:(P.willing[n]??0);
-  function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
-  // the person with pick p in [0,1) falls in the slice of the pulls it lands on (-1: no pull at all)
-  function slice(pulls,p){const sum=pulls.reduce((a,b)=>a+b,0);if(!(sum>0))return -1;let acc=0;
-    for(let i=0;i<pulls.length;i++){acc+=pulls[i]/sum;if(p<acc-1e-12)return i;}return pulls.findLastIndex(x=>x>0);}
-  function reset(){
-    for(const k of ['trainStep','dwell','turn','cap','platform','release','firstWave','stationsMax','trainsMin','trainsMax','budget','willing'])if(D[k]!==undefined)P[k]=D[k];
-    [P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];
-  }
+  const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
+  const adj=(a,b)=>walk(a,b)===1;
+  function reset(){for(const k of ['wait','lineCost','stationCost','budget'])if(D[k]!==undefined)P[k]=D[k];[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
   reset();
-  const idxOf=c=>D.line.findIndex(x=>same(x,c));          // position along the alignment (blocks from its west end)
-  class Game {
-    constructor(seed=2026){
-      Object.assign(this,{seed,t:0,started:false,done:false,round:0,roundStart:[P.firstWave],delivered:0,cars:0,walked:0,steps:0,acc:0,ptr:0,active:new Set(),queues:[],
-        events:[],stations:[],trainsByWeek:[],people:[],trains:[],habit:D.origins.map(()=>D.habit.start),habitLog:[]});
-      const r=rng(seed);let id=0;
-      const spread=n=>{const a=Array.from({length:n},(_,k)=>(k+.5)/n);for(let k=n-1;k>0;k--){const j=Math.floor(r()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;};
-      for(let w=0;w<D.weeks;w++)D.origins.forEach((o,oi)=>{
-        const n=o.people,dest=spread(n),pick=spread(n),tp=spread(n);
-        for(let j=0;j<n;j++)this.people.push({id:id++,origin:oi,wave:w,offset:(j+.5)/n*P.release,
-          dest:slice(o.to,dest[j]),pick:pick[j],tpick:tp[j],state:'future',born:Infinity,turned:false});
-      });
-      this.people.sort((a,b)=>a.wave-b.wave||a.offset-b.offset||a.id-b.id);
-      this.pending=Array.from({length:D.weeks},(_,w)=>this.people.filter(p=>p.wave===w).length);
-      this.habitLog=[{week:0,habit:this.habit.slice()}];
-    }
-    emit(type,p,extra={}){this.events.push({time:this.t,type,id:p?.id,origin:p?.origin,...extra});}
-    // ---- building (before the start only)
-    canBuild(c){return !this.started&&idxOf(c)>=0&&!this.stations.some(s=>same(s,c))&&this.stations.length<P.stationsMax;}
-    build(c){if(!this.canBuild(c))return false;this.stations.push(c.slice());this.stations.sort((a,b)=>idxOf(a)-idxOf(b));this.emit('build',null,{cell:c.slice()});return true;}
-    unbuild(c){if(this.started)return false;const n=this.stations.length;this.stations=this.stations.filter(s=>!same(s,c));return this.stations.length<n;}
-    // ---- trains: how many this week (1–5, within what is left of the budget)
-    spent(){return this.trainsByWeek.reduce((a,b)=>a+b,0);}
-    trainsRange(week=this.round){const left=P.budget-this.trainsByWeek.slice(0,week).reduce((a,b)=>a+b,0),later=D.weeks-week-1;
-      return[P.trainsMin,Math.max(P.trainsMin,Math.min(P.trainsMax,left-later*P.trainsMin))];}
-    setTrains(n,week=this.round){const [lo,hi]=this.trainsRange(week);if(n<lo||n>hi)return false;
-      if(this.started&&week<this.round)return false;this.trainsByWeek[week]=n;if(this.started&&week===this.round&&this.t<this.roundStart[week]+1e-9)this.schedule();return true;}
-    // one loop of a train set: every stop (station index, direction, time from the loop start) and the loop length
-    loop(){
-      const st=this.stations.map(idxOf),ev=[];let t=0;if(st.length<2)return{ev,T:Infinity};
-      ev.push({s:0,dir:1,at:0});
-      for(let i=1;i<st.length;i++){t+=(st[i]-st[i-1])*P.trainStep;ev.push({s:i,dir:1,at:t});t+=P.dwell;}
-      t+=P.turn;ev.push({s:st.length-1,dir:-1,at:t});
-      for(let i=st.length-2;i>=0;i--){t+=(st[i+1]-st[i])*P.trainStep;ev.push({s:i,dir:-1,at:t});t+=P.dwell;}
-      t+=P.turn;return{ev,T:t};
-    }
-    headway(n=this.trainsByWeek[this.round]||1){const T=this.loop().T;return T/n;}
-    schedule(){const n=this.trainsByWeek[this.round]||P.trainsMin,{ev,T}=this.loop(),t0=this.roundStart[this.round];
-      this.trains=Array.from({length:n},(_,k)=>({k,t0:t0-k*T/n,load:[],ev,T}));this.queues=[];this.lastT=this.t;}
-    // where a train is now: [cell along the line as a fraction of an index] for drawing
-    trainPos(tr){const {ev,T}=tr;if(!isFinite(T))return null;const ph=((this.t-tr.t0)%T+T)%T,st=this.stations.map(idxOf);
-      for(let i=0;i<ev.length;i++){const a=ev[i],b=ev[i+1]||{s:0,dir:1,at:T};
-        const dep=a.at+(i===0||a.s===st.length-1&&a.dir===-1?0:P.dwell);
-        if(ph<a.at)continue;
-        if(ph<=dep)return{at:st[a.s],dir:a.dir,stopped:true};
-        if(ph<b.at){const f=(ph-dep)/Math.max(1e-6,b.at-dep),x=st[a.s]+(st[b.s]-st[a.s])*f;return{at:x,dir:b.s>a.s?1:b.s<a.s?-1:a.dir,stopped:false};}}
-      return{at:st[0],dir:1,stopped:true};}
-    // a week nobody set: the week before's trains (2 in week 1), within what the budget still allows
-    fill(w){if(this.trainsByWeek[w]!==undefined)return;const [lo,hi]=this.trainsRange(w);this.trainsByWeek[w]=Math.max(lo,Math.min(hi,w?this.trainsByWeek[w-1]:2));}
-    start(){if(this.started||this.stations.length<2)return false;
-      this.fill(0);this.started=true;this.opening=this.stations.map(c=>c.slice());this.schedule();return true;}
-    // ---- a person's usable trips: every (home station, destination station) pair with both ends near enough
-    pairs(p){const o=D.origins[p.origin].cell,d=D.destinations[p.dest].cell,out=[];
-      this.stations.forEach((a,i)=>this.stations.forEach((b,j)=>{if(i===j)return;const w=willing(walk(o,a))*willing(walk(b,d));if(w>0)out.push({i,j,w});}));
-      return out;}
-    // nobody can ride: which end has no station (or the only station near both ends is the same one)
-    why(p){const o=D.origins[p.origin].cell,d=D.destinations[p.dest].cell;
-      const home=this.stations.some(s=>willing(walk(o,s))>0),there=this.stations.some(s=>willing(walk(s,d))>0);
-      return !home?'起點沒有站':!there?'終點沒有站':walk(o,d)<=6?'走路就到':'起點終點同一站';}
-    outcome(p,state,why){p.state=state;if(why)p.why=why;this.active.delete(p);this.pending[p.wave]--;
-      if(state==='car'){this.cars++;this.emit('car',p,{why});}else if(state==='delivered'){this.delivered++;this.emit('delivered',p);}else{this.walked++;this.emit('walked',p);}}
-    decide(p){
-      if(p.tpick>=this.habit[p.origin]){this.outcome(p,'car','習慣開車');return;}
-      p.tried=true;const ps=this.pairs(p),k=slice(ps.map(x=>x.w),p.pick);
-      if(k<0){const y=this.why(p);if(y==='走路就到'){p.tried=false;this.outcome(p,'walked',y);}else this.outcome(p,'car',y);return;}
-      const {i,j}=ps[k];Object.assign(p,{state:'walk',from:i,to:j,dir:Math.sign(idxOf(this.stations[j])-idxOf(this.stations[i])),since:this.t,
-        until:this.t+walk(D.origins[p.origin].cell,this.stations[i])*P.walkStep});
-      this.active.add(p);this.emit('walk',p,{station:i});
-    }
-    queue(i,dir){const k=i*2+(dir>0?1:0);return this.queues[k]??=[];}
-    queueAt(i,dir){return this.queue(i,dir);}
-    step(){
-      this.steps++;this.t=+(this.steps*P.tick).toFixed(4);const t=this.t,r=this.round,start=this.roundStart[r];
-      // leave home through the week's release window (people are sorted by week, then by when they leave)
-      while(this.ptr<this.people.length){const p=this.people[this.ptr];if(p.wave!==r||t<start+p.offset)break;p.born=t;this.ptr++;this.decide(p);}
-      // on foot: reach the station (a full platform: give up and drive) or the destination (arrived)
-      for(const p of [...this.active]){
-        if(p.state==='walk'&&t>=p.until){const q=this.queue(p.from,p.dir);
-          if(q.length>=P.platform){p.turned=true;this.emit('full',p,{station:p.from});this.outcome(p,'car','月台太擠');}
-          else{p.state='queue';p.qsince=t;q.push(p);}}
-        else if(p.state==='walkout'&&t>=p.until)this.outcome(p,'delivered');}
-      // trains: every stop passed since the last step — people get off, then the queue boards (first come first served)
-      const prev=this.lastT??t;
-      for(const tr of this.trains)for(const e of tr.ev){
-        const n=Math.ceil((prev-tr.t0-e.at)/tr.T-1e-9);
-        for(let at=tr.t0+e.at+n*tr.T;at<=t+1e-9;at+=tr.T){if(at<=prev+1e-9)continue;
-          const off=tr.load.filter(p=>p.to===e.s);
-          for(const p of off){p.state='walkout';p.since=at;p.until=at+walk(this.stations[e.s],D.destinations[p.dest].cell)*P.walkStep;}
-          if(off.length)tr.load=tr.load.filter(p=>p.to!==e.s);
-          const q=this.queue(e.s,e.dir);
-          while(q.length&&tr.load.length<P.cap){const p=q.shift();p.state='ride';tr.load.push(p);}
-          if(q.length)this.emit('crowded',null,{station:e.s,dir:e.dir,left:q.length});}}
-      this.lastT=t;
-      // the week is over when every one of its people has an outcome; the next starts at once (habit learnt overnight)
-      if(this.pending[r]===0&&t>=start+P.release){
-        this.learn(r);
-        if(r+1>=D.weeks){this.done=true;return;}
-        this.round=r+1;this.roundStart[this.round]=t;this.fill(this.round);this.schedule();this.emit('round',null,{round:this.round});}
-    }
-    learn(w){const ok=p=>!p.turned&&p.state==='delivered';
-      D.origins.forEach((o,i)=>{const ps=this.people.filter(p=>p.wave===w&&p.origin===i&&p.tried);const sat=ps.length?ps.filter(ok).length/ps.length:1;
-        this.habit[i]=+Math.min(1,Math.max(D.habit.floor,this.habit[i]+D.habit.rate*(sat-this.habit[i]))).toFixed(4);});
-      this.habitLog.push({week:w+1,habit:this.habit.slice()});this.emit('habit',null,{week:w});}
-    advance(sec,opt={}){if(!this.started||this.done)return;this.acc+=Math.max(0,sec);const r0=this.round;
-      while(this.acc+1e-9>=P.tick&&!this.done){this.acc-=P.tick;this.step();if(opt.stopAtRound&&this.round!==r0){this.acc=0;return;}}}
-    runTo(w){while(this.started&&!this.done&&this.round<w)this.step();}
-    // ---- the week's preview: with these stations and trains, who can ride, how full each platform gets
-    forecast(w=this.round,stations=this.stations){
-      const save=this.stations;this.stations=stations;
-      const est=D.origins.map((o,i)=>({n:0,tries:0,ride:0,noHome:0,noThere:0,walk:0}));
-      const load=stations.map(()=>({out:0,in:0})),dst=D.destinations.map(()=>({tries:0,ride:0}));
-      for(const p of this.people){if(p.wave!==w)continue;const e=est[p.origin];e.n++;if(p.tpick>=this.habit[p.origin])continue;e.tries++;
-        const ps=this.pairs(p),k=slice(ps.map(x=>x.w),p.pick),y=k<0?this.why(p):'';if(y==='走路就到'){e.tries--;e.walk++;continue;}
-        dst[p.dest].tries++;if(k<0){if(y==='起點沒有站')e.noHome++;else e.noThere++;continue;}
-        e.ride++;dst[p.dest].ride++;load[ps[k].i].out++;load[ps[k].j].in++;}
-      this.stations=save;return{est,load,dst};}
-    stats(){return{delivered:this.delivered,cars:this.cars,walked:this.walked,week:this.round,done:this.done};}
+  // every desire line: from estate i to destination k, people a day and the car trip in blocks
+  function trips(){const out=[];D.origins.forEach((o,i)=>o.to.forEach((n,k)=>{if(n>0)out.push({i,k,people:n,car:D.car[i][k]});}));return out;}
+  const cost=(line,stations)=>line.length*P.lineCost+stations.length*P.stationCost;
+  // the best metro trip for one desire line: the station pair (board, alight) with the fewest blocks
+  function best(trip,line,stations){
+    const o=D.origins[trip.i].cell,d=D.destinations[trip.k].cell,order=stations.map(s=>line.findIndex(c=>same(c,s))).map((x,j)=>({x,c:stations[j]})).sort((a,b)=>a.x-b.x);
+    let b=null;
+    order.forEach((a,ia)=>order.forEach((z,iz)=>{if(ia===iz)return;
+      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,metro=wa+P.wait+pass+wz;
+      if(!b||metro<b.metro)b={from:a.c,to:z.c,walkA:wa,pass,walkB:wz,metro};}));
+    return b;
   }
-  const API={D,P,Game,reset,walk,willing,idxOf,slice,same,key,rng};
+  // the whole board: every desire line's metro trip, blocks saved, share (tenths) and riders; the total
+  function evaluate(line,stations){
+    const rows=trips().map(tr=>{const b=best(tr,line,stations);
+      if(!b)return{...tr,metro:null,save:0,tenths:0,riders:0};
+      const save=Math.max(0,tr.car-b.metro),tenths=Math.min(10,save);
+      return{...tr,...b,save,tenths,riders:Math.round(tr.people*tenths/10)};});
+    return{rows,riders:rows.reduce((a,r)=>a+r.riders,0),cost:cost(line,stations),people:rows.reduce((a,r)=>a+r.people,0)};
+  }
+  // the plan being drawn: one line of cells (each next to the one before, none twice) and stations on it
+  class Plan {
+    constructor(){this.line=[];this.stations=[];}
+    cost(){return cost(this.line,this.stations);}
+    left(){return P.budget-this.cost();}
+    inside(c){return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows;}
+    onLine(c){return this.line.some(x=>same(x,c));}
+    isStation(c){return this.stations.some(x=>same(x,c));}
+    // a cell the line can grow into: empty, next to one end (any free cell to begin with)
+    canExtend(c){if(!this.inside(c)||this.onLine(c)||this.left()<P.lineCost)return false;
+      if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
+    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());return true;}
+    // take an end cell off (its station goes with it)
+    isEnd(c){return this.line.length>0&&(same(c,this.line[0])||same(c,this.line.at(-1)));}
+    shorten(c){if(!this.isEnd(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else this.line.shift();this.stations=this.stations.filter(s=>!same(s,c));return true;}
+    canStation(c){return this.onLine(c)&&!this.isStation(c)&&this.left()>=P.stationCost;}
+    toggleStation(c){if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));return true;}if(!this.canStation(c))return false;this.stations.push(c.slice());return true;}
+    clear(){this.line=[];this.stations=[];}
+    evaluate(){return evaluate(this.line,this.stations);}
+    // what one more station / one less would do (the preview)
+    withStation(c){const s=this.isStation(c)?this.stations.filter(x=>!same(x,c)):[...this.stations,c];return evaluate(this.line,s);}
+    copy(){const p=new Plan();p.line=this.line.map(c=>c.slice());p.stations=this.stations.map(c=>c.slice());return p;}
+  }
+  const API={D,P,Plan,evaluate,trips,best,walk,same,key,adj,reset,cost};
   if(typeof module!=='undefined')module.exports=API;root.Metro=API;
 })(typeof window!=='undefined'?window:globalThis);
 
@@ -932,99 +841,74 @@ dialog.intro .row{margin-top:16px}
 </script><script>
 (function() {
   'use strict';
-  // v7 · mode 2 «the metro» texts (first draft). Loaded after ../shared/i18n.js.
+  // v7 · mode 2 «the metro», static version — texts. Loaded after ../shared/i18n.js.
   const L=I18N.L;
   I18N.add({
     'sep':L('、','、',', '),
     'brand.sub':L('HK · Feeder bus · 接駁巴士','HK · Feeder bus · 接驳巴士','HK · Feeder bus'),
     'top.rules':L('Rules <span class="tc">規則</span>','Rules <span class="tc">规则</span>','Rules'),'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),
     'm.back':L('← 五個模式','← 五个模式','← Five modes'),'g.lvInfo':L('本關','本关','About'),
-    'm.mode':L('Mode 02 · 地鐵（初稿）','Mode 02 · 地铁（初稿）','Mode 02 · The metro (draft)'),
+    'm.mode':L('Mode 02 · 地鐵','Mode 02 · 地铁','Mode 02 · The metro'),
     'm.doc':L('TransitLab HK · 模式 2 · 地鐵','TransitLab HK · 模式 2 · 地铁','TransitLab HK · Mode 2 · The metro'),
-    'm.levelTitle':L('新界西北 · 東西線','新界西北 · 东西线','North-west New Territories · an east–west line'),
-    'm.lede':L('Build up to four stations, once. Then run the trains, week by week.<span class="tcb">一條規劃中的東西線：選好四座站的位置（建了就不能挪），再一週一週決定開幾列車。人要去市中心上班、新發展區上班、醫院學校——家附近和目的地附近都要有站，他們才會坐。</span>',
-      'Build up to four stations, once. Then run the trains, week by week.<span class="tcb">一条规划中的东西线：选好四座站的位置（建了就不能挪），再一周一周决定开几列车。人要去市中心上班、新发展区上班、医院学校——家附近和目的地附近都要有站，他们才会坐。</span>',
-      'A planned east–west line: choose where its four stations go (once built they stay), then decide week by week how many trains run. People go to town, to the new jobs, to the hospital and schools — they ride only if there is a station near home AND near where they are going.'),
-    'g.goalLbl':L('Goal · 目標','Goal · 目标','Goal'),
-    'm.goal':L('六週裡坐地鐵到達的人越多越好。<b>{pass}</b> 過關，<b>{high}</b> 高分，<b>{master}</b> 大師。','六周里坐地铁到达的人越多越好。<b>{pass}</b> 过关，<b>{high}</b> 高分，<b>{master}</b> 大师。',
-      'The more people arrive by metro over six weeks, the better. <b>{pass}</b> to pass, <b>{high}</b> high score, <b>{master}</b> master.'),
+    'm.levelTitle':L('新界西北 · 一條新線','新界西北 · 一条新线','North-west New Territories · a new line'),
+    'm.lede':L('Draw one line, place its stations.<span class="tcb">今天大家全部開車。在棋盤上畫一條地鐵線、放站，看每條線上有幾成人改坐地鐵。</span>',
+      'Draw one line, place its stations.<span class="tcb">今天大家全部开车。在棋盘上画一条地铁线、放站，看每条线上有几成人改坐地铁。</span>',
+      'Draw one line, place its stations. Today everybody drives: see how many in ten switch to the metro on each desire line.'),
+    'm.scoreLbl':L('每天少開','每天少开','Car trips saved a day'),'m.scoreUnit':L('車次','车次',''),'m.ofTotal':L('/ {n} 人','/ {n} 人','of {n}'),
     'g.tickPass':L('過關 {n}','过关 {n}','pass {n}'),'g.tickHigh':L('高分 {n}','高分 {n}','high {n}'),'g.tickMaster':L('大師 {n}','大师 {n}','master {n}'),
-    'g.start':L('▶ 開通','▶ 开通','▶ Open the line'),'g.pause':L('❚❚ 暫停','❚❚ 暂停','❚❚ Pause'),'g.resume':L('▶ 繼續','▶ 继续','▶ Resume'),'g.over':L('結束','结束','Over'),
-    'g.fast':L('按住 F 快進','按住 F 快进','hold F: fast'),'g.log':L('Dispatch log · 調度提示','Dispatch log · 调度提示','Dispatch log'),
-    'm.rulesH':L('Four rules · 四條規則','Four rules · 四条规则','Four rules'),
-    'm.rule1':L('<b>兩頭都要有站。</b>從家走到站、從站走到目的地，兩段都按格數算吸引力（門口 100%，每多 1 格少 10%，6 格以外沒有），兩段相乘。只有一頭有站，他照樣開車。','<b>两头都要有站。</b>从家走到站、从站走到目的地，两段都按格数算吸引力（门口 100%，每多 1 格少 10%，6 格以外没有），两段相乘。只有一头有站，他照样开车。',
-      '<b>Both ends need a station.</b> Home → station and station → destination each pull by blocks (100 % at the door, 10 points less a block, nothing beyond 6); the two multiply. A station at one end only: they still drive.'),
-    'm.rule2':L('<b>站只能建一次。</b>開通前最多建 4 座，開通後不能挪、不能加。列車在最外兩座站之間來回跑：線越長、站越多，一個來回越久，同樣的列車班次就越疏。','<b>站只能建一次。</b>开通前最多建 4 座，开通后不能挪、不能加。列车在最外两座站之间来回跑：线越长、站越多，一个来回越久，同样的列车班次就越疏。',
-      '<b>Stations are built once.</b> Up to 4 before opening; after that they cannot move or be added. Trains shuttle between the two outermost stations: a longer line or more stops makes a loop longer, so the same trains come less often.'),
-    'm.rule3':L('<b>列車有預算。</b>每列載 {cap} 人，每個月台每個方向最多排 {platform} 人，排不下的人放棄改開車。六週一共 {budget} 列次，每週 {min}–{max} 列，在兩週之間的停頓裡決定下一週。','<b>列车有预算。</b>每列载 {cap} 人，每个月台每个方向最多排 {platform} 人，排不下的人放弃改开车。六周一共 {budget} 列次，每周 {min}–{max} 列，在两周之间的停顿里决定下一周。',
-      '<b>Trains have a budget.</b> {cap} people a train; a platform holds {platform} per direction — those who don\'t fit give up and drive. {budget} train-weeks over six weeks, {min}–{max} a week, set in the break before each week.'),
-    'm.rule4':L('<b>人會慢慢習慣。</b>新線剛開，每個屋苑只有一部分人願意試；坐得順利，下週更多人來；被月台擠走，就少人來（第 4 關的習慣規則）。','<b>人会慢慢习惯。</b>新线刚开，每个屋苑只有一部分人愿意试；坐得顺利，下周更多人来；被月台挤走，就少人来（第 4 关的习惯规则）。',
-      '<b>People get used to it.</b> A new line: only part of each estate tries it; a smooth ride brings more next week, a full platform fewer (the habit rule from v6 level 4).'),
-    'm.hudGood':L('By metro · 坐地鐵到達','By metro · 坐地铁到达','By metro'),'m.hudWay':L('On the way · 路上','On the way · 路上','On the way'),
-    'm.hudBad':L('Drove · 開車','Drove · 开车','Drove'),'m.hudWalk':L('Walked · 走路就到','Walked · 走路就到','Walked'),
-    'm.weeksH':L('Weeks · 每週','Weeks · 每周','Weeks'),'m.weeksChip':L('{n} 週 · 一輪＝一週','{n} 周 · 一轮＝一周','{n} weeks · a round is a week'),
-    'm.habitH':L('Habit · 坐地鐵習慣','Habit · 坐地铁习惯','Habit · share who try the metro'),
-    'm.habitNote':L('第一週 {s}% 的人願意試；每晚按這一週坐得順不順調整。','第一周 {s}% 的人愿意试；每晚按这一周坐得顺不顺调整。','{s}% try it in week 1; adjusted every night by how the week went.'),
+    'm.goal':L('<b>{pass}</b> 過關 · <b>{high}</b> 高分 · <b>{master}</b> 大師','<b>{pass}</b> 过关 · <b>{high}</b> 高分 · <b>{master}</b> 大师','<b>{pass}</b> pass · <b>{high}</b> high · <b>{master}</b> master'),
+    'm.budgetLbl':L('預算','预算','Budget'),
+    'm.budgetSum':L('線 {l} 格 × {lc} ＋ 站 {s} 個 × {sc} · 還剩 {left}','线 {l} 格 × {lc} ＋ 站 {s} 个 × {sc} · 还剩 {left}','line {l} × {lc} + stations {s} × {sc} · {left} left'),
+    'm.toolDraw':L('✏ 畫線','✏ 画线','✏ Draw'),'m.toolStation':L('● 放站','● 放站','● Stations'),'m.undo':L('↶ 撤銷','↶ 撤销','↶ Undo'),'m.clear':L('清空','清空','Clear'),
+    'm.submit':L('完成方案','完成方案','Done'),
+    'm.hintDraw1':L('點任何一格開始畫線（或按住拖動）。','点任何一格开始画线（或按住拖动）。','Click any cell to start the line (or press and drag).'),
+    'm.hintDraw2':L('點線頭旁邊虛線框的格子延長，可以拐彎、不能分叉；點線頭可以縮短。畫好了切到「放站」。','点线头旁边虚线框的格子延长，可以拐弯、不能分叉；点线头可以缩短。画好了切到「放站」。',
+      'Click a dashed cell next to an end to extend — it may turn, never branch; click an end to shorten. Then switch to «Stations».'),
+    'm.hintNeedLine':L('先畫一條至少 2 格的線。','先画一条至少 2 格的线。','Draw a line of 2 cells at least first.'),
+    'm.hintStation1':L('點線上的格子放站（至少 2 個）。停在格子上，會先告訴你多幾個人、花多少錢。','点线上的格子放站（至少 2 个）。停在格子上，会先告诉你多几个人、花多少钱。',
+      'Click a cell on the line to put a station (2 at least). Hover first: it tells you how many more people and what it costs.'),
+    'm.hintStation2':L('再點一個站就拆掉。每多一個站，路過它的人多花 1 格——停在格子上看是賺是蝕。','再点一个站就拆掉。每多一个站，路过它的人多花 1 格——停在格子上看是赚是蚀。',
+      'Click a station again to remove it. Every extra station costs the people riding through it 1 block — hover to see whether it pays.'),
+    'm.rulesH':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'm.rule1':L('<b>比開車少幾格，就有幾成人改坐地鐵。</b>開車要幾格，寫在右邊的表裡。','<b>比开车少几格，就有几成人改坐地铁。</b>开车要几格，写在右边的表里。','<b>Every block the metro saves on the car, one in ten switch.</b> The car trip is in the table on the right.'),
+    'm.rule2':L('<b>坐地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾個站 ＋ 走到目的地。</b>走路一格算 1；坐車不按距離算，地鐵快，慢在每停一站多 1。','<b>坐地铁＝走到站 ＋ 等车 {w} ＋ 路过几个站 ＋ 走到目的地。</b>走路一格算 1；坐车不按距离算，地铁快，慢在每停一站多 1。',
+      '<b>Metro = walk to a station + wait {w} + stations passed + walk to the destination.</b> Walking is 1 a block; the ride doesn\'t count distance — the metro is fast; each stop on the way adds 1.'),
+    'm.rule3':L('<b>預算 {b}。</b>線每格 {lc}，每個站 {sc}。','<b>预算 {b}。</b>线每格 {lc}，每个站 {sc}。','<b>Budget {b}.</b> {lc} a block of line, {sc} a station.'),
+    'm.tripsH':L('Trips · 每條愿望線','Trips · 每条愿望线','Trips · desire lines'),
+    'm.tripsNote':L('點一行，地圖上會亮出那條線和它怎麼走。','点一行，地图上会亮出那条线和它怎么走。','Click a row to light up that desire line and its route.'),
+    'm.tTrip':L('從 → 去','从 → 去','From → to'),'m.tPeople':L('人/天','人/天','a day'),'m.tCar':L('開車','开车','car'),'m.tMetro':L('地鐵','地铁','metro'),
+    'm.tSave':L('省','省','saved'),'m.tRiders':L('換地鐵','换地铁','switch'),'m.tenths':L('{n} 成','{n} 成','{n}/10'),'m.tTotal':L('合計','合计','Total'),
+    'm.dl':L('{n} 成 · {p} 人','{n} 成 · {p} 人','{n}/10 · {p}'),'m.dlCar':L('開車 {c} 格 · 還沒接通','开车 {c} 格 · 还没接通','car {c} · not connected'),
+    'm.estAll':L('每天 {n} 人出門','每天 {n} 人出门','{n} leave a day'),'m.estRode':L('{n} 人中 {r} 人坐地鐵','{n} 人中 {r} 人坐地铁','{r} of {n} by metro'),
+    'm.dstAll':L('每天 {n} 人來','每天 {n} 人来','{n} come a day'),'m.dstRode':L('{n} 人中 {r} 人坐地鐵來','{n} 人中 {r} 人坐地铁来','{r} of {n} by metro'),
+    'm.pvExtend':L('延長 · −{c}','延长 · −{c}','extend · −{c}'),'m.pvShorten':L('點一下縮短','点一下缩短','click to shorten'),'m.pvNoMoney':L('預算不夠','预算不够','over budget'),
+    'm.pvAdd':L('放站：','放站：','station:'),'m.pvRemove':L('拆站：','拆站：','remove:'),'m.pvGain':L('多 {n} 人','多 {n} 人','+{n}'),'m.pvLoss':L('少 {n} 人','少 {n} 人','−{n}'),
+    'm.pvCost':L('−{c}','−{c}','−{c}'),'m.pvRefund':L('+{c}','+{c}','+{c}'),
+    'm.legend':L('<span><i class="lk car"></i>愿望線：每天想去的人（越粗越多），灰＝還在開車</span><span><i class="lk metro"></i>中間的棕色＝改坐地鐵的那幾成</span>',
+      '<span><i class="lk car"></i>愿望线：每天想去的人（越粗越多），灰＝还在开车</span><span><i class="lk metro"></i>中间的棕色＝改坐地铁的那几成</span>',
+      '<span><i class="lk car"></i>desire line: people a day (thicker = more); grey = still driving</span><span><i class="lk metro"></i>brown core = the tenths that switch to the metro</span>'),
     'i.lbl':L('Rules · 規則','Rules · 规则','Rules'),'m.infoH':L('地鐵模式的規則','地铁模式的规则','The metro mode’s rules'),
-    'r.again':L('再試一局 ↺','再试一局 ↺','Play again ↺'),'r.board':L('查看棋盤','查看棋盘','See the board'),
-    'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始佈置 →','开始布置 →','Set up →'),
-    'r.t0':L('未過關','未过关','Not cleared'),'r.t1':L('過關','过关','Cleared'),'r.t2':L('高分','高分','High score'),'r.t3':L('大師','大师','Master'),
-    // the board
-    'm.stn':L('{n}站','{n}站','{n} Stn'),'m.reach':L('步行 {p}% · {n} 格','步行 {p}% · {n} 格','walk {p}% · {n} bl.'),
-    'm.tries':L('會試 {a}/{n}','会试 {a}/{n}','try {a}/{n}'),
-    'm.noHome':L('{n} 人：家附近沒站','{n} 人：家附近没站','{n}: no station near home'),'m.noThere':L('{n} 人：目的地沒站','{n} 人：目的地没站','{n}: no station where they go'),
-    'm.load':L('上 {a} · 下 {b}','上 {a} · 下 {b}','on {a} · off {b}'),
-    'm.wFirst':L('先建站，再開通','先建站，再开通','Build stations, then open the line'),'m.wDone':L('六週結束','六周结束','Six weeks over'),
-    'm.wBreak':L('第 {n}/{m} 週 · 開始前','第 {n}/{m} 周 · 开始前','Week {n}/{m} · about to start'),'m.wNow':L('第 {n}/{m} 週','第 {n}/{m} 周','Week {n}/{m}'),
-    'm.buildH':L('建站','建站','Stations'),
-    'm.buildHint':L('點路線上的 ＋ 建站（至少 2 座）。停在 ＋ 上，會看到它到每個屋苑和目的地要走幾格。點已建的站可以拆掉——開通前隨便改。','点路线上的 ＋ 建站（至少 2 座）。停在 ＋ 上，会看到它到每个屋苑和目的地要走几格。点已建的站可以拆掉——开通前随便改。',
-      'Click a ＋ on the line to build (2 at least). Hover a ＋ to see how far it is on foot to every estate and destination. Click a station to remove it — free until the line opens.'),
-    'm.buildMore':L('還可以再建 {n} 座。開通以後就不能改了。','还可以再建 {n} 座。开通以后就不能改了。','{n} more allowed. Once the line opens, no changes.'),
-    'm.buildFull':L('四座站都建好了。開通前還能拆掉重建。','四座站都建好了。开通前还能拆掉重建。','All four built. You can still remove and rebuild until it opens.'),
-    'm.built':L('已開通：{list}。','已开通：{list}。','Open: {list}.'),
-    'm.loop':L('列車一個來回','列车一个来回','A train’s loop'),'m.loopV':L('{T} 秒','{T} 秒','{T} s'),
-    'm.trainH':L('第 {n} 週的列車','第 {n} 周的列车','Trains in week {n}'),'m.budget':L('剩 {a} / {b} 列次','剩 {a} / {b} 列次','{a} / {b} left'),
-    'm.headway':L('每個方向','每个方向','Each direction'),'m.headwayV':L('每 {h} 秒一班','每 {h} 秒一班','every {h} s'),
-    'm.trainEdit':L('現在可以改。之後還有 {later} 週，每週至少要留 1 列。','现在可以改。之后还有 {later} 周，每周至少要留 1 列。','You can change it now. {later} weeks follow; keep at least 1 a week for them.'),
-    'm.trainLocked':L('這一週開著，下一次停頓再改。','这一周开着，下一次停顿再改。','This week is running; change it in the next break.'),
-    'm.wk':L('週','周','Week'),'m.wkN':L('第 {n} 週','第 {n} 周','Week {n}'),'m.wTrains':L('列車','列车','Trains'),'m.wHabit':L('習慣','习惯','Habit'),
-    'm.wTry':L('來試','来试','Tried'),'m.wRode':L('坐到','坐到','Arrived'),'m.wFull':L('擠走','挤走','Turned away'),
-    'm.cd':L('第 {n} 週 · 看看圓圈','第 {n} 周 · 看看圆圈','Week {n} · read the rings'),'m.cdHint':L('空格暫停 · 可以改下一週的列車','空格暂停 · 可以改下一周的列车','Space to pause · set next week’s trains'),
-    'm.cdAdjust':L('調整中 · 按繼續開始','调整中 · 按继续开始','Adjusting · Resume to start'),
-    'm.legTown':L('去市中心','去市中心','to town'),'m.legJobs':L('去新發展區上班','去新发展区上班','to the new jobs'),'m.legSchool':L('去醫院學校','去医院学校','to hospital, schools'),
-    'm.legRing':L('圈：這週坐得到的人','圈：这周坐得到的人','ring: who can ride this week'),'m.legGlow':L('暖光：站有多擠','暖光：站有多挤','glow: how busy a station gets'),
-    'm.info':L('<ol class="rules"><li><b>誰會坐。</b>每個屋苑每週有固定的人出門，按比例去三個目的地。只有「家附近有站」而且「目的地附近有站」的人才可能坐地鐵：兩段步行各按格數算吸引力（門口 100%，每多 1 格少 10%，6 格以外 0），相乘；幾個站都可以時，按吸引力比例分，每週固定這樣分，不擲骰子。家和目的地最近的是同一座站、而且走路 6 格內就到，他就走路去（不算分，也不算開車）。</li><li><b>建站。</b>開通前在規劃路線上最多建 {max} 座站，開通後不能挪、不能加。</li><li><b>列車。</b>列車在最外兩座站之間來回，每格 {step} 秒，每站停 {dwell} 秒，兩頭掉頭各 {turn} 秒；一個來回的時間除以列車數，就是每個方向多久一班。每列載 {cap} 人；每個月台每個方向最多排 {platform} 人，排不下的人放棄、改開車。排進隊的人會一直等到上車。走路每格 {walk} 秒。</li><li><b>預算。</b>{weeks} 週一共 {budget} 列次，每週 1–5 列，在每週開始前的停頓裡決定。</li><li><b>習慣。</b>第一週每個屋苑 {s}% 的人願意試；每晚，習慣向「這一週坐得順利的比例」靠近一半（順利＝沒有被月台擠走、坐到了目的地）。家或目的地附近沒站，也算不順利。</li><li><b>分數。</b>六週裡坐地鐵到達目的地的人數。</li></ol>',
-      '<ol class="rules"><li><b>谁会坐。</b>每个屋苑每周有固定的人出门，按比例去三个目的地。只有「家附近有站」而且「目的地附近有站」的人才可能坐地铁：两段步行各按格数算吸引力（门口 100%，每多 1 格少 10%，6 格以外 0），相乘；几个站都可以时，按吸引力比例分，每周固定这样分，不掷骰子。家和目的地最近的是同一座站、而且走路 6 格内就到，他就走路去（不算分，也不算开车）。</li><li><b>建站。</b>开通前在规划路线上最多建 {max} 座站，开通后不能挪、不能加。</li><li><b>列车。</b>列车在最外两座站之间来回，每格 {step} 秒，每站停 {dwell} 秒，两头掉头各 {turn} 秒；一个来回的时间除以列车数，就是每个方向多久一班。每列载 {cap} 人；每个月台每个方向最多排 {platform} 人，排不下的人放弃、改开车。排进队的人会一直等到上车。走路每格 {walk} 秒。</li><li><b>预算。</b>{weeks} 周一共 {budget} 列次，每周 1–5 列，在每周开始前的停顿里决定。</li><li><b>习惯。</b>第一周每个屋苑 {s}% 的人愿意试；每晚，习惯向「这一周坐得顺利的比例」靠近一半（顺利＝没有被月台挤走、坐到了目的地）。家或目的地附近没站，也算不顺利。</li><li><b>分数。</b>六周里坐地铁到达目的地的人数。</li></ol>',
-      '<ol class="rules"><li><b>Who rides.</b> Every week each estate sends a fixed number of people to three destinations in fixed shares. Only those with a station near home AND near where they go can ride: each walk pulls by blocks (100 % at the door, 10 points less a block, 0 beyond 6), the two multiply; with several choices they split by pull, the same way every week, no dice. If the nearest station to both ends is the same one and the walk is 6 blocks or less, they walk (no score, not a driver).</li><li><b>Stations.</b> Up to {max} on the planned line before it opens; then no moving or adding.</li><li><b>Trains.</b> Trains shuttle between the outermost stations: {step} s a block, {dwell} s at each stop, {turn} s to turn at each end; the loop time divided by the trains is how often a train comes each way. {cap} people a train; a platform holds {platform} a direction, those who don\'t fit give up and drive. Once queuing, people wait for a train. Walking is {walk} s a block.</li><li><b>Budget.</b> {budget} train-weeks over {weeks} weeks, 1–5 a week, set in the break before each week.</li><li><b>Habit.</b> In week 1, {s}% of each estate try it; each night the habit moves halfway to the share of that week\'s riders who arrived without being turned away. No station near home or destination counts as a bad week too.</li><li><b>Score.</b> People who reached their destination by metro over six weeks.</li></ol>'),
-    'm.rScore':L('坐地鐵到達 {d} / {n} · 開車 {c} · 走路 {w}','坐地铁到达 {d} / {n} · 开车 {c} · 走路 {w}','By metro {d} / {n} · drove {c} · walked {w}'),
-    'm.why.habit':L('習慣開車','习惯开车','drove by habit'),'m.why.home':L('家附近沒站','家附近没站','no station near home'),'m.why.there':L('目的地沒站','目的地没站','no station where they go'),
-    'm.why.same':L('兩頭是同一站','两头是同一站','same station both ends'),'m.why.full':L('月台太擠','月台太挤','platform full'),
-    'm.hThere':L('最多人開車，是因為<b>目的地附近沒站</b>（{n} 人）：家附近有站還不夠，地鐵要把人送到他要去的地方——市中心、新發展區、醫院學校附近也要有站。','最多人开车，是因为<b>目的地附近没站</b>（{n} 人）：家附近有站还不够，地铁要把人送到他要去的地方——市中心、新发展区、医院学校附近也要有站。',
-      'Most drivers had <b>no station where they were going</b> ({n}): a station near home isn\'t enough — the town centre, the new jobs and the hospital need stations too.'),
-    'm.hHome':L('最多人開車，是因為<b>家附近沒站</b>（{n} 人）：把站放在人多的屋苑和目的地之間，讓一座站同時服務兩頭。','最多人开车，是因为<b>家附近没站</b>（{n} 人）：把站放在人多的屋苑和目的地之间，让一座站同时服务两头。',
-      'Most drivers had <b>no station near home</b> ({n}): put stations between busy estates and destinations so one station serves both ends.'),
-    'm.hFront':L('<b>月台擠走了 {n} 人</b>，而且你把列車多開在前面。新線頭幾週只有少數人試，後面習慣養成了人才多——把預算留到後面。','<b>月台挤走了 {n} 人</b>，而且你把列车多开在前面。新线头几周只有少数人试，后面习惯养成了人才多——把预算留到后面。',
-      '<b>Full platforms turned away {n}</b>, and you ran more trains early. A new line has few riders at first and many once the habit grows — keep the budget for later.'),
-    'm.hCrowd':L('<b>月台擠走了 {n} 人</b>：被擠走的人下週就少來。最擠的那幾週要多開車；或者讓線短一點、站少一點，同樣的列車就來得更密。','<b>月台挤走了 {n} 人</b>：被挤走的人下周就少来。最挤的那几周要多开车；或者让线短一点、站少一点，同样的列车就来得更密。',
-      '<b>Full platforms turned away {n}</b> — and they come less next week. Run more trains in the busiest weeks, or make the line shorter so the same trains come more often.'),
-    'm.h3':L('站和列車都安排得很好。','站和列车都安排得很好。','Stations and trains well planned.'),
-    'm.hLoop':L('試試看：站的位置（兩頭都要接到人）、線的長短（越長班次越疏），還有列車放在哪幾週。','试试看：站的位置（两头都要接到人）、线的长短（越长班次越疏），还有列车放在哪几周。',
-      'Try: where the stations go (both ends must be covered), how long the line is (longer = less often), and which weeks get the trains.'),
-    'm.nBuild':L('先建站：點路線上的 ＋。至少 2 座，最多 4 座。','先建站：点路线上的 ＋。至少 2 座，最多 4 座。','Build first: click a ＋ on the line. 2 at least, 4 at most.'),
-    'm.nRemoved':L('拆掉了。開通前隨便改。','拆掉了。开通前随便改。','Removed. Free to change until opening.'),
-    'm.nCanStart':L('可以按「開通」了；也可以先設好第一週開幾列車。','可以按「开通」了；也可以先设好第一周开几列车。','You can open the line now — or first set the trains for week 1.'),
-    'm.nMax':L('最多 {n} 座站。先點一座已建的站拆掉。','最多 {n} 座站。先点一座已建的站拆掉。','At most {n} stations. Click one to remove it first.'),
-    'm.nTrains':L('第 {w} 週開 {n} 列車。','第 {w} 周开 {n} 列车。','{n} trains in week {w}.'),
-    'm.nStart':L('開通了。每一週的人都有結果後，停 7 秒給你看下一週，可以改列車數；按空格可以慢慢調。','开通了。每一周的人都有结果后，停 7 秒给你看下一周，可以改列车数；按空格可以慢慢调。',
-      'Open. When a week has settled the game stops 7 s to show the next one — set its trains then; Space to take your time.'),
-    'm.nPause':L('已暫停。','已暂停。','Paused.'),'m.cReset':L('重新開始這一局？','重新开始这一局？','Start this game again?'),
-    'm.tFull':L('{s}月台擠滿了：排不下的人放棄改開車。','{s}月台挤满了：排不下的人放弃改开车。','{s} platform full: people who don\'t fit give up and drive.'),
-    'm.tWeek':L('第 {n} 週開始 · {k} 列車 · 每 {h} 秒一班','第 {n} 周开始 · {k} 列车 · 每 {h} 秒一班','Week {n} · {k} trains · every {h} s'),
-    'iv.m2.new':L('<b>地鐵</b>：站只能建一次；兩頭都要有站；一週一週地變。','<b>地铁</b>：站只能建一次；两头都要有站；一周一周地变。','<b>The metro</b>: stations are built once; both ends need one; it changes week by week.'),
-    'iv.m2.body':L('<li>這是初稿，用來討論玩法：一條規劃中的東西線，從天水圍經洪水橋到元朗。</li><li>開通前最多建 {max} 座站，開通後不能改。人要去<b>市中心、新發展區、醫院學校</b>——家附近和目的地附近都要有站，他才會坐。</li><li>列車在最外兩座站之間來回：線越長、站越多，同樣的列車就越久才來一班。</li><li>新線剛開，只有 {s}% 的人願意試，坐得順利的人一週比一週多。六週一共 {budget} 列次，什麼時候多開，由你決定。</li>',
-      '<li>这是初稿，用来讨论玩法：一条规划中的东西线，从天水围经洪水桥到元朗。</li><li>开通前最多建 {max} 座站，开通后不能改。人要去<b>市中心、新发展区、医院学校</b>——家附近和目的地附近都要有站，他才会坐。</li><li>列车在最外两座站之间来回：线越长、站越多，同样的列车就越久才来一班。</li><li>新线刚开，只有 {s}% 的人愿意试，坐得顺利的人一周比一周多。六周一共 {budget} 列次，什么时候多开，由你决定。</li>',
-      '<li>A first draft to talk about: a planned east–west line from Tin Shui Wai through Hung Shui Kiu to Yuen Long.</li><li>Up to {max} stations before it opens, fixed after. People go to <b>the town centre, the new jobs, the hospital and schools</b> — they ride only with a station near home and near where they go.</li><li>Trains shuttle between the outermost stations: a longer line or more stops means a train less often.</li><li>A new line: only {s}% try it at first, more each week if it goes well. {budget} train-weeks over six weeks — you decide when to run more.</li>'),
-    'iv.m2.course':L('課程連結：出行分佈（兩頭的吸引力）、公共交通的服務水平（班次與容量）、新服務的需求成長。','课程链接：出行分布（两头的吸引力）、公共交通的服务水平（班次与容量）、新服务的需求成长。','Course link: trip distribution (both ends), public transport level of service (frequency and capacity), demand ramp-up of a new service.')
+    'm.info':L('<ol class="rules"><li><b>愿望線。</b>每個屋苑每天有人要去元朗市中心和洪水橋新發展區；線越粗人越多。今天他們全部開車，開車要幾格寫在表裡（兩地相隔幾格 ＋ 2 格泊車）。</li><li><b>畫線。</b>在棋盤上畫一條線：從任何一格開始，每次延長到線頭旁邊的一格；可以拐彎，不能分叉、不能走回頭。每格花 {lc}。</li><li><b>放站。</b>站只能放在線上，每個花 {sc}。預算一共 {b}。</li><li><b>坐地鐵要幾格。</b>走到上車的站（每格 1）＋ 等車 {w} ＋ 路過幾個站（每個 1）＋ 從下車的站走到目的地（每格 1）。每個人會挑最快的上落車站。坐車本身不按距離算：地鐵快，慢在停站。</li><li><b>幾成人換。</b>比開車少幾格，就有幾成人改坐地鐵（最多 10 成）；不比開車快，就沒人換。</li><li><b>分數。</b>每天改坐地鐵的人數＝少開的車次。</li></ol>',
+      '<ol class="rules"><li><b>愿望线。</b>每个屋苑每天有人要去元朗市中心和洪水桥新发展区；线越粗人越多。今天他们全部开车，开车要几格写在表里（两地相隔几格 ＋ 2 格泊车）。</li><li><b>画线。</b>在棋盘上画一条线：从任何一格开始，每次延长到线头旁边的一格；可以拐弯，不能分叉、不能走回头。每格花 {lc}。</li><li><b>放站。</b>站只能放在线上，每个花 {sc}。预算一共 {b}。</li><li><b>坐地铁要几格。</b>走到上车的站（每格 1）＋ 等车 {w} ＋ 路过几个站（每个 1）＋ 从下车的站走到目的地（每格 1）。每个人会挑最快的上落车站。坐车本身不按距离算：地铁快，慢在停站。</li><li><b>几成人换。</b>比开车少几格，就有几成人改坐地铁（最多 10 成）；不比开车快，就没人换。</li><li><b>分数。</b>每天改坐地铁的人数＝少开的车次。</li></ol>',
+      '<ol class="rules"><li><b>Desire lines.</b> Every estate sends people each day to Yuen Long town centre and the Hung Shui Kiu new town; thicker = more. Today they all drive; the car trip in blocks is in the table (blocks apart + 2 to park).</li><li><b>The line.</b> Start on any cell and extend to a cell next to an end; it may turn, never branch or double back. {lc} a block.</li><li><b>Stations.</b> On the line only, {sc} each. Budget {b} in all.</li><li><b>A metro trip in blocks.</b> Walk to the boarding station (1 a block) + wait {w} + stations passed on the way (1 each) + walk from the alighting station (1 a block). Everyone picks the fastest pair. The ride itself doesn\'t count distance: the metro is fast, stops slow it.</li><li><b>How many switch.</b> Every block saved on the car, one in ten (ten in ten at most); no faster than the car, nobody.</li><li><b>Score.</b> People a day who switch = car trips saved.</li></ol>'),
+    'm.keep':L('繼續改','继续改','Keep editing'),'m.restart':L('從頭來過 ↺','从头来过 ↺','Start over ↺'),
+    'r.t0':L('還沒過關','还没过关','Not cleared yet'),'r.t1':L('過關','过关','Cleared'),'r.t2':L('高分','高分','High score'),'r.t3':L('大師','大师','Master'),
+    'm.rScore':L('每天少開 {d} 車次（共 {n} 人）· 花了 {c} / {b}','每天少开 {d} 车次（共 {n} 人）· 花了 {c} / {b}','{d} car trips saved a day (of {n}) · spent {c} / {b}'),
+    'm.tipStation':L('有一個站拆掉反而多 <b>{n}</b> 人：它讓路過的人多花 1 格，接到的人卻不多。拆了還省 {sc} 預算。','有一个站拆掉反而多 <b>{n}</b> 人：它让路过的人多花 1 格，接到的人却不多。拆了还省 {sc} 预算。',
+      'One station loses you <b>{n}</b>: it costs everyone riding through it 1 block and brings few. Removing it saves {sc} too.'),
+    'm.tipMissNo':L('<b>{a} → {b}</b>（每天 {n} 人）完全沒接通：這一頭附近要有站。','<b>{a} → {b}</b>（每天 {n} 人）完全没接通：这一头附近要有站。','<b>{a} → {b}</b> ({n} a day) isn\'t connected: it needs a station near that end.'),
+    'm.tipMissSlow':L('<b>{a} → {b}</b>（每天 {n} 人）接通了但沒人換：坐地鐵要 {m} 格，開車只要 {car}。讓站離屋苑近一點，或少停幾站。','<b>{a} → {b}</b>（每天 {n} 人）接通了但没人换：坐地铁要 {m} 格，开车只要 {car}。让站离屋苑近一点，或少停几站。',
+      '<b>{a} → {b}</b> ({n} a day) is connected but nobody switches: {m} blocks by metro, {car} by car. Bring a station nearer the estate, or stop less on the way.'),
+    'm.tipBudget':L('還剩 <b>{n}</b> 預算，夠再延長線或再放一個站。','还剩 <b>{n}</b> 预算，够再延长线或再放一个站。','<b>{n}</b> of the budget left — enough to extend or add a station.'),
+    'm.tip3':L('站的位置和數量都拿捏得很好。','站的位置和数量都拿捏得很好。','Stations well placed and well counted.'),
+    'm.nNoMoney':L('預算不夠了。','预算不够了。','Over budget.'),'m.nAdjacent':L('只能延長到線頭旁邊的格子（有虛線框的）。','只能延长到线头旁边的格子（有虚线框的）。','Only cells next to an end (dashed) extend the line.'),
+    'm.nOnLine':L('站要放在線上。','站要放在线上。','Stations go on the line.'),
+    'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始畫線 →','开始画线 →','Start drawing →'),
+    'iv.m2.new':L('<b>地鐵</b>：自己畫一條線、放站；看每條愿望線有幾成人不再開車。','<b>地铁</b>：自己画一条线、放站；看每条愿望线有几成人不再开车。','<b>The metro</b>: draw a line, place stations, see how many in ten stop driving on each desire line.'),
+    'iv.m2.body':L('<li>今天大家<b>全部開車</b>。棋盤上的灰線是「愿望線」：每天從哪個屋苑去哪裡、有多少人（越粗越多）。</li><li>畫一條地鐵線（可以拐彎，不能分叉），在線上放站。線每格 {lc}、每站 {sc}，預算 {b}。</li><li>坐地鐵要幾格＝走到站 ＋ 等車 {w} ＋ 路過幾個站 ＋ 走到目的地。<b>比開車少幾格，就有幾成人換</b>。</li><li>站多了走路近，但路過的人每站多 1 格——停在格子上，先看是賺是蝕再放。</li>',
+      '<li>今天大家<b>全部开车</b>。棋盘上的灰线是「愿望线」：每天从哪个屋苑去哪里、有多少人（越粗越多）。</li><li>画一条地铁线（可以拐弯，不能分叉），在线上放站。线每格 {lc}、每站 {sc}，预算 {b}。</li><li>坐地铁要几格＝走到站 ＋ 等车 {w} ＋ 路过几个站 ＋ 走到目的地。<b>比开车少几格，就有几成人换</b>。</li><li>站多了走路近，但路过的人每站多 1 格——停在格子上，先看是赚是蚀再放。</li>',
+      '<li>Today <b>everybody drives</b>. The grey lines are desire lines: who goes from which estate to where each day (thicker = more).</li><li>Draw one metro line (it may turn, never branch) and put stations on it: {lc} a block, {sc} a station, budget {b}.</li><li>A metro trip = walk to a station + wait {w} + stations passed + walk to the destination. <b>Every block saved on the car, one in ten switch.</b></li><li>More stations mean shorter walks — but everyone riding through pays 1 per stop. Hover a cell to see whether a station pays before you place it.</li>'),
+    'iv.m2.course':L('課程連結：出行分佈（愿望線）、方式選擇（和開車比時間）、站距的取捨（覆蓋 vs 速度）。','课程链接：出行分布（愿望线）、方式选择（和开车比时间）、站距的取舍（覆盖 vs 速度）。','Course link: trip distribution (desire lines), mode choice (time against the car), stop spacing (coverage vs speed).')
   });
   if(typeof document!=='undefined')I18N.apply();
 })();
@@ -1032,259 +916,199 @@ dialog.intro .row{margin-top:16px}
 </script><script>
 (()=>{
   'use strict';
-  // v7 · mode 2 «the metro» — the page. Same visual language as mode 1 (shared/style.css): paper board, pixel icons,
-  // soft rings for what the coming week will do, labels always on top.
-  const {Game,D,P,walk,willing,idxOf,same,slice}=Metro,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
-  const CW=58,CH=52,MX=70,MY=56;
-  const xy=c=>[MX+c[0]*CW,MY+c[1]*CH];
-  const fmt=n=>`${String(Math.floor(Math.max(0,n)/60)).padStart(2,'0')}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
+  // v7 · mode 2 «the metro», static version — the page. Draw one line on the grid, put stations on it, and every
+  // desire line shows at once how many people leave the car. Nothing runs in time: the score is the plan.
+  const {Plan,D,P,evaluate,walk,same}=Metro,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
+  const CS=60,MX=60,MY=70;   // a square cell
+  const xy=c=>[MX+c[0]*CS,MY+c[1]*CS];
   const svg=(tag,a,c='')=>`<${tag} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}>${c}</${tag}>`;
   let C={};
   function readTokens(){const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue('--s-'+n).trim();
-    C={paper:v('paper'),panel:v('panel'),soft:v('soft'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line2:v('line2'),accent:v('accent'),accent2:v('accent2'),
-      warn:v('warn'),bad:v('bad'),info:v('info'),road:v('road'),metro:v('metro')};}
+    C={paper:v('paper'),panel:v('panel'),soft:v('soft'),raise:v('raise'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line:v('line'),line2:v('line2'),accent:v('accent'),accent2:v('accent2'),
+      warn:v('warn'),bad:v('bad'),info:v('info'),metro:v('metro')};}
   readTokens();
-  const text=(x,y,s,size=13,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.panel,'stroke-width':3.5,'paint-order':'stroke',...extra},s);
+  const text=(x,y,s,size=14,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.paper,'stroke-width':4,'paint-order':'stroke',...extra},s);
   const textW=(s,size)=>[...String(s)].reduce((w,ch)=>w+(ch.charCodeAt(0)>0x2e7f?size:ch===' '?size*.32:size*.6),0);
-  const pill=(x,y,s,color,anchor='middle',size=12.5)=>{const w=textW(s,size)+16,x0=anchor==='start'?x-4:anchor==='end'?x-w+4:x-w/2;
-    return svg('rect',{x:x0,y:y-size+1,width:w,height:size+8,rx:(size+8)/2,fill:C.panel,stroke:color,'stroke-width':1,'stroke-opacity':.6,'fill-opacity':.94})+
-      text(anchor==='start'?x0+7:anchor==='end'?x0+w-7:x,y+2,s,size,color,{'text-anchor':anchor,'font-weight':600,'stroke-width':0});};
+  const pill=(x,y,s,color,size=13,anchor='middle')=>{const w=textW(s,size)+18,x0=anchor==='start'?x:anchor==='end'?x-w:x-w/2;
+    return svg('rect',{x:x0.toFixed(1),y:(y-size+1).toFixed(1),width:w.toFixed(1),height:size+9,rx:(size+9)/2,fill:C.panel,stroke:color,'stroke-width':1.3,'fill-opacity':.97})+
+      svg('text',{x:(x0+w/2).toFixed(1),y:(y+3).toFixed(1),'font-size':size,fill:color,'text-anchor':'middle','font-weight':600},s);};
   function sprite(rows,x0,y0,u,pal){let out='';rows.forEach((row,j)=>{for(let i=0;i<row.length;){const ch=row[i];if(ch==='.'||!pal[ch]){i++;continue;}let k=i;while(k+1<row.length&&row[k+1]===ch)k++;
     out+=`<rect x="${(x0+i*u).toFixed(1)}" y="${(y0+j*u).toFixed(1)}" width="${((k-i+1)*u).toFixed(1)}" height="${u}" fill="${pal[ch]}"/>`;i=k+1;}});return `<g shape-rendering="crispEdges">${out}</g>`;}
   const ESTATE=["....kkkkk...","....kwklk...","....kkkkk...","....kwkwk.kk","kkk.kkkkk.kl","klk.kwkwk.kk","kkk.kkkkk.kw","kwk.klkwk.kk","kkk.kkkkk.kw","kwk.kwkwk.kk","kkk.kkkkk.kl","gggggggggggg"];
   const TOWN=["......kkkk......","....kkaaaakk....","..kkaaaaaaaakk..","kkaaaaaaaaaaaakk","kaaaaaaaaaaaaaak","rprprprprprprprp","prprprprprprprpr",".kkkkkkkkkkkkkk.",".kllkkkddkkkllk.",".kllkkkddkkkllk.",".kkkkkkddkkkkkk.","gggggggggggggggg"];
   const OFFICE=[".....kkkk.....",".....kwwk.....","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkddkwwk..","..kkkkddkkkk..","gggggggggggggg"];
-  const SCHOOL=["......aa......","......aaa.....","......k.......","...kkkkkkkk...","..kaaaaaaaak..",".kaaaaaaaaaak.","kkkkkkkkkkkkkk","kwwkwwkkwwkwwk","kkkkkkddkkkkkk","kwwkwwddkwwkwk","kkkkkkddkkkkkk","gggggggggggggg"];
   const TRAIN=[".mmmmmmmmmmmmmmmmm.","mmwwmmwwmmwwmmwwmmm","mmwwmmwwmmwwmmwwmmm","mmmmmmmmmmmmmmmmmmm","mkkmmmmmmmmmmmmkkmm","..k.............k.."];
-  const PLUS=["..kkk..","..kpk..","kkkpkkk","kpppppk","kkkpkkk","..kpk..","..kkk.."];
-  const DEST={town:TOWN,jobs:OFFICE,school:SCHOOL},DCOL=k=>({town:C.warn,jobs:C.info,school:C.accent2})[k];
-  const nameO=i=>I.name(D.origins[i]),nameD=k=>I.name(D.destinations[k]);
-  const WHY={'習慣開車':'habit','起點沒有站':'home','終點沒有站':'there','起點終點同一站':'same','月台太擠':'full'};   // engine reasons → text keys
-  // a station is named after the nearest estate or destination
-  function stationName(c){let best=null;
-    D.origins.forEach((o,i)=>{const d=walk(o.cell,c);if(!best||d<best.d)best={d,n:nameO(i)};});
-    D.destinations.forEach((o,k)=>{const d=walk(o.cell,c);if(!best||d<best.d)best={d,n:(I.lang==='zh-Hans'?o.shortHans:o.short)||nameD(k)};});
-    return t('m.stn',{n:best.n});}
-  let game=new Game(),playing=false,speed=1,hover=null,shown=false,seen=0,inter=null,fastHeld=false,last=performance.now(),lastDraw=0,lastSide=0,toastTimer=0;
-  const SPEED_BASE=4,FAST=8,INTER_MS=7000;
-  const total=()=>D.origins.reduce((s,o)=>s+o.people,0)*D.weeks;
-  const VBW=MX*2+(D.cols-1)*CW+40,VBH=MY*2+(D.rows-1)*CH+20;
-  function note(s){$('notice').textContent=s;}
-  function toast(s,kind=''){const el=$('toast');el.className='toast on '+kind;el.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('on'),2800);}
-  // a walk on the street grid: along x first, then y; where someone is at fraction f of it
-  function along(a,b,f){const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.abs(dx)+Math.abs(dy);if(!L)return a.slice();let d=f*L;
-    if(d<=Math.abs(dx))return[a[0]+Math.sign(dx)*d,a[1]];d-=Math.abs(dx);return[b[0],a[1]+Math.sign(dy)*d];}
-  // a position along the alignment (a fractional index) → a cell position
-  function lineAt(x){const i=Math.max(0,Math.min(D.line.length-1,Math.floor(x))),j=Math.min(D.line.length-1,i+1),f=x-i,a=D.line[i],b=D.line[j];return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];}
-  const vizWeek=()=>game.done?-1:!game.started?0:inter?inter.r:-1;
+  const DEST={town:TOWN,jobs:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info})[k];
+  const nameO=i=>I.name(D.origins[i]),nameD=k=>I.name(D.destinations[k]),shortD=k=>{const d=D.destinations[k];return I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name);};
+  let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],toastTimer=0;
+  const VBW=MX*2+(D.cols-1)*CS,VBH=MY*2+(D.rows-1)*CS;
+  function snapshot(){history.push(plan.copy());if(history.length>200)history.shift();}
+  function toast(s,kind=''){let el=$('toast');if(!el){el=document.createElement('div');el.id='toast';el.className='toast';$('board').parentElement.appendChild(el);}
+    el.className='toast on '+kind;el.textContent=s;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('on'),2400);}
+  // a desire line drawn as a gentle curve from the estate to the destination (alternating sides so they don't sit on each other)
+  function curve(a,b,j){const [x1,y1]=xy(a),[x2,y2]=xy(b),dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,bend=Math.min(60,L*.12)*(j%2?1:-1);
+    const cx=(x1+x2)/2-dy/L*bend,cy=(y1+y2)/2+dx/L*bend;return{d:`M${x1} ${y1}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`,mid:[(x1+2*cx+x2)/4,(y1+2*cy+y2)/4]};}
 
   /* -------------------------------------------------------------- the board */
-  function draw(){
-    const vw=vizWeek(),fc=vw>=0?game.forecast(vw,hover&&!game.started?[...game.stations,hover].sort((a,b)=>idxOf(a)-idxOf(b)):game.stations):null,now=performance.now();
-    let ground='',lines='',rings='',things='',labels='';
-    // the planned alignment (dashed), the built line between the outermost stations (solid)
-    const pathOf=cs=>cs.map((c,i)=>(i?'L':'M')+xy(c).join(' ')).join(' ');
-    ground+=svg('path',{d:pathOf(D.line),fill:'none',stroke:C.ink3,'stroke-width':6,'stroke-opacity':.25,'stroke-dasharray':'2 8','stroke-linecap':'round'});
-    if(game.stations.length>=2){const a=idxOf(game.stations[0]),b=idxOf(game.stations.at(-1));
-      lines+=svg('path',{d:pathOf(D.line.slice(a,b+1)),fill:'none',stroke:C.metro,'stroke-width':8,'stroke-linecap':'round','stroke-linejoin':'round',opacity:.9});}
-    // hover: walking reach from that spot to every estate and destination
+  function draw(now=performance.now()){
+    const ev=plan.evaluate();
+    let ground='',desire='',lines='',things='',labels='';
+    // the chessboard: every cell a soft square; in the drawing tool, the cells the line can grow into are marked
+    for(let x=0;x<D.cols;x++)for(let y=0;y<D.rows;y++){const [cx,cy]=xy([x,y]),can=tool==='draw'&&plan.canExtend([x,y])&&plan.line.length>0;
+      ground+=svg('rect',{x:cx-CS/2+3,y:cy-CS/2+3,width:CS-6,height:CS-6,rx:5,fill:can?C.metro:C.soft,'fill-opacity':can?.10:.55,stroke:can?C.metro:C.line,'stroke-opacity':can?.45:1,'stroke-dasharray':can?'4 3':''});}
+    // desire lines: grey = still by car; the metro-coloured core = the share that switches
+    ev.rows.forEach((r,j)=>{const o=D.origins[r.i],d=D.destinations[r.k],{d:path,mid}=curve(o.cell,d.cell,j),w=2+r.people/7,on=sel===j;
+      desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:.28,'stroke-linecap':'round'});
+      if(r.tenths)desire+=svg('path',{d:path,fill:'none',stroke:C.metro,'stroke-width':(w*r.tenths/10).toFixed(1),'stroke-opacity':sel>=0&&!on?.25:.85,'stroke-linecap':'round'});
+      if(r.tenths&&(sel<0||on))labels+=pill(mid[0],mid[1],t('m.dl',{n:r.tenths,p:r.riders}),C.metro,12.5);
+      else if(on)labels+=pill(mid[0],mid[1],t('m.dlCar',{c:r.car}),C.ink2,12.5);});
+    // the selected trip, step by step: walk (dashed) → ride → walk (dashed)
+    if(sel>=0){const r=ev.rows[sel];if(r.metro!==null){const o=D.origins[r.i].cell,d=D.destinations[r.k].cell;
+      const seg=(a,b)=>`M${xy(a).join(' ')}L${xy([b[0],a[1]]).join(' ')}L${xy(b).join(' ')}`;
+      lines+=svg('path',{d:seg(o,r.from),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});
+      lines+=svg('path',{d:seg(r.to,d),fill:'none',stroke:C.ink,'stroke-width':2.5,'stroke-dasharray':'2 5','stroke-linecap':'round'});}}
+    // the line
+    if(plan.line.length){const pts=plan.line.map(c=>xy(c).join(' ')).join(' L');
+      lines+=svg('path',{d:'M'+pts,fill:'none',stroke:C.metro,'stroke-width':12,'stroke-linecap':'round','stroke-linejoin':'round'});
+      if(plan.line.length===1){const [x,y]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:y,r:7,fill:C.metro});}
+      if(tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)]){const [x,y]=xy(e);things+=svg('circle',{cx:x,cy:y,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}}
+    // hover preview
     if(hover){const [hx,hy]=xy(hover);
-      D.origins.forEach((o,i)=>{const d=walk(o.cell,hover),w=willing(d);if(w<=0)return;const [x,y]=xy(o.cell);
-        lines+=svg('path',{d:`M${hx} ${hy}L${x} ${y}`,stroke:C.accent,'stroke-width':1.4,'stroke-dasharray':'3 5',opacity:.55});
-        labels+=pill(x,y+(o.house[1]<0?-62:62),t('m.reach',{p:Math.round(w*100),n:d}),C.accent);});
-      D.destinations.forEach((o,k)=>{const d=walk(o.cell,hover),w=willing(d);if(w<=0)return;const [x,y]=xy(o.cell);
-        lines+=svg('path',{d:`M${hx} ${hy}L${x} ${y}`,stroke:DCOL(o.kind),'stroke-width':1.4,'stroke-dasharray':'3 5',opacity:.6});
-        labels+=pill(x+(o.house[0]<0?-8:o.house[0]>0?8:0),y+(o.house[1]<0?-62:o.house[1]>0?62:40),t('m.reach',{p:Math.round(w*100),n:d}),DCOL(o.kind));});}
+      if(tool==='draw'){
+        if(plan.canExtend(hover)){const end=!plan.line.length?null:Metro.adj(hover,plan.line.at(-1))?plan.line.at(-1):plan.line[0];
+          if(end)lines+=svg('path',{d:`M${xy(end).join(' ')}L${hx} ${hy}`,stroke:C.metro,'stroke-width':12,'stroke-opacity':.35,'stroke-linecap':'round'});
+          else lines+=svg('circle',{cx:hx,cy:hy,r:7,fill:C.metro,'fill-opacity':.4});
+          labels+=pill(hx,hy-22,t('m.pvExtend',{c:P.lineCost}),C.metro,12);}
+        else if(plan.isEnd(hover))labels+=pill(hx,hy-22,t('m.pvShorten'),C.ink2,12);}
+      else if(plan.onLine(hover)){const after=plan.withStation(hover),dv=after.riders-ev.riders,has=plan.isStation(hover);
+        if(!has&&plan.left()<P.stationCost)labels+=pill(hx,hy-24,t('m.pvNoMoney'),C.bad,12);
+        else{if(!has)things+=svg('circle',{cx:hx,cy:hy,r:15,fill:C.panel,stroke:C.metro,'stroke-width':5,'stroke-opacity':.5,'stroke-dasharray':'4 3'});
+          labels+=pill(hx,hy-26,(has?t('m.pvRemove'):t('m.pvAdd'))+' '+t(dv>=0?'m.pvGain':'m.pvLoss',{n:Math.abs(dv)})+' · '+t(has?'m.pvRefund':'m.pvCost',{c:P.stationCost}),dv>0?C.accent:dv<0?C.bad:C.ink2,12.5);}}}
     // estates and destinations
-    D.origins.forEach((o,i)=>{const [cx,cy]=xy(o.cell),hx=cx+o.house[0],hy=cy+o.house[1]*.55;
+    D.origins.forEach((o,i)=>{const [cx,cy]=xy(o.cell),up=o.house[1]<0,ppl=o.to.reduce((a,b)=>a+b,0),rode=ev.rows.filter(r=>r.i===i).reduce((a,r)=>a+r.riders,0);
       things+=sprite(ESTATE,cx-18,cy-24,3,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
-      labels+=text(cx,o.house[1]<0?cy-32:cy+30,nameO(i),15.5,C.ink,{'text-anchor':'middle','font-weight':600});
-      if(fc){const e=fc.est[i];
-        if(e.tries){const f=e.ride/e.tries;rings+=svg('circle',{cx,cy:cy-4,r:27,fill:'none',stroke:C.ink3,'stroke-width':1,'stroke-opacity':.3,'stroke-dasharray':'1.5 4'});
-          if(f>0)rings+=svg('path',{d:arc(cx,cy-4,27,f),fill:'none',stroke:C.accent,'stroke-width':3,'stroke-linecap':'round'});}
-        const up=o.house[1]<0,yy=up?cy-50:cy+48;
-        labels+=text(cx,yy,t('m.tries',{a:e.tries,n:e.n}),13,C.ink2,{'text-anchor':'middle','font-family':'Geist Mono,monospace'});
-        if(game.stations.length&&(e.noHome||e.noThere))labels+=pill(cx,yy+(up?-22:20),e.noHome?t('m.noHome',{n:e.noHome}):t('m.noThere',{n:e.noThere}),C.bad);}});
-    D.destinations.forEach((o,k)=>{const [cx,cy]=xy(o.cell);
-      things+=sprite(DEST[o.kind],cx-(DEST[o.kind][0].length*3)/2,cy-24,3,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
-      const lx=cx+(o.house[0]<0?-26:o.house[0]>0?26:0),la=o.house[0]<0?'end':o.house[0]>0?'start':'middle',ly=o.house[1]<0?cy-32:o.house[0]?cy-6:cy+30;
-      labels+=text(lx,ly,nameD(k),15.5,DCOL(o.kind),{'text-anchor':la,'font-weight':600});
-      if(fc){const d=fc.dst[k];if(d.tries){const f=d.ride/d.tries;rings+=svg('circle',{cx,cy:cy-4,r:27,fill:'none',stroke:C.ink3,'stroke-width':1,'stroke-opacity':.3,'stroke-dasharray':'1.5 4'});
-        if(f>0)rings+=svg('path',{d:arc(cx,cy-4,27,f),fill:'none',stroke:DCOL(o.kind),'stroke-width':3,'stroke-linecap':'round'});}}});
-    // free spots on the alignment (before the start only: stations are built once)
-    if(!game.started)for(const c of D.line){if(game.stations.some(s=>same(s,c)))continue;const [x,y]=xy(c),on=hover&&same(hover,c),can=game.stations.length<P.stationsMax;
-      things+=svg('g',{class:'candidate','data-cell':c.join(','),role:'button',tabindex:0,opacity:can?1:.35},svg('rect',{x:x-13,y:y-13,width:26,height:26,fill:'transparent'})+
-        sprite(PLUS,x-(on?12.25:9.1),y-(on?12.25:9.1),on?3.5:2.6,{k:on?C.metro:C.ink3,p:on?C.paper:C.panel}));}
-    // people on foot: coloured by where they are going
-    for(const p of game.people){let pos=null;
-      if(p.state==='walk')pos=along(D.origins[p.origin].cell,game.stations[p.from],(game.t-p.since)/Math.max(1e-6,p.until-p.since));
-      else if(p.state==='walkout')pos=along(game.stations[p.to],D.destinations[p.dest].cell,(game.t-p.since)/Math.max(1e-6,p.until-p.since));
-      if(!pos)continue;const [x,y]=xy(pos),ox=(p.id%3-1)*4,oy=(p.id%2?1:-1)*3;
-      things+=svg('rect',{x:(x+ox-2.6).toFixed(1),y:(y+oy-2.6).toFixed(1),width:5.2,height:5.2,fill:DCOL(D.destinations[p.dest].kind),stroke:C.panel,'stroke-width':.8,'shape-rendering':'crispEdges'});}
-    // trains
-    if(game.started&&!game.done)for(const tr of game.trains){const ps=game.trainPos(tr);if(!ps)continue;const [x,y]=xy(lineAt(ps.at));
-      things+=`<g transform="translate(${(x-28.5).toFixed(1)} ${(y-9).toFixed(1)})${ps.dir<0?` scale(-1 1) translate(-57 0)`:''}">`+sprite(TRAIN,0,0,3,{m:C.metro,w:C.paper,k:C.ink})+'</g>';
-      labels+=text(x,y-13,`${tr.load.length}/${P.cap}`,12,C.metro,{'text-anchor':'middle','font-weight':600,'font-family':'Geist Mono,monospace'});}
-    // stations: a badge, the name, the two platforms (eastbound above, westbound below) and in the preview the load
-    game.stations.forEach((c,i)=>{const [x,y]=xy(c);
-      if(fc){const L=fc.load[i],per=Math.max(1,Math.ceil(P.release/Math.max(1,game.headway(game.trainsByWeek[vw]||2)))*P.cap),f=Math.min(1.4,(L.out)/per);
-        if(f>.3)rings+=svg('circle',{cx:x,cy:y,r:(26+18*Math.min(1,f)).toFixed(1),fill:f>1?C.bad:C.warn,'fill-opacity':(.10+.18*Math.min(1,f)).toFixed(2)});
-        labels+=text(x,y+36,t('m.load',{a:L.out,b:L.in}),12.5,f>1?C.bad:C.ink2,{'text-anchor':'middle','font-family':'Geist Mono,monospace'});}
-      things+=svg('circle',{cx:x,cy:y,r:14,fill:C.panel,stroke:C.metro,'stroke-width':5})+svg('text',{x,y:y+5,'font-size':15,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},i+1);
-      labels+=text(x,y-22,stationName(c),14.5,C.metro,{'text-anchor':'middle','font-weight':700});
-      if(game.started&&!game.done){for(const [dir,dy] of [[1,-38],[-1,-31]]){const q=game.queue(i,dir).length;if(!q)continue;const w=Math.min(1,q/P.platform);
-        things+=svg('rect',{x:x+18,y:y+dy+16,width:(26*w).toFixed(1),height:4,fill:w>=1?C.bad:w>.6?C.warn:C.ink3,'shape-rendering':'crispEdges'});
-        labels+=text(x+48,y+dy+21,`${dir>0?'→':'←'}${q}`,11.5,w>=1?C.bad:C.ink2,{'font-family':'Geist Mono,monospace'});}}
-      if(!game.started)things+=svg('circle',{cx:x,cy:y,r:16,fill:'transparent',class:'stationhit','data-station':i,role:'button',tabindex:0});});
-    $('board').innerHTML=ground+lines+rings+things+labels;
+      labels+=text(cx,up?cy-34:cy+32,nameO(i),15.5,C.ink,{'text-anchor':'middle','font-weight':700});
+      labels+=text(cx,up?cy-52:cy+50,rode?t('m.estRode',{n:ppl,r:rode}):t('m.estAll',{n:ppl}),12.5,rode?C.metro:C.ink2,{'text-anchor':'middle','font-weight':600});});
+    D.destinations.forEach((o,k)=>{const [cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*3,came=ev.rows.filter(r=>r.k===k).reduce((a,r)=>a+r.riders,0),ppl=ev.rows.filter(r=>r.k===k).reduce((a,r)=>a+r.people,0);
+      things+=sprite(sp,cx-w/2,cy-24,3,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
+      const side=o.house[0]>0,lx=side?cx+w/2+8:cx,ly=side?cy-8:cy-34,la=side?'start':'middle';
+      labels+=text(lx,ly,nameD(k),15.5,DCOL(o.kind),{'text-anchor':la,'font-weight':700});
+      labels+=text(lx,ly+(side?18:-18),came?t('m.dstRode',{n:ppl,r:came}):t('m.dstAll',{n:ppl}),12.5,came?C.metro:C.ink2,{'text-anchor':la,'font-weight':600});});
+    // stations, numbered along the line
+    const order=plan.stations.map(s=>({s,x:plan.line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
+    // a train running between the end stations, just to show it is a railway (under the stations)
+    if(order.length>=2){const a=order[0].x,b=order.at(-1).x,span=b-a,ph=(now/1000*1.6)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.floor(pos),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
+      const [x1,y1]=xy(c1),[x2,y2]=xy(c2),x=x1+(x2-x1)*f,y=y1+(y2-y1)*f;
+      lines+=`<g opacity=".9" transform="translate(${(x-28.5).toFixed(1)} ${(y-9).toFixed(1)})">`+sprite(TRAIN,0,0,3,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}
+    const building=c=>D.origins.some(o=>same(o.cell,c))||D.destinations.some(o=>same(o.cell,c));
+    order.forEach(({s},n)=>{const [x,y]=xy(s);
+      if(building(s))labels+=svg('circle',{cx:x,cy:y-6,r:26,fill:'none',stroke:C.metro,'stroke-width':4})+svg('circle',{cx:x+21,cy:y-25,r:10,fill:C.metro})+
+        svg('text',{x:x+21,y:y-21,'font-size':12,'font-weight':700,fill:C.paper,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);
+      else things+=svg('circle',{cx:x,cy:y,r:15,fill:C.panel,stroke:C.metro,'stroke-width':5})+svg('text',{x,y:y+5,'font-size':14,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);});
+    $('board').innerHTML=ground+desire+lines+things+labels;
   }
-  function arc(cx,cy,r,f){if(f>=.999)return `M${cx} ${cy-r}A${r} ${r} 0 1 1 ${cx-.01} ${cy-r}`;const a=2*Math.PI*f,x=cx+r*Math.sin(a),y=cy-r*Math.cos(a);
-    return `M${cx} ${cy-r}A${r} ${r} 0 ${f>.5?1:0} 1 ${x.toFixed(1)} ${y.toFixed(1)}`;}
 
-  /* -------------------------------------------------------------- side panels */
+  /* -------------------------------------------------------------- the side panels */
   function side(){
-    const st=game.stats(),onway=game.people.filter(p=>['walk','queue','ride','walkout'].includes(p.state)).length;
-    $('score').textContent=st.delivered;$('score2').textContent=st.delivered;$('cars').textContent=st.cars;$('onway').textContent=onway;$('walked').textContent=st.walked;
-    const lo=Math.max(0,P.target-(P.masterScore-P.target)*1.5),hi=P.masterScore+(P.masterScore-P.target)*.4,at=v=>Math.max(0,Math.min(100,100*(v-lo)/(hi-lo)));
-    $('scoreBar').style.width=`${at(st.delivered)}%`;
+    const ev=plan.evaluate(),lo=0,hi=Math.round(P.masterScore*1.15),at=v=>Math.max(0,Math.min(100,100*(v-lo)/(hi-lo)));
+    $('score').textContent=ev.riders;$('ofTotal').textContent=t('m.ofTotal',{n:ev.people});$('scoreBar').style.width=`${at(ev.riders)}%`;
     for(const [id,v,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){$(id).style.left=`${at(v)}%`;$(id).dataset.label=t(k,{n:v});}
-    $('clock').textContent=fmt(game.t);$('clockProg').style.width=`${game.done?100:100*game.round/D.weeks}%`;
-    $('wave').textContent=!game.started?t('m.wFirst'):game.done?t('m.wDone'):inter?t('m.wBreak',{n:inter.r+1,m:D.weeks}):t('m.wNow',{n:game.round+1,m:D.weeks});
-    $('start').textContent=game.done?t('g.over'):game.started?(playing?t('g.pause'):t('g.resume')):t('g.start');
-    $('start').disabled=game.done||(!game.started&&game.stations.length<2);
-    document.querySelectorAll('#speedSeg button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sp===speed)));
-    // building
-    const n=game.stations.length;
-    $('buildBox').innerHTML=`<h3><span>${t('m.buildH')}</span><span class="lbl">${n} / ${P.stationsMax}</span></h3>`+
-      (game.started?`<p>${t('m.built',{list:game.stations.map(stationName).join(t('sep'))})}</p>`:
-        `<p>${n<2?t('m.buildHint'):n<P.stationsMax?t('m.buildMore',{n:P.stationsMax-n}):t('m.buildFull')}</p>`)+
-      (n>=2?`<div class="r"><span>${t('m.loop')}</span><span class="mono">${t('m.loopV',{T:Math.round(game.loop().T)})}</span></div>`:'');
-    // trains: this week (before the start: week 1; in a break: the coming week)
-    const w=game.started?(inter?inter.r:game.round):0,edit=!game.done&&(!game.started||!!inter),cur=game.trainsByWeek[w]??(w?game.trainsByWeek[w-1]:2)??2,[lo2,hi2]=game.trainsRange(w);
-    const left=P.budget-game.trainsByWeek.slice(0,w).reduce((a,b)=>a+b,0);
-    let h=`<h3><span>${t('m.trainH',{n:w+1})}</span><span class="lbl">${t('m.budget',{a:left,b:P.budget})}</span></h3><div class="seg tsel">`;
-    for(let k=P.trainsMin;k<=P.trainsMax;k++)h+=`<button data-trains="${k}" aria-pressed="${k===cur}" ${!edit||k<lo2||k>hi2?'disabled':''}>${k}</button>`;
-    h+=`</div><div class="r"><span>${t('m.headway')}</span><span class="mono">${n>=2?t('m.headwayV',{h:Math.round(game.headway(cur))}):'—'}</span></div>`;
-    h+=`<p class="mnote">${edit?t('m.trainEdit',{later:D.weeks-w-1}):t('m.trainLocked')}</p>`;
-    if($('trainBox').innerHTML!==h)$('trainBox').innerHTML=h;
-    weeks();habit();
+    const lc=plan.line.length*P.lineCost,sc=plan.stations.length*P.stationCost;
+    $('budgetNum').textContent=`${ev.cost} / ${P.budget}`;$('bbLine').style.width=`${100*lc/P.budget}%`;$('bbStation').style.width=`${100*sc/P.budget}%`;
+    $('budgetSum').textContent=t('m.budgetSum',{l:plan.line.length,lc:P.lineCost,s:plan.stations.length,sc:P.stationCost,left:plan.left()});
+    document.querySelectorAll('#toolSeg [data-tool]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tool===tool)));
+    $('toolHint').textContent=tool==='draw'?(plan.line.length?t('m.hintDraw2'):t('m.hintDraw1')):(plan.line.length<2?t('m.hintNeedLine'):plan.stations.length<2?t('m.hintStation1'):t('m.hintStation2'));
+    $('undo').disabled=!history.length;$('submit').disabled=plan.stations.length<2;
+    // every desire line, with its sum spelled out
+    let h=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tPeople')}</th><th>${t('m.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
+    ev.rows.forEach((r,j)=>{
+      h+=`<tr data-row="${j}" class="${sel===j?'sel':''} ${r.riders?'on':''}"><td>${nameO(r.i)}<small>→ ${shortD(r.k)}</small></td><td>${r.people}</td><td>${r.car}</td>`+
+        `<td>${r.metro===null?'—':`${r.metro}<small>${r.walkA}+${P.wait}+${r.pass}+${r.walkB}</small>`}</td><td>${r.metro===null?'':r.save}</td><td><b>${r.riders||''}</b>${r.tenths?`<small>${t('m.tenths',{n:r.tenths})}</small>`:''}</td></tr>`;});
+    $('trips').innerHTML=h+`</tbody><tfoot><tr><td colspan="5">${t('m.tTotal')}</td><td><b>${ev.riders}</b></td></tr></tfoot>`;
   }
-  function weeks(){
-    const vw=vizWeek(),fc=vw>=0?game.forecast(vw):null;let h=`<thead><tr><th>${t('m.wk')}</th><th>${t('m.wTrains')}</th><th>${t('m.wHabit')}</th><th>${t('m.wTry')}</th><th>${t('m.wRode')}</th><th>${t('m.wFull')}</th></tr></thead><tbody>`;
-    for(let w=0;w<D.weeks;w++){const ps=game.people.filter(p=>p.wave===w),begun=game.started&&w<=game.round&&w!==vw,hab=game.habitLog[w]?.habit;
-      const avg=hab?Math.round(100*hab.reduce((a,b)=>a+b,0)/hab.length)+'%':'';
-      h+=`<tr class="${w===game.round&&game.started&&!inter&&!game.done?'now':''} ${w===vw?'next':''} ${game.started&&w<game.round?'past':''}"><td>${t('m.wkN',{n:w+1})}</td><td>${game.trainsByWeek[w]??''}</td><td>${avg}</td>`+
-        `<td>${begun?ps.filter(p=>p.tried).length:w===vw&&fc?fc.est.reduce((a,e)=>a+e.tries,0):''}</td><td>${begun?ps.filter(p=>p.state==='delivered').length:''}</td><td>${begun?ps.filter(p=>p.why==='月台太擠').length||'':''}</td></tr>`;}
-    $('weeks').innerHTML=h+'</tbody>';$('weeksChip').textContent=t('m.weeksChip',{n:D.weeks});
-  }
-  function habit(){
-    const log=game.habitLog,prev=log.length>1?log.at(-2).habit:null;
-    let h='';D.origins.forEach((o,i)=>{const v=game.habit[i],d=prev?Math.round(100*(v-prev[i])):0,on=Math.round(v*10);
-      h+=`<div class="hb"><span class="hn">${nameO(i)}</span><span class="cells">${Array.from({length:10},(_,k)=>`<i class="${k<on?'on':''}"></i>`).join('')}</span><b>${Math.round(v*100)}%</b><em class="${d>0?'up':d<0?'down':''}">${d>0?'▲'+d:d<0?'▼'+(-d):''}</em></div>`;});
-    h+=`<p class="hbnote">${t('m.habitNote',{s:Math.round(D.habit.start*100)})}</p>`;
-    if($('habitBox').innerHTML!==h)$('habitBox').innerHTML=h;
-  }
-  function countdown(){const el=$('cdown');if(!inter||game.done){el.classList.remove('on');return;}const still=inter.adjust||!playing;
-    el.classList.add('on');el.classList.toggle('paused',still);$('cdNum').textContent=still?'❚❚':Math.max(1,Math.ceil((inter.end-performance.now())/1000-1e-6));
-    $('cdText').textContent=t('m.cd',{n:inter.r+1});$('cdHint').textContent=still?t('m.cdAdjust'):t('m.cdHint');}
-  function render(){draw();side();countdown();if(game.done&&!shown){shown=true;playing=false;result();side();}}
-  function fit(){draw();try{const bb=$('board').getBBox(),x0=Math.min(0,bb.x-12),y0=Math.min(0,bb.y-12),x1=Math.max(VBW,bb.x+bb.width+12),y1=Math.max(VBH,bb.y+bb.height+12);
+  function render(){draw();side();}
+  function fit(){draw();try{const bb=$('board').getBBox(),x0=Math.min(0,bb.x-14),y0=Math.min(0,bb.y-14),x1=Math.max(VBW,bb.x+bb.width+14),y1=Math.max(VBH,bb.y+bb.height+14);
     $('board').setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}}
-
-  /* -------------------------------------------------------------- texts that follow the language */
   function texts(){
-    $('titleEn').textContent='The metro';$('titleTc').textContent=t('m.levelTitle');$('titleTc').hidden=!$('titleTc').textContent;document.title=t('m.doc');
-    $('totalN').textContent=total();
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
-    $('rule3').innerHTML=t('m.rule3',{cap:P.cap,platform:P.platform,budget:P.budget,min:P.trainsMin,max:P.trainsMax});
-    $('legend').innerHTML=`<span><i style="background:${C.warn}"></i>${t('m.legTown')}</span><span><i style="background:${C.info}"></i>${t('m.legJobs')}</span><span><i style="background:${C.accent2}"></i>${t('m.legSchool')}</span>`+
-      `<span><i class="ringkey good"></i>${t('m.legRing')}</span><span><i style="background:${C.warn};opacity:.4;border-radius:50%"></i>${t('m.legGlow')}</span>`;
-    $('infoBody').innerHTML=t('m.info',{cap:P.cap,platform:P.platform,budget:P.budget,max:P.stationsMax,step:P.trainStep,dwell:P.dwell,turn:P.turn,walk:P.walkStep,s:Math.round(D.habit.start*100),weeks:D.weeks});
+    $('rule2').innerHTML=t('m.rule2',{w:P.wait});$('rule3').innerHTML=t('m.rule3',{lc:P.lineCost,sc:P.stationCost,b:P.budget});
+    $('infoBody').innerHTML=t('m.info',{w:P.wait,lc:P.lineCost,sc:P.stationCost,b:P.budget});
+    $('ivBody').innerHTML=t('iv.m2.body',{w:P.wait,lc:P.lineCost,sc:P.stationCost,b:P.budget});
+    $('mapLegend').innerHTML=t('m.legend');document.title=t('m.doc');
   }
 
-  /* -------------------------------------------------------------- the end */
+  /* -------------------------------------------------------------- the result: the score, and what would help most */
   function result(){
-    const tier=game.delivered>=P.masterScore?3:game.delivered>=P.highScore?2:game.delivered>=P.target?1:0;
+    const ev=plan.evaluate(),tier=ev.riders>=P.masterScore?3:ev.riders>=P.highScore?2:ev.riders>=P.target?1:0;
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
-    $('resultScore').textContent=t('m.rScore',{d:game.delivered,n:total(),c:game.cars,w:game.walked});
-    const why={};for(const p of game.people)if(p.state==='car')why[p.why]=(why[p.why]||0)+1;
-    let h=`<table class="result"><thead><tr><th>${t('m.wk')}</th><th>${t('m.wTrains')}</th><th>${t('m.wHabit')}</th><th>${t('m.wTry')}</th><th>${t('m.wRode')}</th><th>${t('m.wFull')}</th></tr></thead><tbody>`;
-    for(let w=0;w<D.weeks;w++){const ps=game.people.filter(p=>p.wave===w),hab=game.habitLog[w].habit;
-      h+=`<tr><td>${t('m.wkN',{n:w+1})}</td><td>${game.trainsByWeek[w]}</td><td>${Math.round(100*hab.reduce((a,b)=>a+b,0)/hab.length)}%</td><td>${ps.filter(p=>p.tried).length}</td><td>${ps.filter(p=>p.state==='delivered').length}</td><td>${ps.filter(p=>p.why==='月台太擠').length||''}</td></tr>`;}
-    h+=`</tbody></table><p class="note">${Object.entries(why).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${t('m.why.'+(WHY[k]||'home'))} ${v}`).join(' · ')}</p>`;
-    $('resultBody').innerHTML=h;
-    // the one lesson that fits this game best
-    const early=game.trainsByWeek.slice(0,2).reduce((a,b)=>a+b,0),late=game.trainsByWeek.slice(-2).reduce((a,b)=>a+b,0);
-    $('resultHint').innerHTML=tier>=3?t('m.h3'):(why['終點沒有站']||0)>(why['起點沒有站']||0)&&(why['終點沒有站']||0)>20?t('m.hThere',{n:why['終點沒有站']}):
-      (why['起點沒有站']||0)>20?t('m.hHome',{n:why['起點沒有站']}):(why['月台太擠']||0)>15?(early>=late?t('m.hFront',{n:why['月台太擠']}):t('m.hCrowd',{n:why['月台太擠']})):
-      t('m.hLoop');
+    $('resultScore').textContent=t('m.rScore',{d:ev.riders,n:ev.people,c:ev.cost,b:P.budget});
+    const tips=[];
+    // a station that slows more people than it brings
+    for(const s of plan.stations){const dv=evaluate(plan.line,plan.stations.filter(x=>!same(x,s))).riders-ev.riders;
+      if(dv>0)tips.push(t('m.tipStation',{n:dv,sc:P.stationCost}));}
+    // the biggest desire lines left by car
+    const missed=ev.rows.filter(r=>!r.riders).sort((a,b)=>b.people-a.people).slice(0,2);
+    for(const r of missed)tips.push(t(r.metro===null?'m.tipMissNo':'m.tipMissSlow',{a:nameO(r.i),b:shortD(r.k),n:r.people,car:r.car,m:r.metro??''}));
+    if(plan.left()>=P.stationCost)tips.push(t('m.tipBudget',{n:plan.left()}));
+    if(tier===3&&!tips.length)tips.push(t('m.tip3'));
+    $('resultBody').innerHTML=`<ul class="ivlist">${tips.slice(0,4).map(s=>`<li>${s}</li>`).join('')}</ul>`;
+    try{const k='tl-best-m2-'+D.map;if(ev.riders>(+localStorage.getItem(k)||0))localStorage.setItem(k,ev.riders);}catch(e){}
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m2-metro',version:'7.3-static',map:D.map,score:ev.riders,total:ev.people,tier,
+      tiers:[P.target,P.highScore,P.masterScore],cost:ev.cost,line:plan.line,stations:plan.stations,lang:I.lang}}));
     $('result').showModal();
   }
 
   /* -------------------------------------------------------------- controls */
-  function reset(msg){game=new Game();playing=false;shown=false;inter=null;hover=null;seen=0;note(msg||t('m.nBuild'));render();}
-  function setPlaying(v,msg){if(v===playing)return;playing=v;last=performance.now();if(inter){if(v)inter=null;else inter.adjust=true;}if(msg)note(msg);render();}
   const board=$('board');
-  function svgPoint(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(board.getScreenCTM().inverse());}
-  const cellAt=e=>{const p=svgPoint(e);return D.line.find(c=>{const [x,y]=xy(c);return Math.hypot(p.x-x,p.y-y)<22;});};
-  board.onclick=e=>{if(game.started)return;const c=cellAt(e);if(!c)return;
-    if(game.stations.some(s=>same(s,c))){game.unbuild(c);note(t('m.nRemoved'));}
-    else if(game.build(c)){note(game.stations.length>=2?t('m.nCanStart'):t('m.nBuild'));}
-    else toast(t('m.nMax',{n:P.stationsMax}),'warn');
-    hover=null;render();};
-  board.onpointermove=e=>{const c=!game.started?cellAt(e)||null:null,h=c&&!game.stations.some(s=>same(s,c))?c:null;if(JSON.stringify(h)!==JSON.stringify(hover)){hover=h;draw();}};
-  board.onpointerleave=()=>{if(hover){hover=null;draw();}};
-  $('trainBox').onclick=e=>{const b=e.target.closest('[data-trains]');if(!b||b.disabled)return;const w=game.started?(inter?inter.r:game.round):0;
-    if(game.setTrains(+b.dataset.trains,w)){note(t('m.nTrains',{n:+b.dataset.trains,w:w+1}));render();}};
-  $('start').onclick=()=>{if(!game.started){if(!game.start())return;note(t('m.nStart'));}setPlaying(!playing,playing?t('m.nPause'):null);};
-  $('speedSeg').onclick=e=>{const b=e.target.closest('[data-sp]');if(b){speed=+b.dataset.sp;side();}};
-  $('reset').onclick=()=>{if(game.started&&!game.done&&!confirm(t('m.cReset')))return;reset();};
-  $('help').onclick=()=>{if(playing)setPlaying(false);$('info').showModal();};
+  function cellAt(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(board.getScreenCTM().inverse());
+    const c=[Math.round((p.x-MX)/CS),Math.round((p.y-MY)/CS)];return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows?c:null;}
+  function act(c){
+    if(tool==='draw'){
+      if(plan.canExtend(c)){snapshot();plan.extend(c);return true;}
+      if(plan.isEnd(c)){snapshot();plan.shorten(c);return true;}
+      if(plan.left()<P.lineCost)toast(t('m.nNoMoney'),'warn');
+      else if(plan.line.length&&!plan.onLine(c))toast(t('m.nAdjacent'),'warn');
+      return false;}
+    if(!plan.onLine(c)){toast(t('m.nOnLine'),'warn');return false;}
+    if(!plan.isStation(c)&&plan.left()<P.stationCost){toast(t('m.nNoMoney'),'warn');return false;}
+    snapshot();plan.toggleStation(c);return true;
+  }
+  board.onpointerdown=e=>{const c=cellAt(e);if(!c)return;drag=tool==='draw';if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
+  board.onpointermove=e=>{const c=cellAt(e);
+    if(drag&&c&&plan.canExtend(c)){snapshot();plan.extend(c);hover=null;render();return;}
+    if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;draw();}};
+  board.onpointerup=()=>{drag=false;};
+  board.onpointerleave=()=>{if(!drag&&hover){hover=null;draw();}};
+  $('toolSeg').onclick=e=>{const b=e.target.closest('[data-tool]');if(b){tool=b.dataset.tool;hover=null;render();}};
+  $('undo').onclick=()=>{const p=history.pop();if(p){plan=p;render();}};
+  $('clear').onclick=()=>{if(!plan.line.length)return;snapshot();plan.clear();tool='draw';render();};
+  $('submit').onclick=result;
+  $('trips').onclick=e=>{const r=e.target.closest('[data-row]');if(!r)return;const j=+r.dataset.row;sel=sel===j?-1:j;render();};
+  $('again').onclick=()=>{$('result').close();snapshot();plan.clear();tool='draw';sel=-1;render();};
+  $('help').onclick=()=>$('info').showModal();
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
-  $('again').onclick=()=>{$('result').close();reset();};
-  function intro(){$('ivTitle').textContent=t('m.levelTitle');$('ivNew').innerHTML=t('iv.m2.new');$('ivBody').innerHTML=t('iv.m2.body',{max:P.stationsMax,budget:P.budget,s:Math.round(D.habit.start*100)});$('ivCourse').innerHTML=t('iv.m2.course');}
-  $('lvInfo').onclick=()=>{if(playing)setPlaying(false);intro();$('lvIntro').showModal();};
-  $('ivGo').onclick=()=>$('lvIntro').close();
-  function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
-    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();texts();render();}
-  $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
-  window.addEventListener('tl:lang',()=>{texts();fit();render();if($('lvIntro').open)intro();});
+  $('lvInfo').onclick=()=>$('lvIntro').showModal();$('ivGo').onclick=()=>$('lvIntro').close();
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;
-    if(e.code==='Space'&&!e.target.closest?.('button,input')){e.preventDefault();if(game.started&&!game.done)setPlaying(!playing,playing?t('m.nPause'):null);}
-    if(e.code==='KeyF'){fastHeld=true;$('fastHint').classList.add('on');}});
-  document.addEventListener('keyup',e=>{if(e.code==='KeyF'){fastHeld=false;$('fastHint').classList.remove('on');}});
-  document.addEventListener('visibilitychange',()=>{last=performance.now();if(document.hidden&&playing)setPlaying(false);});
-  // feedback from the engine: a toast when a week starts and the first time a platform overflows in a week
-  let fullWeek=-1;
-  function feedback(){const ev=game.events;
-    for(let i=seen;i<ev.length;i++){const e=ev[i];
-      if(e.type==='full'&&fullWeek!==game.round){fullWeek=game.round;toast(t('m.tFull',{s:stationName(game.stations[e.station])}),'warn');}
-      else if(e.type==='round')toast(t('m.tWeek',{n:e.round+1,k:game.trainsByWeek[e.round],h:Math.round(game.headway())}),'tide');}
-    seen=ev.length;}
-  function frame(now){const dt=Math.min(.5,(now-last)/1000);last=now;
-    if(playing){
-      if(inter){if(now>=inter.end){inter=null;toast(t('m.tWeek',{n:game.round+1,k:game.trainsByWeek[game.round],h:Math.round(game.headway())}),'tide');render();}}
-      else{const r0=game.round;game.advance(dt*speed*SPEED_BASE*(fastHeld?FAST:1),{stopAtRound:true});
-        if(game.round!==r0&&!game.done){inter={r:game.round,end:now+INTER_MS,adjust:false};seen=game.events.length;render();}}
-      feedback();countdown();
-      if(now-lastDraw>40){draw();lastDraw=now;}if(now-lastSide>200){side();lastSide=now;}
-      if(game.done&&!shown)render();}
-    else if(now-lastDraw>80){draw();lastDraw=now;}
-    requestAnimationFrame(frame);}
-  // test hook: #intro=0&stations=2,5;5,5;11,4;12,4&trains=1,2,3,3,3,3&t=400&theme=dark&lang=en
+    if(e.key==='1'){tool='draw';render();}else if(e.key==='2'){tool='station';render();}
+    else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$('undo').click();}
+    else if(e.key==='Escape'&&sel>=0){sel=-1;render();}});
+  function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
+    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
+  $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
+  window.addEventListener('tl:lang',()=>{texts();fit();render();});
+  // the train moves: redraw a few times a second while there is a line with two stations
+  let lastFrame=0;(function loop(now){if(plan.stations.length>=2&&now-lastFrame>60&&!drag){draw(now);lastFrame=now;}requestAnimationFrame(loop);})(0);
+  // test hook: #intro=0&line=2,2;3,2;4,2&stations=2,2;4,2&tool=station&sel=0&theme=dark&lang=en
   const q=new URLSearchParams(location.hash.slice(1));
   let saved=null;try{saved=localStorage.getItem('tl-theme');}catch(e){}
-  $('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
+  board.setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);
   if(q.get('theme')||saved)setTheme(q.get('theme')||saved);
-  texts();
-  if(q.get('stations'))for(const s of q.get('stations').split(';'))game.build(s.split(',').map(Number));
-  if(q.get('trains'))q.get('trains').split(',').map(Number).forEach((n,w)=>game.setTrains(n,w));
-  if(q.get('t')&&game.start()){game.advance(+q.get('t'));seen=game.events.length;}
-  note(t('m.nBuild'));fit();render();
-  if(q.get('intro')!=='0'&&!q.get('stations')){intro();$('lvIntro').showModal();}
-  window.TL_METRO={state:()=>({t:game.t,round:game.round,playing,inter:inter&&{...inter},done:game.done,delivered:game.delivered,stations:game.stations.length,trains:game.trainsByWeek.slice()}),
-    start(){$('start').click();}};
-  requestAnimationFrame(frame);
+  if(q.get('line'))for(const s of q.get('line').split(';'))plan.extend(s.split(',').map(Number));
+  if(q.get('stations'))for(const s of q.get('stations').split(';'))plan.toggleStation(s.split(',').map(Number));
+  if(q.get('tool'))tool=q.get('tool');if(q.get('sel'))sel=+q.get('sel');
+  texts();fit();render();
+  if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
+  window.TL_METRO={plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),...plan.evaluate()}),cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();
 
 </script></body></html>

@@ -15,69 +15,59 @@
 <main id="app" class="eg">
   <aside class="side scol">
     <div class="row"><a class="btn btn-sm" href="../index.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="m.mode">Mode 02 · 地鐵</span></div>
-    <h1 class="h1"><span id="titleEn">The metro</span><span class="h1tc" id="titleTc">新界西北 · 東西線</span></h1>
+    <h1 class="h1"><span>The metro</span><span class="h1tc" data-i18n="m.levelTitle">新界西北 · 一條新線</span></h1>
     <p class="lede" data-i18n-html="m.lede"></p>
 
-    <div class="box goal">
-      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score2">0</b> / <span id="totalN">0</span></span></div>
+    <div class="box bigscore">
+      <div class="lbl" data-i18n="m.scoreLbl">每天少開</div>
+      <div class="row"><b id="score">0</b><span class="unit" data-i18n="m.scoreUnit">車次</span><div class="sp"></div><span class="mono" id="ofTotal"></span></div>
       <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
       <div class="note" id="goal"></div>
     </div>
 
-    <div class="row controls">
-      <button class="btn btn-p" id="start" disabled>▶</button>
-      <div class="seg" id="speedSeg" role="group"><button data-sp="1" aria-pressed="true">1×</button><button data-sp="2" aria-pressed="false">2×</button><button data-sp="4" aria-pressed="false">4×</button></div><span class="fasthint" id="fastHint" data-i18n="g.fast">按住 F 快進</span>
-      <button class="btn btn-sm" id="reset">↺</button>
+    <div class="box budget">
+      <div class="row"><span class="lbl" data-i18n="m.budgetLbl">預算</span><div class="sp"></div><span class="mono" id="budgetNum"></span></div>
+      <div class="bbar"><i id="bbLine"></i><i id="bbStation"></i></div>
+      <div class="note mono" id="budgetSum"></div>
     </div>
 
-    <div class="box mbox" id="buildBox"></div>
-    <div class="box mbox" id="trainBox"></div>
+    <div class="row tools">
+      <div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="true" data-i18n="m.toolDraw">✏ 畫線</button><button data-tool="station" aria-pressed="false" data-i18n="m.toolStation">● 放站</button></div>
+      <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="m.clear">清空</button>
+    </div>
+    <p class="hint" id="toolHint"></p>
+    <button class="btn btn-p" id="submit" data-i18n="m.submit">完成方案</button>
 
-    <div class="lbl" style="margin-top:16px" data-i18n="m.rulesH">Four rules · 四條規則</div>
+    <div class="lbl" style="margin-top:18px" data-i18n="m.rulesH">Three rules · 三條規則</div>
     <ol class="mini">
       <li data-i18n-html="m.rule1"></li>
-      <li data-i18n-html="m.rule2"></li>
+      <li id="rule2"></li>
       <li id="rule3"></li>
-      <li data-i18n-html="m.rule4"></li>
     </ol>
-    <div class="legend" id="legend"></div>
   </aside>
 
   <div class="play">
     <div class="mapplate">
-      <svg id="board" viewBox="0 0 1060 600" role="group"></svg>
-      <div class="clockbox ov"><div class="c" id="clock">00:00</div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
-      <div class="countdown" id="cdown" aria-live="polite"><b id="cdNum">7</b><span id="cdText"></span><small id="cdHint"></small></div>
-      <div class="toast" id="toast" role="status" aria-live="polite"></div>
-      <div class="hud">
-        <div class="good" id="hudGood"><b id="score">0</b><small data-i18n="m.hudGood">By metro · 坐地鐵到達</small></div>
-        <div><b id="onway">0</b><small data-i18n="m.hudWay">On the way · 路上</small></div>
-        <div class="bad" id="hudBad"><b id="cars">0</b><small data-i18n="m.hudBad">Drove · 開車</small></div>
-        <div><b id="walked">0</b><small data-i18n="m.hudWalk">Walked · 走路就到</small></div>
-      </div>
+      <svg id="board" viewBox="0 0 1000 620" role="group"></svg>
+      <div class="maplegend" id="mapLegend"></div>
     </div>
   </div>
 
   <aside class="side right scol">
-    <div class="row"><span class="lbl" data-i18n="m.weeksH">Weeks · 每週</span><div class="sp"></div><span class="chip"><i></i><span id="weeksChip"></span></span></div>
-    <table id="weeks"></table>
-    <div class="lbl" style="margin-top:16px" data-i18n="m.habitH">Habit · 坐地鐵習慣</div>
-    <div class="box habit" id="habitBox"></div>
-    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
-    <p id="notice" class="note" role="status" aria-live="polite"></p>
+    <div class="lbl" data-i18n="m.tripsH">Trips · 每條愿望線</div>
+    <p class="note" data-i18n="m.tripsNote">點一行，地圖上會亮出那條線。</p>
+    <table id="trips"></table>
   </aside>
 </main>
 
 <dialog id="info"><button class="close" data-close="info">×</button>
-<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="m.infoH">地鐵模式的規則</h2>
-<div id="infoBody"></div></dialog>
+<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="m.infoH">地鐵模式的規則</h2><div id="infoBody"></div></dialog>
 
 <dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
-<div id="resultBody"></div><p id="resultHint" class="note"></p>
-<div class="row"><button id="again" class="btn btn-p" data-i18n="r.again">再試一局 ↺</button><button data-close="result" class="btn" data-i18n="r.board">查看棋盤</button></div></dialog>
+<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.keep">繼續改</button><button id="again" class="btn" data-i18n="m.restart">從頭來過 ↺</button></div></dialog>
 
-<dialog id="lvIntro" class="intro"><span class="lbl">MODE 02 · THE METRO</span><h2 class="h1" id="ivTitle"></h2>
-<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span id="ivNew"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" id="ivCourse"></p>
-<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始佈置 →</button></div></dialog>
+<dialog id="lvIntro" class="intro"><span class="lbl">MODE 02 · THE METRO</span><h2 class="h1" data-i18n="m.levelTitle"></h2>
+<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m2.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m2.course"></p>
+<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始畫線 →</button></div></dialog>
 
 <script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="strings.js"></script><script src="ui.js"></script></body></html>

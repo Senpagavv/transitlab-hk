@@ -1,51 +1,46 @@
 'use strict';
-// Rule checks for v7 mode 2 «the metro» (first draft). Run: node test_engine.js
+// Rule checks for v7 mode 2 «the metro», static version. Run: node test_engine.js
 const assert=require('node:assert/strict');
-const M=require('./engine.js'),{Game,D,P,walk,willing}=M;
+const M=require('./engine.js'),{Plan,D,P,evaluate,walk,same}=M;
 let passed=0;function test(name,fn){fn();passed++;console.log('ok',name);}
-const BEST=[[2,5],[5,5],[11,4],[12,4]],PLAN=[1,2,3,3,3,3];
-function play(stations,trains){const g=new Game();for(const c of stations)assert(g.build(c));(trains||[]).forEach((n,w)=>assert(g.setTrains(n,w)));assert(g.start());g.advance(1e6);return g;}
-test('Stations: only on the alignment, at most four, built before the opening and fixed after',()=>{
-  const g=new Game();assert(!g.build([0,0]));for(const c of BEST)assert(g.build(c));assert(!g.build([7,4]),'a fifth');
-  assert(g.unbuild([12,4]));assert(g.build([12,4]));assert(g.start());assert(!g.build([7,4]));assert(!g.unbuild([2,5]));
-  assert.deepEqual(g.stations,BEST);
+// the best plan bots/v7_metro_static.js found
+const BEST_LINE=[[12,5],[12,6],[12,7],[11,7],[10,7],[9,7],[9,6],[9,5],[9,4],[8,4],[8,3],[8,2],[7,2],[6,2],[5,2],[4,2],[3,2],[2,2]],BEST_ST=[[7,2],[12,5],[2,2],[9,6]];
+function planOf(line,st){const p=new Plan();for(const c of line)assert(p.extend(c),'extend '+c);for(const s of st)assert(p.toggleStation(s),'station '+s);return p;}
+test('The line: starts anywhere, grows only from an end into a free neighbour, never twice through a cell; ends can be cut',()=>{
+  const p=new Plan();assert(p.extend([3,3]));assert(p.extend([4,3]));assert(p.extend([2,3]),'the other end');
+  assert(!p.extend([6,3]),'not next to an end');assert(!p.extend([3,3]),'a cell already on the line');assert(!p.extend([3,4]),'next to the middle only');
+  assert.deepEqual(p.line,[[2,3],[3,3],[4,3]]);assert(!p.shorten([3,3]),'not an end');assert(p.shorten([2,3]));assert.deepEqual(p.line,[[3,3],[4,3]]);
+  assert(!p.extend([-1,0])&&!p.extend([D.cols,0]),'inside the board');
 });
-test('Trains: 1–5 a week, never more than the budget, at least one left for every later week',()=>{
-  const g=new Game();for(const c of BEST)g.build(c);
-  assert(!g.setTrains(0,0));assert(!g.setTrains(6,0));assert(g.setTrains(5,0));assert(g.setTrains(5,1));
-  assert.deepEqual(g.trainsRange(2),[1,2]);assert(!g.setTrains(3,2));   // 15 − 10 = 5 left, 1 kept for each of the last 3 weeks
-  const h=play(BEST);assert(h.trainsByWeek.reduce((a,b)=>a+b,0)<=P.budget);assert.equal(h.trainsByWeek.length,D.weeks);
+test('Stations only on the line; cutting an end takes its station; the budget is never exceeded',()=>{
+  const p=new Plan();p.extend([3,3]);p.extend([4,3]);assert(!p.toggleStation([5,3]));assert(p.toggleStation([4,3]));assert(p.shorten([4,3]));assert.equal(p.stations.length,0);
+  const q=new Plan();let c=[0,0];q.extend(c);while(q.extend([c[0]+1,c[1]]))c=[c[0]+1,c[1]];
+  assert(q.cost()<=P.budget);for(const x of q.line)q.toggleStation(x);assert(q.cost()<=P.budget,`cost ${q.cost()}`);
 });
-test('A longer line or more stops means a longer loop; more trains mean a train more often',()=>{
-  const g=new Game();g.build([2,5]);g.build([12,4]);const a=g.loop().T;g.build([7,4]);const b=g.loop().T;
-  const h=new Game();h.build([2,5]);h.build([7,4]);const c=h.loop().T;
-  assert(b>a&&a>c,`${a} ${b} ${c}`);assert(g.headway(3)<g.headway(1));
+test('A metro trip is walk + wait + stations passed + walk; every block saved on the car brings a tenth of the people',()=>{
+  const ev=planOf(BEST_LINE,BEST_ST).evaluate();
+  for(const r of ev.rows){assert.equal(r.car,walk(D.origins[r.i].cell,D.destinations[r.k].cell)+2);
+    if(r.metro===null)continue;
+    assert.equal(r.metro,r.walkA+P.wait+r.pass+r.walkB);assert.equal(r.walkA,walk(D.origins[r.i].cell,r.from));assert.equal(r.walkB,walk(r.to,D.destinations[r.k].cell));
+    assert.equal(r.tenths,Math.min(10,Math.max(0,r.car-r.metro)));assert.equal(r.riders,Math.round(r.people*r.tenths/10));}
+  assert.equal(ev.riders,ev.rows.reduce((a,r)=>a+r.riders,0));
 });
-test('Both ends need a station: who rides has a station near home and near where they go; split by pull × pull',()=>{
-  const g=play(BEST,PLAN);
-  for(const p of g.people)if(p.state==='delivered'){const a=g.stations[p.from],b=g.stations[p.to];
-    assert(willing(walk(D.origins[p.origin].cell,a))>0&&willing(walk(b,D.destinations[p.dest].cell))>0);}
-  const one=play([[2,5],[3,5]]);   // both stations far from every destination
-  assert(one.people.filter(p=>p.tried).every(p=>p.state!=='delivered'||willing(walk(one.stations[p.to],D.destinations[p.dest].cell))>0));
-  assert(one.people.some(p=>p.why==='終點沒有站'));
+test('Everyone takes the fastest station pair; one more station on the way costs those riding through 1 block',()=>{
+  const p=planOf([[2,2],[3,2],[4,2],[5,2],[6,2],[7,2]],[[2,2],[7,2]]),r=p.evaluate().rows.find(x=>x.i===0&&x.k===1);
+  assert.equal(r.pass,0);assert.equal(r.metro,0+P.wait+0+0);
+  p.toggleStation([4,2]);const r2=p.evaluate().rows.find(x=>x.i===0&&x.k===1);assert.equal(r2.pass,1);assert.equal(r2.metro,r.metro+1);
+  // the pair chosen is the cheapest of all pairs
+  const ev=planOf(BEST_LINE,BEST_ST).evaluate();
+  for(const x of ev.rows)if(x.metro!==null)for(const a of BEST_ST)for(const b of BEST_ST)if(!same(a,b)){
+    const ia=BEST_LINE.findIndex(c=>same(c,a)),ib=BEST_LINE.findIndex(c=>same(c,b)),between=BEST_ST.filter(s=>{const k=BEST_LINE.findIndex(c=>same(c,s));return k>Math.min(ia,ib)&&k<Math.max(ia,ib);}).length;
+    assert(x.metro<=walk(D.origins[x.i].cell,a)+P.wait+between+walk(b,D.destinations[x.k].cell));}
 });
-test('Everyone has an outcome, nobody is counted twice, trains never carry more than they hold',()=>{
-  const g=new Game();for(const c of BEST)g.build(c);PLAN.forEach((n,w)=>g.setTrains(n,w));g.start();
-  while(!g.done){g.advance(P.tick);for(const tr of g.trains)assert(tr.load.length<=P.cap);for(let i=0;i<4;i++)for(const d of [1,-1])assert(g.queue(i,d).length<=P.platform);}
-  const n=s=>g.people.filter(p=>p.state===s).length;
-  assert.equal(n('delivered')+n('car')+n('walked'),g.people.length);assert.equal(n('delivered'),g.delivered);assert.equal(n('car'),g.cars);
+test('The preview of a station is exactly the plan with it (or without it)',()=>{
+  const p=planOf(BEST_LINE,BEST_ST);for(const c of p.line){const pv=p.withStation(c).riders,q=p.copy();q.toggleStation(c);if(q.stations.length!==p.stations.length)assert.equal(pv,q.evaluate().riders);}
 });
-test('Habit: week 1 exactly the start share tries; each night it moves halfway to the week’s smooth share',()=>{
-  const g=play(BEST,PLAN),ok=p=>!p.turned&&p.state==='delivered';
-  D.origins.forEach((o,i)=>{const ps=g.people.filter(p=>p.wave===0&&p.origin===i);
-    assert.equal(ps.filter(p=>p.tpick<D.habit.start).length,Array.from({length:ps.length},(_,k)=>(k+.5)/ps.length).filter(x=>x<D.habit.start).length);
-    const tr=ps.filter(p=>p.tried),sat=tr.length?tr.filter(ok).length/tr.length:1;
-    assert(Math.abs(g.habitLog[1].habit[i]-(D.habit.start+D.habit.rate*(sat-D.habit.start)))<1e-3);});
-});
-test('The same plan always plays the same; the score lines hold (bots/v7_metro_tune.js)',()=>{
-  assert.equal(play(BEST,PLAN).delivered,play(BEST,PLAN).delivered);
-  assert(play(BEST,PLAN).delivered>=P.masterScore,'the best plan reaches master');
-  assert(play(BEST).delivered<P.highScore,'untouched trains stay below the high score');
-  assert(play(BEST,[5,4,2,2,1,1]).delivered<play(BEST,PLAN).delivered-100,'trains early waste the budget');
+test('The score lines hold: the best plan found reaches master, every extra station on it costs riders',()=>{
+  const p=planOf(BEST_LINE,BEST_ST),s=p.evaluate().riders;assert(s>=P.masterScore,`best ${s} < ${P.masterScore}`);assert.equal(p.cost(),P.budget);
+  for(const c of p.line)if(!p.isStation(c))assert(evaluate(p.line,[...p.stations,c]).riders<s,'one more station never helps on this line');
+  assert(planOf([[2,2],[3,2]],[[2,2],[3,2]]).evaluate().riders<P.target,'a stub line does not pass');
 });
 console.log(passed,'checks passed');

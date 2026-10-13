@@ -1,18 +1,33 @@
-/* v7 · mode 2 «the metro» — only what this mode adds to shared/style.css */
+/* v7 · mode 2 «the metro», static version — only what this mode adds to shared/style.css */
 :root{--s-metro:#9A3B26}
 [data-theme="dark"]{--s-metro:#E0896B}
-.mbox{margin-top:10px;padding:10px 12px}
-.mbox h3{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;font:600 14px 'Geist',sans-serif}
-.mbox p{margin:4px 0;font-size:12.5px;line-height:1.6;color:var(--s-ink2)}
-.mbox .r{display:flex;justify-content:space-between;font-size:12.5px;margin-top:6px}
-.mbox .mnote{font-size:11.5px;color:var(--s-ink3)}
-.tsel{margin-top:4px}.tsel button{min-width:38px;font:600 13px var(--s-mono)}
-.tsel button:disabled{opacity:.3;cursor:default}
-#weeks{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12.5px}
-#weeks th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 5px;text-align:right}
-#weeks th:first-child,#weeks td:first-child{text-align:left}
-#weeks td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono)}
-#weeks tr.now td{background:var(--s-raise)}
-#weeks tr.next td{background:color-mix(in srgb,var(--s-warn) 12%,transparent)}
-#weeks tr.past{opacity:.5}
-#board .candidate,#board .stationhit{cursor:pointer}
+.bigscore{margin-top:12px}
+.bigscore b#score{font:600 40px var(--s-mono);color:var(--s-metro);line-height:1}
+.bigscore .unit{font-size:14px;color:var(--s-ink2);margin-left:6px}
+.budget{margin-top:10px;padding:10px 12px}
+.bbar{display:flex;height:10px;border-radius:5px;background:var(--s-raise);overflow:hidden;margin:6px 0}
+.bbar i{display:block;height:100%}
+#bbLine{background:var(--s-metro);opacity:.55}#bbStation{background:var(--s-metro)}
+.tools{margin-top:12px;gap:8px;flex-wrap:wrap}
+.tools .seg button{height:32px;font-size:13px;padding:0 12px}
+.hint{font-size:12.5px;line-height:1.6;color:var(--s-ink2);margin:8px 0 10px;min-height:3.2em}
+#submit{width:100%}
+#submit:disabled{opacity:.4}
+.mapplate{position:relative}
+.maplegend{position:absolute;left:16px;bottom:12px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--s-ink2);background:var(--s-chrome);padding:6px 10px;border-radius:6px}
+.maplegend span{display:inline-flex;align-items:center;gap:6px}
+.maplegend .lk{display:inline-block;width:22px;height:8px;border-radius:4px}
+.maplegend .lk.car{background:var(--s-ink3);opacity:.5}
+.maplegend .lk.metro{background:linear-gradient(var(--s-ink3) 0 30%,var(--s-metro) 30% 70%,var(--s-ink3) 70%);opacity:.9}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:13px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}
+#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:6px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top;cursor:pointer}
+#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3);font-family:var(--s-mono)}
+#trips tr.on td b{color:var(--s-metro)}
+#trips tr.sel td{background:color-mix(in srgb,var(--s-metro) 10%,transparent)}
+#trips tbody tr:hover td{background:var(--s-raise)}
+#trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
+#trips tfoot td b{color:var(--s-metro);font-size:15px}
+#board{cursor:crosshair;touch-action:none}
