@@ -1,7 +1,7 @@
 'use strict';
 // Rule checks for v7 mode 2 «the metro», build once and watch it grow. Run: node test_engine.js
 const assert=require('node:assert/strict');
-const M=require('./engine.js'),{Plan,D,P,year,spread,metroTrip,carBlocks,split,walk}=M;
+const M=require('./engine.js'),{Plan,D,P,year,spread,metroTrip,carBlocks,footBlocks,split,walk}=M;
 let passed=0;function test(name,fn){fn();passed++;console.log('ok',name);}
 // 天耀邨 east to 洪水橋, down and on to 元朗市中心; three stations, two trains
 const LINE=[[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[7,3],[7,4],[8,4],[9,4],[10,4],[11,4],[12,4],[13,4]],ST=[[2,2],[7,2],[13,4]];
@@ -26,13 +26,14 @@ test('Built once: after opening nothing changes; back to planning keeps the plan
   p.rewind();assert.equal(p.year,0);assert.equal(p.total,0);assert.equal(p.log.length,0);assert.equal(JSON.stringify(p.line),line);
   assert(p.aware.every(a=>a===P.aware.start));assert(p.extend([1,2]),'planning again');
 });
-test('Blocks: metro = walk + wait + stations passed + walk (fastest pair); car = blocks apart + parking',()=>{
+test('Blocks: metro = walk×2 + wait + stations passed + walk×2 (fastest pair); car = cells apart + parking; foot = cells apart × 2',()=>{
   const p=build();
   for(let i=0;i<D.origins.length;i++)for(let k=0;k<D.destinations.length;k++){
     assert.equal(carBlocks(i,k),walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2));
-    const t=metroTrip(i,k,p.line,p.stations);assert.equal(t.blocks,t.walkA+P.wait+t.pass+t.walkB);
+    assert.equal(footBlocks(i,k),P.walkPer*walk(D.origins[i].cell,D.destinations[k].cell));
+    const t=metroTrip(i,k,p.line,p.stations);assert.equal(t.blocks,P.walkPer*(t.walkA+t.walkB)+P.wait+t.pass);
     p.stations.forEach((a,ia)=>p.stations.forEach((z,iz)=>{if(ia!==iz)
-      assert(t.blocks<=walk(D.origins[i].cell,a)+P.wait+Math.abs(iz-ia)-1+walk(z,D.destinations[k].cell),'no faster pair');}));}
+      assert(t.blocks<=P.walkPer*(walk(D.origins[i].cell,a)+walk(z,D.destinations[k].cell))+P.wait+Math.abs(iz-ia)-1,'no faster pair');}));}
   const t=metroTrip(0,1,p.line,p.stations);assert.deepEqual([t.walkA,t.pass,t.walkB,t.blocks],[0,0,0,P.wait],'天耀邨 → 洪水橋: on the doorstep');
   assert.equal(metroTrip(0,0,p.line,p.stations).pass,1,'天耀邨 → 元朗 passes 洪水橋');
 });
@@ -41,11 +42,13 @@ test('Where to go: pull = attraction − blocks; shares (and «nearby») add up 
   near(s.shares[0],(D.destinations[0].attraction-5)/(D.destinations[0].attraction-5+P.nearby));
   for(const e of build().now().est){near(e.to.reduce((a,x)=>a+x.go,0)+e.nearby,e.n);near(e.to.reduce((a,x)=>a+x.before,0)+e.nearbyBefore,e.n);}
 });
-test('How to go: tenths = blocks saved (0–10); only those who know the metro ride it or change where they go',()=>{
+test('How to go: tenths = blocks saved on the quicker of car and foot (0–10); only those who know the metro ride it or change where they go',()=>{
   const p=build(),y=p.now();
-  for(const e of y.est)for(const x of e.to){assert.equal(x.tenths,Math.min(10,x.save));assert.equal(x.save,x.trip?Math.max(0,x.car-x.trip.blocks):0);
-    near(x.metro,x.knowGo*x.tenths/10);near(x.knowGo,e.n*e.aware*split(e.i,e.to.map(z=>z.trip?Math.min(z.car,z.trip.blocks):z.car)).shares[x.k]);
-    near(x.dontGo,e.n*(1-e.aware)*split(e.i,e.to.map(z=>z.car)).shares[x.k]);}
+  for(const e of y.est)for(const x of e.to){assert.equal(x.alt,Math.min(x.car,x.foot));assert.equal(x.tenths,Math.min(10,x.save));assert.equal(x.save,x.trip?Math.max(0,x.alt-x.trip.blocks):0);
+    near(x.metro,x.knowGo*x.tenths/10);near(x.knowGo,e.n*e.aware*split(e.i,e.to.map(z=>z.trip?Math.min(z.alt,z.trip.blocks):z.alt)).shares[x.k]);
+    near(x.dontGo,e.n*(1-e.aware)*split(e.i,e.to.map(z=>z.alt)).shares[x.k]);near(x.walkers+x.drivers+x.metro,x.go);
+    if(x.trip&&x.foot<=x.trip.blocks)assert.equal(x.metro,0,'nobody takes the metro where walking is as quick');}
+  assert(y.est.some(e=>e.to.some(x=>x.byFoot)),'some go on foot');
   const nobody=year(p.line,p.stations,D.origins.map(()=>0),p.trains);assert.equal(nobody.riders,0);
   nobody.dest.forEach(d=>near(d.go,d.before));
 });
@@ -75,5 +78,11 @@ test('Score: the years’ daily riders added up; simulate() and year-by-year agr
   const p=build(),s=p.simulate();near(s.total,s.log.reduce((a,l)=>a+l.riders,0));assert.equal(s.log.length,P.years);assert(s.done);
   while(!p.done)p.runYear();near(p.total,s.total);near(build().simulate().total,s.total);
   assert(P.target<P.highScore&&P.highScore<P.masterScore);
+});
+test('AI demo plans: each fits the budget, scores what demo-plans.js says and clears its line',()=>{
+  require('./demo-plans.js');const L=globalThis.TL_METRO_DEMO[D.map];assert.deepEqual(L.tiers,[P.target,P.highScore,P.masterScore]);
+  ['pass','high','master'].forEach((name,j)=>{const d=L[name],p=build(d.line,d.stations,d.trains);assert(p.money>=0);
+    const s=p.simulate().total;assert.equal(Math.round(s),d.score);assert(s>=L.tiers[j],name);});
+  assert.equal(L.master.score,L.best);
 });
 console.log(`\n${passed} checks passed`);

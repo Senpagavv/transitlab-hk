@@ -7,6 +7,7 @@
   //   nearby        the fixed pull of «somewhere nearby» (where people go who don't go to the destinations)
   //   carExtra      a destination's parking and access by car, in blocks (the new town: roads unfinished, little
   //                 parking — the metro is what opens it up)
+  //   walkPer       blocks for every cell walked (walking is slow: on foot all the way, or to and from a station)
   const NW={title:'新界西北 · 一條新線',cols:14,rows:9,
     origins:[
       {name:'天耀邨',hans:'天耀邨',cell:[2,2],house:[0,-1],people:60},
@@ -17,10 +18,11 @@
     destinations:[
       {name:'元朗市中心',hans:'元朗市中心',short:'元朗',shortHans:'元朗',kind:'town',cell:[13,4],house:[1,0],attraction:24,carExtra:3},
       {name:'洪水橋新發展區',hans:'洪水桥新发展区',short:'洪水橋',shortHans:'洪水桥',kind:'jobs',cell:[7,2],house:[0,-1],attraction:22,carExtra:7}],
-    nearby:10,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,aware:{start:.2,spread:1.5},
-    // bots/v7_metro_grow.js (local search, eight-year totals): best 694 (never crowded), local optima p90 ~510, median
-    // ~360; the plain 天耀邨 → 洪水橋 → 元朗 line with 3 stations and 2 trains: 642 (crowded in three years)
-    tiers:[400,550,660]};
+    walkPer:2,nearby:10,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:40,years:8,crowdBlocks:4,aware:{start:.2,spread:2},
+    // bots/v7_metro_grow.js (local search from routes through the estates, eight-year totals): best 646 (a U through
+    // 天耀邨 → 洪水橋 → 元朗 → 天恆邨, 4 stations, 2 trains, never crowded); local optima p90 ~470, median ~230; the plain
+    // 天耀邨 → 洪水橋 → 元朗 line with 3 stations and 2 trains: 328
+    tiers:[400,520,620]};
   const LEVELS={'m2-1':NW};
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
   const D={};

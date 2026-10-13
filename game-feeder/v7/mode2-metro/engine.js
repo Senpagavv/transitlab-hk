@@ -4,24 +4,26 @@
   // v7 · mode 2 «the metro» — build once, then watch it grow (2026-10-13, third rule set; the lead: what changes over
   // the years is WHERE people go — a destination that becomes easy to reach draws more people, and the metro is
   // discovered by word of mouth). Everything is counted in blocks; five rules:
-  //   1 where to go: a destination's pull = its attraction − the blocks to get there (car or metro, whichever is
-  //     quicker); people split over the destinations and «somewhere nearby» (a fixed pull) in proportion to pull.
-  //   2 how to go: of those going somewhere, every block the metro saves on the car brings one in ten to the metro.
-  //   3 only people who know the metro choose this way; the others drive to where they always went (car-only pulls).
+  //   1 where to go: a destination's pull = its attraction − the blocks to get there (car, foot or metro, whichever
+  //     is quickest); people split over the destinations and «somewhere nearby» (a fixed pull) in proportion to pull.
+  //   2 how to go: of those going somewhere, every block the metro saves on the quicker of car and walking brings one
+  //     in ten to the metro.
+  //   3 only people who know the metro choose this way; the others go where they always went, by car or on foot.
   //     At the opening `aware.start` of every estate know it.
   //   4 word of mouth: each year, whatever share of an estate rides the metro, that share of the people who don't
   //     know it yet hear of it (× `aware.spread`).
   //   5 crowding: a section (between two neighbouring cells) carries `trains` × `perTrain` a day; a metro trip that
   //     runs through a crowded section counts `crowdBlocks` more the year after (once, however many sections).
-  // A trip by metro = walk to a station + wait + 1 for every station passed + walk from the station; by car = the
-  // blocks apart + the destination's parking and access (carExtra). The line, its stations and its trains are bought once, before opening, within the
-  // budget. Score: metro riders a day, every year added up.
-  const P={wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,
+  // Walking is slow: `walkPer` (2) blocks for every cell walked. A trip by metro = walk to a station + wait + 1 for
+  // every station passed + walk from the station; by car = the cells apart + the destination's parking and access
+  // (carExtra); on foot = the cells apart × walkPer. The line, its stations and its trains are bought once, before
+  // opening, within the budget. Score: metro riders a day, every year added up.
+  const P={walkPer:2,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,
     aware:{start:.2,spread:1.5},nearby:15,target:0,highScore:0,masterScore:0};
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
   const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
   const adj=(a,b)=>walk(a,b)===1;
-  function reset(){for(const k of ['wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby'])if(D[k]!==undefined)P[k]=D[k];
+  function reset(){for(const k of ['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby'])if(D[k]!==undefined)P[k]=D[k];
     if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
   reset();
   // the fastest metro trip from estate i to destination k: the station pair with the fewest blocks (sections that were
@@ -31,24 +33,28 @@
     let b=null;
     order.forEach((a,ia)=>order.forEach((z,iz)=>{if(ia===iz)return;
       const lo=Math.min(a.x,z.x),hi=Math.max(a.x,z.x);let crowd=0;for(let j=lo;j<hi;j++)if(crowdedBefore[j])crowd=P.crowdBlocks;
-      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=wa+P.wait+pass+wz+crowd;
+      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
       if(!b||blocks<b.blocks)b={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,crowd,blocks};}));
     return b;
   }
   // by car: the blocks apart + the destination's parking and access (`carExtra`, 2 if not given)
   const carBlocks=(i,k)=>walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2);
+  // on foot all the way: the cells apart × walkPer
+  const footBlocks=(i,k)=>P.walkPer*walk(D.origins[i].cell,D.destinations[k].cell);
   // shares of estate i over the destinations and «nearby» (last), given the blocks to each destination
   function split(i,blocks){const pulls=D.destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
     return{pulls,shares:pulls.map(p=>p/all),nearby:P.nearby/all};}
   // one year: who knows the metro, where everyone goes and how, the load on every section
   function year(line,stations,aware,trains,crowdedBefore=[]){
     const est=D.origins.map((o,i)=>{
-      const car=D.destinations.map((d,k)=>carBlocks(i,k)),trip=D.destinations.map((d,k)=>stations.length>=2?metroTrip(i,k,line,stations,crowdedBefore):null);
-      const fast=D.destinations.map((d,k)=>trip[k]?Math.min(car[k],trip[k].blocks):car[k]);
-      const before=split(i,car),now=split(i,fast),a=aware[i],n=o.people;
-      const to=D.destinations.map((d,k)=>{const save=trip[k]?Math.max(0,car[k]-trip[k].blocks):0,tenths=Math.min(10,save);
-        const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k];
-        return{k,car:car[k],trip:trip[k],save,tenths,before:n*before.shares[k],knowGo,dontGo,go:knowGo+dontGo,metro:knowGo*tenths/10,pull:now.pulls[k],pullBefore:before.pulls[k]};});
+      const car=D.destinations.map((d,k)=>carBlocks(i,k)),foot=D.destinations.map((d,k)=>footBlocks(i,k)),alt=car.map((c,k)=>Math.min(c,foot[k]));
+      const trip=D.destinations.map((d,k)=>stations.length>=2?metroTrip(i,k,line,stations,crowdedBefore):null);
+      const fast=alt.map((b,k)=>trip[k]?Math.min(b,trip[k].blocks):b);
+      const before=split(i,alt),now=split(i,fast),a=aware[i],n=o.people;
+      const to=D.destinations.map((d,k)=>{const save=trip[k]?Math.max(0,alt[k]-trip[k].blocks):0,tenths=Math.min(10,save);
+        const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k],go=knowGo+dontGo,metro=knowGo*tenths/10,byFoot=foot[k]<car[k];
+        return{k,car:car[k],foot:foot[k],alt:alt[k],byFoot,trip:trip[k],save,tenths,before:n*before.shares[k],knowGo,dontGo,go,metro,
+          walkers:byFoot?go-metro:0,drivers:byFoot?0:go-metro,pull:now.pulls[k],pullBefore:before.pulls[k]};});
       const metro=to.reduce((s,x)=>s+x.metro,0);
       return{i,n,aware:a,to,nearby:n*(a*now.nearby+(1-a)*before.nearby),nearbyBefore:n*before.nearby,metro,share:metro/n};});
     const load=Array(Math.max(0,line.length-1)).fill(0),cap=trains*P.perTrain;
@@ -95,6 +101,6 @@
     // the whole run at once (bots, the «expected» line)
     simulate(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));p.rewind();while(!p.done)p.runYear();return p;}
   }
-  const API={D,P,Plan,year,spread,metroTrip,carBlocks,split,walk,same,key,adj,reset};
+  const API={D,P,Plan,year,spread,metroTrip,carBlocks,footBlocks,split,walk,same,key,adj,reset};
   if(typeof module!=='undefined')module.exports=API;root.Metro=API;
 })(typeof window!=='undefined'?window:globalThis);

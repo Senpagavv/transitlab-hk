@@ -676,6 +676,7 @@ table.result{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nu
 table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:right;padding:2px 4px 6px}
 table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
 table.result th:first-child,table.result td:first-child{text-align:left}
+.maplegend .lk.walk{background:radial-gradient(circle,var(--s-ink3) 2px,transparent 2.5px) 0 50%/7px 8px repeat-x;opacity:.8}
 </style></head><body class="entered">
 
 <header id="topbar">
@@ -757,6 +758,7 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   //   nearby        the fixed pull of «somewhere nearby» (where people go who don't go to the destinations)
   //   carExtra      a destination's parking and access by car, in blocks (the new town: roads unfinished, little
   //                 parking — the metro is what opens it up)
+  //   walkPer       blocks for every cell walked (walking is slow: on foot all the way, or to and from a station)
   const NW={title:'新界西北 · 一條新線',cols:14,rows:9,
     origins:[
       {name:'天耀邨',hans:'天耀邨',cell:[2,2],house:[0,-1],people:60},
@@ -767,10 +769,11 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     destinations:[
       {name:'元朗市中心',hans:'元朗市中心',short:'元朗',shortHans:'元朗',kind:'town',cell:[13,4],house:[1,0],attraction:24,carExtra:3},
       {name:'洪水橋新發展區',hans:'洪水桥新发展区',short:'洪水橋',shortHans:'洪水桥',kind:'jobs',cell:[7,2],house:[0,-1],attraction:22,carExtra:7}],
-    nearby:10,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,aware:{start:.2,spread:1.5},
-    // bots/v7_metro_grow.js (local search, eight-year totals): best 694 (never crowded), local optima p90 ~510, median
-    // ~360; the plain 天耀邨 → 洪水橋 → 元朗 line with 3 stations and 2 trains: 642 (crowded in three years)
-    tiers:[400,550,660]};
+    walkPer:2,nearby:10,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:40,years:8,crowdBlocks:4,aware:{start:.2,spread:2},
+    // bots/v7_metro_grow.js (local search from routes through the estates, eight-year totals): best 646 (a U through
+    // 天耀邨 → 洪水橋 → 元朗 → 天恆邨, 4 stations, 2 trains, never crowded); local optima p90 ~470, median ~230; the plain
+    // 天耀邨 → 洪水橋 → 元朗 line with 3 stations and 2 trains: 328
+    tiers:[400,520,620]};
   const LEVELS={'m2-1':NW};
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
   const D={};
@@ -790,24 +793,26 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   // v7 · mode 2 «the metro» — build once, then watch it grow (2026-10-13, third rule set; the lead: what changes over
   // the years is WHERE people go — a destination that becomes easy to reach draws more people, and the metro is
   // discovered by word of mouth). Everything is counted in blocks; five rules:
-  //   1 where to go: a destination's pull = its attraction − the blocks to get there (car or metro, whichever is
-  //     quicker); people split over the destinations and «somewhere nearby» (a fixed pull) in proportion to pull.
-  //   2 how to go: of those going somewhere, every block the metro saves on the car brings one in ten to the metro.
-  //   3 only people who know the metro choose this way; the others drive to where they always went (car-only pulls).
+  //   1 where to go: a destination's pull = its attraction − the blocks to get there (car, foot or metro, whichever
+  //     is quickest); people split over the destinations and «somewhere nearby» (a fixed pull) in proportion to pull.
+  //   2 how to go: of those going somewhere, every block the metro saves on the quicker of car and walking brings one
+  //     in ten to the metro.
+  //   3 only people who know the metro choose this way; the others go where they always went, by car or on foot.
   //     At the opening `aware.start` of every estate know it.
   //   4 word of mouth: each year, whatever share of an estate rides the metro, that share of the people who don't
   //     know it yet hear of it (× `aware.spread`).
   //   5 crowding: a section (between two neighbouring cells) carries `trains` × `perTrain` a day; a metro trip that
   //     runs through a crowded section counts `crowdBlocks` more the year after (once, however many sections).
-  // A trip by metro = walk to a station + wait + 1 for every station passed + walk from the station; by car = the
-  // blocks apart + the destination's parking and access (carExtra). The line, its stations and its trains are bought once, before opening, within the
-  // budget. Score: metro riders a day, every year added up.
-  const P={wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,
+  // Walking is slow: `walkPer` (2) blocks for every cell walked. A trip by metro = walk to a station + wait + 1 for
+  // every station passed + walk from the station; by car = the cells apart + the destination's parking and access
+  // (carExtra); on foot = the cells apart × walkPer. The line, its stations and its trains are bought once, before
+  // opening, within the budget. Score: metro riders a day, every year added up.
+  const P={walkPer:2,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,
     aware:{start:.2,spread:1.5},nearby:15,target:0,highScore:0,masterScore:0};
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
   const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
   const adj=(a,b)=>walk(a,b)===1;
-  function reset(){for(const k of ['wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby'])if(D[k]!==undefined)P[k]=D[k];
+  function reset(){for(const k of ['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby'])if(D[k]!==undefined)P[k]=D[k];
     if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
   reset();
   // the fastest metro trip from estate i to destination k: the station pair with the fewest blocks (sections that were
@@ -817,24 +822,28 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     let b=null;
     order.forEach((a,ia)=>order.forEach((z,iz)=>{if(ia===iz)return;
       const lo=Math.min(a.x,z.x),hi=Math.max(a.x,z.x);let crowd=0;for(let j=lo;j<hi;j++)if(crowdedBefore[j])crowd=P.crowdBlocks;
-      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=wa+P.wait+pass+wz+crowd;
+      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
       if(!b||blocks<b.blocks)b={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,crowd,blocks};}));
     return b;
   }
   // by car: the blocks apart + the destination's parking and access (`carExtra`, 2 if not given)
   const carBlocks=(i,k)=>walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2);
+  // on foot all the way: the cells apart × walkPer
+  const footBlocks=(i,k)=>P.walkPer*walk(D.origins[i].cell,D.destinations[k].cell);
   // shares of estate i over the destinations and «nearby» (last), given the blocks to each destination
   function split(i,blocks){const pulls=D.destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
     return{pulls,shares:pulls.map(p=>p/all),nearby:P.nearby/all};}
   // one year: who knows the metro, where everyone goes and how, the load on every section
   function year(line,stations,aware,trains,crowdedBefore=[]){
     const est=D.origins.map((o,i)=>{
-      const car=D.destinations.map((d,k)=>carBlocks(i,k)),trip=D.destinations.map((d,k)=>stations.length>=2?metroTrip(i,k,line,stations,crowdedBefore):null);
-      const fast=D.destinations.map((d,k)=>trip[k]?Math.min(car[k],trip[k].blocks):car[k]);
-      const before=split(i,car),now=split(i,fast),a=aware[i],n=o.people;
-      const to=D.destinations.map((d,k)=>{const save=trip[k]?Math.max(0,car[k]-trip[k].blocks):0,tenths=Math.min(10,save);
-        const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k];
-        return{k,car:car[k],trip:trip[k],save,tenths,before:n*before.shares[k],knowGo,dontGo,go:knowGo+dontGo,metro:knowGo*tenths/10,pull:now.pulls[k],pullBefore:before.pulls[k]};});
+      const car=D.destinations.map((d,k)=>carBlocks(i,k)),foot=D.destinations.map((d,k)=>footBlocks(i,k)),alt=car.map((c,k)=>Math.min(c,foot[k]));
+      const trip=D.destinations.map((d,k)=>stations.length>=2?metroTrip(i,k,line,stations,crowdedBefore):null);
+      const fast=alt.map((b,k)=>trip[k]?Math.min(b,trip[k].blocks):b);
+      const before=split(i,alt),now=split(i,fast),a=aware[i],n=o.people;
+      const to=D.destinations.map((d,k)=>{const save=trip[k]?Math.max(0,alt[k]-trip[k].blocks):0,tenths=Math.min(10,save);
+        const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k],go=knowGo+dontGo,metro=knowGo*tenths/10,byFoot=foot[k]<car[k];
+        return{k,car:car[k],foot:foot[k],alt:alt[k],byFoot,trip:trip[k],save,tenths,before:n*before.shares[k],knowGo,dontGo,go,metro,
+          walkers:byFoot?go-metro:0,drivers:byFoot?0:go-metro,pull:now.pulls[k],pullBefore:before.pulls[k]};});
       const metro=to.reduce((s,x)=>s+x.metro,0);
       return{i,n,aware:a,to,nearby:n*(a*now.nearby+(1-a)*before.nearby),nearbyBefore:n*before.nearby,metro,share:metro/n};});
     const load=Array(Math.max(0,line.length-1)).fill(0),cap=trains*P.perTrain;
@@ -881,7 +890,7 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     // the whole run at once (bots, the «expected» line)
     simulate(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));p.rewind();while(!p.done)p.runYear();return p;}
   }
-  const API={D,P,Plan,year,spread,metroTrip,carBlocks,split,walk,same,key,adj,reset};
+  const API={D,P,Plan,year,spread,metroTrip,carBlocks,footBlocks,split,walk,same,key,adj,reset};
   if(typeof module!=='undefined')module.exports=API;root.Metro=API;
 })(typeof window!=='undefined'?window:globalThis);
 
@@ -986,18 +995,18 @@ table.result th:first-child,table.result td:first-child{text-align:left}
       '<b>Built once.</b> Draw the line, place stations, buy trains before opening (budget {b}); for {y} years nothing changes.'),
     'm.r1':L('<b>去哪裡＝吸引力 − 要走幾格。</b>{d0} {a0}、{d1} {a1}、「附近」固定 {nb}；每個屋苑的人按這幾個數的比例分。地鐵讓一個地方變近，它就多分到人。','<b>去哪里＝吸引力 − 要走几格。</b>{d0} {a0}、{d1} {a1}、「附近」固定 {nb}；每个屋苑的人按这几个数的比例分。地铁让一个地方变近，它就多分到人。',
       '<b>Where to go = attraction − blocks to get there.</b> {d0} {a0}, {d1} {a1}, «nearby» always {nb}; each estate splits in proportion. Bring a place nearer and it draws more.'),
-    'm.r2':L('<b>怎麼去：比開車省幾格，就有幾成人坐地鐵。</b>地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾站 ＋ 走路；開車＝相隔幾格 ＋ 泊車（{d0} {e0}、{d1} {e1}）。','<b>怎么去：比开车省几格，就有几成人坐地铁。</b>地铁＝走到站 ＋ 等车 {w} ＋ 路过几站 ＋ 走路；开车＝相隔几格 ＋ 泊车（{d0} {e0}、{d1} {e1}）。',
-      '<b>How to go: every block saved on the car, one in ten by metro.</b> Metro = walk + wait {w} + stations passed + walk; car = blocks apart + parking ({d0} {e0}, {d1} {e1}).'),
-    'm.r3':L('<b>只有知道地鐵的人才會這樣選。</b>剛開通每個屋苑只有 {s} 成人知道；其他人照舊開車去老地方。','<b>只有知道地铁的人才会这样选。</b>刚开通每个屋苑只有 {s} 成人知道；其他人照旧开车去老地方。',
-      '<b>Only people who know the metro choose this way.</b> At the opening {s} in ten of each estate know it; the rest drive where they always went.'),
+    'm.r2':L('<b>怎麼去：比開車或走路（取快的）省幾格，就有幾成人坐地鐵。</b>走路很慢，每格算 {wp}。地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾站 ＋ 走路；開車＝相隔幾格 ＋ 泊車（{d0} {e0}、{d1} {e1}）。','<b>怎么去：比开车或走路（取快的）省几格，就有几成人坐地铁。</b>走路很慢，每格算 {wp}。地铁＝走到站 ＋ 等车 {w} ＋ 路过几站 ＋ 走路；开车＝相隔几格 ＋ 泊车（{d0} {e0}、{d1} {e1}）。',
+      '<b>How to go: every block saved on the quicker of car and foot, one in ten by metro.</b> Walking is slow: {wp} a cell. Metro = walk + wait {w} + stations passed + walk; car = cells apart + parking ({d0} {e0}, {d1} {e1}).'),
+    'm.r3':L('<b>只有知道地鐵的人才會這樣選。</b>剛開通每個屋苑只有 {s} 成人知道；其他人照舊開車或走路，去老地方。','<b>只有知道地铁的人才会这样选。</b>刚开通每个屋苑只有 {s} 成人知道；其他人照旧开车或走路，去老地方。',
+      '<b>Only people who know the metro choose this way.</b> At the opening {s} in ten of each estate know it; the rest drive or walk where they always went.'),
     'm.r4':L('<b>口耳相傳。</b>一個屋苑今年有幾成人坐地鐵，明年「還不知道的人」就有（幾成 × {sp}）聽說了。坐的人越多，傳得越快。','<b>口耳相传。</b>一个屋苑今年有几成人坐地铁，明年「还不知道的人」就有（几成 × {sp}）听说了。坐的人越多，传得越快。',
       '<b>Word of mouth.</b> Whatever share of an estate rides this year, that share × {sp} of those who don\'t know hear of it next year. More riders, faster spread.'),
     'm.r5':L('<b>擠。</b>每段線每天最多載「列車數 × {pt}」人；明年坐車經過太擠的段，每次多算 {cb} 格。','<b>挤。</b>每段线每天最多载「列车数 × {pt}」人；明年坐车经过太挤的段，每次多算 {cb} 格。',
       '<b>Crowding.</b> Each section carries trains × {pt} a day; next year a trip through a crowded section counts {cb} blocks more.'),
     // the board
-    'm.legend':L('<span><i class="lk car"></i>愿望線：越粗＝去的人越多</span><span><i class="lk metro"></i>棕色＝坐地鐵的</span><span><i class="lk aware"></i>屋苑下十格＝幾成人知道地鐵</span><span><i class="lk crowd"></i>紅色線段＝太擠</span>',
-      '<span><i class="lk car"></i>愿望线：越粗＝去的人越多</span><span><i class="lk metro"></i>棕色＝坐地铁的</span><span><i class="lk aware"></i>屋苑下十格＝几成人知道地铁</span><span><i class="lk crowd"></i>红色线段＝太挤</span>',
-      '<span><i class="lk car"></i>desire line: thicker = more people going</span><span><i class="lk metro"></i>brown = by metro</span><span><i class="lk aware"></i>ten cells = tenths who know the metro</span><span><i class="lk crowd"></i>red section = crowded</span>'),
+    'm.legend':L('<span><i class="lk car"></i>愿望線：越粗＝去的人越多</span><span><i class="lk metro"></i>棕色＝坐地鐵的</span><span><i class="lk walk"></i>點線＝走路去</span><span><i class="lk aware"></i>屋苑下十格＝幾成人知道地鐵</span><span><i class="lk crowd"></i>紅色線段＝太擠</span>',
+      '<span><i class="lk car"></i>愿望线：越粗＝去的人越多</span><span><i class="lk metro"></i>棕色＝坐地铁的</span><span><i class="lk walk"></i>点线＝走路去</span><span><i class="lk aware"></i>屋苑下十格＝几成人知道地铁</span><span><i class="lk crowd"></i>红色线段＝太挤</span>',
+      '<span><i class="lk car"></i>desire line: thicker = more people going</span><span><i class="lk metro"></i>brown = by metro</span><span><i class="lk walk"></i>dotted = on foot</span><span><i class="lk aware"></i>ten cells = tenths who know the metro</span><span><i class="lk crowd"></i>red section = crowded</span>'),
     'm.dl':L('去 {g} · 地鐵 {m}','去 {g} · 地铁 {m}','{g} go · {m} metro'),
     'm.dlFull':L('每天去 {g} 人（開通前 {b}）· 坐地鐵 {m}','每天去 {g} 人（开通前 {b}）· 坐地铁 {m}','{g} go a day (was {b}) · {m} by metro'),
     'm.estLine':L('知道 {a} 成 · 坐地鐵 {r}','知道 {a} 成 · 坐地铁 {r}','{a}/10 know · {r} ride'),
@@ -1017,7 +1026,7 @@ table.result th:first-child,table.result td:first-child{text-align:left}
       'Each bar = an estate\'s people going out each day: {a}, {b}, {c}. Thin marks = the split before the line; whatever the metro brings nearer grows. Right: the share going far.'),
     'm.nearbyName':L('附近','附近','nearby'),
     'm.tripsH':L('每條愿望線的算式','每条愿望线的算式','The sums, desire line by desire line'),
-    'm.tTrip':L('從 → 去','从 → 去','From → to'),'m.tGo':L('去','去','go'),'m.tCar':L('開車','开车','car'),'m.tMetro':L('地鐵','地铁','metro'),
+    'm.tTrip':L('從 → 去','从 → 去','From → to'),'m.tGo':L('去','去','go'),'m.tCar':L('開車','开车','car'),'m.tAlt':L('開車/走路','开车/走路','car/foot'),'m.byFoot':L('走路','走路','on foot'),'m.byCar':L('開車','开车','by car'),'m.tMetro':L('地鐵','地铁','metro'),
     'm.tSave':L('省','省','saved'),'m.tRiders':L('坐地鐵','坐地铁','metro'),'m.was':L('開通前 {b}','开通前 {b}','was {b}'),
     // the year card
     'm.cardTitle':L('第 {y} 年','第 {y} 年','Year {y}'),
@@ -1043,15 +1052,15 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     'm.seeBoard':L('看看地圖','看看地图','See the board'),
     // rules dialog, level intro
     'i.lbl':L('Rules · 規則','Rules · 规则','Rules'),'m.infoH':L('地鐵模式的規則','地铁模式的规则','The metro mode’s rules'),
-    'm.info':L('<ol class="rules"><li><b>愿望線。</b>五個屋苑每天有人出門：去{d0}、去{d1}，或者留在附近。線越粗，去的人越多。開通前大家全部開車。</li><li><b>規劃（第 0 年）。</b>畫一條線（從任何一格開始，可拐彎，不分叉、不走回頭）、在線上放站、買列車。預算 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}（本身有 1 列）。開通以後就不能改。</li><li><b>坐地鐵要幾格。</b>走到上車的站（每格 1）＋ 等車 {w} ＋ 路過幾個站（每個 1）＋ 從下車的站走到目的地（每格 1）。每個人挑最快的上落車站。<b>開車</b>＝兩地相隔幾格 ＋ 泊車：{d0} {e0}、{d1} {e1}（新區路未通、車位少）。</li><li><b>去哪裡。</b>一個地方的「拉力」＝吸引力 − 去那裡要幾格（開車和地鐵取快的）。{d0}吸引力 {a0}、{d1} {a1}，「附近」固定 {nb}。每個屋苑的人按拉力的比例分。</li><li><b>怎麼去。</b>比開車省幾格，去那裡的人就有幾成坐地鐵（最多 10 成）。</li><li><b>知道的人。</b>只有知道地鐵的人才按第 4、5 條選；不知道的人照舊開車、去老地方。開通時每個屋苑 {s} 成人知道。</li><li><b>口耳相傳。</b>每過一年：一個屋苑有幾成人坐地鐵，「還不知道的人」裡就有（幾成 × {sp}）聽說了（最多全部）。</li><li><b>擠。</b>每段線（相鄰兩格之間）每天最多載「列車數 × {pt}」人。明年經過太擠的段的地鐵行程多算 {cb} 格（經過幾段都只算一次）。</li><li><b>分數。</b>{y} 年裡，每年「每天坐地鐵的人」加起來。</li></ol>',
-      '<ol class="rules"><li><b>愿望线。</b>五个屋苑每天有人出门：去{d0}、去{d1}，或者留在附近。线越粗，去的人越多。开通前大家全部开车。</li><li><b>规划（第 0 年）。</b>画一条线（从任何一格开始，可拐弯，不分叉、不走回头）、在线上放站、买列车。预算 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}（本身有 1 列）。开通以后就不能改。</li><li><b>坐地铁要几格。</b>走到上车的站（每格 1）＋ 等车 {w} ＋ 路过几个站（每个 1）＋ 从下车的站走到目的地（每格 1）。每个人挑最快的上落车站。<b>开车</b>＝两地相隔几格 ＋ 泊车：{d0} {e0}、{d1} {e1}（新区路未通、车位少）。</li><li><b>去哪里。</b>一个地方的「拉力」＝吸引力 − 去那里要几格（开车和地铁取快的）。{d0}吸引力 {a0}、{d1} {a1}，「附近」固定 {nb}。每个屋苑的人按拉力的比例分。</li><li><b>怎么去。</b>比开车省几格，去那里的人就有几成坐地铁（最多 10 成）。</li><li><b>知道的人。</b>只有知道地铁的人才按第 4、5 条选；不知道的人照旧开车、去老地方。开通时每个屋苑 {s} 成人知道。</li><li><b>口耳相传。</b>每过一年：一个屋苑有几成人坐地铁，「还不知道的人」里就有（几成 × {sp}）听说了（最多全部）。</li><li><b>挤。</b>每段线（相邻两格之间）每天最多载「列车数 × {pt}」人。明年经过太挤的段的地铁行程多算 {cb} 格（经过几段都只算一次）。</li><li><b>分数。</b>{y} 年里，每年「每天坐地铁的人」加起来。</li></ol>',
-      '<ol class="rules"><li><b>Desire lines.</b> Five estates send people out each day: to {d0}, to {d1}, or somewhere nearby. Thicker = more. Before the line everybody drives.</li><li><b>Planning (year 0).</b> Draw a line (start anywhere; it may turn, never branch or double back), put stations on it, buy trains. Budget {b}: {lc} a block, {sc} a station, {tc} a train (one comes with the line). Nothing changes after opening.</li><li><b>A metro trip in blocks.</b> Walk to the boarding station (1 a block) + wait {w} + stations passed (1 each) + walk from the alighting station (1 a block); everyone takes the fastest pair. <b>By car</b> = blocks apart + parking: {d0} {e0}, {d1} {e1} (the new town: roads unfinished, little parking).</li><li><b>Where to go.</b> A place\'s pull = its attraction − the blocks to get there (car or metro, whichever is quicker). {d0} {a0}, {d1} {a1}, «nearby» always {nb}. Each estate splits in proportion to the pulls.</li><li><b>How to go.</b> Every block the metro saves on the car, one in ten of those going there take it (ten in ten at most).</li><li><b>Who knows.</b> Only people who know the metro choose by rules 4 and 5; the others drive where they always went. At the opening {s}/10 of each estate know it.</li><li><b>Word of mouth.</b> Each year, whatever share of an estate rides the metro, that share × {sp} of the people who don\'t know yet hear of it (all of them at most).</li><li><b>Crowding.</b> Each section (between two neighbouring cells) carries trains × {pt} a day. The year after, a metro trip through a crowded section counts {cb} blocks more (once, however many sections).</li><li><b>Score.</b> Daily metro riders of all {y} years added up.</li></ol>'),
+    'm.info':L('<ol class="rules"><li><b>愿望線。</b>五個屋苑每天有人出門：去{d0}、去{d1}，或者留在附近。線越粗，去的人越多。開通前大家全部開車。</li><li><b>規劃（第 0 年）。</b>畫一條線（從任何一格開始，可拐彎，不分叉、不走回頭）、在線上放站、買列車。預算 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}（本身有 1 列）。開通以後就不能改。</li><li><b>坐地鐵要幾格。</b>走到上車的站（每格 {wp}）＋ 等車 {w} ＋ 路過幾個站（每個 1）＋ 從下車的站走到目的地（每格 {wp}）。走路很慢，走到站也一樣每格 {wp}。每個人挑最快的上落車站。<b>開車</b>＝兩地相隔幾格 ＋ 泊車：{d0} {e0}、{d1} {e1}（新區路未通、車位少）。<b>走路</b>＝相隔幾格 × {wp}：很近的地方，大家本來就走路去（地圖上的點線）。</li><li><b>去哪裡。</b>一個地方的「拉力」＝吸引力 − 去那裡要幾格（開車、走路、地鐵取最快的）。{d0}吸引力 {a0}、{d1} {a1}，「附近」固定 {nb}。每個屋苑的人按拉力的比例分。</li><li><b>怎麼去。</b>比開車或走路（取快的）省幾格，去那裡的人就有幾成坐地鐵（最多 10 成）；直接走過去更快，就沒人坐。</li><li><b>知道的人。</b>只有知道地鐵的人才按第 4、5 條選；不知道的人照舊開車或走路、去老地方。開通時每個屋苑 {s} 成人知道。</li><li><b>口耳相傳。</b>每過一年：一個屋苑有幾成人坐地鐵，「還不知道的人」裡就有（幾成 × {sp}）聽說了（最多全部）。</li><li><b>擠。</b>每段線（相鄰兩格之間）每天最多載「列車數 × {pt}」人。明年經過太擠的段的地鐵行程多算 {cb} 格（經過幾段都只算一次）。</li><li><b>分數。</b>{y} 年裡，每年「每天坐地鐵的人」加起來。</li></ol>',
+      '<ol class="rules"><li><b>愿望线。</b>五个屋苑每天有人出门：去{d0}、去{d1}，或者留在附近。线越粗，去的人越多。开通前大家全部开车。</li><li><b>规划（第 0 年）。</b>画一条线（从任何一格开始，可拐弯，不分叉、不走回头）、在线上放站、买列车。预算 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}（本身有 1 列）。开通以后就不能改。</li><li><b>坐地铁要几格。</b>走到上车的站（每格 {wp}）＋ 等车 {w} ＋ 路过几个站（每个 1）＋ 从下车的站走到目的地（每格 {wp}）。走路很慢，走到站也一样每格 {wp}。每个人挑最快的上落车站。<b>开车</b>＝两地相隔几格 ＋ 泊车：{d0} {e0}、{d1} {e1}（新区路未通、车位少）。<b>走路</b>＝相隔几格 × {wp}：很近的地方，大家本来就走路去（地图上的点线）。</li><li><b>去哪里。</b>一个地方的「拉力」＝吸引力 − 去那里要几格（开车、走路、地铁取最快的）。{d0}吸引力 {a0}、{d1} {a1}，「附近」固定 {nb}。每个屋苑的人按拉力的比例分。</li><li><b>怎么去。</b>比开车或走路（取快的）省几格，去那里的人就有几成坐地铁（最多 10 成）；直接走过去更快，就没人坐。</li><li><b>知道的人。</b>只有知道地铁的人才按第 4、5 条选；不知道的人照旧开车或走路、去老地方。开通时每个屋苑 {s} 成人知道。</li><li><b>口耳相传。</b>每过一年：一个屋苑有几成人坐地铁，「还不知道的人」里就有（几成 × {sp}）听说了（最多全部）。</li><li><b>挤。</b>每段线（相邻两格之间）每天最多载「列车数 × {pt}」人。明年经过太挤的段的地铁行程多算 {cb} 格（经过几段都只算一次）。</li><li><b>分数。</b>{y} 年里，每年「每天坐地铁的人」加起来。</li></ol>',
+      '<ol class="rules"><li><b>Desire lines.</b> Five estates send people out each day: to {d0}, to {d1}, or somewhere nearby. Thicker = more. Before the line everybody drives.</li><li><b>Planning (year 0).</b> Draw a line (start anywhere; it may turn, never branch or double back), put stations on it, buy trains. Budget {b}: {lc} a block, {sc} a station, {tc} a train (one comes with the line). Nothing changes after opening.</li><li><b>A metro trip in blocks.</b> Walk to the boarding station ({wp} a cell) + wait {w} + stations passed (1 each) + walk from the alighting station ({wp} a cell — walking is slow, to the station too); everyone takes the fastest pair. <b>By car</b> = cells apart + parking: {d0} {e0}, {d1} {e1} (the new town: roads unfinished, little parking). <b>On foot</b> = cells apart × {wp}: places close by, people already walk to (the dotted lines).</li><li><b>Where to go.</b> A place\'s pull = its attraction − the blocks to get there (car, foot or metro, whichever is quickest). {d0} {a0}, {d1} {a1}, «nearby» always {nb}. Each estate splits in proportion to the pulls.</li><li><b>How to go.</b> Every block the metro saves on the quicker of car and foot, one in ten of those going there take it (ten in ten at most); quicker to walk, nobody.</li><li><b>Who knows.</b> Only people who know the metro choose by rules 4 and 5; the others drive or walk where they always went. At the opening {s}/10 of each estate know it.</li><li><b>Word of mouth.</b> Each year, whatever share of an estate rides the metro, that share × {sp} of the people who don\'t know yet hear of it (all of them at most).</li><li><b>Crowding.</b> Each section (between two neighbouring cells) carries trains × {pt} a day. The year after, a metro trip through a crowded section counts {cb} blocks more (once, however many sections).</li><li><b>Score.</b> Daily metro riders of all {y} years added up.</li></ol>'),
     'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始畫線 →','开始画线 →','Start drawing →'),
     'iv.m2.new':L('<b>地鐵</b>：一次建好一條線，再看八年——大家慢慢發現它，越來越多人坐，它到的地方也越來越多人去。','<b>地铁</b>：一次建好一条线，再看八年——大家慢慢发现它，越来越多人坐，它到的地方也越来越多人去。',
       '<b>The metro</b>: build one line, then watch eight years — people discover it, more ride it, and the places it reaches draw more people.'),
-    'iv.m2.body':L('<li>開通前大家<b>全部開車</b>。灰線是「愿望線」：每天從哪個屋苑去哪裡、多少人（越粗越多）。</li><li>畫一條線、放站、買列車（預算 {b}）。<b>開通以後就不能改</b>——真的地鐵也很難改。</li><li>地鐵比開車省幾格，就有幾成人坐；一個地方變近了，原來不去的人也會去。</li><li>但剛開通只有 {s} 成人知道。坐的人越多，口耳相傳越快——看每年的人數慢慢爬上去。</li>',
-      '<li>开通前大家<b>全部开车</b>。灰线是「愿望线」：每天从哪个屋苑去哪里、多少人（越粗越多）。</li><li>画一条线、放站、买列车（预算 {b}）。<b>开通以后就不能改</b>——真的地铁也很难改。</li><li>地铁比开车省几格，就有几成人坐；一个地方变近了，原来不去的人也会去。</li><li>但刚开通只有 {s} 成人知道。坐的人越多，口耳相传越快——看每年的人数慢慢爬上去。</li>',
-      '<li>Before the line <b>everybody drives</b>. The grey lines are desire lines: who goes from which estate to where each day (thicker = more).</li><li>Draw a line, place stations, buy trains (budget {b}). <b>After opening nothing changes</b> — a real metro is hard to change too.</li><li>Every block the metro saves on the car, one in ten ride it; a place brought nearer draws people who never went.</li><li>But at first only {s}/10 know the line. The more ride, the faster word spreads — watch the numbers climb year by year.</li>'),
+    'iv.m2.body':L('<li>開通前大家<b>全部開車</b>。灰線是「愿望線」：每天從哪個屋苑去哪裡、多少人（越粗越多）。</li><li>畫一條線、放站、買列車（預算 {b}）。<b>開通以後就不能改</b>——真的地鐵也很難改。</li><li>地鐵比開車或走路省幾格，就有幾成人坐；一個地方變近了，原來不去的人也會去。走路很慢（每格算 {wp}），站最好放在屋苑門口。</li><li>但剛開通只有 {s} 成人知道。坐的人越多，口耳相傳越快——看每年的人數慢慢爬上去。</li>',
+      '<li>开通前大家<b>全部开车</b>。灰线是「愿望线」：每天从哪个屋苑去哪里、多少人（越粗越多）。</li><li>画一条线、放站、买列车（预算 {b}）。<b>开通以后就不能改</b>——真的地铁也很难改。</li><li>地铁比开车或走路省几格，就有几成人坐；一个地方变近了，原来不去的人也会去。走路很慢（每格算 {wp}），站最好放在屋苑门口。</li><li>但刚开通只有 {s} 成人知道。坐的人越多，口耳相传越快——看每年的人数慢慢爬上去。</li>',
+      '<li>Before the line <b>everybody drives</b>. The grey lines are desire lines: who goes from which estate to where each day (thicker = more).</li><li>Draw a line, place stations, buy trains (budget {b}). <b>After opening nothing changes</b> — a real metro is hard to change too.</li><li>Every block the metro saves on the car or on foot, one in ten ride it; a place brought nearer draws people who never went. Walking is slow ({wp} a cell): put stations at the estates\' doors.</li><li>But at first only {s}/10 know the line. The more ride, the faster word spreads — watch the numbers climb year by year.</li>'),
     'iv.m2.course':L('課程連結：誘增出行與出行分佈的變化（重力模型）、方式選擇（和開車比時間）、新服務的擴散（口碑的 S 曲線）、擁擠的回饋。','课程链接：诱增出行与出行分布的变化（重力模型）、方式选择（和开车比时间）、新服务的扩散（口碑的 S 曲线）、拥挤的回馈。',
       'Course link: induced trips and shifting trip distribution (gravity model), mode choice (time against the car), diffusion of a new service (the word-of-mouth S-curve), crowding feedback.')
   });
@@ -1105,7 +1114,7 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     const busy=y.est.flatMap(e=>e.to.map(x=>x.metro)).map((m,k)=>[m,k]).filter(([m])=>m>=1).sort((a,b)=>b[0]-a[0]).slice(0,4).map(([,k])=>k);
     let j=0;
     for(const e of y.est)for(const x of e.to){const o=D.origins[e.i],d=D.destinations[x.k],{d:path,mid}=curve(o.cell,d.cell,j),w=1.5+x.go/4,on=sel===j;
-      desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:.28,'stroke-linecap':'round'});
+      desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:x.byFoot?.4:.28,'stroke-linecap':'round','stroke-dasharray':x.byFoot?`0.1 ${(w+6).toFixed(1)}`:''});
       if(x.metro>.5)desire+=svg('path',{d:path,fill:'none',stroke:C.metro,'stroke-width':(w*x.metro/x.go).toFixed(1),'stroke-opacity':sel>=0&&!on?.25:.85,'stroke-linecap':'round'});
       if(on)labels+=pill(mid[0],mid[1],t('m.dlFull',{g:R(x.go),b:R(x.before),m:R(x.metro)}),x.metro>.5?C.metro:C.ink2,12.5);
       else if(sel<0&&busy.includes(j))labels+=pill(mid[0],mid[1],t('m.dl',{g:R(x.go),m:R(x.metro)}),C.metro,12);
@@ -1193,9 +1202,9 @@ table.result th:first-child,table.result td:first-child{text-align:left}
       let acc=0,bacc=0,ticks='';const bars=seg.map(s=>{const el=`<i style="flex:${s.v.toFixed(3)};background:${s.c}"></i>`;bacc+=s.b;if(bacc<.999)ticks+=`<u style="left:${(100*bacc).toFixed(1)}%"></u>`;return el;}).join('');
       w+=`<div class="wr"><span class="xn">${nameO(e.i)}</span><span class="wbar">${bars}${ticks}</span><b>${R(100*(n-e.nearby)/n)}%</b></div>`;});
     $('whereBox').innerHTML=w+`<p class="hbnote">${t('m.whereNote',{a:sw(DCOL(D.destinations[0].kind))+shortD(0),b:sw(DCOL(D.destinations[1].kind))+shortD(1),c:sw(C.ink3)+t('m.nearbyName')})}</p>`;
-    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`,k=0;
-    for(const e of y.est)for(const x of e.to){tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''}"><td>${nameO(e.i)}<small>→ ${shortD(x.k)}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.car}</td>`+
-      `<td>${x.trip?`${x.trip.blocks}<small>${x.trip.walkA}+${P.wait}+${x.trip.pass}+${x.trip.walkB}${x.trip.crowd?'+'+x.trip.crowd:''}</small>`:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b>${x.tenths?`<small>${t('m.tenths',{n:x.tenths})}×${t('m.tenths',{n:tenth(e.aware)})}</small>`:''}</td></tr>`;k++;}
+    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tAlt')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`,k=0;
+    for(const e of y.est)for(const x of e.to){tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''}"><td>${nameO(e.i)}<small>→ ${shortD(x.k)}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.alt}<small>${t(x.byFoot?'m.byFoot':'m.byCar')}</small></td>`+
+      `<td>${x.trip?`${x.trip.blocks}<small>${P.walkPer*x.trip.walkA}+${P.wait}+${x.trip.pass}+${P.walkPer*x.trip.walkB}${x.trip.crowd?'+'+x.trip.crowd:''}</small>`:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b>${x.tenths?`<small>${t('m.tenths',{n:x.tenths})}×${t('m.tenths',{n:tenth(e.aware)})}</small>`:''}</td></tr>`;k++;}
     $('trips').innerHTML=tb+'</tbody>';
   }
   function render(){draw();side();}
@@ -1203,7 +1212,7 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     $('board').setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}}
   function texts(){
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
-    const v={w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
+    const v={wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
       sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction,e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2,d0:shortD(0),d1:shortD(1)};
     $('rules').innerHTML=['m.r0','m.r1','m.r2','m.r3','m.r4','m.r5'].map(k=>`<li>${t(k,v)}</li>`).join('');
     $('infoBody').innerHTML=t('m.info',v);$('ivBody').innerHTML=t('iv.m2.body',v);
@@ -1300,8 +1309,139 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   if(q.get('tool'))tool=q.get('tool');if(q.get('sel'))sel=+q.get('sel');
   texts();fit();render();
   if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
-  window.TL_METRO={plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,riders:plan.now().riders}),
+  // for the AI demo (demo.js): set a plan up step by step, then open it
+  const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;fx=null;$('yearCard').classList.remove('on');render();},
+    extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
+    train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
+  window.TL_METRO={api,plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,riders:plan.now().riders}),
     cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();
 
-</script></body></html>
+</script><script>
+// v7 mode 2 · AI demo plans, written by bots/v7_metro_grow.js (2026-10-13). Do not edit by hand.
+// level → {tiers, best, pass|high|master: {line, stations, trains, score}}
+(function(root){root.TL_METRO_DEMO={"m2-1":{"tiers":[400,520,620],"best":646,"pass":{"line":[[2,2],[2,3],[2,4],[3,4],[4,4],[5,4],[6,4],[7,4],[8,4],[9,4],[10,4],[11,4],[12,4],[13,4],[13,5],[13,6],[13,7],[12,7],[11,7],[10,7],[9,7],[8,7],[7,7],[6,7],[5,7],[4,7],[3,7],[2,7],[1,7]],"stations":[[2,2],[1,7],[13,4]],"trains":1,"score":402},"high":{"line":[[13,4],[13,5],[13,6],[12,6],[11,6],[10,6],[9,6],[8,6],[7,6],[6,6],[5,6],[4,6],[3,6],[2,6],[2,5],[2,4],[2,3],[2,2],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7]],"stations":[[2,2],[1,7],[13,4],[4,6]],"trains":2,"score":525},"master":{"line":[[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2],[11,2],[12,2],[13,2],[13,3],[13,4],[12,4],[11,4],[10,4],[9,4],[8,4],[7,4],[6,4],[5,4],[5,5],[5,6]],"stations":[[2,2],[5,6],[13,4],[7,2]],"trains":2,"score":646}}};})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // v7 mode 2 · AI demo (temporary; remove this file, demo-plans.js and the lines marked «AI demo» in index.html and
+  // build.py). Pick a score line — pass, high or master — and the AI builds its plan in the real game: the line cell by
+  // cell, each station with what it serves, the trains with why, a few words on the idea; then it opens the line and
+  // the years play. Plans: bots/v7_metro_grow.js --write.
+  const $=id=>document.getElementById(id),I=root.I18N,t=(k,v)=>I.t(k,v),L=I.L,M=root.Metro,{D,P,walk,same}=M;
+  I.add({
+    'demo.btn':L('AI 示範','AI 示范','AI demo'),
+    'demo.h':L('看 AI 怎樣建這條線','看 AI 怎样建这条线','Watch the AI build its line'),
+    'demo.intro':L('選一條分數線，AI 會在棋盤上一步一步建它的方案：先畫線，再一個一個放站、買車，每一步寫著為什麼；然後開通，看八年。','选一条分数线，AI 会在棋盘上一步一步建它的方案：先画线，再一个一个放站、买车，每一步写着为什么；然后开通，看八年。',
+      'Pick a score line: the AI builds its plan step by step — the line, then each station and train, with why — then opens it and the eight years play.'),
+    'demo.pass':L('過關','过关','Pass'),'demo.high':L('高分','高分','High score'),'demo.master':L('大師','大师','Master'),
+    'demo.line':L('分數線 {n} · AI 這套 {s}','分数线 {n} · AI 这套 {s}','line {n} · this plan {s}'),
+    'demo.shape':L('線 {l} 格 · {s} 個站 · {t} 列車','线 {l} 格 · {s} 个站 · {t} 列车','{l} cells · {s} stations · {t} trains'),
+    'demo.go':L('看這一套 ▶','看这一套 ▶','Watch ▶'),'demo.close':L('關閉','关闭','Close'),
+    'demo.box':L('AI 示範 · {tier}（{n}）','AI 示范 · {tier}（{n}）','AI demo · {tier} ({n})'),'demo.stop':L('停止示範','停止示范','Stop'),
+    'demo.s1':L('<b>① 畫線</b>：{via}。線 {l} 格，花 {c}。','<b>① 画线</b>：{via}。线 {l} 格，花 {c}。','<b>① The line</b>: {via}. {l} cells, {c} spent.'),
+    'demo.st':L('<b>② 放站 {n}</b>：{where}。','<b>② 放站 {n}</b>：{where}。','<b>② Station {n}</b>: {where}.'),
+    'demo.stPot':L('現在這條線，大家都知道以後每天 <b>{p}</b> 人坐。','现在这条线，大家都知道以后每天 <b>{p}</b> 人坐。','Once everyone knows, <b>{p}</b> a day ride this line.'),
+    'demo.door':L('就在{a}門口，走路 0 格','就在{a}门口，走路 0 格','right at {a}, no walking'),
+    'demo.next':L('在{a}旁邊 1 格（走路 {w}）','在{a}旁边 1 格（走路 {w}）','one cell from {a} (walk {w})'),
+    'demo.plain':L('線上一格，接{a}（走 {c} 格）','线上一格，接{a}（走 {c} 格）','on the line, for {a} ({c} cells\' walk)'),
+    'demo.tr2':L('<b>③ 買列車</b>：大家都知道以後，最擠的一段每天約 <b>{l}</b> 人；1 列只載 {c}，所以一共買 {n} 列（每段 {cap}）——擠了明年每次多 {cb} 格，口碑也會停。','<b>③ 买列车</b>：大家都知道以后，最挤的一段每天约 <b>{l}</b> 人；1 列只载 {c}，所以一共买 {n} 列（每段 {cap}）——挤了明年每次多 {cb} 格，口碑也会停。',
+      '<b>③ Trains</b>: once everyone knows, the busiest section carries about <b>{l}</b> a day; one train holds {c}, so {n} in all ({cap} a section) — crowded means {cb} more blocks next year, and word of mouth stalls.'),
+    'demo.tr1':L('<b>③ 列車</b>：最擠的一段大家都知道以後每天約 {l} 人，1 列（{c}）就夠，錢留給線和站。','<b>③ 列车</b>：最挤的一段大家都知道以后每天约 {l} 人，1 列（{c}）就够，钱留给线和站。','<b>③ Trains</b>: the busiest section reaches about {l} a day; one train ({c}) is enough, the money goes to line and stations.'),
+    'demo.why':L('<b>④ 這一套的想法</b>','<b>④ 这一套的想法</b>','<b>④ The idea</b>'),
+    'demo.wDoor':L('{n} 個站有 {d} 個就在屋苑或目的地門口：走路每格算 {w}，站離門口一格，每趟就貴 {w} 格。','{n} 个站有 {d} 个就在屋苑或目的地门口：走路每格算 {w}，站离门口一格，每趟就贵 {w} 格。',
+      '{d} of the {n} stations sit right at an estate or destination: walking is {w} a cell, so one cell off costs every trip {w}.'),
+    'demo.wBend':L('線故意繞路（{l} 格）：坐車不按距離算，只有路過的站才多 1 格，所以繞去多接一個屋苑很划算。','线故意绕路（{l} 格）：坐车不按距离算，只有路过的站才多 1 格，所以绕去多接一个屋苑很划算。',
+      'The line winds ({l} cells): the ride doesn\'t count distance, only stations passed, so a detour to pick up another estate pays.'),
+    'demo.wBoth':L('兩個目的地都接上：{a}和{b}都會變近，兩邊都多人去。','两个目的地都接上：{a}和{b}都会变近，两边都多人去。','Both destinations on the line: {a} and {b} both come nearer and both draw more.'),
+    'demo.wSkip':L('離站遠的屋苑：{list}——走過去太貴，坐的人少。預算 {b} 只夠這麼多，先接人多、開車又遠的。','离站远的屋苑：{list}——走过去太贵，坐的人少。预算 {b} 只够这么多，先接人多、开车又远的。','Far from a station: {list} — too long a walk, few ride. A budget of {b} only goes so far: serve big estates far from the destinations first.'),
+    'demo.far':L('{a}（走 {c} 格）','{a}（走 {c} 格）','{a} ({c} cells)'),
+    'demo.wLeft':L('還剩 {m} 沒用。','还剩 {m} 没用。','{m} left unspent.'),
+    'demo.open':L('<b>⑤ 開通</b>：第 1 年只有 {s} 成人知道。看口耳相傳把人帶上來。','<b>⑤ 开通</b>：第 1 年只有 {s} 成人知道。看口耳相传把人带上来。','<b>⑤ Open</b>: in year 1 only {s}/10 know the line. Watch word of mouth bring people on.'),
+    'demo.year':L('第 {y} 年：每天 <b>{r}</b> 人坐 · 平均 {a} 成人知道 · 累計 {t}','第 {y} 年：每天 <b>{r}</b> 人坐 · 平均 {a} 成人知道 · 累计 {t}','Year {y}: <b>{r}</b> a day · {a}/10 know · {t} so far'),
+    'demo.done':L('完成：八年累計 <b>{t}</b>（{tier} 線 {n}）。按「↺ 回到規劃」可以在這套上面自己改。','完成：八年累计 <b>{t}</b>（{tier} 线 {n}）。按「↺ 回到规划」可以在这套上面自己改。',
+      'Done: <b>{t}</b> over eight years ({tier} line {n}). «↺ Back to planning» to edit it yourself.')
+  });
+  const css=document.createElement('style');css.textContent=`
+  #demoDlg .dcards{display:grid;gap:10px;margin:14px 0}
+  #demoDlg .dcard{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 14px;text-align:left;padding:12px 14px;border:1px solid var(--s-line2);border-radius:8px;background:var(--s-panel);color:var(--s-ink);cursor:pointer;font:inherit}
+  #demoDlg .dcard:hover{border-color:var(--s-metro)}
+  #demoDlg .dcard b{font-size:16px;color:var(--s-metro);grid-row:span 2}
+  #demoDlg .dcard span{font-size:13.5px}#demoDlg .dcard small{font-size:12px;color:var(--s-ink3)}
+  #demoDlg .dcard em{font-style:normal;grid-row:span 2;font-size:13px;color:var(--s-metro)}
+  .demobox{position:absolute;left:16px;right:16px;top:12px;max-height:200px;overflow:hidden;padding:10px 14px 12px;border-radius:8px;background:var(--s-panel);border:1.5px solid var(--s-accent);
+    box-shadow:0 6px 24px rgb(0 0 0 / .12);font-size:13px;line-height:1.6;color:var(--s-ink2);z-index:5}
+  .demobox .dh{display:flex;align-items:center;gap:8px;margin-bottom:6px}.demobox .dh b{color:var(--s-accent);font-size:13.5px}.demobox .dh .sp{flex:1}
+  .demobox p{margin:3px 0}.demobox p b{color:var(--s-ink)}.demobox ul{margin:4px 0 0;padding-left:18px}.demobox li{margin:2px 0}
+  .demobox p.old{opacity:.5}.demobox .dbody{columns:1}
+  .mapplate.demo .yearcard{display:none}`;
+  document.head.append(css);
+  const sleep=ms=>new Promise(r=>{const id=setTimeout(r,ms);timers.push(id);});
+  let timers=[],run=0,watch=0;
+  const plans=()=>(root.TL_METRO_DEMO||{})[D.map];
+  const btn=document.createElement('button');btn.className='btn btn-sm';btn.id='demoBtn';
+  $('lvInfo').after(btn);
+  const dlg=document.createElement('dialog');dlg.id='demoDlg';document.body.append(dlg);
+  const box=document.createElement('div');box.className='demobox';box.hidden=true;document.querySelector('.mapplate').append(box);
+  const names=()=>[...D.origins.map((o,i)=>({cell:o.cell,name:I.name(o),estate:i})),...D.destinations.map(d=>({cell:d.cell,name:I.name(d),dest:true}))];
+  const tierName=k=>t('demo.'+k);
+  function texts(){btn.textContent=t('demo.btn');const pl=plans();if(!pl){btn.hidden=true;return;}
+    dlg.innerHTML=`<button class="close" data-x>×</button><span class="lbl">AI DEMO</span><h2 class="h1">${t('demo.h')}</h2><p class="note">${t('demo.intro')}</p><div class="dcards">`+
+      ['pass','high','master'].filter(k=>pl[k]).map((k,j)=>{const p=pl[k];return `<button class="dcard" data-tier="${k}"><b>${tierName(k)}</b><span>${t('demo.line',{n:pl.tiers[j],s:p.score})}</span><em>${t('demo.go')}</em>`+
+        `<small>${t('demo.shape',{l:p.line.length,s:p.stations.length,t:p.trains})}</small></button>`;}).join('')+'</div>';
+    dlg.querySelector('[data-x]').onclick=()=>dlg.close();
+    dlg.querySelectorAll('[data-tier]').forEach(b=>b.onclick=()=>{dlg.close();play(b.dataset.tier);});}
+  btn.onclick=()=>{texts();dlg.showModal();};
+  function stopDemo(keepBox){run++;timers.forEach(clearTimeout);timers=[];clearInterval(watch);$('board').style.pointerEvents='';document.querySelector('.mapplate').classList.remove('demo');if(!keepBox)box.hidden=true;}
+  function say(html,alone){const body=box.querySelector('.dbody');if(alone)body.innerHTML='';
+    body.querySelectorAll('p').forEach(p=>p.classList.add('old'));const p=document.createElement('p');p.innerHTML=html;body.append(p);
+    while(body.children.length>2)body.firstChild.remove();}
+  async function play(k){
+    stopDemo();const me=run,pl=plans(),plan=pl[k],j=['pass','high','master'].indexOf(k),api=TL_METRO.api;
+    for(const d of document.querySelectorAll('dialog[open]'))d.close();
+    box.hidden=false;box.innerHTML=`<div class="dh"><b>${t('demo.box',{tier:tierName(k),n:pl.tiers[j]})}</b><span class="sp"></span><button class="btn btn-sm" data-stop>${t('demo.stop')}</button></div><div class="dbody"></div>`;
+    box.querySelector('[data-stop]').onclick=()=>stopDemo();
+    $('board').style.pointerEvents='none';document.querySelector('.mapplate').classList.add('demo');api.reset();
+    const live=()=>me===run;
+    // ① the line, cell by cell
+    const places=names(),onLine=places.map(x=>({...x,at:plan.line.findIndex(c=>walk(c,x.cell)<=1)})).filter(x=>x.at>=0).sort((a,b)=>a.at-b.at);
+    say(t('demo.s1',{via:onLine.map(x=>x.name).join(' → ')||'—',l:plan.line.length,c:plan.line.length*P.lineCost}));
+    for(const c of plan.line){if(!live())return;api.extend(c);await sleep(70);}
+    await sleep(700);
+    // ② stations, in line order, each with what it serves
+    const order=plan.stations.map(s=>({s,x:plan.line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
+    for(const [n,{s}] of order.entries()){if(!live())return;api.station(s);
+      const near=places.map(x=>({...x,d:walk(x.cell,s)})).sort((a,b)=>a.d-b.d)[0];
+      const where=near.d===0?t('demo.door',{a:near.name}):near.d===1?t('demo.next',{a:near.name,w:P.walkPer}):t('demo.plain',{a:near.name,c:near.d});
+      const pot=api.plan.stations.length>=2?Math.round(api.plan.potential().riders):0;
+      say(t('demo.st',{n:n+1,where})+(pot?' '+t('demo.stPot',{p:pot}):''));await sleep(1300);}
+    // ③ trains
+    for(let n=1;n<plan.trains;n++){if(!live())return;api.train();}
+    const pot=api.plan.potential(),load=Math.round(Math.max(...pot.load));
+    say(plan.trains>1?t('demo.tr2',{l:load,c:P.perTrain,n:plan.trains,cap:plan.trains*P.perTrain,cb:P.crowdBlocks}):t('demo.tr1',{l:load,c:P.perTrain}));await sleep(2200);
+    if(!live())return;
+    // ④ the idea
+    const why=[],atDoor=plan.stations.filter(s=>places.some(x=>same(x.cell,s))).length;
+    why.push(t('demo.wDoor',{n:plan.stations.length,d:atDoor,w:P.walkPer}));
+    const a=order[0].s,z=order.at(-1).s;if(plan.line.length-1>walk(a,z)+2)why.push(t('demo.wBend',{l:plan.line.length}));
+    const served=x=>plan.stations.some(s=>walk(s,x.cell)<=1);
+    if(D.destinations.every((d,k2)=>served({cell:d.cell})))why.push(t('demo.wBoth',{a:I.name(D.destinations[0]),b:I.name(D.destinations[1])}));
+    const skip=places.filter(x=>x.estate!==undefined&&!served(x)).map(x=>t('demo.far',{a:x.name,c:Math.min(...plan.stations.map(s=>walk(s,x.cell)))}));
+    if(skip.length)why.push(t('demo.wSkip',{list:skip.join(t('sep')),b:P.budget}));
+    if(api.plan.money>0)why.push(t('demo.wLeft',{m:api.plan.money}));
+    say(t('demo.why')+'<ul>'+why.map(s=>`<li>${s}</li>`).join('')+'</ul>',true);await sleep(5200);
+    if(!live())return;
+    // ⑤ open: the years play
+    say(t('demo.open',{s:Math.round(P.aware.start*10)}));await sleep(1200);if(!live())return;
+    api.go();let seen=0;
+    watch=setInterval(()=>{if(!live()){clearInterval(watch);return;}const p=api.plan,l=p.log.at(-1);
+      if(p.year>seen&&l){seen=p.year;say(t('demo.year',{y:l.year,r:Math.round(l.riders),a:Math.round(10*l.after.reduce((s2,v)=>s2+v,0)/l.after.length),t:Math.round(p.total)}));}
+      if(p.done){clearInterval(watch);say(t('demo.done',{t:Math.round(p.total),tier:tierName(k),n:pl.tiers[j]}));stopDemo(true);}},250);
+  }
+  window.addEventListener('tl:lang',texts);
+  texts();
+  root.TL_METRO_DEMO_PLAY=play;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><!-- AI demo (temporary) --></body></html>

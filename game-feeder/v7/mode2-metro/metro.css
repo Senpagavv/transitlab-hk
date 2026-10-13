@@ -89,3 +89,4 @@ table.result{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nu
 table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:right;padding:2px 4px 6px}
 table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
 table.result th:first-child,table.result td:first-child{text-align:left}
+.maplegend .lk.walk{background:radial-gradient(circle,var(--s-ink3) 2px,transparent 2.5px) 0 50%/7px 8px repeat-x;opacity:.8}

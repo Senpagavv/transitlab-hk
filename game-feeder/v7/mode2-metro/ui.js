@@ -44,7 +44,7 @@
     const busy=y.est.flatMap(e=>e.to.map(x=>x.metro)).map((m,k)=>[m,k]).filter(([m])=>m>=1).sort((a,b)=>b[0]-a[0]).slice(0,4).map(([,k])=>k);
     let j=0;
     for(const e of y.est)for(const x of e.to){const o=D.origins[e.i],d=D.destinations[x.k],{d:path,mid}=curve(o.cell,d.cell,j),w=1.5+x.go/4,on=sel===j;
-      desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:.28,'stroke-linecap':'round'});
+      desire+=svg('path',{d:path,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.5:sel>=0?.12:x.byFoot?.4:.28,'stroke-linecap':'round','stroke-dasharray':x.byFoot?`0.1 ${(w+6).toFixed(1)}`:''});
       if(x.metro>.5)desire+=svg('path',{d:path,fill:'none',stroke:C.metro,'stroke-width':(w*x.metro/x.go).toFixed(1),'stroke-opacity':sel>=0&&!on?.25:.85,'stroke-linecap':'round'});
       if(on)labels+=pill(mid[0],mid[1],t('m.dlFull',{g:R(x.go),b:R(x.before),m:R(x.metro)}),x.metro>.5?C.metro:C.ink2,12.5);
       else if(sel<0&&busy.includes(j))labels+=pill(mid[0],mid[1],t('m.dl',{g:R(x.go),m:R(x.metro)}),C.metro,12);
@@ -132,9 +132,9 @@
       let acc=0,bacc=0,ticks='';const bars=seg.map(s=>{const el=`<i style="flex:${s.v.toFixed(3)};background:${s.c}"></i>`;bacc+=s.b;if(bacc<.999)ticks+=`<u style="left:${(100*bacc).toFixed(1)}%"></u>`;return el;}).join('');
       w+=`<div class="wr"><span class="xn">${nameO(e.i)}</span><span class="wbar">${bars}${ticks}</span><b>${R(100*(n-e.nearby)/n)}%</b></div>`;});
     $('whereBox').innerHTML=w+`<p class="hbnote">${t('m.whereNote',{a:sw(DCOL(D.destinations[0].kind))+shortD(0),b:sw(DCOL(D.destinations[1].kind))+shortD(1),c:sw(C.ink3)+t('m.nearbyName')})}</p>`;
-    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`,k=0;
-    for(const e of y.est)for(const x of e.to){tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''}"><td>${nameO(e.i)}<small>→ ${shortD(x.k)}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.car}</td>`+
-      `<td>${x.trip?`${x.trip.blocks}<small>${x.trip.walkA}+${P.wait}+${x.trip.pass}+${x.trip.walkB}${x.trip.crowd?'+'+x.trip.crowd:''}</small>`:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b>${x.tenths?`<small>${t('m.tenths',{n:x.tenths})}×${t('m.tenths',{n:tenth(e.aware)})}</small>`:''}</td></tr>`;k++;}
+    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tAlt')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`,k=0;
+    for(const e of y.est)for(const x of e.to){tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''}"><td>${nameO(e.i)}<small>→ ${shortD(x.k)}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.alt}<small>${t(x.byFoot?'m.byFoot':'m.byCar')}</small></td>`+
+      `<td>${x.trip?`${x.trip.blocks}<small>${P.walkPer*x.trip.walkA}+${P.wait}+${x.trip.pass}+${P.walkPer*x.trip.walkB}${x.trip.crowd?'+'+x.trip.crowd:''}</small>`:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b>${x.tenths?`<small>${t('m.tenths',{n:x.tenths})}×${t('m.tenths',{n:tenth(e.aware)})}</small>`:''}</td></tr>`;k++;}
     $('trips').innerHTML=tb+'</tbody>';
   }
   function render(){draw();side();}
@@ -142,7 +142,7 @@
     $('board').setAttribute('viewBox',`${x0} ${y0} ${x1-x0} ${y1-y0}`);}catch(e){}}
   function texts(){
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
-    const v={w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
+    const v={wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
       sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction,e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2,d0:shortD(0),d1:shortD(1)};
     $('rules').innerHTML=['m.r0','m.r1','m.r2','m.r3','m.r4','m.r5'].map(k=>`<li>${t(k,v)}</li>`).join('');
     $('infoBody').innerHTML=t('m.info',v);$('ivBody').innerHTML=t('iv.m2.body',v);
@@ -239,6 +239,10 @@
   if(q.get('tool'))tool=q.get('tool');if(q.get('sel'))sel=+q.get('sel');
   texts();fit();render();
   if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
-  window.TL_METRO={plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,riders:plan.now().riders}),
+  // for the AI demo (demo.js): set a plan up step by step, then open it
+  const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;fx=null;$('yearCard').classList.remove('on');render();},
+    extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
+    train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
+  window.TL_METRO={api,plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,riders:plan.now().riders}),
     cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();
