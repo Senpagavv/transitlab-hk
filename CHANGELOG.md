@@ -6,7 +6,7 @@
 
 ## 2026-10-13
 
-### 17:58 · `待补` 接驳巴士 v7.1：模式 1 每关加「AI 示范」（临时） / Feeder v7.1: AI demo of each score line (temporary)
+### 17:58 · `7d02a8e` 接驳巴士 v7.1：模式 1 每关加「AI 示范」（临时） / Feeder v7.1: AI demo of each score line (temporary)
 - **改了什么**：`bots/v7_demo_plans.js` 为 4 关 × 过关 / 高分 / 大师各算一套打法（写进 `v7/mode1-bus/demo-plans.js`）；`v7/mode1-bus/demo.js` 在游戏里自动重演、逐步说明为什么这样摆和挪；`ui.js` 只加几行可删的接口。
 - **为什么**：发起人要看 AI 是怎样拿到每条分数线的，借此判断第一关要怎样再简化；以后多半删除，所以做成可整块拿掉（方法见 `v7/README.md`）。
 - **验证**：浏览器里 12 套示范全部真跑，得分与机器人一致；27 项规则检查通过。
