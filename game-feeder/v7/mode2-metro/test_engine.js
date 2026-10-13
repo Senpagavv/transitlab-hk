@@ -1,50 +1,79 @@
 'use strict';
-// Rule checks for v7 mode 2 «the metro», six years with the experience constant. Run: node test_engine.js
+// Rule checks for v7 mode 2 «the metro», build once and watch it grow. Run: node test_engine.js
 const assert=require('node:assert/strict');
-const M=require('./engine.js'),{Plan,D,P,evaluate,nextExp,walk,same}=M;
+const M=require('./engine.js'),{Plan,D,P,year,spread,metroTrip,carBlocks,split,walk}=M;
 let passed=0;function test(name,fn){fn();passed++;console.log('ok',name);}
-const LINE=[[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[8,3],[8,4],[9,4],[9,5],[9,6],[9,7],[10,7],[11,7],[12,7],[12,6],[12,5]],ST=[[2,2],[7,2],[9,6],[12,5]];
-function open(line=LINE,st=ST){const p=new Plan();for(const c of line)assert(p.extend(c),'extend '+c);for(const s of st)assert(p.toggleStation(s),'station '+s);return p;}
-test('Year 0: the line starts anywhere, grows only from an end, never revisits; stations on it; money pays for all of it',()=>{
+// 天耀邨 east to 洪水橋, down and on to 元朗市中心; three stations, two trains
+const LINE=[[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[7,3],[7,4],[8,4],[9,4],[10,4],[11,4],[12,4],[13,4]],ST=[[2,2],[7,2],[13,4]];
+function build(line=LINE,st=ST,trains=2){const p=new Plan();for(const c of line)assert(p.extend(c),'extend '+c);for(const s of st)assert(p.toggleStation(s),'station '+s);
+  for(let k=1;k<trains;k++)assert(p.addTrain());return p;}
+const near=(a,b,e=1e-9)=>assert(Math.abs(a-b)<e,`${a} ≠ ${b}`);
+test('Planning: the line starts anywhere and grows from an end; stations on it; trains; all within the budget',()=>{
   const p=new Plan();assert(p.extend([3,3]));assert(p.extend([4,3]));assert(p.extend([2,3]));
   assert(!p.extend([6,3])&&!p.extend([3,3])&&!p.extend([3,4]));assert(p.shorten([2,3]));assert.deepEqual(p.line,[[3,3],[4,3]]);
-  assert(!p.toggleStation([5,3]));assert(p.toggleStation([4,3]));assert.equal(p.money,P.budget-2*P.lineCost-P.stationCost);
-  assert(p.shorten([4,3]));assert.equal(p.stations.length,0);assert.equal(p.money,P.budget-P.lineCost);
-  const q=open();assert.equal(q.money,0);assert(!q.extend([1,2])&&!q.addTrain(),'nothing left to spend');
+  assert(!p.toggleStation([5,3]));assert(p.toggleStation([4,3]));assert(p.addTrain());
+  assert.equal(p.money,P.budget-2*P.lineCost-P.stationCost-P.trainCost);
+  assert(p.shorten([4,3]));assert.equal(p.stations.length,0);assert(p.removeTrain());assert(!p.removeTrain(),'one train always');
+  assert.equal(p.money,P.budget-P.lineCost);
+  const q=build();assert.equal(q.money,P.budget-LINE.length*P.lineCost-ST.length*P.stationCost-P.trainCost);
+  while(q.canTrain())q.addTrain();assert(!q.addTrain()&&q.money<P.trainCost,'never over budget');
 });
-test('Tenths = blocks saved + the estate’s experience; a trip = walk + wait + stations passed + walk',()=>{
-  const p=open(),ev=p.evaluate();
-  for(const r of ev.rows){assert.equal(r.car,walk(D.origins[r.i].cell,D.destinations[r.k].cell)+2);if(r.metro===null)continue;
-    assert.equal(r.metro,r.walkA+P.wait+r.pass+r.walkB);assert.equal(r.exp,P.exp.start);
-    assert.equal(r.tenths,r.save>0?Math.max(0,Math.min(10,r.save+r.exp)):0);assert.equal(r.riders,Math.round(r.people*r.tenths/10));}
-  const better=evaluate(p.line,p.stations,D.origins.map(()=>2),1);assert(better.riders>ev.riders,'more experience, more riders');
+test('Built once: after opening nothing changes; back to planning keeps the plan and clears the years',()=>{
+  const p=build(),line=JSON.stringify(p.line);assert(!new Plan().canRun(),'needs 2 stations');
+  assert(p.runYear());assert(p.open);
+  assert(!p.extend([1,2])&&!p.shorten([2,2])&&!p.toggleStation([4,2])&&!p.addTrain()&&!p.removeTrain()&&!p.clear());
+  assert.equal(JSON.stringify(p.line),line);
+  p.rewind();assert.equal(p.year,0);assert.equal(p.total,0);assert.equal(p.log.length,0);assert.equal(JSON.stringify(p.line),line);
+  assert(p.aware.every(a=>a===P.aware.start));assert(p.extend([1,2]),'planning again');
 });
-test('Crowding: a section carries everyone riding through it; over trains × perTrain it is crowded',()=>{
-  const ev=evaluate(LINE,ST,D.origins.map(()=>3),1);
-  ev.load.forEach((n,j)=>{const want=ev.rows.filter(r=>r.riders&&Math.min(r.fx,r.tx)<=j&&j<Math.max(r.fx,r.tx)).reduce((a,r)=>a+r.riders,0);assert.equal(n,want);assert.equal(ev.crowded[j],n>P.perTrain);});
-  assert(ev.crowded.some(Boolean),'full experience on one train is crowded');
-  const two=evaluate(LINE,ST,D.origins.map(()=>3),4);assert(!two.crowded.some(Boolean),'four trains are not');
+test('Blocks: metro = walk + wait + stations passed + walk (fastest pair); car = blocks apart + parking',()=>{
+  const p=build();
+  for(let i=0;i<D.origins.length;i++)for(let k=0;k<D.destinations.length;k++){
+    assert.equal(carBlocks(i,k),walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2));
+    const t=metroTrip(i,k,p.line,p.stations);assert.equal(t.blocks,t.walkA+P.wait+t.pass+t.walkB);
+    p.stations.forEach((a,ia)=>p.stations.forEach((z,iz)=>{if(ia!==iz)
+      assert(t.blocks<=walk(D.origins[i].cell,a)+P.wait+Math.abs(iz-ia)-1+walk(z,D.destinations[k].cell),'no faster pair');}));}
+  const t=metroTrip(0,1,p.line,p.stations);assert.deepEqual([t.walkA,t.pass,t.walkB,t.blocks],[0,0,0,P.wait],'天耀邨 → 洪水橋: on the doorstep');
+  assert.equal(metroTrip(0,0,p.line,p.stations).pass,1,'天耀邨 → 元朗 passes 洪水橋');
 });
-test('Experience: +1 a year in comfort, −1 when more than a third rode crowded, unchanged with no riders, within −3…+3',()=>{
-  const ev=evaluate(LINE,ST,D.origins.map(()=>0),1),nx=nextExp(ev,D.origins.map(()=>0));
-  D.origins.forEach((o,i)=>{const rs=ev.rows.filter(r=>r.i===i&&r.riders),n=rs.reduce((a,r)=>a+r.riders,0);
-    if(!n)assert.equal(nx[i],0);else{const bad=rs.filter(r=>r.crowded).reduce((a,r)=>a+r.riders,0)/n;assert.equal(nx[i],bad>P.crowdShare?-1:1);}});
-  assert.deepEqual(nextExp(evaluate(LINE,ST,D.origins.map(()=>3),9),D.origins.map(()=>3)).filter(x=>x>3),[]);
+test('Where to go: pull = attraction − blocks; shares (and «nearby») add up to everyone',()=>{
+  const s=split(0,[5,30]);assert.deepEqual(s.pulls,[D.destinations[0].attraction-5,0]);near(s.shares[0]+s.shares[1]+s.nearby,1);
+  near(s.shares[0],(D.destinations[0].attraction-5)/(D.destinations[0].attraction-5+P.nearby));
+  for(const e of build().now().est){near(e.to.reduce((a,x)=>a+x.go,0)+e.nearby,e.n);near(e.to.reduce((a,x)=>a+x.before,0)+e.nearbyBefore,e.n);}
 });
-test('A year: the fares come in (1 per fare riders), experience moves, what is built can no longer be removed',()=>{
-  const p=open(),ev=p.evaluate(),r=p.runYear();
-  assert.equal(r.riders,ev.riders);assert.equal(p.money,Math.floor(ev.riders/P.fare));assert.equal(p.total,ev.riders);assert.deepEqual(p.exp,nextExp(ev,D.origins.map(()=>P.exp.start)));
-  assert(!p.toggleStation([2,2]),'a built station stays');assert(!p.shorten([2,2])&&!p.shorten([12,5]),'built ends stay');assert(!p.clear());
-  // this year's additions can still be taken back
-  const m=p.money;if(p.extend([1,2])){assert(p.shorten([1,2]));assert.equal(p.money,m);}
+test('How to go: tenths = blocks saved (0–10); only those who know the metro ride it or change where they go',()=>{
+  const p=build(),y=p.now();
+  for(const e of y.est)for(const x of e.to){assert.equal(x.tenths,Math.min(10,x.save));assert.equal(x.save,x.trip?Math.max(0,x.car-x.trip.blocks):0);
+    near(x.metro,x.knowGo*x.tenths/10);near(x.knowGo,e.n*e.aware*split(e.i,e.to.map(z=>z.trip?Math.min(z.car,z.trip.blocks):z.car)).shares[x.k]);
+    near(x.dontGo,e.n*(1-e.aware)*split(e.i,e.to.map(z=>z.car)).shares[x.k]);}
+  const nobody=year(p.line,p.stations,D.origins.map(()=>0),p.trains);assert.equal(nobody.riders,0);
+  nobody.dest.forEach(d=>near(d.go,d.before));
 });
-test('Six years and done; the score is every year’s riders added up',()=>{
-  const p=open();let sum=0;while(!p.done){sum+=p.evaluate().riders;p.runYear();}
-  assert.equal(p.year,P.years);assert.equal(p.total,sum);assert.equal(p.runYear(),null);
+test('Word of mouth: next year’s aware = aware + min(1, spread × share riding) × those who don’t know; it only grows',()=>{
+  const p=build(),y=p.now(),nx=spread(y,p.aware);
+  y.est.forEach((e,i)=>{near(nx[i],Math.min(1,p.aware[i]+Math.min(1,P.aware.spread*e.metro/e.n)*(1-p.aware[i])));assert(nx[i]>=p.aware[i]);});
+  const r=p.simulate();for(const l of r.log)l.after.forEach((a,i)=>assert(a>=l.before[i]));
+  for(let k=1;k<r.log.length;k++)if(!r.log[k-1].crowdedSections)assert(r.log[k].riders>=r.log[k-1].riders-1e-9,'riders climb while nothing is crowded');
 });
-test('The score lines (bots/v7_metro_years.js): never spending stays under pass; trains when crowded clears it; master needs more',()=>{
-  const lazy=open();while(!lazy.done)lazy.runYear();assert(lazy.total<P.target,`never spending ${lazy.total}`);
-  const tr=open();while(!tr.done){while(tr.evaluate().crowded.some(Boolean)&&tr.canTrain())tr.addTrain();tr.runYear();}
-  assert(tr.total>=P.target&&tr.total<P.highScore,`trains only ${tr.total}`);
+test('The line draws people: everyone knowing it, a destination it reaches gets more visitors than before; an S-curve',()=>{
+  const pot=build().potential();assert(pot.dest.some(d=>d.go>d.before+5),'induced trips');
+  const r=build().simulate();assert(r.log.at(-1).riders>2*r.log[0].riders,'year 8 well above year 1');
+  assert(r.log.at(-1).riders<=pot.riders+1e-9,'never above the potential');
 });
-console.log(passed,'checks passed');
+test('Crowding: over trains × perTrain, next year a trip through it counts crowdBlocks more (once); trains add room',()=>{
+  const p=build(LINE,ST,1),saved=P.perTrain;P.perTrain=5;
+  try{const y=p.now();assert(y.crowded.some(Boolean),'crowded with 5 a train');
+    assert(p.runYear().crowdedSections>0);let seen=0;
+    for(const e of p.now().est)for(const x of e.to)if(x.trip){let hit=false;for(let j=Math.min(x.trip.fx,x.trip.tx);j<Math.max(x.trip.fx,x.trip.tx);j++)hit=hit||y.crowded[j];
+      assert.equal(x.trip.crowd,hit?P.crowdBlocks:0);if(hit)seen++;}
+    assert(seen>0,'some trips pay for the crowding');
+    const one=build(LINE,ST,1).now(),q=build(LINE,ST,1);while(q.canTrain())q.addTrain();
+    assert(q.now().cap>one.cap);near(q.now().load.reduce((a,b)=>a+b,0),one.load.reduce((a,b)=>a+b,0));}
+  finally{P.perTrain=saved;}
+});
+test('Score: the years’ daily riders added up; simulate() and year-by-year agree, deterministic; tiers in order',()=>{
+  const p=build(),s=p.simulate();near(s.total,s.log.reduce((a,l)=>a+l.riders,0));assert.equal(s.log.length,P.years);assert(s.done);
+  while(!p.done)p.runYear();near(p.total,s.total);near(build().simulate().total,s.total);
+  assert(P.target<P.highScore&&P.highScore<P.masterScore);
+});
+console.log(`\n${passed} checks passed`);

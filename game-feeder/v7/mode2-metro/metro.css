@@ -57,3 +57,35 @@
 .maplegend .lk.crowd{background:var(--s-bad)}
 #trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
 .mapplate .toast{z-index:5}
+/* v7.5 · build once, watch it grow: the plan box locks, the year card, awareness and where-people-go bars */
+#planBox.locked{opacity:.45;pointer-events:none}
+.yrow{margin-top:8px;gap:8px}
+.yrow .btn[hidden]{display:none}
+.ychart{position:relative}
+.ychart .ypot{position:absolute;left:0;right:0;border-top:1.5px dashed var(--s-metro);opacity:.7;pointer-events:none}
+.ychart .ypot span{position:absolute;right:0;top:-15px;font:500 10px var(--s-mono);color:var(--s-metro);background:var(--s-panel);padding:0 3px}
+.yearcard{position:absolute;top:14px;right:16px;min-width:230px;max-width:330px;display:flex;flex-direction:column;gap:3px;padding:10px 14px;border-radius:8px;
+  background:var(--s-panel);border:1.5px solid var(--s-metro);box-shadow:0 6px 24px rgb(0 0 0 / .12);font-size:13px;line-height:1.5;color:var(--s-ink2);
+  opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:4}
+.yearcard.on{opacity:1;transform:none}
+.yearcard.warn{border-color:var(--s-bad)}
+.yearcard>b{font:600 15px 'Geist',sans-serif;color:var(--s-metro)}
+.yearcard span b{color:var(--s-ink);font-family:var(--s-mono)}
+#awareBox .xr{grid-template-columns:3.6em auto 2.8em 1fr}#awareBox .xr b,#awareBox .xr em{white-space:nowrap}
+.abar{display:flex;gap:2px}.abar i{width:9px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.abar i.on{background:var(--s-accent);box-shadow:none}
+.wr{display:grid;grid-template-columns:3.6em 1fr 2.6em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
+.wr .xn{color:var(--s-ink2)}
+.wr b{font:600 12.5px var(--s-mono);text-align:right}
+.wbar{position:relative;display:flex;height:12px;border-radius:3px;overflow:hidden;background:var(--s-raise)}
+.wbar i{display:block;height:100%;transition:flex .6s}
+.wbar i:nth-child(1){opacity:.85}.wbar i:nth-child(2){opacity:.85}.wbar i:nth-child(3){opacity:.35}
+.wbar u{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--s-ink);opacity:.75}
+.hbnote{font-size:11.5px;line-height:1.55;color:var(--s-ink3);margin:8px 0 0}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px;vertical-align:0}
+.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12.5px;color:var(--s-ink2)}
+.maplegend .lk.aware{background:repeating-linear-gradient(90deg,var(--s-accent) 0 4px,transparent 4px 6px);height:8px}
+table.result{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px;margin:8px 0}
+table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:right;padding:2px 4px 6px}
+table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
+table.result th:first-child,table.result td:first-child{text-align:left}

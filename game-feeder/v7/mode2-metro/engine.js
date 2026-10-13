@@ -1,101 +1,100 @@
 (function(root) {
   'use strict';
   const D=typeof module!=='undefined'?require('./data.js'):root.METRO_DATA;
-  // v7 · mode 2 «the metro» — six years of one line (2026-10-13: the static version, commit b36f747, was too quick to
-  // solve; the lead asked for the experience constant to iterate). Everything is counted in blocks:
-  //   a metro trip = walk to a station + wait 2 + 1 for every station passed + walk from the station; the car trip is
-  //   the blocks apart + 2 to park. Tenths who switch = blocks saved + the estate's EXPERIENCE (0…10).
-  //   Experience (the mode constant of a choice model, made visible): each estate starts at `exp.start` (a new line,
-  //   nobody knows it). After every year it moves 1 step: +1 if the estate's riders rode in comfort, −1 if more than a
-  //   third of them sat in a crowded section (between `exp.min` and `exp.max`). An estate nobody of which rides
-  //   doesn't change.
-  //   Crowding: every section of line (between two neighbouring cells) carries everyone whose ride passes it; it holds
-  //   `trains` × `perTrain` a day. Over that, the section is crowded.
-  //   Money: you open with `budget`. After each year the fares bring 1 for every `fare` riders a day. Between years you
-  //   may extend the line at either end, add stations, add trains — never remove what is built.
-  //   Score: the riders of all years added up (car trips saved).
-  const P={wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,fare:10,budget:30,years:6,crowdShare:1/3,
-    exp:{start:-3,min:-3,max:3},target:0,highScore:0,masterScore:0};
+  // v7 · mode 2 «the metro» — build once, then watch it grow (2026-10-13, third rule set; the lead: what changes over
+  // the years is WHERE people go — a destination that becomes easy to reach draws more people, and the metro is
+  // discovered by word of mouth). Everything is counted in blocks; five rules:
+  //   1 where to go: a destination's pull = its attraction − the blocks to get there (car or metro, whichever is
+  //     quicker); people split over the destinations and «somewhere nearby» (a fixed pull) in proportion to pull.
+  //   2 how to go: of those going somewhere, every block the metro saves on the car brings one in ten to the metro.
+  //   3 only people who know the metro choose this way; the others drive to where they always went (car-only pulls).
+  //     At the opening `aware.start` of every estate know it.
+  //   4 word of mouth: each year, whatever share of an estate rides the metro, that share of the people who don't
+  //     know it yet hear of it (× `aware.spread`).
+  //   5 crowding: a section (between two neighbouring cells) carries `trains` × `perTrain` a day; a metro trip that
+  //     runs through a crowded section counts `crowdBlocks` more the year after (once, however many sections).
+  // A trip by metro = walk to a station + wait + 1 for every station passed + walk from the station; by car = the
+  // blocks apart + the destination's parking and access (carExtra). The line, its stations and its trains are bought once, before opening, within the
+  // budget. Score: metro riders a day, every year added up.
+  const P={wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:2,
+    aware:{start:.2,spread:1.5},nearby:15,target:0,highScore:0,masterScore:0};
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
   const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
   const adj=(a,b)=>walk(a,b)===1;
-  function reset(){for(const k of ['wait','lineCost','stationCost','trainCost','perTrain','fare','budget','years','crowdShare'])if(D[k]!==undefined)P[k]=D[k];
-    if(D.exp)P.exp={...P.exp,...D.exp};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
+  function reset(){for(const k of ['wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby'])if(D[k]!==undefined)P[k]=D[k];
+    if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
   reset();
-  // every desire line: from estate i to destination k, people a day and the car trip in blocks
-  function trips(){const out=[];D.origins.forEach((o,i)=>o.to.forEach((n,k)=>{if(n>0)out.push({i,k,people:n,car:D.car[i][k]});}));return out;}
-  // the best metro trip for one desire line: the station pair (board, alight) with the fewest blocks
-  function best(trip,line,stations){
-    const o=D.origins[trip.i].cell,d=D.destinations[trip.k].cell,order=stations.map(s=>({x:line.findIndex(c=>same(c,s)),c:s})).sort((a,b)=>a.x-b.x);
+  // the fastest metro trip from estate i to destination k: the station pair with the fewest blocks (sections that were
+  // crowded last year add crowdBlocks to a trip that runs through them — once, however many)
+  function metroTrip(i,k,line,stations,crowdedBefore=[]){
+    const o=D.origins[i].cell,d=D.destinations[k].cell,order=stations.map(s=>({x:line.findIndex(c=>same(c,s)),c:s})).sort((a,b)=>a.x-b.x);
     let b=null;
     order.forEach((a,ia)=>order.forEach((z,iz)=>{if(ia===iz)return;
-      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,metro=wa+P.wait+pass+wz;
-      if(!b||metro<b.metro)b={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,metro};}));
+      const lo=Math.min(a.x,z.x),hi=Math.max(a.x,z.x);let crowd=0;for(let j=lo;j<hi;j++)if(crowdedBefore[j])crowd=P.crowdBlocks;
+      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=wa+P.wait+pass+wz+crowd;
+      if(!b||blocks<b.blocks)b={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,crowd,blocks};}));
     return b;
   }
-  // a year with this line, these stations, these trains and this experience: every desire line, every section's load
-  function evaluate(line,stations,exp=D.origins.map(()=>0),trains=1){
-    const rows=trips().map(tr=>{const b=best(tr,line,stations),e=exp[tr.i];
-      if(!b)return{...tr,metro:null,save:0,exp:e,tenths:0,riders:0};
-      const save=Math.max(0,tr.car-b.metro),tenths=Math.max(0,Math.min(10,save>0?save+e:0));
-      return{...tr,...b,save,exp:e,tenths,riders:Math.round(tr.people*tenths/10)};});
-    // section j joins line[j] and line[j+1]
+  // by car: the blocks apart + the destination's parking and access (`carExtra`, 2 if not given)
+  const carBlocks=(i,k)=>walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2);
+  // shares of estate i over the destinations and «nearby» (last), given the blocks to each destination
+  function split(i,blocks){const pulls=D.destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
+    return{pulls,shares:pulls.map(p=>p/all),nearby:P.nearby/all};}
+  // one year: who knows the metro, where everyone goes and how, the load on every section
+  function year(line,stations,aware,trains,crowdedBefore=[]){
+    const est=D.origins.map((o,i)=>{
+      const car=D.destinations.map((d,k)=>carBlocks(i,k)),trip=D.destinations.map((d,k)=>stations.length>=2?metroTrip(i,k,line,stations,crowdedBefore):null);
+      const fast=D.destinations.map((d,k)=>trip[k]?Math.min(car[k],trip[k].blocks):car[k]);
+      const before=split(i,car),now=split(i,fast),a=aware[i],n=o.people;
+      const to=D.destinations.map((d,k)=>{const save=trip[k]?Math.max(0,car[k]-trip[k].blocks):0,tenths=Math.min(10,save);
+        const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k];
+        return{k,car:car[k],trip:trip[k],save,tenths,before:n*before.shares[k],knowGo,dontGo,go:knowGo+dontGo,metro:knowGo*tenths/10,pull:now.pulls[k],pullBefore:before.pulls[k]};});
+      const metro=to.reduce((s,x)=>s+x.metro,0);
+      return{i,n,aware:a,to,nearby:n*(a*now.nearby+(1-a)*before.nearby),nearbyBefore:n*before.nearby,metro,share:metro/n};});
     const load=Array(Math.max(0,line.length-1)).fill(0),cap=trains*P.perTrain;
-    for(const r of rows)if(r.riders)for(let j=Math.min(r.fx,r.tx);j<Math.max(r.fx,r.tx);j++)load[j]+=r.riders;
-    const crowded=load.map(n=>n>cap);
-    for(const r of rows){r.crowded=false;if(r.riders)for(let j=Math.min(r.fx,r.tx);j<Math.max(r.fx,r.tx);j++)if(crowded[j]){r.crowded=true;break;}}
-    const riders=rows.reduce((a,r)=>a+r.riders,0);
-    return{rows,riders,load,cap,crowded,people:rows.reduce((a,r)=>a+r.people,0)};
+    for(const e of est)for(const x of e.to)if(x.metro&&x.trip)for(let j=Math.min(x.trip.fx,x.trip.tx);j<Math.max(x.trip.fx,x.trip.tx);j++)load[j]+=x.metro;
+    const crowded=load.map(v=>v>cap+1e-9),riders=est.reduce((s,e)=>s+e.metro,0);
+    const dest=D.destinations.map((d,k)=>({k,before:est.reduce((s,e)=>s+e.to[k].before,0),go:est.reduce((s,e)=>s+e.to[k].go,0),metro:est.reduce((s,e)=>s+e.to[k].metro,0)}));
+    return{est,dest,load,cap,crowded,riders,people:D.origins.reduce((s,o)=>s+o.people,0)};
   }
-  // how each estate's experience moves after a year
-  function nextExp(ev,exp){return D.origins.map((o,i)=>{const rs=ev.rows.filter(r=>r.i===i&&r.riders),n=rs.reduce((a,r)=>a+r.riders,0);
-    if(!n)return exp[i];const bad=rs.filter(r=>r.crowded).reduce((a,r)=>a+r.riders,0)/n;
-    return Math.max(P.exp.min,Math.min(P.exp.max,exp[i]+(bad>P.crowdShare?-1:1)));});}
-  // the game: year 0 is planning (draw freely within the budget); then each year runs, the fares come in, and you may
-  // only add to what is built
+  // word of mouth: the share of the estate on the metro tells that share of those who don't know yet
+  const spread=(y,aware)=>y.est.map((e,i)=>Math.min(1,aware[i]+Math.min(1,P.aware.spread*e.share)*(1-aware[i])));
+  // the plan: bought once before opening; then the years run
   class Plan {
-    constructor(){Object.assign(this,{line:[],stations:[],trains:1,money:P.budget,year:0,exp:D.origins.map(()=>P.exp.start),
-      builtLine:0,builtStations:[],log:[],total:0,done:false});}
+    constructor(){Object.assign(this,{line:[],stations:[],trains:1,money:P.budget,year:0,aware:D.origins.map(()=>P.aware.start),crowded:[],log:[],total:0,done:false});}
     get open(){return this.year>0;}
-    cost(){return this.open?0:this.line.length*P.lineCost+this.stations.length*P.stationCost+(this.trains-1)*P.trainCost;}
-    left(){return this.money;}
     inside(c){return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows;}
     onLine(c){return this.line.some(x=>same(x,c));}
     isStation(c){return this.stations.some(x=>same(x,c));}
-    built(c){return this.open&&(this.builtStations.some(x=>same(x,c)));}
-    canExtend(c){if(this.done||!this.inside(c)||this.onLine(c)||this.money<P.lineCost)return false;
-      if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
-    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());
-      this.money-=P.lineCost;return true;}
+    canExtend(c){if(this.open||!this.inside(c)||this.onLine(c)||this.money<P.lineCost)return false;if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
+    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());this.money-=P.lineCost;return true;}
     isEnd(c){return this.line.length>0&&(same(c,this.line[0])||same(c,this.line.at(-1)));}
-    // an end cell comes off only while it isn't built yet (in year 0 anything; later only this year's additions)
-    canShorten(c){if(!this.isEnd(c)||this.done)return false;if(!this.open)return true;const i=this.line.findIndex(x=>same(x,c));return !this.builtCells().has(key(this.line[i]));}
-    shorten(c){if(!this.canShorten(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else{this.line.shift();}
+    canShorten(c){return !this.open&&this.isEnd(c);}
+    shorten(c){if(!this.canShorten(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else this.line.shift();
       if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;}this.money+=P.lineCost;return true;}
-    builtCells(){return new Set(this.open?this.builtSet:[]);}
-    canStation(c){return !this.done&&this.onLine(c)&&!this.isStation(c)&&this.money>=P.stationCost;}
-    toggleStation(c){
-      if(this.isStation(c)){if(this.built(c)||this.done)return false;this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;return true;}
+    canStation(c){return !this.open&&this.onLine(c)&&!this.isStation(c)&&this.money>=P.stationCost;}
+    toggleStation(c){if(this.open)return false;if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;return true;}
       if(!this.canStation(c))return false;this.stations.push(c.slice());this.money-=P.stationCost;return true;}
-    canTrain(){return !this.done&&this.money>=P.trainCost;}
+    canTrain(){return !this.open&&this.money>=P.trainCost;}
     addTrain(){if(!this.canTrain())return false;this.trains++;this.money-=P.trainCost;return true;}
-    canUntrain(){return !this.done&&this.trains>(this.open?this.builtTrains:1);}
+    canUntrain(){return !this.open&&this.trains>1;}
     removeTrain(){if(!this.canUntrain())return false;this.trains--;this.money+=P.trainCost;return true;}
     clear(){if(this.open)return false;Object.assign(this,{line:[],stations:[],trains:1,money:P.budget});return true;}
-    evaluate(){return evaluate(this.line,this.stations,this.exp,this.trains);}
-    // what one more station / one less would do this year (the preview)
-    withStation(c){const s=this.isStation(c)?this.stations.filter(x=>!same(x,c)):[...this.stations,c];return evaluate(this.line,s,this.exp,this.trains);}
-    withTrains(n){return evaluate(this.line,this.stations,this.exp,n);}
-    // run a year: count it, collect the fares, move every estate's experience; what was planned is now built
+    // the coming year (or year 1 before opening)
+    now(){return year(this.line,this.stations,this.aware,this.trains,this.crowded);}
+    // what it would come to if everybody knew the metro and nothing were crowded (the line's potential)
+    potential(){return year(this.line,this.stations,D.origins.map(()=>1),this.trains,[]);}
+    withStation(c){const s=this.isStation(c)?this.stations.filter(x=>!same(x,c)):[...this.stations,c];return year(this.line,s,this.aware,this.trains,this.crowded);}
     canRun(){return !this.done&&this.stations.length>=2;}
     runYear(){if(!this.canRun())return null;
-      const ev=this.evaluate(),income=Math.floor(ev.riders/P.fare),before=this.exp.slice(),after=nextExp(ev,this.exp);
-      this.year++;this.total+=ev.riders;this.money+=income;this.exp=after;
-      this.builtSet=this.line.map(key);this.builtStations=this.stations.map(c=>c.slice());this.builtTrains=this.trains;
-      const entry={year:this.year,riders:ev.riders,income,before,after,trains:this.trains,crowdedSections:ev.crowded.filter(Boolean).length,stations:this.stations.length,line:this.line.length};
-      this.log.push(entry);if(this.year>=P.years)this.done=true;return{...entry,ev};}
-    copy(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));return p;}
+      const y=this.now(),before=this.aware.slice();this.year++;this.total+=y.riders;this.aware=spread(y,this.aware);this.crowded=y.crowded.slice();
+      const entry={year:this.year,riders:y.riders,before,after:this.aware.slice(),crowdedSections:y.crowded.filter(Boolean).length,dest:y.dest.map(d=>({go:d.go,metro:d.metro,before:d.before}))};
+      this.log.push(entry);if(this.year>=P.years)this.done=true;return{...entry,y};}
+    // back to the plan (to adjust it and run again)
+    rewind(){Object.assign(this,{year:0,aware:D.origins.map(()=>P.aware.start),crowded:[],log:[],total:0,done:false});}
+    // the whole run at once (bots, the «expected» line)
+    simulate(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));p.rewind();while(!p.done)p.runYear();return p;}
   }
-  const API={D,P,Plan,evaluate,nextExp,trips,best,walk,same,key,adj,reset};
+  const API={D,P,Plan,year,spread,metroTrip,carBlocks,split,walk,same,key,adj,reset};
   if(typeof module!=='undefined')module.exports=API;root.Metro=API;
 })(typeof window!=='undefined'?window:globalThis);
