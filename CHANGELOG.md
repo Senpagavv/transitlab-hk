@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-13
+
+### 16:51 · `待补` 方案：五个模式 + AI 生成关卡（给 Codex 评估） / Plan: five modes and AI-generated levels (for Codex review)
+- **改了什么**：新增 `docs/for-codex/2026-10-13-五模式与AI生成关卡.md`：发起人的想法（接驳主线、短期公交 / 长期地铁与站旁开发、五个模式、AI 生成关卡）与 Claude 的拆解（模式 × 场景 × 调节、五个引导关与「新界西北十年」故事、模式 4 聚合计算、难度五档、世界描述 v1、DeepSeek 低自由度工作流、排期、文件边界、给 Codex 的 C1–C5 任务与评估问题）。
+- **为什么**：发起人要先让 Codex 独立评估，再由两边今天并行开工、最后整合分工；周五早上定稿。
+- **验证**：文档；数据路径与字段已逐一核对（`zones-2026.geojson` 27 个字段、选址工具 14 个站）。
+
 ## 2026-10-12
 
 ### 21:21 · `b3b7d4b` 接驳巴士 v6.0：前五关 demo（第四关习惯与均衡、第五关不同人群） / Feeder v6.0: five-level demo (habit and equilibrium; different people)
