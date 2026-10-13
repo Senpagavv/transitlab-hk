@@ -1,0 +1,18 @@
+/* v7 · mode 2 «the metro» — only what this mode adds to shared/style.css */
+:root{--s-metro:#9A3B26}
+[data-theme="dark"]{--s-metro:#E0896B}
+.mbox{margin-top:10px;padding:10px 12px}
+.mbox h3{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;font:600 14px 'Geist',sans-serif}
+.mbox p{margin:4px 0;font-size:12.5px;line-height:1.6;color:var(--s-ink2)}
+.mbox .r{display:flex;justify-content:space-between;font-size:12.5px;margin-top:6px}
+.mbox .mnote{font-size:11.5px;color:var(--s-ink3)}
+.tsel{margin-top:4px}.tsel button{min-width:38px;font:600 13px var(--s-mono)}
+.tsel button:disabled{opacity:.3;cursor:default}
+#weeks{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12.5px}
+#weeks th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 5px;text-align:right}
+#weeks th:first-child,#weeks td:first-child{text-align:left}
+#weeks td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono)}
+#weeks tr.now td{background:var(--s-raise)}
+#weeks tr.next td{background:color-mix(in srgb,var(--s-warn) 12%,transparent)}
+#weeks tr.past{opacity:.5}
+#board .candidate,#board .stationhit{cursor:pointer}

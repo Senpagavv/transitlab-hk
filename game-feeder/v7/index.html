@@ -29,7 +29,7 @@
   <p class="lede" data-i18n="lc.lede">從一座車站開始，一層一層加上真實城市的規則：地鐵、塞車、地面巴士，最後是整個片區的沙盤。</p>
   <div class="modes">
     <a class="mode" id="m1" href="mode1-bus/index.html"><span class="n">MODE 01</span><b data-i18n="lc.m1">車站與步行</b><p data-i18n="lc.m1d">人願意走多遠、怎樣分去幾座站、站會不會爆。四關：朗屏（引導）、元朗南、粉嶺、大埔墟。</p><span class="st" data-i18n="lc.play">可以玩 →</span></a>
-    <div class="mode soon"><span class="n">MODE 02</span><b data-i18n="lc.m2">地鐵</b><p data-i18n="lc.m2d">站只能建一次、很貴；人要去不同的地方；習慣一週一週地變。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
+    <a class="mode" id="m2" href="mode2-metro/index.html"><span class="n">MODE 02</span><b data-i18n="lc.m2">地鐵</b><p data-i18n="lc.m2d">站只能建一次、很貴；人要去不同的地方；習慣一週一週地變。</p><span class="st" data-i18n="lc.draft">初稿 · 可以玩 →</span></a>
     <div class="mode soon"><span class="n">MODE 03</span><b data-i18n="lc.m3">路會塞</b><p data-i18n="lc.m3d">開車的人越多路越慢；有了地鐵，有人不再開車。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
     <div class="mode soon"><span class="n">MODE 04</span><b data-i18n="lc.m4">地面巴士</b><p data-i18n="lc.m4d">巴士便宜、靈活，但會被塞住；開短線接駁還是長線幹線，設不設巴士專線。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
     <div class="mode soon"><span class="n">MODE 05</span><b data-i18n="lc.m5">全融合沙盤</b><p data-i18n="lc.m5d">真實片區、站旁開發，城市跟著交通長；用一句話讓 AI 出題。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
@@ -51,10 +51,10 @@
     'lc.m3':L('路會塞','路会塞','Congestion'),'lc.m3d':L('開車的人越多路越慢；有了地鐵，有人不再開車。','开车的人越多路越慢；有了地铁，有人不再开车。','The more people drive, the slower the roads; with a metro, some stop driving.'),
     'lc.m4':L('地面巴士','地面巴士','Buses on the road'),'lc.m4d':L('巴士便宜、靈活，但會被塞住；開短線接駁還是長線幹線，設不設巴士專線。','巴士便宜、灵活，但会被塞住；开短线接驳还是长线干线，设不设巴士专线。','Buses are cheap and flexible but get stuck in traffic: short feeders or long trunk routes, bus lanes or not.'),
     'lc.m5':L('全融合沙盤','全融合沙盘','The whole city'),'lc.m5d':L('真實片區、站旁開發，城市跟著交通長；用一句話讓 AI 出題。','真实片区、站旁开发，城市跟着交通长；用一句话让 AI 出题。','A real district, development by the stations, a city that grows with its transport; ask the AI for a level in one sentence.'),
-    'lc.play':L('可以玩 →','可以玩 →','Play →'),'lc.soon':L('設計中','设计中','In design'),
+    'lc.play':L('可以玩 →','可以玩 →','Play →'),'lc.draft':L('初稿 · 可以玩 →','初稿 · 可以玩 →','Draft · play →'),'lc.soon':L('設計中','设计中','In design'),
     'lc.note':L('之後這一頁會換成全港波點地圖的入口（點進去，波點飛成棋盤）。','之后这一页会换成全港波点地图的入口（点进去，波点飞成棋盘）。','This page will become the dotted Hong Kong map entrance (click in and the dots fly into the board).')
   });I18N.apply();
   // the bundled launcher opens the bundled mode
-  if(/开始|%E5%BC%80%E5%A7%8B/.test(location.pathname))document.getElementById('m1').href='mode1-bus/模式1-车站与步行.html';})();
+  if(/开始|%E5%BC%80%E5%A7%8B/.test(location.pathname)){document.getElementById('m1').href='mode1-bus/模式1-车站与步行.html';document.getElementById('m2').href='mode2-metro/模式2-地铁.html';}})();
 </script>
 </body></html>
