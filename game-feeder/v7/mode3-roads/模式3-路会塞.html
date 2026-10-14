@@ -1366,7 +1366,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     const pts=[xy(from)],sp=[];let at=from;
     trip.legs.forEach((l,j)=>{const cells=railCells(trip.lines[j]),step=l.to>=l.from?1:-1;
       leg(pts,sp,at,cells[l.from],V.walk);at=cells[l.to];
-      for(let i=l.from+step;step>0?i<=l.to:i>=l.to;i+=step){const pos=xy(cells[i]),prev=cells[i-step],shared=sectionFor(prev,cells[i]);if(shared){if(prev[1]===cells[i][1])pos[1]-=6;else pos[0]-=6;}pts.push(pos);sp.push(V.rail);}});
+      for(let i=l.from+step;step>0?i<=l.to:i>=l.to;i+=step){const pos=xy(cells[i]);pts.push(pos);sp.push(V.rail);}});
     leg(pts,sp,at,to,V.walk);return{pts,sp};}
   function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
   function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
@@ -1454,7 +1454,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     const order=plan.stations.map(q=>({q,x:plan.line.findIndex(c=>same(c,q))})).sort((a,b)=>a.x-b.x);
     if(order.length>=2&&v.mode!=='nothing'){const a=order[0].x,b=order.at(-1).x,span=Math.max(1,b-a);
       for(let k=0;k<plan.trains;k++){const ph=(tm/1000*1.6+k*2*span/plan.trains)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.min(plan.line.length-1,Math.floor(pos)),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
-        let [x1,y1]=xy(c1),[x2,y2]=xy(c2);if(sectionFor(c1,c2)){if(c1[1]===c2[1]){y1-=6;y2-=6;}else{x1-=6;x2-=6;}}s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-21).toFixed(1)} ${(y1+(y2-y1)*f-6.5).toFixed(1)})">`+sprite(TRAIN,0,0,2.2,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
+        let [x1,y1]=xy(c1),[x2,y2]=xy(c2);s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-21).toFixed(1)} ${(y1+(y2-y1)*f-6.5).toFixed(1)})">`+sprite(TRAIN,0,0,2.2,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
     $('gDyn').innerHTML=s;
   }
   // the map and its overlays follow the preview; the side panels only the plan itself
@@ -1543,13 +1543,13 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     for(const el of [...g.querySelectorAll('text')])if(el.getAttribute('font-family')==='Geist Mono,monospace')el.remove();
     let out='',y=v.y,ghost=v.mode==='nothing';
     if(showCars)for(const s of G.sections){const load=y.roadLoad[s.id]||0,ratio=load/s.cap,congestion=ratio*ratio,col=congestion<.5?C.ink3:congestion<=1?C.warn:C.jam;
-      out+=svg('path',{d:shifted(s.a,s.b,6),fill:'none',stroke:col,'stroke-width':Math.max(1.3,Math.min(7,1.2+load/35)),'stroke-linecap':'round','stroke-opacity':.9});}
+      out+=svg('path',{d:shifted(s.a,s.b,9),fill:'none',stroke:col,'stroke-width':Math.max(1.3,Math.min(7,1.2+load/35)),'stroke-linecap':'round','stroke-opacity':.9});}
     if(showTransit){
-      for(const l of G.lines){const ll=y.lines.find(q=>q.name===l.name);for(let j=0;j<l.cells.length-1;j++){const s=sectionFor(l.cells[j],l.cells[j+1]),off=s? -6:0,load=ll&&ll.load[j]||0;
+      for(const l of G.lines){const ll=y.lines.find(q=>q.name===l.name);for(let j=0;j<l.cells.length-1;j++){const s=sectionFor(l.cells[j],l.cells[j+1]),off=0,load=ll&&ll.load[j]||0;
         out+=svg('path',{d:shifted(l.cells[j],l.cells[j+1],off),fill:'none',stroke:l.color,'stroke-width':Math.max(2.4,Math.min(8,2.3+load/24)),'stroke-linecap':'round','stroke-linejoin':'round','stroke-opacity':.9});}
         l.stations.forEach(c=>{const [x,yy]=xy(c);out+=svg('circle',{cx:x,cy:yy,r:5.5,fill:C.panel,stroke:l.color,'stroke-width':2.5});});}
       const mine=y.lines.find(l=>l.isNew),load=mine&&mine.load||[];
-      for(let j=0;j<plan.line.length-1;j++){const a=plan.line[j],b=plan.line[j+1],s=sectionFor(a,b),off=s?-6:0,f=mine&&mine.cap?load[j]/mine.cap:0,col=ghost?C.metro:f>1?C.bad:f>.8?C.warn:C.metro;
+      for(let j=0;j<plan.line.length-1;j++){const a=plan.line[j],b=plan.line[j+1],s=sectionFor(a,b),off=0,f=mine&&mine.cap?load[j]/mine.cap:0,col=ghost?C.metro:f>1?C.bad:f>.8?C.warn:C.metro;
         out+=svg('path',{d:shifted(a,b,off),fill:'none',stroke:col,'stroke-width':ghost?3:Math.max(4,Math.min(9,4+((load[j]||0)/28))),'stroke-linecap':'round','stroke-opacity':ghost?.35:.95,'stroke-dasharray':ghost?'4 6':''});}
       if(!ghost)plan.stations.forEach((c,j)=>{const [x,yy]=xy(c);out+=svg('circle',{cx:x,cy:yy,r:10,fill:C.panel,stroke:C.metro,'stroke-width':3})+text(x,yy+4,String(j+1),11,C.metro,{'text-anchor':'middle','font-weight':700});});
     }
@@ -1558,7 +1558,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
   drawTop=function(v){rawDrawTop(v);if(roadSel<0)return;const y=v.y,flows=y.roadBy&&y.roadBy[roadSel]||[],ids=new Set([roadSel]);
     for(const f of flows){const oi=D.origins.findIndex(o=>o.name===f.from),dk=D.destinations.findIndex(d=>d.name===f.to),ai=D.destinations.findIndex(d=>d.name===f.from),bi=dk>=0?dk:D.destinations.findIndex(d=>d.name===f.to),r=oi>=0&&dk>=0?G.carOD[oi][dk]:ai>=0&&bi>=0?G.carDD[ai][bi]:null;
       if(r)r.sections.forEach(id=>ids.add(id));}
-    let out='';for(const id of ids){const s=G.sections[id];out+=svg('path',{d:shifted(s.a,s.b,6),fill:'none',stroke:id===roadSel?C.accent:C.info,'stroke-width':id===roadSel?6:3,'stroke-opacity':id===roadSel?.95:.6,'stroke-linecap':'round','stroke-dasharray':id===roadSel?'':'2 5'});}
+    let out='';for(const id of ids){const s=G.sections[id];out+=svg('path',{d:shifted(s.a,s.b,9),fill:'none',stroke:id===roadSel?C.accent:C.info,'stroke-width':id===roadSel?6:3,'stroke-opacity':id===roadSel?.95:.6,'stroke-linecap':'round','stroke-dasharray':id===roadSel?'':'2 5'});}
     $('gTop').insertAdjacentHTML('beforeend',out);dimUnrelated(y);
   };
   drawDyn=function(tm,v){rawDrawDyn(tm,v);const g=$('gDyn');if(!showCars)for(const el of [...g.children])if(el.tagName.toLowerCase()==='rect')el.remove();

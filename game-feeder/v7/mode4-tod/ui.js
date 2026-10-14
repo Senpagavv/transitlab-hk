@@ -368,7 +368,9 @@
   if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
   const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
     extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
-    train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
+    train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},
+    sell(c,use){const r=plan.sellLand(c,use);render();return r;},next(){if(!plan.open)open();else step();},   // for the AI demo: sell a lot; open or run one year
+    get plan(){return plan;}};
     // a round left half-played is kept (shared/save.js) and picked up here, year and all
   window.TL_SAVESTATE=()=>({key:D.map,year:plan.year,state:{plan:JSON.parse(JSON.stringify(plan))}});
   if(window.TL_SAVE&&TL_SAVE.restoreFor(4,D.map,st=>{Object.assign(plan,st.plan);history=[];lastY=plan.year>0?plan.now():null;}))render();
