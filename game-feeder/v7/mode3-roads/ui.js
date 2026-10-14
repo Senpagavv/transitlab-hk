@@ -130,11 +130,9 @@
     if(plan.line.length===1){const [x,yy]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:yy,r:6,fill:C.metro});}
     if(placing&&tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)])if(e){const [x,yy]=xy(e);things+=svg('circle',{cx:x,cy:yy,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}
     y.est.forEach(e=>{const o=D.origins[e.i],[cx,cy]=xy(o.cell),walkers=e.to.reduce((s,x)=>s+x.walkers,0)+(e.chain||[]).reduce((s,c)=>s+(c.walkers||0),0),go=e.drivers+e.metro+walkers,f=go?e.metro/go:0,r=24,L=2*Math.PI*r;
-      labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.line2,'stroke-width':3,'stroke-opacity':.7});
-      if(f>.005)labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.accent,'stroke-width':3.2,'stroke-dasharray':`${(L*f).toFixed(1)} ${L.toFixed(1)}`,transform:`rotate(-90 ${cx} ${cy-3})`,'stroke-linecap':'round'});
       labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
       const sd=o.house[0]!==0,up=o.house[1]<0,lx=sd?cx+(o.house[0]>0?30:-30):cx,ly=sd?cy:up?cy-33:cy+36,la=sd?(o.house[0]>0?'start':'end'):'middle';
-      labels+=text(lx,ly,nameO(e.i),13,C.ink,{'text-anchor':la,'font-weight':600});});
+      labels+=text(lx,ly,nameO(e.i),13,C.ink,{'text-anchor':la,'font-weight':600})+text(lx,!sd&&up?ly-15:ly+15,t('r3.estMetro',{n:R(e.metro)}),11.5,C.accent,{'text-anchor':la,'font-weight':600});});
     y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6;
       labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
       const sd=o.house[0]!==0,lx=sd?cx+(o.house[0]>0?w/2+6:-w/2-6):cx,ly=sd?cy-4:cy+30,la=sd?(o.house[0]>0?'start':'end'):'middle';
@@ -317,7 +315,11 @@
     for(const s of G.sections){const [x1,y1]=xy(s.a),[x2,y2]=xy(s.b),dx=x2-x1,dy=y2-y1,u=Math.max(0,Math.min(1,((p.x-x1)*dx+(p.y-y1)*dy)/(dx*dx+dy*dy))),d=Math.hypot(p.x-x1-u*dx,p.y-y1-u*dy);if(d<bd){bd=d;best=s.id;}}
     return bd<18?best:-1;}
   function render(){draw(true);}
-  function fit(){$('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);}
+  // the board shows its content — roads, lines, estates, business areas — as large as the plate allows, with room
+  // for labels; the empty rows and the open harbour round it are cut
+  function fit(){const cells=[...G.sections.flatMap(q=>[q.a,q.b]),...G.lines.flatMap(l=>l.cells),...D.origins.map(o=>o.cell),...D.destinations.map(d=>d.cell)];
+    const xs=cells.map(c=>c[0]),ys=cells.map(c=>c[1]),px=CS*1.7,py=CS*.95,[x0,y0]=xy([Math.min(...xs),Math.min(...ys)]),[x1,y1]=xy([Math.max(...xs),Math.max(...ys)]);
+    $('board').setAttribute('viewBox',`${(x0-px).toFixed(1)} ${(y0-py).toFixed(1)} ${(x1-x0+2*px).toFixed(1)} ${(y1-y0+2*py).toFixed(1)}`);}
   function texts(){
     $('goal').innerHTML=t('r3.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
     const v={st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,

@@ -104,7 +104,9 @@
   function drawBase(v){
     const y=v.y,placing=!plan.open,ghost=v.mode==='nothing'||v.mode==='today';
     let ground=decor(),want='',lines='',things='',labels='';
-    D.land.forEach(q=>{const c=q.cell,[cx,cy]=xy(c),sale=plan.allSales().find(s=>same(s.cell,c)),near=!!plan.stationForLand(c);ground+=svg('rect',{x:cx-17,y:cy-17,width:34,height:34,rx:3,fill:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.soft,'fill-opacity':sale?0.2:near?0.17:0.08,stroke:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.line2,'stroke-width':sale?2:near?2:1.2,'stroke-dasharray':sale?'':'4 3'});});
+    D.land.forEach(q=>{const c=q.cell,[cx,cy]=xy(c),sale=plan.allSales().find(s=>same(s.cell,c)),near=!plan.onLine(c)&&!!plan.stationForLand(c);
+      if(plan.onLine(c)&&!sale)return;   // the line runs over it: not land to sell any more, so not drawn as such
+      ground+=svg('rect',{x:cx-17,y:cy-17,width:34,height:34,rx:3,fill:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.soft,'fill-opacity':sale?0.2:near?0.17:0.08,stroke:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.line2,'stroke-width':sale?2:near?2:1.2,'stroke-dasharray':sale?'':'4 3'});});
     // where people go: faint grey lines (thicker = more), the brown part by metro
     rowsOf(y).forEach(({from,to,x},j)=>{const d=curve(from,to,j),w=1+x.go/7,on=sel===j;
       want+=svg('path',{d,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.45:.16,'stroke-linecap':'round'});
@@ -116,10 +118,8 @@
     if(plan.line.length===1){const [x,yy]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:yy,r:6,fill:C.metro});}
     if(placing&&tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)])if(e){const [x,yy]=xy(e);things+=svg('circle',{cx:x,cy:yy,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}
     y.est.forEach(e=>{const o=e.origin,[cx,cy]=xy(o.cell),go=e.to.reduce((s,x)=>s+x.go,0),f=go?e.metro/go:0,r=24,L=2*Math.PI*r;
-      labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.line2,'stroke-width':3,'stroke-opacity':.7});
-      if(f>.005)labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.accent,'stroke-width':3.2,'stroke-dasharray':`${(L*Math.min(1,f)).toFixed(1)} ${L.toFixed(1)}`,transform:`rotate(-90 ${cx} ${cy-3})`,'stroke-linecap':'round'});
       labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
-      const up=o.house[1]<0;labels+=text(cx,up?cy-34:cy+38,nameOrigin(e.origin||D.origins[e.i]),13,C.ink,{'text-anchor':'middle','font-weight':600});});
+      const up=o.house[1]<0;labels+=text(cx,up?cy-34:cy+38,nameOrigin(e.origin||D.origins[e.i]),13,C.ink,{'text-anchor':'middle','font-weight':600});labels+=text(cx,up?cy-49:cy+53,t('m2.estMetro',{n:R(e.metro)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600});});
     y.dest.forEach(d=>{const o=y.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6,diff=v.mode==='today'||dim?0:R(d.go-d.before);
       labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
       const house=o.house||[1,0],sd=house[0]!==0,lx=sd?cx+(house[0]>0?w/2+6:-w/2-6):cx,ly=sd?cy-4:cy-30,la=sd?(house[0]>0?'start':'end'):'middle';
@@ -377,7 +377,7 @@
   window.TL_BOARD={targets(){const m=board.getScreenCTM();if(!m)return null;
     const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
     const road=tok('--s-road')||'#EEEAE1',faint=tok('--s-ink3')||'#9A9A9A',dark=tok('--s-ink')||'#0A0A0A';
-    for(const q of D.land||[]){const [x,y]=xy(q.cell);items.push({p:at(x,y),w:30*k,h:30*k,color:road,kind:'road'});}
+    for(const q of D.land||[]){if(plan.onLine(q.cell))continue;const [x,y]=xy(q.cell);items.push({p:at(x,y),w:30*k,h:30*k,color:road,kind:'road'});}
     for(const o of D.origins)for(const d of D.destinations){const [x1,y1]=xy(o.cell),[x2,y2]=xy(d.cell),n=Math.max(2,Math.round(Math.hypot(x2-x1,y2-y1)/(CS*.5)));
       for(let i=1;i<n;i++)items.push({p:at(x1+(x2-x1)*i/n,y1+(y2-y1)*i/n),w:6*k,h:6*k,color:faint,kind:'road'});}
     for(const o of D.origins){const [x,y]=xy(o.cell);items.push({p:at(x,y-3),w:26*k,h:30*k,color:dark,kind:'house'});}

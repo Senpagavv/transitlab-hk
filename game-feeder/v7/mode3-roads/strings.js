@@ -119,9 +119,9 @@
     'r3.rule1':L('<b>城市會長</b>：屋苑和商貿區按年增加出行人，最塞的路會挪。','<b>城市会长</b>：屋苑和商贸区按年增加出行人，最塞的路会挪。','<b>The city grows</b>: more residents and jobs bring trips, and the worst jam can move.'),
     'r3.rule2':L('<b>分兩期</b>：前四年預算 20 建線；第四年後加 12，只能延長、加站或加車。','<b>分两期</b>：前四年预算 20 建线；第四年后加 12，只能延长、加站或加车。','<b>Build in two phases</b>: budget 20 for years 1–4, then 12 to extend, add stations or trains.'),
     'r3.rule3':L('<b>路通了有人回來開車</b>：每年看新線讓多少車下路，又有多少車回來。','<b>路通了有人回来开车</b>：每年看新线让多少车下路，又有多少车回来。','<b>Clear roads bring drivers back</b>: track cars leaving for the line and returning as roads clear.'),
-    'r3.legend2':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐公共交通的人</span><span><i class="lk jam"></i>路中間紅線：塞</span><span><i class="lk mtr"></i>觀塘綫、將軍澳綫</span><span><i class="lk newline"></i>你的新線</span>',
-      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐公共交通的人</span><span><i class="lk jam"></i>路中间红线：塞</span><span><i class="lk mtr"></i>观塘线、将军澳线</span><span><i class="lk newline"></i>你的新线</span>',
-      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: public transport</span><span><i class="lk jam"></i>red in the road: jam</span><span><i class="lk mtr"></i>觀塘綫, 將軍澳綫</span><span><i class="lk newline"></i>your line</span>'),
+    'r3.legend2':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>綠字：坐公共交通的人</span><span><i class="lk jam"></i>路中間紅線：塞</span><span><i class="lk mtr"></i>觀塘綫、將軍澳綫</span><span><i class="lk newline"></i>你的新線</span>',
+      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>绿字：坐公共交通的人</span><span><i class="lk jam"></i>路中间红线：塞</span><span><i class="lk mtr"></i>观塘线、将军澳线</span><span><i class="lk newline"></i>你的新线</span>',
+      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>by metro</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>green figure: public transport</span><span><i class="lk jam"></i>red in the road: jam</span><span><i class="lk mtr"></i>觀塘綫, 將軍澳綫</span><span><i class="lk newline"></i>your line</span>'),
     'r3.hudNew':L('New line · 坐新線','New line · 坐新线','New line'),'r3.hudRail':L('All metro · 坐地鐵','All metro · 坐地铁','All metro'),'r3.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'r3.hudJam':L('Jam · 塞車','Jam · 塞车','Jam'),
     'r3.layerCars':L('🚗 道路車流','🚗 道路车流','🚗 Road traffic'),'r3.layerTransit':L('🚇 公共交通','🚇 公共交通','🚇 Public transport'),
     'r3.phaseBudget':L('第 {phase} 期 · 預算 {b} · 可用 {m}','第 {phase} 期 · 预算 {b} · 可用 {m}','Phase {phase} · budget {b} · available {m}'),
@@ -160,5 +160,18 @@
     'iv.m3.course':L('課程連結：道路容量與擁堵（BPR 曲線的簡化）、誘發交通與 Downs–Thomson 悖論、出行者的逐日學習、公共交通與道路的平衡。','课程链接：道路容量与拥堵（BPR 曲线的简化）、诱发交通与 Downs–Thomson 悖论、出行者的逐日学习、公共交通与道路的平衡。',
       'Course link: road capacity and congestion (a simplified BPR curve), induced traffic and the Downs–Thomson paradox, travellers learning day to day, the balance of transit and roads.')
   });
+  // the year sentence top right and the dispatch log (lost in the v7.12 rewrite, back from v7.11)
+  I18N.add({
+    'r3.hlAware':L("平均 {a} 成人知道新線","平均 {a} 成人知道新线","{a}/10 know the new line"),
+    'r3.hlDone':L("八年少塞 <em>{s}</em> 車·格 · {tier}","八年少塞 <em>{s}</em> 车·格 · {tier}","<em>{s}</em> less jam over eight years · {tier}"),
+    'r3.hlDoneSub':L("按住「看什麼都不做」比一比；「↺ 回到規劃」可以再改。","按住「看什么都不做」比一比；「↺ 回到规划」可以再改。","Hold «doing nothing» to compare; «↺ Back to planning» to change it."),
+    'r3.hlNothing':L("如果什麼都不做：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em>","如果什么都不做：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em>","Doing nothing: <em>{c}</em> cars a day, jam <em>{j}</em>"),
+    'r3.hlNothingSub':L("放開按鈕，回到你的方案。","放开按钮，回到你的方案。","Let go to see your plan again."),
+    'r3.hlPreviewSub':L("預覽：大家都知道新線、開車的人也習慣了以後，和今天什麼都不做比。","预览：大家都知道新线、开车的人也习惯了以后，和今天什么都不做比。","Preview: once everyone knows the line and drivers have settled, against doing nothing today."),
+    'r3.hlToday':L("今天：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em> 車·格","今天：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em> 车·格","Today: <em>{c}</em> cars a day on the roads, jam <em>{j}</em>"),
+    'r3.hlTodaySub':L("最塞的是{r}（每趟多 {e} 格）。畫一條新線把開車的人帶走；停在線上的格子，地圖會變成放站以後的樣子。","最塞的是{r}（每趟多 {e} 格）。画一条新线把开车的人带走；停在线上的格子，地图会变成放站以后的样子。","Worst: {r} (+{e} a trip). Draw a line to take drivers off; hover a cell on it and the map turns into what a station there would bring."),
+    'r3.hlYear':L("第 {y} 年 · 路上的車 <em class=\"{cc}\">{dc}</em> · 塞車比什麼都不做 <em class=\"{jc}\">{dj}</em>","第 {y} 年 · 路上的车 <em class=\"{cc}\">{dc}</em> · 塞车比什么都不做 <em class=\"{jc}\">{dj}</em>","Year {y} · cars <em class=\"{cc}\">{dc}</em> · jam vs doing nothing <em class=\"{jc}\">{dj}</em>")
+  });
+  I18N.add({'r3.estMetro':L('坐公共交通 {n}','坐公共交通 {n}','{n} by public transport')});   // under an estate's name (as mode 1's labels)
   if(typeof document!=='undefined')I18N.apply();
 })();

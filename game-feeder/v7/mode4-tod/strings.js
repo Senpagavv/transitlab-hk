@@ -158,9 +158,9 @@
       '<b>Every block saved on car or foot, one in ten by metro</b>; a place brought nearer draws people who never went (and some go on between the two centres).'),
     'm2.rule3':L('<b>口耳相傳</b>：剛開通每個屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分數＝每年「每天坐地鐵的人」加起來。','<b>口耳相传</b>：刚开通每个屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分数＝每年「每天坐地铁的人」加起来。',
       '<b>Word of mouth</b>: {s}/10 know the line at the opening; the more ride, the more know next year. Score = daily riders of every year added up.'),
-    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span>',
-      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span>',
-      '<span><i class="lk car"></i>cars</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: by metro</span><span><i class="lk want"></i>grey line: people going (thicker = more)</span><span><i class="lk newline"></i>your line</span>'),
+    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>綠字：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>绿字：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span>',
+      '<span><i class="lk car"></i>cars</span><span><i class="lk dot"></i>by metro</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>green figure: by metro</span><span><i class="lk want"></i>grey line: people going (thicker = more)</span><span><i class="lk newline"></i>your line</span>'),
     'm2.hudMetro':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'m2.hudWalk':L('On foot · 走路','On foot · 走路','On foot'),'m2.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'m2.hudKnow':L('Know the line · 知道新線','Know the line · 知道新线','Know the line'),
     'm2.clockPlan':L('第 0 年','第 0 年','Year 0'),'m2.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
     'm2.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'m2.clockSubOpen':L('共 {m} 年 · 口耳相傳','共 {m} 年 · 口耳相传','{m} years · word of mouth'),
@@ -200,9 +200,9 @@
     'm2.rule3':L('<b>賣地與總帳</b>：住宅價＝{hr}×各去處剩餘拉力；商業價＝{sr}×新增商場訪客。售價當刻入帳，發展下一年生效。總帳＝八年每日坐地鐵人數加總＋賣地收入。',
       '<b>卖地与总账</b>：住宅价＝{hr}×各去处剩余拉力；商业价＝{sr}×新增商场访客。售价当刻入账，发展下一年生效。总账＝八年每日坐地铁人数加总＋卖地收入。',
       '<b>Land and the ledger</b>: home price = {hr} × remaining pull across destinations; shop price = {sr} × added daily mall visitors. Revenue is booked at sale; development starts next year. Score = daily metro riders across eight years + land revenue.'),
-    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span><span>虛線地塊：空地</span><span>小樓：住宅 · 櫥窗：商業</span>',
-      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span><span>虚线地块：空地</span><span>小楼：住宅 · 橱窗：商业</span>',
-      '<span><i class="lk car"></i>car</span><span><i class="lk dot"></i>metro</span><span><i class="ringkey"></i>green ring: metro riders</span><span><i class="lk want"></i>grey line: daily trips (thicker = more)</span><span><i class="lk newline"></i>your line</span><span>dashed lot: vacant</span><span>homes · shopfronts</span>'),
+    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>綠字：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span><span>虛線地塊：空地</span><span>小樓：住宅 · 櫥窗：商業</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>绿字：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span><span>虚线地块：空地</span><span>小楼：住宅 · 橱窗：商业</span>',
+      '<span><i class="lk car"></i>car</span><span><i class="lk dot"></i>metro</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>green figure: metro riders</span><span><i class="lk want"></i>grey line: daily trips (thicker = more)</span><span><i class="lk newline"></i>your line</span><span>dashed lot: vacant</span><span>homes · shopfronts</span>'),
     'm2.hudMetro':L('坐地鐵 · 人/日','坐地铁 · 人/日','Metro riders / day'),
     'm2.hudWalk':L('新住戶','新住户','New residents'),
     'm2.hudCar':L('商場來客','商场来客','Mall visitors'),
@@ -304,5 +304,6 @@
     'iv.m4.course':L('課程連結：公共交通導向發展（TOD）、土地價值捕獲（鐵路＋物業）、職住平衡。','课程链接：公共交通导向发展（TOD）、土地价值捕获（铁路＋物业）、职住平衡。',
       'Course link: transit-oriented development (TOD), land value capture (rail plus property), the balance of homes and jobs.')
   });
+  I18N.add({'m2.estMetro':L('坐地鐵 {n}','坐地铁 {n}','{n} by metro')});   // under an estate's name (as mode 1's labels)
   if(typeof document!=='undefined')I18N.apply();
 })();

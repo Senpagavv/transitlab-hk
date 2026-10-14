@@ -114,10 +114,8 @@
     if(plan.line.length===1){const [x,yy]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:yy,r:6,fill:C.metro});}
     if(placing&&tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)])if(e){const [x,yy]=xy(e);things+=svg('circle',{cx:x,cy:yy,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}
     y.est.forEach(e=>{const o=D.origins[e.i],[cx,cy]=xy(o.cell),go=e.to.reduce((s,x)=>s+x.go,0),f=go?e.metro/go:0,r=24,L=2*Math.PI*r;
-      labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.line2,'stroke-width':3,'stroke-opacity':.7});
-      if(f>.005)labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.accent,'stroke-width':3.2,'stroke-dasharray':`${(L*Math.min(1,f)).toFixed(1)} ${L.toFixed(1)}`,transform:`rotate(-90 ${cx} ${cy-3})`,'stroke-linecap':'round'});
       labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
-      const up=o.house[1]<0;labels+=text(cx,up?cy-34:cy+38,nameO(e.i),13,C.ink,{'text-anchor':'middle','font-weight':600});});
+      const up=o.house[1]<0;labels+=text(cx,up?cy-34:cy+38,nameO(e.i),13,C.ink,{'text-anchor':'middle','font-weight':600});labels+=text(cx,up?cy-49:cy+53,t('m2.estMetro',{n:R(e.metro)}),11.5,C.accent,{'text-anchor':'middle','font-weight':600});});
     y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6,diff=v.mode==='today'||dim?0:R(d.go-d.before);
       labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
       const sd=o.house[0]!==0,lx=sd?cx+(o.house[0]>0?w/2+6:-w/2-6):cx,ly=sd?cy-4:cy-30,la=sd?(o.house[0]>0?'start':'end'):'middle';

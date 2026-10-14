@@ -158,9 +158,9 @@
       '<b>Every block saved on car or foot, one in ten by metro</b>; a place brought nearer draws people who never went (and some go on between the two centres).'),
     'm2.rule3':L('<b>口耳相傳</b>：剛開通每個屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分數＝每年「每天坐地鐵的人」加起來。','<b>口耳相传</b>：刚开通每个屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分数＝每年「每天坐地铁的人」加起来。',
       '<b>Word of mouth</b>: {s}/10 know the line at the opening; the more ride, the more know next year. Score = daily riders of every year added up.'),
-    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span>',
-      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span>',
-      '<span><i class="lk car"></i>cars</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: by metro</span><span><i class="lk want"></i>grey line: people going (thicker = more)</span><span><i class="lk newline"></i>your line</span>'),
+    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>綠字：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>绿字：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span>',
+      '<span><i class="lk car"></i>cars</span><span><i class="lk dot"></i>by metro</span><span><b style="color:var(--s-accent);font:600 11px var(--s-mono)">12</b>green figure: by metro</span><span><i class="lk want"></i>grey line: people going (thicker = more)</span><span><i class="lk newline"></i>your line</span>'),
     'm2.hudMetro':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'m2.hudWalk':L('On foot · 走路','On foot · 走路','On foot'),'m2.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'m2.hudKnow':L('Know the line · 知道新線','Know the line · 知道新线','Know the line'),
     'm2.clockPlan':L('第 0 年','第 0 年','Year 0'),'m2.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
     'm2.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'m2.clockSubOpen':L('共 {m} 年 · 口耳相傳','共 {m} 年 · 口耳相传','{m} years · word of mouth'),
@@ -178,5 +178,6 @@
     'm2.toCentre':L('每天來 {g}（坐地鐵 {m}）','每天来 {g}（坐地铁 {m}）','{g} a day ({m} by metro)'),
     'm2.run0':L('▶ 開通','▶ 开通','▶ Open'),'m2.holdAhead2':L('👁 按住看以後','👁 按住看以后','👁 Hold: later'),'m2.holdNothing2':L('👁 按住看沒有線','👁 按住看没有线','👁 Hold: no line')
   });
+  I18N.add({'m2.estMetro':L('坐地鐵 {n}','坐地铁 {n}','{n} by metro')});   // under an estate's name (as mode 1's labels)
   if(typeof document!=='undefined')I18N.apply();
 })();
