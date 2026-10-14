@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 01:42 · `待补` 接驳巴士 v7.23：排行榜和关卡包接上四个玩法（Codex 任务 56）/ Feeder v7.23: leaderboard and level packs
+### 01:42 · `42e1067` 接驳巴士 v7.23：排行榜和关卡包接上四个玩法（Codex 任务 56）/ Feeder v7.23: leaderboard and level packs
 - **改了什么**：新增 `game-feeder/v7/shared/levelpack.js`、`board.js`（样式并进 `style.css`）、`tools/verify-score.js`、`tools/mock-board/`、`v7/INTEGRATION.md`；四个玩法页载入两个模块、`data.js` 同步读 `#pack=`、结算发 `feeder:result`。
 - **为什么**：挑战关上排行榜、AI 关卡只存本机（发起人定）。
 - **验证**：四玩法检查、9 组模块测试、核分全过；浏览器打开关卡包正常。
