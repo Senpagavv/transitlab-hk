@@ -6,6 +6,11 @@
 
 ## 2026-10-15
 
+### 00:41 · `待补` 接驳巴士 v7.21：全港底板和切关卡收进项目（Codex 任务 51、53）/ Feeder v7.21: the Hong Kong grid and the level cutter
+- **改了什么**：新增 `game-feeder/v7/hk/`（全港 400 米底板 + 四种流量）、`tools/hk-grid/`、`v7/shared/levelgen/`、`bots/v7_levelgen.js`；第三关支持 `#map=gen` 打开生成关卡，修「出口」去处报错、路况按路名合并。
+- **为什么**：第五关全港沙盘和「一句话出关卡」的底座。
+- **验证**：项目内命令行切九龙东通过；浏览器打开生成关卡无报错；第三关检查通过。已知：生成关卡的塞车排序和模型对不上、路偏密（写进 README）。
+
 ### 00:13 · `556e40c` 接驳巴士 v7.20：第三关铁路线不再错开；第四关加 AI 示范 / Feeder v7.20: straight metro lines in mode 3; mode 4 AI demo
 - **改了什么**：`game-feeder/v7/mode3-roads/ui.js` 地铁线、列车、乘客画在格子中线（车流带挪到路的一侧）；新增 `v7/mode4-tod/demo.js`，页面和打包接上，API 加 `sell`、`next`。
 - **为什么**：发起人试玩意见。

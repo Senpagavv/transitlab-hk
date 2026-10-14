@@ -27,7 +27,7 @@
   const OFFICE=[".....kkkk.....",".....kwwk.....","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkddkwwk..","..kkkkddkkkk..","gggggggggggggg"];
   const TRAIN=[".mmmmmmmmmmmmmmmmm.","mmwwmmwwmmwwmmwwmmm","mmwwmmwwmmwwmmwwmmm","mmmmmmmmmmmmmmmmmmm","mkkmmmmmmmmmmmmkkmm","..k.............k.."];
   const TREE=["..g..",".ggg.","ggggg",".ggg.","ggggg","..t..","..t.."],BUSH=[".gg.","gggg",".gg."],FLOWER=["f.f.",".g.f","..g."];
-  const DEST={town:TOWN,jobs:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info})[k];
+  const DEST={town:TOWN,jobs:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info})[k]||C.ink3;
   const nm=o=>I.lang==='zh-Hans'?(o.hans||o.name):(o.name);
   const nameO=i=>nm(D.origins[i]),nameD=k=>nm(D.destinations[k]),shortD=k=>{const d=D.destinations[k];return I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name);};
   const shortO=i=>{const o=D.origins[i];return I.lang==='zh-Hans'?(o.shortHans||o.hans):(o.short||o.name);};
@@ -55,8 +55,9 @@
     return{mode:'year',y:lastY||now()};
   }
   const rowsOf=y=>[...y.est.flatMap(e=>e.to.map(x=>({x,who:shortO(e.i)}))),...(y.chain||[]).map(q=>({x:q,who:shortD(q.a),chain:true}))];
-  function roadStats(y){return D.roads.map(r=>{const ids=G.sections.filter(s=>s.roads.includes(r.name)).map(s=>s.id);
-    const worst=ids.reduce((b,id)=>y.extra[id]>y.extra[b]?id:b,ids[0]);return{name:r.name,worst,extra:y.extra[worst]};});}
+  // one row a road name (a generated level cuts a long road into many pieces of the same name): its worst section
+  function roadStats(y){return [...new Set(D.roads.map(r=>r.name))].map(name=>{const ids=G.sections.filter(s=>s.roads.includes(name)).map(s=>s.id);
+    const worst=ids.reduce((b,id)=>y.extra[id]>y.extra[b]?id:b,ids[0]);return{name,worst,extra:y.extra[worst]};}).filter(r=>r.worst!==undefined);}
 
   /* -------------------------------------------------------------- the moving people */
   const V={walk:34,car:95,rail:190};
@@ -133,7 +134,7 @@
       labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
       const sd=o.house[0]!==0,up=o.house[1]<0,lx=sd?cx+(o.house[0]>0?30:-30):cx,ly=sd?cy:up?cy-33:cy+36,la=sd?(o.house[0]>0?'start':'end'):'middle';
       labels+=text(lx,ly,nameO(e.i),13,C.ink,{'text-anchor':la,'font-weight':600})+text(lx,!sd&&up?ly-15:ly+15,t('r3.estMetro',{n:R(e.metro)}),11.5,C.accent,{'text-anchor':la,'font-weight':600});});
-    y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6;
+    y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=(DEST[o.kind]||DEST.town),w=sp[0].length*2.6;
       labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
       const sd=o.house[0]!==0,lx=sd?cx+(o.house[0]>0?w/2+6:-w/2-6):cx,ly=sd?cy-4:cy+30,la=sd?(o.house[0]>0?'start':'end'):'middle';
       labels+=text(lx,ly,nameD(d.k),13,C.ink,{'text-anchor':la,'font-weight':600})+text(lx,ly+15,t('r3.toCentre',{n:R(d.metro)}),11.5,C.accent,{'text-anchor':la,'font-weight':600});});

@@ -43,6 +43,9 @@
   const LEVELS={'m3-1':KE};
   // levels added as files (v7/levels/m3/*.json → levels/registry.js) join these; the same key replaces one
   for(const L of (root.TL_LEVELS?root.TL_LEVELS.mode(3):[]))if(L.level)LEVELS[L.key]=L.level;
+  // a level made on the spot (shared/levelgen: a cut of the Hong Kong grid, e.g. from one sentence): #map=gen reads it
+  // from this browser
+  if(typeof localStorage!=='undefined')try{const g=JSON.parse(localStorage.getItem('tl-gen-level')||'null');if(g&&g.cols)LEVELS.gen=g;}catch(e){}
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m3-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};

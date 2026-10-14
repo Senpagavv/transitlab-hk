@@ -149,6 +149,12 @@ v7 模式 1 的規則和數值與 v6 相同（v6 第 1–3 關和第 5 關）。
 
 `levels/m1…m4/*.json`（格式 `tl-level/1`）＝一關；打包時登記進 `levels/registry.js`，四個玩法頁都讀它（同 key 取代內建關卡）。做關卡、檢查、讓機器人定門檻的步驟見 [`levels/README.md`](levels/README.md)；工具 `tools/levels/levels.js`（`export` / `check`），機器人 `--level <檔>`。
 
+## 全港底板與切關卡（v7.21：Codex 任務 51、53 收進項目）
+
+- **全港底板** `hk/`：160 × 120 格（400 米），`hk-base.json`（地形、455 分區的人口 / 崗位 / 代表格、97 站、10 條線、3,000 段主幹路、20 個片區）+ `hk-demand-{am,pm,day,holiday}.json`（分區對分區的開車 / 公交人數和分鐘）。早高峰＝模型（B 級），晚高峰 / 平日日常推算（C），節假日假設（D）。重算：`tools/hk-grid/build_hk_grid.py`（讀 `data/model`、`data/web`，寫回 `hk/`；說明與核對在 `tools/hk-grid/README.md`；查看頁 `tools/hk-grid/viewer.html`）。
+- **切關卡** `shared/levelgen/`：`cut.js`（片區 + 改動 → 第三關格式的關卡）、`check.js`（什麼都不做是否穩定、和模型的塞車排序比）、`bot.js`（限時搜最好方案、定門檻 0.40 / 0.65 / 0.88）；命令列 `bots/v7_levelgen.js`；說明 `shared/levelgen/README.md`。第三關 `#map=gen` 讀這個瀏覽器裡 `localStorage['tl-gen-level']` 的生成關卡。
+- **已知不足**：切出來的關卡只算框內幾個屋苑去幾個地方的車，穿過的車沒算，所以「哪條路最塞」和模型對不上（四片裡只有銅鑼灣過了粗驗收）；路是框裡全部主幹路，比手工關卡密很多；部分路名還是英文。
+
 ## 第五關的 AI（v7.12 起，2026-10-14）
 
 一句話 → 關卡請求 → 切關卡 → 機器人驗收。AI 只能從菜單選（20 個片區、四種時段、最多 4 條改動：某地住的人 / 崗位 / 路能過的車，各有上下限），其餘都是程式（切關卡見 `docs/for-codex/task-53-level-cutter.md`）。

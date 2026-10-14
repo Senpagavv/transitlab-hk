@@ -1,0 +1,540 @@
+{
+  "replays": "PASS",
+  "summary": [
+    {
+      "area": "kowloon-east",
+      "people": 301,
+      "request": {
+        "area": "kowloon-east",
+        "period": "am",
+        "mode": 3,
+        "changes": [],
+        "title": "九龙东 · 原始切片",
+        "story": [
+          "原始早高峰底板，无改动。"
+        ]
+      },
+      "scale": 0.005670509381857771,
+      "coefficient": 0.7,
+      "origins": 6,
+      "destinations": 3,
+      "roads": 161,
+      "lines": 2,
+      "jam": 7530.488,
+      "stable": true,
+      "maxStepPct": 0,
+      "best": 3282,
+      "tiers": [
+        1313,
+        2133,
+        2888
+      ],
+      "seconds": 20.02,
+      "spearman": 0.046,
+      "accepted": false,
+      "problems": [
+        {
+          "code": "model_vc_mismatch",
+          "message": "游戏与模型 v/c 排名 Spearman=0.046，低于第一版粗对照阈值0.2。"
+        }
+      ]
+    },
+    {
+      "area": "sha-tin-tai-wai",
+      "people": 300,
+      "request": {
+        "area": "sha-tin-tai-wai",
+        "period": "am",
+        "mode": 3,
+        "title": "沙田多三万人",
+        "story": [
+          "“隆亨邨”人口增加 30000；按原数量换算为 48.5%。"
+        ],
+        "changes": [
+          {
+            "place": "隆亨邨",
+            "what": "people",
+            "pct": 48.5,
+            "by_year": 4
+          }
+        ]
+      },
+      "scale": 0.010431734727940354,
+      "coefficient": 0.40847,
+      "origins": 6,
+      "destinations": 3,
+      "roads": 117,
+      "lines": 2,
+      "jam": 4551.4,
+      "stable": true,
+      "maxStepPct": 0.0783,
+      "best": 1191,
+      "tiers": [
+        476,
+        774,
+        1048
+      ],
+      "seconds": 20.09,
+      "spearman": 0.189,
+      "accepted": false,
+      "problems": [
+        {
+          "code": "model_vc_mismatch",
+          "message": "游戏与模型 v/c 排名 Spearman=0.189，低于第一版粗对照阈值0.2。"
+        }
+      ]
+    },
+    {
+      "area": "yuen-long",
+      "people": 300,
+      "request": {
+        "area": "yuen-long",
+        "period": "am",
+        "mode": 3,
+        "title": "元朗多两万人",
+        "story": [
+          "“元朗站一帶”人口增加 20000；按原数量换算为 36.8%。"
+        ],
+        "changes": [
+          {
+            "place": "元朗站一帶",
+            "what": "people",
+            "pct": 36.8,
+            "by_year": 4
+          }
+        ]
+      },
+      "scale": 0.012383645332397683,
+      "coefficient": 1,
+      "origins": 6,
+      "destinations": 3,
+      "roads": 117,
+      "lines": 1,
+      "jam": 2390.706,
+      "stable": true,
+      "maxStepPct": 0.0291,
+      "best": 840,
+      "tiers": [
+        336,
+        546,
+        739
+      ],
+      "seconds": 20.08,
+      "spearman": -0.123,
+      "accepted": false,
+      "problems": [
+        {
+          "code": "model_vc_mismatch",
+          "message": "游戏与模型 v/c 排名 Spearman=-0.123，低于第一版粗对照阈值0.2。"
+        }
+      ]
+    },
+    {
+      "area": "causeway-bay-wan-chai",
+      "people": 299,
+      "request": {
+        "area": "causeway-bay-wan-chai",
+        "period": "am",
+        "mode": 3,
+        "title": "铜锣湾·湾仔多一万五千个岗位",
+        "story": [
+          "“中環站一帶”岗位增加 15000；按原数量换算为 6.8%。"
+        ],
+        "changes": [
+          {
+            "place": "中環站一帶",
+            "what": "jobs",
+            "pct": 6.8,
+            "by_year": 4
+          }
+        ]
+      },
+      "scale": 0.010574028775456976,
+      "coefficient": 0.51049,
+      "origins": 6,
+      "destinations": 3,
+      "roads": 152,
+      "lines": 5,
+      "jam": 2842.557,
+      "stable": true,
+      "maxStepPct": 0.0043,
+      "best": 907,
+      "tiers": [
+        363,
+        590,
+        798
+      ],
+      "seconds": 20.04,
+      "spearman": 0.3,
+      "accepted": true,
+      "problems": []
+    }
+  ],
+  "comparison": {
+    "origins": [
+      {
+        "name": "啓德站一帶",
+        "match": "啟德",
+        "matchedVia": "啓德站一帶",
+        "exact": false,
+        "people": 76,
+        "share": 0.25249169435215946,
+        "manualPeople": 24,
+        "manualShare": 0.0851063829787234
+      },
+      {
+        "name": "秀茂坪邨",
+        "match": "秀茂坪",
+        "matchedVia": "秀茂坪邨",
+        "exact": false,
+        "people": 50,
+        "share": 0.16611295681063123,
+        "manualPeople": 56,
+        "manualShare": 0.19858156028368795
+      },
+      {
+        "name": "啓田邨",
+        "match": null,
+        "matchedVia": null,
+        "exact": false,
+        "people": 45,
+        "share": 0.14950166112956811,
+        "manualPeople": null,
+        "manualShare": null,
+        "manualAttraction": null
+      },
+      {
+        "name": "彩盈邨",
+        "match": "牛頭角",
+        "matchedVia": "牛頭角上邨",
+        "exact": false,
+        "people": 50,
+        "share": 0.16611295681063123,
+        "manualPeople": 50,
+        "manualShare": 0.1773049645390071
+      },
+      {
+        "name": "牛池灣街彩雲邨",
+        "match": null,
+        "matchedVia": null,
+        "exact": false,
+        "people": 46,
+        "share": 0.15282392026578073,
+        "manualPeople": null,
+        "manualShare": null,
+        "manualAttraction": null
+      },
+      {
+        "name": "安泰邨",
+        "match": "順利·安達臣道",
+        "matchedVia": "順利邨",
+        "exact": false,
+        "people": 34,
+        "share": 0.11295681063122924,
+        "manualPeople": 30,
+        "manualShare": 0.10638297872340426
+      }
+    ],
+    "destinations": [
+      {
+        "name": "觀塘站一帶",
+        "match": "觀塘商貿區",
+        "matchedVia": "觀塘站一帶",
+        "exact": false,
+        "share": null,
+        "manualShare": null,
+        "attraction": 26.804266666666667,
+        "manualAttraction": 26
+      },
+      {
+        "name": "九龍灣站一帶",
+        "match": "九龍灣商貿區",
+        "matchedVia": "九龍灣站一帶",
+        "exact": false,
+        "share": null,
+        "manualShare": null,
+        "attraction": 23.40886666666667,
+        "manualAttraction": 24
+      },
+      {
+        "name": "往西面",
+        "match": null,
+        "matchedVia": null,
+        "exact": false,
+        "share": null,
+        "manualPeople": null,
+        "manualShare": null,
+        "attraction": 18.589726666666664,
+        "manualAttraction": null
+      }
+    ],
+    "totals": {
+      "generatedPeople": 301,
+      "manualPeople": 282
+    },
+    "roads": {
+      "generated": [
+        "PRINCE EDWARD ROAD EAST",
+        "未命名道路",
+        "清水灣道",
+        "新清水灣道",
+        "安秀道",
+        "沐安街",
+        "KWUN TONG BYPASS",
+        "觀塘道",
+        "宏照道",
+        "順利邨道",
+        "啟華街",
+        "宏光道",
+        "偉業街",
+        "安愉道",
+        "寶琳北路",
+        "KAI TAK TUNNEL",
+        "啟福道",
+        "KAI CHEUNG ROAD",
+        "KAI CHEUNG ROAD FLYOVER",
+        "振華道",
+        "順安道",
+        "協和街",
+        "安健道",
+        "SAU MAU PING ROAD",
+        "TSUI LAM ROAD",
+        "寶康路",
+        "承豐道",
+        "常怡道",
+        "TAI YIP STREET",
+        "康寧道",
+        "曉光街",
+        "寶琳路",
+        "TSEUNG KWAN O TUNNEL ROAD",
+        "KAI FUK ROAD FLYOVER",
+        "啟德橋道",
+        "祥業街",
+        "翠屏道",
+        "物華街",
+        "駿業街",
+        "將軍澳道",
+        "連德道",
+        "鯉魚門道",
+        "德田街",
+        "啟田道",
+        "碧雲道",
+        "PO SHUN ROAD",
+        "EASTERN HARBOUR CROSSING",
+        "TSEUNG LAM HIGHWAY",
+        "茶果嶺道",
+        "LAM TIN INTERCHANGE",
+        "高超道",
+        "ISLAND EASTERN CORRIDOR",
+        "高輝道"
+      ],
+      "manual": [
+        "觀塘繞道",
+        "觀塘道",
+        "開源道",
+        "清水灣道",
+        "秀茂坪道",
+        "將軍澳隧道",
+        "將藍隧道"
+      ],
+      "shared": [
+        "清水灣道",
+        "觀塘繞道",
+        "觀塘道",
+        "秀茂坪道",
+        "將軍澳隧道",
+        "將藍隧道"
+      ],
+      "matches": [
+        {
+          "generated": "清水灣道",
+          "manual": "清水灣道",
+          "bridge": false
+        },
+        {
+          "generated": "KWUN TONG BYPASS",
+          "manual": "觀塘繞道",
+          "bridge": true
+        },
+        {
+          "generated": "觀塘道",
+          "manual": "觀塘道",
+          "bridge": false
+        },
+        {
+          "generated": "SAU MAU PING ROAD",
+          "manual": "秀茂坪道",
+          "bridge": true
+        },
+        {
+          "generated": "TSEUNG KWAN O TUNNEL ROAD",
+          "manual": "將軍澳隧道",
+          "bridge": true
+        },
+        {
+          "generated": "TSEUNG LAM HIGHWAY",
+          "manual": "將藍隧道",
+          "bridge": true
+        }
+      ],
+      "literalShared": [
+        "清水灣道",
+        "觀塘道"
+      ]
+    },
+    "doNothing": {
+      "generated": {
+        "yearly": [
+          941.311,
+          941.311,
+          941.311,
+          941.311,
+          941.311,
+          941.311,
+          941.311,
+          941.311
+        ],
+        "jam": 7530.488,
+        "score": 0,
+        "stable": true,
+        "maxStepPct": 0
+      },
+      "manual": {
+        "yearly": [
+          900.946,
+          979.653,
+          1044.179,
+          1102.606,
+          1139.871,
+          1414.082,
+          1610.831,
+          1730.356
+        ],
+        "jam": 9922.524,
+        "score": 0,
+        "stable": false,
+        "maxStepPct": 0.2406
+      }
+    },
+    "roadRank": {
+      "generated": {
+        "sections": 187,
+        "spearman": 0.046,
+        "modelTop": [
+          {
+            "name": "清水灣道",
+            "vc": 1.7
+          },
+          {
+            "name": "EASTERN HARBOUR CROSSING",
+            "vc": 1.3
+          },
+          {
+            "name": "ISLAND EASTERN CORRIDOR",
+            "vc": 1.2
+          },
+          {
+            "name": "啟華街",
+            "vc": 1.1
+          },
+          {
+            "name": "TSEUNG LAM HIGHWAY",
+            "vc": 1.1
+          },
+          {
+            "name": "茶果嶺道",
+            "vc": 1.1
+          },
+          {
+            "name": "KWUN TONG BYPASS",
+            "vc": 0.9
+          }
+        ],
+        "gameTop": [
+          {
+            "name": "協和街",
+            "vc": 2.37
+          },
+          {
+            "name": "曉光街",
+            "vc": 2.35
+          },
+          {
+            "name": "KAI CHEUNG ROAD",
+            "vc": 2.06
+          },
+          {
+            "name": "觀塘道",
+            "vc": 1.63
+          },
+          {
+            "name": "物華街",
+            "vc": 1.53
+          },
+          {
+            "name": "KWUN TONG BYPASS",
+            "vc": 1.3
+          },
+          {
+            "name": "振華道",
+            "vc": 1.18
+          }
+        ],
+        "acceptable": false
+      },
+      "manual": {
+        "sections": 0,
+        "spearman": 0,
+        "modelTop": [],
+        "gameTop": [
+          {
+            "name": "開源道",
+            "vc": 1.6
+          },
+          {
+            "name": "秀茂坪道",
+            "vc": 1.4
+          },
+          {
+            "name": "觀塘繞道",
+            "vc": 0.97
+          },
+          {
+            "name": "觀塘道",
+            "vc": 0.93
+          },
+          {
+            "name": "將藍隧道",
+            "vc": 0.74
+          },
+          {
+            "name": "清水灣道",
+            "vc": 0.34
+          },
+          {
+            "name": "將軍澳隧道",
+            "vc": 0
+          }
+        ],
+        "acceptable": null
+      }
+    },
+    "bot": {
+      "generated": 3282,
+      "manual": 3244,
+      "ratio": 1.0117139334155363
+    },
+    "parameters": {
+      "generated": {
+        "budget": 30,
+        "phase2Budget": 0,
+        "years": 8
+      },
+      "manual": {
+        "budget": 20,
+        "phase2Budget": 12,
+        "years": 8
+      }
+    }
+  }
+}
