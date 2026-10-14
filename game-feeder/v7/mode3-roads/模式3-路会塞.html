@@ -1311,14 +1311,17 @@ table.result th:first-child,table.result td:first-child{text-align:left}
       pts.push(rxy(secs[0],cur));sp.push(V.car);
       for(const s of secs){const nx=same(s.a,cur)?s.b:s.a;pts.push(rxy(s,nx));sp.push(V.car/(1+(y.extra[s.id]||0)));cur=nx;}}
     pts.push(xy(to));sp.push(V.car);return{pts,sp};}
+  // walking follows the grid, as the blocks are counted: across first, then up or down
+  const corner=(a,b)=>[...(a[0]===b[0]||a[1]===b[1]?[]:[xy([b[0],a[1]])]),xy(b)];
+  function leg(pts,sp,a,b,v){for(const q of corner(a,b)){pts.push(q);sp.push(v);}}
   function railCells(name){return name==='new'?plan.line:(G.lines.find(l=>l.name===name)||{cells:[]}).cells;}
   function metroPath(trip,from,to){
-    const pts=[xy(from)],sp=[];
+    const pts=[xy(from)],sp=[];let at=from;
     trip.legs.forEach((l,j)=>{const cells=railCells(trip.lines[j]),step=l.to>=l.from?1:-1;
-      pts.push(xy(cells[l.from]));sp.push(V.walk);
+      leg(pts,sp,at,cells[l.from],V.walk);at=cells[l.to];
       for(let i=l.from+step;step>0?i<=l.to:i>=l.to;i+=step){pts.push(xy(cells[i]));sp.push(V.rail);}});
-    pts.push(xy(to));sp.push(V.walk);return{pts,sp};}
-  function walkPath(from,to){return{pts:[xy(from),xy(to)],sp:[V.walk]};}
+    leg(pts,sp,at,to,V.walk);return{pts,sp};}
+  function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
   function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
   // every flow of the shown year: who, how many a day, which way
   const flowMemo=new WeakMap();

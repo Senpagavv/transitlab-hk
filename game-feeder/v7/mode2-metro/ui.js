@@ -53,12 +53,15 @@
 
   /* -------------------------------------------------------------- the moving people */
   const V={walk:34,car:80,rail:190};
-  function carPath(from,to){const [a,b]=[xy(from),xy(to)],mid=[b[0],a[1]];return{pts:[a,mid,b],sp:[V.car,V.car]};}
+  // everyone moves along the grid, as the blocks are counted: across first, then up or down
+  const corner=(a,b)=>[...(a[0]===b[0]||a[1]===b[1]?[]:[xy([b[0],a[1]])]),xy(b)];
+  function leg(pts,sp,a,b,v){for(const q of corner(a,b)){pts.push(q);sp.push(v);}}
+  function carPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.car);return{pts,sp};}
   function metroPath(trip,from,to){const pts=[xy(from)],sp=[],step=trip.tx>=trip.fx?1:-1;
-    pts.push(xy(plan.line[trip.fx]));sp.push(V.walk);
+    leg(pts,sp,from,plan.line[trip.fx],V.walk);
     for(let i=trip.fx+step;step>0?i<=trip.tx:i>=trip.tx;i+=step){pts.push(xy(plan.line[i]));sp.push(V.rail);}
-    pts.push(xy(to));sp.push(V.walk);return{pts,sp};}
-  function walkPath(from,to){return{pts:[xy(from),xy(to)],sp:[V.walk]};}
+    leg(pts,sp,plan.line[trip.tx],to,V.walk);return{pts,sp};}
+  function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
   function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
   const flowMemo=new WeakMap();
   function flowsOf(y){if(flowMemo.has(y))return flowMemo.get(y);const out=[];
