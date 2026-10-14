@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 02:10 · `待补` 接驳巴士 v7.26：港铁按真实轨道画；「原版地图」回到 TransitLab Live / Feeder v7.26: real rail alignments; the original map kept
+### 02:10 · `155396b` 接驳巴士 v7.26：港铁按真实轨道画；「原版地图」回到 TransitLab Live / Feeder v7.26: real rail alignments; the original map kept
 - **改了什么**：`game-feeder/tools/hk-grid/build_shapes.py` 加 OSM 铁路走向（`v7/hk/hk-shapes.json` 797 KB）；`v7/mode5-sandbox/vector.js` 按真实走向画港铁、轻铁、高铁；`backend/main.py` 在根地址 `/` 挂 `frontend/dist`（最早的 TransitLab Live）；沙盘和入口 05 面板加「原版地图」。
 - **为什么**：发起人问港铁线是否真实（有一条跨海），并要求保留最早那张地图的交互方式作为一个模式。
 - **验证**：真浏览器沙盘与原版地图都正常、无报错；后台测试通过。
