@@ -556,7 +556,7 @@
   function showResult(){
     // best score per level, shown on the hub map (this browser only)
     try{const k='tl-best-'+D.map;if(game.delivered>(+localStorage.getItem(k)||0))localStorage.setItem(k,game.delivered);}catch(e){}
-    if(window.TLProgress)TLProgress.record(1,D.map,game.delivered,[P.target,P.highScore,P.masterScore]);
+    if(window.TLProgress)TLProgress.record(1,D.map,game.delivered,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(1,D.map);
     fillResult();$('result').showModal();
     // For a site that hosts the game (accounts, leaderboard): one event per finished round. The game itself sends
     // nothing anywhere. seed + opening + moves let a server replay the round and check the score (verify_result.js).
@@ -632,6 +632,9 @@
   window.TL_GAME={demo,loadMap:loadLevel,pause(){if(playing)setPlaying(false);},map:()=>D.map,inProgress:()=>game.started&&!game.done,texts,
     state:()=>({t:game.t,round:game.round,playing,inter:inter&&{...inter},done:game.done,acc:game.acc,speed,selected,cooling:game.stops.map(s=>Math.max(0,+(s.ready-game.t).toFixed(1)))})};
   // For the hand-off: every block of the board in screen pixels, so the hub's dots can land exactly on them.
+  // a round left half-played is kept (shared/save.js); mode 1 runs in real time, so it comes back with its stops placed, from the start
+  window.TL_SAVESTATE=()=>({key:D.map,stops:game.stops.filter(s=>s.cell).length,state:{stops:game.stops.map(s=>s.cell)}});
+  if(window.TL_SAVE&&TL_SAVE.restoreFor(1,D.map,st=>{st.stops.forEach((c,id)=>{if(c)game.place(id,c);});}))render();
   window.TL_BOARD={targets(){
     const m=board.getScreenCTM();if(!m)return null;
     const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],isRoad=c=>D.roads.some(q=>same(q,c));

@@ -1075,7 +1075,7 @@ dialog.intro .row{margin-top:16px}
   // v7 · the row of stops under the top bar, the same on every mode's page: 01 … 05, the current one filled in.
   // <nav id="navrow" data-current="2"></nav> + this script (after i18n.js). It also adds the few labels all pages share. A click goes back to the hub
   // (the map you pick levels from) with that mode open — levels are chosen there, not on a level's page. Leaving a game half-played
-  // (the page's window.TL_INPROGRESS() says so) asks first: that round is lost. «← Five modes» (#backHub) does the same.
+  // (the page's window.TL_INPROGRESS() says so) keeps that round (shared/save.js; the hub offers «continue»). «← Five modes» too.
   const I=window.I18N,L=I.L;
   I.add({
     'nav.aria':L('五個模式','五个模式','Five modes'),
@@ -1099,12 +1099,13 @@ dialog.intro .row{margin-top:16px}
     nav.innerHTML=MODES.map(m=>`<button data-go="${m.n}" aria-selected="${m.n===cur}" ><i class="stop">0${m.n}</i><span class="t"><b>${m.en}</b><s>${I.t('nav.m'+m.n)}</s></span></button>`).join('');}
   const hubURL=n=>`../${bundled?'开始.html':'index.html'}#hub=1&nav=${n}`;
   let leaving=false;
-  function leave(url){if(window.TL_INPROGRESS&&window.TL_INPROGRESS()&&!confirm(I.t('nav.leave')))return;leaving=true;location.href=url;}
+  const keep=()=>{if(window.TL_INPROGRESS&&window.TL_INPROGRESS()&&window.TL_SAVE&&window.TL_SAVESTATE){window.TL_SAVE.put(cur,window.TL_SAVESTATE());return true;}return false;};
+  function leave(url){if(!keep()&&window.TL_INPROGRESS&&window.TL_INPROGRESS()&&!confirm(I.t('nav.leave')))return;leaving=true;location.href=url;}
   nav.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)leave(hubURL(+b.dataset.go));});
   const back=document.getElementById('backHub');
   if(back)back.addEventListener('click',e=>{e.preventDefault();leave(back.getAttribute('href'));});
-  // closing the tab or the browser's ← mid-game: the browser's own «leave this page?»
-  window.addEventListener('beforeunload',e=>{if(!leaving&&window.TL_INPROGRESS&&window.TL_INPROGRESS()){e.preventDefault();e.returnValue='';}});
+  // closing the tab or the browser's ← mid-game: the round is kept the same way
+  window.addEventListener('pagehide',()=>{if(!leaving)keep();});
   window.TL_LEAVE=leave;
   render();window.addEventListener('tl:lang',render);
 })();
@@ -1130,6 +1131,38 @@ dialog.intro .row{margin-top:16px}
     const L=root.TL_LEVELS?root.TL_LEVELS.mode(mode):[],i=L.findIndex(l=>l.key===key);
     return i<=0||passed(mode,L[i-1].key);}
   root.TLProgress={record,get,passed,open};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // v7 · one saved round (2026-10-15). Leaving a level half-played (the top row, «← Five modes», closing the page) keeps
+  // that round here instead of losing it; the hub then offers «continue», and opening that level again picks it up.
+  // Starting a different level asks first — yes, and the saved round is gone. One slot: the newest round replaces it.
+  // Each mode's page gives its round with window.TL_SAVESTATE() → {key, year?, stops?, state} and takes it back with
+  // TL_SAVE.restoreFor(mode, key, apply). A finished round clears its save.
+  const K='tl-save',I=root.I18N;
+  if(I&&I.add){const L=I.L;I.add({
+    'save.switch':L('你有一局還沒玩完：「{t}」。開始另一關，那一局就刪掉。確定嗎？','你有一局还没玩完：「{t}」。开始另一关，那一局就删掉。确定吗？','You have a round in progress: «{t}». Start another level and it is deleted. Go ahead?'),
+    'save.resume':L('繼續上次','继续上次','Continue'),'save.mark':L('未完 · 點擊繼續','未完 · 点击继续','In progress · continue'),
+    'save.year':L('第 {y} 年','第 {y} 年','year {y}'),'save.stops':L('已放 {n} 個站','已放 {n} 个站','{n} stops placed'),'save.start':L('還沒開通','还没开通','not opened yet')});}
+  const read=()=>{try{return JSON.parse(localStorage.getItem(K)||'null');}catch(e){return null;}};
+  const write=v=>{try{if(v)localStorage.setItem(K,JSON.stringify(v));else localStorage.removeItem(K);}catch(e){}};
+  const API={
+    get:read,
+    put(mode,s){if(!s||!s.key)return;write({mode,key:s.key,year:s.year,stops:s.stops,state:s.state,at:Date.now()});},
+    clear(){write(null);},
+    clearIf(mode,key){const v=read();if(v&&v.mode===mode&&v.key===key)write(null);},
+    is(mode,key){const v=read();return !!v&&v.mode===mode&&v.key===key;},
+    // what the saved round has got to, in a few words
+    line(v){v=v||read();if(!v||!I)return'';return v.year?I.t('save.year',{y:v.year}):v.stops?I.t('save.stops',{n:v.stops}):I.t('save.start');},
+    // about to open (mode, key): a different level with a round saved asks first; yes deletes the save
+    confirmSwitch(mode,key,title){const v=read();if(!v||v.mode===mode&&v.key===key)return true;
+      if(!confirm(I.t('save.switch',{t:title||v.key})))return false;write(null);return true;},
+    // a mode's page, once drawn: its saved round, if this is that level
+    restoreFor(mode,key,apply){const v=read();if(!v||v.mode!==mode||v.key!==key)return false;try{apply(v.state);return true;}catch(e){write(null);return false;}}
+  };
+  root.TL_SAVE=API;
 })(typeof window!=='undefined'?window:globalThis);
 
 </script><script>
@@ -1731,7 +1764,7 @@ dialog.intro .row{margin-top:16px}
   function open(){if(!plan.canRun())return;history=[];tool='land';hover=null;step();}
   function rewind(){stop();plan.rewind();lastY=null;render();}
   function result(){
-    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(4,D.map,plan.total,[P.target,P.highScore,P.masterScore]);
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(4,D.map,plan.total,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(4,D.map);
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
     $('resultScore').textContent=t('m.rScore',{d:R(plan.total),y:P.years});
     let h='<table class="result"><thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';
@@ -1814,7 +1847,10 @@ dialog.intro .row{margin-top:16px}
   const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
     extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
     train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
-    // For the hub's hand-off (shared/flyin.js): this board's blocks in screen pixels — the vacant land and the lines people wish for grey, the estates and the
+    // a round left half-played is kept (shared/save.js) and picked up here, year and all
+  window.TL_SAVESTATE=()=>({key:D.map,year:plan.year,state:{plan:JSON.parse(JSON.stringify(plan))}});
+  if(window.TL_SAVE&&TL_SAVE.restoreFor(4,D.map,st=>{Object.assign(plan,st.plan);history=[];lastY=plan.year>0?plan.now():null;}))render();
+  // For the hub's hand-off (shared/flyin.js): this board's blocks in screen pixels — the vacant land and the lines people wish for grey, the estates and the
   // places people go dark — so the hub's dots land on this level's own map.
   window.TL_BOARD={targets(){const m=board.getScreenCTM();if(!m)return null;
     const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();

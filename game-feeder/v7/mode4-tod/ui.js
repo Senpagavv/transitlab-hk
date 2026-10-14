@@ -286,7 +286,7 @@
   function open(){if(!plan.canRun())return;history=[];tool='land';hover=null;step();}
   function rewind(){stop();plan.rewind();lastY=null;render();}
   function result(){
-    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(4,D.map,plan.total,[P.target,P.highScore,P.masterScore]);
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(4,D.map,plan.total,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(4,D.map);
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
     $('resultScore').textContent=t('m.rScore',{d:R(plan.total),y:P.years});
     let h='<table class="result"><thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';
@@ -369,7 +369,10 @@
   const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
     extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
     train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
-    // For the hub's hand-off (shared/flyin.js): this board's blocks in screen pixels — the vacant land and the lines people wish for grey, the estates and the
+    // a round left half-played is kept (shared/save.js) and picked up here, year and all
+  window.TL_SAVESTATE=()=>({key:D.map,year:plan.year,state:{plan:JSON.parse(JSON.stringify(plan))}});
+  if(window.TL_SAVE&&TL_SAVE.restoreFor(4,D.map,st=>{Object.assign(plan,st.plan);history=[];lastY=plan.year>0?plan.now():null;}))render();
+  // For the hub's hand-off (shared/flyin.js): this board's blocks in screen pixels — the vacant land and the lines people wish for grey, the estates and the
   // places people go dark — so the hub's dots land on this level's own map.
   window.TL_BOARD={targets(){const m=board.getScreenCTM();if(!m)return null;
     const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();

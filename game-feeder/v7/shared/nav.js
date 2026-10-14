@@ -3,7 +3,7 @@
   // v7 · the row of stops under the top bar, the same on every mode's page: 01 … 05, the current one filled in.
   // <nav id="navrow" data-current="2"></nav> + this script (after i18n.js). It also adds the few labels all pages share. A click goes back to the hub
   // (the map you pick levels from) with that mode open — levels are chosen there, not on a level's page. Leaving a game half-played
-  // (the page's window.TL_INPROGRESS() says so) asks first: that round is lost. «← Five modes» (#backHub) does the same.
+  // (the page's window.TL_INPROGRESS() says so) keeps that round (shared/save.js; the hub offers «continue»). «← Five modes» too.
   const I=window.I18N,L=I.L;
   I.add({
     'nav.aria':L('五個模式','五个模式','Five modes'),
@@ -27,12 +27,13 @@
     nav.innerHTML=MODES.map(m=>`<button data-go="${m.n}" aria-selected="${m.n===cur}" ><i class="stop">0${m.n}</i><span class="t"><b>${m.en}</b><s>${I.t('nav.m'+m.n)}</s></span></button>`).join('');}
   const hubURL=n=>`../${bundled?'开始.html':'index.html'}#hub=1&nav=${n}`;
   let leaving=false;
-  function leave(url){if(window.TL_INPROGRESS&&window.TL_INPROGRESS()&&!confirm(I.t('nav.leave')))return;leaving=true;location.href=url;}
+  const keep=()=>{if(window.TL_INPROGRESS&&window.TL_INPROGRESS()&&window.TL_SAVE&&window.TL_SAVESTATE){window.TL_SAVE.put(cur,window.TL_SAVESTATE());return true;}return false;};
+  function leave(url){if(!keep()&&window.TL_INPROGRESS&&window.TL_INPROGRESS()&&!confirm(I.t('nav.leave')))return;leaving=true;location.href=url;}
   nav.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)leave(hubURL(+b.dataset.go));});
   const back=document.getElementById('backHub');
   if(back)back.addEventListener('click',e=>{e.preventDefault();leave(back.getAttribute('href'));});
-  // closing the tab or the browser's ← mid-game: the browser's own «leave this page?»
-  window.addEventListener('beforeunload',e=>{if(!leaving&&window.TL_INPROGRESS&&window.TL_INPROGRESS()){e.preventDefault();e.returnValue='';}});
+  // closing the tab or the browser's ← mid-game: the round is kept the same way
+  window.addEventListener('pagehide',()=>{if(!leaving)keep();});
   window.TL_LEAVE=leave;
   render();window.addEventListener('tl:lang',render);
 })();

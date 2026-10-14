@@ -321,6 +321,19 @@
       '<span class="lv-m">' + (s.open ? kindLine(s) + (pl ? ' · <em>' + pl + '</em>' : '') : '🔒 ' + t('hub.locked')) + '</span></button>';
   }
   const tc = s => I.lang === 'en' ? '' : '<span class="hp-tc">' + s + '</span>';
+  // one round kept half-played (shared/save.js): «continue» on top of the panel, whatever the mode
+  const saved = () => { const v = window.TL_SAVE && window.TL_SAVE.get(); return v && LV && LV.get(v.mode, v.key) ? v : null; };
+  const savedTitle = () => { const v = saved(); return v ? nameOf(LV.get(v.mode, v.key).title) : ''; };
+  function resumeBlock() {
+    const v = saved(); if (!v) return '';
+    return '<button class="lv resume" id="hubResume"><span class="lv-n"><b>⏵ ' + t('save.resume') + ' · ' + savedTitle() + '</b><small>0' + v.mode + ' · ' + MODES[v.mode].en + '</small></span>' +
+      '<span class="lv-m"><em>' + window.TL_SAVE.line(v) + '</em></span></button>';
+  }
+  function resume() {
+    const v = saved(); if (!v || mode !== 'cover') return;
+    if (nav !== v.mode) { nav = v.mode; hub.classList.toggle('m1', true); SITES = sitesOf(nav); buildMarks(); renderNav(); renderPanel(); }
+    const s = site(v.key); if (s) handoff(s);
+  }
   function renderPanel() {
     let h;
     if (nav === 0) h = '<span class="lbl">' + t('hub.start') + '</span><h2 class="hp-h">' + t('hub.pickH') + ' <span class="hp-up">↑</span></h2><p class="note">' + t('hub.pickP') + '</p>';
@@ -332,7 +345,8 @@
     } else h = '<span class="lbl">Mode 05 · Sandbox</span><h2 class="hp-h">Sandbox' + tc(t('hub.m5H')) + '</h2>' +
       '<span class="chip"><i></i>' + t('hub.coming') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
       '<div class="lvls">' + ['m5a', 'm5b', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
-    $('hubPanel').innerHTML = h;
+    $('hubPanel').innerHTML = resumeBlock() + h;
+    const rb = $('hubResume'); if (rb) rb.addEventListener('click', resume);
     $('hubPanel').querySelectorAll('.lv[data-site]').forEach(b => {
       b.addEventListener('click', () => play(b.dataset.site));
       b.addEventListener('pointerenter', () => setHot(b.dataset.site)); b.addEventListener('focus', () => setHot(b.dataset.site));
@@ -358,7 +372,7 @@
   /* ---- markers on the map ---- */
   function buildMarks() {
     $('hubMarks').innerHTML = SITES.map((s, i) => {
-      const sub = s.open ? kindLine(s) + (progLine(s) ? ' · ' + progLine(s) : '') : '🔒 ' + t('hub.locked');
+      const sub = window.TL_SAVE && window.TL_SAVE.is(s.mode, s.key) ? t('save.mark') : s.open ? kindLine(s) + (progLine(s) ? ' · ' + progLine(s) : '') : '🔒 ' + t('hub.locked');
       return '<button class="hm st-' + (s.open ? 'play' : 'soon') + '" data-site="' + s.key + '" data-side="' + s.side + '" style="--i:' + i + '"' +
         ' aria-label="' + nameOf(s.title) + ' · ' + sub + '"><i class="pin"></i><span class="lab"><b>' + s.i + ' · ' + nameOf(s.title) + '</b><small>' + sub + '</small></span></button>';
     }).join('');
@@ -384,7 +398,7 @@
     const s = site(key);
     if (!s || mode !== 'cover' || p < .97) return;
     if (!s.open) { lockedMsg = t('hub.lockedP', { p: nameOf(s.prev) }); hot = null; renderDetail(); setHot(key); return; }
-    if (window.TL_SAVE && !window.TL_SAVE.confirmSwitch(s.mode, s.key)) return;
+    if (window.TL_SAVE && !window.TL_SAVE.confirmSwitch(s.mode, s.key, savedTitle())) return;
     handoff(s);
   }
   function handoff(s) {
