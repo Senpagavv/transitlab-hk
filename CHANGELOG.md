@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 01:59 · `待补` 接驳巴士 v7.25：沙盘换成干净的矢量底图，格子平时不画 / Feeder v7.25: a clean vector base map for the sandbox
+### 01:59 · `2ae4948` 接驳巴士 v7.25：沙盘换成干净的矢量底图，格子平时不画 / Feeder v7.25: a clean vector base map for the sandbox
 - **改了什么**：新增 `game-feeder/tools/hk-grid/build_shapes.py`、`v7/hk/hk-shapes.json`、`v7/mode5-sandbox/vector.js`；沙盘用真实区界、海岸、主干路、港铁（站的真实位置）画底图，人口 / 岗位按分区上色，格子只在画线放站时显出一格，车流图层只画塞的路段，新增「只看选中」。
 - **为什么**：发起人：沙盘太脏太乱、马赛克、看不出区域，要像最早那张全港地图。
 - **验证**：真浏览器全港 / 人口 / 九龙东 / 只看选中四个状态截图，无报错。
