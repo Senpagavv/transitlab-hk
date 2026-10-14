@@ -8,7 +8,9 @@
 // v7/mode2-metro/demo-plans.js for the AI demo.
 const fs=require('node:fs'),path=require('node:path');
 const M=require('../v7/mode2-metro/engine.js'),{D,P,Plan,same}=M;
-const args=process.argv.slice(2),write=args.includes('--write'),pos=args.filter(a=>a!=='--write');
+// --level <file.json>: tune a level file (v7/levels/README.md) instead of the mode's own level; prints, never writes
+const argv=process.argv.slice(2),lvAt=argv.indexOf('--level'),levelFile=lvAt>=0?argv[lvAt+1]:null,args=argv.filter((_,i)=>lvAt<0||(i!==lvAt&&i!==lvAt+1)),write=args.includes('--write')&&!levelFile,pos=args.filter(a=>a!=='--write');
+if(levelFile){const e=JSON.parse(require('node:fs').readFileSync(levelFile,'utf8'));D.use(e.level,e.key);M.reset();console.log('level file '+levelFile+' → '+e.key);}
 const restarts=+(pos[0]||400),o=pos[1]?JSON.parse(pos[1]):{};
 const base=D.example('m2-1'),def={...base};
 for(const [k,v] of Object.entries(o)){if(k==='att')def.destinations=def.destinations.map((d,j)=>({...d,attraction:v[j]}));

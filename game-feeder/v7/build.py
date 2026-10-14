@@ -4,6 +4,7 @@ import base64, runpy
 from pathlib import Path
 
 p = Path(__file__).resolve().parent
+runpy.run_path(str(p / 'levels' / 'build_registry.py'), run_name='__main__')   # levels/m1…m4/*.json → levels/registry.js
 for b in sorted(p.glob('mode*/build.py')):
     print('--', b.parent.name)
     runpy.run_path(str(b), run_name='__main__')

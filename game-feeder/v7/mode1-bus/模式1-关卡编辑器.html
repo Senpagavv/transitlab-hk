@@ -672,7 +672,7 @@ dialog.intro .row{margin-top:16px}
   // D is one object for the whole page; D.select(name) swaps the board in place (then call Tide.reset()).
   // D.use(def) loads any level definition the same way (tuning scripts).
   const pick=(typeof process!=='undefined'&&process.env&&process.env.FEEDER_MAP)||
-    (typeof location!=='undefined'&&(/(?:^|[#&])map=(\w+)/.exec(location.hash)||[])[1])||'l1';
+    (typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'l1';
   function build(lines){
     const roads=new Set();
     for(const [x1,y1,x2,y2] of lines)
@@ -758,6 +758,8 @@ dialog.intro .row{margin-top:16px}
       clock:['07:00','08:00','09:00','10:00'],
       firstWave:20,interval:120,release:110,headway:[60,8],seats:8,queue:8,moves:1,cool:20,tiers:[230,252,264]}
   };
+  // levels added as files (v7/levels/m1/*.json → levels/registry.js) join these; the same key replaces one
+  for(const L of (root.TL_LEVELS?root.TL_LEVELS.mode(1):[]))if(L.level)LEVELS[L.key]=L.level;
   // A level from the level editor (editor.html): given in the address by "Test play" (#lv=…), or the last one saved
   // in this browser (#map=custom). Same fields as a level above; water is a list of cells, a road across water is a bridge.
   function fromEditor(def){

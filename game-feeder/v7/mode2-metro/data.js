@@ -25,6 +25,8 @@
     // 元朗 line with 3 stations: 473 with 1 train (crowded), 636 with 2; the two centres alone with 2 trains: 289
     tiers:[550,760,900]};
   const LEVELS={'m2-1':NW};
+  // levels added as files (v7/levels/m2/*.json → levels/registry.js) join these; the same key replaces one
+  for(const L of (root.TL_LEVELS?root.TL_LEVELS.mode(2):[]))if(L.level)LEVELS[L.key]=L.level;
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};

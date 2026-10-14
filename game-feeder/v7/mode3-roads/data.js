@@ -41,6 +41,8 @@
     walkPer:3,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:20,phase2Budget:12,years:8,crowdBlocks:4,aware:{start:.2,spread:2},nearby:10,stay:40,learn:.3,
     tiers:[500,1000,3000]};
   const LEVELS={'m3-1':KE};
+  // levels added as files (v7/levels/m3/*.json → levels/registry.js) join these; the same key replaces one
+  for(const L of (root.TL_LEVELS?root.TL_LEVELS.mode(3):[]))if(L.level)LEVELS[L.key]=L.level;
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m3-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
