@@ -1,0 +1,49 @@
+/* v7 · mode 2 «the metro» — on mode 1's layout (shared/style.css); only what this mode adds */
+:root{--s-metro:#9A3B26;--s-jam:#C2410C;--s-free:#2F8F5B;--s-walk:#7F95AE}
+[data-theme="dark"]{--s-metro:#E0896B;--s-jam:#F08A4B;--s-free:#5CC08A;--s-walk:#A3B6CC}
+#board{cursor:crosshair}
+.station-button b{color:var(--rc)}.station-button.selected{border-color:var(--rc);box-shadow:inset 0 0 0 1px var(--rc)}
+.stopbox .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.stopbox .tools .seg button{height:28px;font-size:12px;padding:0 9px}
+.stopbox .pm{display:inline-flex;align-items:center;gap:6px}.stopbox .pm .btn{min-width:26px;height:24px;padding:0 6px}
+.stopbox .r b.c{color:var(--rc)}
+.roadbox{padding:6px 12px}
+.rd{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:4px 0;border-top:1px solid var(--s-line)}.rd:first-child{border-top:0}
+.rd .n{flex:1;color:var(--s-ink2)}.rd b{font:500 12px var(--s-mono)}
+.lanebtn{font:500 10.5px var(--s-mono);padding:1px 7px;border-radius:4px;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink3);cursor:pointer}
+.lanebtn.on{background:var(--s-bad);border-color:var(--s-bad);color:var(--s-paper)}
+.hold.on{background:var(--s-ink);color:var(--s-paper);border-color:var(--s-ink)}
+#tide td small{display:block;font-size:9.5px;color:var(--s-ink3)}
+#tide tr.next td b{color:var(--s-ink3);font-style:italic}
+.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12px;color:var(--s-ink3)}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top}#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3)}
+.legend i.lk{border-radius:2px}
+.legend i.lk.car{width:9px;height:6px;background:var(--s-ink);opacity:.7}
+.legend i.lk.bus{width:13px;height:7px;background:#2F6FD6}
+.legend i.lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.legend i.lk.jam{width:14px;height:4px;background:var(--s-jam)}
+.legend i.lk.lane{width:14px;height:4px;background:repeating-linear-gradient(90deg,var(--s-bad) 0 4px,transparent 4px 7px)}
+.station-button{--rc:var(--s-metro)}
+.legend i.lk.newline{width:14px;height:5px;background:var(--s-metro)}
+.legend i.lk.want{width:16px;height:3px;background:var(--s-ink3);opacity:.5}
+.wbar{position:relative;display:flex;height:10px;border-radius:3px;overflow:hidden;background:var(--s-raise);flex:1}
+.wbar i{display:block;height:100%}
+.wbar u{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--s-ink);opacity:.7}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px}
+
+/* Station-side development */
+.land-controls{border-top:1px solid var(--s-line);margin-top:10px;padding-top:7px}
+.land-controls .r{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:3px 0}
+.land-controls .tools{display:flex;gap:6px;margin-top:7px}
+.land-controls .btn.on{border-color:var(--s-accent);background:var(--s-accent);color:var(--s-paper)}
+.station-button[data-card="land"] b{color:var(--s-accent)}
+#tide{font-variant-numeric:tabular-nums}
+#tide td,#tide th{text-align:right}
+#tide td:first-child,#tide th:first-child{text-align:left}
+#tide td{padding:5px 4px}
+#tide tr.next td{color:var(--s-ink3)}
+#roadBox .rd small{font-size:9px;color:var(--s-ink3)}
+#roadBox .rd{flex-wrap:wrap}

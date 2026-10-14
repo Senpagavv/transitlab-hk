@@ -1,0 +1,1693 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 模式 4 · 站旁開發</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>/* v2.1 · design language follows the team product suite (TransitLab-產品套件):
+   paper + ink, Bodoni Moda / Geist / Geist Mono, dotted paper, hairline frames,
+   colour only where it means something — green = good (delivered), red→amber = loss. */
+:root{
+  --s-paper:#FFFCF7; --s-panel:#FFFFFF; --s-soft:#F8F6F1; --s-raise:#F1EEE7;
+  --s-ink:#0A0A0A; --s-ink2:#525252; --s-ink3:#8C8C8C;
+  --s-line:rgba(0,0,0,.08); --s-line2:rgba(0,0,0,.18); --s-grid:rgba(0,0,0,.05);
+  --s-accent:#0E7A4E; --s-accent2:#12A06A; --s-accent-soft:#E6F1EA; --s-on-accent:#FFFCF7;
+  --s-good:#0E7A4E; --s-warn:#B07C10; --s-bad:#BF3B2B; --s-bad-soft:#FBEDEA; --s-info:#1F5FA8;
+  --s-road:#EEEAE1; --s-road-edge:rgba(0,0,0,.10);
+  --s-chrome:rgba(255,252,247,.84); --s-shadow:0 12px 30px rgba(0,0,0,.09);
+  --s-top:56px; --s-nav:78px; --s-stop:30px; --s-navpad:11px; --s-stop-fs:12px;
+  --s-display:'Bodoni Moda','MTR Song','地鐵宋','Chiron Sung HK','Noto Serif TC','Songti TC','Songti SC',serif;
+  --s-serif-tc:'Noto Serif TC','Chiron Sung HK','Songti TC','PingFang HK',serif;
+  --s-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+[data-theme="dark"]{
+  --s-paper:#0A0A0A; --s-panel:#111111; --s-soft:#161616; --s-raise:#1C1C1C;
+  --s-ink:#F5F5F5; --s-ink2:#A3A3A3; --s-ink3:#8C8C8C;
+  --s-line:rgba(255,255,255,.08); --s-line2:rgba(255,255,255,.20); --s-grid:rgba(255,255,255,.06);
+  --s-accent:#4EBE84; --s-accent2:#6FD39D; --s-accent-soft:#12291F; --s-on-accent:#0A0A0A;
+  --s-good:#4EBE84; --s-warn:#E89D4A; --s-bad:#D96B4A; --s-bad-soft:#2A1512; --s-info:#7BA7E8;
+  --s-road:#202020; --s-road-edge:rgba(255,255,255,.08);
+  --s-chrome:rgba(10,10,10,.78); --s-shadow:0 12px 34px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--s-paper);color:var(--s-ink);display:flex;flex-direction:column;overflow:hidden;
+  font-family:'Geist',system-ui,-apple-system,'PingFang HK','PingFang TC','Microsoft JhengHei',sans-serif;
+  font-size:13px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px}
+button{font:inherit;color:inherit}
+.mono{font-family:var(--s-mono);font-variant-numeric:tabular-nums}
+.lbl{font-family:var(--s-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-ink3)}
+.lbl .tc{text-transform:none;letter-spacing:.02em}
+.tc{font-size:.9em;color:var(--s-ink2);font-weight:400;letter-spacing:0;margin-left:5px}
+.tcb{display:block;color:var(--s-ink2);font-size:13px;letter-spacing:.02em;margin-top:3px;line-height:1.55}
+.row{display:flex;align-items:center;gap:10px}.row .sp{flex:1}
+.note{color:var(--s-ink2);font-size:13px;line-height:1.62;margin:0}.note b{color:var(--s-ink);font-weight:500}
+
+/* ---- top bar + step nav (the suite's outer frame) ---- */
+#topbar{flex:0 0 auto;height:var(--s-top);display:flex;align-items:center;gap:14px;padding:0 14px;
+  background:var(--s-chrome);backdrop-filter:blur(25px) saturate(1.4);-webkit-backdrop-filter:blur(25px) saturate(1.4);
+  border-bottom:1px solid var(--s-line);z-index:60}
+.brand{display:flex;align-items:center;gap:9px;min-width:0;flex:0 0 auto}
+.brandlogo{width:22px;height:22px;image-rendering:pixelated;flex:0 0 auto;display:block}
+.brand .wm{font-family:var(--s-display);font-size:20px;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.brand .sub{color:var(--s-ink3);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--s-mono);white-space:nowrap}
+#topbar .sp{flex:1}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;white-space:nowrap;cursor:pointer;
+  border:1px solid var(--s-line);border-radius:4px;background:var(--s-soft);color:var(--s-ink2);
+  font-family:var(--s-mono);font-size:10.5px;letter-spacing:.06em}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--s-accent);flex:0 0 auto}
+.dot.live{animation:bp 2.2s ease-in-out infinite}
+@keyframes bp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.82)}}
+.btn{appearance:none;border:1px solid var(--s-line2);background:transparent;color:var(--s-ink);height:30px;padding:0 11px;
+  border-radius:4px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:12px;
+  transition:background .14s,border-color .14s,color .14s,transform .1s}
+.btn:hover{border-color:var(--s-ink);background:var(--s-soft)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.42;cursor:not-allowed}
+.btn-p{background:var(--s-ink);border-color:var(--s-ink);color:var(--s-paper);font-weight:500}
+.btn-p:hover{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-on-accent)}
+.btn-sm{height:26px;padding:0 9px;font-size:11.5px}
+.seg{display:flex;border:1px solid var(--s-line);border-radius:4px;overflow:hidden;flex:0 0 auto}
+.seg button{appearance:none;border:0;background:transparent;color:var(--s-ink2);height:28px;padding:0 10px;cursor:pointer;
+  display:flex;align-items:center;gap:6px;font-size:11.5px;white-space:nowrap}
+.seg button+button{border-left:1px solid var(--s-line)}
+.seg button[aria-pressed="true"]{background:var(--s-ink);color:var(--s-paper)}
+.seg button:hover{color:var(--s-ink)}.seg button[aria-pressed="true"]:hover{color:var(--s-paper)}
+button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--s-info);outline-offset:2px}
+#navrow{position:relative;flex:0 0 auto;height:var(--s-nav);display:flex;align-items:stretch;
+  background:var(--s-chrome);backdrop-filter:blur(25px) saturate(1.4);-webkit-backdrop-filter:blur(25px) saturate(1.4);
+  border-bottom:1px solid var(--s-line);z-index:55}
+#navrow::before{content:'';position:absolute;left:calc(100%/12);right:calc(100%/12);top:calc(var(--s-navpad) + var(--s-stop)/2 - 1.5px);
+  height:3px;border-radius:2px;background:var(--s-line2);pointer-events:none}
+#navrow button{appearance:none;border:0;background:transparent;cursor:pointer;min-width:0;flex:1 1 0;display:flex;flex-direction:column;
+  align-items:center;gap:5px;padding:var(--s-navpad) 8px 0;position:relative;color:var(--s-ink2)}
+#navrow button[disabled]{cursor:default;color:var(--s-ink3)}
+#navrow .stop{flex:0 0 auto;min-width:var(--s-stop);height:var(--s-stop);padding:0 9px;border-radius:calc(var(--s-stop)/2);
+  border:2px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink2);display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;font-family:var(--s-mono);font-style:normal;font-size:var(--s-stop-fs);font-weight:500}
+#navrow button[aria-selected="true"]{color:var(--s-ink)}
+#navrow button[aria-selected="true"] .stop{background:var(--s-ink);border-color:var(--s-ink);color:var(--s-paper)}
+#navrow .t{display:flex;flex-direction:column;align-items:center;line-height:1.18;min-width:0;max-width:100%}
+#navrow .t b{font-weight:500;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#navrow button[aria-selected="true"] .t b{font-weight:600}
+#navrow .t s{text-decoration:none;font-size:12px;color:var(--s-ink3);letter-spacing:.04em;white-space:nowrap}
+
+/* ---- the game: left column · map plate · right column ---- */
+.eg{flex:1;min-height:0;display:flex}
+/* the board stays put (the cover's blocks land exactly on it); only the side columns glide in */
+body.entered .side{animation:sideIn .8s cubic-bezier(.2,.7,.2,1) both}
+body.entered .side.right{animation-name:sideInR}
+@keyframes sideIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes sideInR{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.side{width:360px;flex:0 0 auto;border-right:1px solid var(--s-line);background:var(--s-panel);overflow:auto;padding:16px 17px 30px;scrollbar-width:thin}
+.side.right{width:318px;border-right:0;border-left:1px solid var(--s-line)}
+.scol{font-size:14px;line-height:1.58}
+.h1{font-family:var(--s-display);font-size:28px;font-weight:600;line-height:1.1;margin:6px 0 6px}
+.h1tc{display:block;font-family:var(--s-serif-tc);font-size:17px;font-weight:500;color:var(--s-ink2);letter-spacing:.08em;margin-top:6px}
+.lede{margin:0 0 12px;font-size:15px}
+.chip{border:1px solid var(--s-line);background:var(--s-soft);color:var(--s-ink2);border-radius:2px;height:23px;padding:0 8px;white-space:nowrap;
+  font-family:var(--s-mono);font-size:10.5px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:5px}
+.chip i{width:5px;height:5px;border-radius:50%;background:var(--s-accent);font-style:normal}
+.box{background:var(--s-soft);border:1px solid var(--s-line);border-radius:6px;padding:11px 12px}
+.goal .goalnum{font-size:13px;color:var(--s-ink2)}.goal .goalnum b{font-size:22px;color:var(--s-accent);font-weight:500}
+.gauge{position:relative;height:10px;margin:24px 0 20px;background:var(--s-raise);border-radius:5px}
+.gauge i{position:absolute;inset:0 auto 0 0;border-radius:5px;background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));
+  box-shadow:0 0 12px color-mix(in srgb,var(--s-accent2) 55%,transparent);transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.gauge em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--s-ink)}
+.gauge em::after{content:attr(data-label);position:absolute;top:15px;left:-3px;transform:translateX(-100%);font:500 10px var(--s-mono);color:var(--s-ink2);white-space:nowrap;font-style:normal}
+#tickHigh::after{left:50%;transform:translateX(-50%);top:auto;bottom:15px}
+#tickMaster::after{left:5px;transform:none}
+#tickMaster{background:var(--s-accent)}
+.controls{margin:14px 0 14px;gap:6px}.controls #start{flex:1;justify-content:center;height:34px;font-size:14px}
+.controls .seg button{height:32px;font-size:12.5px}
+.stations{display:flex;gap:6px;margin:6px 0 8px}
+.station-button{flex:1;appearance:none;border:1px solid var(--s-line2);background:var(--s-panel);border-radius:5px;padding:6px 8px;cursor:pointer;text-align:left;line-height:1.25}
+.station-button b{font-family:var(--s-display);font-size:18px;color:var(--s-accent)}
+.station-button small{display:block;font-family:var(--s-mono);font-size:10px;color:var(--s-ink3)}
+.station-button.selected{border-color:var(--s-ink);box-shadow:inset 0 0 0 1px var(--s-ink)}
+.stopbox{padding:10px 12px}
+.stopbox h3{margin:0 0 4px;font:600 15px 'Geist',sans-serif;display:flex;justify-content:space-between;align-items:baseline}
+.stopbox .r{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;padding:2px 0}
+.stopbox .r span:first-child{color:var(--s-ink3)}
+.stopbox .r b{font-family:var(--s-mono);font-weight:500}
+.stopbox .big{font-family:var(--s-mono);font-size:20px;color:var(--s-accent)}
+.slots{display:flex;gap:3px;margin:3px 0 5px}
+.slots i{flex:0 0 auto;width:15px;height:11px;border:1.5px solid var(--s-accent);border-radius:2px}
+.slots i.on{background:var(--s-accent)}
+.slots.queue i{border-color:var(--s-warn)}.slots.queue i.on{background:var(--s-warn)}
+.slots.queue.full i.on{background:var(--s-bad);border-color:var(--s-bad)}
+.stopbox p{margin:6px 0 0;font-size:12px;color:var(--s-ink2)}
+ol.mini{margin:6px 0 0;padding-left:17px;font-size:13px;color:var(--s-ink2);line-height:1.6}
+ol.mini b{color:var(--s-ink);font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--s-ink2);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;display:block;flex:0 0 auto}
+.glowkey{border-radius:50%}
+.glowkey.good{background:radial-gradient(var(--s-accent2),transparent 70%)}
+.glowkey.bad{background:radial-gradient(var(--s-bad),transparent 70%)}
+.tidekey{font-size:11px;gap:4px 10px}.tidekey b{font-size:11px;font-weight:500;margin-right:2px}
+.tidekey .pk{width:12px;height:10px;border:2px solid var(--s-warn);border-radius:2px}
+
+.play{flex:1;min-width:0;position:relative;padding:12px}
+.mapplate{position:relative;height:100%;border-radius:8px;overflow:hidden;isolation:isolate;background:var(--s-panel);border:1px solid var(--s-line);box-shadow:var(--s-shadow)}
+.mapplate::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:3;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;mix-blend-mode:multiply}
+[data-theme="dark"] .mapplate::after{mix-blend-mode:screen}
+#board,#fx{position:absolute;left:0;right:0;top:56px;bottom:72px;width:100%;height:calc(100% - 128px);display:block}
+#board{z-index:1;touch-action:none;user-select:none}
+#board text{font-family:'Geist','PingFang HK','Microsoft JhengHei',sans-serif;paint-order:stroke;stroke-linejoin:round}
+#board [role=button]{cursor:pointer}
+#fx{z-index:4;pointer-events:none;overflow:visible}
+.ov{position:absolute;z-index:7}
+.clockbox{left:12px;top:12px;background:var(--s-chrome);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--s-line);border-radius:7px;padding:7px 12px;box-shadow:var(--s-shadow);min-width:150px}
+.clockbox .c{font-family:var(--s-mono);font-size:22px;font-variant-numeric:tabular-nums;line-height:1.1}
+.clockbox .u{font-size:10.5px;color:var(--s-ink3)}
+.clockbox .prog{height:3px;border-radius:2px;background:var(--s-raise);margin-top:6px;overflow:hidden}
+.clockbox .prog i{display:block;height:100%;background:var(--s-ink);width:0}
+.lanebox{right:12px;top:12px;width:250px;background:var(--s-chrome);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--s-line);border-radius:7px;padding:8px 11px;box-shadow:var(--s-shadow)}
+.lanebox .h{font-family:var(--s-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-ink3);margin-bottom:3px}
+.lanebox .h b{color:var(--s-ink);font-size:12px}
+.lanebox .hint{font-size:11.5px;color:var(--s-ink2);line-height:1.5}
+.hud{position:absolute;left:12px;right:12px;bottom:12px;z-index:7;display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--s-chrome);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);
+  border:1px solid var(--s-line);border-radius:7px;box-shadow:var(--s-shadow);overflow:hidden}
+.hud>div{padding:8px 12px;border-right:1px solid var(--s-line);position:relative}
+.hud>div:last-child{border-right:0}
+.hud b{display:block;font-family:var(--s-mono);font-size:21px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.15}
+.hud small{display:block;font-size:10px;color:var(--s-ink3);letter-spacing:.03em}
+.hud .good b{color:var(--s-accent)}.hud .bad b{color:var(--s-bad)}
+.hud .good.pop{animation:pop .6s ease-out}
+@keyframes pop{0%{background:color-mix(in srgb,var(--s-accent2) 28%,transparent)}100%{background:transparent}}
+.hud .bad.hit{animation:hit .55s ease-out}
+@keyframes hit{0%{background:color-mix(in srgb,var(--s-bad) 30%,transparent);transform:translateX(0)}20%{transform:translateX(-3px)}40%{transform:translateX(3px)}60%{transform:translateX(-2px)}100%{background:transparent;transform:none}}
+.toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-8px);z-index:8;opacity:0;pointer-events:none;
+  padding:7px 14px;border-radius:999px;font-size:13px;font-weight:500;white-space:nowrap;color:var(--s-on-accent);
+  background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));box-shadow:0 8px 24px color-mix(in srgb,var(--s-accent) 35%,transparent);
+  transition:opacity .25s,transform .25s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.tide{background:linear-gradient(90deg,var(--s-warn),color-mix(in srgb,var(--s-warn) 70%,var(--s-bad)));box-shadow:0 8px 24px color-mix(in srgb,var(--s-warn) 35%,transparent)}
+.toast.bad{background:linear-gradient(90deg,var(--s-bad),var(--s-warn))}
+
+/* ---- tide table ---- */
+#tide{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px}
+#tide th{font-size:11px;font-weight:500;color:var(--s-ink3);padding:2px 2px 5px;text-align:center;line-height:1.2}
+#tide th:first-child{text-align:left}
+#tide td{text-align:center;padding:2px;border-top:1px solid var(--s-line);height:34px}
+#tide td:first-child{text-align:left;font:400 11px var(--s-mono);color:var(--s-ink3);white-space:nowrap}
+#tide td b{display:block;font:500 15px/1.05 var(--s-mono)}
+#tide td i{display:block;font:normal 10px/1.2 var(--s-mono);color:var(--s-accent)}
+#tide td.peak b{color:var(--s-warn)}
+#tide td.peak{box-shadow:inset 0 0 0 2px var(--s-warn);border-radius:4px}
+#tide td.hot i{color:var(--s-bad);font-weight:500}
+#tide tr.now td{background:var(--s-raise)}
+#tide tr.now td:first-child{color:var(--s-ink)}
+#tide tr.past{opacity:.35}
+#notice{min-height:60px;margin-top:6px}
+
+/* ---- map effects (the feedback layer) ---- */
+#fx .fx{transform-box:fill-box;transform-origin:center}
+#fx .glow{animation:glow var(--d,1.5s) cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes glow{0%{opacity:0;transform:scale(.35)}18%{opacity:var(--peak,1)}100%{opacity:0;transform:scale(1.55)}}
+#fx .ring{fill:none;stroke-width:2.2;animation:ring var(--d,1.3s) ease-out forwards}
+@keyframes ring{0%{opacity:.95;transform:scale(.25)}100%{opacity:0;transform:scale(1.9)}}
+#fx .float{font:600 15px var(--s-mono);paint-order:stroke;stroke-width:3;stroke-linejoin:round;animation:floatUp 1.5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes floatUp{0%{opacity:0;transform:translateY(8px)}15%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translateY(-30px)}}
+#fx .car{animation:driveOff 1.8s cubic-bezier(.5,0,.8,.4) forwards}
+@keyframes driveOff{0%{opacity:0;transform:translateX(0)}12%{opacity:1}100%{opacity:0;transform:translateX(var(--dx,-90px))}}
+#fx .flash{animation:flash .7s ease-out forwards}
+/* test hook: #fxfreeze=1 holds every effect mid-flight for screenshots */
+.fxfreeze #fx .fx{animation-play-state:paused!important;animation-delay:-.32s!important}
+@keyframes flash{0%{opacity:.9}100%{opacity:0}}
+
+/* ---- dialogs ---- */
+dialog{border:1px solid var(--s-line2);border-radius:10px;background:var(--s-panel);color:var(--s-ink);max-width:720px;width:calc(100% - 40px);
+  padding:24px 28px;max-height:88vh;overflow:auto;box-shadow:var(--s-shadow)}
+dialog::backdrop{background:rgba(10,10,10,.45);backdrop-filter:blur(3px)}
+dialog .h1{margin:4px 0 12px}
+dialog h3{font:600 15px 'Geist',sans-serif;margin:18px 0 6px}
+dialog p,dialog li{font-size:13.5px;line-height:1.75}
+.close{position:absolute;right:12px;top:10px;font-size:22px;border:0;background:none;cursor:pointer;color:var(--s-ink2)}
+ol.rules{padding-left:22px;margin:8px 0}ol.rules li{margin-bottom:8px}
+#resultScore{font-size:20px;margin:0 0 6px}
+table.result{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+table.result td,table.result th{text-align:left;padding:7px 6px;border-bottom:1px solid var(--s-line)}
+table.result th{font:500 10px var(--s-mono);letter-spacing:.08em;color:var(--s-ink3)}
+table.result td:not(:first-child),table.result th:not(:first-child){text-align:right;font-family:var(--s-mono)}
+#result .row{margin-top:14px;flex-wrap:wrap}
+#result.win .h1{background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- the hub: the opening and the map (v3.1, opening adapted from the suite's cover) ----
+   --hub-p: 0 = intro (title + tide bar), 1 = hub (map centred, menu in). --hub-q: how far the top bar is in. */
+[hidden]{display:none!important}
+:root{--hub-q:1;--chrome-h:134px}
+#topbar{position:relative;transform:translateY(calc((var(--hub-q) - 1) * 100%));opacity:var(--hub-q)}
+#navrow{transform:translateY(calc((var(--hub-q) - 1) * (100% + var(--s-top))));opacity:var(--hub-q)}
+body.chrome-off #topbar,body.chrome-off #navrow{pointer-events:none}
+body.inhub{overflow:hidden}
+#hub{--hub-p:0;position:fixed;inset:0;z-index:50;background:var(--s-paper);overflow:hidden;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;transition:opacity .45s ease}
+#hub.gone{opacity:0;pointer-events:none;transition:opacity .55s ease}
+#hub.away{visibility:hidden}
+.cv-stage{position:absolute;inset:0}
+#hub canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cv-copy{position:absolute;left:max(6vw,32px);top:50%;max-width:620px;z-index:3;
+  transform:translateY(calc(-52% - var(--hub-p) * 110px));opacity:calc(1 - var(--hub-p) * 1.7)}
+/* The copy sits on a soft paper halo: solid in the middle, fading out on every side (no hard edge), with the dots
+   behind blurred under the same mask, so the black title never sits on black dots. */
+.cv-copy::before{content:'';position:absolute;inset:-150px -230px -160px -190px;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side,var(--s-paper) 0,var(--s-paper) 62%,color-mix(in srgb,var(--s-paper) 70%,transparent) 80%,transparent 100%);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  -webkit-mask-image:radial-gradient(closest-side,#000 74%,transparent 100%);mask-image:radial-gradient(closest-side,#000 74%,transparent 100%)}
+.cv-logo{width:68px;height:68px;image-rendering:pixelated;display:block;margin-bottom:26px}
+.cv-title{font-family:var(--s-display);font-weight:600;font-size:clamp(42px,5.6vw,72px);line-height:1.03;letter-spacing:-.01em;color:var(--s-ink);margin:0 0 18px;
+  text-shadow:0 0 18px var(--s-paper),0 0 3px var(--s-paper)}
+.cv-title em{font-style:italic;font-weight:500;color:var(--s-accent)}
+.cv-tc{display:block;font-family:var(--s-serif-tc);font-weight:500;color:var(--s-ink2)}
+.cv-title .cv-tc{font-size:clamp(17px,1.9vw,24px);letter-spacing:.14em;margin-top:16px}
+.cv-lede{font-size:16px;color:var(--s-ink2);margin:0 0 18px;line-height:1.6}
+.cv-lede .cv-tc{font-size:14px;margin-top:4px;letter-spacing:.06em}
+.cv-mode{margin:0;display:flex;flex-direction:column;gap:3px;font-size:14.5px;color:var(--s-ink)}
+.cv-hint{position:absolute;left:50%;bottom:100px;z-index:4;transform:translate(-50%,calc(var(--hub-p) * 60px));opacity:calc(1 - var(--hub-p) * 3);
+  appearance:none;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font:500 11px var(--s-mono);letter-spacing:.12em;color:var(--s-ink2)}
+.cv-hint span{background:var(--s-chrome);padding:3px 9px;border-radius:999px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.cv-hint .mouse{width:20px;height:31px;border:1.6px solid var(--s-ink2);border-radius:11px;position:relative;background:var(--s-chrome)}
+.cv-hint .mouse::after{content:'';position:absolute;left:50%;top:6px;width:3px;height:6px;margin-left:-1.5px;border-radius:2px;background:var(--s-ink);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(-2px)}30%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+.cv-bar{position:absolute;left:50%;bottom:22px;transform:translate(-50%,calc(var(--hub-p) * 150px));opacity:calc(1 - var(--hub-p) * 1.7);z-index:4;
+  width:min(880px,calc(100vw - 28px));height:62px;display:flex;align-items:center;
+  gap:14px;padding:0 14px;background:var(--s-chrome);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
+  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow)}
+#hub.past .cv-copy,#hub.past .cv-bar,#hub.past .cv-hint{pointer-events:none}
+.cv-play{appearance:none;border:1px solid var(--s-line2);background:transparent;color:var(--s-ink);width:32px;height:32px;border-radius:5px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.cv-play:hover{background:var(--s-soft)}
+.cv-hour .h{font-family:var(--s-mono);font-size:20px;font-variant-numeric:tabular-nums;line-height:1.05}
+.cv-hour .u{font-family:var(--s-mono);font-size:10.5px;color:var(--s-ink2);letter-spacing:.06em;text-transform:uppercase}
+.cv-mid{flex:1;min-width:0;height:46px}.cv-mid svg{width:100%;height:100%;display:block;overflow:visible;cursor:ew-resize}
+.cv-nums{display:flex;gap:18px;flex:0 0 auto}
+.cv-nums b{font-family:var(--s-mono);font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+.cv-nums span{font-size:9.5px;color:var(--s-ink2);letter-spacing:.08em;text-transform:uppercase}
+#hub .tip{position:absolute;z-index:9;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--s-panel);border:1px solid var(--s-line2);
+  border-radius:5px;box-shadow:var(--s-shadow);padding:7px 9px;font-size:11px;min-width:132px;max-width:240px}
+#hub .tip.on{opacity:1}
+#hub .tip .tt{font-weight:500;font-size:12px;margin-bottom:3px}
+#hub .tip .tv{display:flex;justify-content:space-between;gap:12px;color:var(--s-ink2);font-size:10.5px}
+#hub .tip .tv b{color:var(--s-ink);font-family:var(--s-mono);font-weight:400}
+
+/* the glass panel: what the selected menu item says */
+.hub-panel{position:absolute;left:20px;top:calc(var(--chrome-h) + 16px);width:330px;max-height:calc(100% - var(--chrome-h) - 36px);overflow:auto;z-index:6;
+  background:var(--s-chrome);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
+  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow);padding:15px 17px 14px;scrollbar-width:thin;
+  opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+#hub.open .hub-panel{opacity:1;transform:none;pointer-events:auto}
+#hub.leaving .hub-panel,#hub.leaving .hub-marks{opacity:0!important;pointer-events:none!important;transition:opacity .2s}
+.hp-h{font-family:var(--s-display);font-size:26px;font-weight:600;line-height:1.1;margin:5px 0 8px}
+.hp-tc{display:block;font-family:var(--s-serif-tc);font-size:15px;font-weight:500;color:var(--s-ink2);letter-spacing:.08em;margin-top:5px}
+.hp-up{display:inline-block;color:var(--s-accent);animation:upNudge 1.4s ease-in-out infinite}
+@keyframes upNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.hub-panel .note{font-size:13px}
+.hub-panel .chip{margin:2px 0 8px}
+.hp-sub{margin:14px 0 6px}
+.lvls{display:flex;flex-direction:column;gap:6px}
+.lv{appearance:none;text-align:left;cursor:pointer;border:1px solid var(--s-line2);background:var(--s-panel);border-radius:6px;padding:8px 10px;
+  display:flex;flex-direction:column;gap:2px;transition:border-color .15s,box-shadow .15s,transform .1s}
+.lv:hover,.lv.hot{border-color:var(--s-accent);box-shadow:inset 0 0 0 1px var(--s-accent)}
+.lv:active{transform:translateY(1px)}
+.lv-n{display:flex;align-items:baseline;gap:8px}.lv-n b{font-size:15px;font-weight:600}
+.lv-n small{font:500 9.5px var(--s-mono);letter-spacing:.14em;color:var(--s-ink3)}
+.lv-m{font:400 11.5px var(--s-mono);color:var(--s-ink2)}.lv-m em{font-style:normal;color:var(--s-accent)}
+.lv-r{font-size:11px;color:var(--s-warn)}
+.lv.minor{padding:6px 10px}.lv.minor .lv-n b{font-size:13.5px;font-weight:500;color:var(--s-ink2)}
+.hp-detail{margin:12px 0 0;border-top:1px solid var(--s-line);padding-top:10px;min-height:74px}
+.hp-detail p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--s-ink2)}
+.hp-detail .hp-idle{color:var(--s-ink3)}
+.hp-dh{display:flex;align-items:center;gap:8px}.hp-dh b{font-size:14px}
+.tag{font:500 9.5px var(--s-mono);letter-spacing:.08em;padding:1px 6px;border-radius:3px;border:1px solid var(--s-line2);color:var(--s-ink3)}
+.tag.st-play{border-color:var(--s-accent);color:var(--s-accent)}
+.hp-tiers{font-size:11px!important;color:var(--s-ink)!important}
+.hp-legend{display:flex;gap:14px;margin-top:10px;font-size:11.5px;color:var(--s-ink2)}
+.hp-legend span{display:inline-flex;align-items:center;gap:6px}
+.hp-legend .k{width:10px;height:10px;border-radius:50%;display:block}
+.hp-legend .k.st-play{background:var(--s-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--s-accent2) 25%,transparent)}
+.hp-legend .k.st-soon{border:2px solid var(--s-ink3);background:var(--s-panel)}
+.hp-fine{margin:8px 0 0;font-size:11px;line-height:1.55;color:var(--s-ink3)}
+
+/* markers: playable stations (green, pulsing) and places not built yet (grey) */
+.hub-marks{position:absolute;inset:0;z-index:5;pointer-events:none}
+.hm{position:absolute;width:0;height:0;appearance:none;border:0;background:none;padding:0;cursor:pointer;color:var(--s-ink);
+  opacity:0;pointer-events:none;transition:opacity .4s ease calc(var(--i) * 55ms)}
+#hub.open.m1 .hm{opacity:1;pointer-events:auto}
+.hm .pin{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:var(--s-accent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--s-accent2) 28%,transparent),0 0 22px var(--s-accent2)}
+.hm.st-play .pin::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--s-accent2);animation:pinRing 2.2s ease-out infinite}
+@keyframes pinRing{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.4)}}
+.hm.minor .pin{left:-6px;top:-6px;width:12px;height:12px;box-shadow:0 0 0 3px color-mix(in srgb,var(--s-accent2) 25%,transparent)}
+.hm.minor .pin::after{display:none}
+.hm.st-soon{cursor:help}
+.hm.st-soon .pin{left:-6px;top:-6px;width:12px;height:12px;background:var(--s-panel);border:2px solid var(--s-ink3);box-shadow:none}
+.hm .lab{position:absolute;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:4px 9px 5px;border-radius:6px;
+  background:var(--s-chrome);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--s-line2);box-shadow:0 6px 16px rgba(0,0,0,.08);
+  transition:background .15s,color .15s,border-color .15s}
+.hm .lab b{font-size:14px;font-weight:600;line-height:1.2}
+.hm .lab small{font:500 9px var(--s-mono);letter-spacing:.12em;color:var(--s-ink3);text-transform:uppercase}
+.hm.st-play .lab{border-color:var(--s-accent)}
+.hm.st-play:hover .lab,.hm.st-play.hot .lab,.hm.st-play:focus-visible .lab{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-on-accent)}
+.hm.st-play:hover .lab small,.hm.st-play.hot .lab small,.hm.st-play:focus-visible .lab small{color:var(--s-on-accent)}
+.hm.minor .lab b{font-size:12.5px;font-weight:500}
+.hm.st-soon .lab{padding:2px 7px 3px;border-color:var(--s-line);color:var(--s-ink2)}
+.hm.st-soon .lab b{font-size:12px;font-weight:500}.hm.st-soon .lab small{font-size:8.5px}
+.hm.st-soon.hot .lab{border-color:var(--s-ink2);color:var(--s-ink)}
+.hm[data-side=right] .lab{left:14px;top:0;transform:translateY(-50%)}
+.hm[data-side=left] .lab{right:14px;top:0;transform:translateY(-50%)}
+.hm[data-side=top] .lab{bottom:14px;left:0;transform:translateX(-50%)}
+.hm[data-side=bottom] .lab{top:14px;left:0;transform:translateX(-50%)}
+.hm[data-side=topright] .lab{bottom:10px;left:-4px}
+.hm:focus-visible{outline:none}.hm:focus-visible .pin{outline:2px solid var(--s-info);outline-offset:3px}
+
+/* menu: 02–06 are previews for now; 01 invites a first click */
+#navrow button.soon{color:var(--s-ink3)}
+#navrow button.soon .stop{border-style:dashed}
+#navrow button.invite .stop{animation:invite 1.5s ease-in-out infinite;border-color:var(--s-accent);color:var(--s-accent)}
+@keyframes invite{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--s-accent2) 55%,transparent)}60%{box-shadow:0 0 0 9px transparent}}
+.seg.lang button{min-width:34px;justify-content:center;font-size:12px}
+
+@media (max-width:1279px){.side{width:330px}.side.right{width:290px}}
+@media (max-width:1100px){body{overflow:auto;display:block}.eg{display:block}.side,.side.right{width:100%;border:0;border-bottom:1px solid var(--s-line)}
+  .play{height:72vh;position:sticky;top:0;z-index:6;background:var(--s-paper)}#navrow .t s{display:none}}
+@media (max-width:760px){.brand .sub,#srcBtn{display:none}#topbar{gap:8px;padding:0 10px}.hud{grid-template-columns:repeat(2,1fr)}.lanebox{display:none}
+  .cv-copy{left:20px;right:20px;top:auto;bottom:172px;transform:translateY(calc(var(--hub-p) * -110px));max-width:none}.cv-nums{display:none}
+  .cv-hint{bottom:92px}.hub-panel{left:8px;right:8px;width:auto;top:auto;bottom:8px;max-height:200px}
+  /* the map is small on a phone: smaller labels, "not built yet" stations show only their pin until tapped,
+     and the minor Long Ping label goes up-left so it clears Fanling */
+  .hm .lab{padding:2px 6px 3px}.hm .lab b,.hm.minor .lab b{font-size:12px}.hm .lab small{display:none}
+  .hm.st-soon .lab{display:none}.hm.st-soon.hot .lab{display:flex}
+  .hm.minor[data-side=topright] .lab{bottom:9px;left:0;transform:translateX(-85%)}}
+/* a phone-width top bar must fit, or the browser widens the whole page and the intro copy runs off the right edge */
+@media (max-width:480px){#topbar{gap:6px}#help .tc{display:none}.seg.lang button{min-width:28px;padding:0 7px}.brand .wm{font-size:18px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* v4 · rounds trial: the 3-second countdown before each round, the next round in the tide table, the level switch */
+.countdown{position:absolute;left:50%;top:50%;z-index:8;transform:translate(-50%,-50%) scale(.92);opacity:0;pointer-events:none;
+  display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 22px 12px;border-radius:14px;
+  background:var(--s-chrome);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--s-line2);
+  box-shadow:0 12px 40px color-mix(in srgb,var(--s-ink) 14%,transparent);transition:opacity .18s,transform .18s}
+.countdown.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.countdown b{font:600 52px/1 var(--s-mono);color:var(--s-warn)}
+.countdown span{font-size:14px;font-weight:600;color:var(--s-ink);white-space:nowrap}
+.countdown small{font:500 10.5px var(--s-mono);letter-spacing:.08em;color:var(--s-ink3)}
+.countdown.paused{border-color:var(--s-accent)}
+.countdown.paused b{color:var(--s-accent)}
+#tide td small{display:block;font-size:9.5px;color:var(--s-ink3)}
+#tide tr.next td{background:color-mix(in srgb,var(--s-warn) 12%,transparent)}
+#tide tr.next td:first-child{color:var(--s-warn);font-weight:600}
+.seg.lv button{font-size:12px;padding:0 10px}
+/* the countdown sits at the top centre, between the clock and the moves box, so it never covers the board */
+.countdown{top:12px;transform:translate(-50%,-6px);display:grid;grid-template-columns:auto auto;column-gap:12px;row-gap:1px;align-items:center;padding:7px 16px 7px 12px}
+.countdown.on{transform:translate(-50%,0)}
+.countdown b{grid-row:1/3;font-size:38px}
+.countdown span{align-self:end;font-size:13.5px}
+.countdown small{align-self:start}
+
+/* v4 · level editor (editor.html) */
+.ed-in{appearance:none;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink);border-radius:4px;height:28px;padding:0 8px;font:inherit;font-size:13px;min-width:0}
+.ed-in:focus{outline:2px solid var(--s-info);outline-offset:1px}
+input.ed-in[type=number]{width:62px;text-align:right}
+.ed-title{width:100%;height:36px;font-family:var(--s-display);font-size:22px;font-weight:600;margin:6px 0 4px;padding:0 10px}
+.ed-h{margin:16px 0 6px}
+.ed-tools{width:100%}.ed-tools button{flex:1;font-size:12.5px;padding:0 4px}
+.ed-size{gap:14px;margin-top:8px}.ed-size label{display:flex;align-items:center;gap:6px;font-size:13px}
+.ed-est{display:grid;grid-template-columns:1fr auto auto auto;gap:6px;align-items:center;padding:5px 6px;border:1px solid var(--s-line);border-radius:5px;margin-bottom:5px;background:var(--s-panel)}
+.ed-est.sel{border-color:var(--s-accent)}
+.ed-est .ed-in{height:26px}.ed-est select.ed-in,.ed-est select{height:26px;font-size:12px;border:1px solid var(--s-line2);border-radius:4px;background:var(--s-panel);color:var(--s-ink)}
+.ed-est .mono{font-size:11px;color:var(--s-ink3);white-space:nowrap}
+.ed-problems{margin:0;padding-left:18px;font-size:12.5px;color:var(--s-bad);line-height:1.6}.ed-problems .ok{color:var(--s-accent);list-style:'✓  '}
+.ed-plate{background-image:none}
+#edBoard{position:absolute;left:0;right:0;top:0;bottom:40px;width:100%;height:calc(100% - 40px);display:block;touch-action:none;user-select:none;cursor:crosshair}
+#edBoard text{font-family:'Geist','PingFang HK','Microsoft JhengHei',sans-serif}
+.ed-cell{position:absolute;left:0;right:0;bottom:0;height:40px;display:flex;align-items:center;padding:0 14px;font-size:12px;color:var(--s-ink2);border-top:1px solid var(--s-line);background:var(--s-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ed-actions{gap:8px;margin-bottom:8px}.ed-actions .btn{flex:1}
+.ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}.ed-grid.three{grid-template-columns:1fr 1fr 1fr}
+.ed-grid label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--s-ink2)}
+.ed-grid input.ed-in[type=number]{width:100%}
+.ed-people{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.ed-people th{font-weight:500;color:var(--s-ink3);padding:2px;text-align:center;font-size:11px}
+.ed-people td{padding:2px;text-align:center}.ed-people td:first-child{text-align:left;color:var(--s-ink3);font-size:10.5px;white-space:nowrap}
+.ed-people input.ed-in[type=number]{width:46px;height:26px;padding:0 4px}
+.ed-willing{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.ed-willing label{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;color:var(--s-ink3)}
+.ed-willing input.ed-in[type=number]{width:100%;padding:0 3px;text-align:center}
+.ed-analysis .r{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:2px 0}
+.ed-analysis .note{font-size:12px;margin:4px 0}
+.ed-analysis .gauge{height:6px;border-radius:3px;background:var(--s-raise);overflow:hidden;margin-top:6px}.ed-analysis .gauge i{display:block;height:100%;background:var(--s-accent)}
+.ed-warn{color:var(--s-warn)!important}
+/* number boxes without spinner arrows, so three digits fit */
+.ed-in[type=number]{-moz-appearance:textfield;appearance:textfield}
+.ed-in[type=number]::-webkit-inner-spin-button,.ed-in[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.ed-willing input.ed-in[type=number]{padding:0 2px;font-size:12px}
+.ed-analysis{margin-bottom:4px}
+
+.ed-toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-6px);z-index:8;opacity:0;pointer-events:none;max-width:80%;
+  padding:7px 14px;border-radius:999px;background:var(--s-ink);color:var(--s-paper);font-size:13px;transition:opacity .15s,transform .15s}
+.ed-toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* v5 · shares trial: the stop columns of the tide table (people going to A / B / C each round; amber nearly full, red overflows) */
+#tide th.stopcol{color:var(--s-accent)}
+#tide th.stopcol,#tide td.stopcol{background:color-mix(in srgb,var(--s-accent) 6%,transparent)}
+#tide th.stopcol:nth-child(1 of .stopcol),#tide td.stopcol:nth-child(1 of .stopcol){border-left:2px solid var(--s-line2)}
+#tide td.stopcol b{color:var(--s-accent)}
+#tide td.stopcol i{color:var(--s-ink3);font-style:normal}
+#tide td.stopcol.warm b{color:var(--s-warn)}
+#tide td.stopcol.warm{box-shadow:inset 0 0 0 1.5px var(--s-warn);border-radius:4px}
+#tide td.stopcol.hot b{color:var(--s-bad)}
+#tide td.stopcol.hot{box-shadow:inset 0 0 0 2px var(--s-bad);border-radius:4px;background:color-mix(in srgb,var(--s-bad) 10%,transparent)}
+.badtxt{color:var(--s-bad);font-weight:600}
+/* v5 · the goal gauge starts a little below "pass" (its lowest score on the left); labels: pass and high below, master above */
+.gauge[data-lo]:not([data-lo=""])::before{content:attr(data-lo);position:absolute;left:0;top:15px;font:500 10px var(--s-mono);color:var(--s-ink3)}
+#tickHigh::after{left:50%;transform:translateX(-50%);top:15px;bottom:auto}
+#tickMaster::after{left:auto;right:-1px;transform:none;top:auto;bottom:15px}
+/* v5.2 · ring keys in the legend */
+.legend i.ringkey{width:12px;height:12px;border-radius:50%;background:none;border:3px solid var(--s-accent);box-sizing:border-box}
+.legend i.ringkey.bad{border-color:var(--s-bad);border-right-color:var(--s-line2);border-bottom-color:var(--s-line2)}
+.legend i.ringkey.good{border-left-color:var(--s-line2)}
+/* v5.5 · effects float over the board again, but soft and see-through (blurred glows) so they never hide anything */
+#fx{z-index:4;opacity:.7}
+#fx .glow{filter:blur(3px)}
+#fx .float{font-size:12.5px}
+.countdown{top:12px;max-width:300px}
+.legend i.ringkey.bad{border:none;background:radial-gradient(circle,transparent 20%,color-mix(in srgb,var(--s-bad) 55%,transparent) 55%,transparent 75%)}
+/* v5.5 · moves left, readable; the hint turns red when none are left; a warning toast */
+.lanebox .h b#moves{font:600 20px var(--s-mono);color:var(--s-accent);vertical-align:-2px;margin:0 2px}
+.lanebox .h.none b#moves{color:var(--s-bad)}
+.lanebox .hint.bad{color:var(--s-bad);font-weight:600}
+.toast.warn{top:auto;bottom:86px;background:var(--s-panel);color:var(--s-bad);border:1px solid color-mix(in srgb,var(--s-bad) 55%,transparent);
+  box-shadow:0 8px 24px color-mix(in srgb,var(--s-bad) 18%,transparent);font-weight:600}
+#board [role=button]:focus:not(:focus-visible){outline:none}
+/* v5.4 · move tokens: pixel squares */
+.lanebox .tokens{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:4px 0 6px}
+.lanebox .tokens .tl{font:500 9.5px var(--s-mono);letter-spacing:.06em;color:var(--s-ink3);margin:0 2px 0 4px}
+.lanebox .tokens .tl:first-child{margin-left:0}
+.tk{position:relative;width:18px;height:18px;display:inline-grid;place-items:center;font-style:normal;image-rendering:pixelated;
+  background:var(--s-accent);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--s-ink) 25%,transparent);clip-path:polygon(2px 0,calc(100% - 2px) 0,100% 2px,100% calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,0 calc(100% - 2px),0 2px)}
+.tk b{font:600 10px var(--s-mono);color:var(--s-on-accent);line-height:1}
+.tk.ahead{opacity:.55}
+.tk.now{opacity:1;animation:tkGlow 1.2s ease-in-out infinite}
+.tk.used{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2)}
+.tk.used b{color:var(--s-ink3)}
+.tk.lost{background:var(--s-raise);box-shadow:inset 0 0 0 2px var(--s-line2)}
+.tk.lost b{color:var(--s-ink3);text-decoration:line-through}
+.tk.x{background:var(--s-warn)}
+.tk.x.used{background:transparent}
+@keyframes tkGlow{50%{filter:brightness(1.25);transform:translateY(-1px)}}
+/* v5.5 · break square: lights up in the break; extra moves locked in the break; the rule numbers; hold-F hint */
+.tk.empty{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2);opacity:.7}
+.tk.now{animation:tkPop .45s cubic-bezier(.2,1.6,.4,1),tkGlow 1.2s ease-in-out .45s infinite}
+@keyframes tkPop{0%{transform:scale(.4);filter:brightness(1.8)}100%{transform:scale(1)}}
+.tk.locked{opacity:.38;filter:grayscale(.6)}
+.box.facts{margin-top:10px;padding:9px 12px;font-size:11.5px;line-height:1.65;color:var(--s-ink2)}
+.box.facts b{color:var(--s-ink);font-family:var(--s-mono);font-weight:600}
+.fasthint{font:500 10px var(--s-mono);color:var(--s-ink3);letter-spacing:.04em;margin-left:2px;transition:color .2s}
+.fasthint.on{color:var(--s-accent);font-weight:600}
+.legend i.pkey{width:8px;height:8px;background:var(--s-info);border-radius:0}
+.legend i.pkey.home{background:transparent;box-shadow:inset 0 0 0 1.6px var(--s-info)}
+.legend i.pkey.pat{background:linear-gradient(90deg,var(--s-info) 33%,var(--s-warn) 33% 66%,var(--s-bad) 66%);width:18px}
+.lanebox .hint.wait{color:var(--s-ink3)}
+/* v5.8 · clicking empty ground focuses the board: no frame for mouse clicks (keyboard focus still shows) */
+#board:focus:not(:focus-visible){outline:none}
+/* v6 · groups (level 5): a colour per group for shapes and mix bars, away from the status colours */
+:root{--s-g-old:#8E4F97;--s-g-stu:#1E8584;--s-g-work:#8A5A2B}
+[data-theme="dark"]{--s-g-old:#C99AD3;--s-g-stu:#5CC4C2;--s-g-work:#D3A271}
+.gk{font:600 12px var(--s-mono);margin-right:3px}
+.gk.g-old{color:var(--s-g-old)}.gk.g-stu{color:var(--s-g-stu)}.gk.g-work{color:var(--s-g-work)}
+.legend .gleg{gap:3px 6px;flex-wrap:wrap}
+.legend .gleg .gk{margin:0 0 0 4px}
+.legend i.gsw{width:10px;height:6px;border-radius:1px}
+i.gsw.g-old,.gbar i.g-old{background:var(--s-g-old)}
+i.gsw.g-stu,.gbar i.g-stu{background:var(--s-g-stu)}
+i.gsw.g-work,.gbar i.g-work{background:var(--s-g-work)}
+#tide td .gbar{display:flex;gap:1px;height:4px;margin:3px 4px 0;border-radius:1px;overflow:hidden}
+#tide td .gbar i{display:block;height:4px}
+#tide td i.try{color:var(--s-warn)}
+/* v6 · habit (level 4): ten pixel cells per estate, the change since yesterday, riders per day */
+.box.habit{margin-top:8px;padding:10px 12px}
+.hbrows{display:grid;gap:5px}
+.hb{display:grid;grid-template-columns:3.6em 1fr 2.8em 2.4em;align-items:center;gap:6px;font-size:12px}
+.hb .hn{color:var(--s-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb .cells{display:flex;gap:2px}
+.hb .cells i{width:9px;height:9px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.hb .cells i.on{background:var(--s-accent);box-shadow:none}
+.hb b{font:600 12px var(--s-mono);text-align:right}
+.hb em{font:500 10.5px var(--s-mono);font-style:normal;color:var(--s-ink3)}
+.hb em.up{color:var(--s-accent)}.hb em.down{color:var(--s-bad)}
+.hbchart{display:block;margin-top:10px;overflow:visible}
+.hbchart .hbx{fill:none;stroke:var(--s-line2);stroke-dasharray:2 2}
+.hbchart .hbus,.hbkey i.hbus{fill:var(--s-accent);background:var(--s-accent)}
+.hbchart .hmiss,.hbkey i.hmiss{fill:var(--s-bad);background:var(--s-bad)}
+.hbchart .hhab,.hbkey i.hhab{fill:var(--s-ink3);background:var(--s-ink3);fill-opacity:.45;opacity:.6}
+.hbchart .htry{fill:var(--s-warn);fill-opacity:.25;stroke:var(--s-warn);stroke-dasharray:3 2}
+.hbkey i.htry{background:transparent;box-shadow:inset 0 0 0 1.5px var(--s-warn)}
+.hbchart text{font:600 10px var(--s-mono);fill:var(--s-ink);text-anchor:middle}
+.hbchart text.try{fill:var(--s-warn)}
+.hbchart text.hbd{font:400 9px var(--s-mono);fill:var(--s-ink3)}
+.hbkey{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:10.5px;color:var(--s-ink3);margin-top:6px}
+.hbkey span{display:inline-flex;align-items:center;gap:4px}
+.hbkey i{width:8px;height:8px;display:block}
+.hbnote{font-size:11.5px;line-height:1.55;color:var(--s-ink2);margin:6px 0 0}
+/* v6 · groups box (level 5) */
+.box.groups{margin-top:8px;padding:8px 10px}
+.gtab{width:100%;border-collapse:collapse;font-size:12px}
+.gtab th{font:500 10px var(--s-mono);color:var(--s-ink3);text-align:left;padding:2px 3px 5px}
+.gtab td{padding:4px 3px;border-top:1px solid var(--s-line);white-space:nowrap}
+.gtab td:nth-child(2){color:var(--s-ink2);font-size:11px;white-space:normal}
+.gtab td.n,.gtab th:nth-child(n+3){text-align:right;font-family:var(--s-mono)}
+/* v6 · intro card: what a level adds */
+dialog.intro{max-width:560px}
+.ivnew{margin:0 0 6px;font-size:15px}
+.ivnew .tag{display:inline-block;font:600 10px var(--s-mono);letter-spacing:.08em;color:var(--s-on-accent);background:var(--s-accent);padding:2px 7px;border-radius:3px;margin-right:8px;vertical-align:2px}
+.ivlist{margin:8px 0 10px;padding-left:20px}
+.ivlist li{margin:4px 0}
+.ivcourse{border-left:3px solid var(--s-accent);padding:4px 0 4px 10px;color:var(--s-ink2);font-size:12.5px}
+#resultExtra table.result{margin-top:2px}
+/* v6 · the level buttons on a row of their own (the hub's .lv card style no longer stacks them) */
+.side>.row:first-child{flex-wrap:wrap;row-gap:8px}
+#levelSeg{flex:1 0 100%;flex-direction:row;padding:0;gap:0;border-radius:4px;border-color:var(--s-line)}
+#levelSeg:hover{box-shadow:none}
+#levelSeg button{flex:1 1 0;padding:0 4px;white-space:nowrap}
+#levelSeg button[hidden]{display:none}
+.ivlist li.nb{list-style:none;margin-left:-14px}
+dialog.intro .row{margin-top:16px}
+/* v7 · one-line tips on teaching levels (shared/tips.js): beside what they talk about, never blocking */
+.tipbox{position:fixed;z-index:60;display:none;background:var(--s-panel);color:var(--s-ink);border:1px solid var(--s-accent);border-radius:8px;
+  box-shadow:var(--s-shadow);padding:12px 14px 10px;font-size:13.5px;line-height:1.6}
+.tipbox.on{display:block;animation:tipIn .25s ease-out}
+.tipbox .tiptext{margin:0 0 8px}
+.tipbox .tipbtns{display:flex;justify-content:flex-end;gap:8px}
+.tipbox .tipoff{color:var(--s-ink3)}
+@keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* v7 · mode 2 «the metro» — on mode 1's layout (shared/style.css); only what this mode adds */
+:root{--s-metro:#9A3B26;--s-jam:#C2410C;--s-free:#2F8F5B;--s-walk:#7F95AE}
+[data-theme="dark"]{--s-metro:#E0896B;--s-jam:#F08A4B;--s-free:#5CC08A;--s-walk:#A3B6CC}
+#board{cursor:crosshair}
+.station-button b{color:var(--rc)}.station-button.selected{border-color:var(--rc);box-shadow:inset 0 0 0 1px var(--rc)}
+.stopbox .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.stopbox .tools .seg button{height:28px;font-size:12px;padding:0 9px}
+.stopbox .pm{display:inline-flex;align-items:center;gap:6px}.stopbox .pm .btn{min-width:26px;height:24px;padding:0 6px}
+.stopbox .r b.c{color:var(--rc)}
+.roadbox{padding:6px 12px}
+.rd{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:4px 0;border-top:1px solid var(--s-line)}.rd:first-child{border-top:0}
+.rd .n{flex:1;color:var(--s-ink2)}.rd b{font:500 12px var(--s-mono)}
+.lanebtn{font:500 10.5px var(--s-mono);padding:1px 7px;border-radius:4px;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink3);cursor:pointer}
+.lanebtn.on{background:var(--s-bad);border-color:var(--s-bad);color:var(--s-paper)}
+.hold.on{background:var(--s-ink);color:var(--s-paper);border-color:var(--s-ink)}
+#tide td small{display:block;font-size:9.5px;color:var(--s-ink3)}
+#tide tr.next td b{color:var(--s-ink3);font-style:italic}
+.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12px;color:var(--s-ink3)}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top}#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3)}
+.legend i.lk{border-radius:2px}
+.legend i.lk.car{width:9px;height:6px;background:var(--s-ink);opacity:.7}
+.legend i.lk.bus{width:13px;height:7px;background:#2F6FD6}
+.legend i.lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.legend i.lk.jam{width:14px;height:4px;background:var(--s-jam)}
+.legend i.lk.lane{width:14px;height:4px;background:repeating-linear-gradient(90deg,var(--s-bad) 0 4px,transparent 4px 7px)}
+.station-button{--rc:var(--s-metro)}
+.legend i.lk.newline{width:14px;height:5px;background:var(--s-metro)}
+.legend i.lk.want{width:16px;height:3px;background:var(--s-ink3);opacity:.5}
+.wbar{position:relative;display:flex;height:10px;border-radius:3px;overflow:hidden;background:var(--s-raise);flex:1}
+.wbar i{display:block;height:100%}
+.wbar u{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--s-ink);opacity:.7}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px}
+
+/* Station-side development */
+.land-controls{border-top:1px solid var(--s-line);margin-top:10px;padding-top:7px}
+.land-controls .r{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:3px 0}
+.land-controls .tools{display:flex;gap:6px;margin-top:7px}
+.land-controls .btn.on{border-color:var(--s-accent);background:var(--s-accent);color:var(--s-paper)}
+.station-button[data-card="land"] b{color:var(--s-accent)}
+#tide{font-variant-numeric:tabular-nums}
+#tide td,#tide th{text-align:right}
+#tide td:first-child,#tide th:first-child{text-align:left}
+#tide td{padding:5px 4px}
+#tide tr.next td{color:var(--s-ink3)}
+#roadBox .rd small{font-size:9px;color:var(--s-ink3)}
+#roadBox .rd{flex-wrap:wrap}
+</style></head><body class="entered">
+
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="sp"></div>
+  <button class="btn btn-sm" id="help" data-i18n-html="top.rules">Rules <span class="tc">規則</span></button>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" aria-pressed="true">繁</button><button data-lang="zh-Hans" aria-pressed="false">简</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true">☀</button><button id="thInk" aria-pressed="false">☾</button></div>
+</header>
+<nav id="navrow" data-current="4"></nav>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <div class="row"><a class="btn btn-sm" href="../开始.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><div class="sp"></div><span class="chip"><i></i><span data-i18n="m2.chipTag">一次建好</span></span></div>
+    <span class="lbl" data-i18n="m.mode">Mode 02 · 地鐵</span>
+    <h1 class="h1"><span data-i18n="tod.heading">Station-side development</span><span class="h1tc" data-i18n="m.levelTitle">新界西北 · 一條新線</span></h1>
+    <p class="lede" data-i18n-html="tod.lede"></p>
+
+    <div class="box goal">
+      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score">0</b> / <span id="goalMax"></span></span></div>
+      <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
+      <div class="note" id="goal"></div>
+    </div>
+
+    <div class="row controls">
+      <button class="btn btn-p" id="run"></button>
+      <button class="btn btn-sm" id="pause"></button>
+      <button class="btn btn-sm hold" id="hold"></button>
+      <button class="btn btn-sm" id="rewind" data-i18n-title="m.rewind">↺</button>
+    </div>
+
+    <div class="lbl" data-i18n-html="m2.lineLbl"></div>
+    <div id="stations" class="stations"></div>
+    <div id="stopPanel" class="box stopbox"></div>
+
+    <div class="lbl" style="margin-top:16px" data-i18n="m2.rulesH3">Three rules · 三條規則</div>
+    <ol class="mini" id="rules"></ol>
+    <div class="lbl" style="margin-top:14px" data-i18n="g.read">How to read the map · 怎麼看</div>
+    <div class="legend" id="mapLegend"></div>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate">
+      <svg id="board" viewBox="0 0 900 700" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
+      <div class="clockbox ov"><div class="c" id="clock"></div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
+      <div class="lanebox ov"><div class="h"><span id="laneH"></span></div><div class="hint" id="mapHint"></div></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="hud">
+        <div class="good"><b id="hudBus">0</b><small data-i18n="tod.hudRiders">By metro · 坐地鐵</small></div>
+        <div><b id="hudRail">0</b><small data-i18n="tod.hudHomes">New residents · 新住戶</small></div>
+        <div class="bad"><b id="hudCar">0</b><small data-i18n="tod.hudMall">To the shops · 來站旁商場</small></div>
+        <div><b id="hudJam">0</b><small data-i18n="tod.hudLedger">Ledger · 賬</small></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="row"><span class="lbl" data-i18n="m2.yearsH">Years · 逐年</span><div class="sp"></div><span class="chip"><i></i><span id="yearChip"></span></span></div>
+    <table id="tide"></table>
+    <div class="legend tidekey" id="tideKey"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="m2.whereH2">Where people go · 大家去哪裡</div>
+    <div class="box roadbox" id="roadBox"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
+    <p id="notice" class="note" role="status" aria-live="polite"></p>
+    <details class="tripsd"><summary data-i18n="m.tripsH">每條愿望線的算式</summary><table id="trips"></table></details>
+  </aside>
+</main>
+
+<dialog id="info"><button class="close" data-close="info">×</button>
+<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="m.infoH">地鐵模式的規則</h2><div id="infoBody"></div></dialog>
+
+<dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
+<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.seeBoard">看看地圖</button><button id="again" class="btn" data-i18n="m.rewind">↺ 回到規劃</button></div></dialog>
+
+<dialog id="lvIntro" class="intro"><span class="lbl" data-i18n="tod.modeIntro">MODE 04 · STATION-SIDE DEVELOPMENT</span><h2 class="h1" data-i18n="m.levelTitle"></h2>
+<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m2.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m2.course"></p>
+<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始畫線 →</button></div></dialog>
+
+<script>
+(function(root) {
+  'use strict';
+  // North-west New Territories board, one block about 400 m. Empty land is illustrative.
+  const NW={title:'新界西北 · 站旁开发',cols:14,rows:9,
+    origins:[
+      {name:'天耀邨',hans:'天耀邨',cell:[2,2],house:[0,-1],people:60},
+      {name:'天瑞邨',hans:'天瑞邨',cell:[1,7],house:[0,1],people:54},
+      {name:'天恆邨',hans:'天恒邨',cell:[5,6],house:[0,1],people:50},
+      {name:'洪福邨',hans:'洪福邨',cell:[8,7],house:[0,1],people:46},
+      {name:'朗屏邨',hans:'朗屏邨',cell:[10,1],house:[0,-1],people:44}],
+    destinations:[
+      {name:'元朗市中心',hans:'元朗市中心',short:'元朗',shortHans:'元朗',kind:'town',cell:[13,4],house:[1,0],attraction:24,carExtra:3},
+      {name:'洪水橋新發展區',hans:'洪水桥新发展区',short:'洪水橋',shortHans:'洪水桥',kind:'jobs',cell:[7,2],house:[0,-1],attraction:10,carExtra:7}],
+    // Empty land only: 洪水橋一帶 7 格、元朗西邊 5 格、天水圍北 4 格。
+    // These cells do not overlap the estates, destinations, roads or water on this schematic map.
+    land:[
+      {cell:[5,1]},{cell:[6,1]},{cell:[8,1]},{cell:[9,1]},
+      {cell:[5,3]},{cell:[8,3]},{cell:[9,3]},
+      {cell:[11,3]},{cell:[12,3]},{cell:[11,4]},{cell:[12,4]},{cell:[11,5]},
+      {cell:[3,3]},{cell:[4,3]},{cell:[3,4]},{cell:[4,4]}],
+    walkPer:2,nearby:10,stay:40,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:40,years:8,crowdBlocks:4,
+    aware:{start:.2,spread:2},homePeople:16,shopBase:4,shopPer:6,carExtra:5,homeRate:3,shopRate:.5,
+    // bots/v7_tod.js: 60 random starts; homeRate 3 and shopRate 0.5 give best mixed 1538, local median 923, p90 1148.
+    // tiers (bots/v7_tod.js, learnt crowding): only the line 655, all homes 1309, all shops 1201, best mix 1545 →
+    // pass 900, high 1250 (one kind of land can just reach it), master 1400 (needs both kinds)
+    tiers:[900,1250,1400]};
+  const LEVELS={'m4-1':NW};
+  const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m4-1';
+  const D={};
+  const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
+  swap(LEVELS[pick]?pick:'m4-1');
+  Object.defineProperty(D,'select',{enumerable:false,value(name){return LEVELS[name]?swap(name):false;}});
+  Object.defineProperty(D,'use',{enumerable:false,value(def,name='draft'){LEVELS[name]=def;return swap(name);}});
+  Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
+  if(typeof module!=='undefined')module.exports=D;
+  root.TOD_DATA=D;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // v7 · mode 4 «station-side development» (2026-10-14, task 50) — mode 2's rules (where to go, how to go, word of mouth,
+  // crowding, going on between centres, walking; the line built once, fixed once open) plus the land beside the stations:
+  //   land      vacant cells (D.land) within the ring of 8 around a station can be sold, at most 2 a year, from year 0;
+  //             a sale is locked when the year is run and takes effect from the next year
+  //   homes     a sold home lot becomes a small estate of `homePeople` people who all know the line (aware 1)
+  //   shops     a station's shop lots make one destination «station N shops»: attraction shopBase + shopPer × lots,
+  //             carExtra 5; it also takes part in going on between centres
+  //   prices    home = homeRate × Σ max(0, attraction − fastest blocks from the lot) («how handy is it to live here»);
+  //             shop = shopRate × (people a day coming to that station's shops with the lot − without), with today's
+  //             awareness; both counted at the moment of sale, once
+  //   crowding  learnt, as in mode 3: each year a section's felt crowding moves `learn` of the way to crowdBlocks (crowded)
+  //             or 0 — mode 2's all-or-nothing next-year penalty made riders saw-tooth once homes filled the line
+  // Score (the MTR's ledger): Σ daily metro riders over the years (fares, as mode 2's score) + Σ land sold.
+  const D=typeof module!=='undefined'?require('./data.js'):root.TOD_DATA;
+  const P={walkPer:2,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:40,years:8,crowdBlocks:4,learn:.3,
+    aware:{start:.2,spread:2},nearby:10,stay:40,homePeople:16,shopBase:4,shopPer:6,carExtra:5,homeRate:1,shopRate:.5,
+    target:0,highScore:0,masterScore:0};
+  const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
+  const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]),adj=(a,b)=>walk(a,b)===1;
+  function reset(){
+    for(const k of ['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','learn','nearby','stay','homePeople','shopBase','shopPer','carExtra','homeRate','shopRate'])P[k]=D[k]??P[k];
+    if(D.aware)P.aware={...P.aware,...D.aware};
+    [P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];
+  }
+  reset();
+  function originsFor(sales=[]){
+    const out=D.origins.map(o=>({...o,cell:o.cell.slice()}));let n=0;
+    for(const s of sales)if(s.use==='home'){n++;out.push({name:'Station homes',hans:'Station homes',cell:s.cell.slice(),house:[0,1],people:P.homePeople,home:true,aware:1,landIndex:s.landIndex});}
+    return out;
+  }
+  function destinationsFor(sales=[]){
+    const out=D.destinations.map(d=>({...d,cell:d.cell.slice()})),shops=new Map();
+    for(const s of sales)if(s.use==='shop'){
+      const k=key(s.station),g=shops.get(k)||{station:s.station.slice(),stationNo:s.stationNo,count:0};g.count++;shops.set(k,g);
+    }
+    for(const g of shops.values())out.push({name:'Station mall',hans:'Station mall',short:'Mall',shortHans:'Mall',kind:'shop',cell:g.station,
+      station:g.station.slice(),stationNo:g.stationNo,shopCount:g.count,attraction:P.shopBase+P.shopPer*g.count,carExtra:P.carExtra});
+    return out;
+  }
+  function awareFor(origins,aware=[]){return origins.map((o,i)=>o.home?1:(aware[i]??P.aware.start));}
+  function tripBetween(o,d,line,stations,crowdedBefore=[]){
+    const order=stations.map(s=>({x:line.findIndex(c=>same(c,s)),c:s})).sort((a,b)=>a.x-b.x);let best=null;
+    order.forEach((a,ia)=>order.forEach((z,iz)=>{
+      if(ia===iz)return;const lo=Math.min(a.x,z.x),hi=Math.max(a.x,z.x);let crowd=0;
+      for(let j=lo;j<hi;j++)crowd=Math.max(crowd,+crowdedBefore[j]||0);
+      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
+      if(!best||blocks<best.blocks)best={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,crowd,blocks};
+    }));
+    return best;
+  }
+  const metroTrip=(i,k,line,stations,crowdedBefore=[])=>tripBetween(D.origins[i].cell,D.destinations[k].cell,line,stations,crowdedBefore);
+  const carBlocks=(i,k)=>walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2);
+  const footBlocks=(i,k)=>P.walkPer*walk(D.origins[i].cell,D.destinations[k].cell);
+  function onward(a,b,blocks,destinations=D.destinations){const pull=Math.max(0,destinations[b].attraction-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
+  function split(i,blocks,destinations=D.destinations){
+    const pulls=destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
+    return{pulls,shares:pulls.map(p=>p/all),nearby:P.nearby/all};
+  }
+  function year(line,stations,aware,trains,crowdedBefore=[],sales=[]){
+    const origins=originsFor(sales),destinations=destinationsFor(sales),known=awareFor(origins,aware),pairs=[];
+    if(P.stay>0)destinations.forEach((da,a)=>destinations.forEach((db,b)=>{
+      if(a===b)return;const dist=walk(da.cell,db.cell),car=dist+(db.carExtra??2),foot=P.walkPer*dist,alt=Math.min(car,foot);
+      const trip=stations.length>=2?tripBetween(da.cell,db.cell,line,stations,crowdedBefore):null,save=trip?Math.max(0,alt-trip.blocks):0;
+      pairs.push({a,b,k:b,car,foot,alt,byFoot:foot<car,trip,save,tenths:Math.min(10,save),
+        shareNow:onward(a,b,trip?Math.min(alt,trip.blocks):alt,destinations).share,shareBefore:onward(a,b,alt,destinations).share});
+    }));
+    const est=origins.map((o,i)=>{
+      const car=destinations.map(d=>walk(o.cell,d.cell)+(d.carExtra??2)),foot=destinations.map(d=>P.walkPer*walk(o.cell,d.cell)),alt=car.map((c,k)=>Math.min(c,foot[k]));
+      const trip=destinations.map(d=>stations.length>=2?tripBetween(o.cell,d.cell,line,stations,crowdedBefore):null),fast=alt.map((b,k)=>trip[k]?Math.min(b,trip[k].blocks):b);
+      const before=split(i,alt,destinations),now=split(i,fast,destinations),a=known[i],n=o.people;
+      const to=destinations.map((d,k)=>{
+        const save=trip[k]?Math.max(0,alt[k]-trip[k].blocks):0,tenths=Math.min(10,save),knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k];
+        const go=knowGo+dontGo,metro=knowGo*tenths/10,byFoot=foot[k]<car[k];
+        return{k,car:car[k],foot:foot[k],alt:alt[k],byFoot,trip:trip[k],save,tenths,before:n*before.shares[k],knowGo,dontGo,go,metro,
+          walkers:byFoot?go-metro:0,drivers:byFoot?0:go-metro,pull:now.pulls[k],pullBefore:before.pulls[k]};
+      });
+      const chain=pairs.map(q=>{const x=to[q.a],knowGo=x.knowGo*q.shareNow,dontGo=x.dontGo*q.shareBefore;
+        return{knowGo,dontGo,go:knowGo+dontGo,metro:knowGo*q.tenths/10,before:x.before*q.shareBefore};});
+      const direct=to.reduce((s,x)=>s+x.metro,0),onMetro=chain.reduce((s,c)=>s+c.metro,0),metro=direct+onMetro;
+      return{i,n,origin:o,aware:a,to,chain,nearby:n*(a*now.nearby+(1-a)*before.nearby),nearbyBefore:n*before.nearby,direct,onward:onMetro,metro,share:n?metro/n:0};
+    });
+    const chain=pairs.map((q,j)=>{
+      const sum=f=>est.reduce((s,e)=>s+e.chain[j][f],0),go=sum('go'),metro=sum('metro');
+      return{...q,go,metro,before:sum('before'),knowGo:sum('knowGo'),dontGo:sum('dontGo'),walkers:q.byFoot?go-metro:0,drivers:q.byFoot?0:go-metro};
+    });
+    const load=Array(Math.max(0,line.length-1)).fill(0),cap=trains*P.perTrain;
+    for(const x of [...est.flatMap(e=>e.to),...chain])if(x.metro&&x.trip)for(let j=Math.min(x.trip.fx,x.trip.tx);j<Math.max(x.trip.fx,x.trip.tx);j++)load[j]+=x.metro;
+    const crowded=load.map(v=>v>cap+1e-9),riders=est.reduce((s,e)=>s+e.metro,0),into=(k,f)=>chain.filter(q=>q.b===k).reduce((s,q)=>s+q[f],0);
+    const dest=destinations.map((d,k)=>({k,kind:d.kind,stationNo:d.stationNo,before:est.reduce((s,e)=>s+e.to[k].before,0)+into(k,'before'),
+      go:est.reduce((s,e)=>s+e.to[k].go,0)+into(k,'go'),metro:est.reduce((s,e)=>s+e.to[k].metro,0)+into(k,'metro'),onward:into(k,'go')}));
+    return{est,chain,dest,load,cap,crowded,riders,people:origins.reduce((s,o)=>s+o.people,0),origins,destinations};
+  }
+  function spread(y,aware){return y.est.map((e,i)=>e.origin.home?1:Math.min(1,aware[i]+Math.min(1,P.aware.spread*e.share)*(1-aware[i])));}
+  function landStation(stations,line,cell){
+    const ordered=stations.map((s,i)=>({s,i,d:Math.max(Math.abs(s[0]-cell[0]),Math.abs(s[1]-cell[1])),x:line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
+    const hit=ordered.find(q=>q.d===1);return hit?{...hit,no:ordered.indexOf(hit)+1}:null;
+  }
+  function landQuote(plan,cell,use,stationInfo){
+    const sales=plan.allSales(),station=stationInfo?stationInfo.s:landStation(plan.stations,plan.line,cell)?.s;if(!station)return{ok:false,price:0,visitors:0};
+    if(use==='home'){
+      const ds=destinationsFor(sales);let value=0;
+      for(const d of ds){const dist=walk(cell,d.cell),car=dist+(d.carExtra??2),foot=P.walkPer*dist;let fastest=Math.min(car,foot);
+        if(plan.stations.length>=2){const mt=tripBetween(cell,d.cell,plan.line,plan.stations,plan.crowded);if(mt)fastest=Math.min(fastest,mt.blocks);}
+        value+=Math.max(0,d.attraction-fastest);}
+      return{ok:true,price:P.homeRate*value,visitors:0};
+    }
+    if(use==='shop'){
+      const before=year(plan.line,plan.stations,plan.awareFor(sales),plan.trains,plan.crowded,sales);
+      const candidate={use:'shop',cell:cell.slice(),station:station.slice(),stationNo:(stationInfo?.no??plan.stations.findIndex(c=>same(c,station))+1),
+        landIndex:D.land.findIndex(q=>same(q.cell,cell))+1};
+      const afterSales=sales.concat(candidate),after=year(plan.line,plan.stations,plan.awareFor(afterSales),plan.trains,plan.crowded,afterSales);
+      const afterAt=after.destinations.findIndex(d=>d.kind==='shop'&&same(d.cell,station));
+      const beforeVisitors=before.dest.find(d=>d.kind==='shop'&&same(before.destinations[d.k].cell,station))?.go||0;
+      const visitors=afterAt>=0?after.dest[afterAt].go:0;
+      return{ok:true,price:P.shopRate*(visitors-beforeVisitors),visitors,delta:visitors-beforeVisitors};
+    }
+    return{ok:false,price:0,visitors:0};
+  }
+  class Plan{
+    constructor(){Object.assign(this,{line:[],stations:[],trains:1,money:P.budget,year:0,aware:D.origins.map(()=>P.aware.start),
+      crowded:[],sales:[],pendingSales:[],landRevenue:0,log:[],total:0,done:false});}
+    get open(){return this.year>0;}
+    inside(c){return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows;}
+    onLine(c){return this.line.some(x=>same(x,c));}
+    isStation(c){return this.stations.some(x=>same(x,c));}
+    canExtend(c){if(this.open||!this.inside(c)||this.onLine(c)||this.money<P.lineCost)return false;if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
+    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());this.money-=P.lineCost;return true;}
+    isEnd(c){return this.line.length>0&&(same(c,this.line[0])||same(c,this.line.at(-1)));}
+    canShorten(c){return !this.open&&this.isEnd(c);}
+    shorten(c){if(!this.canShorten(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else this.line.shift();if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;}this.money+=P.lineCost;return true;}
+    canStation(c){return !this.open&&this.onLine(c)&&!this.isStation(c)&&this.money>=P.stationCost;}
+    toggleStation(c){if(this.open)return false;if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;return true;}if(!this.canStation(c))return false;this.stations.push(c.slice());this.money-=P.stationCost;return true;}
+    canTrain(){return !this.open&&this.money>=P.trainCost;}
+    addTrain(){if(!this.canTrain())return false;this.trains++;this.money-=P.trainCost;return true;}
+    canUntrain(){return !this.open&&this.trains>1;}
+    removeTrain(){if(!this.canUntrain())return false;this.trains--;this.money+=P.trainCost;return true;}
+    clear(){if(this.open)return false;Object.assign(this,{line:[],stations:[],trains:1,money:P.budget,year:0,aware:D.origins.map(()=>P.aware.start),
+      crowded:[],sales:[],pendingSales:[],landRevenue:0,log:[],total:0,done:false});return true;}
+    allSales(){return this.sales.concat(this.pendingSales);}
+    awareFor(sales=this.allSales()){return awareFor(originsFor(sales),this.aware);}
+    stationForLand(c){return landStation(this.stations,this.line,c);}
+    isSold(c){return this.allSales().some(s=>same(s.cell,c));}
+    canSell(c){return !this.done&&this.year<P.years&&this.pendingSales.length<2&&D.land.some(q=>same(q.cell,c))&&!this.onLine(c)&&!this.isSold(c)&&!!this.stationForLand(c);}
+    quote(c,use){return this.canSell(c)?landQuote(this,c,use,this.stationForLand(c)):{ok:false,price:0,visitors:0};}
+    sellLand(c,use){if(!this.canSell(c)||!['home','shop'].includes(use))return null;const si=this.stationForLand(c),q=landQuote(this,c,use,si);
+      const sale={cell:c.slice(),use,station:si.s.slice(),stationNo:si.no,landIndex:D.land.findIndex(q=>same(q.cell,c))+1,year:this.year+1,price:q.price,visitors:q.visitors};
+      this.pendingSales.push(sale);return sale;}
+    cancelSale(c){const i=this.pendingSales.findIndex(s=>same(s.cell,c));if(i<0)return false;this.pendingSales.splice(i,1);return true;}
+    now(){const sales=this.allSales();return year(this.line,this.stations,this.awareFor(sales),this.trains,this.crowded,sales);}
+    potential(){const sales=this.allSales(),origins=originsFor(sales);return year(this.line,this.stations,origins.map(()=>1),this.trains,[],sales);}
+    previewSale(c,use){const sales=this.allSales(),si=this.stationForLand(c);if(!si||this.isSold(c))return this.now();const q=landQuote(this,c,use,si);
+      const candidate={cell:c.slice(),use,station:si.s.slice(),stationNo:si.no,landIndex:D.land.findIndex(x=>same(x.cell,c))+1,year:this.year+1,price:q.price,visitors:q.visitors};
+      const all=sales.concat(candidate),origins=originsFor(all);return year(this.line,this.stations,awareFor(origins,this.aware),this.trains,this.crowded,all);}
+    withStation(c){const s=this.isStation(c)?this.stations.filter(x=>!same(x,c)):[...this.stations,c];return year(this.line,s,this.awareFor(),this.trains,this.crowded,this.allSales());}
+    canRun(){return !this.done&&this.stations.length>=2;}
+    runYear(){if(!this.canRun())return null;const committing=this.pendingSales.slice(),sales=this.sales.concat(committing),origins=originsFor(sales),before=awareFor(origins,this.aware);
+      const y=year(this.line,this.stations,before,this.trains,this.crowded,sales),revenue=committing.reduce((s,x)=>s+x.price,0);
+      this.sales=sales;this.pendingSales=[];this.year++;this.total+=y.riders+revenue;this.landRevenue+=revenue;this.aware=spread(y,before);this.crowded=y.crowded.map((c,j)=>{const f=+this.crowded[j]||0;return f+P.learn*((c?P.crowdBlocks:0)-f);});
+      const entry={year:this.year,riders:y.riders,revenue,landRevenue:this.landRevenue,ledger:this.total,before,after:this.aware.slice(),crowdedSections:y.crowded.filter(Boolean).length,
+        sales:committing.map(s=>({...s,cell:s.cell.slice(),station:s.station.slice()})),
+        dest:y.dest.map(d=>({kind:d.kind,stationNo:d.stationNo,go:d.go,metro:d.metro,before:d.before}))};
+      this.log.push(entry);if(this.year>=P.years)this.done=true;return{...entry,y};}
+    rewind(){Object.assign(this,{year:0,aware:D.origins.map(()=>P.aware.start),crowded:[],sales:[],pendingSales:[],landRevenue:0,log:[],total:0,done:false});}
+    simulate(){
+      const schedule=this.allSales().map((s,i)=>({cell:s.cell.slice(),use:s.use,year:s.year||1,order:i})).sort((a,b)=>a.year-b.year||a.order-b.order);
+      const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));p.rewind();if(!p.canRun())return p;
+      while(!p.done){const next=p.year+1;for(const a of schedule)if(a.year===next&&!p.sellLand(a.cell,a.use))throw new Error('Invalid sale in simulation: '+key(a.cell));if(!p.runYear())break;}
+      return p;
+    }
+  }
+  const API={D,P,Plan,year,spread,metroTrip,tripBetween,onward,carBlocks,footBlocks,split,walk,same,key,adj,originsFor,destinationsFor,landQuote,landStation,reset};
+  if(typeof module!=='undefined')module.exports=API;
+  root.TOD=API;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // TransitLab feeder suite · v7 shared language engine (every mode loads this first, then its own strings.js).
+  // Three languages: 繁體中文 (default), 简体中文, English. Display titles stay in English in every language; the
+  // Chinese line under them follows the language and is left out in English. Estate names stay in Chinese.
+  // A mode adds its texts with I18N.add({key: I18N.L(hant, hans, en), …}) — later additions override earlier ones —
+  // then calls I18N.apply(). Static markup: data-i18n, data-i18n-html, data-i18n-title, data-i18n-aria.
+  const LANGS=['zh-Hant','zh-Hans','en'];
+  const L=(hant,hans,en)=>({'zh-Hant':hant,'zh-Hans':hans,en});
+  const S={};
+  const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
+    '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
+    '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
+    '荃湾区':['荃灣區','Tsuen Wan'],'葵青区':['葵青區','Kwai Tsing'],'西贡区':['西貢區','Sai Kung'],'观塘区':['觀塘區','Kwun Tong'],'黄大仙区':['黃大仙區','Wong Tai Sin']};
+  const pick=(/(?:^|[#&])lang=([\w-]+)/.exec(typeof location!=='undefined'?location.hash:'')||[])[1];
+  // tlhk-lang: the language a hosting TransitLab site saved (same codes); used until the player picks one here
+  let saved=null;try{saved=localStorage.getItem('tl-lang')||localStorage.getItem('tlhk-lang');}catch(e){}
+  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:saved?'en':'zh-Hant';   // a site language the game lacks → English
+  function t(key,vars){
+    const e=S[key];let s=e?(e[lang]??e['zh-Hant']):key;
+    if(vars)s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!==undefined?vars[k]:m);
+    return s;
+  }
+  function apply(scope){
+    const el=scope||document;
+    el.querySelectorAll('[data-i18n]').forEach(n=>{n.textContent=t(n.dataset.i18n);});
+    el.querySelectorAll('[data-i18n-html]').forEach(n=>{n.innerHTML=t(n.dataset.i18nHtml);});
+    el.querySelectorAll('[data-i18n-title]').forEach(n=>{n.title=t(n.dataset.i18nTitle);});
+    el.querySelectorAll('[data-i18n-aria]').forEach(n=>{n.setAttribute('aria-label',t(n.dataset.i18nAria));});
+    // an empty translation (the Chinese line in English) hides its element
+    el.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(n=>{n.hidden=!n.textContent&&!n.children.length;});
+    document.documentElement.lang=lang;
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  }
+  function set(next){
+    if(!LANGS.includes(next)||next===lang)return;lang=next;
+    if(typeof document==='undefined')return;            // node tests
+    try{localStorage.setItem('tl-lang',lang);}catch(e){}
+    apply();root.dispatchEvent(new CustomEvent('tl:lang',{detail:lang}));
+  }
+  const hans=()=>lang==='zh-Hans';
+  const API={LANGS,L,t,apply,set,add:o=>Object.assign(S,o),has:k=>k in S,get lang(){return lang;},
+    name:o=>hans()?(o.hans||o.name):o.name,                                   // estates stay Chinese in English
+    short:o=>hans()?(o.shortHans||o.short||o.hans||o.name):(o.short||o.name),
+    station:st=>lang==='en'?st.en.charAt(0)+st.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase()):st[lang],
+    district:d=>{const v=DIST[d];return !v?d:lang==='zh-Hans'?d:lang==='en'?v[1]:v[0];}};
+  root.I18N=API;
+  if(typeof document!=='undefined'){
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.lang)));
+  }   // the mode's strings.js calls apply() once its texts are in
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function() {
+  'use strict';
+  // v7 · the row of stops under the top bar, the same on every mode's page: 01 … 05, the current one filled in.
+  // <nav id="navrow" data-current="2"></nav> + this script (after i18n.js). It also adds the few labels all pages share. A click goes to that mode's page — the
+  // bundled single file when this page is one (its name is not index.html), else the folder's index.html.
+  const I=window.I18N,L=I.L;
+  I.add({
+    'nav.aria':L('五個模式','五个模式','Five modes'),
+    'nav.m1':L('車站與步行','车站与步行','Stations & walking'),'nav.m2':L('地鐵','地铁','The metro'),'nav.m3':L('路會塞','路会塞','Roads that jam'),
+    'nav.m4':L('站旁開發','站旁开发','Station-side development'),'nav.m5':L('沙盤 · 即將推出','沙盘 · 即将推出','Sandbox · soon'),
+    // the labels every mode's page shares with mode 1 (mode 1's own strings load after this and keep theirs)
+    'g.goalLbl':L('Goal · 目標','Goal · 目标','Goal'),'g.read':L('How to read the map · 怎麼看','How to read the map · 怎么看','How to read the map'),
+    'g.log':L('Dispatch log · 調度提示','Dispatch log · 调度提示','Dispatch log'),'g.lvInfo':L('本關','本关','About'),'m.back':L('← 五個模式','← 五个模式','← Five modes')
+  });
+  const MODES=[
+    {n:1,en:'Stations',dir:'mode1-bus',file:'模式1-车站与步行.html'},
+    {n:2,en:'The metro',dir:'mode2-metro',file:'模式2-地铁.html'},
+    {n:3,en:'Roads that jam',dir:'mode3-roads',file:'模式3-路会塞.html'},
+    {n:4,en:'Station-side development',dir:'mode4-tod',file:'模式4-站旁开发.html'},
+    {n:5,en:'Sandbox',soon:true}];
+  const nav=document.getElementById('navrow');if(!nav)return;
+  const cur=+nav.dataset.current||0,bundled=!/index\.html$|\/$/.test(location.pathname)&&!/editor\.html$/.test(location.pathname);
+  function render(){
+    nav.setAttribute('aria-label',I.t('nav.aria'));
+    nav.innerHTML=MODES.map(m=>`<button data-go="${m.n}" aria-selected="${m.n===cur}" ${m.soon?'disabled':''}><i class="stop">0${m.n}</i><span class="t"><b>${m.en}</b><s>${I.t('nav.m'+m.n)}</s></span></button>`).join('');}
+  nav.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b||b.disabled)return;const m=MODES[+b.dataset.go-1];if(m.n===cur||m.soon)return;
+    location.href=`../${m.dir}/${bundled?m.file:'index.html'}`;});
+  render();window.addEventListener('tl:lang',render);
+})();
+
+
+</script><script>
+(function() {
+  'use strict';
+  // v7 · mode 2 «the metro», build once and watch it grow — texts. Loaded after ../shared/i18n.js.
+  const L=I18N.L;
+  I18N.add({
+    'sep':L('、','、',', '),
+    'brand.sub':L('HK · Feeder bus · 接駁巴士','HK · Feeder bus · 接驳巴士','HK · Feeder bus'),
+    'top.rules':L('Rules <span class="tc">規則</span>','Rules <span class="tc">规则</span>','Rules'),'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),
+    'm.back':L('← 五個模式','← 五个模式','← Five modes'),'g.lvInfo':L('本關','本关','About'),
+    'm.mode':L('Mode 02 · 地鐵','Mode 02 · 地铁','Mode 02 · The metro'),
+    'm.doc':L('TransitLab HK · 模式 2 · 地鐵','TransitLab HK · 模式 2 · 地铁','TransitLab HK · Mode 2 · The metro'),
+    'm.levelTitle':L('新界西北 · 一條新線','新界西北 · 一条新线','North-west New Territories · a new line'),
+    // score, gauge, years
+    'm.scoreLbl':L('八年累計坐地鐵','八年累计坐地铁','Metro trips, eight years'),'m.scoreUnit':L('人次','人次','trips'),
+    'g.tickPass':L('過關 {n}','过关 {n}','pass {n}'),'g.tickHigh':L('高分 {n}','高分 {n}','high {n}'),'g.tickMaster':L('大師 {n}','大师 {n}','master {n}'),
+    'm.goal':L('每年「每天坐地鐵的人」加起來 · <b>{pass}</b> 過關 · <b>{high}</b> 高分 · <b>{master}</b> 大師','每年「每天坐地铁的人」加起来 · <b>{pass}</b> 过关 · <b>{high}</b> 高分 · <b>{master}</b> 大师',
+      'Daily riders of every year added up · <b>{pass}</b> pass · <b>{high}</b> high · <b>{master}</b> master'),
+    'm.yearPlan':L('第 0 年 · 規劃','第 0 年 · 规划','Year 0 · planning'),'m.yearN':L('開通第 {y} / {m} 年','开通第 {y} / {m} 年','Year {y} / {m}'),
+    'm.yearDone':L('{m} 年都過去了','{m} 年都过去了','All {m} years done'),
+    'm.run0':L('開通 ▶','开通 ▶','Open ▶'),'m.runN':L('下一年 ▶','下一年 ▶','Next year ▶'),'m.runDone':L('看結果','看结果','Results'),'m.playing':L('一年一年過…','一年一年过…','Years passing…'),
+    'm.pause':L('⏸ 暫停','⏸ 暂停','⏸ Pause'),'m.play':L('▶ 繼續','▶ 继续','▶ Play'),'m.rewind':L('↺ 回到規劃','↺ 回到规划','↺ Back to planning'),
+    'm.yShort':L('第{y}年','第{y}年','Y{y}'),'m.potShort':L('最多 {n}','最多 {n}','up to {n}'),
+    'm.yNoteNone':L('放好至少 2 個站，這裡會預告每一年每天有幾人坐。','放好至少 2 个站，这里会预告每一年每天有几人坐。','Place 2 stations at least: this shows how many will ride each year.'),
+    'm.yNote0':L('開通第 1 年每天約 <b>{r}</b> 人坐（大家還不太知道）；等大家都知道了，最多每天 <b>{p}</b> 人（虛線）。','开通第 1 年每天约 <b>{r}</b> 人坐（大家还不太知道）；等大家都知道了，最多每天 <b>{p}</b> 人（虚线）。',
+      'Year 1: about <b>{r}</b> a day (few know the line yet); once everyone knows, up to <b>{p}</b> a day (dashed).'),
+    'm.yNoteN':L('第 {y} 年每天 <b>{r}</b> 人坐 · 大家都知道以後最多 {p}（虛線）。','第 {y} 年每天 <b>{r}</b> 人坐 · 大家都知道以后最多 {p}（虚线）。','Year {y}: <b>{r}</b> a day · up to {p} once everyone knows (dashed).'),
+    // planning
+    'm.budgetLbl':L('預算（只在開通前用）','预算（只在开通前用）','Budget (before opening)'),
+    'm.money0':L('線每格 {lc} · 站 {sc} · 多一列車 {tc}。開通以後就不能改了。','线每格 {lc} · 站 {sc} · 多一列车 {tc}。开通以后就不能改了。','{lc} a block · {sc} a station · {tc} a train. Nothing changes after opening.'),
+    'm.trains':L('列車 <b>{n}</b> 列 · 每段每天最多載 <b>{c}</b> 人','列车 <b>{n}</b> 列 · 每段每天最多载 <b>{c}</b> 人','<b>{n}</b> trains · each section carries <b>{c}</b> a day'),
+    'm.toolDraw':L('✏ 畫線','✏ 画线','✏ Draw'),'m.toolStation':L('● 放站','● 放站','● Stations'),'m.undo':L('↶ 撤銷','↶ 撤销','↶ Undo'),'m.clear':L('清空','清空','Clear'),
+    'm.hintDraw1':L('點任何一格開始畫線（或按住拖動）。','点任何一格开始画线（或按住拖动）。','Click any cell to start the line (or press and drag).'),
+    'm.hintDraw2':L('點線頭旁邊虛線框的格子延長，可以拐彎、不能分叉；點線頭可以縮短。畫好了切到「放站」。','点线头旁边虚线框的格子延长，可以拐弯、不能分叉；点线头可以缩短。画好了切到「放站」。',
+      'Click a dashed cell next to an end to extend — it may turn, never branch; click an end to shorten. Then switch to «Stations».'),
+    'm.hintNeedLine':L('先畫一條至少 2 格的線。','先画一条至少 2 格的线。','Draw a line of 2 cells at least first.'),
+    'm.hintStation1':L('點線上的格子放站（至少 2 個）。停在格子上會先告訴你：大家都知道以後，這個站多（或少）幾個人坐。','点线上的格子放站（至少 2 个）。停在格子上会先告诉你：大家都知道以后，这个站多（或少）几个人坐。',
+      'Click a cell on the line to put a station (2 at least). Hover first: once everyone knows the line, how many more (or fewer) ride.'),
+    'm.hintStation2':L('再點一個站就拆掉。站多走路近，但路過的人每站多 1 格。都放好了就按「開通 ▶」。','再点一个站就拆掉。站多走路近，但路过的人每站多 1 格。都放好了就按「开通 ▶」。',
+      'Click a station again to remove it. More stations, shorter walks — but riders pay 1 a stop. Ready? Press «Open ▶».'),
+    'm.hintOpen':L('已經開通：線和站不能改了。看口耳相傳怎樣把人帶上地鐵；想改方案就按「↺ 回到規劃」。','已经开通：线和站不能改了。看口耳相传怎样把人带上地铁；想改方案就按「↺ 回到规划」。',
+      'Open: the line and stations stay as they are. Watch word of mouth bring people on; to change the plan, «↺ Back to planning».'),
+    // the rules, short
+    'm.rulesH':L('How it works · 怎麼算','How it works · 怎么算','How it works'),
+    'm.r0':L('<b>一次建好。</b>開通前畫線、放站、買列車（預算 {b}），開通後 {y} 年都不能改。','<b>一次建好。</b>开通前画线、放站、买列车（预算 {b}），开通后 {y} 年都不能改。',
+      '<b>Built once.</b> Draw the line, place stations, buy trains before opening (budget {b}); for {y} years nothing changes.'),
+    'm.r1':L('<b>去哪裡＝吸引力 − 要走幾格。</b>{d0} {a0}、{d1} {a1}、「附近」固定 {nb}；每個屋苑的人按這幾個數的比例分。地鐵讓一個地方變近，它就多分到人。','<b>去哪里＝吸引力 − 要走几格。</b>{d0} {a0}、{d1} {a1}、「附近」固定 {nb}；每个屋苑的人按这几个数的比例分。地铁让一个地方变近，它就多分到人。',
+      '<b>Where to go = attraction − blocks to get there.</b> {d0} {a0}, {d1} {a1}, «nearby» always {nb}; each estate splits in proportion. Bring a place nearer and it draws more.'),
+    'm.r2':L('<b>怎麼去：比開車或走路（取快的）省幾格，就有幾成人坐地鐵。</b>走路很慢，每格算 {wp}。地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾站 ＋ 走路；開車＝相隔幾格 ＋ 泊車（{d0} {e0}、{d1} {e1}）。','<b>怎么去：比开车或走路（取快的）省几格，就有几成人坐地铁。</b>走路很慢，每格算 {wp}。地铁＝走到站 ＋ 等车 {w} ＋ 路过几站 ＋ 走路；开车＝相隔几格 ＋ 泊车（{d0} {e0}、{d1} {e1}）。',
+      '<b>How to go: every block saved on the quicker of car and foot, one in ten by metro.</b> Walking is slow: {wp} a cell. Metro = walk + wait {w} + stations passed + walk; car = cells apart + parking ({d0} {e0}, {d1} {e1}).'),
+    'm.rOn':L('<b>順路再去。</b>到了一個目的地的人，按同樣的算法決定要不要再去另一個：拉力＝另一個的吸引力 − 兩地之間要幾格，和「辦完就回家」（固定 {st}）按比例分；省幾格，就有幾成坐地鐵。兩個中心連起來，這一段也會很多人坐。','<b>顺路再去。</b>到了一个目的地的人，按同样的算法决定要不要再去另一个：拉力＝另一个的吸引力 − 两地之间要几格，和「办完就回家」（固定 {st}）按比例分；省几格，就有几成坐地铁。两个中心连起来，这一段也会很多人坐。',
+      '<b>Going on.</b> People who reach one destination decide the same way whether to go on to the other: pull = the other\'s attraction − the blocks between them, split against «done, home» (always {st}); blocks saved → tenths by metro. Join the two centres and that stretch fills too.'),
+    'm.r3':L('<b>只有知道地鐵的人才會這樣選。</b>剛開通每個屋苑只有 {s} 成人知道；其他人照舊開車或走路，去老地方。','<b>只有知道地铁的人才会这样选。</b>刚开通每个屋苑只有 {s} 成人知道；其他人照旧开车或走路，去老地方。',
+      '<b>Only people who know the metro choose this way.</b> At the opening {s} in ten of each estate know it; the rest drive or walk where they always went.'),
+    'm.r4':L('<b>口耳相傳。</b>一個屋苑今年有幾成人坐地鐵，明年「還不知道的人」就有（幾成 × {sp}）聽說了。坐的人越多，傳得越快。','<b>口耳相传。</b>一个屋苑今年有几成人坐地铁，明年「还不知道的人」就有（几成 × {sp}）听说了。坐的人越多，传得越快。',
+      '<b>Word of mouth.</b> Whatever share of an estate rides this year, that share × {sp} of those who don\'t know hear of it next year. More riders, faster spread.'),
+    'm.r5':L('<b>擠。</b>每段線每天最多載「列車數 × {pt}」人；明年坐車經過太擠的段，每次多算 {cb} 格。','<b>挤。</b>每段线每天最多载「列车数 × {pt}」人；明年坐车经过太挤的段，每次多算 {cb} 格。',
+      '<b>Crowding.</b> Each section carries trains × {pt} a day; next year a trip through a crowded section counts {cb} blocks more.'),
+    // the board
+    'm.legend':L('<span><i class="lk car"></i>愿望線：越粗＝去的人越多</span><span><i class="lk metro"></i>棕色＝坐地鐵的</span><span><i class="lk walk"></i>點線＝走路去</span><span><i class="lk aware"></i>屋苑下十格＝幾成人知道地鐵</span><span><i class="lk crowd"></i>紅色線段＝太擠</span>',
+      '<span><i class="lk car"></i>愿望线：越粗＝去的人越多</span><span><i class="lk metro"></i>棕色＝坐地铁的</span><span><i class="lk walk"></i>点线＝走路去</span><span><i class="lk aware"></i>屋苑下十格＝几成人知道地铁</span><span><i class="lk crowd"></i>红色线段＝太挤</span>',
+      '<span><i class="lk car"></i>desire line: thicker = more people going</span><span><i class="lk metro"></i>brown = by metro</span><span><i class="lk walk"></i>dotted = on foot</span><span><i class="lk aware"></i>ten cells = tenths who know the metro</span><span><i class="lk crowd"></i>red section = crowded</span>'),
+    'm.dl':L('去 {g} · 地鐵 {m}','去 {g} · 地铁 {m}','{g} go · {m} metro'),'m.dlOn':L('順路 {g} · 地鐵 {m}','顺路 {g} · 地铁 {m}','going on {g} · {m} metro'),'m.chainTag':L('順路','顺路','going on'),
+    'm.dlFull':L('每天去 {g} 人（開通前 {b}）· 坐地鐵 {m}','每天去 {g} 人（开通前 {b}）· 坐地铁 {m}','{g} go a day (was {b}) · {m} by metro'),
+    'm.estLine':L('知道 {a} 成 · 坐地鐵 {r}','知道 {a} 成 · 坐地铁 {r}','{a}/10 know · {r} ride'),
+    'm.dstLine':L('每天來 {g} 人（開通前 {b}）','每天来 {g} 人（开通前 {b}）','{g} come a day (was {b})'),
+    'm.fxAware':L('+{n} 成','+{n} 成','+{n}/10'),
+    'm.crowd':L('擠！{a} / {b} 人','挤！{a} / {b} 人','crowded! {a} / {b}'),'m.nearly':L('快滿 {a} / {b} 人','快满 {a} / {b} 人','nearly full {a} / {b}'),
+    'm.pvExtend':L('延長 · −{c}','延长 · −{c}','extend · −{c}'),'m.pvShorten':L('點一下縮短','点一下缩短','click to shorten'),'m.pvNoMoney':L('預算不夠','预算不够','over budget'),
+    'm.pvAdd':L('放站：','放站：','station:'),'m.pvRemove':L('拆站：','拆站：','remove:'),'m.pvGain':L('潛力多 {n} 人','潜力多 {n} 人','potential +{n}'),'m.pvLoss':L('潛力少 {n} 人','潜力少 {n} 人','potential −{n}'),
+    'm.pvCost':L('−{c}','−{c}','−{c}'),'m.pvRefund':L('+{c}','+{c}','+{c}'),
+    // right side
+    'm.awareH':L('Who knows the metro · 知道地鐵的人','Who knows the metro · 知道地铁的人','Who knows the metro'),
+    'm.tenths':L('{n} 成','{n} 成','{n}/10'),'m.awNext':L('明年 +{n} 成','明年 +{n} 成','next year +{n}'),'m.awSame':L('明年不變','明年不变','no change'),
+    'm.awNote':L('十格＝十成人。剛開通每個屋苑 {s} 成人知道；今年坐的人越多，明年知道的越多。','十格＝十成人。刚开通每个屋苑 {s} 成人知道；今年坐的人越多，明年知道的越多。',
+      'Ten cells = ten tenths. {s}/10 know at the opening; the more ride this year, the more know next year.'),
+    'm.whereH':L('Where people go · 大家去哪裡','Where people go · 大家去哪里','Where people go'),
+    'm.whereNote':L('每條橫條＝這個屋苑每天出門的人：{a}、{b}、{c}。細線＝開通前的分法；地鐵讓哪裡近了，哪一段就變長。右邊＝出遠門的比例。','每条横条＝这个屋苑每天出门的人：{a}、{b}、{c}。细线＝开通前的分法；地铁让哪里近了，哪一段就变长。右边＝出远门的比例。',
+      'Each bar = an estate\'s people going out each day: {a}, {b}, {c}. Thin marks = the split before the line; whatever the metro brings nearer grows. Right: the share going far.'),
+    'm.nearbyName':L('附近','附近','nearby'),
+    'm.tripsH':L('每條愿望線的算式','每条愿望线的算式','The sums, desire line by desire line'),
+    'm.tTrip':L('從 → 去','从 → 去','From → to'),'m.tGo':L('去','去','go'),'m.tCar':L('開車','开车','car'),'m.tAlt':L('開車/走路','开车/走路','car/foot'),'m.byFoot':L('走路','走路','on foot'),'m.byCar':L('開車','开车','by car'),'m.tMetro':L('地鐵','地铁','metro'),
+    'm.tSave':L('省','省','saved'),'m.tRiders':L('坐地鐵','坐地铁','metro'),'m.was':L('開通前 {b}','开通前 {b}','was {b}'),
+    // the year card
+    'm.cardTitle':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'm.cardRiders':L('每天 <b>{r}</b> 人坐地鐵（{d}）','每天 <b>{r}</b> 人坐地铁（{d}）','<b>{r}</b> a day by metro ({d})'),
+    'm.cardAware':L('平均 {a} 成人知道地鐵','平均 {a} 成人知道地铁','{a}/10 know the metro on average'),
+    'm.cardDest':L('每天來：{list}','每天来：{list}','Coming a day: {list}'),
+    'm.cardCrowd':L('{n} 段太擠 → 明年經過的人每次多 {cb} 格','{n} 段太挤 → 明年经过的人每次多 {cb} 格','{n} sections crowded → {cb} more blocks through them next year'),
+    'm.cardLocked':L('已經開通','已经开通','Already open'),'m.cardLocked2':L('地鐵建好就不能改。按「↺ 回到規劃」重新來。','地铁建好就不能改。按「↺ 回到规划」重新来。','A built metro stays. «↺ Back to planning» to start again.'),
+    // results
+    'r.t0':L('還沒過關','还没过关','Not cleared yet'),'r.t1':L('過關','过关','Cleared'),'r.t2':L('高分','高分','High score'),'r.t3':L('大師','大师','Master'),
+    'm.rScore':L('{y} 年累計 {d} 人次坐地鐵','{y} 年累计 {d} 人次坐地铁','{d} metro trips over {y} years'),
+    'm.ryYear':L('年','年','Year'),'m.ryRiders':L('每天坐地鐵','每天坐地铁','By metro a day'),'m.ryAware':L('知道','知道','Know'),'m.ryCrowd':L('擠的段','挤的段','Crowded'),
+    'm.tipGrow':L('<b>{d}</b>：每天來的人從 {b} 變成 {g}（+{n}），其中 {m} 人坐地鐵——它變近了，原來不去的人也開始去。','<b>{d}</b>：每天来的人从 {b} 变成 {g}（+{n}），其中 {m} 人坐地铁——它变近了，原来不去的人也开始去。',
+      '<b>{d}</b>: from {b} to {g} a day (+{n}), {m} of them by metro — it came nearer, and people who never went started going.'),
+    'm.tipShrink':L('<b>{d}</b>：每天來的人從 {b} 變成 {g}（−{n}）——別的地方變近了，人被分走。','<b>{d}</b>：每天来的人从 {b} 变成 {g}（−{n}）——别的地方变近了，人被分走。',
+      '<b>{d}</b>: from {b} to {g} a day (−{n}) — somewhere else came nearer and drew people away.'),
+    'm.tipCrowd':L('有 <b>{n}</b> 年車廂太擠：擠的段第二年每次多 {cb} 格，坐的人少了，口碑也傳得慢。看到橙色（快滿）就多買一列車。','有 <b>{n}</b> 年车厢太挤：挤的段第二年每次多 {cb} 格，坐的人少了，口碑也传得慢。看到橙色（快满）就多买一列车。',
+      'Crowded in <b>{n}</b> years: {cb} more blocks through those sections the year after, fewer riders, slower word of mouth. Orange (nearly full)? Buy a train.'),
+    'm.tipNever':L('<b>{a}</b> {y} 年都沒人坐地鐵，知道的人一直停在 {s} 成：附近沒有站，或者坐地鐵不比開車快。','<b>{a}</b> {y} 年都没人坐地铁，知道的人一直停在 {s} 成：附近没有站，或者坐地铁不比开车快。',
+      '<b>{a}</b> never rode in {y} years and stayed at {s}/10 aware: no station near, or the metro is no faster than the car.'),
+    'm.tipSlow':L('最後一年每天 {r} 人，離「大家都知道」的 {p} 還差一截：開頭坐的人少，口碑就傳得慢。讓開頭幾年就有很多人坐的屋苑多一點。','最后一年每天 {r} 人，离「大家都知道」的 {p} 还差一截：开头坐的人少，口碑就传得慢。让开头几年就有很多人坐的屋苑多一点。',
+      'Last year {r} a day, short of the {p} once everyone knows: few riders early means slow word of mouth. Serve estates that ride from year 1.'),
+    'm.seeBoard':L('看看地圖','看看地图','See the board'),
+    // rules dialog, level intro
+    'i.lbl':L('Rules · 規則','Rules · 规则','Rules'),'m.infoH':L('地鐵模式的規則','地铁模式的规则','The metro mode’s rules'),
+    'm.info':L('<ol class="rules"><li><b>愿望線。</b>五個屋苑每天有人出門：去{d0}、去{d1}，或者留在附近。線越粗，去的人越多。開通前大家全部開車。</li><li><b>規劃（第 0 年）。</b>畫一條線（從任何一格開始，可拐彎，不分叉、不走回頭）、在線上放站、買列車。預算 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}（本身有 1 列）。開通以後就不能改。</li><li><b>坐地鐵要幾格。</b>走到上車的站（每格 {wp}）＋ 等車 {w} ＋ 路過幾個站（每個 1）＋ 從下車的站走到目的地（每格 {wp}）。走路很慢，走到站也一樣每格 {wp}。每個人挑最快的上落車站。<b>開車</b>＝兩地相隔幾格 ＋ 泊車：{d0} {e0}、{d1} {e1}（新區路未通、車位少）。<b>走路</b>＝相隔幾格 × {wp}：很近的地方，大家本來就走路去（地圖上的點線）。</li><li><b>去哪裡。</b>一個地方的「拉力」＝吸引力 − 去那裡要幾格（開車、走路、地鐵取最快的）。{d0}吸引力 {a0}、{d1} {a1}，「附近」固定 {nb}。每個屋苑的人按拉力的比例分。</li><li><b>怎麼去。</b>比開車或走路（取快的）省幾格，去那裡的人就有幾成坐地鐵（最多 10 成）；直接走過去更快，就沒人坐。</li><li><b>順路再去。</b>到了{d0}的人，有些還要去{d1}（反過來也一樣）：拉力＝另一個的吸引力 − 兩地之間要幾格（開車、走路、地鐵取最快的），和「辦完就回家」（固定 {st}）按比例分；怎麼去也按第 5 條。所以兩地之間每天也有人來回，連起來就多一批人坐。</li><li><b>知道的人。</b>只有知道地鐵的人才按第 4、5、6 條選；不知道的人照舊開車或走路、去老地方。開通時每個屋苑 {s} 成人知道。</li><li><b>口耳相傳。</b>每過一年：一個屋苑有幾成人坐地鐵，「還不知道的人」裡就有（幾成 × {sp}）聽說了（最多全部）。</li><li><b>擠。</b>每段線（相鄰兩格之間）每天最多載「列車數 × {pt}」人。明年經過太擠的段的地鐵行程多算 {cb} 格（經過幾段都只算一次）。</li><li><b>分數。</b>{y} 年裡，每年「每天坐地鐵的人」加起來。</li></ol>',
+      '<ol class="rules"><li><b>愿望线。</b>五个屋苑每天有人出门：去{d0}、去{d1}，或者留在附近。线越粗，去的人越多。开通前大家全部开车。</li><li><b>规划（第 0 年）。</b>画一条线（从任何一格开始，可拐弯，不分叉、不走回头）、在线上放站、买列车。预算 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}（本身有 1 列）。开通以后就不能改。</li><li><b>坐地铁要几格。</b>走到上车的站（每格 {wp}）＋ 等车 {w} ＋ 路过几个站（每个 1）＋ 从下车的站走到目的地（每格 {wp}）。走路很慢，走到站也一样每格 {wp}。每个人挑最快的上落车站。<b>开车</b>＝两地相隔几格 ＋ 泊车：{d0} {e0}、{d1} {e1}（新区路未通、车位少）。<b>走路</b>＝相隔几格 × {wp}：很近的地方，大家本来就走路去（地图上的点线）。</li><li><b>去哪里。</b>一个地方的「拉力」＝吸引力 − 去那里要几格（开车、走路、地铁取最快的）。{d0}吸引力 {a0}、{d1} {a1}，「附近」固定 {nb}。每个屋苑的人按拉力的比例分。</li><li><b>怎么去。</b>比开车或走路（取快的）省几格，去那里的人就有几成坐地铁（最多 10 成）；直接走过去更快，就没人坐。</li><li><b>顺路再去。</b>到了{d0}的人，有些还要去{d1}（反过来也一样）：拉力＝另一个的吸引力 − 两地之间要几格（开车、走路、地铁取最快的），和「办完就回家」（固定 {st}）按比例分；怎么去也按第 5 条。所以两地之间每天也有人来回，连起来就多一批人坐。</li><li><b>知道的人。</b>只有知道地铁的人才按第 4、5、6 条选；不知道的人照旧开车或走路、去老地方。开通时每个屋苑 {s} 成人知道。</li><li><b>口耳相传。</b>每过一年：一个屋苑有几成人坐地铁，「还不知道的人」里就有（几成 × {sp}）听说了（最多全部）。</li><li><b>挤。</b>每段线（相邻两格之间）每天最多载「列车数 × {pt}」人。明年经过太挤的段的地铁行程多算 {cb} 格（经过几段都只算一次）。</li><li><b>分数。</b>{y} 年里，每年「每天坐地铁的人」加起来。</li></ol>',
+      '<ol class="rules"><li><b>Desire lines.</b> Five estates send people out each day: to {d0}, to {d1}, or somewhere nearby. Thicker = more. Before the line everybody drives.</li><li><b>Planning (year 0).</b> Draw a line (start anywhere; it may turn, never branch or double back), put stations on it, buy trains. Budget {b}: {lc} a block, {sc} a station, {tc} a train (one comes with the line). Nothing changes after opening.</li><li><b>A metro trip in blocks.</b> Walk to the boarding station ({wp} a cell) + wait {w} + stations passed (1 each) + walk from the alighting station ({wp} a cell — walking is slow, to the station too); everyone takes the fastest pair. <b>By car</b> = cells apart + parking: {d0} {e0}, {d1} {e1} (the new town: roads unfinished, little parking). <b>On foot</b> = cells apart × {wp}: places close by, people already walk to (the dotted lines).</li><li><b>Where to go.</b> A place\'s pull = its attraction − the blocks to get there (car, foot or metro, whichever is quickest). {d0} {a0}, {d1} {a1}, «nearby» always {nb}. Each estate splits in proportion to the pulls.</li><li><b>How to go.</b> Every block the metro saves on the quicker of car and foot, one in ten of those going there take it (ten in ten at most); quicker to walk, nobody.</li><li><b>Going on.</b> Some who reach {d0} go on to {d1} (and the other way): pull = the other\'s attraction − the blocks between them (car, foot or metro, whichever is quickest), split against «done, home» (always {st}); how they go, by rule 5. So people travel between the two every day, and a line joining them carries them.</li><li><b>Who knows.</b> Only people who know the metro choose by rules 4, 5 and 6; the others drive or walk where they always went. At the opening {s}/10 of each estate know it.</li><li><b>Word of mouth.</b> Each year, whatever share of an estate rides the metro, that share × {sp} of the people who don\'t know yet hear of it (all of them at most).</li><li><b>Crowding.</b> Each section (between two neighbouring cells) carries trains × {pt} a day. The year after, a metro trip through a crowded section counts {cb} blocks more (once, however many sections).</li><li><b>Score.</b> Daily metro riders of all {y} years added up.</li></ol>'),
+    'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始畫線 →','开始画线 →','Start drawing →'),
+    'iv.m2.new':L('<b>地鐵</b>：一次建好一條線，再看八年——大家慢慢發現它，越來越多人坐，它到的地方也越來越多人去。','<b>地铁</b>：一次建好一条线，再看八年——大家慢慢发现它，越来越多人坐，它到的地方也越来越多人去。',
+      '<b>The metro</b>: build one line, then watch eight years — people discover it, more ride it, and the places it reaches draw more people.'),
+    'iv.m2.body':L('<li>開通前大家<b>全部開車</b>。灰線是「愿望線」：每天從哪個屋苑去哪裡、多少人（越粗越多）。</li><li>畫一條線、放站、買列車（預算 {b}）。<b>開通以後就不能改</b>——真的地鐵也很難改。</li><li>地鐵比開車或走路省幾格，就有幾成人坐；一個地方變近了，原來不去的人也會去。走路很慢（每格算 {wp}），站最好放在屋苑門口。</li><li>但剛開通只有 {s} 成人知道。坐的人越多，口耳相傳越快——看每年的人數慢慢爬上去。</li>',
+      '<li>开通前大家<b>全部开车</b>。灰线是「愿望线」：每天从哪个屋苑去哪里、多少人（越粗越多）。</li><li>画一条线、放站、买列车（预算 {b}）。<b>开通以后就不能改</b>——真的地铁也很难改。</li><li>地铁比开车或走路省几格，就有几成人坐；一个地方变近了，原来不去的人也会去。走路很慢（每格算 {wp}），站最好放在屋苑门口。</li><li>但刚开通只有 {s} 成人知道。坐的人越多，口耳相传越快——看每年的人数慢慢爬上去。</li>',
+      '<li>Before the line <b>everybody drives</b>. The grey lines are desire lines: who goes from which estate to where each day (thicker = more).</li><li>Draw a line, place stations, buy trains (budget {b}). <b>After opening nothing changes</b> — a real metro is hard to change too.</li><li>Every block the metro saves on the car or on foot, one in ten ride it; a place brought nearer draws people who never went. Walking is slow ({wp} a cell): put stations at the estates\' doors.</li><li>But at first only {s}/10 know the line. The more ride, the faster word spreads — watch the numbers climb year by year.</li>'),
+    'iv.m2.course':L('課程連結：誘增出行與出行分佈的變化（重力模型）、方式選擇（和開車比時間）、新服務的擴散（口碑的 S 曲線）、擁擠的回饋。','课程链接：诱增出行与出行分布的变化（重力模型）、方式选择（和开车比时间）、新服务的扩散（口碑的 S 曲线）、拥挤的回馈。',
+      'Course link: induced trips and shifting trip distribution (gravity model), mode choice (time against the car), diffusion of a new service (the word-of-mouth S-curve), crowding feedback.')
+  });
+  // v7.9 · the living map: headline, info card, hold to compare
+  I18N.add({
+    'm2.hlToday':L('今天：大家開車，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','今天：大家开车，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','Today everyone drives: <em>{a}</em> a day to {d0}, <em>{b}</em> to {d1}'),
+    'm2.hlTodaySub':L('畫一條線、放站。停在線上的格子，地圖會變成「放了這個站、大家都知道以後」的樣子。','画一条线、放站。停在线上的格子，地图会变成「放了这个站、大家都知道以后」的样子。',
+      'Draw a line, place stations. Hover a cell on it and the map turns into what a station there brings once everyone knows.'),
+    'm2.hlPreview':L('放這裡 → 每天坐地鐵 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>','放这里 → 每天坐地铁 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>',
+      'A station here → <em>{r}</em> by metro a day · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>'),
+    'm2.hlAhead':L('大家都知道以後 → 每天坐地鐵 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>','大家都知道以后 → 每天坐地铁 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>',
+      'Once everyone knows → <em>{r}</em> by metro a day · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>'),
+    'm2.hlPreviewSub':L('預覽：每個屋苑都知道這條線以後（現在開通第 1 年只有 {s} 成人知道）。','预览：每个屋苑都知道这条线以后（现在开通第 1 年只有 {s} 成人知道）。','Preview: once every estate knows the line (in year 1 only {s}/10 do).'),
+    'm2.hlYear':L('第 {y} 年 · 每天坐地鐵 <em>{r}</em> 人（<em class="good">{d}</em>）· {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>','第 {y} 年 · 每天坐地铁 <em>{r}</em> 人（<em class="good">{d}</em>）· {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>',
+      'Year {y} · <em>{r}</em> by metro a day (<em class="good">{d}</em>) · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>'),
+    'm2.hlYearSub':L('平均 {a} 成人知道 · 口耳相傳：明年再多 {n} 成','平均 {a} 成人知道 · 口耳相传：明年再多 {n} 成','{a}/10 know · word of mouth: {n}/10 more next year'),
+    'm2.hlYearSub0':L('平均 {a} 成人知道這條線','平均 {a} 成人知道这条线','{a}/10 know the line'),
+    'm2.hlNothing':L('沒有這條線：大家開車，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','没有这条线：大家开车，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','Without the line: everyone drives, <em>{a}</em> to {d0}, <em>{b}</em> to {d1}'),
+    'm2.hlNothingSub':L('放開按鈕，回到你的線。','放开按钮，回到你的线。','Let go to see your line again.'),
+    'm2.hlDone':L('八年累計 <em>{s}</em> 人次坐地鐵 · {tier}','八年累计 <em>{s}</em> 人次坐地铁 · {tier}','<em>{s}</em> metro trips over eight years · {tier}'),
+    'm2.hlDoneSub':L('按住「看沒有這條線」比一比；「↺ 回到規劃」可以再改。','按住「看没有这条线」比一比；「↺ 回到规划」可以再改。','Hold «without the line» to compare; «↺ Back to planning» to change it.'),
+    'm2.holdAhead':L('👁 按住看大家都知道','👁 按住看大家都知道','👁 Hold: everyone knows'),'m2.holdNothing':L('👁 按住看沒有這條線','👁 按住看没有这条线','👁 Hold: without the line'),
+    'm2.iEst':L('<b>{n}</b>　每天 {p} 人出門<br>開車 <b>{c}</b> · 地鐵 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道這條線 {a} 成','<b>{n}</b>　每天 {p} 人出门<br>开车 <b>{c}</b> · 地铁 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道这条线 {a} 成',
+      '<b>{n}</b>　{p} go out a day<br><b>{c}</b> drive · <b>{m}</b> metro · {w} walk · {nb} stay nearby<br>{a}/10 know the line'),
+    'm2.iTrip':L('去{d}：開車/走路 {car} 格 · 地鐵 {m} 格 → {t} 成坐','去{d}：开车/走路 {car} 格 · 地铁 {m} 格 → {t} 成坐','to {d}: car/foot {car} · metro {m} → {t}/10 ride'),
+    'm2.iDest':L('<b>{n}</b><br>每天來 <b>{g}</b> 人（開通前 {b}）· 坐地鐵來 {m} · 順路來 {o}','<b>{n}</b><br>每天来 <b>{g}</b> 人（开通前 {b}）· 坐地铁来 {m} · 顺路来 {o}','<b>{n}</b><br><b>{g}</b> come a day (was {b}) · {m} by metro · {o} going on'),
+    'm2.iStation':L('第 {n} 站 · 這一段每天 {l} 人 / 能載 {c}','第 {n} 站 · 这一段每天 {l} 人 / 能载 {c}','station {n} · {l} a day on this section / room for {c}'),
+    'm.legend':L('<span><i class="lk car2"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圓環＝幾成開車／地鐵／走路，外圈綠＝幾成人知道這條線</span>',
+      '<span><i class="lk car2"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路，外圈绿＝几成人知道这条线</span>',
+      '<span><i class="lk car2"></i>car</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot; green outer arc = tenths who know the line</span>')
+  });
+  // v7.11 · mode 1's layout: lede, cards, line panel, three rules, the clock, the bottom numbers, the years table
+  I18N.add({
+    'm2.chipTag':L('一次建好','一次建好','Built once'),
+    'm2.lede':L('Build one line, then watch it grow.<span class="tcb">畫一條線、放站。大家慢慢發現它：越來越多人坐，它到的地方也越來越多人去。</span>',
+      'Build one line, then watch it grow.<span class="tcb">画一条线、放站。大家慢慢发现它：越来越多人坐，它到的地方也越来越多人去。</span>',
+      'Build one line, then watch it grow: people discover it, more ride it, and the places it reaches draw more people.'),
+    'm2.lineLbl':L('New line · 新線 <span class="tc">預算 <b id="money"></b></span>','New line · 新线 <span class="tc">预算 <b id="money"></b></span>','New line <span class="tc">budget <b id="money"></b></span>'),
+    'm2.rulesH3':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'm2.rule1':L('<b>一次建好</b>：預算 {b}（線每格 {lc}、站 {sc}、多一列車 {tc}），開通後 {y} 年不能改。坐地鐵＝走到站（每格 {wp}）＋ 等車 {w} ＋ 路過幾站 ＋ 走路。','<b>一次建好</b>：预算 {b}（线每格 {lc}、站 {sc}、多一列车 {tc}），开通后 {y} 年不能改。坐地铁＝走到站（每格 {wp}）＋ 等车 {w} ＋ 路过几站 ＋ 走路。',
+      '<b>Built once</b>: budget {b} ({lc} a block, {sc} a station, {tc} a train), fixed for {y} years. Metro = walk ({wp} a cell) + wait {w} + stations passed + walk.'),
+    'm2.rule2':L('<b>比開車或走路省幾格，就有幾成坐地鐵</b>；一個地方變近了，原來不去的人也會去（兩個中心之間也有人順路來回）。','<b>比开车或走路省几格，就有几成坐地铁</b>；一个地方变近了，原来不去的人也会去（两个中心之间也有人顺路来回）。',
+      '<b>Every block saved on car or foot, one in ten by metro</b>; a place brought nearer draws people who never went (and some go on between the two centres).'),
+    'm2.rule3':L('<b>口耳相傳</b>：剛開通每個屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分數＝每年「每天坐地鐵的人」加起來。','<b>口耳相传</b>：刚开通每个屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分数＝每年「每天坐地铁的人」加起来。',
+      '<b>Word of mouth</b>: {s}/10 know the line at the opening; the more ride, the more know next year. Score = daily riders of every year added up.'),
+    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span>',
+      '<span><i class="lk car"></i>cars</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: by metro</span><span><i class="lk want"></i>grey line: people going (thicker = more)</span><span><i class="lk newline"></i>your line</span>'),
+    'm2.hudMetro':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'m2.hudWalk':L('On foot · 走路','On foot · 走路','On foot'),'m2.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'m2.hudKnow':L('Know the line · 知道新線','Know the line · 知道新线','Know the line'),
+    'm2.clockPlan':L('第 0 年','第 0 年','Year 0'),'m2.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'm2.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'m2.clockSubOpen':L('共 {m} 年 · 口耳相傳','共 {m} 年 · 口耳相传','{m} years · word of mouth'),
+    'm2.laneNow':L('This year · 今年','This year · 今年','This year'),'m2.lanePv':L('Preview · 預覽','Preview · 预览','Preview'),'m2.laneNo':L('No line · 沒有這條線','No line · 没有这条线','Without the line'),
+    'm2.yearsH':L('Years · 逐年','Years · 逐年','Years'),'m2.yearChip':L('{m} 年','{m} 年','{m} years'),
+    'm2.tYear':L('年','年','Year'),'m2.tMetro':L('坐地鐵','坐地铁','Metro'),'m2.tKnow':L('知道','知道','Know'),
+    'm2.tideKey':L('每天坐地鐵的人；{d0}、{d1}＝每天來的人。灰字＝下一年的預告。','每天坐地铁的人；{d0}、{d1}＝每天来的人。灰字＝下一年的预告。','Metro riders a day; {d0}, {d1} = people coming a day. Grey = next year\'s forecast.'),
+    'm2.whereH2':L('Where people go · 大家去哪裡','Where people go · 大家去哪里','Where people go'),
+    'm2.whereNote2':L('每條＝一個屋苑每天出門的人：{a}、{b}、{c}。細線＝開通前。','每条＝一个屋苑每天出门的人：{a}、{b}、{c}。细线＝开通前。','Each bar = an estate\'s people going out: {a}, {b}, {c}. Thin marks = before the line.'),
+    'm2.cardLine':L('線','线','Line'),'m2.cardStation':L('站','站','Stations'),'m2.cardTrain':L('列車','列车','Trains'),
+    'm2.cardLineN':L('{n} 格 · 畫線','{n} 格 · 画线','{n} cells · draw'),'m2.cardStationN':L('{n} 個 · 放站','{n} 个 · 放站','{n} · place'),'m2.cardTrainN':L('{n} 列 · ±','{n} 列 · ±','{n} · ±'),
+    'm2.spTitle':L('新線','新线','The new line'),'m2.spLine':L('線','线','Line'),'m2.spStations':L('站','站','Stations'),'m2.spTrains':L('列車','列车','Trains'),'m2.spRoom':L('每段每天最多','每段每天最多','A section carries'),
+    'm2.spLeft':L('預算還剩','预算还剩','Budget left'),'m2.spRiders':L('坐地鐵（下一年）','坐地铁（下一年）','By metro (next year)'),'m2.spPot':L('大家都知道以後','大家都知道以后','Once everyone knows'),
+    'm2.cells':L('{n} 格','{n} 格','{n} cells'),'m2.count':L('{n} 個','{n} 个','{n}'),'m2.peopleN':L('{n} 人','{n} 人','{n}'),
+    'm2.toCentre':L('每天來 {g}（坐地鐵 {m}）','每天来 {g}（坐地铁 {m}）','{g} a day ({m} by metro)'),
+    'm2.run0':L('▶ 開通','▶ 开通','▶ Open'),'m2.holdAhead2':L('👁 按住看以後','👁 按住看以后','👁 Hold: later'),'m2.holdNothing2':L('👁 按住看沒有線','👁 按住看没有线','👁 Hold: no line')
+  });
+
+  I18N.add({
+    'm.mode':L('Mode 04 · 站旁開發','Mode 04 · 站旁开发','Mode 04 · Station-side development'),
+    'm.doc':L('TransitLab HK · 模式 4 · 站旁開發','TransitLab HK · 模式 4 · 站旁开发','TransitLab HK · Mode 4 · Station-side development'),
+    'm.levelTitle':L('新界西北 · 站旁開發','新界西北 · 站旁开发','North-west New Territories · station-side development'),
+    'm.scoreLbl':L('地鐵人次＋賣地收入','地铁人次＋卖地收入','Metro trips + land revenue'),
+    'm.goal':L('八年每日坐地鐵人數加總 ＋ 賣地收入 · <b>{pass}</b> 過關 · <b>{high}</b> 高分 · <b>{master}</b> 大師',
+      '八年每日坐地铁人数加总 ＋ 卖地收入 · <b>{pass}</b> 过关 · <b>{high}</b> 高分 · <b>{master}</b> 大师',
+      'Daily metro riders across eight years + land revenue · <b>{pass}</b> pass · <b>{high}</b> high · <b>{master}</b> master'),
+    'm.rScore':L('八年總帳 {d}（{y} 年）','八年总账 {d}（{y} 年）','Eight-year ledger {d} ({y} years)'),
+    'm2.chipTag':L('鐵路＋物業','铁路＋物业','Rail + property'),
+    'm2.lede':L('第二關你修過線。這一關，站旁的地也歸你：賣成住宅，站上多住人；賣成商場，這裡多一個大家要去的地方。',
+      '第二关你修过线。这一关，站旁的地也归你：卖成住宅，站上多住人；卖成商场，这里多一个大家要去的地方。',
+      'You built a line in Mode 2. Now you own the land beside its stations: sell it for homes and more people live by the line, or sell it for shops and create another place people want to visit.'),
+    'm2.lineLbl':L('New line · 新線 <span class="tc">預算 <b id="money"></b></span>','New line · 新线 <span class="tc">预算 <b id="money"></b></span>','New line <span class="tc">budget <b id="money"></b></span>'),
+    'm2.rulesH3':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'm2.rule1':L('<b>站旁空地</b>：車站周圍一圈（8 格）內才可賣；每年最多 2 塊，按「下一年」後定下。','<b>站旁空地</b>：车站周围一圈（8 格）内才可卖；每年最多 2 块，按“下一年”后定下。','<b>Land by a station</b>: only one of the 8 surrounding cells can be sold; up to 2 lots a year, locked in when you press “Next year”.'),
+    'm2.rule2':L('<b>住宅或商場</b>：住宅每天多 16 人出門，全部知道新線；同站商業地合成商場，吸引力 {sb}＋{sp}×塊數，泊車多算 {ce} 格。','<b>住宅或商场</b>：住宅每天多 16 人出门，全部知道新线；同站商业地合成商场，吸引力 {sb}＋{sp}×块数，泊车多算 {ce} 格。',
+      '<b>Homes or shops</b>: each home lot adds 16 daily commuters who all know the line. Shops at one station combine into a mall with attraction {sb} + {sp} per lot and {ce} extra car blocks.'),
+    'm2.rule3':L('<b>賣地與總帳</b>：住宅價＝{hr}×各去處剩餘拉力；商業價＝{sr}×新增商場訪客。售價當刻入帳，發展下一年生效。總帳＝八年每日坐地鐵人數加總＋賣地收入。',
+      '<b>卖地与总账</b>：住宅价＝{hr}×各去处剩余拉力；商业价＝{sr}×新增商场访客。售价当刻入账，发展下一年生效。总账＝八年每日坐地铁人数加总＋卖地收入。',
+      '<b>Land and the ledger</b>: home price = {hr} × remaining pull across destinations; shop price = {sr} × added daily mall visitors. Revenue is booked at sale; development starts next year. Score = daily metro riders across eight years + land revenue.'),
+    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span><span>虛線地塊：空地</span><span>小樓：住宅 · 櫥窗：商業</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span><span>虚线地块：空地</span><span>小楼：住宅 · 橱窗：商业</span>',
+      '<span><i class="lk car"></i>car</span><span><i class="lk dot"></i>metro</span><span><i class="ringkey"></i>green ring: metro riders</span><span><i class="lk want"></i>grey line: daily trips (thicker = more)</span><span><i class="lk newline"></i>your line</span><span>dashed lot: vacant</span><span>homes · shopfronts</span>'),
+    'm2.hudMetro':L('坐地鐵 · 人/日','坐地铁 · 人/日','Metro riders / day'),
+    'm2.hudWalk':L('新住戶','新住户','New residents'),
+    'm2.hudCar':L('商場來客','商场来客','Mall visitors'),
+    'm2.hudKnow':L('總帳','总账','Ledger'),
+    'm2.cardLine':L('線','线','Line'),'m2.cardStation':L('站','站','Stations'),'m2.cardTrain':L('地','地','Land'),
+    'm2.cardLineN':L('{n} 格 · 畫線','{n} 格 · 画线','{n} cells · draw'),
+    'm2.cardStationN':L('{n} 個 · 放站','{n} 个 · 放站','{n} · place'),
+    'm2.cardTrainN':L('已賣 {n} 塊 · 點地出售','已卖 {n} 块 · 点地出售','{n} sold · select a lot'),
+    'm2.spTitle':L('新線與列車','新线与列车','Line and trains'),
+    'm2.spRiders':L('坐地鐵（下一年）','坐地铁（下一年）','Metro riders (next year)'),
+    'm2.spPot':L('大家都知道以後','大家都知道以后','Once everyone knows'),
+    'm2.run0':L('開通 ▶','开通 ▶','Open ▶'),
+    'm2.yearsH':L('Ledger · 逐年總帳','Ledger · 逐年总账','Ledger by year'),
+    'm2.whereH2':L('已賣地塊','已卖地块','Land sales'),
+    'm2.whereNote2':L('住宅：每天 16 位新住戶；商場：按站合併，顯示每日來客。','住宅：每天 16 位新住户；商场：按站合并，显示每日来客。','Each home lot adds 16 residents; shop lots combine by station.'),
+    'm2.tideKey':L('下一年預告為灰字 · 每日人數','下一年预告为灰字 · 每日人数','Grey row previews next year · people per day'),
+    'm2.toCentre':L('每天來 {g}（坐地鐵 {m}）','每天来 {g}（坐地铁 {m}）','{g} daily visitors ({m} by metro)'),
+    'tod.toolLand':L('▧ 賣地','▧ 卖地','▧ Sell land'),
+    'tod.useHome':L('🏠 住宅','🏠 住宅','🏠 Homes'),
+    'tod.useShop':L('🏬 商業','🏬 商业','🏬 Shops'),
+    'tod.landTitle':L('站旁開發','站旁开发','Station-side development'),
+    'tod.landCount':L('今年還能賣 {left}/2 · 已賣 {sold} 塊','今年还能卖 {left}/2 · 已卖 {sold} 块','{left}/2 lots left this year · {sold} sold'),
+    'tod.landRevenue':L('賣地收入','卖地收入','Land revenue'),
+    'tod.landRevenueValue':L('{n}（待鎖定 {p}）','{n}（待锁定 {p}）','{n} ({p} pending)'),
+    'tod.landHint':L('指向亮色虛線地塊看兩個估價；選住宅或商業，再點地出售。','指向亮色虚线地块看两个估价；选住宅或商业，再点地出售。','Hover a bright lot for both prices. Choose homes or shops, then click to sell.'),
+    'tod.lockHint':L('按「下一年」後，賣地收入入帳，發展也從下一年生效。','按“下一年”后，卖地收入入账，发展也从下一年生效。','Press “Next year” to book the sale and activate the development next year.'),
+    'tod.unsellable':L('這塊地不在車站一圈內，或已售出。','这块地不在车站一圈内，或已售出。','This lot is outside a station ring or already sold.'),
+    'tod.maxSales':L('今年已選滿 2 塊。','今年已选满 2 块。','Two lots are already selected this year.'),
+    'tod.cancel':L('撤回本年出售','撤回本年出售','Cancel this year’s sale'),
+    'tod.soldHome':L('住宅','住宅','Homes'),
+    'tod.soldShop':L('商場','商场','Mall'),
+    'tod.priceHome':L('🏠 +{n}','🏠 +{n}','🏠 +{n}'),
+    'tod.priceShop':L('🏬 +{n}','🏬 +{n}','🏬 +{n}'),
+    'tod.shopName':L('第 {n} 站商場','第 {n} 站商场','Station {n} mall'),
+    'tod.homeName':L('站旁住宅 {n}','站旁住宅 {n}','Station homes {n}'),
+    'tod.mallDaily':L('每天來 {n} 人','每天来 {n} 人','{n} visitors a day'),
+    'tod.year':L('年','年','Year'),
+    'tod.riders':L('坐地鐵','坐地铁','Metro'),
+    'tod.sales':L('賣地','卖地','Land'),
+    'tod.ledger':L('總帳','总账','Ledger'),
+    'tod.homePriceFormula':L('住宅價＝{r}×Σ max(0，吸引力−最快格數)；房客知道新線。','住宅价＝{r}×Σ max(0，吸引力−最快格数)；住户知道新线。','Home price = {r} × Σ max(0, attraction − fastest blocks); residents know the line.'),
+    'tod.shopPriceFormula':L('商業價＝{r}×（新增每日商場來客）；只計知道新線的人坐地鐵。','商业价＝{r}×（新增每日商场来客）；只计知道新线的人坐地铁。','Shop price = {r} × added daily mall visitors; only people who know the line ride it.'),
+    'tod.fullRules':L('<h3>第二關的地鐵規則照用</h3><ol><li>去哪：拉力＝吸引力−格數；按各去處拉力和「附近」10 的比例分配。</li><li>怎麼去：開車＝格數＋泊車；走路每格 {wp}；地鐵＝走到站＋等車 {w}＋路過站數＋走路。比開車或走路省幾格，就有幾成人坐地鐵。</li><li>只有知道新線的人會因它改去哪、改搭地鐵；開通時原住戶知曉 {s}/10，坐車者帶來口耳相傳，倍數 {sp}。</li><li>每段列車每日載客上限＝列車數×{pt}；太擠的行程明年多算 {cb} 格。順路再去按目的地拉力和「辦完就回家」{st} 分配。</li><li>線、站、列車在第 0 年一次建好，預算 {b}；開通後不能改線、不能加車。</li></ol><h3>站旁開發</h3><ol><li>只有車站周圍一圈 8 格內的空地可賣。第 0 年起每個年度最多賣 2 塊；點「下一年」後不可撤回，價款入帳，開發從該年起生效。</li><li>住宅每天新增 {hp} 人出門，知曉率為 1。商業按站合併成「X 站商場」，吸引力＝{sb}＋{spc}×塊數，開車泊車額外 {ce} 格，並參與順路再去。</li><li>住宅價＝{hr}×各去處 max(0，吸引力−從地塊出發最快格數)之和；商業價＝{sr}×新增每日商場訪客。總帳＝八年每日地鐵乘客總和＋賣地收入。</li></ol>',
+      '<h3>第二关的地铁规则照用</h3><ol><li>去哪：拉力＝吸引力−格数；按各去处拉力和“附近”10 的比例分配。</li><li>怎么去：开车＝格数＋停车；走路每格 {wp}；地铁＝走到站＋等车 {w}＋路过站数＋走路。比开车或走路省几格，就有几成人坐地铁。</li><li>只有知道新线的人会因它改去哪、改搭地铁；开通时原住户知晓 {s}/10，坐车者带来口耳相传，倍数 {sp}。</li><li>每段列车每日载客上限＝列车数×{pt}；太挤的行程明年多算 {cb} 格。顺路再去按目的地拉力和“办完就回家”{st} 分配。</li><li>线、站、列车在第 0 年一次建好，预算 {b}；开通后不能改线、不能加车。</li></ol><h3>站旁开发</h3><ol><li>只有车站周围一圈 8 格内的空地可卖。第 0 年起每个年度最多卖 2 块；点“下一年”后不可撤回，价款入账，开发从该年起生效。</li><li>住宅每天新增 {hp} 人出门，知晓率为 1。商业按站合并成“X 站商场”，吸引力＝{sb}＋{spc}×块数，开车停车额外 {ce} 格，并参与顺路再去。</li><li>住宅价＝{hr}×各去处 max(0，吸引力−从地块出发最快格数)之和；商业价＝{sr}×新增每日商场访客。总账＝八年每日地铁乘客总和＋卖地收入。</li></ol>',
+      '<h3>Mode 2 metro rules still apply</h3><ol><li>Where to go: pull = attraction − blocks; split by each destination’s pull and a fixed nearby pull of 10.</li><li>How to go: car = blocks + parking; walking costs {wp} per cell; metro = walk to a station + wait {w} + stops passed + walk out. Each block saved over car or walking sends one tenth onto the metro.</li><li>Only people who know the line change destination or ride it. Existing residents start at {s}/10 awareness; riders spread the word at ×{sp}.</li><li>Each train carries {pt} riders a day per section. A crowded trip costs {cb} extra blocks next year. Onward trips split against “done, home” pull {st}.</li><li>Build the line, stations and trains once in year 0, within budget {b}; no line changes or extra trains after opening.</li></ol><h3>Station-side development</h3><ol><li>Only vacant cells in the 8-cell ring around a station can be sold. Sell up to 2 lots in each year window from year 0; pressing “Next year” locks them, books the proceeds and activates development for that year.</li><li>Each home lot adds {hp} daily commuters with awareness 1. Shop lots at one station combine into “Station X mall”, attraction {sb} + {spc} per lot, car parking penalty {ce}; the mall also gets onward trips.</li><li>Home price = {hr} × the sum of max(0, attraction − fastest blocks from the lot). Shop price = {sr} × added daily mall visitors. Score = daily metro riders across eight years + land revenue.</li></ol>'),
+    'm2.tYear':L('年','年','Year'),
+    'm2.tMetro':L('坐地鐵','坐地铁','Metro'),
+    'm2.tKnow':L('賣地','卖地','Land'),
+  });
+
+  I18N.add({
+    'tod.previewLine':L('這塊地：住宅價 +{homes} · 商業價 +{shops}；商場預計每天來 {visitors} 人。','这块地：住宅价 +{homes} · 商业价 +{shops}；商场预计每天来 {visitors} 人。','This lot: homes +{homes} · shops +{shops}; the mall forecast is {visitors} visitors a day.'),
+    'tod.lot':L('空地 {n}','空地 {n}','Lot {n}'),
+    'tod.pending':L('下一年生效 · 可撤回','下一年生效 · 可撤回','Starts next year · can cancel'),
+    'tod.locked':L('已定下','已定下','Locked'),
+    'tod.noSales':L('還未賣地。亮色虛線空地在車站一圈內。','还未卖地。亮色虚线空地在车站一圈内。','No lots sold yet. Bright dashed lots are within a station ring.'),
+    'tod.saleToast':L('{kind}已選定，進帳 {price}；按下一年後定下。','{kind}已选定，进账 {price}；按下一年后定下。','{kind} selected for {price}; press Next year to lock it in.'),
+    'iv.m2.new':L('站旁空地可以賣成住宅或商業。住宅每天多 16 位全部知曉新線的住戶；商業按站合成商場，吸引力隨地塊增加。',
+      '站旁空地可以卖成住宅或商业。住宅每天多 16 位全部知晓新线的住户；商业按站合成商场，吸引力随地块增加。',
+      'Sell vacant land by a station for homes or shops. Each home lot adds 16 daily commuters who all know the line; shop lots combine into a mall whose attraction grows with each lot.'),
+    'iv.m2.body':L('<li>第二關的地鐵規則不變：選去哪裡、走路/開車/坐地鐵、口耳相傳和擠車照舊。</li><li>選車站旁一圈的空地，每年最多賣兩塊。</li><li>住宅價看交通方便程度；商業價看商場每天新增多少訪客。</li>',
+      '<li>第二关的地铁规则不变：选去哪里、走路/开车/坐地铁、口耳相传和挤车照旧。</li><li>选车站旁一圈的空地，每年最多卖两块。</li><li>住宅价看交通方便程度；商业价看商场每天新增多少访客。</li>',
+      '<li>Mode 2 metro rules still apply: destination choice, walking, driving, metro use, word of mouth and crowding.</li><li>Sell up to two vacant lots in a station ring each year.</li><li>Home value follows access; shop value follows added daily mall visitors.</li>'),
+    'iv.m2.course':L('地價在售出時入帳；按「下一年」後，住宅與商場才開始影響客流。八年總帳把每日地鐵人次與賣地收入相加。',
+      '地价在售出时入账；按“下一年”后，住宅与商场才开始影响客流。八年总账把每日地铁人次与卖地收入相加。',
+      'Land revenue is booked when sold. Homes and malls affect trips after you press Next year. The eight-year ledger adds daily metro riders and land revenue.')
+  });
+
+  I18N.add({
+    'tod.heading':L('站旁開發','站旁开发','Station-side development'),
+    'tod.modeIntro':L('Mode 04 · 站旁開發','Mode 04 · 站旁开发','Mode 04 · Station-side development')
+  });
+
+  I18N.add({
+    'tod.stationLabel':L('第 {n} 站','第 {n} 站','Station {n}'),
+    'tod.yearSales':L('{station}旁：住宅 {homes} 塊 · 商業 {shops} 塊，賣地進帳 {revenue}',
+      '{station}旁：住宅 {homes} 块 · 商业 {shops} 块，卖地进账 {revenue}',
+      'By {station}: {homes} home lots · {shops} shop lots, land revenue {revenue}'),
+    'tod.mallSentence':L('{name}每天來 {n} 人','{name}每天来 {n} 人','{name}: {n} visitors a day'),
+    'tod.pendingSentence':L('待鎖定：住宅 {homes} 塊 · 商業 {shops} 塊 · 進帳 {revenue}',
+      '待锁定：住宅 {homes} 块 · 商业 {shops} 块 · 进账 {revenue}',
+      'Pending: {homes} home lots · {shops} shop lots · proceeds {revenue}')
+  });
+  // v7.12 · the lede and the four numbers at the bottom
+  I18N.add({
+    'tod.lede':L('Build the line, then sell the land beside it.<span class="tcb">第二關你修過線。這一關，站旁的地也歸你：賣成住宅，站上多住人；賣成商場，這裡多一個大家要去的地方。</span>',
+      'Build the line, then sell the land beside it.<span class="tcb">第二关你修过线。这一关，站旁的地也归你：卖成住宅，站上多住人；卖成商场，这里多一个大家要去的地方。</span>',
+      'You built a line in mode 2. Here the land beside the stations is yours too: sell it for homes and more people live on the line; sell it for shops and the station becomes a place people go.'),
+    'tod.hudRiders':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'tod.hudHomes':L('New residents · 新住戶','New residents · 新住户','New residents'),
+    'tod.hudMall':L('To the shops · 來站旁商場','To the shops · 来站旁商场','To the station shops'),'tod.hudLedger':L('Ledger · 賬','Ledger · 账','Ledger')
+  });
+  if(typeof document!=='undefined')I18N.apply();
+})();
+
+</script><script>
+(()=>{
+  'use strict';
+  // v7 · mode 2 «the metro», build once and watch it grow — the page, on mode 1's layout: the map in mode 1's style
+  // (paper, trees, estates with a green ring for those on the metro, faint grey lines for where people go), the year top
+  // left, the preview top right, four numbers at the bottom; on the left the goal, the controls, three cards (line,
+  // stations, trains) with the line's panel and three rules; on the right the years table, where people go and one line
+  // of what happens. Hover a cell on the line (stations) and the map turns into what a station there brings once
+  // everybody knows; hold «👁» for that for the whole line, or (once open) for no line.
+  const {Plan,D,P,year,spread,walk,same,key}=TOD,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
+  const CS=62,MX=50,MY=50,STEP_MS=2600,DAY_S=7,PER_DOT=1,MAX_DOTS=600;
+  const xy=c=>[MX+c[0]*CS,MY+c[1]*CS];
+  const svg=(tag,a,c='')=>`<${tag} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}>${c}</${tag}>`;
+  let C={};
+  function readTokens(){const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue('--s-'+n).trim();
+    C={paper:v('paper'),panel:v('panel'),soft:v('soft'),raise:v('raise'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line:v('line'),line2:v('line2'),accent:v('accent'),accent2:v('accent2'),
+      warn:v('warn'),bad:v('bad'),info:v('info'),metro:v('metro'),walk:v('walk')};}
+  readTokens();
+  const text=(x,y,s,size=13,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.panel,'stroke-width':3.5,'paint-order':'stroke',...extra},s);
+  const textW=(s,size)=>[...String(s)].reduce((w,ch)=>w+(ch.charCodeAt(0)>0x2e7f?size:ch===' '?size*.32:size*.6),0);
+  const pill=(x,y,s,color,size=12)=>{const w=textW(s,size)+16,x0=x-w/2;
+    return svg('rect',{x:x0.toFixed(1),y:(y-size+1).toFixed(1),width:w.toFixed(1),height:size+8,rx:(size+8)/2,fill:C.panel,stroke:color,'stroke-width':1.2,'fill-opacity':.97})+
+      svg('text',{x:(x0+w/2).toFixed(1),y:(y+2.5).toFixed(1),'font-size':size,fill:color,'text-anchor':'middle','font-weight':600},s);};
+  function sprite(rows,x0,y0,u,pal){let out='';rows.forEach((row,j)=>{for(let i=0;i<row.length;){const ch=row[i];if(ch==='.'||!pal[ch]){i++;continue;}let k=i;while(k+1<row.length&&row[k+1]===ch)k++;
+    out+=`<rect x="${(x0+i*u).toFixed(1)}" y="${(y0+j*u).toFixed(1)}" width="${((k-i+1)*u).toFixed(1)}" height="${u}" fill="${pal[ch]}"/>`;i=k+1;}});return `<g shape-rendering="crispEdges">${out}</g>`;}
+  const ESTATE=["....kkkkk...","....kwklk...","....kkkkk...","....kwkwk.kk","kkk.kkkkk.kl","klk.kwkwk.kk","kkk.kkkkk.kw","kwk.klkwk.kk","kkk.kkkkk.kw","kwk.kwkwk.kk","kkk.kkkkk.kl","gggggggggggg"];
+  const TOWN=["......kkkk......","....kkaaaakk....","..kkaaaaaaaakk..","kkaaaaaaaaaaaakk","kaaaaaaaaaaaaaak","rprprprprprprprp","prprprprprprprpr",".kkkkkkkkkkkkkk.",".kllkkkddkkkllk.",".kllkkkddkkkllk.",".kkkkkkddkkkkkk.","gggggggggggggggg"];
+  const OFFICE=[".....kkkk.....",".....kwwk.....","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkddkwwk..","..kkkkddkkkk..","gggggggggggggg"];
+  const TRAIN=[".mmmmmmmmmmmmmmmmm.","mmwwmmwwmmwwmmwwmmm","mmwwmmwwmmwwmmwwmmm","mmmmmmmmmmmmmmmmmmm","mkkmmmmmmmmmmmmkkmm","..k.............k.."];
+  const TREE=["..g..",".ggg.","ggggg",".ggg.","ggggg","..t..","..t.."],BUSH=[".gg.","gggg",".gg."],FLOWER=["f.f.",".g.f","..g."],HOME=["...kkkk...","..krrrrk..","..kwkkwk..",".kkkkkkkk.",".kwkkwkkk.",".kkkkkkkk.","...k..k..."],SHOP=["..kkkkkk..",".kwwwwwk..",".kkkkkkk..",".kwkddwk..",".kkkkkkk..","..kkkkk..."];
+  const DEST={town:TOWN,jobs:OFFICE,shop:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info,shop:C.accent})[k];
+  let shownDestinations=D.destinations; const nameOrigin=o=>o.home?t('tod.homeName',{n:o.landIndex}):I.name(o); const nameO=i=>nameOrigin(D.origins[i]); const nameD=k=>{const d=shownDestinations[k]||D.destinations[k];return d.kind==='shop'?t('tod.shopName',{n:d.stationNo}):I.name(d);}; const shortD=k=>{const d=shownDestinations[k]||D.destinations[k];return d.kind==='shop'?t('tod.shopName',{n:d.stationNo}):(I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name));};
+  const R=Math.round,tenth=a=>R(a*10),sw=c=>`<i class="sw" style="background:${c}"></i>`;
+  const signed=v=>{const r=R(v);return{txt:(r>0?'+':r<0?'−':'±')+Math.abs(r),cls:r>0?'good':r<0?'bad':''};};
+  let plan=new Plan(),tool='draw',landUse='home',hover=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0;
+  const VBW=MX*2+(D.cols-1)*CS+130,VBH=MY*2+(D.rows-1)*CS;
+  function snapshot(){history.push(JSON.stringify({...plan}));if(history.length>200)history.shift();}
+  function restore(s){const p=new Plan();Object.assign(p,JSON.parse(s));plan=p;}
+  const planKey=p=>JSON.stringify([p.line,p.stations,p.trains,p.sales,p.pendingSales]);
+  const memo=new Map();function cached(k,f){if(!memo.has(k)){if(memo.size>60)memo.clear();memo.set(k,f());}return memo.get(k);}
+  function now(){return cached('now'+planKey(plan)+plan.year+JSON.stringify(plan.aware)+JSON.stringify(plan.crowded),()=>plan.now());}
+  const noLine=()=>cached('none',()=>year([],[],D.origins.map(()=>0),1));
+  const avg=a=>a.reduce((s,x)=>s+x,0)/a.length;
+  function view(){
+    if(hold&&plan.open)return{mode:'nothing',y:noLine(),aware:0};
+    if(tool==='land'&&hover&&plan.canSell(hover)){const quote=plan.quote(hover,landUse);return{mode:'landPreview',y:plan.previewSale(hover,landUse),cell:hover,use:landUse,aware:avg(plan.awareFor()),quote};}
+    if(!plan.open){
+      if(tool==='station'&&hover&&plan.onLine(hover)&&(plan.isStation(hover)||plan.money>=P.stationCost)){
+        const q=new Plan();Object.assign(q,JSON.parse(JSON.stringify({...plan})));q.toggleStation(hover);
+        if(q.stations.length>=2)return{mode:'preview',y:cached('pot'+planKey(q),()=>q.potential()),cell:hover,aware:1};}
+      if(hold&&plan.stations.length>=2)return{mode:'ahead',y:cached('pot'+planKey(plan),()=>plan.potential()),aware:1};
+      return plan.stations.length>=2?{mode:'plan',y:now(),aware:avg(plan.aware)}:{mode:'today',y:noLine(),aware:0};}
+    return{mode:'year',y:lastY||now(),aware:avg(plan.aware)};
+  }
+  const rowsOf=y=>[...y.est.flatMap(e=>e.to.map(x=>({from:e.origin.cell,to:y.destinations[x.k].cell,x,who:nameOrigin(e.origin),e}))),
+    ...(y.chain||[]).map(q=>({from:y.destinations[q.a].cell,to:y.destinations[q.b].cell,x:q,who:shortD(q.a),chain:true}))];
+
+  /* -------------------------------------------------------------- the moving people */
+  const V={walk:34,car:80,rail:190};
+  const corner=(a,b)=>[...(a[0]===b[0]||a[1]===b[1]?[]:[xy([b[0],a[1]])]),xy(b)];
+  function leg(pts,sp,a,b,v){for(const q of corner(a,b)){pts.push(q);sp.push(v);}}
+  function carPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.car);return{pts,sp};}
+  function metroPath(trip,from,to){const pts=[xy(from)],sp=[],step=trip.tx>=trip.fx?1:-1;
+    leg(pts,sp,from,plan.line[trip.fx],V.walk);
+    for(let i=trip.fx+step;step>0?i<=trip.tx:i>=trip.tx;i+=step){pts.push(xy(plan.line[i]));sp.push(V.rail);}
+    leg(pts,sp,plan.line[trip.tx],to,V.walk);return{pts,sp};}
+  function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
+  function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
+  const flowMemo=new WeakMap();
+  function flowsOf(y){if(flowMemo.has(y))return flowMemo.get(y);const out=[];
+    const add=(id,kind,n,mk)=>{if(n>.3)out.push({id,kind,n,mk});};
+    const one=(id,x,from,to)=>{add(id+'c','car',x.drivers,()=>carPath(from,to));
+      if(x.trip&&plan.line.length)add(id+'m','metro',x.metro,()=>metroPath(x.trip,from,to));add(id+'w','walk',x.walkers,()=>walkPath(from,to));};
+    y.est.forEach(e=>e.to.forEach(x=>one('e'+e.i+'k'+x.k,x,e.origin.cell,y.destinations[x.k].cell)));
+    (y.chain||[]).forEach(q=>one('d'+q.a+q.b,q,y.destinations[q.a].cell,y.destinations[q.b].cell));
+    flowMemo.set(y,out);return out;}
+  let dots=[],acc={},lastT=0;
+  function stepDots(tm,y){
+    const dt=Math.min(.12,Math.max(0,(tm-lastT)/1000));lastT=tm;
+    for(const f of flowsOf(y)){acc[f.id]=(acc[f.id]??Math.random())+f.n/PER_DOT/DAY_S*dt;
+      while(acc[f.id]>=1&&dots.length<MAX_DOTS){acc[f.id]-=1;if(!f.path)f.path=timed(f.mk());dots.push({p:f.path,kind:f.kind,t:0});}
+      if(acc[f.id]>=1)acc[f.id]=0;}
+    let s='';dots=dots.filter(d=>{d.t+=dt;if(d.t>=d.p.T)return false;const c=d.p.cum;let i=1;while(i<c.length-1&&c[i]<d.t)i++;
+      const a=d.p.pts[i-1],b=d.p.pts[i],f=(d.t-c[i-1])/Math.max(1e-6,c[i]-c[i-1]),x=a[0]+(b[0]-a[0])*f,yy=a[1]+(b[1]-a[1])*f;
+      if(d.kind==='car')s+=`<rect x="${(x-3).toFixed(1)}" y="${(yy-2.2).toFixed(1)}" width="6" height="4.4" rx="1.2" fill="${C.ink}" opacity=".55"/>`;
+      else if(d.kind==='metro')s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="2.8" fill="${C.metro}"/>`;
+      else s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="2.3" fill="${C.walk}"/>`;
+      return true;});
+    return s;}
+
+  /* -------------------------------------------------------------- the board, in mode 1's style */
+  let decorKey='',decorSvg='';
+  function decor(){
+    const k=C.accent2+C.paper;if(k===decorKey)return decorSvg;
+    const hash=(a,b)=>{let h=Math.imul(Math.imul(a|0,73856093)^Math.imul(b|0,19349663)^41234567,2654435761)>>>0;h=(h^(h>>>15))>>>0;return(h%1000)/1000;};
+    const busy=new Set();for(const o of [...D.origins,...D.destinations])for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)busy.add(key([o.cell[0]+dx,o.cell[1]+dy]));
+    let out='';
+    for(let gx=0;gx<D.cols;gx++)for(let gy=0;gy<D.rows;gy++){if(busy.has(key([gx,gy])))continue;
+      for(const [ox,oy] of [[-.25,-.2],[.25,.25]]){const h=hash(gx*4+ox*8+7,gy*4+oy*8+11);if(h>.26)continue;const [cx,cy]=xy([gx+ox,gy+oy]);
+        const pick=h<.09?TREE:h<.17?BUSH:FLOWER,f=[C.warn,C.bad,C.info][Math.floor(hash(gx,gy)*3)];out+=sprite(pick,cx-5,cy-8,2.2,{g:C.accent2,t:C.ink2,f});}}
+    decorKey=k;decorSvg=`<g opacity=".5">${out}</g>`;return decorSvg;}
+  function curve(a,b,j){const [x1,y1]=xy(a),[x2,y2]=xy(b),dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,bend=Math.min(50,L*.12)*(j%2?1:-1);
+    const cx=(x1+x2)/2-dy/L*bend,cy=(y1+y2)/2+dx/L*bend;return `M${x1} ${y1}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`;}
+  function drawBase(v){
+    const y=v.y,placing=!plan.open,ghost=v.mode==='nothing'||v.mode==='today';
+    let ground=decor(),want='',lines='',things='',labels='';
+    D.land.forEach(q=>{const c=q.cell,[cx,cy]=xy(c),sale=plan.allSales().find(s=>same(s.cell,c)),near=!!plan.stationForLand(c);ground+=svg('rect',{x:cx-17,y:cy-17,width:34,height:34,rx:3,fill:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.soft,'fill-opacity':sale?0.2:near?0.17:0.08,stroke:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.line2,'stroke-width':sale?2:near?2:1.2,'stroke-dasharray':sale?'':'4 3'});});
+    // where people go: faint grey lines (thicker = more), the brown part by metro
+    rowsOf(y).forEach(({from,to,x},j)=>{const d=curve(from,to,j),w=1+x.go/7,on=sel===j;
+      want+=svg('path',{d,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.45:.16,'stroke-linecap':'round'});
+      if(x.metro>.5)want+=svg('path',{d,fill:'none',stroke:C.metro,'stroke-width':(w*x.metro/x.go).toFixed(1),'stroke-opacity':on?.8:.28,'stroke-linecap':'round'});});
+    if(placing&&tool==='draw'&&plan.line.length)for(let x=0;x<D.cols;x++)for(let yy=0;yy<D.rows;yy++)if(plan.canExtend([x,yy])){const [cx,cy]=xy([x,yy]);ground+=svg('rect',{x:cx-15,y:cy-15,width:30,height:30,rx:5,fill:'none',stroke:C.metro,'stroke-width':2,'stroke-dasharray':'4 3','stroke-opacity':.8});}
+    const dim=v.mode==='nothing';
+    for(let s=0;s+1<plan.line.length;s++){const [x1,y1]=xy(plan.line[s]),[x2,y2]=xy(plan.line[s+1]),f=!ghost&&y.cap?y.load[s]/y.cap:0,col=f>1?C.bad:f>.8?C.warn:C.metro;
+      lines+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:col,'stroke-width':dim?3:9,'stroke-linecap':'round','stroke-opacity':dim?.3:.9,'stroke-dasharray':dim?'4 6':''});}
+    if(plan.line.length===1){const [x,yy]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:yy,r:6,fill:C.metro});}
+    if(placing&&tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)])if(e){const [x,yy]=xy(e);things+=svg('circle',{cx:x,cy:yy,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}
+    y.est.forEach(e=>{const o=e.origin,[cx,cy]=xy(o.cell),go=e.to.reduce((s,x)=>s+x.go,0),f=go?e.metro/go:0,r=24,L=2*Math.PI*r;
+      labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.line2,'stroke-width':3,'stroke-opacity':.7});
+      if(f>.005)labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.accent,'stroke-width':3.2,'stroke-dasharray':`${(L*Math.min(1,f)).toFixed(1)} ${L.toFixed(1)}`,transform:`rotate(-90 ${cx} ${cy-3})`,'stroke-linecap':'round'});
+      labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
+      const up=o.house[1]<0;labels+=text(cx,up?cy-34:cy+38,nameOrigin(e.origin||D.origins[e.i]),13,C.ink,{'text-anchor':'middle','font-weight':600});});
+    y.dest.forEach(d=>{const o=y.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6,diff=v.mode==='today'||dim?0:R(d.go-d.before);
+      labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
+      const house=o.house||[1,0],sd=house[0]!==0,lx=sd?cx+(house[0]>0?w/2+6:-w/2-6):cx,ly=sd?cy-4:cy-30,la=sd?(house[0]>0?'start':'end'):'middle';
+      labels+=svg('text',{x:lx,y:ly,'font-size':13,'text-anchor':la,'font-weight':600,stroke:C.panel,'stroke-width':3.5,'paint-order':'stroke'},`<tspan fill="${C.ink}">${nameD(d.k)}</tspan>`+(diff?`<tspan fill="${diff>0?C.accent:C.bad}"> ${diff>0?'↑+':'↓'}${diff}</tspan>`:''))+
+        text(lx,ly+(sd?15:-15),o.kind==='shop'?t('tod.mallDaily',{n:R(d.go)}):t('m2.toCentre',{g:R(d.go),m:R(d.metro)}),11.5,C.accent,{'text-anchor':la,'font-weight':600});});
+    if(!dim){const order=plan.stations.map(s=>({s,x:plan.line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
+      order.forEach(({s},n)=>{const [x,yy]=xy(s);things+=svg('circle',{cx:x,cy:yy,r:12,fill:C.panel,stroke:C.metro,'stroke-width':4})+svg('text',{x,y:yy+4.5,'font-size':12,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);});}
+    plan.allSales().forEach(s=>{const [cx,cy]=xy(s.cell);things+=sprite(s.use==='home'?HOME:SHOP,cx-12,cy-13,2.3,{k:C.ink,w:C.paper,r:C.warn,a:C.accent,d:C.info});});
+    if(v.mode==='landPreview'&&v.cell){const cell=v.use==='shop'?(plan.stationForLand(v.cell)?.s||v.cell):v.cell,[cx,cy]=xy(cell);things+='<g opacity=".45">'+sprite(v.use==='home'?HOME:SHOP,cx-12,cy-13,2.3,{k:C.ink,w:C.paper,r:C.warn,a:C.accent,d:C.info})+'</g>';}
+    $('gBase').innerHTML=ground+want+lines+labels+things;
+  }
+  function drawTop(v){
+    let s='';const placing=!plan.open;
+    if(hover&&placing){
+      const [hx,hy]=xy(hover);
+      if(tool==='draw'){
+        if(plan.canExtend(hover)){const end=!plan.line.length?null:TOD.adj(hover,plan.line.at(-1))?plan.line.at(-1):plan.line[0];
+          if(end)s+=svg('path',{d:'M'+xy(end).join(' ')+'L'+hx+' '+hy,stroke:C.metro,'stroke-width':9,'stroke-opacity':.4,'stroke-linecap':'round'});
+          else s+=svg('circle',{cx:hx,cy:hy,r:6,fill:C.metro,'fill-opacity':.45});
+          s+=pill(hx,hy-22,t('m.pvExtend',{c:P.lineCost}),C.metro,11.5);}
+        else if(plan.canShorten(hover))s+=pill(hx,hy-22,t('m.pvShorten'),C.ink2,11.5);
+      }else if(tool==='station'&&plan.onLine(hover)){
+        const has=plan.isStation(hover);
+        if(!has&&plan.money<P.stationCost)s+=pill(hx,hy-24,t('m.pvNoMoney'),C.bad,11.5);
+        else{if(!has)s+=svg('circle',{cx:hx,cy:hy,r:14,fill:'none',stroke:C.metro,'stroke-width':3.5,'stroke-dasharray':'4 3'});
+          s+=pill(hx,hy-26,(has?t('m.pvRemove'):t('m.pvAdd'))+' '+t(has?'m.pvRefund':'m.pvCost',{c:P.stationCost}),C.metro,11.5);}
+      }
+    }
+    if(hover&&tool==='land'){
+      const [hx,hy]=xy(hover),pending=plan.pendingSales.find(q=>same(q.cell,hover));
+      if(pending)s+=pill(hx,hy-25,t('tod.cancel'),C.warn,11);
+      else if(plan.canSell(hover)){
+        const h=plan.quote(hover,'home'),sh=plan.quote(hover,'shop');
+        s+=pill(hx,hy-27,t('tod.priceHome',{n:R(h.price)})+' · '+t('tod.priceShop',{n:R(sh.price)}),C.accent,11.5);
+      }else if(D.land.some(q=>same(q.cell,hover)))s+=pill(hx,hy-25,t('tod.unsellable'),C.ink3,10.5);
+    }
+    $('gTop').innerHTML=s;
+  }
+  function drawDyn(tm,v){
+    let s=stepDots(tm,v.y);
+    const order=plan.stations.map(q=>({q,x:plan.line.findIndex(c=>same(c,q))})).sort((a,b)=>a.x-b.x);
+    if(order.length>=2&&v.mode!=='nothing'&&v.mode!=='today'){const a=order[0].x,b=order.at(-1).x,span=Math.max(1,b-a);
+      for(let k=0;k<plan.trains;k++){const ph=(tm/1000*1.6+k*2*span/plan.trains)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.min(plan.line.length-1,Math.floor(pos)),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
+        const [x1,y1]=xy(c1),[x2,y2]=xy(c2);s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-21).toFixed(1)} ${(y1+(y2-y1)*f-6.5).toFixed(1)})">`+sprite(TRAIN,0,0,2.2,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
+    $('gDyn').innerHTML=s;
+  }
+  // the map and its overlays follow the preview; the side panels only the plan itself
+  let baseKey='',sideKey='';
+  function draw(force){const v=view();shownDestinations=v.y.destinations||D.destinations;const k=JSON.stringify([planKey(plan),plan.year,v.mode,v.cell,tool,landUse,sel,I.lang,C.paper,!!lastY,hold]);
+    if(force||k!==baseKey){baseKey=k;drawBase(v);overlays(v);}
+    shownDestinations=v.y.destinations||D.destinations;
+    const sk=JSON.stringify([planKey(plan),plan.year,tool,landUse,sel,I.lang,C.paper,hold,playing,history.length,plan.done,!!lastY]);
+    if(force||sk!==sideKey){sideKey=sk;side({mode:'plain',y:plan.open&&lastY?lastY:plan.stations.length>=2||plan.open?now():noLine(),aware:avg(plan.awareFor())});}drawTop(v);}
+
+  /* -------------------------------------------------------------- the overlays on the map */
+  function overlays(v){
+    const y=v.y,n=noLine(),d0=shortD(0),d1=shortD(1),gains=yy=>[0,1].map(k=>signed(yy.dest[k].go-n.dest[k].go));
+    $('clock').textContent=plan.open?t('m2.clockYear',{y:plan.year}):t('m2.clockPlan');
+    $('wave').textContent=t(plan.open?'m2.clockSubOpen':'m2.clockSub',{m:P.years});$('clockProg').style.width=`${100*plan.year/P.years}%`;
+    const newResidents=y.origins.filter(o=>o.home).reduce((a,o)=>a+o.people,0),mallVisitors=y.dest.filter(d=>d.kind==='shop').reduce((a,d)=>a+d.go,0);
+    let shownLedger=plan.total+plan.pendingSales.reduce((a,q)=>a+q.price,0);if(v.mode==='landPreview'&&v.quote)shownLedger+=v.quote.price;
+    $('hudBus').textContent=R(y.riders);$('hudRail').textContent=R(newResidents);$('hudCar').textContent=R(mallVisitors);$('hudJam').textContent=R(shownLedger);
+    let h='',main='',note='';
+    if(v.mode==='nothing'){h=t('m2.laneNo');main=t('m2.hlNothing',{d0,d1,a:R(n.dest[0].go),b:R(n.dest[1].go)});note=t('m2.hlNothingSub');}
+    else if(v.mode==='landPreview'){h=t('m2.lanePv');main=t('tod.previewLine',{homes:R(plan.quote(v.cell,'home').price),shops:R(plan.quote(v.cell,'shop').price),visitors:R(v.y.dest.filter(d=>d.kind==='shop').reduce((a,d)=>a+d.go,0))});note=t('tod.lockHint');}
+    else if(v.mode==='preview'||v.mode==='ahead'){const [a,b]=gains(y);h=t('m2.lanePv');main=t(v.mode==='preview'?'m2.hlPreview':'m2.hlAhead',{r:R(y.riders),d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls});note=t('m2.hlPreviewSub',{s:tenth(P.aware.start)});}
+    else if(plan.done){const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;h=t('m2.laneNow');main=t('m2.hlDone',{s:R(plan.total),tier:t('r.t'+tier)});note=t('m2.hlDoneSub');}
+    else if(plan.open&&plan.log.length){
+      const l=plan.log.at(-1),prev=plan.log.at(-2),[a,b]=gains(lastY||now()),nx=spread(now(),plan.aware);
+      h=t('m2.laneNow');
+      if(l.sales&&l.sales.length){
+        const groups=new Map();
+        l.sales.forEach(s=>{const g=groups.get(s.stationNo)||{no:s.stationNo,homes:0,shops:0,revenue:0};if(s.use==='home')g.homes++;else g.shops++;g.revenue+=s.price;groups.set(s.stationNo,g);});
+        main=[...groups.values()].map(g=>t('tod.yearSales',{station:t('tod.stationLabel',{n:g.no}),homes:g.homes,shops:g.shops,revenue:R(g.revenue)})).join(' · ');
+      }else{
+        const mall=(lastY||now()).dest.find(d=>d.kind==='shop');
+        main=mall?t('tod.mallSentence',{name:t('tod.shopName',{n:mall.stationNo}),n:R(mall.go)}):
+          t('m2.hlYear',{y:l.year,r:R(l.riders),d:signed(l.riders-(prev?prev.riders:0)).txt,d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls});
+      }
+      if(plan.pendingSales.length){
+        const homes=plan.pendingSales.filter(s=>s.use==='home').length,shops=plan.pendingSales.filter(s=>s.use==='shop').length;
+        main+=' · '+t('tod.pendingSentence',{homes,shops,revenue:R(plan.pendingSales.reduce((s,q)=>s+q.price,0))});
+      }
+      const more=plan.done?0:Math.max(0,tenth(avg(nx))-tenth(avg(plan.aware)));
+      note=more?t('m2.hlYearSub',{a:tenth(avg(plan.aware)),n:more}):t('m2.hlYearSub0',{a:tenth(avg(plan.aware))});
+    }
+    else if(v.mode==='plan'){
+      const [a,b]=gains(y);h=t('m2.laneNow');
+      main=t('m2.hlYear',{y:1,r:R(y.riders),d:signed(y.riders).txt,d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls});
+      if(plan.pendingSales.length){
+        const homes=plan.pendingSales.filter(s=>s.use==='home').length,shops=plan.pendingSales.filter(s=>s.use==='shop').length;
+        main+=' · '+t('tod.pendingSentence',{homes,shops,revenue:R(plan.pendingSales.reduce((s,q)=>s+q.price,0))});
+      }
+      note=t('m2.hlPreviewSub',{s:tenth(P.aware.start)});
+    }
+    else{h=t('m2.laneNow');main=t('m2.hlToday',{d0,d1,a:R(n.dest[0].go),b:R(n.dest[1].go)});note=t('m2.hlTodaySub');}
+    $('laneH').textContent=h;$('mapHint').innerHTML=main;
+    if(!(flash&&performance.now()<flash.until))$('notice').innerHTML=note;
+  }
+  function say(html){flash={until:performance.now()+2500};$('notice').innerHTML=html;}
+
+  /* -------------------------------------------------------------- the side panels */
+  function side(v){
+    const y=v.y,nowY=now(),hi=R(P.masterScore*1.12),at=q=>Math.max(0,Math.min(100,100*q/hi)),pendingRevenue=plan.pendingSales.reduce((a,q)=>a+q.price,0),shownScore=plan.total+pendingRevenue;
+    $('score').textContent=R(shownScore);$('goalMax').textContent=P.masterScore;$('scoreBar').style.width=`${at(shownScore)}%`;
+    for(const [id,q,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){$(id).style.left=`${at(q)}%`;$(id).dataset.label=t(k,{n:q});}
+    $('run').textContent=plan.done?t('m.runDone'):plan.open?(playing?t('m.playing'):t('m.runN',{n:plan.year+1})):t('m2.run0');$('run').disabled=playing||(!plan.done&&!plan.canRun());
+    $('pause').textContent=playing?t('m.pause'):t('m.play');$('pause').disabled=!plan.open||plan.done;
+    $('hold').textContent=plan.open?t('m2.holdNothing2'):t('m2.holdAhead2');$('hold').disabled=!plan.open&&plan.stations.length<2;$('hold').classList.toggle('on',hold);
+    $('rewind').disabled=!plan.open;
+    $('money').textContent=`${plan.money} / ${P.budget}`;
+    const cards=[['draw',t('m2.cardLine'),t('m2.cardLineN',{n:plan.line.length})],['station',t('m2.cardStation'),t('m2.cardStationN',{n:plan.stations.length})],['land',t('m2.cardTrain'),t('m2.cardTrainN',{n:plan.allSales().length})]];
+    $('stations').innerHTML=cards.map(([k,n,s])=>'<button class="station-button '+(tool===k?'selected':'')+'" data-card="'+k+'" aria-pressed="'+(tool===k)+'" '+(plan.open&&k!=='land'?'disabled':'')+'><b>'+n+'</b><small>'+s+'</small></button>').join('');
+    const pot=plan.stations.length>=2?cached('pot'+planKey(plan),()=>plan.potential()):null;
+    const hint=tool==='land'?t('tod.landHint'):plan.open?t('m.hintOpen'):tool==='draw'?(plan.line.length?t('m.hintDraw2'):t('m.hintDraw1')):tool==='station'?(plan.line.length<2?t('m.hintNeedLine'):plan.stations.length<2?t('m.hintStation1'):t('m.hintStation2')):t('m.trains',{n:plan.trains,c:plan.trains*P.perTrain});
+    $('stopPanel').innerHTML=`<h3><span>${t('m2.spTitle')}</span><span class="lbl">${t('tod.landTitle')}</span></h3>`+
+      `<div class="r"><span>${t('m2.spLine')}</span><b>${t('m2.cells',{n:plan.line.length})}</b></div>`+
+      `<div class="r"><span>${t('m2.spStations')}</span><b>${t('m2.count',{n:plan.stations.length})}</b></div>`+
+      `<div class="r"><span>${t('m2.spTrains')}</span><span class="pm"><button class="btn btn-sm" id="trainMinus" ${plan.canUntrain()?'':'disabled'}>−</button><b class="c">${plan.trains}</b><button class="btn btn-sm" id="trainPlus" ${plan.canTrain()?'':'disabled'}>＋</button></span></div>`+
+      `<div class="r"><span>${t('m2.spRoom')}</span><b>${t('m2.peopleN',{n:plan.trains*P.perTrain})}</b></div>`+
+      `<div class="r"><span>${t('m2.spLeft')}</span><b>${plan.money}</b></div>`+
+      (pot?`<div class="r"><span>${t('m2.spRiders')}</span><b>${t('m2.peopleN',{n:R(nowY.riders)})}</b></div><div class="r"><span>${t('m2.spPot')}</span><b>${t('m2.peopleN',{n:R(pot.riders)})}</b></div>`:'')+
+      `<div class="tools"><div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="${tool==='draw'}" ${plan.open?'disabled':''}>${t('m.toolDraw')}</button><button data-tool="station" aria-pressed="${tool==='station'}" ${plan.open?'disabled':''}>${t('m.toolStation')}</button><button data-tool="land" aria-pressed="${tool==='land'}" ${plan.done?'disabled':''}>${t('tod.toolLand')}</button></div>`+
+      `<button class="btn btn-sm" id="undo" ${!history.length?'disabled':''}>↶</button><button class="btn btn-sm" id="clear" ${plan.open||!plan.line.length?'disabled':''}>${t('m.clear')}</button></div><p>${hint}</p>`;
+    const heldRevenue=plan.sales.reduce((a,q)=>a+q.price,0),pendingRevenueNow=plan.pendingSales.reduce((a,q)=>a+q.price,0);
+    $('stopPanel').insertAdjacentHTML('beforeend','<div class="land-controls"><div class="r"><span>'+t('tod.landCount',{left:Math.max(0,2-plan.pendingSales.length),sold:plan.allSales().length})+'</span></div><div class="r"><span>'+t('tod.landRevenue')+'</span><b>'+t('tod.landRevenueValue',{n:R(heldRevenue),p:R(pendingRevenueNow)})+'</b></div><div class="tools"><button class="btn btn-sm '+(landUse==='home'?'on':'')+'" data-use="home">'+t('tod.useHome')+'</button><button class="btn btn-sm '+(landUse==='shop'?'on':'')+'" data-use="shop">'+t('tod.useShop')+'</button></div><p>'+t('tod.lockHint')+'</p></div>');
+    // the years table
+    $('yearChip').textContent=t('m2.yearChip',{m:P.years});
+    let tb='<thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';
+    for(let k=1;k<=P.years;k++){const l=plan.log[k-1],next=k===plan.year+1&&!plan.done,yy=!l&&next&&plan.stations.length>=2?nowY:null;
+      tb+='<tr class="'+(l?'past ':'')+(next?'now next':'')+'"><td>'+t('m.yShort',{y:k})+'</td>'+(l?'<td><b>'+R(l.riders)+'</b></td><td><b>'+R(l.revenue)+'</b></td><td><b>'+R(l.ledger)+'</b></td>':yy?'<td><b>'+R(yy.riders)+'</b></td><td><b>'+R(pendingRevenue)+'</b></td><td><b>'+R(plan.total+pendingRevenue+yy.riders)+'</b></td>':'<td></td><td></td><td></td>')+'</tr>';}
+    $('tide').innerHTML=tb+'</tbody>';$('tideKey').innerHTML=t('m2.tideKey',{d0:shortD(0),d1:shortD(1)});
+    const sales=plan.allSales();
+    let w=y.dest.filter(d=>d.kind==='shop').map(d=>'<div class="rd"><span class="n">'+t('tod.shopName',{n:d.stationNo})+'</span><b>'+t('tod.mallDaily',{n:R(d.go)})+'</b></div>').join('');
+    w+=sales.map(q=>'<div class="rd"><span class="n">'+(q.use==='home'?t('tod.soldHome'):t('tod.soldShop'))+' · '+t('tod.lot',{n:q.landIndex})+'</span><b>'+R(q.price)+'</b><small>'+(plan.pendingSales.includes(q)?t('tod.pending'):t('tod.locked'))+'</small></div>').join('');
+    if(!w)w='<p class="note">'+t('tod.noSales')+'</p>';
+    $('roadBox').innerHTML=w+'<p class="note" style="margin:6px 0 2px;font-size:11.5px">'+t('m2.whereNote2')+'</p>';
+    let trs=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('m.tAlt')}</th><th>${t('m.tMetro')}</th><th>${t('m.tSave')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
+    rowsOf(y).forEach(({x,who,chain},k)=>{trs+=`<tr data-row="${k}"><td>${who}<small>→ ${shortD(x.k)}${chain?' · '+t('m.chainTag'):''}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td><td>${x.alt}<small>${t(x.byFoot?'m.byFoot':'m.byCar')}</small></td>`+
+      `<td>${x.trip?x.trip.blocks:'—'}</td><td>${x.trip?x.save:''}</td><td><b>${x.metro>=1?R(x.metro):''}</b></td></tr>`;});
+    $('trips').innerHTML=trs+'</tbody>';
+  }
+  function render(){draw(true);}
+  function fit(){$('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);}
+  function texts(){
+    $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
+    const v={st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
+      sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction,e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2,d0:shortD(0),d1:shortD(1),
+      hp:P.homePeople,sb:P.shopBase,spc:P.shopPer,ce:P.carExtra,hr:P.homeRate,sr:P.shopRate};
+    $('rules').innerHTML=['m2.rule1','m2.rule2','m2.rule3'].map(k=>`<li>${t(k,v)}</li>`).join('');
+    $('infoBody').innerHTML=t('tod.fullRules',v);$('ivBody').innerHTML=t('iv.m2.body',v);
+    $('mapLegend').innerHTML=t('m2.legend2');document.title=t('m.doc');
+  }
+
+  /* -------------------------------------------------------------- the years */
+  function step(){
+    if(plan.done){stop();return;}
+    const r=plan.runYear();if(!r)return stop();
+    lastY=r.y;render();if(plan.done){stop();setTimeout(result,STEP_MS);}
+  }
+  function play(){if(plan.done)return;playing=true;clearInterval(timer);timer=setInterval(step,STEP_MS);render();}
+  function stop(){playing=false;clearInterval(timer);render();}
+  function open(){if(!plan.canRun())return;history=[];tool='draw';hover=null;step();play();}
+  function rewind(){stop();plan.rewind();lastY=null;render();}
+  function result(){
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();
+    $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
+    $('resultScore').textContent=t('m.rScore',{d:R(plan.total),y:P.years});
+    let h='<table class="result"><thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';
+    for(const l of plan.log)h+='<tr><td>'+t('m.yShort',{y:l.year})+'</td><td>'+R(l.riders)+'</td><td>'+R(l.revenue)+'</td><td>'+R(l.ledger)+'</td></tr>';    h+='</tbody></table>';
+    const last=plan.log.at(-1),tips=[];
+    last.dest.forEach((d,k)=>{const diff=R(d.go-d.before);if(diff)tips.push(t(diff>0?'m.tipGrow':'m.tipShrink',{d:nameD(k),b:R(d.before),g:R(d.go),m:R(d.metro),n:Math.abs(diff)}));});
+    const crowdYears=plan.log.filter(l=>l.crowdedSections).length;if(crowdYears)tips.push(t('m.tipCrowd',{n:crowdYears,cb:P.crowdBlocks}));
+    D.origins.forEach((o,i)=>{if(last.after[i]<=P.aware.start+.001)tips.push(t('m.tipNever',{a:nameO(i),y:P.years,s:tenth(P.aware.start)}));});
+    if(last.riders<pot.riders*.9)tips.push(t('m.tipSlow',{r:R(last.riders),p:R(pot.riders)}));
+    $('resultBody').innerHTML=h+`<ul class="ivlist">${tips.slice(0,5).map(s=>`<li>${s}</li>`).join('')}</ul>`;
+    try{const k='tl-best-tod-'+D.map;if(plan.total>(+localStorage.getItem(k)||0))localStorage.setItem(k,R(plan.total));}catch(e){}
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m4-tod',version:'7.11',map:D.map,score:R(plan.total),tier,tiers:[P.target,P.highScore,P.masterScore],line:plan.line,stations:plan.stations,trains:plan.trains,lang:I.lang}}));
+    $('result').showModal();
+  }
+
+  /* -------------------------------------------------------------- controls */
+  const board=$('board');
+  function cellAt(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(board.getScreenCTM().inverse());
+    const c=[Math.round((p.x-MX)/CS),Math.round((p.y-MY)/CS)];return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows?c:null;}
+  function act(c){
+    if(tool==='land'){
+      const pending=plan.pendingSales.find(q=>same(q.cell,c));
+      if(pending){snapshot();plan.cancelSale(c);return true;}
+      if(!plan.canSell(c)){say(t(plan.pendingSales.length>=2?'tod.maxSales':'tod.unsellable'));return false;}
+      snapshot();const sale=plan.sellLand(c,landUse);if(sale)say(t('tod.saleToast',{kind:landUse==='home'?t('tod.soldHome'):t('tod.soldShop'),price:R(sale.price)}));return !!sale;
+    }
+    if(plan.open){say(`<b>${t('m.cardLocked')}</b> ${t('m.cardLocked2')}`);return false;}
+    if(tool==='draw'){
+      if(plan.canExtend(c)){snapshot();plan.extend(c);return true;}
+      if(plan.canShorten(c)){snapshot();plan.shorten(c);return true;}
+      return false;}
+    if(tool!=='station'||!plan.onLine(c))return false;
+    if(!plan.isStation(c)&&plan.money<P.stationCost){say(t('m.pvNoMoney'));return false;}
+    snapshot();plan.toggleStation(c);return true;
+  }
+  board.onpointerdown=e=>{const c=cellAt(e);if(!c)return;drag=tool==='draw'&&!plan.open;if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
+  board.onpointermove=e=>{const c=cellAt(e);
+    if(drag&&c&&plan.canExtend(c)){snapshot();plan.extend(c);hover=null;render();return;}
+    if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;draw();}};
+  board.onpointerup=()=>{drag=false;};
+  board.onpointerleave=()=>{if(!drag&&hover){hover=null;draw();}};
+  $('stations').onclick=e=>{const b=e.target.closest('[data-card]');if(b&&(!plan.open||b.dataset.card==='land')){tool=b.dataset.card;hover=null;render();}};
+  $('stopPanel').onclick=e=>{const use=e.target.closest('[data-use]');if(use){landUse=use.dataset.use;render();return;}
+    const tb=e.target.closest('[data-tool]');if(tb&&(!plan.open||tb.dataset.tool==='land')){tool=tb.dataset.tool;hover=null;render();return;}
+    const id=e.target.closest('button')?.id;if(!id)return;
+    if(id==='trainPlus'){snapshot();if(plan.addTrain())render();}else if(id==='trainMinus'){snapshot();if(plan.removeTrain())render();}
+    else if(id==='undo'){const s=history.pop();if(s){restore(s);render();}}else if(id==='clear'){if(plan.open||!plan.line.length)return;snapshot();plan.clear();tool='draw';render();}};
+  $('run').onclick=()=>{if(plan.done)result();else if(!plan.open)open();else step();};
+  $('pause').onclick=()=>{playing?stop():play();};
+  $('rewind').onclick=rewind;
+  const holdOn=e=>{if($('hold').disabled)return;e.preventDefault();hold=true;draw();},holdOff=()=>{if(hold){hold=false;draw();}};
+  $('hold').addEventListener('pointerdown',holdOn);for(const ev of ['pointerup','pointerleave','pointercancel'])$('hold').addEventListener(ev,holdOff);
+  $('trips').onclick=e=>{const r=e.target.closest('[data-row]');if(!r)return;const j=+r.dataset.row;sel=sel===j?-1:j;render();};
+  $('again').onclick=()=>{$('result').close();rewind();};
+  $('help').onclick=()=>$('info').showModal();
+  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
+  $('lvInfo').onclick=()=>$('lvIntro').showModal();$('ivGo').onclick=()=>$('lvIntro').close();
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;
+    if(e.key==='1'&&!plan.open){tool='draw';render();}else if(e.key==='2'&&!plan.open){tool='station';render();}else if(e.key==='3'&&!plan.done){tool='land';render();}
+    else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();const s=history.pop();if(s&&!plan.open){restore(s);render();}}
+    else if(e.code==='Space'&&plan.open&&!plan.done&&!e.target.closest?.('button')){e.preventDefault();$('pause').click();}
+    else if(e.key==='Escape'&&sel>=0){sel=-1;render();}});
+  function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
+    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();decorKey='';render();}
+  $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
+  window.addEventListener('tl:lang',()=>{texts();render();});
+  let lastFrame=0;(function loop(tm){if(tm-lastFrame>33){drawDyn(tm,view());lastFrame=tm;}requestAnimationFrame(loop);})(0);
+  // test hook: #intro=0&line=2,2;3,2;4,2&stations=2,2;4,2&trains=2&years=3&tool=station&sel=0&theme=dark&lang=en&hover=9,5&hold=1
+  const q=new URLSearchParams(location.hash.slice(1));
+  let saved=null;try{saved=localStorage.getItem('tl-theme');}catch(e){}
+  fit();
+  if(q.get('theme')||saved)setTheme(q.get('theme')||saved);
+  if(q.get('line'))for(const s of q.get('line').split(';'))plan.extend(s.split(',').map(Number));
+  if(q.get('stations'))for(const s of q.get('stations').split(';'))plan.toggleStation(s.split(',').map(Number));
+  for(let k=1;k<+(q.get('trains')||1);k++)plan.addTrain();
+  for(let k=0;k<+(q.get('years')||0);k++){const r=plan.runYear();if(r)lastY=r.y;}
+  if(q.get('tool'))tool=q.get('tool');if(q.get('sel'))sel=+q.get('sel');if(q.get('hover'))hover=q.get('hover').split(',').map(Number);if(q.get('hold'))hold=true;
+  texts();render();
+  if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
+  const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
+    extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
+    train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
+  window.TL_TOD={api,plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,riders:now().riders,dots:dots.length}),
+    cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
+})();
+
+
+</script></body></html>
+
