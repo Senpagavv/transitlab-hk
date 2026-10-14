@@ -125,6 +125,7 @@
   });
   // opened as a file (double-click): the real grid needs the local server
   I.add({'m5.fileHint': L('示意小圖（D 級）。全港真實地圖要從本機服務打開：雙擊 scripts\\start-feeder.cmd', '示意小图（D 级）。全港真实地图要从本机服务打开：双击 scripts\\start-feeder.cmd', 'Sketch map (tier D). For the real Hong Kong map open it from the local server: scripts\\start-feeder.cmd')});
+  I.add({'m5.live': L('原版地圖', '原版地图', 'Original map'), 'm5.liveTitle': L('TransitLab Live：最早那張全港地圖（實時車流、分區數據），遊戲圖層全部關掉', 'TransitLab Live：最早那张全港地图（实时车流、分区数据），游戏图层全部关掉', 'TransitLab Live: the first Hong Kong map (live traffic, zone data), no game layers')});
   I.add({'m5.focus': L('只看選中', '只看选中', 'Selection only'), 'm5.focusNone': L('先按「選分區」點幾個區，再按「只看選中」。', '先按「选分区」点几个区，再按「只看选中」。', 'Pick some zones with «Select zones» first.')});
   I.apply();
 })(typeof window !== 'undefined' ? window : globalThis);

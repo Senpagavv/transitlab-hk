@@ -759,6 +759,9 @@
         const fb = document.createElement('button'); fb.className = 'btn btn-sm'; fb.id = 'focusSel'; fb.setAttribute('aria-pressed', 'false');
         const label = () => { fb.textContent = t('m5.focus'); }; label(); root.addEventListener('tl:lang', label);
         ($('selectTool') || $('board')).after(fb);
+        // the first TransitLab map (TransitLab Live, frontend/dist at the backend's root): all game layers off, its own way of looking things up
+        if (location.protocol !== 'file:') { const live = document.createElement('a'); live.className = 'btn btn-sm'; live.id = 'liveMap'; live.href = '/';
+          const ll = () => { live.textContent = t('m5.live'); live.title = t('m5.liveTitle'); }; ll(); root.addEventListener('tl:lang', ll); fb.after(live); }
         fb.onclick = () => { const sel = v2.selectedZones(); if (!sel.length && !SandboxVector.S.focus) { setStatus(t('m5.focusNone')); return; }
           SandboxVector.S.focus = !SandboxVector.S.focus; fb.setAttribute('aria-pressed', String(SandboxVector.S.focus));
           if (SandboxVector.S.focus) fitBox(SandboxVector.bounds(sel)); else fitMap(); draw(); };

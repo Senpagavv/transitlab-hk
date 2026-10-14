@@ -3,12 +3,13 @@
   // v7 · the sandbox's clean base map (2026-10-15). The first versions drew the 400 m grid as a mosaic of land-use
   // squares with pixel buildings and roads stepping along the cells — busy, and nothing like Hong Kong's real shapes.
   // This draws what the earlier TransitLab map showed: the sea, the land, the 455 zones and 18 districts at their real
-  // outlines, the expressways and main roads where they run, the MTR through its stations' true places
+  // outlines, the expressways and main roads where they run, the railways as they run (OpenStreetMap) with the stations
+  // at their true places
   // (hk/hk-shapes.json and hk-base.json, all in the grid's units, so the sandbox's camera and cells still apply).
   // The grid itself stays out of sight: only the cell under the pointer shows while a line or a station is placed.
   // Population or jobs colour the zones; selected zones are outlined, and «only the selection» fades the rest.
   const S = { ready: false, hover: null, focus: false };
-  let Z = [], D = [], coast = null, roadsMain = null, roadsMinor = null, zoneIndex = new Map(), lines = [];
+  let Z = [], D = [], coast = null, roadsMain = null, roadsMinor = null, zoneIndex = new Map(), lines = [], rail = [];
   const X0 = 800000, YT = 850000, CELL_M = 400;
   const at = xy => [(xy[0] - X0) / CELL_M, (YT - xy[1]) / CELL_M];
   function ringPath(p, ring) { ring.forEach((q, i) => i ? p.lineTo(q[0], q[1]) : p.moveTo(q[0], q[1])); p.closePath(); }
@@ -26,6 +27,11 @@
     coast = new Path2D(); shapes.coast.forEach(r => ringPath(coast, r));
     roadsMain = new Path2D(); roadsMinor = new Path2D();
     for (const r of shapes.roads) { const p = r[4] === 0 ? roadsMain : roadsMinor; p.moveTo(r[0], r[1]); p.lineTo(r[2], r[3]); }
+    // the railways as they run (OpenStreetMap), one path a colour and kind; without them, straight lines station to station
+    const groups = new Map();
+    for (const r of shapes.rail || []) { const key = r.c + '|' + r.k; if (!groups.has(key)) groups.set(key, { color: r.c, kind: r.k, path: new Path2D() });
+      const p = groups.get(key).path; r.pts.forEach((q, i) => i ? p.lineTo(q[0], q[1]) : p.moveTo(q[0], q[1])); }
+    rail = [...groups.values()].sort((a, b) => b.kind - a.kind);   // high-speed and Light Rail under the MTR
     const st = new Map((base.stations || []).map(s => [String(s.id), s]));
     lines = (base.lines || []).map(l => ({ color: l.color || '#687c93', pts: (l.stations || []).map(id => st.get(String(id))).filter(Boolean).map(s => s.xy ? at(s.xy) : [s.cell[0] + .5, s.cell[1] + .5]) }));
     S.stations = (base.stations || []).map(s => ({ s, p: s.xy ? at(s.xy) : [s.cell[0] + .5, s.cell[1] + .5] }));
@@ -60,7 +66,13 @@
     // the MTR through its stations' true places
     if (o.layers.transit) {
       ctx.lineJoin = 'round';
-      for (const l of lines) { if (l.pts.length < 2) continue; ctx.beginPath(); l.pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]));
+      if (rail.length) for (const g of rail) {
+        const w = g.kind === 1 ? 1.6 : g.kind === 2 ? 1.4 : 3;
+        if (g.kind === 2) ctx.setLineDash([4 * px, 3 * px]);
+        else { ctx.strokeStyle = dark ? '#1b1b1b' : '#ffffff'; ctx.lineWidth = (w + 2) * px; ctx.stroke(g.path); }
+        ctx.strokeStyle = g.color; ctx.lineWidth = w * px; ctx.stroke(g.path); ctx.setLineDash([]);
+      }
+      else for (const l of lines) { if (l.pts.length < 2) continue; ctx.beginPath(); l.pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]));
         ctx.strokeStyle = dark ? '#1b1b1b' : '#ffffff'; ctx.lineWidth = 5 * px; ctx.stroke(); ctx.strokeStyle = l.color; ctx.lineWidth = 3 * px; ctx.stroke(); }
       const r = (z * k > 14 ? 3.4 : 2.2) * px;
       for (const { p } of S.stations) { ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, 6.2832); ctx.fillStyle = dark ? '#eee' : '#fff'; ctx.fill(); ctx.strokeStyle = dark ? '#ccc' : '#3d4a52'; ctx.lineWidth = 1.2 * px; ctx.stroke(); }

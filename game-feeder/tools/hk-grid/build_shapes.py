@@ -51,7 +51,27 @@ a, b = nodes.loc[keep.a_node], nodes.loc[keep.b_node]
 roads = [[*u(x1, y1), *u(x2, y2), 0 if c == 'expressway' else 1]
          for x1, y1, x2, y2, c in zip(a.x.values, a.y.values, b.x.values, b.y.values, keep.road_class.values)]
 
-out = {'version': 1, 'units': '400 m cells from (800000, 850000) HK1980', 'source': 'data/web/zones-2026.geojson; data/model/road-links, road-nodes',
-       'zones': zones, 'districts': districts, 'coast': coast, 'roads': roads}
+# the railways as they run (OpenStreetMap, data/raw/osm), coloured by line: the MTR, Light Rail, the high-speed rail.
+# GDAL reads the .pbf (set CPL_TMPDIR to a plain-ASCII folder on a machine with a non-ASCII user name).
+COLOURS = [('East Rail', '#53B7E8'), ('Tuen Ma', '#923011'), ('Airport Express', '#00888A'), ('Tung Chung', '#F38B00'),
+           ('Tseung Kwan O', '#7D499D'), ('Kwun Tong', '#00AB4E'), ('Tsuen Wan', '#ED1D24'), ('South Island', '#BAC429'),
+           ('Island Line', '#007DC5'), ('Disneyland', '#F173AC'), ('Lantau and Airport', '#F38B00'), ('Light Rail', '#D3A809'),
+           ('High Speed', '#8C8C8C')]
+osm = gpd.read_file(ROOT / 'data' / 'raw' / 'osm' / 'hong-kong-latest.osm.pbf', layer='lines', columns=['name', 'railway', 'other_tags'])
+osm = osm[osm.railway.isin(['subway', 'rail', 'light_rail']) & ~osm.other_tags.fillna('').str.contains('"service"=>', regex=False)].to_crs(2326)
+rail = []
+for name, kind, geom in zip(osm.name.fillna(''), osm.railway, osm.geometry):
+    colour = next((c for key, c in COLOURS if key in name), None)
+    if not colour or geom is None:
+        continue
+    g = geom.simplify(8)
+    parts = list(g.geoms) if g.geom_type == 'MultiLineString' else [g]
+    for p in parts:
+        rail.append({'c': colour, 'k': {'subway': 0, 'rail': 0, 'light_rail': 1}[kind] if 'High Speed' not in name else 2,
+                     'pts': [u(x, y) for x, y in p.coords]})
+
+out = {'version': 1, 'units': '400 m cells from (800000, 850000) HK1980',
+       'source': 'data/web/zones-2026.geojson; data/model/road-links, road-nodes; data/raw/osm/hong-kong-latest.osm.pbf (railways, © OpenStreetMap contributors)',
+       'zones': zones, 'districts': districts, 'coast': coast, 'roads': roads, 'rail': rail}
 OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-print(OUT, f'{OUT.stat().st_size // 1024} KB', len(zones), 'zones', len(districts), 'districts', len(roads), 'road links')
+print(OUT, f'{OUT.stat().st_size // 1024} KB', len(zones), 'zones', len(districts), 'districts', len(roads), 'road links', len(rail), 'rail pieces')

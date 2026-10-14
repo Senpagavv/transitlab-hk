@@ -157,3 +157,8 @@ from backend.feeder_ai import router as feeder_ai_router  # noqa: E402
 
 app.include_router(feeder_ai_router)
 app.mount("/feeder", StaticFiles(directory=ROOT / "game-feeder" / "v7", html=True, check_dir=False), name="feeder")
+
+# The first TransitLab map (frontend/, built into frontend/dist: live traffic, zones, fleet) — «TransitLab Live», kept as
+# it was at the site root and reached from the sandbox's «原版地图» button. Mounted last, so every path above keeps its
+# route; the page's own calls go to /api/... above.
+app.mount("/", StaticFiles(directory=ROOT / "frontend" / "dist", html=True, check_dir=False), name="live")
