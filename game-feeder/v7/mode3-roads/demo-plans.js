@@ -1,0 +1,3 @@
+// v7 mode 3 · AI demo plans, written by bots/v7_metro_grow.js (2026-10-14). Do not edit by hand.
+// level → {tiers, best, pass|high|master: {line, stations, trains, score}}
+(function(root){root.TL_ROADS_DEMO={"m3-1":{"tiers":[1500,2600,3600],"best":4207,"pass":{"line":[[9,5],[9,6],[8,6],[7,6],[6,6]],"stations":[[9,5],[6,6]],"trains":1,"score":1631},"high":{"line":[[6,6],[5,6],[4,6],[3,6],[2,6],[2,5],[2,4]],"stations":[[2,4],[3,6],[6,6]],"trains":3,"score":2618},"master":{"line":[[12,5],[11,5],[10,5],[9,5],[8,5],[7,5],[6,5],[6,6],[6,7],[5,7],[4,7],[3,7],[3,6]],"stations":[[9,5],[6,7],[3,6],[12,5]],"trains":2,"score":4207}}};})(typeof window!=='undefined'?window:globalThis);

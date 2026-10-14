@@ -30,7 +30,7 @@
   <div class="modes">
     <a class="mode" id="m1" href="mode1-bus/index.html"><span class="n">MODE 01</span><b data-i18n="lc.m1">車站與步行</b><p data-i18n="lc.m1d">人願意走多遠、怎樣分去幾座站、站會不會爆。四關：朗屏（引導）、元朗南、粉嶺、大埔墟。</p><span class="st" data-i18n="lc.play">可以玩 →</span></a>
     <a class="mode" id="m2" href="mode2-metro/index.html"><span class="n">MODE 02</span><b data-i18n="lc.m2">地鐵</b><p data-i18n="lc.m2d">一次建好一條線，再看八年：大家慢慢發現它，越來越多人坐；它讓哪裡變近，哪裡就多人去。</p><span class="st" data-i18n="lc.draft">初稿 · 可以玩 →</span></a>
-    <div class="mode soon"><span class="n">MODE 03</span><b data-i18n="lc.m3">路會塞</b><p data-i18n="lc.m3d">開車的人越多路越慢；有了地鐵，有人不再開車。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
+    <a class="mode" id="m3" href="mode3-roads/index.html"><span class="n">MODE 03</span><b data-i18n="lc.m3">路會塞</b><p data-i18n="lc.m3d">真實的九龍東：路已經塞，建一條新線把人從路上帶走——路一通，又有人回去開車。</p><span class="st" data-i18n="lc.draft">初稿 · 可以玩 →</span></a>
     <div class="mode soon"><span class="n">MODE 04</span><b data-i18n="lc.m4">地面巴士</b><p data-i18n="lc.m4d">巴士便宜、靈活，但會被塞住；開短線接駁還是長線幹線，設不設巴士專線。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
     <div class="mode soon"><span class="n">MODE 05</span><b data-i18n="lc.m5">全融合沙盤</b><p data-i18n="lc.m5d">真實片區、站旁開發，城市跟著交通長；用一句話讓 AI 出題。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
   </div>
@@ -48,13 +48,13 @@
     'lc.m1d':L('人願意走多遠、怎樣分去幾座站、站會不會爆。四關：朗屏（引導）、元朗南、粉嶺、大埔墟。','人愿意走多远、怎样分去几座站、站会不会爆。四关：朗屏（引导）、元朗南、粉岭、大埔墟。',
       'How far people will walk, how they split between stops, whether a stop overflows. Four levels: Long Ping (intro), Yuen Long South, Fanling, Tai Po Market.'),
     'lc.m2':L('地鐵','地铁','The metro'),'lc.m2d':L('一次建好一條線，再看八年：大家慢慢發現它，越來越多人坐；它讓哪裡變近，哪裡就多人去。','一次建好一条线，再看八年：大家慢慢发现它，越来越多人坐；它让哪里变近，哪里就多人去。','Build one line, then watch eight years: people discover it, more ride it, and the places it brings nearer draw more people.'),
-    'lc.m3':L('路會塞','路会塞','Congestion'),'lc.m3d':L('開車的人越多路越慢；有了地鐵，有人不再開車。','开车的人越多路越慢；有了地铁，有人不再开车。','The more people drive, the slower the roads; with a metro, some stop driving.'),
+    'lc.m3':L('路會塞','路会塞','Congestion'),'lc.m3d':L('真實的九龍東：路已經塞，建一條新線把人從路上帶走——路一通，又有人回去開車。','真实的九龙东：路已经塞，建一条新线把人从路上带走——路一通，又有人回去开车。','The real Kowloon East: the roads jam; build a line to take people off them — and once they clear, some drive again.'),
     'lc.m4':L('地面巴士','地面巴士','Buses on the road'),'lc.m4d':L('巴士便宜、靈活，但會被塞住；開短線接駁還是長線幹線，設不設巴士專線。','巴士便宜、灵活，但会被塞住；开短线接驳还是长线干线，设不设巴士专线。','Buses are cheap and flexible but get stuck in traffic: short feeders or long trunk routes, bus lanes or not.'),
     'lc.m5':L('全融合沙盤','全融合沙盘','The whole city'),'lc.m5d':L('真實片區、站旁開發，城市跟著交通長；用一句話讓 AI 出題。','真实片区、站旁开发，城市跟着交通长；用一句话让 AI 出题。','A real district, development by the stations, a city that grows with its transport; ask the AI for a level in one sentence.'),
     'lc.play':L('可以玩 →','可以玩 →','Play →'),'lc.draft':L('初稿 · 可以玩 →','初稿 · 可以玩 →','Draft · play →'),'lc.soon':L('設計中','设计中','In design'),
     'lc.note':L('之後這一頁會換成全港波點地圖的入口（點進去，波點飛成棋盤）。','之后这一页会换成全港波点地图的入口（点进去，波点飞成棋盘）。','This page will become the dotted Hong Kong map entrance (click in and the dots fly into the board).')
   });I18N.apply();
   // the bundled launcher opens the bundled mode
-  if(/开始|%E5%BC%80%E5%A7%8B/.test(location.pathname)){document.getElementById('m1').href='mode1-bus/模式1-车站与步行.html';document.getElementById('m2').href='mode2-metro/模式2-地铁.html';}})();
+  if(/开始|%E5%BC%80%E5%A7%8B/.test(location.pathname)){document.getElementById('m1').href='mode1-bus/模式1-车站与步行.html';document.getElementById('m2').href='mode2-metro/模式2-地铁.html';document.getElementById('m3').href='mode3-roads/模式3-路会塞.html';}})();
 </script>
 </body></html>

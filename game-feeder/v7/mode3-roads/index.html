@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 模式 3 · 路會塞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../shared/style.css"><link rel="stylesheet" href="roads.css"></head><body class="entered">
+
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="../shared/logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="sp"></div>
+  <button class="btn btn-sm" id="help" data-i18n-html="top.rules">Rules <span class="tc">規則</span></button>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" aria-pressed="true">繁</button><button data-lang="zh-Hans" aria-pressed="false">简</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true">☀</button><button id="thInk" aria-pressed="false">☾</button></div>
+</header>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <div class="row"><a class="btn btn-sm" href="../index.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="r3.mode">Mode 03 · 路會塞</span></div>
+    <h1 class="h1"><span>Roads that jam</span><span class="h1tc" data-i18n="r3.levelTitle">九龍東 · 第二個商業區</span></h1>
+
+    <div class="box bigscore">
+      <div class="lbl" data-i18n="r3.scoreLbl">八年少塞</div>
+      <div class="row"><b id="score">0</b><span class="unit" data-i18n="r3.scoreUnit">車·格</span></div>
+      <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
+      <div class="note" id="goal"></div>
+    </div>
+
+    <div class="box yearbox">
+      <div class="row"><b id="yearNum"></b><div class="sp"></div><button class="btn btn-p" id="run"></button></div>
+      <div class="ychart" id="yChart"></div>
+      <div class="note" id="yNote"></div>
+      <div class="row yrow"><button class="btn btn-sm" id="pause"></button><button class="btn btn-sm" id="rewind" data-i18n="m.rewind">↺ 回到規劃</button></div>
+    </div>
+
+    <div class="box money" id="planBox">
+      <div class="row"><span class="lbl" data-i18n="m.budgetLbl">預算</span><div class="sp"></div><b class="mono" id="money"></b></div>
+      <div class="note" id="moneyNote"></div>
+      <div class="row trainrow"><span id="trainsTxt"></span><div class="sp"></div><button class="btn btn-sm" id="trainMinus">−</button><button class="btn btn-sm" id="trainPlus">＋</button></div>
+      <div class="row tools">
+        <div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="true" data-i18n="m.toolDraw">✏ 畫線</button><button data-tool="station" aria-pressed="false" data-i18n="m.toolStation">● 放站</button></div>
+        <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="m.clear">清空</button>
+      </div>
+      <p class="hint" id="toolHint"></p>
+    </div>
+
+    <div class="lbl" style="margin-top:14px" data-i18n="m.rulesH">How it works · 怎麼算</div>
+    <ol class="mini" id="rules"></ol>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate">
+      <svg id="board" viewBox="0 0 1000 620" role="group"></svg>
+      <div class="maplegend" id="mapLegend"></div>
+      <div class="yearcard" id="yearCard" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="lbl" data-i18n="r3.roadsH">How jammed · 路有多塞</div>
+    <div class="box expbox" id="roadBox"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="r3.awareH">Who knows the new line · 知道新線的人</div>
+    <div class="box expbox" id="awareBox"></div>
+    <details class="tripsd"><summary data-i18n="m.tripsH">每條愿望線的算式</summary><table id="trips"></table></details>
+  </aside>
+</main>
+
+<dialog id="info"><button class="close" data-close="info">×</button>
+<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="r3.infoH">路會塞的規則</h2><div id="infoBody"></div></dialog>
+
+<dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
+<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.seeBoard">看看地圖</button><button id="again" class="btn" data-i18n="m.rewind">↺ 回到規劃</button></div></dialog>
+
+<dialog id="lvIntro" class="intro"><span class="lbl">MODE 03 · ROADS THAT JAM</span><h2 class="h1" data-i18n="r3.levelTitle"></h2>
+<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m3.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m3.course"></p>
+<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始畫線 →</button></div></dialog>
+
+<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="strings.js"></script><script src="ui.js"></script><script src="demo-plans.js"></script><script src="demo.js"></script><!-- AI demo (temporary) --></body></html>
