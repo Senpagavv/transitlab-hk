@@ -285,7 +285,7 @@
   function open(){if(!plan.canRun())return;history=[];tool='land';hover=null;step();}
   function rewind(){stop();plan.rewind();lastY=null;render();}
   function result(){
-    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(4,D.map,plan.total,[P.target,P.highScore,P.masterScore]);
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
     $('resultScore').textContent=t('m.rScore',{d:R(plan.total),y:P.years});
     let h='<table class="result"><thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';

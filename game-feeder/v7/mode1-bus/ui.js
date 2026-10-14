@@ -553,6 +553,7 @@
   function showResult(){
     // best score per level, shown on the hub map (this browser only)
     try{const k='tl-best-'+D.map;if(game.delivered>(+localStorage.getItem(k)||0))localStorage.setItem(k,game.delivered);}catch(e){}
+    if(window.TLProgress)TLProgress.record(1,D.map,game.delivered,[P.target,P.highScore,P.masterScore]);
     fillResult();$('result').showModal();
     // For a site that hosts the game (accounts, leaderboard): one event per finished round. The game itself sends
     // nothing anywhere. seed + opening + moves let a server replay the round and check the score (verify_result.js).

@@ -6,6 +6,11 @@
 
 ## 2026-10-14
 
+### 22:53 · `待补` 关卡按顺序解锁的进度记录；任务 54 按发起人补充改清楚 / Level progress for sequential unlocking; task 54 clarified
+- **改了什么**：新增 `game-feeder/v7/shared/progress.js`（`TLProgress`：每关最好分和档次存本机，`open()` 判断能不能玩——同一玩法第 1 关开着，过关才开下一关，`#unlock=all` 全开）；四个玩法结算时写进度。`docs/for-codex/task-54-v3-shell.md` 加发起人补充：v3 菜单 01–04 换成四个玩法、05 沙盘先空、06 删掉；每个玩法同一张全港波点地图、关卡在真实位置、按顺序解锁、太近的关卡分散开。第四关在地图上的位置改为兆康（和第二关的天水围分开）。
+- **为什么**：发起人说明入口要和 v3 的 01 一样，并且关卡要按顺序解锁。
+- **验证**：第四关打完，本机记下「4/m4-1 · 大师」；四个玩法重新打包无误。
+
 ### 22:48 · `329d036` 接驳巴士 v7.14：关卡做成文件（放进去就有、删掉就没）；Codex 任务 54–56 / Feeder v7.14: levels as files; Codex tasks 54–56
 - **改了什么**：新增 `game-feeder/v7/levels/`（格式 `tl-level/1`、`builtin.json`、`build_registry.py` → `registry.js`、`examples/`、给组员的 `README.md`）；四个模式页载入登记并把文件关卡并进 `LEVELS`（同 key 取代）；`tools/levels/levels.js`（export / check）；`bots/v7_metro_grow.js`、`v7_roads.js`、`v7_tod.js` 加 `--level`；`v7/build.py` 先登记关卡。新增任务书 `docs/for-codex/task-54-v3-shell.md`（v3 潮汐封面 + 波点地图做成五个模式的入口）、`task-55-sandbox-v2.md`（像素画风全港图、选分区调人数 / 分年龄 / 吸引力、数据面板标 A–D 来源、三个子入口）、`task-56-leaderboard-and-custom-levels.md`（挑战关排行榜、本机成绩、核分脚本、关卡包只存本机，上传先关）。
 - **为什么**：发起人定了最终成品，并要求关卡模块化，组员这两天要自己做关卡往里放。
