@@ -31,6 +31,7 @@
   const nameO=i=>I.name(D.origins[i]),nameD=k=>I.name(D.destinations[k]),shortD=k=>{const d=D.destinations[k];return I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name);};
   const R=Math.round,tenth=a=>R(a*10),sw=c=>`<i class="sw" style="background:${c}"></i>`;
   const signed=v=>{const r=R(v);return{txt:(r>0?'+':r<0?'−':'±')+Math.abs(r),cls:r>0?'good':r<0?'bad':''};};
+  window.TL_INPROGRESS=()=>!plan.done&&(plan.year>0||plan.line.length>0);   // leaving now loses this round (shared/nav.js asks)
   let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0;
   const VBW=MX*2+(D.cols-1)*CS+130,VBH=MY*2+(D.rows-1)*CS;
   function snapshot(){history.push(JSON.stringify({...plan}));if(history.length>200)history.shift();}

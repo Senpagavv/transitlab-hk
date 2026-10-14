@@ -143,7 +143,7 @@ v7 模式 1 的規則和數值與 v6 相同（v6 第 1–3 關和第 5 關）。
 
 ## 入口（v7.15）：v3 的潮汐封面 + 全港波點地圖
 
-`index.html`（打包成 `开始.html`）＝v3 的入口：潮汐封面往下滾進全港波點地圖，頂上 01 車站與步行 · 02 地鐵 · 03 路會塞 · 04 站旁開發 · 05 沙盤（先空著）。點 01–04：同一張地圖上，這個玩法的關卡在真實地點（`levels/registry.js` 的 `hub.station` → `hub/stations.js` 的港鐵 / 輕鐵站經緯度；`hub.lonlat` 可以直接給；同一玩法兩關相距 < 1.5 公里，後一關挪到附近沒人用的站）；**按順序解鎖**（`shared/progress.js`，過一關開下一關，`#unlock=all` 全開）。點開一關：周圍的波點飛成一塊棋盤（街道、樓、中間的站），淡出，打開那個玩法的頁面 `#map=<key>`；玩法頁「← 五個模式」回到 `#hub=1&nav=N`。程式 `hub/hub.js`（改自 `v3/hub.js`），文字 `hub/strings.js`，封面數據 `hub/cover-data.js`（v3 原樣），站點表 `hub/make_stations.py` 從 `data/web/places.json` 生成。
+`index.html`（打包成 `开始.html`）＝v3 的入口：潮汐封面往下滾進全港波點地圖，頂上 01 車站與步行 · 02 地鐵 · 03 路會塞 · 04 站旁開發 · 05 沙盤（先空著）。點 01–04：同一張地圖上，這個玩法的關卡在真實地點（`levels/registry.js` 的 `hub.station` → `hub/stations.js` 的港鐵 / 輕鐵站經緯度；`hub.lonlat` 可以直接給；同一玩法兩關相距 < 1.5 公里，後一關挪到附近沒人用的站）；**解鎖**（`shared/progress.js`；2026-10-15 起先全部開放，`LOCKING=false`，有帳號和後台後再改成過一關開下一關）。點開一關：周圍的波點飛成一塊棋盤（街道、樓、中間的站），淡出，打開那個玩法的頁面 `#map=<key>`；玩法頁頂上那排 01–05 和「← 五個模式」都回到入口地圖 `#hub=1&nav=N`（關卡只在地圖上選，關卡頁只有這一關；第一關頁內的選關按鈕已收起）；一局玩到一半要離開，先問「這一局就作廢」（各玩法頁的 `window.TL_INPROGRESS()`）。程式 `hub/hub.js`（改自 `v3/hub.js`），文字 `hub/strings.js`，封面數據 `hub/cover-data.js`（v3 原樣），站點表 `hub/make_stations.py` 從 `data/web/places.json` 生成。
 
 ## 關卡檔（v7.14）：一關一個 JSON，放進去就有、刪掉就沒
 

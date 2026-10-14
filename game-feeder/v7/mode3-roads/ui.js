@@ -36,6 +36,7 @@
   const pct=(a,b)=>{const v=b?R(100*(a-b)/b):0;return{txt:(v>0?'+':v<0?'−':'±')+Math.abs(v)+'%',cls:v<0?'good':v>0?'bad':''};};
   const jamCol=e=>e<.5?null:e<1?'#E3A008':C.jam;
   const OFF=6,rxy=(q,c)=>{const [x,y]=xy(c),h=q.a[1]===q.b[1];return h?[x,y+OFF]:[x+OFF,y];};
+  window.TL_INPROGRESS=()=>!plan.done&&(plan.year>0||plan.line.length>0);   // leaving now loses this round (shared/nav.js asks)
   let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0,roadSel=-1,showCars=true,showTransit=true,phaseBanner=false,growthFlashYear=0,growthFlashUntil=0;
   const VBW=MX*2+(D.cols-1)*CS,VBH=MY*2+(D.rows-1)*CS;
   function snapshot(){history.push(JSON.stringify({...plan}));if(history.length>200)history.shift();}

@@ -11,6 +11,7 @@
     C={paper:v('paper'),panel:v('panel'),soft:v('soft'),raise:v('raise'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line:v('line'),line2:v('line2'),
       accent:v('accent'),accent2:v('accent2'),warn:v('warn'),bad:v('bad'),info:v('info'),road:v('road'),roadEdge:v('road-edge')};}
   readTokens();
+  window.TL_INPROGRESS=()=>game.started&&!game.done;   // leaving now loses this round (shared/nav.js asks)
   let game=new Game(),selected=0,playing=false,speed=1,hover=null,hoverStop=-1,shown=false,drag=null,pointerPressed=false,restoringFocus=false;
   let last=performance.now(),lastDraw=0,lastSide=0,seen=0,lastDelivered=0,warned=new Set(),rang=new Set(),toastTimer=0;
   const xy=c=>[MX+c[0]*72,MY+c[1]*62];
