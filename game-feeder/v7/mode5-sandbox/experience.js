@@ -227,12 +227,15 @@
       const zoom=q.camera.zoom,level=zoom<.65?0:zoom<1.6?1:2,w=q.canvas.clientWidth,h=q.canvas.clientHeight;
       $('mobileRun').disabled=$('runStable').disabled;$('mobileLine').setAttribute('aria-pressed',String(q.tool==='line'));$('mobileStation').setAttribute('aria-pressed',String(q.tool==='station'));
       zoomLabel.textContent=t(['v.zoomDistrict','v.zoomPlace','v.zoomStreet'][level]);select.setAttribute('aria-pressed',String(q.tool==='select'));
+      const vec=root.SandboxVector&&root.SandboxVector.S.ready;   // the clean base map (vector.js) draws districts and the selection; no grid lines
+      if(!vec){
       ctx.save();ctx.strokeStyle='#6a816e';ctx.lineWidth=.8/zoom;ctx.globalAlpha=.35;ctx.setLineDash([4/zoom,3/zoom]);ctx.beginPath();for(const v of boundaries){ctx.moveTo(v[0]*C,v[1]*C);ctx.lineTo(v[2]*C,v[3]*C);}ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
       if(zoom>=.65){ctx.strokeStyle='rgba(76,87,73,.13)';ctx.lineWidth=.6/zoom;ctx.beginPath();
         const x0=Math.max(0,Math.floor(-q.camera.x/zoom/C)),x1=Math.min(b.cols,Math.ceil((w-q.camera.x)/zoom/C));
         const y0=Math.max(0,Math.floor(-q.camera.y/zoom/C)),y1=Math.min(b.rows,Math.ceil((h-q.camera.y)/zoom/C));
         for(let x=x0;x<=x1;x++){ctx.moveTo(x*C,y0*C);ctx.lineTo(x*C,y1*C);}for(let y=y0;y<=y1;y++){ctx.moveTo(x0*C,y*C);ctx.lineTo(x1*C,y*C);}ctx.stroke();}
       if(selected.size){ctx.fillStyle='rgba(43,108,88,.18)';ctx.strokeStyle='#296b59';ctx.lineWidth=1/zoom;for(let y=0;y<b.rows;y++)for(let x=0;x<b.cols;x++)if(selected.has(ids[y*b.cols+x])){ctx.fillRect(x*C,y*C,C,C);ctx.strokeRect(x*C,y*C,C,C);}}
+      }else ctx.save();
       const dpr=window.devicePixelRatio||1;ctx.setTransform(dpr,0,0,dpr,0,0);
       if(changes){changeKey.textContent=q.metrics||q.preview?t('v.changeKey'):t('v.changeEmpty');const m=q.metrics||q.preview;if(m&&!before)for(let y=0;y<b.rows;y++)for(let x=0;x<b.cols;x++){const i=ids[y*b.cols+x];if(i<0||i===undefined)continue;const d=(m.zoneCarShare[i]||0)-(q.stats.shares[i]||0);if(Math.abs(d)<.0001)continue;const p=screen([x-.5,y-.5]);ctx.globalAlpha=Math.min(.32,.07+Math.abs(d)*3);ctx.fillStyle=d<0?'#16926d':'#cc4752';ctx.fillRect(p.x,p.y,C*zoom,C*zoom);}ctx.globalAlpha=1;}else changeKey.textContent='';
       // Every full-map district label is retained, with short leaders where dense districts overlap.
@@ -277,7 +280,7 @@
     function roadColor(i,normal){if(!changes)return normal;const m=q.metrics||q.preview;if(before||!m)return '#9daba7';const delta=m.sectionLoads[i]-q.stats.loads[i];return Math.abs(delta)<.5?'#9daba7':delta<0?'#168263':'#cc4752';}
     function reset(){renderGoal(null);$('openReport').disabled=true;$('reportSummary').textContent=t('v.noResult');if(report.open)report.close();}
     refresh();if(!saved('tl-m5-played-v2',false))openHelp();
-    return {draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get configs(){return configs},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
+    return {selectedZones:()=>[...selected],draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get configs(){return configs},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
   }
   root.SandboxV2={create,districtName};
 })(window);

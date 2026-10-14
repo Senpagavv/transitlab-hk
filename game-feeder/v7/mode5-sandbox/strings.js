@@ -125,5 +125,6 @@
   });
   // opened as a file (double-click): the real grid needs the local server
   I.add({'m5.fileHint': L('示意小圖（D 級）。全港真實地圖要從本機服務打開：雙擊 scripts\\start-feeder.cmd', '示意小图（D 级）。全港真实地图要从本机服务打开：双击 scripts\\start-feeder.cmd', 'Sketch map (tier D). For the real Hong Kong map open it from the local server: scripts\\start-feeder.cmd')});
+  I.add({'m5.focus': L('只看選中', '只看选中', 'Selection only'), 'm5.focusNone': L('先按「選分區」點幾個區，再按「只看選中」。', '先按「选分区」点几个区，再按「只看选中」。', 'Pick some zones with «Select zones» first.')});
   I.apply();
 })(typeof window !== 'undefined' ? window : globalThis);

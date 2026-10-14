@@ -34,7 +34,8 @@
         for (const p of periods) {
           try { found[p] = await jsonFile('../hk/hk-demand-' + p + '.json'); } catch (_) {}
         }
-        if (found.am) return { base: realBase, demands: found, fixture: false };
+        if (found.am) { let shapes = null; try { shapes = await jsonFile('../hk/hk-shapes.json'); } catch (_) {}   // the clean base map (vector.js)
+          return { base: realBase, demands: found, fixture: false, shapes }; }
       } catch (_) {}
     }
     return Object.assign(SandboxFallback.make(root.ROADS_DATA), { fixture: true });
@@ -99,6 +100,14 @@
     return example;
   }
 
+  // zoom onto a box in grid units (a selection of zones)
+  function fitBox(b) {
+    if (!b) return; const pad = 1.5, width = (b[2] - b[0] + 2 * pad) * CELL, height = (b[3] - b[1] + 2 * pad) * CELL;
+    const w = canvas.clientWidth, availableHeight = Math.max(80, canvas.clientHeight - 150);
+    camera.zoom = Math.min(4, Math.max(80, w - 48) / width, availableHeight / height);
+    camera.x = (w - width * camera.zoom) / 2 - (b[0] - pad) * CELL * camera.zoom;
+    camera.y = 70 + (availableHeight - height * camera.zoom) / 2 - (b[1] - pad) * CELL * camera.zoom;
+  }
   function fitArea(index) {
     const area = (base.areas || [])[index]; if (!area || !area.box) return;
     const b = area.box, width = (b[2] - b[0]) * CELL, height = (b[3] - b[1]) * CELL;
@@ -382,8 +391,9 @@
     });
     ctx.stroke();
   }
-  function drawRoads() {
-    for (const r of base.roads || []) {
+  // vec: the clean base map already drew the roads; only the traffic layer goes on top, finer
+  function drawRoads(vec) {
+    if (!vec) for (const r of base.roads || []) {
       if (camera.zoom < .65 && r.class === 'district') continue;
       ctx.lineCap = 'square'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#d6c4a7'; ctx.lineWidth = 5; linePath(r.cells, 0);
       ctx.strokeStyle = '#f5f1e8'; ctx.lineWidth = 2.5; linePath(r.cells, 0);
@@ -394,17 +404,19 @@
       const s = sections[i], c1 = s.a, c2 = s.b;
       const load = m && m.sectionLoads ? m.sectionLoads[i] : displayStats.loads[i];
       const cap = Math.max(1, finite(s.cap || s.capacity || 1)), vc = load / cap;
+      if (vec && vc < .8) continue;   // clean map: only the jammed sections (orange, red)
       const x1 = c1[0] * CELL + CELL / 2, y1 = c1[1] * CELL + CELL / 2;
       const x2 = c2[0] * CELL + CELL / 2, y2 = c2[1] * CELL + CELL / 2;
       const dx = x2 - x1, dy = y2 - y1, len = Math.max(1, Math.hypot(dx, dy));
-      const ox = -dy / len * 3, oy = dx / len * 3;
+      const ox = vec ? 0 : -dy / len * 3, oy = vec ? 0 : dx / len * 3;
       ctx.beginPath(); ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy);
       ctx.strokeStyle = v2 ? v2.roadColor(i,vc >= 1.2 ? '#c94f4f' : vc >= .8 ? '#d59235' : '#61a2a7') : '#61a2a7';
-      ctx.globalAlpha = .78; ctx.lineWidth = Math.min(5, 1.3 + vc * 1.3); ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.globalAlpha = vec ? .6 : .78; ctx.lineWidth = vec ? Math.min(4, 1.2 + vc) / camera.zoom : Math.min(5, 1.3 + vc * 1.3); ctx.stroke(); ctx.globalAlpha = 1;
     }
   }
-  function drawRail() {
-    const transitOn = $('layerTransit').checked, stationMap = new Map((base.stations || []).map(s => [String(s.id), s]));
+  // vec: the clean base map already drew the MTR at its stations' true places; only the player's lines go on top
+  function drawRail(vec) {
+    const transitOn = !vec && $('layerTransit').checked, stationMap = new Map((base.stations || []).map(s => [String(s.id), s]));
     if (transitOn) for (const line of base.lines || []) {
       ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#fffdf8'; ctx.lineWidth = 7; linePath(line.cells, 0);
       ctx.strokeStyle = line.color || '#687c93'; ctx.lineWidth = 4; linePath(line.cells, 0);
@@ -483,9 +495,9 @@
     }
   }
 
-  function drawAreas() {
+  function drawAreas(vec) {
     for (let i = 0; i < (base.areas || []).length; i++) {
-      const a = base.areas[i], b = a.box; if (!b) continue;
+      const a = base.areas[i], b = a.box; if (!b || vec && i !== activeArea) continue;   // clean map: only the chosen area's box
       const x = b[0] * CELL, y = b[1] * CELL, w = (b[2] - b[0]) * CELL, h = (b[3] - b[1]) * CELL;
       ctx.setLineDash(i === activeArea ? [4, 2] : [2, 4]); ctx.lineWidth = (i === activeArea ? 2 : .6) / camera.zoom;
       ctx.strokeStyle = i === activeArea ? '#bd3c53' : 'rgba(55,75,84,.15)'; ctx.strokeRect(x + 2, y + 2, w - 4, h - 4);
@@ -504,7 +516,14 @@
     ctx.fillStyle = (demand.theme && demand.theme.paper) || paperByPeriod[demand.period] || paperByPeriod.am;
     ctx.fillRect(0, 0, w, h);
     ctx.setTransform(dpr * camera.zoom, 0, 0, dpr * camera.zoom, dpr * camera.x, dpr * camera.y);
-    drawTerrain(); if (camera.zoom >= .65) drawBuildings(); drawRoads(); drawRail(); drawAreas(); if (v2) v2.draw();
+    const vec = root.SandboxVector && SandboxVector.S.ready;
+    if (vec) {
+      SandboxVector.draw({ ctx, CELL, camera, tool, dark: document.documentElement.getAttribute('data-theme') === 'dark',
+        layers: { pop: $('layerPop').checked, jobs: $('layerJobs').checked, transit: $('layerTransit').checked },
+        selected: v2 && v2.selectedZones ? v2.selectedZones() : [] });
+      drawRoads(true); drawRail(true);
+    } else { drawTerrain(); if (camera.zoom >= .65) drawBuildings(); drawRoads(); drawRail(); }
+    drawAreas(vec); if (v2) v2.draw();
     if (fixture) { ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
   }
   function updateMapToolHint() {
@@ -616,6 +635,8 @@
   }
 
   function onPointerMove(e) {
+    if (root.SandboxVector && SandboxVector.S.ready && base) { const c = getCell(e.clientX, e.clientY), h = SandboxVector.S.hover;
+      if (!h !== !c || h && c && (h[0] !== c[0] || h[1] !== c[1])) { SandboxVector.setHover(c); if (tool === 'line' || tool === 'station') draw(); } }
     if (pointerMap.has(e.pointerId)) pointerMap.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointerMap.size >= 2 && gesture && gesture.type === 'pinch') {
       const values = Array.from(pointerMap.values()), rect = canvas.getBoundingClientRect();
@@ -717,6 +738,7 @@
     $('mapStatus').textContent = t('m5.loading');
     try {
       model = await loadModel(); base = model.base; demands = model.demands; fixture = !!model.fixture;
+      if (model.shapes && root.SandboxVector) SandboxVector.load(model.shapes, base);
       if (!demands.am) throw new Error('AM demand data is required');
       demand = demands.am; prepareDisplayData(); plan = E.emptyPlan(); $('examplePlan').hidden = !buildExamplePlan();
       $('mapStatus').textContent = ''; renderPeriodButtons(); renderInitialMetrics(); bindControls(); renderAreas(); updatePlanUI();
@@ -733,6 +755,14 @@
         setPlan(next){plan=next;activeLine=next.lines.length?0:-1;planChanged()},
         status:setStatus
       });
+      if (root.SandboxVector && SandboxVector.S.ready) {
+        const fb = document.createElement('button'); fb.className = 'btn btn-sm'; fb.id = 'focusSel'; fb.setAttribute('aria-pressed', 'false');
+        const label = () => { fb.textContent = t('m5.focus'); }; label(); root.addEventListener('tl:lang', label);
+        ($('selectTool') || $('board')).after(fb);
+        fb.onclick = () => { const sel = v2.selectedZones(); if (!sel.length && !SandboxVector.S.focus) { setStatus(t('m5.focusNone')); return; }
+          SandboxVector.S.focus = !SandboxVector.S.focus; fb.setAttribute('aria-pressed', String(SandboxVector.S.focus));
+          if (SandboxVector.S.focus) fitBox(SandboxVector.bounds(sel)); else fitMap(); draw(); };
+      }
       firstFit = true; fitMap(); initializeWorker(); updateMapToolHint();
     } catch (e) { $('mapStatus').textContent = e.message; }
   }
