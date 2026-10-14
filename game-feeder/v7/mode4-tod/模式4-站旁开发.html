@@ -1561,7 +1561,7 @@ dialog.intro .row{margin-top:16px}
       `<div class="tools"><div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="${tool==='draw'}" ${plan.open?'disabled':''}>${t('m.toolDraw')}</button><button data-tool="station" aria-pressed="${tool==='station'}" ${plan.open?'disabled':''}>${t('m.toolStation')}</button><button data-tool="land" aria-pressed="${tool==='land'}" ${plan.done?'disabled':''}>${t('tod.toolLand')}</button></div>`+
       `<button class="btn btn-sm" id="undo" ${!history.length?'disabled':''}>↶</button><button class="btn btn-sm" id="clear" ${plan.open||!plan.line.length?'disabled':''}>${t('m.clear')}</button></div><p>${hint}</p>`;
     const heldRevenue=plan.sales.reduce((a,q)=>a+q.price,0),pendingRevenueNow=plan.pendingSales.reduce((a,q)=>a+q.price,0);
-    $('stopPanel').insertAdjacentHTML('beforeend','<div class="land-controls"><div class="r"><span>'+t('tod.landCount',{left:Math.max(0,2-plan.pendingSales.length),sold:plan.allSales().length})+'</span></div><div class="r"><span>'+t('tod.landRevenue')+'</span><b>'+t('tod.landRevenueValue',{n:R(heldRevenue),p:R(pendingRevenueNow)})+'</b></div><div class="tools"><button class="btn btn-sm '+(landUse==='home'?'on':'')+'" data-use="home">'+t('tod.useHome')+'</button><button class="btn btn-sm '+(landUse==='shop'?'on':'')+'" data-use="shop">'+t('tod.useShop')+'</button></div><p>'+t('tod.lockHint')+'</p></div>');
+    $('stopPanel').insertAdjacentHTML(tool==='land'?'afterbegin':'beforeend','<div class="land-controls"><div class="r"><span>'+t('tod.landCount',{left:Math.max(0,2-plan.pendingSales.length),sold:plan.allSales().length})+'</span></div><div class="r"><span>'+t('tod.landRevenue')+'</span><b>'+t('tod.landRevenueValue',{n:R(heldRevenue),p:R(pendingRevenueNow)})+'</b></div><div class="tools"><button class="btn btn-sm '+(landUse==='home'?'on':'')+'" data-use="home">'+t('tod.useHome')+'</button><button class="btn btn-sm '+(landUse==='shop'?'on':'')+'" data-use="shop">'+t('tod.useShop')+'</button></div><p>'+t('tod.lockHint')+'</p></div>');
     // the years table
     $('yearChip').textContent=t('m2.yearChip',{m:P.years});
     let tb='<thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';
@@ -1598,7 +1598,8 @@ dialog.intro .row{margin-top:16px}
   }
   function play(){if(plan.done)return;playing=true;clearInterval(timer);timer=setInterval(step,STEP_MS);render();}
   function stop(){playing=false;clearInterval(timer);render();}
-  function open(){if(!plan.canRun())return;history=[];tool='draw';hover=null;step();play();}
+  // one year at a time (no autoplay): land is sold between the years
+  function open(){if(!plan.canRun())return;history=[];tool='land';hover=null;step();}
   function rewind(){stop();plan.rewind();lastY=null;render();}
   function result(){
     const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();
