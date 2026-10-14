@@ -3,6 +3,7 @@
   const I = root.I18N, E = root.SandboxEngine, $ = id => document.getElementById(id);
   const CELL = 18, periods = ['am', 'pm', 'day', 'holiday'];
   const paperByPeriod = { am: '#EEF3F8', pm: '#F8EEE2', day: '#F7F5EF', holiday: '#FBEDEA' };
+  let v2 = null;
   let model = null, base = null, demands = {}, demand = null, fixture = false;
   let worker = null, syncPrepared = null, syncState = null, workerReady = false, requestNo = 0, pendingPreview = 0;
   let plan = E.emptyPlan(), activeLine = -1, tool = 'line', activeArea = null;
@@ -78,6 +79,7 @@
     $('stableBadge').textContent = round ? t(rows[rows.length - 1].stable ? 'm5.stable' : (convergenceFailed ? 'm5.convergeFail' : 'm5.roundStatus'), { n: round }) : t('m5.waiting');
     $('dispatch').textContent = t('m5.dispatch');
     $('mapMessage').textContent = activeMetrics ? mapSummary(activeMetrics) : (previewMetrics ? t('m5.preview', { n: format(previewMetrics.newLineRiders) }) : t('m5.loaded'));
+    if (v2) v2.refresh();
     document.title = 'TransitLab HK · ' + t('m5.mode'); updateMapToolHint(); draw();
   }
 
@@ -101,7 +103,7 @@
     const area = (base.areas || [])[index]; if (!area || !area.box) return;
     const b = area.box, width = (b[2] - b[0]) * CELL, height = (b[3] - b[1]) * CELL;
     const w = canvas.clientWidth, availableHeight = Math.max(80, canvas.clientHeight - 150);
-    camera.zoom = Math.min(6, Math.max(80, w - 48) / width, availableHeight / height);
+    camera.zoom = Math.min(1.5, Math.max(80, w - 48) / width, availableHeight / height);
     camera.x = (w - width * camera.zoom) / 2 - b[0] * CELL * camera.zoom;
     camera.y = 70 + (availableHeight - height * camera.zoom) / 2 - b[1] * CELL * camera.zoom;
     draw();
@@ -202,7 +204,7 @@
     updateRunButtons();
   }
   function clearResults() {
-    requestNo++; computing = false; activeMetrics = null; previewMetrics = null; rows = []; convergenceFailed = false;
+    if(v2)v2.reset(); requestNo++; computing = false; activeMetrics = null; previewMetrics = null; rows = []; convergenceFailed = false;
     $('roundRows').innerHTML = ''; $('roundLabel').textContent = '—'; $('roundBadge').textContent = t('m5.roundStatus', { n: 0 });
     $('stableBadge').textContent = t('m5.waiting'); $('dispatch').textContent = t('m5.dispatch');
     setMetrics(emptyMetrics(), false); updateRunButtons(); draw();
@@ -216,6 +218,7 @@
   }
 
   function sendPlan() {
+    if(!workerReady&&!syncPrepared)return;
     const valid = E.validatePlan(base, plan);
     if (!valid.valid) { draw(); return; }
     requestNo++;
@@ -258,7 +261,8 @@
   }
   function onMessage(event) {
     const m = event.data || {};
-    if (m.runId && m.runId !== requestNo) return;
+    if (m.runId && m.runId !== requestNo && m.type !== 'ready') return;
+    if (m.type === 'scenario-audit') { if(v2)v2.audit(m.audit); return; }
     if (m.type === 'ready') { workerReady = true; setStatus(''); updateRunButtons(); sendPlan(); return; }
     if (m.type === 'preview') {
       previewMetrics = m.metrics; setMetrics(m.metrics, true);
@@ -276,7 +280,7 @@
         : (m.type === 'stable' ? t('m5.convergeFail') : t('m5.roundStatus', { n: round }));
       $('mapMessage').textContent = mapSummary(activeMetrics);
       $('dispatch').textContent = m.stable ? t('m5.stable', { n: round }) : t('m5.dispatch');
-      updateRunButtons(); return;
+      updateRunButtons(); if(v2)v2.result(m); return;
     }
     if (m.type === 'progress') {
       if (m.metrics) {
@@ -303,8 +307,8 @@
       catch (e) { setStatus(e.message); }
     };
     try {
-      worker = new Worker('worker.js'); worker.onmessage = onMessage; worker.onerror = fallback;
-      requestNo++; worker.postMessage({ type: 'init', base, demand, plan, runId: requestNo });
+      worker = new Worker('scenario-worker.js'); worker.onmessage = onMessage; worker.onerror = fallback;
+      requestNo++; worker.postMessage({ type: 'init', base, demand, plan, scenario:v2?v2.configs:{}, weights:v2?v2.weights:{zones:{}}, runId: requestNo });
     } catch (_) { fallback(); }
   }
 
@@ -315,11 +319,11 @@
     renderSourceNote();
     $('sourceNote').classList.toggle('d-tier', fixture || demand.tier === 'D');
     workerReady = false; syncPrepared = null;
-    clearResults(); renderAreas();
+    clearResults(); renderAreas(); if(v2)v2.refresh();
     for (const b of document.querySelectorAll('#periodTabs [data-period]')) b.setAttribute('aria-pressed', String(b.dataset.period === period));
     canvas.style.backgroundColor = (demand.theme && demand.theme.paper) || paperByPeriod[period];
     $('mapMessage').textContent = t('m5.selectPeriod', { name: periodName(period) });
-    if (worker) worker.postMessage({ type: 'period', base, demand, plan, runId: requestNo });
+    if (worker) worker.postMessage({ type: 'period', base, demand, plan, scenario:v2?v2.configs:{}, weights:v2?v2.weights:{zones:{}}, runId: requestNo });
     else if (fixture) {
       try { syncPrepared = E.prepare(base, demand); syncState = E.createState(syncPrepared, plan); updateRunButtons(); sendPlan(); } catch (e) { setStatus(e.message); }
     }
@@ -355,8 +359,8 @@
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
       const k = land[y * w + x] || '.', px = x * CELL, py = y * CELL;
       ctx.fillStyle = colors[k] || colors['.']; ctx.fillRect(px, py, CELL, CELL);
-      if (k === '~' && ((x + y) % 3 === 0)) { ctx.fillStyle = '#9dc5d9'; ctx.fillRect(px + 3, py + 7 + ((x * 3 + y) % 4), 5, 1); }
-      if (k === '^' || k === 'g') {
+      if (camera.zoom >= .65 && k === '~' && ((x + y) % 3 === 0)) { ctx.fillStyle = '#9dc5d9'; ctx.fillRect(px + 3, py + 7 + ((x * 3 + y) % 4), 5, 1); }
+      if (camera.zoom >= .65 && (k === '^' || k === 'g')) {
         const n = (x * 13 + y * 7) % 5;
         ctx.fillStyle = k === '^' ? '#a4bd96' : '#9fc795';
         ctx.fillRect(px + 4 + n, py + 5, 5, 5); ctx.fillRect(px + 3 + n, py + 9, 7, 3);
@@ -380,11 +384,12 @@
   }
   function drawRoads() {
     for (const r of base.roads || []) {
+      if (camera.zoom < .65 && r.class === 'district') continue;
       ctx.lineCap = 'square'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#d6c4a7'; ctx.lineWidth = 5; linePath(r.cells, 0);
       ctx.strokeStyle = '#f5f1e8'; ctx.lineWidth = 2.5; linePath(r.cells, 0);
     }
     if (!$('layerRoads').checked) return;
-    const sections = base.sections || [], m = activeMetrics || previewMetrics;
+    const sections = base.sections || [], m = v2 ? v2.mapMetrics() : activeMetrics || previewMetrics;
     for (let i = 0; i < sections.length; i++) {
       const s = sections[i], c1 = s.a, c2 = s.b;
       const load = m && m.sectionLoads ? m.sectionLoads[i] : displayStats.loads[i];
@@ -394,7 +399,7 @@
       const dx = x2 - x1, dy = y2 - y1, len = Math.max(1, Math.hypot(dx, dy));
       const ox = -dy / len * 3, oy = dx / len * 3;
       ctx.beginPath(); ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy);
-      ctx.strokeStyle = vc >= 1.2 ? '#c94f4f' : vc >= .8 ? '#d59235' : '#61a2a7';
+      ctx.strokeStyle = v2 ? v2.roadColor(i,vc >= 1.2 ? '#c94f4f' : vc >= .8 ? '#d59235' : '#61a2a7') : '#61a2a7';
       ctx.globalAlpha = .78; ctx.lineWidth = Math.min(5, 1.3 + vc * 1.3); ctx.stroke(); ctx.globalAlpha = 1;
     }
   }
@@ -415,14 +420,14 @@
       ctx.strokeStyle = line.color || '#687c93'; ctx.globalAlpha = .72; ctx.lineWidth = Math.min(5, 1.3 + 2 * ratio); linePath(cells, -3); ctx.globalAlpha = 1;
     }
     // Player tracks remain visible while editing even when the passenger-flow overlay is hidden.
-    plan.lines.forEach((line, index) => {
+    if(!v2||!v2.before) plan.lines.forEach((line, index) => {
       ctx.setLineDash([5, 3]); ctx.lineCap = 'round'; ctx.strokeStyle = '#d9505f'; ctx.lineWidth = index === activeLine ? 5 : 3;
       linePath(line.cells, -3); ctx.setLineDash([]);
       line.stations.forEach(st => drawStation(st.cell, '#c84250', true));
     });
     if (transitOn) for (const station of base.stations || []) {
       drawStation(station.cell, lineColor(station.lines && station.lines[0]), false);
-      if (camera.zoom > 1.05) {
+      if (!v2 && camera.zoom > 1.05) {
         ctx.font = (11 / camera.zoom) + 'px Geist, sans-serif'; ctx.textAlign = 'left'; ctx.fillStyle = '#334451';
         ctx.fillText(displayName(station), station.cell[0] * CELL + CELL / 2 + 5, station.cell[1] * CELL + CELL / 2 - 5);
       }
@@ -482,8 +487,8 @@
     for (let i = 0; i < (base.areas || []).length; i++) {
       const a = base.areas[i], b = a.box; if (!b) continue;
       const x = b[0] * CELL, y = b[1] * CELL, w = (b[2] - b[0]) * CELL, h = (b[3] - b[1]) * CELL;
-      ctx.setLineDash(i === activeArea ? [4, 2] : [2, 4]); ctx.lineWidth = i === activeArea ? 2.5 : 1;
-      ctx.strokeStyle = i === activeArea ? '#bd3c53' : 'rgba(55,75,84,.5)'; ctx.strokeRect(x + 2, y + 2, w - 4, h - 4);
+      ctx.setLineDash(i === activeArea ? [4, 2] : [2, 4]); ctx.lineWidth = (i === activeArea ? 2 : .6) / camera.zoom;
+      ctx.strokeStyle = i === activeArea ? '#bd3c53' : 'rgba(55,75,84,.15)'; ctx.strokeRect(x + 2, y + 2, w - 4, h - 4);
     }
     ctx.setLineDash([]);
   }
@@ -499,7 +504,7 @@
     ctx.fillStyle = (demand.theme && demand.theme.paper) || paperByPeriod[demand.period] || paperByPeriod.am;
     ctx.fillRect(0, 0, w, h);
     ctx.setTransform(dpr * camera.zoom, 0, 0, dpr * camera.zoom, dpr * camera.x, dpr * camera.y);
-    drawTerrain(); drawRoads(); drawRail(); drawBuildings(); drawZones(); drawAreas();
+    drawTerrain(); if (camera.zoom >= .65) drawBuildings(); drawRoads(); drawRail(); drawAreas(); if (v2) v2.draw();
     if (fixture) { ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
   }
   function updateMapToolHint() {
@@ -591,6 +596,7 @@
     camera.x = x - wx * next; camera.y = y - wy * next; camera.zoom = next; draw();
   }
   function onPointerDown(e) {
+    if (v2 && v2.pointer(e, getCell(e.clientX, e.clientY))) return;
     pointerMap.set(e.pointerId, { x: e.clientX, y: e.clientY });
     try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
     $('tooltip').hidden = true;
@@ -603,7 +609,7 @@
     }
     lastCell = getCell(e.clientX, e.clientY);
     const type = tool === 'pan' || e.button === 1 || e.button === 2 ? 'pan' : tool;
-    gesture = { type, x: e.clientX, y: e.clientY, cell: lastCell, deferred: e.pointerType === 'touch' && type !== 'pan' };
+    gesture = { type, x: e.clientX, y: e.clientY, cell: lastCell, deferred: type === 'line' || (e.pointerType === 'touch' && type !== 'pan') };
     if (gesture.deferred || !lastCell) return;
     if (type === 'station' && toggleStation(lastCell)) planChanged();
     if (type === 'line' && updateLinePath(lastCell)) planChanged();
@@ -638,6 +644,7 @@
 
   function onPointerUp(e) {
     if (gesture && gesture.deferred && pointerMap.size === 1 && gesture.cell) {
+      if(gesture.type==='line'&&v2){v2.tap(e,gesture.cell);pointerMap.delete(e.pointerId);gesture=null;lastCell=null;return;}
       const changed = gesture.type === 'station' ? toggleStation(gesture.cell) : updateLinePath(gesture.cell);
       if (changed) planChanged();
     }
@@ -674,6 +681,7 @@
   function showTooltip(e) {
     const cell = getCell(e.clientX, e.clientY), zone = nearestZone(cell), section = nearestSection(cell, e), tooltip = $('tooltip');
     if (!zone && !section) { tooltip.hidden = true; return; }
+    if (v2 && zone) { v2.tooltip(e, zone); return; }
     const m = activeMetrics || previewMetrics || emptyMetrics(); let text = '';
     if (zone && (!section || isNearZoneMarker(e, zone.z))) {
       const z = zone.z, baseShare = baseShareForZone(zone.i);
@@ -712,8 +720,28 @@
       if (!demands.am) throw new Error('AM demand data is required');
       demand = demands.am; prepareDisplayData(); plan = E.emptyPlan(); $('examplePlan').hidden = !buildExamplePlan();
       $('mapStatus').textContent = ''; renderPeriodButtons(); renderInitialMetrics(); bindControls(); renderAreas(); updatePlanUI();
+      v2 = SandboxV2.create({
+        get base(){return base}, get demand(){return demand}, get demands(){return demands},
+        get camera(){return camera}, get canvas(){return canvas}, get ctx(){return ctx},
+        get metrics(){return activeMetrics}, get preview(){return previewMetrics}, get stats(){return displayStats},
+        get plan(){return plan}, get rows(){return rows}, get area(){return activeArea}, get tool(){return tool},
+        get fixture(){return fixture}, get computing(){return computing},
+        draw, setTool, roadName, displayName, nearestZone, nearestSection, getCell,
+        selectArea(i){activeArea=i;renderAreas();fitArea(i)},
+        changeDemand(next){demand=next;prepareDisplayData();if(worker)worker.terminate();clearResults();initializeWorker();renderSourceNote()},
+        rebuildScenario(){if(worker)worker.terminate();clearResults();initializeWorker()},
+        setPlan(next){plan=next;activeLine=next.lines.length?0:-1;planChanged()},
+        status:setStatus
+      });
       firstFit = true; fitMap(); initializeWorker(); updateMapToolHint();
     } catch (e) { $('mapStatus').textContent = e.message; }
   }
   boot();
 })(typeof window !== 'undefined' ? window : globalThis);
+
+
+
+
+
+
+

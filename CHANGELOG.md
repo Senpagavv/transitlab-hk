@@ -6,6 +6,11 @@
 
 ## 2026-10-15
 
+### 01:46 · `待补` 接驳巴士 v7.24：全港沙盘第二版——看得懂、知道玩什么（Codex 任务 55）/ Feeder v7.24: sandbox v2, readable and playable
+- **改了什么**：`game-feeder/v7/mode5-sandbox/`：分层地名、前四关画风、玩法卡、三道题、问题小旗、白话成绩单、变化图层、选分区调人数 / 年龄 / 吸引力、香港数据页签、三个子入口（引擎未改）。`docs/for-codex/QUEUE.md` 更新（下一个发 57）。
+- **为什么**：发起人：第一版看不懂、不知道怎么玩。
+- **验证**：沙盘两套检查全过；真浏览器从入口进沙盘、题目定位正常、无报错。已知：北部题目标偏高、启德题未加人口（README 写明）。
+
 ### 01:42 · `42e1067` 接驳巴士 v7.23：排行榜和关卡包接上四个玩法（Codex 任务 56）/ Feeder v7.23: leaderboard and level packs
 - **改了什么**：新增 `game-feeder/v7/shared/levelpack.js`、`board.js`（样式并进 `style.css`）、`tools/verify-score.js`、`tools/mock-board/`、`v7/INTEGRATION.md`；四个玩法页载入两个模块、`data.js` 同步读 `#pack=`、结算发 `feeder:result`。
 - **为什么**：挑战关上排行榜、AI 关卡只存本机（发起人定）。
