@@ -91,3 +91,23 @@ table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:rig
 table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
 table.result th:first-child,table.result td:first-child{text-align:left}
 .maplegend .lk.walk{background:radial-gradient(circle,var(--s-ink3) 2px,transparent 2.5px) 0 50%/7px 8px repeat-x;opacity:.8}
+/* v7.9 · the living map (as mode 3): headline over the map, info card, hold to compare */
+:root{--s-free:#2F8F5B}[data-theme="dark"]{--s-free:#5CC08A}
+.headline{position:absolute;left:16px;right:16px;top:12px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 14px;border-radius:10px;
+  background:color-mix(in srgb,var(--s-panel) 92%,transparent);border:1px solid var(--s-line2);text-align:center;pointer-events:none;z-index:3;transition:border-color .3s,background .3s}
+.headline b{font:600 17px 'Geist',sans-serif;color:var(--s-ink)}.headline b em{font-style:normal;font-family:var(--s-mono)}
+.headline b .good{color:var(--s-free)}.headline b .bad{color:var(--s-bad)}
+.headline span{font-size:12.5px;color:var(--s-ink2);line-height:1.5}
+.headline.preview{border-color:var(--s-metro);background:color-mix(in srgb,var(--s-metro) 8%,var(--s-panel))}
+.headline.nothing{border-color:var(--s-ink3);background:color-mix(in srgb,var(--s-ink3) 10%,var(--s-panel))}
+.infocard{position:absolute;left:16px;bottom:52px;max-width:330px;padding:8px 12px;border-radius:8px;background:var(--s-panel);border:1px solid var(--s-line2);
+  font-size:12.5px;line-height:1.6;color:var(--s-ink2);z-index:3;pointer-events:none}
+.infocard b{color:var(--s-ink)}.infocard:empty{display:none}
+.hold{margin-left:auto}.hold:disabled{opacity:.4}.hold.on{background:var(--s-metro);color:var(--s-paper);border-color:var(--s-metro)}
+.rulesd{margin-top:14px}.rulesd summary{cursor:pointer;font:500 11px var(--s-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--s-ink3)}
+.mapplate .yearcard{display:none}
+.maplegend .lk.car2{background:var(--s-ink);opacity:.7;width:10px;height:6px;border-radius:2px}
+.maplegend .lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.maplegend .lk.walkdot{width:6px;height:6px;border-radius:50%;background:var(--s-walk)}
+.maplegend .lk.ring{width:12px;height:12px;border-radius:50%;background:conic-gradient(var(--s-ink3) 0 55%,var(--s-metro) 55% 85%,var(--s-walk) 85%);-webkit-mask:radial-gradient(circle,transparent 3px,#000 3.5px);mask:radial-gradient(circle,transparent 3px,#000 3.5px)}
+:root{--s-walk:#7F95AE}[data-theme="dark"]{--s-walk:#A3B6CC}

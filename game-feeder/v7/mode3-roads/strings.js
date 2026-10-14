@@ -115,5 +115,34 @@
     'iv.m3.course':L('課程連結：道路容量與擁堵（BPR 曲線的簡化）、誘發交通與 Downs–Thomson 悖論、出行者的逐日學習、公共交通與道路的平衡。','课程链接：道路容量与拥堵（BPR 曲线的简化）、诱发交通与 Downs–Thomson 悖论、出行者的逐日学习、公共交通与道路的平衡。',
       'Course link: road capacity and congestion (a simplified BPR curve), induced traffic and the Downs–Thomson paradox, travellers learning day to day, the balance of transit and roads.')
   });
+  // v7.9 · the living map: headline, info card, hold to preview
+  I18N.add({
+    'r3.hlToday':L('今天：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em> 車·格','今天：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em> 车·格','Today: <em>{c}</em> cars a day on the roads, jam <em>{j}</em>'),
+    'r3.hlTodaySub':L('最塞的是{r}（每趟多 {e} 格）。畫一條新線把開車的人帶走；停在線上的格子，地圖會變成放站以後的樣子。','最塞的是{r}（每趟多 {e} 格）。画一条新线把开车的人带走；停在线上的格子，地图会变成放站以后的样子。',
+      'Worst: {r} (+{e} a trip). Draw a line to take drivers off; hover a cell on it and the map turns into what a station there would bring.'),
+    'r3.hlPreview':L('放這裡 → 路上的車 <em class="{cc}">{dc}</em> · 塞車 <em class="{jc}">{dj}</em> · 新線每天 <em>{r}</em> 人','放这里 → 路上的车 <em class="{cc}">{dc}</em> · 塞车 <em class="{jc}">{dj}</em> · 新线每天 <em>{r}</em> 人',
+      'A station here → cars <em class="{cc}">{dc}</em> · jam <em class="{jc}">{dj}</em> · <em>{r}</em> a day on the line'),
+    'r3.hlAhead':L('八年後 → 路上的車 <em class="{cc}">{dc}</em> · 塞車 <em class="{jc}">{dj}</em> · 新線每天 <em>{r}</em> 人','八年后 → 路上的车 <em class="{cc}">{dc}</em> · 塞车 <em class="{jc}">{dj}</em> · 新线每天 <em>{r}</em> 人',
+      'Eight years on → cars <em class="{cc}">{dc}</em> · jam <em class="{jc}">{dj}</em> · <em>{r}</em> a day on the line'),
+    'r3.hlPreviewSub':L('預覽：大家都知道新線、開車的人也習慣了以後，和今天什麼都不做比。','预览：大家都知道新线、开车的人也习惯了以后，和今天什么都不做比。','Preview: once everyone knows the line and drivers have settled, against doing nothing today.'),
+    'r3.hlYear':L('第 {y} 年 · 路上的車 <em class="{cc}">{dc}</em> · 塞車比什麼都不做 <em class="{jc}">{dj}</em>','第 {y} 年 · 路上的车 <em class="{cc}">{dc}</em> · 塞车比什么都不做 <em class="{jc}">{dj}</em>',
+      'Year {y} · cars <em class="{cc}">{dc}</em> · jam vs doing nothing <em class="{jc}">{dj}</em>'),
+    'r3.hlAware':L('平均 {a} 成人知道新線','平均 {a} 成人知道新线','{a}/10 know the new line'),
+    'r3.hlNothing':L('如果什麼都不做：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em>','如果什么都不做：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em>','Doing nothing: <em>{c}</em> cars a day, jam <em>{j}</em>'),
+    'r3.hlNothingSub':L('放開按鈕，回到你的方案。','放开按钮，回到你的方案。','Let go to see your plan again.'),
+    'r3.hlDone':L('八年少塞 <em>{s}</em> 車·格 · {tier}','八年少塞 <em>{s}</em> 车·格 · {tier}','<em>{s}</em> less jam over eight years · {tier}'),
+    'r3.hlDoneSub':L('按住「看什麼都不做」比一比；「↺ 回到規劃」可以再改。','按住「看什么都不做」比一比；「↺ 回到规划」可以再改。','Hold «doing nothing» to compare; «↺ Back to planning» to change it.'),
+    'r3.holdAhead':L('👁 按住看八年後','👁 按住看八年后','👁 Hold: eight years on'),'r3.holdNothing':L('👁 按住看什麼都不做','👁 按住看什么都不做','👁 Hold: doing nothing'),
+    'r3.iEst':L('<b>{n}</b>　每天 {p} 人出門<br>開車 <b>{c}</b> · 地鐵 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道新線 {a} 成','<b>{n}</b>　每天 {p} 人出门<br>开车 <b>{c}</b> · 地铁 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道新线 {a} 成',
+      '<b>{n}</b>　{p} go out a day<br><b>{c}</b> drive · <b>{m}</b> metro · {w} walk · {nb} stay nearby<br>{a}/10 know the new line'),
+    'r3.iTrip':L('去{d}：開車 {car} 格 · 地鐵 {m} 格','去{d}：开车 {car} 格 · 地铁 {m} 格','to {d}: car {car} · metro {m}'),
+    'r3.iDest':L('<b>{n}</b><br>每天來 <b>{g}</b> 人（今天 {b}）· 坐地鐵來 {m}','<b>{n}</b><br>每天来 <b>{g}</b> 人（今天 {b}）· 坐地铁来 {m}','<b>{n}</b><br><b>{g}</b> come a day (today {b}) · {m} by metro'),
+    'r3.iRoad':L('<b>{r}</b>：每天 {c} 輛 / 能過 {cap} · 每趟多 <b>{e}</b> 格（開車的人以為 {f}）','<b>{r}</b>：每天 {c} 辆 / 能过 {cap} · 每趟多 <b>{e}</b> 格（开车的人以为 {f}）',
+      '<b>{r}</b>: {c} cars / room for {cap} · +<b>{e}</b> a trip (drivers reckon {f})'),
+    'r3.iStation':L('<b>{l}</b> · {s} 站','<b>{l}</b> · {s} 站','<b>{l}</b> · {s}'),
+    'r3.legend':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圓環＝幾成開車／地鐵／走路</span><span><i class="lk road"></i>路：灰通、橙快滿、紅塞</span>',
+      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路</span><span><i class="lk road"></i>路：灰通、橙快满、红塞</span>',
+      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot</span><span><i class="lk road"></i>roads: grey free, orange filling, red jammed</span>')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

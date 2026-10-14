@@ -107,3 +107,22 @@ table.result th:first-child,table.result td:first-child{text-align:left}
 .ychart .ypot{border-top-color:var(--s-ink2)}.ychart .ypot span{color:var(--s-ink2)}
 .maplegend .lk.road{background:linear-gradient(90deg,var(--s-ink3),#E3A008,var(--s-jam))}
 .maplegend .lk.mtr{background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
+/* v7.9 · the living map: a headline over the map, an info card for what is under the cursor, hold-to-preview */
+.headline{position:absolute;left:16px;right:16px;top:12px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 14px;border-radius:10px;
+  background:color-mix(in srgb,var(--s-panel) 92%,transparent);border:1px solid var(--s-line2);text-align:center;pointer-events:none;z-index:3;transition:border-color .3s,background .3s}
+.headline b{font:600 17px 'Geist',sans-serif;color:var(--s-ink);letter-spacing:.01em}.headline b em{font-style:normal;font-family:var(--s-mono)}
+.headline b .good{color:var(--s-free)}.headline b .bad{color:var(--s-jam)}
+.headline span{font-size:12.5px;color:var(--s-ink2);line-height:1.5}
+.headline.preview{border-color:var(--s-metro);background:color-mix(in srgb,var(--s-metro) 8%,var(--s-panel))}
+.headline.nothing{border-color:var(--s-jam);background:color-mix(in srgb,var(--s-jam) 8%,var(--s-panel))}
+.infocard{position:absolute;left:16px;bottom:52px;max-width:330px;padding:8px 12px;border-radius:8px;background:var(--s-panel);border:1px solid var(--s-line2);
+  font-size:12.5px;line-height:1.6;color:var(--s-ink2);z-index:3;pointer-events:none}
+.infocard b{color:var(--s-ink)}.infocard:empty{display:none}
+.hold{margin-left:auto}.hold:disabled{opacity:.4}.hold.on{background:var(--s-metro);color:var(--s-paper);border-color:var(--s-metro)}
+.rulesd{margin-top:14px}.rulesd summary{cursor:pointer;font:500 11px var(--s-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--s-ink3)}
+.mapplate .yearcard{display:none}
+.maplegend .lk.car{background:var(--s-ink2);width:10px;height:6px;border-radius:2px}
+.maplegend .lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.maplegend .lk.walkdot{width:6px;height:6px;border-radius:50%;background:var(--s-walk)}
+.maplegend .lk.ring{width:12px;height:12px;border-radius:50%;background:conic-gradient(var(--s-ink3) 0 55%,var(--s-metro) 55% 85%,var(--s-walk) 85%);-webkit-mask:radial-gradient(circle,transparent 3px,#000 3.5px);mask:radial-gradient(circle,transparent 3px,#000 3.5px)}
+:root{--s-walk:#7F95AE}[data-theme="dark"]{--s-walk:#A3B6CC}

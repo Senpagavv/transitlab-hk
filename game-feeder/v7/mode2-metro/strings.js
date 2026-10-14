@@ -116,5 +116,33 @@
     'iv.m2.course':L('課程連結：誘增出行與出行分佈的變化（重力模型）、方式選擇（和開車比時間）、新服務的擴散（口碑的 S 曲線）、擁擠的回饋。','课程链接：诱增出行与出行分布的变化（重力模型）、方式选择（和开车比时间）、新服务的扩散（口碑的 S 曲线）、拥挤的回馈。',
       'Course link: induced trips and shifting trip distribution (gravity model), mode choice (time against the car), diffusion of a new service (the word-of-mouth S-curve), crowding feedback.')
   });
+  // v7.9 · the living map: headline, info card, hold to compare
+  I18N.add({
+    'm2.hlToday':L('今天：大家開車，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','今天：大家开车，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','Today everyone drives: <em>{a}</em> a day to {d0}, <em>{b}</em> to {d1}'),
+    'm2.hlTodaySub':L('畫一條線、放站。停在線上的格子，地圖會變成「放了這個站、大家都知道以後」的樣子。','画一条线、放站。停在线上的格子，地图会变成「放了这个站、大家都知道以后」的样子。',
+      'Draw a line, place stations. Hover a cell on it and the map turns into what a station there brings once everyone knows.'),
+    'm2.hlPreview':L('放這裡 → 每天坐地鐵 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>','放这里 → 每天坐地铁 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>',
+      'A station here → <em>{r}</em> by metro a day · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>'),
+    'm2.hlAhead':L('大家都知道以後 → 每天坐地鐵 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>','大家都知道以后 → 每天坐地铁 <em>{r}</em> 人 · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>',
+      'Once everyone knows → <em>{r}</em> by metro a day · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>'),
+    'm2.hlPreviewSub':L('預覽：每個屋苑都知道這條線以後（現在開通第 1 年只有 {s} 成人知道）。','预览：每个屋苑都知道这条线以后（现在开通第 1 年只有 {s} 成人知道）。','Preview: once every estate knows the line (in year 1 only {s}/10 do).'),
+    'm2.hlYear':L('第 {y} 年 · 每天坐地鐵 <em>{r}</em> 人（<em class="good">{d}</em>）· {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>','第 {y} 年 · 每天坐地铁 <em>{r}</em> 人（<em class="good">{d}</em>）· {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>',
+      'Year {y} · <em>{r}</em> by metro a day (<em class="good">{d}</em>) · {d0} <em class="{ca}">{a}</em> · {d1} <em class="{cb}">{b}</em>'),
+    'm2.hlYearSub':L('平均 {a} 成人知道 · 口耳相傳：明年再多 {n} 成','平均 {a} 成人知道 · 口耳相传：明年再多 {n} 成','{a}/10 know · word of mouth: {n}/10 more next year'),
+    'm2.hlYearSub0':L('平均 {a} 成人知道這條線','平均 {a} 成人知道这条线','{a}/10 know the line'),
+    'm2.hlNothing':L('沒有這條線：大家開車，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','没有这条线：大家开车，每天去{d0} <em>{a}</em> 人、去{d1} <em>{b}</em> 人','Without the line: everyone drives, <em>{a}</em> to {d0}, <em>{b}</em> to {d1}'),
+    'm2.hlNothingSub':L('放開按鈕，回到你的線。','放开按钮，回到你的线。','Let go to see your line again.'),
+    'm2.hlDone':L('八年累計 <em>{s}</em> 人次坐地鐵 · {tier}','八年累计 <em>{s}</em> 人次坐地铁 · {tier}','<em>{s}</em> metro trips over eight years · {tier}'),
+    'm2.hlDoneSub':L('按住「看沒有這條線」比一比；「↺ 回到規劃」可以再改。','按住「看没有这条线」比一比；「↺ 回到规划」可以再改。','Hold «without the line» to compare; «↺ Back to planning» to change it.'),
+    'm2.holdAhead':L('👁 按住看大家都知道','👁 按住看大家都知道','👁 Hold: everyone knows'),'m2.holdNothing':L('👁 按住看沒有這條線','👁 按住看没有这条线','👁 Hold: without the line'),
+    'm2.iEst':L('<b>{n}</b>　每天 {p} 人出門<br>開車 <b>{c}</b> · 地鐵 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道這條線 {a} 成','<b>{n}</b>　每天 {p} 人出门<br>开车 <b>{c}</b> · 地铁 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道这条线 {a} 成',
+      '<b>{n}</b>　{p} go out a day<br><b>{c}</b> drive · <b>{m}</b> metro · {w} walk · {nb} stay nearby<br>{a}/10 know the line'),
+    'm2.iTrip':L('去{d}：開車/走路 {car} 格 · 地鐵 {m} 格 → {t} 成坐','去{d}：开车/走路 {car} 格 · 地铁 {m} 格 → {t} 成坐','to {d}: car/foot {car} · metro {m} → {t}/10 ride'),
+    'm2.iDest':L('<b>{n}</b><br>每天來 <b>{g}</b> 人（開通前 {b}）· 坐地鐵來 {m} · 順路來 {o}','<b>{n}</b><br>每天来 <b>{g}</b> 人（开通前 {b}）· 坐地铁来 {m} · 顺路来 {o}','<b>{n}</b><br><b>{g}</b> come a day (was {b}) · {m} by metro · {o} going on'),
+    'm2.iStation':L('第 {n} 站 · 這一段每天 {l} 人 / 能載 {c}','第 {n} 站 · 这一段每天 {l} 人 / 能载 {c}','station {n} · {l} a day on this section / room for {c}'),
+    'm.legend':L('<span><i class="lk car2"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圓環＝幾成開車／地鐵／走路，外圈綠＝幾成人知道這條線</span>',
+      '<span><i class="lk car2"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路，外圈绿＝几成人知道这条线</span>',
+      '<span><i class="lk car2"></i>car</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot; green outer arc = tenths who know the line</span>')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

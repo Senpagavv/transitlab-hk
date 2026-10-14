@@ -28,7 +28,7 @@
       <div class="row"><b id="yearNum"></b><div class="sp"></div><button class="btn btn-p" id="run"></button></div>
       <div class="ychart" id="yChart"></div>
       <div class="note" id="yNote"></div>
-      <div class="row yrow"><button class="btn btn-sm" id="pause"></button><button class="btn btn-sm" id="rewind" data-i18n="m.rewind">↺ 回到規劃</button></div>
+      <div class="row yrow"><button class="btn btn-sm" id="pause"></button><button class="btn btn-sm" id="rewind" data-i18n="m.rewind">↺ 回到規劃</button><button class="btn btn-sm hold" id="hold"></button></div>
     </div>
 
     <div class="box money" id="planBox">
@@ -42,13 +42,14 @@
       <p class="hint" id="toolHint"></p>
     </div>
 
-    <div class="lbl" style="margin-top:14px" data-i18n="m.rulesH">How it works · 怎麼算</div>
-    <ol class="mini" id="rules"></ol>
+    <details class="rulesd"><summary data-i18n="m.rulesH">How it works · 怎麼算</summary><ol class="mini" id="rules"></ol></details>
   </aside>
 
   <div class="play">
     <div class="mapplate">
-      <svg id="board" viewBox="0 0 1000 620" role="group"></svg>
+      <svg id="board" viewBox="0 0 1000 620" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
+      <div class="headline" id="headline" aria-live="polite"><b id="hlMain"></b><span id="hlSub"></span></div>
+      <div class="infocard" id="infoCard"></div>
       <div class="maplegend" id="mapLegend"></div>
       <div class="yearcard" id="yearCard" aria-live="polite"></div>
     </div>
