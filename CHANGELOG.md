@@ -6,6 +6,11 @@
 
 ## 2026-10-14
 
+### 19:43 · `待补` 第五关 AI 真调用：30 句测试 30/30 / Mode 5 AI live test: 30 of 30
+- **改了什么**：`backend/feeder_ai.py` 提示词与校验：玩家说了具体人数时填 `add`（绝对数，程序按真实人口换算），不再让 AI 自己估百分比；活动 / 演唱会 / 围观算「去那里的吸引力」而不是住的人；虚构大事件（外星人、殭屍）翻译成人流变化照做；香港以外的地方用最像的一片并说明；只有完全无关或教人破坏时才拒绝。测试加一项（17 项）；`ai/test-sentences.json` 第 1 句接受九龍東或啟德。
+- **为什么**：发起人填好 DeepSeek 密钥后首次真跑 27/30：「多五万人」被当成 +100%、殭屍和东京涩谷被拒、演唱会被当成新住户。
+- **验证**：`deepseek-chat` 30 句 30/30 符合预期，中位 3.1 秒（结果在 `data/cache/ai-test/`，不入库）；17 项单元测试通过。已知：要求简体时标题和故事有时仍是繁体（显示无碍）。
+
 ### 19:32 · `e03d5e1` 第五关的 AI：一句话 → 关卡请求（DeepSeek 后台接口 + 页面调用 + 离线示例）/ Mode 5 AI: sentence → level request
 - **改了什么**：新增 `backend/feeder_ai.py`（`/api/feeder/ai/status | level | comment`：提示词只给菜单——20 个片区、四种时段、最多 4 条改动及上下限；回答先校验、不合格自动重问一次；无关或有害的话拒绝；点评里的数字必须来自游戏数据，程序核对；密钥只在后台读 `.env`）并挂到 `backend/main.py`，后台同时在 `/feeder/` 提供 v7 页面（和 AI 同源）；`game-feeder/v7/ai/client.js`（问 AI → 切关卡 → 把问题回给 AI 再试；没有后台 / 密钥时用 5 个现成示例）、`ai/test-sentences.json`（30 句固定测试）、`game-feeder/tools/ai-test/run_sentences.py`；`v7/README.md` 加说明。
 - **为什么**：第五关全港沙盘按一句话生成关卡；Codex 做底板、沙盘、切关卡（任务 51–53），Claude 做 AI 这一段。

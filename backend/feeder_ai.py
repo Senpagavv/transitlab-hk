@@ -52,6 +52,8 @@ AREA_KEYS = {a["key"] for a in AREAS}
 PERIODS = {"am": "平日早高峰 08–09", "pm": "平日晚高峰 18–19", "day": "平日日常（白天平峰）", "holiday": "節假日大流量"}
 MODES = {3}                                   # mode 3 (metro + roads) first; 2 and 4 once the cutter supports them
 WHAT = {"people": (-50, 150), "jobs": (-50, 150), "road_cap": (-60, 50)}   # allowed % change
+ADD = {"people": (-200_000, 300_000), "jobs": (-200_000, 300_000)}           # or an absolute number (the code turns it
+                                                                               # into a % with the real population / jobs)
 MAX_CHANGES, MAX_YEAR = 4, 8
 LANGS = {"zh-Hant", "zh-Hans", "en"}
 
@@ -74,20 +76,25 @@ def system_prompt(lang: str = "zh-Hans", names: dict[str, list[str]] | None = No
   说上班 / 早上 → am；下班 / 晚上 → pm；周末 / 节日 / 假期 / 演唱会 / 烟花 → holiday；白天购物 / 办事 → day；没说就用 am。
 规则 mode：现在只有 3（地铁 + 路会塞）。
 
-改动 changes：0 到 {MAX_CHANGES} 条，每条 {{"place": 地名, "what": "people"|"jobs"|"road_cap", "pct": 整数, "by_year": 整数(可省)}}
-- place：这一片里的真实地名（屋苑、商业区、路名），用繁體中文；有「可选地名」时只能从里面选。不要写坐标。
-- what：people＝住的人；jobs＝岗位 / 去那里的吸引力；road_cap＝这条路能过的车（封一条线、修路、扩路）。
-- pct 范围：people、jobs −50 到 +150；road_cap −60 到 +50。
+改动 changes：0 到 {MAX_CHANGES} 条，每条 {{"place": 地名, "what": "people"|"jobs"|"road_cap", "pct": 整数, "add": 整数, "by_year": 整数}}（pct 和 add 二选一，by_year 可省）
+- place：这一片里的真实地名（屋苑、商业区、场馆、路名），用繁體中文；有「可选地名」时只能从里面选。不要写坐标。
+- what：people＝住在那里的人（新屋苑、入伙、搬走、撤离）；jobs＝去那里的吸引力（岗位、写字楼、商场、活动、演唱会、景点、围观）；road_cap＝这条路能过的车（封一条线、维修、扩路）。
+- 玩家说了具体人数（「多五万人」「十万个工作」）→ 用 add 填这个数（负数＝减少），不要自己换算百分比；没说具体人数 → 用 pct。
+- pct 范围：people、jobs −50 到 +150；road_cap −60 到 +50。add 范围：−200000 到 +300000。
   规模参考：小 +10～20、中 +30～50、大 +60～100、全城级 +100～150；封一条线 −30～−50；扩路 +20～+50。
 - by_year：「几年后」「陆续入伙」「慢慢」这类说法才写，1～{MAX_YEAR}；马上发生就不写。
 
-文字（用{out_lang}）：
+文字（title、story、note 一律用{out_lang}，只有 place 用繁體中文）：
 - title：关卡名，12 个字以内。
 - story：两句话，每句 40 个字以内，第一句说发生了什么，第二句说玩家要做什么；你选的规模是假设，要写「假设……」。除了你选的 pct，不要编别的数字。
 - note：一句话，说你把哪些地方 / 规模理解成了什么（给玩家核对）。
 
+## 虚构和香港以外
+- 虚构的大事件（外星人、殭屍、怪兽、超级英雄……）照样做：把它翻译成人流变化（撤离＝那里 people 减少、某处 jobs 增加；围观＝那里 jobs 增加），在 story 里保留故事味道。
+- 香港以外的地方（东京、深圳……）：选香港最像的一片做，在 note 里说「香港没有 X，用最像的 Y」。
+
 ## 不做的
-跟交通、城市、人流无关的话，或者伤害他人的内容：只输出 {{"refuse": "一句原因"}}。
+只有两种情况输出 {{"refuse": "一句原因"}}：跟交通、城市、人流完全无关（写诗、股市、天气）；或者教人伤害他人、破坏设施。
 
 ## 输出格式（json）
 {{"area": "kowloon-east", "period": "am", "mode": 3, "changes": [{{"place": "啟德", "what": "people", "pct": 50, "by_year": 4}}], "title": "…", "story": ["…", "…"], "note": "…"}}"""
@@ -130,18 +137,30 @@ def validate(obj: Any, names: dict[str, list[str]] | None = None) -> tuple[dict 
         if allowed is not None and place not in allowed:
             problems.append({"code": "place_unknown", "message": f"{place} is not a place in {area}"})
             continue
-        lo, hi = WHAT[c["what"]]
-        try:
-            pct = int(round(float(c.get("pct", 0))))
-        except (TypeError, ValueError):
-            problems.append({"code": "change_bad", "message": f"pct of {place} is not a number"})
-            continue
-        if not lo <= pct <= hi:
-            notes.append(f"{place} {c['what']} {pct}% → {max(lo, min(hi, pct))}%")
-            pct = max(lo, min(hi, pct))
-        if pct == 0:
-            continue
-        ch = {"place": place, "what": c["what"], "pct": pct}
+        if c.get("add") not in (None, "", 0) and c["what"] in ADD:
+            try:
+                add = int(round(float(c["add"])))
+            except (TypeError, ValueError):
+                problems.append({"code": "change_bad", "message": f"add of {place} is not a number"})
+                continue
+            lo, hi = ADD[c["what"]]
+            if not lo <= add <= hi:
+                notes.append(f"{place} {c['what']} {add:+d} → {max(lo, min(hi, add)):+d}")
+                add = max(lo, min(hi, add))
+            ch = {"place": place, "what": c["what"], "add": add}
+        else:
+            lo, hi = WHAT[c["what"]]
+            try:
+                pct = int(round(float(c.get("pct", 0))))
+            except (TypeError, ValueError):
+                problems.append({"code": "change_bad", "message": f"pct of {place} is not a number"})
+                continue
+            if not lo <= pct <= hi:
+                notes.append(f"{place} {c['what']} {pct}% → {max(lo, min(hi, pct))}%")
+                pct = max(lo, min(hi, pct))
+            if pct == 0:
+                continue
+            ch = {"place": place, "what": c["what"], "pct": pct}
         if c.get("by_year") not in (None, "", 0):
             try:
                 ch["by_year"] = max(1, min(MAX_YEAR, int(c["by_year"])))

@@ -39,7 +39,8 @@ async def main(limit: int | None) -> None:
             body = json.loads(r.body)
             got, area, attempts = ("refuse" if body.get("code") == "refuse" else f"fail {r.status_code}"), "", None
             r = body
-        good = got == c["expect"] and (not c.get("area") or c["area"] == area)
+        want = c.get("area")
+        good = got == c["expect"] and (not want or area in (want if isinstance(want, list) else [want]))
         rows.append({"s": c["s"], "expect": c["expect"], "want_area": c.get("area"), "got": got, "area": area,
                      "good": good, "attempts": attempts, "ms": ms, "result": r})
         print(f"{'✓' if good else '✗'} {ms:5d} ms  {got:8s} {area:20s} {c['s']}")

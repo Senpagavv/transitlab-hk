@@ -48,6 +48,13 @@ def test_validate_problems(bad, code):
     assert req is None and problems[0]["code"] == code
 
 
+def test_validate_absolute_numbers():
+    req, problems, notes = feeder_ai.validate({**GOOD, "changes": [{"place": "啟德", "what": "people", "add": 50000},
+                                                                  {"place": "觀塘", "what": "jobs", "add": 900000}]})
+    assert problems == [] and req["changes"][0] == {"place": "啟德", "what": "people", "add": 50000}
+    assert req["changes"][1]["add"] == 300000 and notes
+
+
 def test_validate_names_from_the_grid():
     names = {"kowloon-east": ["啟德", "觀塘"]}
     assert feeder_ai.validate(GOOD, names)[0]

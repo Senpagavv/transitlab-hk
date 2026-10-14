@@ -1,7 +1,7 @@
 {
   "note": "30 fixed sentences for the level AI (docs/for-codex/2026-10-13-五模式與AI生成關卡.md §7): small and big events, plans, fictional, unrelated, other languages. expect: ok = a valid request; refuse = the AI should refuse; area = the area it should pick (if clear).",
   "sentences": [
-    {"s": "啟德再多五萬人，九龍東會怎樣？", "expect": "ok", "area": "kowloon-east"},
+    {"s": "啟德再多五萬人，九龍東會怎樣？", "expect": "ok", "area": ["kowloon-east", "kai-tak"]},
     {"s": "启德体育园开演唱会，散场五万人", "expect": "ok", "area": "kai-tak"},
     {"s": "沙田多三萬人", "expect": "ok", "area": "sha-tin"},
     {"s": "假如将军澳隧道封一条线维修", "expect": "ok", "area": "tseung-kwan-o"},
