@@ -6,7 +6,7 @@
 
 ## 2026-10-14
 
-### 19:32 · `待补` 第五关的 AI：一句话 → 关卡请求（DeepSeek 后台接口 + 页面调用 + 离线示例）/ Mode 5 AI: sentence → level request
+### 19:32 · `e03d5e1` 第五关的 AI：一句话 → 关卡请求（DeepSeek 后台接口 + 页面调用 + 离线示例）/ Mode 5 AI: sentence → level request
 - **改了什么**：新增 `backend/feeder_ai.py`（`/api/feeder/ai/status | level | comment`：提示词只给菜单——20 个片区、四种时段、最多 4 条改动及上下限；回答先校验、不合格自动重问一次；无关或有害的话拒绝；点评里的数字必须来自游戏数据，程序核对；密钥只在后台读 `.env`）并挂到 `backend/main.py`，后台同时在 `/feeder/` 提供 v7 页面（和 AI 同源）；`game-feeder/v7/ai/client.js`（问 AI → 切关卡 → 把问题回给 AI 再试；没有后台 / 密钥时用 5 个现成示例）、`ai/test-sentences.json`（30 句固定测试）、`game-feeder/tools/ai-test/run_sentences.py`；`v7/README.md` 加说明。
 - **为什么**：第五关全港沙盘按一句话生成关卡；Codex 做底板、沙盘、切关卡（任务 51–53），Claude 做 AI 这一段。
 - **验证**：`backend/test_feeder_ai.py` 16 项通过（假回复、不联网）；整个后台能载入，`/api/feeder/ai/status` 正常、没密钥时 `/level` 回 503；页面端离线示例能对上、5 个示例都过后台校验。本机 `.env` 的 DeepSeek 密钥是空的，真调用待填密钥后跑 30 句测试。
