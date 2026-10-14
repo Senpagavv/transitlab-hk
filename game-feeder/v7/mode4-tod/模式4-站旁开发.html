@@ -1397,6 +1397,9 @@ dialog.intro .row{margin-top:16px}
       const title = document.querySelector('#ivTitle') || card.querySelector('h2'), body = document.querySelector('#ivBody');
       if (title) title.textContent = pick(pack.title);
       if (body && pack.story) { body.replaceChildren(); for (const line of pack.story) { const li = document.createElement('li'); li.textContent = pick(line); body.append(li); } }
+      // the page's own heading and lede name the built-in map; a pack has its own
+      document.querySelectorAll('h1 .h1tc').forEach(el => { el.textContent = pick(pack.title); });
+      const lede = document.querySelector('[data-i18n-html$=".lede"] .tcb, [data-i18n$=".lede"] .tcb'); if (lede && pack.story && pack.story[0]) lede.textContent = pick(pack.story[0]);
     };
     paint(); root.addEventListener('tl:lang', () => setTimeout(paint, 0));
   };

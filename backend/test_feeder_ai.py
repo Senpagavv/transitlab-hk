@@ -63,7 +63,7 @@ def test_validate_names_from_the_grid():
 
 
 def test_prompt_lists_every_area_and_asks_for_json():
-    p = feeder_ai.system_prompt("zh-Hant", {"sha-tin": ["沙田第一城"]})
+    p = feeder_ai.system_prompt("zh-Hant", {"sha-tin-tai-wai": ["沙田第一城"]})
     assert all(a["key"] in p for a in feeder_ai.AREAS) and "json" in p.lower() and "沙田第一城" in p and "繁體中文" in p
 
 

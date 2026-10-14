@@ -11,10 +11,10 @@
     {keys:['啟德','启德','kai tak'],request:{area:'kowloon-east',period:'am',mode:3,
       changes:[{place:'啟德',what:'people',pct:50,by_year:4}],
       title:'啟德再多五萬人',story:['假設啟德新屋苑在四年內陸續入伙，住的人多一半。','畫一條線，別讓觀塘繞道塞死。'],note:'啟德住的人 +50%，四年內'}},
-    {keys:['沙田','sha tin','第一城'],request:{area:'sha-tin',period:'am',mode:3,
+    {keys:['沙田','sha tin','第一城'],request:{area:'sha-tin-tai-wai',period:'am',mode:3,
       changes:[{place:'沙田',what:'people',pct:30}],
       title:'沙田多三萬人',story:['假設沙田一帶多了三成住的人。','早上大家都往九龍去，路和地鐵頂得住嗎？'],note:'沙田住的人 +30%'}},
-    {keys:['銅鑼灣','铜锣湾','周末','假日','節日','节日','causeway'],request:{area:'causeway-bay',period:'holiday',mode:3,
+    {keys:['銅鑼灣','铜锣湾','周末','假日','節日','节日','causeway'],request:{area:'causeway-bay-wan-chai',period:'holiday',mode:3,
       changes:[{place:'銅鑼灣',what:'jobs',pct:60}],
       title:'銅鑼灣假日人潮',story:['假設假日去銅鑼灣購物的人多了六成。','人潮湧來，怎樣不讓軒尼詩道塞住？'],note:'銅鑼灣吸引力 +60%，節假日'}},
     {keys:['隧道','封','將軍澳','将军澳','tko'],request:{area:'tseung-kwan-o',period:'am',mode:3,
@@ -35,7 +35,8 @@
     return j;}
   async function status(){try{return await call('/status');}catch(e){return{ready:false,offline:e.code==='offline'};}}
   // sentence → {request, level, report, source:'ai'|'example', tries, notes}
-  //   build(request) → {level, report, problems}  (problems: [{code, message}] from the level builder; [] = playable)
+  //   build(request) → {level, report, problems} or a promise of it (problems: [{code, message}] from the level builder;
+  //   [] = playable)
   //   names: {areaKey: [place names inside it]} from the Hong Kong grid, so the AI picks real names
   async function generate(sentence,{lang='zh-Hans',names=null,build,onStep=()=>{},tries=2}={}){
     let feedback=null,last=null;
@@ -47,7 +48,7 @@
         request=pickExample(sentence);source='example';
         if(!request){const err=new Error(e.code==='offline'||e.code==='no_key'?'AI 暂时用不了，也没有对得上的示例':e.message);err.code=e.code;throw err;}}
       onStep({step:'build',try:t,request,source});
-      const out=build?build(request):{level:null,report:null,problems:[]};
+      const out=build?await build(request):{level:null,report:null,problems:[]};
       last={...out,request,source,tries:t,notes};
       if(!out.problems||!out.problems.length||source==='example')return last;
       feedback=out.problems.map(p=>({code:p.code,message:p.message}));onStep({step:'retry',try:t,problems:feedback});}
