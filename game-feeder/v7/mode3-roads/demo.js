@@ -117,9 +117,10 @@
     if(!live())return;
     // ⑤ open: the years play
     say(t('demo.open',{s:Math.round(P.aware.start*10)}));await sleep(1200);if(!live())return;
-    api.go();let seen=0;
+    api.go();let seen=0,phaseActionsStarted=false;
     watch=setInterval(()=>{if(!live()){clearInterval(watch);return;}const p=api.plan,l=p.log.at(-1);
       if(p.year>seen&&l){seen=p.year;say(t('demo.year',{y:l.year,j:Math.round(l.jam),n:Math.round(l.jam0),c:Math.round(l.drivers),r:Math.round(l.onNew),t:Math.round(p.total)}));}
+      if(p.phase===2&&p.year===4&&!p.phase2Committed&&!phaseActionsStarted){phaseActionsStarted=true;(async()=>{say(t('r3.phase2Map',{b:P.phase2Budget}));await sleep(1200);for(const a of plan.phase2||[]){if(!live())return;if(a.type==='extend')api.extend(a.cell);else if(a.type==='station')api.station(a.cell);else if(a.type==='train')api.train();await sleep(550);}if(live())api.continue();})();}
       if(p.done){clearInterval(watch);say(t('demo.done',{t:Math.round(p.total),tier:tierName(k),n:pl.tiers[j]}));stopDemo(true);}},250);
   }
   window.addEventListener('tl:lang',texts);

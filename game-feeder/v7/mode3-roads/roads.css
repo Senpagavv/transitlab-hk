@@ -29,3 +29,16 @@
 .station-button{--rc:var(--s-metro)}
 .legend i.lk.newline{width:14px;height:5px;background:var(--s-metro)}
 .legend i.lk.mtr{width:14px;height:5px;background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
+
+
+.layers{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;padding-top:7px;border-top:1px solid var(--s-line);font-size:11px;color:var(--s-ink2)}
+.layers label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}.layers input{accent-color:var(--s-accent)}
+.phasebudget{margin:0 0 6px;padding:4px 7px;border-radius:5px;background:var(--s-soft);font-size:11px;color:var(--s-ink3)}
+.rd{cursor:pointer;border-radius:4px}.rd:hover,.rd.selected{background:var(--s-soft)}
+.road-detail{padding:8px 4px 10px;border-top:1px solid var(--s-line);font-size:11.5px;color:var(--s-ink2)}
+.road-detail p{margin:4px 0}.road-detail ol{margin:3px 0 7px;padding-left:22px}.road-detail li{padding:2px 0}
+.road-detail li b{float:right;font-family:var(--s-mono);font-weight:500}
+.roadspark{display:block;width:100%;height:42px;margin-top:5px;overflow:visible}
+
+@keyframes growth-pop{0%{opacity:.8;transform:scale(.65)}65%{opacity:.2;transform:scale(1.18)}100%{opacity:0;transform:scale(1.35)}}
+.growth-flash{transform-box:fill-box;transform-origin:center;animation:growth-pop 1.5s ease-out forwards}

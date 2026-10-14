@@ -616,7 +616,19 @@ dialog.intro .row{margin-top:16px}
 .station-button{--rc:var(--s-metro)}
 .legend i.lk.newline{width:14px;height:5px;background:var(--s-metro)}
 .legend i.lk.mtr{width:14px;height:5px;background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
-</style></head><body class="entered">
+
+
+.layers{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;padding-top:7px;border-top:1px solid var(--s-line);font-size:11px;color:var(--s-ink2)}
+.layers label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}.layers input{accent-color:var(--s-accent)}
+.phasebudget{margin:0 0 6px;padding:4px 7px;border-radius:5px;background:var(--s-soft);font-size:11px;color:var(--s-ink3)}
+.rd{cursor:pointer;border-radius:4px}.rd:hover,.rd.selected{background:var(--s-soft)}
+.road-detail{padding:8px 4px 10px;border-top:1px solid var(--s-line);font-size:11.5px;color:var(--s-ink2)}
+.road-detail p{margin:4px 0}.road-detail ol{margin:3px 0 7px;padding-left:22px}.road-detail li{padding:2px 0}
+.road-detail li b{float:right;font-family:var(--s-mono);font-weight:500}
+.roadspark{display:block;width:100%;height:42px;margin-top:5px;overflow:visible}
+
+@keyframes growth-pop{0%{opacity:.8;transform:scale(.65)}65%{opacity:.2;transform:scale(1.18)}100%{opacity:0;transform:scale(1.35)}}
+.growth-flash{transform-box:fill-box;transform-origin:center;animation:growth-pop 1.5s ease-out forwards}</style></head><body class="entered">
 
 <header id="topbar">
   <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
@@ -709,15 +721,15 @@ dialog.intro .row{margin-top:16px}
     // zones: 啟德站一帶 286.2 pop 84,141 (+180%); 牛頭角 291.x/294.x ≈ 116k; 順利·安泰 292.x ≈ 72k (+ 安達臣道 ≈ 25k);
     // 秀茂坪·寶達·安達 293S.x ≈ 109k (+21%); 藍田 297.x/290.1 ≈ 120k; 將軍澳 836–839 ≈ 300k (part of it comes this way)
     origins:[
-      {name:'啟德',hans:'启德',cell:[2,4],house:[-1,0],people:44,tag:'new'},
+      {name:'啟德',hans:'启德',cell:[2,4],house:[-1,0],people:24,grow:[[4,44],[8,54]],tag:'new'},
       {name:'牛頭角',hans:'牛头角',cell:[5,4],house:[0,-1],people:50},
-      {name:'順利·安達臣道',hans:'顺利·安达臣道',short:'順利',shortHans:'顺利',cell:[7,2],house:[0,-1],people:48,tag:'new'},
+      {name:'順利·安達臣道',hans:'顺利·安达臣道',short:'順利',shortHans:'顺利',cell:[7,2],house:[0,-1],people:30,grow:[[5,48],[8,110]],tag:'new'},
       {name:'秀茂坪',hans:'秀茂坪',cell:[9,5],house:[1,0],people:56},
       {name:'藍田',hans:'蓝田',cell:[9,8],house:[1,0],people:52},
-      {name:'將軍澳',hans:'将军澳',cell:[13,7],house:[1,0],people:70}],
+      {name:'將軍澳',hans:'将军澳',cell:[13,7],house:[1,0],people:70,grow:[[6,80],[8,85]]}],
     // 觀塘站一帶 295: jobs 151,391, office 1.65 M m²; 九龍灣站一帶 280.1: jobs 86,552, office 1.14 M m²
     destinations:[
-      {name:'觀塘商貿區',hans:'观塘商贸区',short:'觀塘',shortHans:'观塘',kind:'jobs',cell:[6,7],house:[0,1],attraction:28,carExtra:4},
+      {name:'觀塘商貿區',hans:'观塘商贸区',short:'觀塘',shortHans:'观塘',kind:'jobs',cell:[6,7],house:[0,1],attraction:26,grow:[[6,30],[8,32]],carExtra:4},
       {name:'九龍灣商貿區',hans:'九龙湾商贸区',short:'九龍灣',shortHans:'九龙湾',kind:'town',cell:[3,6],house:[-1,0],attraction:24,carExtra:3}],
     // AM peak v/c (max on the road in this box): 觀塘繞道 1.57, 觀塘道 1.17, 清水灣道 2.35, 將軍澳隧道公路 0.89 (將軍澳道 1.15),
     // 將藍公路 1.52, 寶琳路 1.22
@@ -735,8 +747,8 @@ dialog.intro .row{margin-top:16px}
       {name:'將軍澳綫',hans:'将军澳线',color:'#7D499D',via:[[8,9],[12,9],[12,4]],stations:[[8,9],[11,9],[12,8],[12,5]],names:['油塘','調景嶺','將軍澳','寶琳'],namesHans:['油塘','调景岭','将军澳','宝琳'],trains:3}],
     // decoration: the harbour
     water:[[0,6],[1,6],[0,7],[1,7],[2,7],[0,8],[1,8],[2,8],[0,9],[1,9],[2,9],[3,9],[0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[0,11],[1,11],[2,11],[3,11],[4,11],[5,11],[6,11],[7,11]],
-    walkPer:3,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:4,aware:{start:.2,spread:2},nearby:10,stay:40,learn:.3,
-    tiers:[1500,2600,3600]};
+    walkPer:3,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:20,phase2Budget:12,years:8,crowdBlocks:4,aware:{start:.2,spread:2},nearby:10,stay:40,learn:.3,
+    tiers:[500,1000,3000]};
   const LEVELS={'m3-1':KE};
   const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m3-1';
   const D={};
@@ -750,200 +762,116 @@ dialog.intro .row{margin-top:16px}
 })(typeof window!=='undefined'?window:globalThis);
 
 </script><script>
-(function(root) {
-  'use strict';
-  const D=typeof module!=='undefined'?require('./data.js'):root.ROADS_DATA;
-  // v7 · mode 3 «roads that jam» (2026-10-14) — mode 2's rules on a real map (Kowloon East), with the roads and the
-  // metro lines already there. Everything is still counted in blocks. Mode 2's rules, unchanged:
-  //   where to go (pull = attraction − blocks, against «nearby»), how to go (blocks saved → tenths by metro), going on
-  //   between the two centres (against «done, home»), only people who know the new line use it, word of mouth,
-  //   crowded sections cost `crowdBlocks` the year after.
-  // New here:
-  //   roads   a car trip follows the roads (a fixed route); every road section takes `cap` cars a day, and every
-  //           section adds (cars ÷ cap)² blocks — full: +1, half again: +2¼.
-  //   drivers learn slowly: the jam they reckon with this year = last year's reckoning + `learn` × (what they met last
-  //           year − last year's reckoning). Fewer cars → the roads clear → driving looks better → some drive again.
-  //   foot    those not on the metro walk the same way: every block walking saves on the car, one in ten walk.
-  //   lines   the lines already there (觀塘綫, 將軍澳綫) everybody knows; changing lines = walk + wait again.
-  //   crowding is learnt the same way: a section that was crowded counts toward `crowdBlocks`, a learnt amount
-  //           (+ `learn` × (crowdBlocks or 0 − last year's)); a trip pays the most it meets, once.
-  // The player adds one line (bought once, as in mode 2). Score: the jam taken off the roads — each year, «do nothing»'s
-  // jam minus this year's, added up over the years; jam = Σ over road sections of cars × extra blocks.
-  const P={walkPer:2,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:30,years:8,crowdBlocks:4,
-    aware:{start:.2,spread:2},nearby:10,stay:40,learn:.5,target:0,highScore:0,masterScore:0};
-  const NUM=['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby','stay','learn'];
-  const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
-  const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
-  const adj=(a,b)=>walk(a,b)===1;
-  // a polyline of waypoints → cells (each leg horizontal first, then vertical)
-  function expand(via){const out=[via[0].slice()];
-    for(let j=1;j<via.length;j++){let c=out.at(-1).slice();const t=via[j];
-      while(c[0]!==t[0]){c=[c[0]+Math.sign(t[0]-c[0]),c[1]];out.push(c);}
-      while(c[1]!==t[1]){c=[c[0],c[1]+Math.sign(t[1]-c[1])];out.push(c);}}
-    return out;}
-  const G={};   // derived from the level: road sections, car routes, the lines already there, «do nothing»
-  /* ------------------------------------------------------------------ roads */
-  function buildRoads(){
-    const sec=new Map(),nodes=new Map();G.sections=[];
-    for(const r of D.roads){const cells=expand(r.via);
-      for(let j=1;j<cells.length;j++){const a=cells[j-1],b=cells[j],k=[key(a),key(b)].sort().join('|');
-        if(!sec.has(k)){const s={id:G.sections.length,a,b,cap:r.cap,roads:[r.name]};sec.set(k,s);G.sections.push(s);}
-        else{const s=sec.get(k);s.cap=Math.max(s.cap,r.cap);if(!s.roads.includes(r.name))s.roads.push(r.name);}
-        for(const [x,y] of [[a,b],[b,a]]){if(!nodes.has(key(x)))nodes.set(key(x),{cell:x,out:[]});nodes.get(key(x)).out.push({to:key(y),s:sec.get(k).id});}}}
-    G.roadNodes=nodes;
-  }
-  // a car trip: drive the local streets to a road (1 a cell, at most `reach` = 1 cell), along the roads (1 a section),
-  // off to the destination; the shortest such route, fixed for the level
-  function carRoute(o,d,reach=1){
-    const dist=new Map(),prev=new Map(),q=[];
-    for(const [k,n] of G.roadNodes){const w=walk(o,n.cell);if(w<=reach){dist.set(k,w);q.push(k);}}
-    if(!q.length)return{local:walk(o,d),sections:[]};
-    while(q.length){q.sort((a,b)=>dist.get(a)-dist.get(b));const k=q.shift(),n=G.roadNodes.get(k);
-      for(const e of n.out){const v=dist.get(k)+1;if(!dist.has(e.to)||v<dist.get(e.to)){dist.set(e.to,v);prev.set(e.to,{k,s:e.s});if(!q.includes(e.to))q.push(e.to);}}}
-    let best=null;for(const [k,n] of G.roadNodes){const w=walk(n.cell,d);if(w>reach||!dist.has(k))continue;const v=dist.get(k)+w;if(!best||v<best.v)best={k,v,w};}
-    if(!best)return{local:walk(o,d),sections:[]};
-    const sections=[];let k=best.k;while(prev.has(k)){const p=prev.get(k);sections.unshift(p.s);k=p.k;}
-    return{local:best.v-sections.length,sections};
-  }
-  /* ------------------------------------------------------------------ metro networks */
-  // the lines: the ones already there (data) and, when it has 2 stations, the player's
-  function network(extra){
-    const lines=[...G.lines,...(extra&&extra.stations.length>=2?[extra]:[])],nodes=[];
-    lines.forEach((l,li)=>{l.stations.map(s=>({cell:s,idx:l.cells.findIndex(c=>same(c,s))})).filter(s=>s.idx>=0).sort((a,b)=>a.idx-b.idx)
-      .forEach(s=>nodes.push({li,idx:s.idx,cell:s.cell,out:[]}));});
-    nodes.forEach((n,i)=>nodes.forEach((m,j)=>{if(i===j)return;
-      if(n.li===m.li){const own=nodes.filter(x=>x.li===n.li),a=own.indexOf(n),b=own.indexOf(m);if(Math.abs(a-b)===1)n.out.push({to:j,cost:1,ride:true});}
-      else if(walk(n.cell,m.cell)<=1)n.out.push({to:j,cost:P.walkPer*walk(n.cell,m.cell)+P.wait-1,ride:false});}));
-    return{lines,nodes};
-  }
-  // the quickest metro trip o → d: walk to a station + (wait − 1) + 1 a station hopped + [walk + (wait − 1) to change]
-  // + walk from the station  (= walk + wait + stations passed + walk on one line); at least one ride
-  function metroTrip(net,o,d,crowded){
-    const N=net.nodes.length;if(!N)return null;
-    const dist=[new Array(N).fill(Infinity),new Array(N).fill(Infinity)],prev=[new Array(N).fill(null),new Array(N).fill(null)],done=[new Array(N).fill(false),new Array(N).fill(false)];
-    net.nodes.forEach((n,i)=>{dist[0][i]=P.walkPer*walk(o,n.cell)+P.wait-1;});
-    for(;;){let bi=-1,bf=0,bv=Infinity;for(let f=0;f<2;f++)for(let i=0;i<N;i++)if(!done[f][i]&&dist[f][i]<bv){bv=dist[f][i];bi=i;bf=f;}
-      if(bi<0)break;done[bf][bi]=true;
-      for(const e of net.nodes[bi].out){if(!e.ride&&bf===0)continue;const v=bv+e.cost;if(v<dist[1][e.to]){dist[1][e.to]=v;prev[1][e.to]={i:bi,f:bf};}}}
-    let best=null;net.nodes.forEach((n,i)=>{const v=dist[1][i]+P.walkPer*walk(n.cell,d);if(v<Infinity&&(!best||v<best.v))best={i,v};});
-    if(!best)return null;
-    const path=[];let s={i:best.i,f:1};while(s){path.unshift(s.i);s=prev[s.f][s.i];}
-    const legs=[];for(let j=1;j<path.length;j++){const a=net.nodes[path[j-1]],b=net.nodes[path[j]];if(a.li!==b.li)continue;
-      const last=legs.at(-1);if(last&&last.li===a.li&&last.to===a.idx)last.to=b.idx;else legs.push({li:a.li,from:a.idx,to:b.idx});}
-    let crowd=0;for(const l of legs){const name=net.lines[l.li].name;for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++)crowd=Math.max(crowd,(crowded&&crowded[name]&&crowded[name][j])||0);}
-    const first=net.nodes[path[0]],last=net.nodes[path.at(-1)];
-    return{blocks:best.v+crowd,crowd,legs,from:first.cell,to:last.cell,walkA:walk(o,first.cell),walkB:walk(last.cell,d),changes:legs.length-1,
-      usesNew:legs.some(l=>net.lines[l.li].isNew),lines:legs.map(l=>net.lines[l.li].name)};
-  }
-  /* ------------------------------------------------------------------ one year */
-  const carExtra=k=>D.destinations[k].carExtra??2;
-  const carBlocks=(route,k,perceived)=>route.local+route.sections.reduce((s,id)=>s+1+perceived[id],0)+carExtra(k);
-  function split(i,blocks){const pulls=D.destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
-    return{pulls,shares:pulls.map(p=>p/all),nearby:P.nearby/all};}
-  function onward(a,b,blocks){const pull=Math.max(0,D.destinations[b].attraction-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
-  // a trip between two places this year: by car (perceived jam), on foot, by the old network, by the network with the new line
-  function legOf(route,k,from,to,netOld,netNew,perceived,crowded){
-    const car=carBlocks(route,k,perceived),foot=P.walkPer*walk(from,to),alt=Math.min(car,foot);
-    const tOld=metroTrip(netOld,from,to,crowded),tNew=netNew?metroTrip(netNew,from,to,crowded):tOld;
-    const mo=tOld?tOld.blocks:Infinity,mn=tNew?tNew.blocks:Infinity,saveOld=Math.max(0,alt-mo),saveNew=Math.max(0,alt-mn);
-    return{car,foot,alt,byFoot:foot<car,walkTenths:Math.min(10,Math.max(0,car-foot)),route,tOld,tNew,trip:tNew,fastOld:Math.min(alt,mo),fastNew:Math.min(alt,mn),
-      tenthsOld:Math.min(10,saveOld),tenthsNew:Math.min(10,saveNew),save:saveNew,tenths:Math.min(10,saveNew)};
-  }
-  function year(plan,aware,perceived,crowded){
-    const lineNew=plan&&plan.stations.length>=2?{name:'new',isNew:true,cells:plan.line,stations:plan.stations,trains:plan.trains}:null;
-    const netOld=G.netOld,netNew=lineNew?network(lineNew):null,nets=netNew||netOld;
-    const roadLoad=new Array(G.sections.length).fill(0),lineLoad={};for(const l of nets.lines)lineLoad[l.name]=new Array(Math.max(0,l.cells.length-1)).fill(0);
-    const ride=(t,n)=>{if(!t||!n)return;for(const l of t.legs){const name=nets.lines[l.li]?.name;const arr=lineLoad[name];if(!arr)continue;for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++)arr[j]+=n;}};
-    const drive=(route,n)=>{if(n>0)for(const id of route.sections)roadLoad[id]+=n;};
-    // map an old-network trip onto the line names of the network in use (same names), so loads add up
-    const pairs=[];if(P.stay>0)D.destinations.forEach((da,a)=>D.destinations.forEach((db,b)=>{if(a===b)return;
-      const L=legOf(G.carDD[a][b],b,da.cell,db.cell,netOld,netNew,perceived,crowded);
-      pairs.push({a,b,k:b,...L,shareNow:onward(a,b,L.fastNew).share,shareBefore:onward(a,b,L.fastOld).share});}));
-    const est=D.origins.map((o,i)=>{
-      const legs=D.destinations.map((d,k)=>legOf(G.carOD[i][k],k,o.cell,d.cell,netOld,netNew,perceived,crowded));
-      const before=split(i,legs.map(l=>l.fastOld)),now=split(i,legs.map(l=>l.fastNew)),a=aware[i],n=o.people;
-      const to=legs.map((L,k)=>{const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k],go=knowGo+dontGo;
-        const mKnow=knowGo*L.tenthsNew/10,mDont=dontGo*L.tenthsOld/10,metro=mKnow+mDont,rest=go-metro;
-        const walkers=rest*L.walkTenths/10,drivers=rest-walkers;ride(L.tNew,mKnow);ride(L.tOld,mDont);drive(L.route,drivers);
-        return{k,...L,knowGo,dontGo,go,metro,onNew:L.tNew&&L.tNew.usesNew?mKnow:0,walkers,drivers,
-          before:G.base?G.base.est[i].to[k].go:go,pull:now.pulls[k]};});
-      const chain=pairs.map(q=>{const x=to[q.a],knowGo=x.knowGo*q.shareNow,dontGo=x.dontGo*q.shareBefore,go=knowGo+dontGo;
-        const mKnow=knowGo*q.tenthsNew/10,mDont=dontGo*q.tenthsOld/10,metro=mKnow+mDont,rest=go-metro;
-        const walkers=rest*q.walkTenths/10,drivers=rest-walkers;ride(q.tNew,mKnow);ride(q.tOld,mDont);drive(q.route,drivers);
-        return{knowGo,dontGo,go,metro,onNew:q.tNew&&q.tNew.usesNew?mKnow:0,drivers,walkers};});
-      const sum=(arr,f)=>arr.reduce((s,x)=>s+x[f],0);
-      const metro=sum(to,'metro')+sum(chain,'metro'),onNew=sum(to,'onNew')+sum(chain,'onNew'),drivers=sum(to,'drivers')+sum(chain,'drivers');
-      return{i,n,aware:a,to,chain,nearby:n*(a*now.nearby+(1-a)*before.nearby),metro,onNew,drivers,share:onNew/n};});
-    const chain=pairs.map((q,j)=>{const s=f=>est.reduce((t,e)=>t+e.chain[j][f],0);
-      return{...q,go:s('go'),metro:s('metro'),onNew:s('onNew'),drivers:s('drivers'),walkers:s('walkers'),before:G.base?G.base.chain[j].go:s('go')};});
-    // roads: this year's jam
-    const extra=roadLoad.map((v,id)=>(v/G.sections[id].cap)**2),jam=roadLoad.reduce((s,v,id)=>s+v*extra[id],0);
-    // lines: load, room, crowding
-    const lines=nets.lines.map(l=>{const cap=l.trains*P.perTrain,load=lineLoad[l.name];return{name:l.name,isNew:!!l.isNew,cap,load,crowded:load.map(v=>v>cap+1e-9)};});
-    const crowdedNext={};for(const l of lines)crowdedNext[l.name]=l.crowded;
-    const into=(k,f)=>chain.filter(q=>q.b===k).reduce((s,q)=>s+q[f],0);
-    const dest=D.destinations.map((d,k)=>({k,go:est.reduce((s,e)=>s+e.to[k].go,0)+into(k,'go'),metro:est.reduce((s,e)=>s+e.to[k].metro,0)+into(k,'metro'),
-      before:G.base?G.base.dest[k].go:0}));
-    const sum=f=>est.reduce((s,e)=>s+e[f],0);
-    return{est,chain,dest,roadLoad,extra,jam,lines,crowded:crowdedNext,riders:sum('metro'),onNew:sum('onNew'),drivers:sum('drivers'),
-      people:D.origins.reduce((s,o)=>s+o.people,0)};
-  }
-  const spread=(y,aware)=>y.est.map((e,i)=>Math.min(1,aware[i]+Math.min(1,P.aware.spread*e.share)*(1-aware[i])));
-  const learnFrom=(perceived,y)=>perceived.map((p,id)=>p+P.learn*(y.extra[id]-p));
-  // the crowding people reckon with, per line section: learnt toward crowdBlocks where it was crowded, toward 0 elsewhere
-  const learnCrowd=(felt,y)=>{const out={};for(const l of y.lines){const was=felt[l.name]||[];out[l.name]=l.crowded.map((c,j)=>{const f=was[j]||0;return f+P.learn*((c?P.crowdBlocks:0)-f);});}return out;};
-  /* ------------------------------------------------------------------ the level */
-  function reset(){
-    for(const k of NUM)if(D[k]!==undefined)P[k]=D[k];if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];
-    buildRoads();
-    G.carOD=D.origins.map(o=>D.destinations.map(d=>carRoute(o.cell,d.cell)));
-    G.carDD=D.destinations.map(a=>D.destinations.map(b=>carRoute(a.cell,b.cell)));
-    G.lines=(D.lines||[]).map(l=>({name:l.name,hans:l.hans,color:l.color,cells:expand(l.via),stations:l.stations,names:l.names,namesHans:l.namesHans,trains:l.trains}));
-    G.netOld=network(null);G.base=null;
-    // «do nothing»: let today's roads settle (drivers learn until the jam they reckon with is the jam they meet)
-    let per=G.sections.map(()=>0),crowd={},y=null;const aware0=D.origins.map(()=>0);
-    for(let it=0;it<300;it++){y=year(null,aware0,per,crowd);const next=learnFrom(per,y);const gap=Math.max(0,...next.map((v,j)=>Math.abs(v-per[j])));per=next;crowd=learnCrowd(crowd,y);if(gap<1e-6&&it>20)break;}
-    G.base={perceived:per,crowded:crowd,...y};G.base=year(null,aware0,per,crowd);G.base.perceived=per;G.base.crowdedStart=crowd;
-    // «do nothing» over the years (the same start, nobody builds): each year's jam, for the score
-    G.doNothing=[];{let p2=per.slice(),c2=crowd;for(let t=0;t<P.years;t++){const y2=year(null,aware0,p2,c2);G.doNothing.push(y2.jam);p2=learnFrom(p2,y2);c2=learnCrowd(c2,y2);}}
-  }
-  class Plan {
-    constructor(){Object.assign(this,{line:[],stations:[],trains:1,money:P.budget});this.rewind();}
-    rewind(){Object.assign(this,{year:0,aware:D.origins.map(()=>P.aware.start),perceived:G.base.perceived.slice(),crowded:JSON.parse(JSON.stringify(G.base.crowdedStart)),log:[],total:0,done:false});}
-    get open(){return this.year>0;}
-    inside(c){return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows;}
-    onLine(c){return this.line.some(x=>same(x,c));}
-    isStation(c){return this.stations.some(x=>same(x,c));}
-    canExtend(c){if(this.open||!this.inside(c)||this.onLine(c)||this.money<P.lineCost)return false;if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
-    extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());this.money-=P.lineCost;return true;}
-    isEnd(c){return this.line.length>0&&(same(c,this.line[0])||same(c,this.line.at(-1)));}
-    canShorten(c){return !this.open&&this.isEnd(c);}
-    shorten(c){if(!this.canShorten(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else this.line.shift();
-      if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;}this.money+=P.lineCost;return true;}
-    canStation(c){return !this.open&&this.onLine(c)&&!this.isStation(c)&&this.money>=P.stationCost;}
-    toggleStation(c){if(this.open)return false;if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;return true;}
-      if(!this.canStation(c))return false;this.stations.push(c.slice());this.money-=P.stationCost;return true;}
-    canTrain(){return !this.open&&this.money>=P.trainCost;}
-    addTrain(){if(!this.canTrain())return false;this.trains++;this.money-=P.trainCost;return true;}
-    canUntrain(){return !this.open&&this.trains>1;}
-    removeTrain(){if(!this.canUntrain())return false;this.trains--;this.money+=P.trainCost;return true;}
-    clear(){if(this.open)return false;Object.assign(this,{line:[],stations:[],trains:1,money:P.budget});return true;}
-    now(){return year(this,this.aware,this.perceived,this.crowded);}
-    // everybody knows the line and the roads have settled: run it on until nothing moves
-    potential(){let per=this.perceived.slice(),crowd=this.crowded,y=null;const all=D.origins.map(()=>1);
-      for(let it=0;it<60;it++){y=year(this,all,per,crowd);per=learnFrom(per,y);crowd=learnCrowd(crowd,y);}return y;}
-    canRun(){return !this.done&&this.stations.length>=2;}
-    runYear(){if(!this.canRun())return null;
-      const y=this.now(),before=this.aware.slice(),jam0=G.doNothing[this.year];this.year++;const saved=jam0-y.jam;this.total+=saved;
-      this.aware=spread(y,this.aware);const perBefore=this.perceived;this.perceived=learnFrom(this.perceived,y);this.crowded=learnCrowd(this.crowded,y);
-      const entry={year:this.year,jam:y.jam,jam0,saved,riders:y.riders,onNew:y.onNew,drivers:y.drivers,before,after:this.aware.slice(),
-        crowdedSections:Object.values(y.crowded).reduce((s,a)=>s+a.filter(Boolean).length,0),dest:y.dest.map(d=>({go:d.go,metro:d.metro,before:d.before}))};
-      this.log.push(entry);if(this.year>=P.years)this.done=true;return{...entry,y,perBefore};}
-    simulate(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));p.rewind();while(!p.done)p.runYear();return p;}
-  }
-  reset();
-  const API={D,P,G,Plan,year,spread,learnFrom,learnCrowd,metroTrip,network,carRoute,carBlocks,split,onward,expand,walk,same,key,adj,reset};
-  if(typeof module!=='undefined')module.exports=API;root.Roads=API;
+(function(root){
+'use strict';
+// v7 · mode 3 «roads that jam» — v2 (2026-10-14, task 49). Mode 2's rules on a real map (Kowloon East), with the roads
+// and the metro lines already there; everything counted in blocks.
+//   mode 2, unchanged  where to go (pull = attraction − blocks, against «nearby»), how to go (blocks saved → tenths by
+//                      metro), going on between the two centres (against «done, home»), only people who know the new
+//                      line use it, word of mouth, crowded sections cost `crowdBlocks` (learnt)
+//   roads              a car trip follows the roads (a fixed route); every section takes `cap` cars and adds
+//                      (cars ÷ cap)² blocks; drivers reckon with last year's reckoning + `learn` × (what they met − it)
+//   foot               those not on the metro walk the same way: every block walking saves on the car, one in ten walk
+// New in v2:
+//   the city grows     origins / destinations may carry grow: [[year, value], …] — people / attraction in year t,
+//                      straight lines between the points (valueAt, peopleAt, attractionAt); «do nothing» grows too
+//   two phases         phase 1 (budget 20) is built in year 0; after year 4 the plan stops, phase 2 adds 12 and may
+//                      only add (extend an end, a station, a train); phase2Actions replays it in simulate()
+//   the cars' account  year(…, accounting) also gives, per section: offRoad = cars without the new line − cars with it
+//                      (same people, reckoning, awareness); rebound = cars this year − cars had drivers kept the
+//                      reckoning of the opening year (those who came back because the road cleared); roadBy = whose cars
+// Score: each year «do nothing»'s jam minus this year's, added up; jam = Σ over sections of cars × extra blocks.
+const D=typeof module!=='undefined'?require('./data.js'):root.ROADS_DATA;
+const P={walkPer:2,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:20,phase2Budget:12,years:8,crowdBlocks:4,aware:{start:.2,spread:2},nearby:10,stay:40,learn:.5,target:0,highScore:0,masterScore:0};
+const NUM=['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','phase2Budget','years','crowdBlocks','nearby','stay','learn'];
+const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1],walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]),adj=(a,b)=>walk(a,b)===1;
+function valueAt(o,f,t){const pts=[[0,Number(o[f]||0)],...(o.grow||[])].sort((a,b)=>a[0]-b[0]);if(t<=pts[0][0])return pts[0][1];
+ for(let j=1;j<pts.length;j++){const a=pts[j-1],b=pts[j];if(t<=b[0])return a[1]+(b[1]-a[1])*(t-a[0])/(b[0]-a[0]);}return pts.at(-1)[1];}
+const peopleAt=(i,t)=>valueAt(D.origins[i],'people',t),attractionAt=(k,t)=>valueAt(D.destinations[k],'attraction',t);
+function expand(v){const out=[v[0].slice()];for(let j=1;j<v.length;j++){let c=out.at(-1).slice(),z=v[j];while(c[0]!==z[0]){c=[c[0]+Math.sign(z[0]-c[0]),c[1]];out.push(c);}while(c[1]!==z[1]){c=[c[0],c[1]+Math.sign(z[1]-c[1])];out.push(c);}}return out;}
+const G={};
+function buildRoads(){const sec=new Map(),nodes=new Map();G.sections=[];for(const r of D.roads){const cells=expand(r.via);for(let j=1;j<cells.length;j++){const a=cells[j-1],b=cells[j],k=[key(a),key(b)].sort().join('|');
+ if(!sec.has(k))sec.set(k,{id:G.sections.length,a,b,cap:r.cap,roads:[r.name]}),G.sections.push(sec.get(k));else{const s=sec.get(k);s.cap=Math.max(s.cap,r.cap);if(!s.roads.includes(r.name))s.roads.push(r.name);}
+ for(const [x,y] of [[a,b],[b,a]]){if(!nodes.has(key(x)))nodes.set(key(x),{cell:x,out:[]});nodes.get(key(x)).out.push({to:key(y),s:sec.get(k).id});}}}G.roadNodes=nodes;}
+function carRoute(o,d,reach=1){const dist=new Map(),prev=new Map(),q=[];for(const [k,n] of G.roadNodes){const w=walk(o,n.cell);if(w<=reach){dist.set(k,w);q.push(k);}}if(!q.length)return{local:walk(o,d),sections:[]};
+ while(q.length){q.sort((a,b)=>dist.get(a)-dist.get(b));const k=q.shift();for(const e of G.roadNodes.get(k).out){const v=dist.get(k)+1;if(!dist.has(e.to)||v<dist.get(e.to)){dist.set(e.to,v);prev.set(e.to,{k,s:e.s});if(!q.includes(e.to))q.push(e.to);}}}
+ let best=null;for(const [k,n] of G.roadNodes){const w=walk(n.cell,d);if(w<=reach&&dist.has(k)&&(!best||dist.get(k)+w<best.v))best={k,v:dist.get(k)+w};}if(!best)return{local:walk(o,d),sections:[]};
+ const sections=[];let k=best.k;while(prev.has(k)){const p=prev.get(k);sections.unshift(p.s);k=p.k;}return{local:best.v-sections.length,sections};}
+function network(extra){const lines=[...G.lines,...(extra&&extra.stations.length>=2?[extra]:[])],nodes=[];
+ lines.forEach((l,li)=>l.stations.map(s=>({cell:s,idx:l.cells.findIndex(c=>same(c,s))})).filter(s=>s.idx>=0).sort((a,b)=>a.idx-b.idx).forEach(s=>nodes.push({li,idx:s.idx,cell:s.cell,out:[]})));
+ nodes.forEach((n,i)=>nodes.forEach((m,j)=>{if(i===j)return;if(n.li===m.li){const own=nodes.filter(x=>x.li===n.li);if(Math.abs(own.indexOf(n)-own.indexOf(m))===1)n.out.push({to:j,cost:1,ride:true});}else if(walk(n.cell,m.cell)<=1)n.out.push({to:j,cost:P.walkPer*walk(n.cell,m.cell)+P.wait-1,ride:false});}));return{lines,nodes};}
+function metroTrip(net,o,d,crowded){const N=net.nodes.length;if(!N)return null;const dist=[Array(N).fill(Infinity),Array(N).fill(Infinity)],prev=[Array(N).fill(null),Array(N).fill(null)],done=[Array(N).fill(false),Array(N).fill(false)];
+ net.nodes.forEach((n,i)=>dist[0][i]=P.walkPer*walk(o,n.cell)+P.wait-1);for(;;){let bi=-1,bf=0,bv=Infinity;for(let f=0;f<2;f++)for(let i=0;i<N;i++)if(!done[f][i]&&dist[f][i]<bv){bi=i;bf=f;bv=dist[f][i];}if(bi<0)break;done[bf][bi]=true;
+ for(const e of net.nodes[bi].out){if(!e.ride&&bf===0)continue;const v=bv+e.cost;if(v<dist[1][e.to]){dist[1][e.to]=v;prev[1][e.to]={i:bi,f:bf};}}}
+ let best=null;net.nodes.forEach((n,i)=>{const v=dist[1][i]+P.walkPer*walk(n.cell,d);if(v<Infinity&&(!best||v<best.v))best={i,v};});if(!best)return null;
+ const path=[];let s={i:best.i,f:1};while(s){path.unshift(s.i);s=prev[s.f][s.i];}const legs=[];for(let j=1;j<path.length;j++){const a=net.nodes[path[j-1]],b=net.nodes[path[j]];if(a.li!==b.li)continue;const last=legs.at(-1);if(last&&last.li===a.li&&last.to===a.idx)last.to=b.idx;else legs.push({li:a.li,from:a.idx,to:b.idx});}
+ let crowd=0;for(const l of legs){const n=net.lines[l.li].name;for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++)crowd=Math.max(crowd,(crowded&&crowded[n]&&crowded[n][j])||0);}
+ const first=net.nodes[path[0]],last=net.nodes[path.at(-1)];return{blocks:best.v+crowd,crowd,legs,from:first.cell,to:last.cell,walkA:walk(o,first.cell),walkB:walk(last.cell,d),changes:legs.length-1,usesNew:legs.some(l=>net.lines[l.li].isNew),lines:legs.map(l=>net.lines[l.li].name)};}
+const carExtra=k=>D.destinations[k].carExtra??2,carBlocks=(r,k,p)=>r.local+r.sections.reduce((s,id)=>s+1+p[id],0)+carExtra(k);
+function split(blocks,t){const pulls=D.destinations.map((d,k)=>Math.max(0,attractionAt(k,t)-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;return{pulls,shares:pulls.map(x=>x/all),nearby:P.nearby/all};}
+function onward(b,blocks,t){const pull=Math.max(0,attractionAt(b,t)-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
+function legOf(route,k,from,to,old,neu,per,crowd){const car=carBlocks(route,k,per),foot=P.walkPer*walk(from,to),alt=Math.min(car,foot),tOld=metroTrip(old,from,to,crowd),tNew=neu?metroTrip(neu,from,to,crowd):tOld,
+ mo=tOld?tOld.blocks:Infinity,mn=tNew?tNew.blocks:Infinity,saveOld=Math.max(0,alt-mo),saveNew=Math.max(0,alt-mn);
+ return{car,foot,alt,byFoot:foot<car,walkTenths:Math.min(10,Math.max(0,car-foot)),route,tOld,tNew,trip:tNew,fastOld:Math.min(alt,mo),fastNew:Math.min(alt,mn),tenthsOld:Math.min(10,saveOld),tenthsNew:Math.min(10,saveNew),save:saveNew,tenths:Math.min(10,saveNew)};}
+function yearCore(plan,aware,per,crowded,t){const extraLine=plan&&plan.stations.length>=2?{name:'new',isNew:true,cells:plan.line,stations:plan.stations,trains:plan.trains}:null,old=G.netOld,neu=extraLine?network(extraLine):null,nets=neu||old;
+ const roadLoad=Array(G.sections.length).fill(0),roadBy=G.sections.map(()=>[]),lineLoad={};for(const l of nets.lines)lineLoad[l.name]=Array(Math.max(0,l.cells.length-1)).fill(0);
+ const ride=(q,n)=>{if(!q||!n)return;for(const l of q.legs)for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++){const arr=lineLoad[nets.lines[l.li]?.name];if(arr)arr[j]+=n;}};
+ const drive=(route,n,from,to)=>{if(n<=0)return;for(const id of route.sections){roadLoad[id]+=n;const row=roadBy[id],hit=row.find(x=>x.from===from&&x.to===to);if(hit)hit.cars+=n;else row.push({from,to,cars:n});}};
+ const pairs=[];if(P.stay>0)D.destinations.forEach((da,a)=>D.destinations.forEach((db,b)=>{if(a===b)return;const L=legOf(G.carDD[a][b],b,da.cell,db.cell,old,neu,per,crowded);pairs.push({a,b,k:b,...L,shareNow:onward(b,L.fastNew,t).share,shareBefore:onward(b,L.fastOld,t).share});}));
+ const est=D.origins.map((o,i)=>{const legs=D.destinations.map((d,k)=>legOf(G.carOD[i][k],k,o.cell,d.cell,old,neu,per,crowded)),before=split(legs.map(l=>l.fastOld),t),now=split(legs.map(l=>l.fastNew),t),a=aware[i],n=peopleAt(i,t);
+ const to=legs.map((L,k)=>{const knowGo=n*a*now.shares[k],dontGo=n*(1-a)*before.shares[k],go=knowGo+dontGo,mKnow=knowGo*L.tenthsNew/10,mDont=dontGo*L.tenthsOld/10,metro=mKnow+mDont,rest=go-metro,walkers=rest*L.walkTenths/10,drivers=rest-walkers;
+ ride(L.tNew,mKnow);ride(L.tOld,mDont);drive(L.route,drivers,o.name,D.destinations[k].name);return{k,...L,knowGo,dontGo,go,metro,onNew:L.tNew&&L.tNew.usesNew?mKnow:0,walkers,drivers,before:G.base?G.base.est[i].to[k].go:go,pull:now.pulls[k]};});
+ const chain=pairs.map(q=>{const x=to[q.a],knowGo=x.knowGo*q.shareNow,dontGo=x.dontGo*q.shareBefore,go=knowGo+dontGo,mKnow=knowGo*q.tenthsNew/10,mDont=dontGo*q.tenthsOld/10,metro=mKnow+mDont,rest=go-metro,walkers=rest*q.walkTenths/10,drivers=rest-walkers;
+ ride(q.tNew,mKnow);ride(q.tOld,mDont);drive(q.route,drivers,D.destinations[q.a].name,D.destinations[q.b].name);return{knowGo,dontGo,go,metro,onNew:q.tNew&&q.tNew.usesNew?mKnow:0,drivers,walkers};});
+ const sum=(a,f)=>a.reduce((s,x)=>s+x[f],0),metro=sum(to,'metro')+sum(chain,'metro'),onNew=sum(to,'onNew')+sum(chain,'onNew'),drivers=sum(to,'drivers')+sum(chain,'drivers');
+ return{i,n,aware:a,to,chain,nearby:n*(a*now.nearby+(1-a)*before.nearby),metro,onNew,drivers,share:n?onNew/n:0};});
+ const chain=pairs.map((q,j)=>{const sum=f=>est.reduce((s,e)=>s+e.chain[j][f],0);return{...q,go:sum('go'),metro:sum('metro'),onNew:sum('onNew'),drivers:sum('drivers'),walkers:sum('walkers'),before:G.base?G.base.chain[j].go:sum('go')};});
+ const extra=roadLoad.map((v,id)=>(v/G.sections[id].cap)**2),jam=roadLoad.reduce((s,v,id)=>s+v*extra[id],0),lines=nets.lines.map(l=>{const cap=l.trains*P.perTrain;return{name:l.name,isNew:!!l.isNew,cap,load:lineLoad[l.name],crowded:lineLoad[l.name].map(v=>v>cap+1e-9)};});
+ const crowdedNext={};for(const l of lines)crowdedNext[l.name]=l.crowded;const into=(k,f)=>chain.filter(q=>q.b===k).reduce((s,q)=>s+q[f],0);
+ const dest=D.destinations.map((d,k)=>({k,go:est.reduce((s,e)=>s+e.to[k].go,0)+into(k,'go'),metro:est.reduce((s,e)=>s+e.to[k].metro,0)+into(k,'metro'),before:G.base?G.base.dest[k].go:0}));
+ const sum=f=>est.reduce((s,e)=>s+e[f],0);return{est,chain,dest,roadLoad,roadBy,extra,jam,lines,crowded:crowdedNext,riders:sum('metro'),onNew:sum('onNew'),drivers:sum('drivers'),people:D.origins.reduce((s,o,i)=>s+peopleAt(i,t),0),year:t};}
+function year(plan,aware,per,crowded,t=0,accounting=false){const y=yearCore(plan,aware,per,crowded,t);if(!accounting||!plan||plan.stations.length<2){y.offRoad=Array(G.sections.length).fill(0);y.rebound=Array(G.sections.length).fill(0);y.offRoadTotal=0;y.reboundTotal=0;return y;}
+ const noLine=yearCore(null,aware,per,crowded,t),frozen=yearCore(plan,aware,plan.openedPerceived||per,crowded,t);y.offRoadRaw=noLine.roadLoad.map((n,id)=>n-y.roadLoad[id]);y.offRoad=y.offRoadRaw.map(n=>Math.max(0,n));y.rebound=y.roadLoad.map((n,id)=>Math.max(0,n-frozen.roadLoad[id]));
+ y.offRoadTotal=y.offRoad.reduce((s,n)=>s+Math.max(0,n),0);y.offRoadNet=y.offRoad.reduce((s,n)=>s+n,0);y.reboundTotal=y.rebound.reduce((s,n)=>s+n,0);y.noLineRoadLoad=noLine.roadLoad;y.frozenRoadLoad=frozen.roadLoad;return y;}
+const spread=(y,a)=>y.est.map((e,i)=>Math.min(1,a[i]+Math.min(1,P.aware.spread*e.share)*(1-a[i]))),learnFrom=(p,y)=>p.map((v,i)=>v+P.learn*(y.extra[i]-v));
+const learnCrowd=(felt,y)=>{const out={};for(const l of y.lines){const was=felt[l.name]||[];out[l.name]=l.crowded.map((c,j)=>(was[j]||0)+P.learn*((c?P.crowdBlocks:0)-(was[j]||0)));}return out;};
+function reset(){for(const k of NUM)if(D[k]!==undefined)P[k]=D[k];if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];buildRoads();
+ G.carOD=D.origins.map(o=>D.destinations.map(d=>carRoute(o.cell,d.cell)));G.carDD=D.destinations.map(a=>D.destinations.map(b=>carRoute(a.cell,b.cell)));
+ G.lines=(D.lines||[]).map(l=>({name:l.name,hans:l.hans,color:l.color,cells:expand(l.via),stations:l.stations,names:l.names,namesHans:l.namesHans,trains:l.trains}));G.netOld=network(null);G.base=null;
+ let per=G.sections.map(()=>0),crowd={},y=null,zero=D.origins.map(()=>0);for(let it=0;it<300;it++){y=yearCore(null,zero,per,crowd,0);const next=learnFrom(per,y),gap=Math.max(0,...next.map((v,j)=>Math.abs(v-per[j])));per=next;crowd=learnCrowd(crowd,y);if(gap<1e-6&&it>20)break;}
+ G.base=yearCore(null,zero,per,crowd,0);G.base.perceived=per;G.base.crowdedStart=crowd;G.doNothing=[];G.doNothingRoad=[];let p2=per.slice(),c2=crowd;
+ for(let t=1;t<=P.years;t++){const z=yearCore(null,zero,p2,c2,t);G.doNothing.push(z.jam);G.doNothingRoad.push(z.roadLoad);p2=learnFrom(p2,z);c2=learnCrowd(c2,z);}}
+const copy=x=>JSON.parse(JSON.stringify(x));
+class Plan{
+ constructor(){Object.assign(this,{line:[],stations:[],trains:1,money:P.budget,phase:1,phase2Actions:[],phase1State:null,phase2Snapshot:null,phase2Committed:false,openedPerceived:null});this.rewind();}
+ rewind(){if(this.phase1State){this.line=copy(this.phase1State.line);this.stations=copy(this.phase1State.stations);this.trains=this.phase1State.trains;this.money=this.phase1State.money;}
+ Object.assign(this,{year:0,phase:1,phase2Actions:[],phase1State:null,phase2Snapshot:null,phase2Committed:false,openedPerceived:null,aware:D.origins.map(()=>P.aware.start),perceived:G.base.perceived.slice(),crowded:copy(G.base.crowdedStart),log:[],total:0,done:false});}
+ get open(){return this.phase===1?this.year>0:this.phase2Committed;}
+ get editing(){return !this.done&&((this.phase===1&&this.year===0)||(this.phase===2&&this.year===4&&!this.phase2Committed));}
+ inside(c){return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows;}onLine(c){return this.line.some(x=>same(x,c));}isStation(c){return this.stations.some(x=>same(x,c));}
+ canExtend(c){if(!this.editing||!this.inside(c)||this.onLine(c)||this.money<P.lineCost)return false;if(!this.line.length)return true;return adj(c,this.line[0])||adj(c,this.line.at(-1));}
+ extend(c){if(!this.canExtend(c))return false;if(!this.line.length||adj(c,this.line.at(-1)))this.line.push(c.slice());else this.line.unshift(c.slice());this.money-=P.lineCost;if(this.phase===2)this.phase2Actions.push({type:'extend',cell:c.slice()});return true;}
+ isEnd(c){return this.line.length>0&&(same(c,this.line[0])||same(c,this.line.at(-1)));}canShorten(c){return this.editing&&this.phase===1&&this.isEnd(c);}
+ shorten(c){if(!this.canShorten(c))return false;if(same(c,this.line.at(-1)))this.line.pop();else this.line.shift();if(this.isStation(c)){this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;}this.money+=P.lineCost;return true;}
+ canStation(c){return this.editing&&this.onLine(c)&&!this.isStation(c)&&this.money>=P.stationCost;}
+ toggleStation(c){if(!this.editing)return false;if(this.isStation(c)){if(this.phase!==1)return false;this.stations=this.stations.filter(s=>!same(s,c));this.money+=P.stationCost;return true;}if(!this.canStation(c))return false;this.stations.push(c.slice());this.money-=P.stationCost;if(this.phase===2)this.phase2Actions.push({type:'station',cell:c.slice()});return true;}
+ canTrain(){return this.editing&&this.money>=P.trainCost;}addTrain(){if(!this.canTrain())return false;this.trains++;this.money-=P.trainCost;if(this.phase===2)this.phase2Actions.push({type:'train'});return true;}
+ canUntrain(){return this.editing&&this.phase===1&&this.trains>1;}removeTrain(){if(!this.canUntrain())return false;this.trains--;this.money+=P.trainCost;return true;}
+ clear(){if(!this.editing||this.phase!==1)return false;Object.assign(this,{line:[],stations:[],trains:1,money:P.budget});return true;}
+ now(){return year(this,this.aware,this.perceived,this.crowded,this.year+1,false);}
+ potential(){let per=this.perceived.slice(),crowd=this.crowded,y=null,all=D.origins.map(()=>1);for(let it=0;it<60;it++){y=year(this,all,per,crowd,Math.min(P.years,this.year+1),false);per=learnFrom(per,y);crowd=learnCrowd(crowd,y);}return y;}
+ canRun(){return !this.done&&this.stations.length>=2&&(this.phase===1?this.year<4:(this.phase2Committed&&this.year<P.years));}
+ continuePhase2(){if(this.phase!==2||this.year!==4||this.phase2Committed)return false;this.phase2Committed=true;return true;}
+ runYear(){if(!this.canRun())return null;if(this.year===0){this.phase1State={line:copy(this.line),stations:copy(this.stations),trains:this.trains,money:this.money};this.openedPerceived=this.perceived.slice();}
+ const y=year(this,this.aware,this.perceived,this.crowded,this.year+1,true),before=this.aware.slice(),jam0=G.doNothing[this.year];this.year++;this.total+=jam0-y.jam;this.aware=spread(y,this.aware);this.perceived=learnFrom(this.perceived,y);this.crowded=learnCrowd(this.crowded,y);
+ const entry={year:this.year,jam:y.jam,jam0,saved:jam0-y.jam,riders:y.riders,onNew:y.onNew,drivers:y.drivers,before,after:this.aware.slice(),crowdedSections:Object.values(y.crowded).reduce((s,a)=>s+a.filter(Boolean).length,0),dest:y.dest.map(d=>({go:d.go,metro:d.metro,before:d.before})),roadLoad:y.roadLoad,roadBy:y.roadBy,offRoad:y.offRoad,rebound:y.rebound,offRoadTotal:y.offRoadTotal,reboundTotal:y.reboundTotal};
+ this.log.push(entry);let phaseStart=false;if(this.year===4){this.phase=2;this.money+=P.phase2Budget;this.phase2Snapshot={line:copy(this.line),stations:copy(this.stations),trains:this.trains,money:this.money};this.phase2Actions=[];this.phase2Committed=false;phaseStart=true;}if(this.year>=P.years)this.done=true;return{...entry,y,phaseStart};}
+ simulate(){const first=this.phase1State||{line:copy(this.line),stations:copy(this.stations),trains:this.trains,money:this.money},actions=copy(this.phase2Actions||[]),p=new Plan();p.line=copy(first.line);p.stations=copy(first.stations);p.trains=first.trains;p.money=first.money;p.rewind();while(p.year<4){if(!p.runYear())return p;}
+ if(p.phase===2){for(const a of actions){if(a.type==='extend')p.extend(a.cell);else if(a.type==='station')p.toggleStation(a.cell);else if(a.type==='train')p.addTrain();}p.continuePhase2();}while(!p.done)if(!p.runYear())break;return p;}
+}
+reset();
+const API={D,P,G,Plan,year,spread,learnFrom,learnCrowd,metroTrip,network,carRoute,carBlocks,split,onward,expand,walk,same,key,adj,reset,valueAt,peopleAt,attractionAt};
+if(typeof module!=='undefined')module.exports=API;root.Roads=API;
 })(typeof window!=='undefined'?window:globalThis);
 
 </script><script>
@@ -1136,43 +1064,7 @@ dialog.intro .row{margin-top:16px}
     'm.seeBoard':L('看看地圖','看看地图','See the board'),
     // rules dialog, intro
     'i.lbl':L('Rules · 規則','Rules · 规则','Rules'),'r3.infoH':L('路會塞的規則','路会塞的规则','The rules of roads that jam'),
-    'r3.info':L('<ol class="rules"><li><b>地圖。</b>九龍東，一格約 600 米。位置、人口、岗位按全港模型的分區縮放（示意，僅供學習）。假設十多年後：啟德住滿、安達臣道新屋苑入伙、觀塘和九龍灣的寫字樓再多一半。路已經塞，地鐵還沒跟上。</li><li><b>和第二關一樣。</b>去哪裡＝吸引力 − 要幾格（開車、走路、地鐵取最快的），和「附近」（{nb}）按比例分；比開車或走路省幾格，就有幾成坐地鐵；到了一個商貿區的人有些順路再去另一個（對「辦完就回家」{st}）；只有知道新線的人用新線，開通時 {s} 成，口耳相傳 ×{sp}。走路每格 {wp}。</li><li><b>已有的地鐵。</b>觀塘綫、將軍澳綫大家都知道。坐地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾個站 ＋ 走路；換綫＝走過去 ＋ 再等一次車。</li><li><b>新線。</b>開通前一次建好：線每格 {lc}、站 {sc}、多一列車 {tc}（本身有 1 列），預算 {b}。可以和舊綫交叉；站在舊綫的站上或旁邊一格，就能換綫。</li><li><b>開車。</b>從屋苑開到最近的路（每格 1），沿路走（每段 1 格），到了再開到目的地，加泊車（觀塘 {e0}、九龍灣 {e1}）。路線固定，走最短的。</li><li><b>路會塞。</b>每段路每天能過的車有上限（看路，快速公路多、山路少）。每段多花（車 ÷ 容量）² 格：一半滿 +¼，剛好滿 +1，多一半 +2¼。塞車＝每段的車 × 多花的格數，全部加起來。</li><li><b>開車的人慢慢學。</b>大家按「以為的塞車」決定開不開車、去不去。每年：以為的 ＋＝ {lp} ×（真的 − 以為的）。所以新線一開，路慢慢變通；路通了，開車又變好走，有人回去開車——上上落落，最後停在中間。</li><li><b>地鐵也會擠。</b>每段最多「列車數 × {pt}」人；太擠的段大家也是慢慢才覺得（同樣按 {lp}，最多多算 {cb} 格，一趟只算最擠的一段）。</li><li><b>分數。</b>{y} 年裡，每年「什麼都不做」的塞車減去你的塞車，加起來。</li></ol>',
-      '<ol class="rules"><li><b>地图。</b>九龙东，一格约 600 米。位置、人口、岗位按全港模型的分区缩放（示意，仅供学习）。假设十多年后：启德住满、安达臣道新屋苑入伙、观塘和九龙湾的写字楼再多一半。路已经塞，地铁还没跟上。</li><li><b>和第二关一样。</b>去哪里＝吸引力 − 要几格（开车、走路、地铁取最快的），和「附近」（{nb}）按比例分；比开车或走路省几格，就有几成坐地铁；到了一个商贸区的人有些顺路再去另一个（对「办完就回家」{st}）；只有知道新线的人用新线，开通时 {s} 成，口耳相传 ×{sp}。走路每格 {wp}。</li><li><b>已有的地铁。</b>观塘线、将军澳线大家都知道。坐地铁＝走到站 ＋ 等车 {w} ＋ 路过几个站 ＋ 走路；换线＝走过去 ＋ 再等一次车。</li><li><b>新线。</b>开通前一次建好：线每格 {lc}、站 {sc}、多一列车 {tc}（本身有 1 列），预算 {b}。可以和旧线交叉；站在旧线的站上或旁边一格，就能换线。</li><li><b>开车。</b>从屋苑开到最近的路（每格 1），沿路走（每段 1 格），到了再开到目的地，加泊车（观塘 {e0}、九龙湾 {e1}）。路线固定，走最短的。</li><li><b>路会塞。</b>每段路每天能过的车有上限（看路，快速公路多、山路少）。每段多花（车 ÷ 容量）² 格：一半满 +¼，刚好满 +1，多一半 +2¼。塞车＝每段的车 × 多花的格数，全部加起来。</li><li><b>开车的人慢慢学。</b>大家按「以为的塞车」决定开不开车、去不去。每年：以为的 ＋＝ {lp} ×（真的 − 以为的）。所以新线一开，路慢慢变通；路通了，开车又变好走，有人回去开车——上上落落，最后停在中间。</li><li><b>地铁也会挤。</b>每段最多「列车数 × {pt}」人；太挤的段大家也是慢慢才觉得（同样按 {lp}，最多多算 {cb} 格，一趟只算最挤的一段）。</li><li><b>分数。</b>{y} 年里，每年「什么都不做」的塞车减去你的塞车，加起来。</li></ol>',
-      '<ol class="rules"><li><b>The map.</b> Kowloon East, a cell ≈ 600 m. Places, residents and jobs scaled from the territory model\'s zones (a sketch, for learning only). Suppose, a decade on: 啟德 full, the 安達臣道 estates in, half again as many offices in 觀塘 and 九龍灣. The roads jam already; the metro hasn\'t caught up.</li><li><b>As in mode 2.</b> Where to go = attraction − blocks (car, foot or metro, whichever is quickest), against «nearby» ({nb}); every block saved on car or foot, one in ten by metro; some at one business area go on to the other (against «done, home», {st}); only those who know the new line use it — {s}/10 at the opening, word of mouth ×{sp}. Walking {wp} a cell.</li><li><b>The lines already there.</b> Everyone knows the 觀塘綫 and 將軍澳綫. Metro = walk to a station + wait {w} + stations passed + walk; changing = walk across + wait again.</li><li><b>The new line.</b> Built once before opening: {lc} a block, {sc} a station, {tc} a train (one comes with it), budget {b}. It may cross the old lines; a station on or next to theirs lets people change.</li><li><b>Driving.</b> From the estate to the nearest road (1 a cell), along the roads (1 a section), off to the destination, plus parking (觀塘 {e0}, 九龍灣 {e1}). The route is fixed: the shortest.</li><li><b>Roads jam.</b> Each section takes so many cars a day (more on expressways, fewer on hill roads). Each adds (cars ÷ capacity)² blocks: half full +¼, full +1, half again +2¼. Jam = cars × extra blocks, over all sections.</li><li><b>Drivers learn slowly.</b> People decide by the jam they reckon with. Each year: reckoning += {lp} × (real − reckoning). So the roads clear slowly after the opening; clear roads make driving look good and some drive again — up and down, settling in between.</li><li><b>Trains crowd too.</b> trains × {pt} a section a day; crowding is learnt the same slow way ({lp}, up to {cb} blocks, the worst section of a trip once).</li><li><b>Score.</b> Over {y} years, each year\'s «do nothing» jam minus yours, added up.</li></ol>'),
-    'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始畫線 →','开始画线 →','Start drawing →'),
-    'iv.m3.new':L('<b>路會塞</b>：開車的人越多，路越慢。新線把人從路上帶走，路就通——可是路一通，又有人回去開車。','<b>路会塞</b>：开车的人越多，路越慢。新线把人从路上带走，路就通——可是路一通，又有人回去开车。',
-      '<b>Roads that jam</b>: the more drive, the slower the roads. Your line takes people off them and they clear — and then some drive again.'),
-    'iv.m3.body':L('<li>真實的九龍東（按全港模型縮放）。假設十多年後：啟德住滿、安達臣道入伙、觀塘和九龍灣的寫字樓再多一半。<b>路已經塞，地鐵還沒跟上。</b></li><li>地圖上的路越紅越塞（灰色是通的），小點是車；綠色、紫色是已有的觀塘綫、將軍澳綫。</li><li>建一條新線（預算 {b}），把開車的人帶上地鐵。規則和第二關一樣：省幾格幾成坐、口耳相傳。</li><li>開車的人<b>慢慢學</b>：每年只往真的塞車改 {lp}。看路怎樣變通、又怎樣有人回去開車。</li><li>分數＝八年裡比「什麼都不做」少塞多少。</li>',
-      '<li>真实的九龙东（按全港模型缩放）。假设十多年后：启德住满、安达臣道入伙、观塘和九龙湾的写字楼再多一半。<b>路已经塞，地铁还没跟上。</b></li><li>地图上的路越红越塞（灰色是通的），小点是车；绿色、紫色是已有的观塘线、将军澳线。</li><li>建一条新线（预算 {b}），把开车的人带上地铁。规则和第二关一样：省几格几成坐、口耳相传。</li><li>开车的人<b>慢慢学</b>：每年只往真的塞车改 {lp}。看路怎样变通、又怎样有人回去开车。</li><li>分数＝八年里比「什么都不做」少塞多少。</li>',
-      '<li>The real Kowloon East (scaled from the territory model). Suppose, a decade on: 啟德 full, 安達臣道 in, half again as many offices in 觀塘 and 九龍灣. <b>The roads jam; the metro hasn\'t caught up.</b></li><li>Redder roads are more jammed, dots are cars; green and purple are the 觀塘綫 and 將軍澳綫.</li><li>Build one new line (budget {b}) and take drivers onto the metro. Mode 2\'s rules: tenths by blocks saved, word of mouth.</li><li>Drivers <b>learn slowly</b>: each year they move {lp} of the way to the real jam. Watch the roads clear — and some drive again.</li><li>Score = how much less jam than «do nothing», over eight years.</li>'),
-    'iv.m3.course':L('課程連結：道路容量與擁堵（BPR 曲線的簡化）、誘發交通與 Downs–Thomson 悖論、出行者的逐日學習、公共交通與道路的平衡。','课程链接：道路容量与拥堵（BPR 曲线的简化）、诱发交通与 Downs–Thomson 悖论、出行者的逐日学习、公共交通与道路的平衡。',
-      'Course link: road capacity and congestion (a simplified BPR curve), induced traffic and the Downs–Thomson paradox, travellers learning day to day, the balance of transit and roads.')
-  });
-  // v7.9 · the living map: headline, info card, hold to preview
-  I18N.add({
-    'r3.hlToday':L('今天：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em> 車·格','今天：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em> 车·格','Today: <em>{c}</em> cars a day on the roads, jam <em>{j}</em>'),
-    'r3.hlTodaySub':L('最塞的是{r}（每趟多 {e} 格）。畫一條新線把開車的人帶走；停在線上的格子，地圖會變成放站以後的樣子。','最塞的是{r}（每趟多 {e} 格）。画一条新线把开车的人带走；停在线上的格子，地图会变成放站以后的样子。',
-      'Worst: {r} (+{e} a trip). Draw a line to take drivers off; hover a cell on it and the map turns into what a station there would bring.'),
-    'r3.hlPreview':L('放這裡 → 路上的車 <em class="{cc}">{dc}</em> · 塞車 <em class="{jc}">{dj}</em> · 新線每天 <em>{r}</em> 人','放这里 → 路上的车 <em class="{cc}">{dc}</em> · 塞车 <em class="{jc}">{dj}</em> · 新线每天 <em>{r}</em> 人',
-      'A station here → cars <em class="{cc}">{dc}</em> · jam <em class="{jc}">{dj}</em> · <em>{r}</em> a day on the line'),
-    'r3.hlAhead':L('八年後 → 路上的車 <em class="{cc}">{dc}</em> · 塞車 <em class="{jc}">{dj}</em> · 新線每天 <em>{r}</em> 人','八年后 → 路上的车 <em class="{cc}">{dc}</em> · 塞车 <em class="{jc}">{dj}</em> · 新线每天 <em>{r}</em> 人',
-      'Eight years on → cars <em class="{cc}">{dc}</em> · jam <em class="{jc}">{dj}</em> · <em>{r}</em> a day on the line'),
-    'r3.hlPreviewSub':L('預覽：大家都知道新線、開車的人也習慣了以後，和今天什麼都不做比。','预览：大家都知道新线、开车的人也习惯了以后，和今天什么都不做比。','Preview: once everyone knows the line and drivers have settled, against doing nothing today.'),
-    'r3.hlYear':L('第 {y} 年 · 路上的車 <em class="{cc}">{dc}</em> · 塞車比什麼都不做 <em class="{jc}">{dj}</em>','第 {y} 年 · 路上的车 <em class="{cc}">{dc}</em> · 塞车比什么都不做 <em class="{jc}">{dj}</em>',
-      'Year {y} · cars <em class="{cc}">{dc}</em> · jam vs doing nothing <em class="{jc}">{dj}</em>'),
-    'r3.hlAware':L('平均 {a} 成人知道新線','平均 {a} 成人知道新线','{a}/10 know the new line'),
-    'r3.hlNothing':L('如果什麼都不做：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em>','如果什么都不做：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em>','Doing nothing: <em>{c}</em> cars a day, jam <em>{j}</em>'),
-    'r3.hlNothingSub':L('放開按鈕，回到你的方案。','放开按钮，回到你的方案。','Let go to see your plan again.'),
-    'r3.hlDone':L('八年少塞 <em>{s}</em> 車·格 · {tier}','八年少塞 <em>{s}</em> 车·格 · {tier}','<em>{s}</em> less jam over eight years · {tier}'),
-    'r3.hlDoneSub':L('按住「看什麼都不做」比一比；「↺ 回到規劃」可以再改。','按住「看什么都不做」比一比；「↺ 回到规划」可以再改。','Hold «doing nothing» to compare; «↺ Back to planning» to change it.'),
-    'r3.holdAhead':L('👁 按住看八年後','👁 按住看八年后','👁 Hold: eight years on'),'r3.holdNothing':L('👁 按住看什麼都不做','👁 按住看什么都不做','👁 Hold: doing nothing'),
-    'r3.iEst':L('<b>{n}</b>　每天 {p} 人出門<br>開車 <b>{c}</b> · 地鐵 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道新線 {a} 成','<b>{n}</b>　每天 {p} 人出门<br>开车 <b>{c}</b> · 地铁 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道新线 {a} 成',
-      '<b>{n}</b>　{p} go out a day<br><b>{c}</b> drive · <b>{m}</b> metro · {w} walk · {nb} stay nearby<br>{a}/10 know the new line'),
-    'r3.iTrip':L('去{d}：開車 {car} 格 · 地鐵 {m} 格','去{d}：开车 {car} 格 · 地铁 {m} 格','to {d}: car {car} · metro {m}'),
-    'r3.iDest':L('<b>{n}</b><br>每天來 <b>{g}</b> 人（今天 {b}）· 坐地鐵來 {m}','<b>{n}</b><br>每天来 <b>{g}</b> 人（今天 {b}）· 坐地铁来 {m}','<b>{n}</b><br><b>{g}</b> come a day (today {b}) · {m} by metro'),
-    'r3.iRoad':L('<b>{r}</b>：每天 {c} 輛 / 能過 {cap} · 每趟多 <b>{e}</b> 格（開車的人以為 {f}）','<b>{r}</b>：每天 {c} 辆 / 能过 {cap} · 每趟多 <b>{e}</b> 格（开车的人以为 {f}）',
-      '<b>{r}</b>: {c} cars / room for {cap} · +<b>{e}</b> a trip (drivers reckon {f})'),
-    'r3.iStation':L('<b>{l}</b> · {s} 站','<b>{l}</b> · {s} 站','<b>{l}</b> · {s}'),
+    'r3.info':L('<ol class="rules"><li><b>城市按年長。</b>屋苑 people、商貿區 attraction 可按年份直線增長；「什麼都不做」也用該年的需求。</li><li><b>分兩期建線。</b>第一期預算 20，規劃後跑四年；停下後第二期加 12，只能從兩端延長、在線上加站或加列車。第一期設施不能拆，第二期按「繼續」後鎖定。</li><li><b>出行選擇。</b>去哪裡按吸引力減路程決定；開車、走路、地鐵取較快選擇。只有知道新線的人會用，起初 {s} 成，口耳相傳 ×{sp}。</li><li><b>道路與回流。</b>每段路容量不同，額外路程＝（車 ÷ 容量）²。年表和路況記錄新線讓下路的車，以及道路變通後回來開車的車；點路可看來源、目的地和逐年變化。</li><li><b>其他規則沿用第二關。</b>走路每格 {wp}；地鐵等車 {w}，換線要再等；每段列車容量 {pt}，擁擠與司機感受按 {lp} 慢慢調整。</li><li><b>計分。</b>{y} 年逐年累加「什麼都不做」的塞車減去方案塞車。</li></ol>','<ol class="rules"><li><b>城市按年长。</b>屋苑 people、商贸区 attraction 可按年份直线增长；“什么都不做”也用当年的需求。</li><li><b>分两期建线。</b>第一期预算 20，规划后跑四年；停下后第二期加 12，只能从两端延长、在线上加站或加列车。第一期设施不能拆，第二期按“继续”后锁定。</li><li><b>出行选择。</b>去哪儿按吸引力减路程决定；开车、走路、地铁取较快选择。只有知道新线的人会用，起初 {s} 成，口耳相传 ×{sp}。</li><li><b>道路与回流。</b>每段路容量不同，额外路程＝（车 ÷ 容量）²。年表和路况记录新线让下路的车，以及道路变通后回来开车的车；点路可看来源、目的地和逐年变化。</li><li><b>其他规则沿用第二关。</b>走路每格 {wp}；地铁等车 {w}，换线要再等；每段列车容量 {pt}，拥挤与司机感受按 {lp} 慢慢调整。</li><li><b>计分。</b>{y} 年逐年累加“什么都不做”的塞车减去方案塞车。</li></ol>','<ol class="rules"><li><b>The city grows.</b> Estate population and destination attraction interpolate by year; do nothing uses each year’s demand too.</li><li><b>Build in two phases.</b> Spend 20 before opening and run four years. Then add 12 to extend either end, add stations or add trains. Phase one cannot be dismantled; phase two locks when you continue.</li><li><b>Travel choices.</b> People split trips by attraction minus travel cost, choosing the faster of car, walk and metro. Only people who know the new line use it; awareness starts at {s}/10 and spreads ×{sp}.</li><li><b>Roads and rebound.</b> Each road has a capacity; extra blocks are (cars ÷ capacity)². The yearly table and road inspector show cars shifted to transit and cars returning as roads clear. Click a road to inspect its origins, destinations and yearly trend.</li><li><b>Other mode 2 rules remain.</b> Walking costs {wp} per cell; trains wait {w}; each train holds {pt} per section; drivers and riders adjust their perception by {lp} each year.</li><li><b>Score.</b> Add do-nothing jam minus your jam over {y} years.</li></ol>'),
     'r3.legend':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圓環＝幾成開車／地鐵／走路</span><span><i class="lk road"></i>路：灰通、橙快滿、紅塞</span>',
       '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路</span><span><i class="lk road"></i>路：灰通、橙快满、红塞</span>',
       '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot</span><span><i class="lk road"></i>roads: grey free, orange filling, red jammed</span>')
@@ -1185,16 +1077,24 @@ dialog.intro .row{margin-top:16px}
       'Take the cars off the roads. Kowloon East already jams: build a line to take drivers off — and once the roads clear, some drive again.'),
     'r3.lineLbl':L('New line · 新線 <span class="tc">預算 <b id="money"></b></span>','New line · 新线 <span class="tc">预算 <b id="money"></b></span>','New line <span class="tc">budget <b id="money"></b></span>'),
     'r3.rulesH3':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
-    'r3.rule1':L('<b>一次建好一條新線</b>（預算 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}），開通後 {y} 年不能改。','<b>一次建好一条新线</b>（预算 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}），开通后 {y} 年不能改。',
-      '<b>Build one new line, once</b> (budget {b}: {lc} a block, {sc} a station, {tc} a train); nothing changes for {y} years.'),
-    'r3.rule2':L('<b>路會塞</b>：每段路多（車 ÷ 容量）² 格。新線把開車的人帶走，路就通；路一通，開車又變好走，有人回去開車（每年只改 {lp}）。','<b>路会塞</b>：每段路多（车 ÷ 容量）² 格。新线把开车的人带走，路就通；路一通，开车又变好走，有人回去开车（每年只改 {lp}）。',
-      '<b>Roads jam</b>: each section adds (cars ÷ capacity)². The line takes drivers off and the roads clear; clear roads tempt some back (drivers adjust {lp} a year).'),
-    'r3.rule3':L('<b>和第二關一樣</b>：比開車省幾格，就有幾成坐地鐵；只有知道新線的人會用（口耳相傳）。分數＝比什麼都不做少塞多少。','<b>和第二关一样</b>：比开车省几格，就有几成坐地铁；只有知道新线的人会用（口耳相传）。分数＝比什么都不做少塞多少。',
-      '<b>As in mode 2</b>: every block saved on the car, one in ten by metro; only those who know the line use it (word of mouth). Score = less jam than doing nothing.'),
+    'r3.rule1':L('<b>城市會長</b>：屋苑和商貿區按年增加出行人，最塞的路會挪。','<b>城市会长</b>：屋苑和商贸区按年增加出行人，最塞的路会挪。','<b>The city grows</b>: more residents and jobs bring trips, and the worst jam can move.'),
+    'r3.rule2':L('<b>分兩期</b>：前四年預算 20 建線；第四年後加 12，只能延長、加站或加車。','<b>分两期</b>：前四年预算 20 建线；第四年后加 12，只能延长、加站或加车。','<b>Build in two phases</b>: budget 20 for years 1–4, then 12 to extend, add stations or trains.'),
+    'r3.rule3':L('<b>路通了有人回來開車</b>：每年看新線讓多少車下路，又有多少車回來。','<b>路通了有人回来开车</b>：每年看新线让多少车下路，又有多少车回来。','<b>Clear roads bring drivers back</b>: track cars leaving for the line and returning as roads clear.'),
     'r3.legend2':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐公共交通的人</span><span><i class="lk jam"></i>路中間紅線：塞</span><span><i class="lk mtr"></i>觀塘綫、將軍澳綫</span><span><i class="lk newline"></i>你的新線</span>',
       '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐公共交通的人</span><span><i class="lk jam"></i>路中间红线：塞</span><span><i class="lk mtr"></i>观塘线、将军澳线</span><span><i class="lk newline"></i>你的新线</span>',
       '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: public transport</span><span><i class="lk jam"></i>red in the road: jam</span><span><i class="lk mtr"></i>觀塘綫, 將軍澳綫</span><span><i class="lk newline"></i>your line</span>'),
     'r3.hudNew':L('New line · 坐新線','New line · 坐新线','New line'),'r3.hudRail':L('All metro · 坐地鐵','All metro · 坐地铁','All metro'),'r3.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'r3.hudJam':L('Jam · 塞車','Jam · 塞车','Jam'),
+    'r3.layerCars':L('🚗 道路車流','🚗 道路车流','🚗 Road traffic'),'r3.layerTransit':L('🚇 公共交通','🚇 公共交通','🚇 Public transport'),
+    'r3.phaseBudget':L('第 {phase} 期 · 預算 {b} · 可用 {m}','第 {phase} 期 · 预算 {b} · 可用 {m}','Phase {phase} · budget {b} · available {m}'),
+    'r3.phase2Title':L('第二期','第二期','Phase two'),'r3.phase2Map':L('預算 12：看看車流挪到哪，再延長線、加站或加車。','预算 12：看看车流挪到哪，再延长线、加站或加车。','Budget 12: see where traffic moved, then extend, add a station or add a train.'),
+    'r3.continue':L('▶ 繼續','▶ 继续','▶ Continue'),'r3.tRebound':L('回來','回来','Back'),
+    'r3.roadNow':L('今年 {n} 輛 · 容量 {c}','今年 {n} 辆 · 容量 {c}','This year {n} cars · capacity {c}'),
+    'r3.roadImpact':L('新線讓 {off} 輛下路 · 路通了 {reb} 輛回來','新线让 {off} 辆下路 · 路通了 {reb} 辆回来','{off} left the road for the new line · {reb} returned as it cleared'),
+    'r3.roadTop':L('最多的三股車流','最多的三股车流','Top three flows'),
+    'r3.roadMap':L('新線讓 {off} 輛下路 · 路通了 {reb} 輛回來','新线让 {off} 辆下路 · 路通了 {reb} 辆回来','{off} left the road for the new line · {reb} returned as it cleared'),
+    'r3.trafficMap':L('{road}：新線讓 {off} 輛下路，路通了 {reb} 輛又回來','{road}：新线让 {off} 辆下路，路通了 {reb} 辆又回来','{road}: {off} left for the new line; {reb} returned as the road cleared'),
+    'r3.growthMap':L('第 {y} 年 {place} 入伙：多 {n} 人出門','第 {y} 年 {place} 入伙：多 {n} 人出门','Year {y}: {place} fills in, sending {n} more people out'),
+    'r3.growTag':L('+{n} · 到第 {y} 年','+{n} · 到第 {y} 年','+{n} · by year {y}'),
     'r3.clockPlan':L('第 0 年','第 0 年','Year 0'),'r3.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
     'r3.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'r3.clockSubOpen':L('共 {m} 年 · 大家慢慢知道新線','共 {m} 年 · 大家慢慢知道新线','{m} years · people slowly find the line'),
     'r3.laneNow':L('This year · 今年','This year · 今年','This year'),'r3.lanePv':L('Preview · 預覽','Preview · 预览','Preview'),'r3.laneNo':L('Do nothing · 什麼都不做','Do nothing · 什么都不做','Doing nothing'),
@@ -1222,7 +1122,7 @@ dialog.intro .row{margin-top:16px}
   // trains) with the line's panel and three rules; on the right the years table, the roads and one line of what happens.
   // Hover a cell on the line (stations) and the map turns into what a station there brings; hold «👁» for later, or
   // (once open) for doing nothing.
-  const {Plan,D,P,G,year,spread,walk,same,key}=Roads,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
+  const {Plan,D,P,G,year,spread,walk,same,key,peopleAt,attractionAt}=Roads,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
   const CS=60,MX=44,MY=40,STEP_MS=2600,DAY_S=7,PER_DOT=1,MAX_DOTS=640;
   const xy=c=>[MX+c[0]*CS,MY+c[1]*CS];
   const svg=(tag,a,c='')=>`<${tag} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}>${c}</${tag}>`;
@@ -1252,11 +1152,11 @@ dialog.intro .row{margin-top:16px}
   const pct=(a,b)=>{const v=b?R(100*(a-b)/b):0;return{txt:(v>0?'+':v<0?'−':'±')+Math.abs(v)+'%',cls:v<0?'good':v>0?'bad':''};};
   const jamCol=e=>e<.5?null:e<1?'#E3A008':C.jam;
   const OFF=6,rxy=(q,c)=>{const [x,y]=xy(c),h=q.a[1]===q.b[1];return h?[x,y+OFF]:[x+OFF,y];};
-  let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0;
+  let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0,roadSel=-1,showCars=true,showTransit=true,phaseBanner=false,growthFlashYear=0,growthFlashUntil=0;
   const VBW=MX*2+(D.cols-1)*CS,VBH=MY*2+(D.rows-1)*CS;
   function snapshot(){history.push(JSON.stringify({...plan}));if(history.length>200)history.shift();}
   function restore(s){const p=new Plan();Object.assign(p,JSON.parse(s));plan=p;}
-  const planKey=p=>JSON.stringify([p.line,p.stations,p.trains]);
+  const planKey=p=>JSON.stringify([p.line,p.stations,p.trains,p.phase,p.phase2Actions]);
   const memo=new Map();function cached(k,f){if(!memo.has(k)){if(memo.size>60)memo.clear();memo.set(k,f());}return memo.get(k);}
   function now(){return cached('now'+planKey(plan)+plan.year+JSON.stringify(plan.aware),()=>plan.now());}
   function view(){
@@ -1289,7 +1189,7 @@ dialog.intro .row{margin-top:16px}
     const pts=[xy(from)],sp=[];let at=from;
     trip.legs.forEach((l,j)=>{const cells=railCells(trip.lines[j]),step=l.to>=l.from?1:-1;
       leg(pts,sp,at,cells[l.from],V.walk);at=cells[l.to];
-      for(let i=l.from+step;step>0?i<=l.to:i>=l.to;i+=step){pts.push(xy(cells[i]));sp.push(V.rail);}});
+      for(let i=l.from+step;step>0?i<=l.to:i>=l.to;i+=step){const pos=xy(cells[i]),prev=cells[i-step],shared=sectionFor(prev,cells[i]);if(shared){if(prev[1]===cells[i][1])pos[1]-=6;else pos[0]-=6;}pts.push(pos);sp.push(V.rail);}});
     leg(pts,sp,at,to,V.walk);return{pts,sp};}
   function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
   function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
@@ -1379,14 +1279,14 @@ dialog.intro .row{margin-top:16px}
     const order=plan.stations.map(q=>({q,x:plan.line.findIndex(c=>same(c,q))})).sort((a,b)=>a.x-b.x);
     if(order.length>=2&&v.mode!=='nothing'){const a=order[0].x,b=order.at(-1).x,span=Math.max(1,b-a);
       for(let k=0;k<plan.trains;k++){const ph=(tm/1000*1.6+k*2*span/plan.trains)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.min(plan.line.length-1,Math.floor(pos)),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
-        const [x1,y1]=xy(c1),[x2,y2]=xy(c2);s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-21).toFixed(1)} ${(y1+(y2-y1)*f-6.5).toFixed(1)})">`+sprite(TRAIN,0,0,2.2,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
+        let [x1,y1]=xy(c1),[x2,y2]=xy(c2);if(sectionFor(c1,c2)){if(c1[1]===c2[1]){y1-=6;y2-=6;}else{x1-=6;x2-=6;}}s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-21).toFixed(1)} ${(y1+(y2-y1)*f-6.5).toFixed(1)})">`+sprite(TRAIN,0,0,2.2,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
     $('gDyn').innerHTML=s;
   }
   // the map and its overlays follow the preview; the side panels only the plan itself
   let baseKey='',sideKey='';
-  function draw(force){const v=view(),k=JSON.stringify([planKey(plan),plan.year,v.mode,v.cell,tool,sel,I.lang,C.paper,!!lastY,hold]);
+  function draw(force){const v=view(),k=JSON.stringify([planKey(plan),plan.year,v.mode,v.cell,tool,sel,roadSel,showCars,showTransit,plan.phase,plan.phase2Committed,I.lang,C.paper,!!lastY,hold]);
     if(force||k!==baseKey){baseKey=k;drawBase(v);overlays(v);}
-    const sk=JSON.stringify([planKey(plan),plan.year,tool,sel,I.lang,C.paper,hold,playing,history.length,plan.done,!!lastY]);
+    const sk=JSON.stringify([planKey(plan),plan.year,tool,roadSel,plan.phase,plan.phase2Committed,plan.money,I.lang,C.paper,playing,history.length,plan.done,!!lastY]);
     if(force||sk!==sideKey){sideKey=sk;side({mode:'plain',y:plan.open&&lastY?lastY:now()});}drawTop(v);}
 
   /* -------------------------------------------------------------- the overlays on the map */
@@ -1447,6 +1347,90 @@ dialog.intro .row{margin-top:16px}
     rowsOf(y).forEach(({x,who,chain},k)=>{trs+=`<tr data-row="${k}"><td>${who}<small>→ ${shortD(x.k)}${chain?' · '+t('m.chainTag'):''}</small></td><td>${R(x.go)}</td><td>${f1(x.car)}</td><td>${x.trip?f1(x.trip.blocks):'—'}<small>${x.trip?x.trip.lines.map(n=>n==='new'?t('r3.newTag'):n).join('→'):''}</small></td><td>${R(x.drivers)}</td><td><b>${x.metro>=1?R(x.metro):''}</b></td></tr>`;});
     $('trips').innerHTML=trs+'</tbody>';
   }
+
+  // Task 49 layers, offset rail/road flows, road inspection and phase controls.
+  const rawView=view,rawDrawBase=drawBase,rawDrawTop=drawTop,rawDrawDyn=drawDyn,rawOverlays=overlays,rawSide=side,rawTexts=texts;
+  const sectionFor=(a,b)=>G.sections.find(s=>(same(s.a,a)&&same(s.b,b))||(same(s.a,b)&&same(s.b,a)));
+  const shifted=(a,b,off)=>{let [x1,y1]=xy(a),[x2,y2]=xy(b);if(a[1]===b[1]){y1+=off;y2+=off;}else{x1+=off;x2+=off;}return'M'+x1+' '+y1+'L'+x2+' '+y2;};
+  view=function(){if(plan.phase===2&&plan.year===4&&!plan.phase2Committed&&!hold&&!hover)return{mode:'phase2',y:lastY||now()};return rawView();};
+  function dimUnrelated(y){if(roadSel<0)return;const flows=y.roadBy&&y.roadBy[roadSel]||[],orig=new Set(flows.map(x=>x.from)),dest=new Set(flows.map(x=>x.to)),g=$('gBase');
+    for(const [i,o] of D.origins.entries()){const [x,yy]=xy(o.cell),op=orig.has(o.name)?1:.2;
+      for(const el of g.querySelectorAll('circle'))if(Math.abs((+el.getAttribute('cx')||-999)-x)<1&&Math.abs((+el.getAttribute('cy')||-999)-(yy-3))<1)el.setAttribute('opacity',op);
+      for(const el of g.querySelectorAll('rect')){const ex=+el.getAttribute('x'),ey=+el.getAttribute('y');if(ex>x-16&&ex<x+16&&ey>yy-22&&ey<yy+5)el.setAttribute('opacity',op);}
+      for(const el of g.querySelectorAll('text'))if(el.textContent===nameO(i))el.setAttribute('opacity',op);}
+    for(const [k,d] of D.destinations.entries()){const [x,yy]=xy(d.cell),op=dest.has(d.name)?1:.2;
+      for(const el of g.querySelectorAll('text'))if(el.textContent===nameD(k)||el.textContent===t('r3.toCentre',{n:0}))if(Math.abs((+el.getAttribute('x')||-999)-x)<40)el.setAttribute('opacity',op);
+      for(const el of g.querySelectorAll('rect')){const ex=+el.getAttribute('x'),ey=+el.getAttribute('y');if(ex>x-23&&ex<x+23&&ey>yy-22&&ey<yy+5)el.setAttribute('opacity',op);}}
+  }
+  drawBase=function(v){rawDrawBase(v);const g=$('gBase');
+    for(const el of [...g.querySelectorAll('path')])if(['3.2','4.5','8'].includes(el.getAttribute('stroke-width')))el.remove();
+    for(const el of [...g.querySelectorAll('circle')])if(['5.5','11'].includes(el.getAttribute('r')))el.remove();
+    for(const el of [...g.querySelectorAll('text')])if(el.getAttribute('font-family')==='Geist Mono,monospace')el.remove();
+    let out='',y=v.y,ghost=v.mode==='nothing';
+    if(showCars)for(const s of G.sections){const load=y.roadLoad[s.id]||0,ratio=load/s.cap,congestion=ratio*ratio,col=congestion<.5?C.ink3:congestion<=1?C.warn:C.jam;
+      out+=svg('path',{d:shifted(s.a,s.b,6),fill:'none',stroke:col,'stroke-width':Math.max(1.3,Math.min(7,1.2+load/35)),'stroke-linecap':'round','stroke-opacity':.9});}
+    if(showTransit){
+      for(const l of G.lines){const ll=y.lines.find(q=>q.name===l.name);for(let j=0;j<l.cells.length-1;j++){const s=sectionFor(l.cells[j],l.cells[j+1]),off=s? -6:0,load=ll&&ll.load[j]||0;
+        out+=svg('path',{d:shifted(l.cells[j],l.cells[j+1],off),fill:'none',stroke:l.color,'stroke-width':Math.max(2.4,Math.min(8,2.3+load/24)),'stroke-linecap':'round','stroke-linejoin':'round','stroke-opacity':.9});}
+        l.stations.forEach(c=>{const [x,yy]=xy(c);out+=svg('circle',{cx:x,cy:yy,r:5.5,fill:C.panel,stroke:l.color,'stroke-width':2.5});});}
+      const mine=y.lines.find(l=>l.isNew),load=mine&&mine.load||[];
+      for(let j=0;j<plan.line.length-1;j++){const a=plan.line[j],b=plan.line[j+1],s=sectionFor(a,b),off=s?-6:0,f=mine&&mine.cap?load[j]/mine.cap:0,col=ghost?C.metro:f>1?C.bad:f>.8?C.warn:C.metro;
+        out+=svg('path',{d:shifted(a,b,off),fill:'none',stroke:col,'stroke-width':ghost?3:Math.max(4,Math.min(9,4+((load[j]||0)/28))),'stroke-linecap':'round','stroke-opacity':ghost?.35:.95,'stroke-dasharray':ghost?'4 6':''});}
+      if(!ghost)plan.stations.forEach((c,j)=>{const [x,yy]=xy(c);out+=svg('circle',{cx:x,cy:yy,r:10,fill:C.panel,stroke:C.metro,'stroke-width':3})+text(x,yy+4,String(j+1),11,C.metro,{'text-anchor':'middle','font-weight':700});});
+    }
+    const badgeYear=plan.phase===2&&plan.year===4?4:plan.year;for(const [i,o] of D.origins.entries()){const next=(o.grow||[]).find(x=>x[0]>badgeYear),[x,yy]=xy(o.cell);if(next){const n=Math.round(next[1]-peopleAt(i,badgeYear));if(n>0)out+=pill(x,yy-37,t('r3.growTag',{n:n,y:next[0]}),C.accent,9.5);}if((o.grow||[]).some(x=>x[0]===growthFlashYear)&&performance.now()<growthFlashUntil)out+=svg('circle',{cx:x,cy:yy-3,r:31,fill:'none',stroke:C.warn,'stroke-width':3,'class':'growth-flash'});}g.insertAdjacentHTML('beforeend',out);dimUnrelated(y);
+  };
+  drawTop=function(v){rawDrawTop(v);if(roadSel<0)return;const y=v.y,flows=y.roadBy&&y.roadBy[roadSel]||[],ids=new Set([roadSel]);
+    for(const f of flows){const oi=D.origins.findIndex(o=>o.name===f.from),dk=D.destinations.findIndex(d=>d.name===f.to),ai=D.destinations.findIndex(d=>d.name===f.from),bi=dk>=0?dk:D.destinations.findIndex(d=>d.name===f.to),r=oi>=0&&dk>=0?G.carOD[oi][dk]:ai>=0&&bi>=0?G.carDD[ai][bi]:null;
+      if(r)r.sections.forEach(id=>ids.add(id));}
+    let out='';for(const id of ids){const s=G.sections[id];out+=svg('path',{d:shifted(s.a,s.b,6),fill:'none',stroke:id===roadSel?C.accent:C.info,'stroke-width':id===roadSel?6:3,'stroke-opacity':id===roadSel?.95:.6,'stroke-linecap':'round','stroke-dasharray':id===roadSel?'':'2 5'});}
+    $('gTop').insertAdjacentHTML('beforeend',out);dimUnrelated(y);
+  };
+  drawDyn=function(tm,v){rawDrawDyn(tm,v);const g=$('gDyn');if(!showCars)for(const el of [...g.children])if(el.tagName.toLowerCase()==='rect')el.remove();
+    if(!showTransit)for(const el of [...g.children]){const tag=el.tagName.toLowerCase();if(tag==='g'||(tag==='circle'&&el.getAttribute('r')==='2.7'))el.remove();}};
+  overlays=function(v){rawOverlays(v);if(plan.phase===2&&plan.year===4&&!plan.phase2Committed){$('clock').textContent=t('r3.clockYear',{y:4});$('wave').textContent=t('r3.phaseBudget',{phase:2,b:P.phase2Budget,m:plan.money});$('clockProg').style.width='50%';}
+    if(phaseBanner){$('laneH').textContent=t('r3.phase2Title');$('mapHint').innerHTML=t('r3.phase2Map',{b:P.phase2Budget});return;}
+    if(roadSel>=0){const y=v.y,s=G.sections[roadSel],names=s.roads.map(roadName).join(t('sep')),off=y.offRoad&&y.offRoad[roadSel]||0,reb=y.rebound&&y.rebound[roadSel]||0;
+      $('laneH').textContent=names;$('mapHint').innerHTML=t('r3.roadMap',{off:R(off),reb:R(reb)});return;}
+    const yr=plan.log.at(-1);if(yr&&yr.year){const grown=D.origins.map((o,i)=>({i,n:peopleAt(i,yr.year)-peopleAt(i,yr.year-1),milestone:(o.grow||[]).some(g=>g[0]===yr.year)})).filter(x=>x.milestone).sort((a,b)=>b.n-a.n)[0];
+      if(grown){$('mapHint').innerHTML=t('r3.growthMap',{y:yr.year,place:nameO(grown.i),n:R(grown.n)});return;}
+      const a=yr.offRoad||[],b=yr.rebound||[];let id=-1,score=0;for(let j=0;j<a.length;j++){const q=Math.max(0,a[j])+Math.max(0,b[j]);if(q>score){score=q;id=j;}}
+      if(id>=0&&score>0){$('mapHint').innerHTML=t('r3.trafficMap',{road:G.sections[id].roads.map(roadName).join(t('sep')),off:R(Math.max(0,a[id])),reb:R(b[id])});}
+    }
+  };
+  side=function(v){if(!$('money')){const m=document.createElement('span');m.id='money';m.hidden=true;document.body.append(m);}
+    const y=plan.phase===2&&plan.year===4&&!plan.phase2Committed&&lastY?lastY:v.y;rawSide({mode:'plain',y});
+    const budget=plan.phase===2?P.phase2Budget:P.budget;
+    $('money').textContent=String(plan.money);
+    $('stopPanel').insertAdjacentHTML('afterbegin','<p class="phasebudget">'+t('r3.phaseBudget',{phase:plan.phase,b:budget,m:plan.money})+'</p>');
+    if(plan.phase===2&&!plan.phase2Committed&&plan.year===4){$('run').textContent=t('r3.continue');$('run').disabled=plan.done||plan.stations.length<2;}
+    $('rewind').disabled=plan.year===0;$('pause').disabled=!plan.open||plan.done;
+    const th=$('tide').querySelector('thead tr');if(th&&th.children.length===4){const c=document.createElement('th');c.textContent=t('r3.tRebound');th.append(c);}
+    if(th)for(const row of $('tide').querySelectorAll('tbody tr'))if(row.children.length===4){const n=+row.querySelector('td')?.textContent?.replace(/\D/g,'')||0,l=plan.log[n-1],next=n===plan.year+1&&!plan.done,forecast=next?now():null,td=document.createElement('td');
+      td.textContent=l?R(l.reboundTotal||0):forecast?R(forecast.reboundTotal||0):'';row.append(td);}
+    const ny=plan.log.at(-1),forecast=plan.stations.length>=2?now():null;
+    const currentRoad=(id)=>{const l=plan.log.at(-1);return l?{roadLoad:l.roadLoad,roadBy:l.roadBy,offRoad:l.offRoad,rebound:l.rebound}:forecast;};
+    const linePath=(vals,color,dash,scale,offset=0)=>{if(!vals.length)return'';const mx=scale||Math.max(1,...vals),pts=vals.map((v,i)=>(6+(offset+i)*25)+' '+(38-30*v/mx)).join(' ');
+      return svg('polyline',{points:pts,fill:'none',stroke:color,'stroke-width':2,'stroke-dasharray':dash||''});};
+    $('roadBox').innerHTML=roadStats(y).sort((a,b)=>b.extra-a.extra).map(r=>'<div class="rd '+(roadSel===r.worst?'selected':'')+'" data-road="'+r.worst+'" role="button" tabindex="0"><span class="n">'+roadName(r.name)+'</span><b style="color:'+(jamCol(r.extra)||C.ink3)+'">'+t('r3.roadRow',{e:f1(r.extra)})+'</b></div>'+
+      (roadSel===r.worst?(()=>{const id=r.worst,s=G.sections[id],cy=currentRoad(id),load=cy&&cy.roadLoad[id]||0,cap=s.cap,items=(cy&&cy.roadBy[id]||[]).slice().sort((a,b)=>b.cars-a.cars).slice(0,3);
+        const nmFlow=x=>{const o=D.origins.find(q=>q.name===x);if(o)return nm(o);const d=D.destinations.find(q=>q.name===x);return d?nm(d):x;},off=cy&&cy.offRoad?cy.offRoad[id]||0:0,reb=cy&&cy.rebound?cy.rebound[id]||0:0;
+        const vals=plan.log.map(x=>x.roadLoad[id]||0),baseline=G.doNothingRoad.map(x=>x[id]||0),fwd=forecast&&forecast.roadLoad[id];if(fwd!==undefined&&vals.length<P.years)vals.push(fwd);
+        const scale=Math.max(1,...baseline,...vals),chart='<svg class="roadspark" viewBox="0 0 200 42" role="img">'+linePath(baseline,C.ink3,'4 4',scale)+linePath(vals.slice(0,plan.log.length),C.accent,'',scale)+(vals.length>plan.log.length?linePath(vals.slice(Math.max(0,plan.log.length-1),plan.log.length+1),C.ink3,'3 3',scale,Math.max(0,plan.log.length-1)):'')+'</svg>';
+        return'<div class="road-detail"><b>'+t('r3.roadNow',{n:R(load),c:cap})+'</b><p>'+t('r3.roadImpact',{off:R(off),reb:R(reb)})+'</p><small>'+t('r3.roadTop')+'</small><ol>'+items.map(x=>'<li>'+nmFlow(x.from)+' → '+nmFlow(x.to)+' <b>'+R(x.cars)+'</b></li>').join('')+'</ol>'+chart+'</div>';})():'')).join('');
+    if(roadSel>=0&&!$('roadBox').querySelector('.road-detail')){const id=roadSel,sec=G.sections[id],cy=currentRoad(id),load=cy&&cy.roadLoad[id]||0,items=(cy&&cy.roadBy[id]||[]).slice().sort((a,b)=>b.cars-a.cars).slice(0,3);
+      const nf=x=>{const o=D.origins.find(q=>q.name===x);if(o)return nm(o);const d=D.destinations.find(q=>q.name===x);return d?nm(d):x;},off=cy&&cy.offRoad?cy.offRoad[id]||0:0,reb=cy&&cy.rebound?cy.rebound[id]||0:0;
+      const baseline=G.doNothingRoad.map(x=>x[id]||0),actual=plan.log.map(x=>x.roadLoad[id]||0),next=forecast&&forecast.roadLoad[id];if(next!==undefined&&actual.length<P.years)actual.push(next);
+      const scale=Math.max(1,...baseline,...actual),chart='<svg class="roadspark" viewBox="0 0 200 42" role="img">'+linePath(baseline,C.ink3,'4 4',scale)+linePath(actual.slice(0,plan.log.length),C.accent,'',scale)+(actual.length>plan.log.length?linePath(actual.slice(Math.max(0,plan.log.length-1),plan.log.length+1),C.ink3,'3 3',scale,Math.max(0,plan.log.length-1)):'')+'</svg>';
+      const detail='<div class="road-detail"><b>'+t('r3.roadNow',{n:R(load),c:sec.cap})+'</b><p>'+t('r3.roadImpact',{off:R(off),reb:R(reb)})+'</p><small>'+t('r3.roadTop')+'</small><ol>'+items.map(x=>'<li>'+nf(x.from)+' → '+nf(x.to)+' <b>'+R(x.cars)+'</b></li>').join('')+'</ol>'+chart+'</div>';
+      $('roadBox').insertAdjacentHTML('beforeend',detail);}
+  };
+  texts=function(){rawTexts();$('mapLegend').insertAdjacentHTML('beforeend','<div class="layers"><label><input id="layerCars" type="checkbox" '+(showCars?'checked':'')+'> '+t('r3.layerCars')+'</label><label><input id="layerTransit" type="checkbox" '+(showTransit?'checked':'')+'> '+t('r3.layerTransit')+'</label></div>');};
+  $('mapLegend').addEventListener('change',e=>{if(e.target.id==='layerCars'){showCars=e.target.checked;draw();}else if(e.target.id==='layerTransit'){showTransit=e.target.checked;draw();}});
+  $('roadBox').addEventListener('click',e=>{const r=e.target.closest('[data-road]');if(!r)return;roadSel=roadSel===+r.dataset.road?-1:+r.dataset.road;sel=-1;render();});
+  function roadAt(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(board.getScreenCTM().inverse());let best=-1,bd=1e9;
+    for(const s of G.sections){const [x1,y1]=xy(s.a),[x2,y2]=xy(s.b),dx=x2-x1,dy=y2-y1,u=Math.max(0,Math.min(1,((p.x-x1)*dx+(p.y-y1)*dy)/(dx*dx+dy*dy))),d=Math.hypot(p.x-x1-u*dx,p.y-y1-u*dy);if(d<bd){bd=d;best=s.id;}}
+    return bd<18?best:-1;}
   function render(){draw(true);}
   function fit(){$('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);}
   function texts(){
@@ -1462,7 +1446,7 @@ dialog.intro .row{margin-top:16px}
   function step(){
     if(plan.done){stop();return;}
     const r=plan.runYear();if(!r)return stop();
-    lastY=r.y;render();if(plan.done){stop();setTimeout(result,STEP_MS);}
+    lastY=r.y;phaseBanner=!!r.phaseStart;growthFlashYear=r.year;growthFlashUntil=performance.now()+1600;if(r.phaseStart){stop();render();return;}render();if(plan.done){stop();setTimeout(result,STEP_MS);}
   }
   function play(){if(plan.done)return;playing=true;clearInterval(timer);timer=setInterval(step,STEP_MS);render();}
   function stop(){playing=false;clearInterval(timer);render();}
@@ -1500,7 +1484,7 @@ dialog.intro .row{margin-top:16px}
     if(!plan.isStation(c)&&plan.money<P.stationCost){say(t('m.pvNoMoney'));return false;}
     snapshot();plan.toggleStation(c);return true;
   }
-  board.onpointerdown=e=>{const c=cellAt(e);if(!c)return;drag=tool==='draw'&&!plan.open;if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
+  board.onpointerdown=e=>{if(plan.open){roadSel=roadAt(e);sel=-1;render();return;}const c=cellAt(e);if(!c)return;drag=tool==='draw'&&!plan.open;if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
   board.onpointermove=e=>{const c=cellAt(e);
     if(drag&&c&&plan.canExtend(c)){snapshot();plan.extend(c);hover=null;render();return;}
     if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;draw();}};
@@ -1511,7 +1495,7 @@ dialog.intro .row{margin-top:16px}
     const id=e.target.closest('button')?.id;if(!id)return;
     if(id==='trainPlus'){snapshot();if(plan.addTrain())render();}else if(id==='trainMinus'){snapshot();if(plan.removeTrain())render();}
     else if(id==='undo'){const s=history.pop();if(s){restore(s);render();}}else if(id==='clear'){if(plan.open||!plan.line.length)return;snapshot();plan.clear();tool='draw';render();}};
-  $('run').onclick=()=>{if(plan.done)result();else if(!plan.open)open();else step();};
+  $('run').onclick=()=>{if(plan.done)result();else if(plan.phase===2&&!plan.phase2Committed){if(plan.continuePhase2()){phaseBanner=false;step();play();}}else if(!plan.open)open();else step();};
   $('pause').onclick=()=>{playing?stop():play();};
   $('rewind').onclick=rewind;
   const holdOn=e=>{if($('hold').disabled)return;e.preventDefault();hold=true;draw();},holdOff=()=>{if(hold){hold=false;draw();}};
@@ -1545,15 +1529,14 @@ dialog.intro .row{margin-top:16px}
   if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
   const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
     extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
-    train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
+    train(){const ok=plan.addTrain();render();return ok;},continue(){if(plan.continuePhase2()){phaseBanner=false;step();play();return true;}return false;},go(){open();},halt(){stop();},get plan(){return plan;}};
   window.TL_ROADS={api,plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,jam:now().jam,dots:dots.length}),
     cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();
 
 </script><script>
-// v7 mode 3 · AI demo plans, written by bots/v7_metro_grow.js (2026-10-14). Do not edit by hand.
-// level → {tiers, best, pass|high|master: {line, stations, trains, score}}
-(function(root){root.TL_ROADS_DEMO={"m3-1":{"tiers":[1500,2600,3600],"best":4207,"pass":{"line":[[9,5],[9,6],[8,6],[7,6],[6,6]],"stations":[[9,5],[6,6]],"trains":1,"score":1631},"high":{"line":[[6,6],[5,6],[4,6],[3,6],[2,6],[2,5],[2,4]],"stations":[[2,4],[3,6],[6,6]],"trains":3,"score":2618},"master":{"line":[[12,5],[11,5],[10,5],[9,5],[8,5],[7,5],[6,5],[6,6],[6,7],[5,7],[4,7],[3,7],[3,6]],"stations":[[9,5],[6,7],[3,6],[12,5]],"trains":2,"score":4207}}};})(typeof window!=='undefined'?window:globalThis);
+// v7 mode 3 · two-phase demo plans. Generated by bots/v7_roads.js.
+(function(root){root.TL_ROADS_DEMO={"m3-1":{"tiers":[500,1000,3000],"best":3321,"pass":{"line":[[4,6],[5,6],[6,6]],"stations":[[4,6],[6,6]],"trains":3,"phase2":[],"score":560},"high":{"line":[[9,5],[8,5],[8,6],[8,7],[8,8],[8,9],[9,9],[10,9],[11,9]],"stations":[[11,9],[8,9],[9,5]],"trains":1,"phase2":[{"type":"station","cell":[9,9]}],"score":1154},"master":{"line":[[9,5],[8,5],[7,5],[6,5],[5,5],[4,5],[3,5],[3,6],[4,6],[5,6],[6,6]],"stations":[[6,6],[3,6],[9,5]],"trains":1,"phase2":[{"type":"train"}],"score":3321}}};})(typeof window!=="undefined"?window:globalThis);
 
 </script><script>
 (function(root) {
@@ -1675,9 +1658,10 @@ dialog.intro .row{margin-top:16px}
     if(!live())return;
     // ⑤ open: the years play
     say(t('demo.open',{s:Math.round(P.aware.start*10)}));await sleep(1200);if(!live())return;
-    api.go();let seen=0;
+    api.go();let seen=0,phaseActionsStarted=false;
     watch=setInterval(()=>{if(!live()){clearInterval(watch);return;}const p=api.plan,l=p.log.at(-1);
       if(p.year>seen&&l){seen=p.year;say(t('demo.year',{y:l.year,j:Math.round(l.jam),n:Math.round(l.jam0),c:Math.round(l.drivers),r:Math.round(l.onNew),t:Math.round(p.total)}));}
+      if(p.phase===2&&p.year===4&&!p.phase2Committed&&!phaseActionsStarted){phaseActionsStarted=true;(async()=>{say(t('r3.phase2Map',{b:P.phase2Budget}));await sleep(1200);for(const a of plan.phase2||[]){if(!live())return;if(a.type==='extend')api.extend(a.cell);else if(a.type==='station')api.station(a.cell);else if(a.type==='train')api.train();await sleep(550);}if(live())api.continue();})();}
       if(p.done){clearInterval(watch);say(t('demo.done',{t:Math.round(p.total),tier:tierName(k),n:pl.tiers[j]}));stopDemo(true);}},250);
   }
   window.addEventListener('tl:lang',texts);
