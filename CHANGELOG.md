@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 02:30 · `HASH` 接驳巴士 v7.27：沙盘里直接试「AI 出关卡」；AI 片区名与全港底板统一 / Feeder v7.27: AI levels end to end in the sandbox
+### 02:30 · `ae4ceae` 接驳巴士 v7.27：沙盘里直接试「AI 出关卡」；AI 片区名与全港底板统一 / Feeder v7.27: AI levels end to end in the sandbox
 - **改了什么**：新 `v7/shared/levelgen/worker.js`（在后台线程里切地图 → 校准道路 → 机器人找最好方案 → 定门槛，和 `bots/v7_levelgen.js` 同一套步骤；AI 给的绝对人数先换算成该地点的百分比）；新 `v7/mode5-sandbox/ai-level.js`（一句话 → AI 请求 → worker → 显示标题、故事、片区、改动、门槛 → 「用第三关的玩法打开」存成本次网页的关卡包 `#pack=custom-…`）；`ai/client.js` 的 build 可以是异步的（关卡不合格时把原因交回 AI 再试一次）；`shared/levelpack.js` 的 TLPackIntro 也把页面左栏标题和介绍换成关卡包的；`backend/feeder_ai.py` 等的片区 key 改成和 `v7/hk/hk-base.json` 一致（10 个，如 sha-tin → sha-tin-tai-wai）。
 - **为什么**：发起人想今晚就在沙盘里直接试 AI，明天一起调。
 - **验证**：真浏览器（真键盘输入、真鼠标点击）三句话（启德跑了两次）：启德多五万人、沙田第一城多三万人、将军澳隧道封一条线（第一次不合格、自动重试后成功）都在 20–40 秒出关卡并在第三关打开，无报错；后台测试 17 项通过。
