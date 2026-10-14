@@ -755,7 +755,7 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),'top.paper':L('淺色','浅色','Light'),'top.ink':L('深色','深色','Dark'),
     'nav.aria':L('五個模式','五个模式','Five modes'),
     'nav.m1':L('車站與步行','车站与步行','Stations & walking'),'nav.m2':L('地鐵','地铁','The metro'),'nav.m3':L('路會塞','路会塞','Roads that jam'),
-    'nav.m4':L('站旁開發','站旁开发','Station-side development'),'nav.m5':L('沙盤 · 即將推出','沙盘 · 即将推出','Sandbox · soon'),
+    'nav.m4':L('站旁開發','站旁开发','Station-side development'),'nav.m5':L('全港沙盤','全港沙盘','Hong Kong sandbox'),
     // the cover (v3)
     'cv.titleTc':L('這座城市，一天漲潮兩次','这座城市，一天涨潮两次',''),
     'cv.ledeTc':L('運輸署實測，逐小時。','运输署实测，逐小时。',''),
@@ -791,6 +791,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     'hub.m4P':L('修好地鐵，再把站旁的空地賣成住宅或商場——港鐵的「鐵路＋物業」。','修好地铁，再把站旁的空地卖成住宅或商场——港铁的「铁路＋物业」。','Build the line, then sell the land beside its stations for homes or shops — the MTR’s rail-plus-property.'),
     'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
     'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
+    'hub.first':L('第一版','第一版','First version'),
+    'hub.m5open':L('全港 400 米格子 · 畫線放站 · 四種時段','全港 400 米格子 · 画线放站 · 四种时段','All of Hong Kong · lines and stations · four times of day'),
+    'hub.m5file':L('要從本機服務打開：雙擊 scripts\\start-feeder.cmd','要从本机服务打开：双击 scripts\\start-feeder.cmd','Open it from the local server: scripts\\start-feeder.cmd'),
     'hub.m5a':L('AI 出關卡','AI 出关卡','AI makes a level'),'hub.m5b':L('操控整個沙盤','操控整个沙盘','Run the sandbox'),'hub.m5c':L('查香港數據','查香港数据','Hong Kong data')
   });
 })();
@@ -1141,8 +1144,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
         '<div class="hp-detail" id="hubDetail" aria-live="polite"></div>' +
         '<div class="hp-legend"><span><i class="k st-play"></i>' + t('hub.play') + '</span><span><i class="k st-soon"></i>' + t('hub.locked') + '</span></div>';
     } else h = '<span class="lbl">Mode 05 · Sandbox</span><h2 class="hp-h">Sandbox' + tc(t('hub.m5H')) + '</h2>' +
-      '<span class="chip"><i></i>' + t('hub.coming') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
-      '<div class="lvls">' + ['m5a', 'm5b', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
+      '<span class="chip"><i></i>' + t('hub.first') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
+      '<div class="lvls"><a class="lv" id="hubSandbox" href="mode5-sandbox/index.html"><span class="lv-n"><b>' + t('hub.m5b') + ' →</b></span><span class="lv-m">' + t(location.protocol === 'file:' ? 'hub.m5file' : 'hub.m5open') + '</span></a>' +
+      ['m5a', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
     $('hubPanel').innerHTML = resumeBlock() + h;
     const rb = $('hubResume'); if (rb) rb.addEventListener('click', resume);
     $('hubPanel').querySelectorAll('.lv[data-site]').forEach(b => {

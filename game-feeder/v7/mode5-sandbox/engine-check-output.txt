@@ -1,0 +1,28 @@
+Urban line rounds: round | car share | new-line riders | vehicles reduced | congestion reduced | car change
+1 | 50.78% | 5713.5 | 1186.4 | 35952.0 | 12.458%
+2 | 52.25% | 5470.8 | 944.9 | 26391.5 | 2.897%
+3 | 52.84% | 5356.1 | 846.9 | 22488.6 | 1.142%
+4 | 53.10% | 5298.9 | 805.7 | 20884.3 | 0.475%
+5 | 53.21% | 5268.9 | 787.4 | 20203.8 | 0.210%
+6 | 53.26% | 5252.4 | 778.6 | 19901.3 | 0.100%
+7 | 53.29% | 5243.1 | 774.2 | 19758.9 | 0.051%
+8 | 53.30% | 5237.6 | 771.8 | 19687.9 | 0.028%
+PASS no-build 30 rounds; max baseline drift < 0.00e+0
+PASS urban line stable in 8 rounds; Kai Tak car share 58.0% → 48.5%
+PASS road direction; 觀塘繞道 / 觀塘道 load decreased
+PASS budget, one-cell transfer, six-cell walking limit, and remote park line
+Fixture simulate-to-stable elapsed 10.3 ms (8 rounds; D-tier fixture only)
+PASS full HK am: 134348 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1894.3 ms; mean step + checks 107.4 ms; minute coverage 99.60%
+PASS full HK pm: 138627 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 2715.7 ms; mean step + checks 115.1 ms; minute coverage 99.68%
+PASS full HK day: 76284 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 2418.7 ms; mean step + checks 47.3 ms; minute coverage 99.92%
+PASS full HK holiday: 40643 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 2257.4 ms; mean step + checks 25.7 ms; minute coverage 99.94%
+Full HK AM urban rounds: round | car share | new-line riders | fewer cars | congestion reduced | car change
+1 | 11.206% | 3619.4 | 143.0 | 208.4 | 0.111%
+2 | 11.208% | 3618.3 | 122.4 | 105.5 | 0.016%
+3 | 11.209% | 3617.7 | 115.8 | 83.4 | 0.005%
+4 | 11.209% | 3617.4 | 113.1 | 77.2 | 0.002%
+5 | 11.209% | 3617.2 | 111.9 | 75.2 | 0.001%
+PASS full HK urban convergence within 30 rounds
+PASS full HK stable direction (5 rounds); Kwun Tong car share 7.985% → 7.877%; target-road summed section load 90324.0 → 90083.6
+PASS full HK unused rural line [[88,4],[89,4],[90,4],[91,4]]; no vehicle or congestion change
+PASS real JSON interface: 160×120, 455 zones, 97 stations, 3000 road sections, 20 areas

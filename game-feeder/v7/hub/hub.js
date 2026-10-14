@@ -343,8 +343,9 @@
         '<div class="hp-detail" id="hubDetail" aria-live="polite"></div>' +
         '<div class="hp-legend"><span><i class="k st-play"></i>' + t('hub.play') + '</span><span><i class="k st-soon"></i>' + t('hub.locked') + '</span></div>';
     } else h = '<span class="lbl">Mode 05 · Sandbox</span><h2 class="hp-h">Sandbox' + tc(t('hub.m5H')) + '</h2>' +
-      '<span class="chip"><i></i>' + t('hub.coming') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
-      '<div class="lvls">' + ['m5a', 'm5b', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
+      '<span class="chip"><i></i>' + t('hub.first') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
+      '<div class="lvls"><a class="lv" id="hubSandbox" href="mode5-sandbox/index.html"><span class="lv-n"><b>' + t('hub.m5b') + ' →</b></span><span class="lv-m">' + t(location.protocol === 'file:' ? 'hub.m5file' : 'hub.m5open') + '</span></a>' +
+      ['m5a', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
     $('hubPanel').innerHTML = resumeBlock() + h;
     const rb = $('hubResume'); if (rb) rb.addEventListener('click', resume);
     $('hubPanel').querySelectorAll('.lv[data-site]').forEach(b => {
