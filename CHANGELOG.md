@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 00:56 · `待补` 接驳巴士 v7.22：全港沙盘第一版（Codex 任务 52）+ 一键启动 / Feeder v7.22: the Hong Kong sandbox, first version
+### 00:56 · `15aff3b` 接驳巴士 v7.22：全港沙盘第一版（Codex 任务 52）+ 一键启动 / Feeder v7.22: the Hong Kong sandbox, first version
 - **改了什么**：新增 `game-feeder/v7/mode5-sandbox/`（数据读 `v7/hk/`）；入口 05 面板可进沙盘；导航第 5 站「全港沙盘」；新增 `scripts/start-feeder.cmd`、`start-feeder.ps1`。
 - **为什么**：第五关全港沙盘：全港画线放站、四种时段、逐轮看人和车的变化。
 - **验证**：沙盘检查全过；本机后台下真浏览器从入口进沙盘、载入真实底板、无报错。
