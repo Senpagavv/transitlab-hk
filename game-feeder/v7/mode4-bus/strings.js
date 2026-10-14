@@ -229,5 +229,35 @@
       'The lane on {r}: buses gained, but cars kept only {p}/10 of it. If the road turned red and few rode the buses, it did not pay.'),
     'b4.tipChange':L('你在第 {y} 年改過方案：巴士隨時可以改，這是它比地鐵靈活的地方。','你在第 {y} 年改过方案：巴士随时可以改，这是它比地铁灵活的地方。','You changed the plan in year {y}: buses can change any time — their edge over the metro.')
   });
+  // v7.11 · mode 1's layout: lede, cards, stop panel, three rules, the clock, the bottom numbers, the years table
+  I18N.add({
+    'b4.chipTag':L('每年可改','每年可改','Change yearly'),
+    'b4.lede':L('Buses run on the road, and jam with it.<span class="tcb">沿路畫巴士線、加車，把開車的人接上巴士和地鐵；巴士專線讓巴士不塞，可是車會更塞。每年都可以改。</span>',
+      'Buses run on the road, and jam with it.<span class="tcb">沿路画巴士线、加车，把开车的人接上巴士和地铁；巴士专线让巴士不塞，可是车会更塞。每年都可以改。</span>',
+      'Buses run on the road, and jam with it. Draw routes along the roads and add buses to take drivers onto buses and the metro; a bus lane frees the buses but jams the cars more. Change it every year.'),
+    'b4.routesLbl':L('Routes · 巴士線 <span class="tc">每年預算 <b id="money"></b></span>','Routes · 巴士线 <span class="tc">每年预算 <b id="money"></b></span>','Routes <span class="tc">budget a year <b id="money"></b></span>'),
+    'b4.rulesH':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'b4.rule1':L('<b>巴士沿路走。</b>坐巴士＝走路 ＋ 等車（{h} ÷ 車數）＋ 每段路（1 ＋ 塞車）＋ 每站 1。不用泊車，站放在地鐵站旁邊就能轉地鐵。','<b>巴士沿路走。</b>坐巴士＝走路 ＋ 等车（{h} ÷ 车数）＋ 每段路（1 ＋ 塞车）＋ 每站 1。不用泊车，站放在地铁站旁边就能转地铁。',
+      '<b>Buses follow the roads.</b> A bus trip = walk + wait ({h} ÷ buses) + each road section (1 + the jam) + 1 a stop. No parking; a stop by a station feeds the metro.'),
+    'b4.rule2':L('<b>巴士專線</b>：巴士在那條路上不塞；車只剩 {p} 成路，會更塞。','<b>巴士专线</b>：巴士在那条路上不塞；车只剩 {p} 成路，会更塞。','<b>A bus lane</b>: buses skip the jam there; cars keep {p}/10 of the road and jam more.'),
+    'b4.rule3':L('<b>每年預算 {b}</b>（一輛巴士 {bc}、一條專線 {lc}），每年都可以改。比開車省幾格就有幾成人改坐——和前幾關一樣。','<b>每年预算 {b}</b>（一辆巴士 {bc}、一条专线 {lc}），每年都可以改。比开车省几格就有几成人改坐——和前几关一样。',
+      '<b>Budget {b} a year</b> ({bc} a bus, {lc} a lane), changeable every year. Every block saved on the car, one in ten switch — as before.'),
+    'b4.legend2':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk bus"></i>巴士</span><span><i class="lk dot"></i>坐巴士 / 地鐵</span><span><i class="ringkey"></i>綠圈：坐公共交通的人</span><span><i class="lk jam"></i>路中間紅線：塞</span><span><i class="lk lane"></i>巴士專線</span>',
+      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk bus"></i>巴士</span><span><i class="lk dot"></i>坐巴士 / 地铁</span><span><i class="ringkey"></i>绿圈：坐公共交通的人</span><span><i class="lk jam"></i>路中间红线：塞</span><span><i class="lk lane"></i>巴士专线</span>',
+      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk bus"></i>buses</span><span><i class="lk dot"></i>by bus / metro</span><span><i class="ringkey"></i>green ring: public transport</span><span><i class="lk jam"></i>red in the road: jam</span><span><i class="lk lane"></i>bus lane</span>'),
+    'b4.hudBus':L('By bus · 坐巴士','By bus · 坐巴士','By bus'),'b4.hudRail':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'b4.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'b4.hudJam':L('Jam · 塞車','Jam · 塞车','Jam'),
+    'b4.clockPlan':L('第 0 年','第 0 年','Year 0'),'b4.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'b4.clockSub':L('共 {m} 年 · 規劃中','共 {m} 年 · 规划中','{m} years · planning'),'b4.clockSubOpen':L('共 {m} 年 · 改了下一年生效','共 {m} 年 · 改了下一年生效','{m} years · changes count next year'),
+    'b4.laneNow':L('This year · 今年','This year · 今年','This year'),'b4.lanePv':L('Preview · 預覽','Preview · 预览','Preview'),'b4.laneNo':L('No buses · 沒有巴士','No buses · 没有巴士','No buses'),
+    'b4.yearsH':L('Years · 逐年','Years · 逐年','Years'),'b4.yearChip':L('{m} 年','{m} 年','{m} years'),
+    'b4.tYear':L('年','年','Year'),'b4.tJam':L('塞車','塞车','Jam'),'b4.tBus':L('坐巴士','坐巴士','Bus'),'b4.tCar':L('開車','开车','Drive'),
+    'b4.tideKey':L('沒有巴士時每年塞車 {n}；越少越好。灰字＝下一年的預告。','没有巴士时每年塞车 {n}；越少越好。灰字＝下一年的预告。','No buses: a jam of {n} a year — lower is better. Grey = next year\'s forecast.'),
+    'b4.roadsH':L('Roads · 路況','Roads · 路况','Roads'),'b4.roadNone':L('路都通。','路都通。','All roads clear.'),
+    'b4.roadRow':L('每趟多 {e} 格','每趟多 {e} 格','+{e} a trip'),
+    'b4.spTitle':L('{n} 線','{n} 线','Route {n}'),'b4.spBuses':L('巴士','巴士','Buses'),'b4.spWait':L('等車','等车','Wait'),'b4.spRiders':L('每天坐','每天坐','Ride a day'),
+    'b4.spLoad':L('最擠一段','最挤一段','Busiest section'),'b4.spStops':L('站','站','Stops'),'b4.spNone':L('還沒畫。選「✏ 路線」，在路上點格子開始。','还没画。选「✏ 路线」，在路上点格子开始。','Not drawn. Pick «✏ Route» and click a road cell to start.'),
+    'b4.toCentre':L('坐公共交通來 {n}','坐公共交通来 {n}','{n} by public transport'),
+    'b4.blocks':L('{n} 格','{n} 格','{n}'),'b4.people':L('{n} 人','{n} 人','{n}')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

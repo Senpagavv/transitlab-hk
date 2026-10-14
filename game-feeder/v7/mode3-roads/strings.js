@@ -144,5 +144,38 @@
       '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路</span><span><i class="lk road"></i>路：灰通、橙快满、红塞</span>',
       '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot</span><span><i class="lk road"></i>roads: grey free, orange filling, red jammed</span>')
   });
+  // v7.11 · mode 1's layout: lede, cards, line panel, three rules, the clock, the bottom numbers, the years table
+  I18N.add({
+    'r3.chipTag':L('一次建好','一次建好','Built once'),
+    'r3.lede':L('Take the cars off the roads.<span class="tcb">九龍東的路已經塞。建一條新線把開車的人帶走——路一通，又有人回去開車。</span>',
+      'Take the cars off the roads.<span class="tcb">九龙东的路已经塞。建一条新线把开车的人带走——路一通，又有人回去开车。</span>',
+      'Take the cars off the roads. Kowloon East already jams: build a line to take drivers off — and once the roads clear, some drive again.'),
+    'r3.lineLbl':L('New line · 新線 <span class="tc">預算 <b id="money"></b></span>','New line · 新线 <span class="tc">预算 <b id="money"></b></span>','New line <span class="tc">budget <b id="money"></b></span>'),
+    'r3.rulesH3':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'r3.rule1':L('<b>一次建好一條新線</b>（預算 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}），開通後 {y} 年不能改。','<b>一次建好一条新线</b>（预算 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}），开通后 {y} 年不能改。',
+      '<b>Build one new line, once</b> (budget {b}: {lc} a block, {sc} a station, {tc} a train); nothing changes for {y} years.'),
+    'r3.rule2':L('<b>路會塞</b>：每段路多（車 ÷ 容量）² 格。新線把開車的人帶走，路就通；路一通，開車又變好走，有人回去開車（每年只改 {lp}）。','<b>路会塞</b>：每段路多（车 ÷ 容量）² 格。新线把开车的人带走，路就通；路一通，开车又变好走，有人回去开车（每年只改 {lp}）。',
+      '<b>Roads jam</b>: each section adds (cars ÷ capacity)². The line takes drivers off and the roads clear; clear roads tempt some back (drivers adjust {lp} a year).'),
+    'r3.rule3':L('<b>和第二關一樣</b>：比開車省幾格，就有幾成坐地鐵；只有知道新線的人會用（口耳相傳）。分數＝比什麼都不做少塞多少。','<b>和第二关一样</b>：比开车省几格，就有几成坐地铁；只有知道新线的人会用（口耳相传）。分数＝比什么都不做少塞多少。',
+      '<b>As in mode 2</b>: every block saved on the car, one in ten by metro; only those who know the line use it (word of mouth). Score = less jam than doing nothing.'),
+    'r3.legend2':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐公共交通的人</span><span><i class="lk jam"></i>路中間紅線：塞</span><span><i class="lk mtr"></i>觀塘綫、將軍澳綫</span><span><i class="lk newline"></i>你的新線</span>',
+      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐公共交通的人</span><span><i class="lk jam"></i>路中间红线：塞</span><span><i class="lk mtr"></i>观塘线、将军澳线</span><span><i class="lk newline"></i>你的新线</span>',
+      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: public transport</span><span><i class="lk jam"></i>red in the road: jam</span><span><i class="lk mtr"></i>觀塘綫, 將軍澳綫</span><span><i class="lk newline"></i>your line</span>'),
+    'r3.hudNew':L('New line · 坐新線','New line · 坐新线','New line'),'r3.hudRail':L('All metro · 坐地鐵','All metro · 坐地铁','All metro'),'r3.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'r3.hudJam':L('Jam · 塞車','Jam · 塞车','Jam'),
+    'r3.clockPlan':L('第 0 年','第 0 年','Year 0'),'r3.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'r3.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'r3.clockSubOpen':L('共 {m} 年 · 大家慢慢知道新線','共 {m} 年 · 大家慢慢知道新线','{m} years · people slowly find the line'),
+    'r3.laneNow':L('This year · 今年','This year · 今年','This year'),'r3.lanePv':L('Preview · 預覽','Preview · 预览','Preview'),'r3.laneNo':L('Do nothing · 什麼都不做','Do nothing · 什么都不做','Doing nothing'),
+    'r3.yearsH':L('Years · 逐年','Years · 逐年','Years'),'r3.yearChip':L('{m} 年','{m} 年','{m} years'),
+    'r3.tYear':L('年','年','Year'),'r3.tJam':L('塞車','塞车','Jam'),'r3.tNew':L('坐新線','坐新线','New line'),'r3.tKnow':L('知道','知道','Know'),
+    'r3.tideKey':L('什麼都不做時每年塞車 {n}；越少越好。灰字＝下一年的預告。','什么都不做时每年塞车 {n}；越少越好。灰字＝下一年的预告。','Doing nothing: a jam of {n} a year — lower is better. Grey = next year\'s forecast.'),
+    'r3.roadsH2':L('Roads · 路況','Roads · 路况','Roads'),'r3.roadRow':L('每趟多 {e} 格','每趟多 {e} 格','+{e} a trip'),
+    'r3.cardLine':L('線','线','Line'),'r3.cardStation':L('站','站','Stations'),'r3.cardTrain':L('列車','列车','Trains'),
+    'r3.cardLineN':L('{n} 格 · 畫線','{n} 格 · 画线','{n} cells · draw'),'r3.cardStationN':L('{n} 個 · 放站','{n} 个 · 放站','{n} · place'),'r3.cardTrainN':L('{n} 列 · ±','{n} 列 · ±','{n} · ±'),
+    'r3.spTitle':L('新線','新线','The new line'),'r3.spLine':L('線','线','Line'),'r3.spStations':L('站','站','Stations'),'r3.spTrains':L('列車','列车','Trains'),'r3.spRoom':L('每段每天最多','每段每天最多','A section carries'),
+    'r3.spLeft':L('預算還剩','预算还剩','Budget left'),'r3.spRiders':L('坐新線（今年）','坐新线（今年）','On the line (this year)'),
+    'r3.cells':L('{n} 格','{n} 格','{n} cells'),'r3.count':L('{n} 個','{n} 个','{n}'),'r3.trainsN':L('{n} 列','{n} 列','{n}'),'r3.peopleN':L('{n} 人','{n} 人','{n}'),
+    'r3.toCentre':L('坐公共交通來 {n}','坐公共交通来 {n}','{n} by public transport'),
+    'r3.run0':L('▶ 開通','▶ 开通','▶ Open'),'r3.holdAhead2':L('👁 按住看以後','👁 按住看以后','👁 Hold: later'),'r3.holdNothing2':L('👁 按住看不做','👁 按住看不做','👁 Hold: nothing')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

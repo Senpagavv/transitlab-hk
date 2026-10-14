@@ -13,14 +13,7 @@
   <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
 </header>
 
-<nav id="navrow" data-i18n-aria="nav.aria">
-  <button data-mode="1" aria-selected="true"><i class="stop">01</i><span class="t"><b>Entry game</b><s data-i18n="nav.1">入門遊戲</s></span></button>
-  <button data-mode="2" aria-selected="false" class="soon"><i class="stop">02</i><span class="t"><b>Lessons</b><s data-i18n="nav.2">互動教學 · 即將推出</s></span></button>
-  <button data-mode="3" aria-selected="false" class="soon"><i class="stop">03</i><span class="t"><b>Full sandbox</b><s data-i18n="nav.3">完整沙盤 · 即將推出</s></span></button>
-  <button data-mode="4" aria-selected="false" class="soon"><i class="stop">04</i><span class="t"><b>Observation deck</b><s data-i18n="nav.4">觀測台 · 即將推出</s></span></button>
-  <button data-mode="5" aria-selected="false" class="soon"><i class="stop">05</i><span class="t"><b>Leaderboard</b><s data-i18n="nav.5">排行榜 · 即將推出</s></span></button>
-  <button data-mode="6" aria-selected="false" class="soon"><i class="stop">06</i><span class="t"><b>Network console</b><s data-i18n="nav.6">數據台 · 即將推出</s></span></button>
-</nav>
+<nav id="navrow" data-current="1"></nav>
 
 <main id="app" class="eg">
   <aside class="side scol">
@@ -119,4 +112,4 @@
 <p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span id="ivNew"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" id="ivCourse"></p>
 <div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始佈置 →</button></div></dialog>
 
-<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="strings.js"></script><script src="../shared/tips.js"></script><script src="ui.js"></script><script src="demo-plans.js"></script><script src="demo.js"></script><!-- AI demo (temporary) --></body></html>
+<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="../shared/nav.js"></script><script src="strings.js"></script><script src="../shared/tips.js"></script><script src="ui.js"></script><script src="demo-plans.js"></script><script src="demo.js"></script><!-- AI demo (temporary) --></body></html>

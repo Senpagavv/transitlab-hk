@@ -53,7 +53,7 @@
   .demobox .dh{display:flex;align-items:center;gap:8px;margin-bottom:6px}.demobox .dh b{color:var(--s-accent);font-size:13.5px}.demobox .dh .sp{flex:1}
   .demobox p{margin:3px 0}.demobox p b{color:var(--s-ink)}.demobox ul{margin:4px 0 0;padding-left:18px}.demobox li{margin:2px 0}
   .demobox p.old{opacity:.5}
-  .mapplate.demo .yearcard,.mapplate.demo .headline,.mapplate.demo .infocard{display:none}`;
+  .mapplate.demo .clockbox,.mapplate.demo .lanebox{display:none}`;
   document.head.append(css);
   const sleep=ms=>new Promise(r=>{const id=setTimeout(r,ms);timers.push(id);});
   let timers=[],run=0,watch=0;

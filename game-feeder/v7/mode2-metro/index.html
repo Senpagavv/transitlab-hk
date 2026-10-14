@@ -11,55 +11,61 @@
   <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" aria-pressed="true">繁</button><button data-lang="zh-Hans" aria-pressed="false">简</button><button data-lang="en" aria-pressed="false">EN</button></div>
   <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true">☀</button><button id="thInk" aria-pressed="false">☾</button></div>
 </header>
+<nav id="navrow" data-current="2"></nav>
 
 <main id="app" class="eg">
   <aside class="side scol">
-    <div class="row"><a class="btn btn-sm" href="../index.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="m.mode">Mode 02 · 地鐵</span></div>
+    <div class="row"><a class="btn btn-sm" href="../index.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><div class="sp"></div><span class="chip"><i></i><span data-i18n="m2.chipTag">一次建好</span></span></div>
+    <span class="lbl" data-i18n="m.mode">Mode 02 · 地鐵</span>
     <h1 class="h1"><span>The metro</span><span class="h1tc" data-i18n="m.levelTitle">新界西北 · 一條新線</span></h1>
+    <p class="lede" data-i18n-html="m2.lede"></p>
 
-    <div class="box bigscore">
-      <div class="lbl" data-i18n="m.scoreLbl">八年累計坐地鐵</div>
-      <div class="row"><b id="score">0</b><span class="unit" data-i18n="m.scoreUnit">人次</span></div>
+    <div class="box goal">
+      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score">0</b> / <span id="goalMax"></span></span></div>
       <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
       <div class="note" id="goal"></div>
     </div>
 
-    <div class="box yearbox">
-      <div class="row"><b id="yearNum"></b><div class="sp"></div><button class="btn btn-p" id="run"></button></div>
-      <div class="ychart" id="yChart"></div>
-      <div class="note" id="yNote"></div>
-      <div class="row yrow"><button class="btn btn-sm" id="pause"></button><button class="btn btn-sm" id="rewind" data-i18n="m.rewind">↺ 回到規劃</button><button class="btn btn-sm hold" id="hold"></button></div>
+    <div class="row controls">
+      <button class="btn btn-p" id="run"></button>
+      <button class="btn btn-sm" id="pause"></button>
+      <button class="btn btn-sm hold" id="hold"></button>
+      <button class="btn btn-sm" id="rewind" data-i18n-title="m.rewind">↺</button>
     </div>
 
-    <div class="box money" id="planBox">
-      <div class="row"><span class="lbl" data-i18n="m.budgetLbl">預算</span><div class="sp"></div><b class="mono" id="money"></b></div>
-      <div class="note" id="moneyNote"></div>
-      <div class="row trainrow"><span id="trainsTxt"></span><div class="sp"></div><button class="btn btn-sm" id="trainMinus">−</button><button class="btn btn-sm" id="trainPlus">＋</button></div>
-      <div class="row tools">
-        <div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="true" data-i18n="m.toolDraw">✏ 畫線</button><button data-tool="station" aria-pressed="false" data-i18n="m.toolStation">● 放站</button></div>
-        <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="m.clear">清空</button>
-      </div>
-      <p class="hint" id="toolHint"></p>
-    </div>
+    <div class="lbl" data-i18n-html="m2.lineLbl"></div>
+    <div id="stations" class="stations"></div>
+    <div id="stopPanel" class="box stopbox"></div>
 
-    <details class="rulesd"><summary data-i18n="m.rulesH">How it works · 怎麼算</summary><ol class="mini" id="rules"></ol></details>
+    <div class="lbl" style="margin-top:16px" data-i18n="m2.rulesH3">Three rules · 三條規則</div>
+    <ol class="mini" id="rules"></ol>
+    <div class="lbl" style="margin-top:14px" data-i18n="g.read">How to read the map · 怎麼看</div>
+    <div class="legend" id="mapLegend"></div>
   </aside>
 
   <div class="play">
     <div class="mapplate">
-      <svg id="board" viewBox="0 0 1000 620" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
-      <div class="headline" id="headline" aria-live="polite"><b id="hlMain"></b><span id="hlSub"></span></div>
-      <div class="infocard" id="infoCard"></div>
-      <div class="maplegend" id="mapLegend"></div>
-      <div class="yearcard" id="yearCard" aria-live="polite"></div>
+      <svg id="board" viewBox="0 0 900 700" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
+      <div class="clockbox ov"><div class="c" id="clock"></div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
+      <div class="lanebox ov"><div class="h"><span id="laneH"></span></div><div class="hint" id="mapHint"></div></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="hud">
+        <div class="good"><b id="hudBus">0</b><small data-i18n="m2.hudMetro">By metro · 坐地鐵</small></div>
+        <div><b id="hudRail">0</b><small data-i18n="m2.hudWalk">On foot · 走路</small></div>
+        <div class="bad"><b id="hudCar">0</b><small data-i18n="m2.hudCar">Drive · 開車</small></div>
+        <div><b id="hudJam">0</b><small data-i18n="m2.hudKnow">Know the line · 知道新線</small></div>
+      </div>
     </div>
   </div>
 
   <aside class="side right scol">
-    <div class="lbl" data-i18n="m.awareH">Who knows the metro · 知道地鐵的人</div>
-    <div class="box expbox" id="awareBox"></div>
-    <div class="lbl" style="margin-top:16px" data-i18n="m.whereH">Where people go · 大家去哪裡</div>
-    <div class="box expbox" id="whereBox"></div>
+    <div class="row"><span class="lbl" data-i18n="m2.yearsH">Years · 逐年</span><div class="sp"></div><span class="chip"><i></i><span id="yearChip"></span></span></div>
+    <table id="tide"></table>
+    <div class="legend tidekey" id="tideKey"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="m2.whereH2">Where people go · 大家去哪裡</div>
+    <div class="box roadbox" id="roadBox"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
+    <p id="notice" class="note" role="status" aria-live="polite"></p>
     <details class="tripsd"><summary data-i18n="m.tripsH">每條愿望線的算式</summary><table id="trips"></table></details>
   </aside>
 </main>
@@ -74,4 +80,4 @@
 <p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m2.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m2.course"></p>
 <div class="row"><button class="btn btn-p" id="ivGo" data-i18n="iv.go">開始畫線 →</button></div></dialog>
 
-<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="strings.js"></script><script src="ui.js"></script><script src="demo-plans.js"></script><script src="demo.js"></script><!-- AI demo (temporary) --></body></html>
+<script src="data.js"></script><script src="engine.js"></script><script src="../shared/i18n.js"></script><script src="../shared/nav.js"></script><script src="strings.js"></script><script src="ui.js"></script><script src="demo-plans.js"></script><script src="demo.js"></script><!-- AI demo (temporary) --></body></html>

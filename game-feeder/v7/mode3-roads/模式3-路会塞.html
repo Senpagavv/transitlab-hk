@@ -585,134 +585,37 @@ dialog.intro .row{margin-top:16px}
 .tipbox .tipbtns{display:flex;justify-content:flex-end;gap:8px}
 .tipbox .tipoff{color:var(--s-ink3)}
 @keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-/* v7 · mode 3 «roads that jam» — only what this mode adds to shared/style.css (from mode 2, plus the roads) */
-:root{--s-metro:#9A3B26}
-[data-theme="dark"]{--s-metro:#E0896B}
-.bigscore{margin-top:12px}
-.bigscore b#score{font:600 40px var(--s-mono);color:var(--s-metro);line-height:1}
-.bigscore .unit{font-size:14px;color:var(--s-ink2);margin-left:6px}
-.budget{margin-top:10px;padding:10px 12px}
-.bbar{display:flex;height:10px;border-radius:5px;background:var(--s-raise);overflow:hidden;margin:6px 0}
-.bbar i{display:block;height:100%}
-#bbLine{background:var(--s-metro);opacity:.55}#bbStation{background:var(--s-metro)}
-.tools{margin-top:12px;gap:8px;flex-wrap:wrap}
-.tools .seg button{height:32px;font-size:13px;padding:0 12px}
-.hint{font-size:12.5px;line-height:1.6;color:var(--s-ink2);margin:8px 0 10px;min-height:3.2em}
-#submit{width:100%}
-#submit:disabled{opacity:.4}
-.mapplate{position:relative}
-.maplegend{position:absolute;left:16px;bottom:12px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--s-ink2);background:var(--s-chrome);padding:6px 10px;border-radius:6px}
-.maplegend span{display:inline-flex;align-items:center;gap:6px}
-.maplegend .lk{display:inline-block;width:22px;height:8px;border-radius:4px}
-.maplegend .lk.car{background:var(--s-ink3);opacity:.5}
-.maplegend .lk.metro{background:linear-gradient(var(--s-ink3) 0 30%,var(--s-metro) 30% 70%,var(--s-ink3) 70%);opacity:.9}
-#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:13px}
-#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}
-#trips th:first-child,#trips td:first-child{text-align:left}
-#trips td{padding:6px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top;cursor:pointer}
-#trips td:first-child{font-family:inherit}
-#trips td small{display:block;font-size:10px;color:var(--s-ink3);font-family:var(--s-mono)}
-#trips tr.on td b{color:var(--s-metro)}
-#trips tr.sel td{background:color-mix(in srgb,var(--s-metro) 10%,transparent)}
-#trips tbody tr:hover td{background:var(--s-raise)}
-#trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
-#trips tfoot td b{color:var(--s-metro);font-size:15px}
-#board{cursor:crosshair;touch-action:none}
-/* v7.4 · six years: the year box, money, experience */
-.yearbox{margin-top:10px;padding:10px 12px}
-.yearbox #yearNum{font:600 15px 'Geist',sans-serif}
-.ychart{display:flex;align-items:flex-end;gap:6px;height:78px;margin-top:8px}
-.ychart .yb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-family:var(--s-mono)}
-.ychart .yb i{display:block;width:100%;max-width:30px;background:var(--s-raise);border:1px dashed var(--s-line2);border-radius:3px 3px 0 0}
-.ychart .yb.done i{background:var(--s-metro);border:none}
-.ychart .yb.next i{background:color-mix(in srgb,var(--s-metro) 22%,transparent);border:1.5px dashed var(--s-metro)}
-.ychart .yb.crowd i{box-shadow:inset 0 3px 0 var(--s-bad)}
-.ychart .yb b{font-size:10.5px;color:var(--s-ink);order:-1;margin-bottom:2px}
-.ychart .yb small{font-size:9.5px;color:var(--s-ink3);margin-top:3px}
-.money{margin-top:10px;padding:10px 12px}
-.money #money{font-size:22px;color:var(--s-metro)}
-.money .note{font-size:12px;line-height:1.55;margin:4px 0}
-.trainrow{margin-top:6px;gap:6px;font-size:13px}
-.trainrow .btn{min-width:32px}
-.expbox{margin-top:8px;padding:10px 12px}
-.xr{display:grid;grid-template-columns:3.6em auto 2.2em 1fr;align-items:center;gap:6px;font-size:12.5px;margin:4px 0}
-.xr .xn{color:var(--s-ink2)}
-.xbar{display:flex;gap:2px}.xbar i{width:11px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
-.xbar i.neg.on{background:var(--s-bad)}.xbar i.zero.on{background:var(--s-ink3)}.xbar i.pos.on{background:var(--s-accent)}
-.xr b{font:600 13px var(--s-mono);text-align:right}.xr b.pos{color:var(--s-accent)}.xr b.neg{color:var(--s-bad)}
-.xr em{font-style:normal;font-size:11px;color:var(--s-ink3)}.xr em.up{color:var(--s-accent)}.xr em.down{color:var(--s-bad)}
-.maplegend .lk.crowd{background:var(--s-bad)}
-#trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
-#trips tr.chain td:first-child{box-shadow:inset 3px 0 0 var(--s-info)}
-.mapplate .toast{z-index:5}
-/* v7.5 · build once, watch it grow: the plan box locks, the year card, awareness and where-people-go bars */
-#planBox.locked{opacity:.45;pointer-events:none}
-.yrow{margin-top:8px;gap:8px}
-.yrow .btn[hidden]{display:none}
-.ychart{position:relative}
-.ychart .ypot{position:absolute;left:0;right:0;border-top:1.5px dashed var(--s-metro);opacity:.7;pointer-events:none}
-.ychart .ypot span{position:absolute;right:0;top:-15px;font:500 10px var(--s-mono);color:var(--s-metro);background:var(--s-panel);padding:0 3px}
-.yearcard{position:absolute;top:14px;right:16px;min-width:230px;max-width:330px;display:flex;flex-direction:column;gap:3px;padding:10px 14px;border-radius:8px;
-  background:var(--s-panel);border:1.5px solid var(--s-metro);box-shadow:0 6px 24px rgb(0 0 0 / .12);font-size:13px;line-height:1.5;color:var(--s-ink2);
-  opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:4}
-.yearcard.on{opacity:1;transform:none}
-.yearcard.warn{border-color:var(--s-bad)}
-.yearcard>b{font:600 15px 'Geist',sans-serif;color:var(--s-metro)}
-.yearcard span b{color:var(--s-ink);font-family:var(--s-mono)}
-#awareBox .xr{grid-template-columns:3.6em auto 2.8em 1fr}#awareBox .xr b,#awareBox .xr em{white-space:nowrap}
-.abar{display:flex;gap:2px}.abar i{width:9px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
-.abar i.on{background:var(--s-accent);box-shadow:none}
-.wr{display:grid;grid-template-columns:3.6em 1fr 2.6em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
-.wr .xn{color:var(--s-ink2)}
-.wr b{font:600 12.5px var(--s-mono);text-align:right}
-.wbar{position:relative;display:flex;height:12px;border-radius:3px;overflow:hidden;background:var(--s-raise)}
-.wbar i{display:block;height:100%;transition:flex .6s}
-.wbar i:nth-child(1){opacity:.85}.wbar i:nth-child(2){opacity:.85}.wbar i:nth-child(3){opacity:.35}
-.wbar u{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--s-ink);opacity:.75}
-.hbnote{font-size:11.5px;line-height:1.55;color:var(--s-ink3);margin:8px 0 0}
-.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px;vertical-align:0}
-.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12.5px;color:var(--s-ink2)}
-.maplegend .lk.aware{background:repeating-linear-gradient(90deg,var(--s-accent) 0 4px,transparent 4px 6px);height:8px}
-table.result{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px;margin:8px 0}
-table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:right;padding:2px 4px 6px}
-table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
-table.result th:first-child,table.result td:first-child{text-align:left}
-.maplegend .lk.walk{background:radial-gradient(circle,var(--s-ink3) 2px,transparent 2.5px) 0 50%/7px 8px repeat-x;opacity:.8}
-/* mode 3 · the roads panel: this year's jam on each road, and what drivers reckon with (a thin mark) */
-:root{--s-jam:#C2410C;--s-free:#2F8F5B}
-[data-theme="dark"]{--s-jam:#F08A4B;--s-free:#5CC08A}
-.rr{display:grid;grid-template-columns:5.6em 1fr 3.4em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
-.rr .xn{color:var(--s-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rr b{font:600 12px var(--s-mono);text-align:right;white-space:nowrap}
-.rbar{position:relative;height:12px;border-radius:3px;background:var(--s-raise);overflow:visible}
-.rbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .6s,background .6s}
-.rbar u{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--s-ink);transition:left .6s}
-.rbar s{position:absolute;top:0;bottom:0;width:1px;background:var(--s-ink3);opacity:.6}
-.jamline{font-size:12.5px;color:var(--s-ink2);margin:2px 0 8px}.jamline b{font-family:var(--s-mono);color:var(--s-ink)}
-.ychart .yb.done i{background:var(--s-jam)}
-.ychart .yb.next i{background:color-mix(in srgb,var(--s-jam) 22%,transparent);border-color:var(--s-jam)}
-.ychart .ypot{border-top-color:var(--s-ink2)}.ychart .ypot span{color:var(--s-ink2)}
-.maplegend .lk.road{background:linear-gradient(90deg,var(--s-ink3),#E3A008,var(--s-jam))}
-.maplegend .lk.mtr{background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
-/* v7.9 · the living map: a headline over the map, an info card for what is under the cursor, hold-to-preview */
-.headline{position:absolute;left:16px;right:16px;top:12px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 14px;border-radius:10px;
-  background:color-mix(in srgb,var(--s-panel) 92%,transparent);border:1px solid var(--s-line2);text-align:center;pointer-events:none;z-index:3;transition:border-color .3s,background .3s}
-.headline b{font:600 17px 'Geist',sans-serif;color:var(--s-ink);letter-spacing:.01em}.headline b em{font-style:normal;font-family:var(--s-mono)}
-.headline b .good{color:var(--s-free)}.headline b .bad{color:var(--s-jam)}
-.headline span{font-size:12.5px;color:var(--s-ink2);line-height:1.5}
-.headline.preview{border-color:var(--s-metro);background:color-mix(in srgb,var(--s-metro) 8%,var(--s-panel))}
-.headline.nothing{border-color:var(--s-jam);background:color-mix(in srgb,var(--s-jam) 8%,var(--s-panel))}
-.infocard{position:absolute;left:16px;bottom:52px;max-width:330px;padding:8px 12px;border-radius:8px;background:var(--s-panel);border:1px solid var(--s-line2);
-  font-size:12.5px;line-height:1.6;color:var(--s-ink2);z-index:3;pointer-events:none}
-.infocard b{color:var(--s-ink)}.infocard:empty{display:none}
-.hold{margin-left:auto}.hold:disabled{opacity:.4}.hold.on{background:var(--s-metro);color:var(--s-paper);border-color:var(--s-metro)}
-.rulesd{margin-top:14px}.rulesd summary{cursor:pointer;font:500 11px var(--s-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--s-ink3)}
-.mapplate .yearcard{display:none}
-.maplegend .lk.car{background:var(--s-ink2);width:10px;height:6px;border-radius:2px}
-.maplegend .lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
-.maplegend .lk.walkdot{width:6px;height:6px;border-radius:50%;background:var(--s-walk)}
-.maplegend .lk.ring{width:12px;height:12px;border-radius:50%;background:conic-gradient(var(--s-ink3) 0 55%,var(--s-metro) 55% 85%,var(--s-walk) 85%);-webkit-mask:radial-gradient(circle,transparent 3px,#000 3.5px);mask:radial-gradient(circle,transparent 3px,#000 3.5px)}
-:root{--s-walk:#7F95AE}[data-theme="dark"]{--s-walk:#A3B6CC}
+/* v7 · mode 3 «roads that jam» — on mode 1's layout (shared/style.css); only what this mode adds */
+:root{--s-metro:#9A3B26;--s-jam:#C2410C;--s-free:#2F8F5B;--s-walk:#7F95AE}
+[data-theme="dark"]{--s-metro:#E0896B;--s-jam:#F08A4B;--s-free:#5CC08A;--s-walk:#A3B6CC}
+#board{cursor:crosshair}
+.station-button b{color:var(--rc)}.station-button.selected{border-color:var(--rc);box-shadow:inset 0 0 0 1px var(--rc)}
+.stopbox .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.stopbox .tools .seg button{height:28px;font-size:12px;padding:0 9px}
+.stopbox .pm{display:inline-flex;align-items:center;gap:6px}.stopbox .pm .btn{min-width:26px;height:24px;padding:0 6px}
+.stopbox .r b.c{color:var(--rc)}
+.roadbox{padding:6px 12px}
+.rd{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:4px 0;border-top:1px solid var(--s-line)}.rd:first-child{border-top:0}
+.rd .n{flex:1;color:var(--s-ink2)}.rd b{font:500 12px var(--s-mono)}
+.lanebtn{font:500 10.5px var(--s-mono);padding:1px 7px;border-radius:4px;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink3);cursor:pointer}
+.lanebtn.on{background:var(--s-bad);border-color:var(--s-bad);color:var(--s-paper)}
+.hold.on{background:var(--s-ink);color:var(--s-paper);border-color:var(--s-ink)}
+#tide td small{display:block;font-size:9.5px;color:var(--s-ink3)}
+#tide tr.next td b{color:var(--s-ink3);font-style:italic}
+.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12px;color:var(--s-ink3)}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top}#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3)}
+.legend i.lk{border-radius:2px}
+.legend i.lk.car{width:9px;height:6px;background:var(--s-ink);opacity:.7}
+.legend i.lk.bus{width:13px;height:7px;background:#2F6FD6}
+.legend i.lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.legend i.lk.jam{width:14px;height:4px;background:var(--s-jam)}
+.legend i.lk.lane{width:14px;height:4px;background:repeating-linear-gradient(90deg,var(--s-bad) 0 4px,transparent 4px 7px)}
+.station-button{--rc:var(--s-metro)}
+.legend i.lk.newline{width:14px;height:5px;background:var(--s-metro)}
+.legend i.lk.mtr{width:14px;height:5px;background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
 </style></head><body class="entered">
 
 <header id="topbar">
@@ -722,55 +625,61 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" aria-pressed="true">繁</button><button data-lang="zh-Hans" aria-pressed="false">简</button><button data-lang="en" aria-pressed="false">EN</button></div>
   <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true">☀</button><button id="thInk" aria-pressed="false">☾</button></div>
 </header>
+<nav id="navrow" data-current="3"></nav>
 
 <main id="app" class="eg">
   <aside class="side scol">
-    <div class="row"><a class="btn btn-sm" href="../开始.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="r3.mode">Mode 03 · 路會塞</span></div>
+    <div class="row"><a class="btn btn-sm" href="../开始.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><div class="sp"></div><span class="chip"><i></i><span data-i18n="r3.chipTag">一次建好</span></span></div>
+    <span class="lbl" data-i18n="r3.mode">Mode 03 · 路會塞</span>
     <h1 class="h1"><span>Roads that jam</span><span class="h1tc" data-i18n="r3.levelTitle">九龍東 · 第二個商業區</span></h1>
+    <p class="lede" data-i18n-html="r3.lede"></p>
 
-    <div class="box bigscore">
-      <div class="lbl" data-i18n="r3.scoreLbl">八年少塞</div>
-      <div class="row"><b id="score">0</b><span class="unit" data-i18n="r3.scoreUnit">車·格</span></div>
+    <div class="box goal">
+      <div class="row"><span class="lbl" data-i18n="g.goalLbl">Goal · 目標</span><div class="sp"></div><span class="mono goalnum"><b id="score">0</b> / <span id="goalMax"></span></span></div>
       <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
       <div class="note" id="goal"></div>
     </div>
 
-    <div class="box yearbox">
-      <div class="row"><b id="yearNum"></b><div class="sp"></div><button class="btn btn-p" id="run"></button></div>
-      <div class="ychart" id="yChart"></div>
-      <div class="note" id="yNote"></div>
-      <div class="row yrow"><button class="btn btn-sm" id="pause"></button><button class="btn btn-sm" id="rewind" data-i18n="m.rewind">↺ 回到規劃</button><button class="btn btn-sm hold" id="hold"></button></div>
+    <div class="row controls">
+      <button class="btn btn-p" id="run"></button>
+      <button class="btn btn-sm" id="pause"></button>
+      <button class="btn btn-sm hold" id="hold"></button>
+      <button class="btn btn-sm" id="rewind" data-i18n-title="m.rewind">↺</button>
     </div>
 
-    <div class="box money" id="planBox">
-      <div class="row"><span class="lbl" data-i18n="m.budgetLbl">預算</span><div class="sp"></div><b class="mono" id="money"></b></div>
-      <div class="note" id="moneyNote"></div>
-      <div class="row trainrow"><span id="trainsTxt"></span><div class="sp"></div><button class="btn btn-sm" id="trainMinus">−</button><button class="btn btn-sm" id="trainPlus">＋</button></div>
-      <div class="row tools">
-        <div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="true" data-i18n="m.toolDraw">✏ 畫線</button><button data-tool="station" aria-pressed="false" data-i18n="m.toolStation">● 放站</button></div>
-        <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="m.clear">清空</button>
-      </div>
-      <p class="hint" id="toolHint"></p>
-    </div>
+    <div class="lbl" data-i18n-html="r3.lineLbl"></div>
+    <div id="stations" class="stations"></div>
+    <div id="stopPanel" class="box stopbox"></div>
 
-    <details class="rulesd"><summary data-i18n="m.rulesH">How it works · 怎麼算</summary><ol class="mini" id="rules"></ol></details>
+    <div class="lbl" style="margin-top:16px" data-i18n="r3.rulesH3">Three rules · 三條規則</div>
+    <ol class="mini" id="rules"></ol>
+    <div class="lbl" style="margin-top:14px" data-i18n="g.read">How to read the map · 怎麼看</div>
+    <div class="legend" id="mapLegend"></div>
   </aside>
 
   <div class="play">
     <div class="mapplate">
-      <svg id="board" viewBox="0 0 1000 620" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
-      <div class="headline" id="headline" aria-live="polite"><b id="hlMain"></b><span id="hlSub"></span></div>
-      <div class="infocard" id="infoCard"></div>
-      <div class="maplegend" id="mapLegend"></div>
-      <div class="yearcard" id="yearCard" aria-live="polite"></div>
+      <svg id="board" viewBox="0 0 900 700" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
+      <div class="clockbox ov"><div class="c" id="clock"></div><div class="u" id="wave"></div><div class="prog"><i id="clockProg"></i></div></div>
+      <div class="lanebox ov"><div class="h"><span id="laneH"></span></div><div class="hint" id="mapHint"></div></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="hud">
+        <div class="good"><b id="hudBus">0</b><small data-i18n="r3.hudNew">New line · 坐新線</small></div>
+        <div><b id="hudRail">0</b><small data-i18n="r3.hudRail">By metro · 坐地鐵</small></div>
+        <div class="bad"><b id="hudCar">0</b><small data-i18n="r3.hudCar">Drive · 開車</small></div>
+        <div><b id="hudJam">0</b><small data-i18n="r3.hudJam">Jam · 塞車</small></div>
+      </div>
     </div>
   </div>
 
   <aside class="side right scol">
-    <div class="lbl" data-i18n="r3.roadsH">How jammed · 路有多塞</div>
-    <div class="box expbox" id="roadBox"></div>
-    <div class="lbl" style="margin-top:16px" data-i18n="r3.awareH">Who knows the new line · 知道新線的人</div>
-    <div class="box expbox" id="awareBox"></div>
+    <div class="row"><span class="lbl" data-i18n="r3.yearsH">Years · 逐年</span><div class="sp"></div><span class="chip"><i></i><span id="yearChip"></span></span></div>
+    <table id="tide"></table>
+    <div class="legend tidekey" id="tideKey"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="r3.roadsH2">Roads · 路況</div>
+    <div class="box roadbox" id="roadBox"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
+    <p id="notice" class="note" role="status" aria-live="polite"></p>
     <details class="tripsd"><summary data-i18n="m.tripsH">每條愿望線的算式</summary><table id="trips"></table></details>
   </aside>
 </main>
@@ -1093,6 +1002,37 @@ table.result th:first-child,table.result td:first-child{text-align:left}
 </script><script>
 (function() {
   'use strict';
+  // v7 · the row of stops under the top bar, the same on every mode's page: 01 … 05, the current one filled in.
+  // <nav id="navrow" data-current="2"></nav> + this script (after i18n.js). It also adds the few labels all pages share. A click goes to that mode's page — the
+  // bundled single file when this page is one (its name is not index.html), else the folder's index.html.
+  const I=window.I18N,L=I.L;
+  I.add({
+    'nav.aria':L('五個模式','五个模式','Five modes'),
+    'nav.m1':L('車站與步行','车站与步行','Stations & walking'),'nav.m2':L('地鐵','地铁','The metro'),'nav.m3':L('路會塞','路会塞','Roads that jam'),
+    'nav.m4':L('地面巴士','地面巴士','Buses on the road'),'nav.m5':L('沙盤 · 即將推出','沙盘 · 即将推出','Sandbox · soon'),
+    // the labels every mode's page shares with mode 1 (mode 1's own strings load after this and keep theirs)
+    'g.goalLbl':L('Goal · 目標','Goal · 目标','Goal'),'g.read':L('How to read the map · 怎麼看','How to read the map · 怎么看','How to read the map'),
+    'g.log':L('Dispatch log · 調度提示','Dispatch log · 调度提示','Dispatch log'),'g.lvInfo':L('本關','本关','About'),'m.back':L('← 五個模式','← 五个模式','← Five modes')
+  });
+  const MODES=[
+    {n:1,en:'Stations',dir:'mode1-bus',file:'模式1-车站与步行.html'},
+    {n:2,en:'The metro',dir:'mode2-metro',file:'模式2-地铁.html'},
+    {n:3,en:'Roads that jam',dir:'mode3-roads',file:'模式3-路会塞.html'},
+    {n:4,en:'Buses',dir:'mode4-bus',file:'模式4-地面巴士.html'},
+    {n:5,en:'Sandbox',soon:true}];
+  const nav=document.getElementById('navrow');if(!nav)return;
+  const cur=+nav.dataset.current||0,bundled=!/index\.html$|\/$/.test(location.pathname)&&!/editor\.html$/.test(location.pathname);
+  function render(){
+    nav.setAttribute('aria-label',I.t('nav.aria'));
+    nav.innerHTML=MODES.map(m=>`<button data-go="${m.n}" aria-selected="${m.n===cur}" ${m.soon?'disabled':''}><i class="stop">0${m.n}</i><span class="t"><b>${m.en}</b><s>${I.t('nav.m'+m.n)}</s></span></button>`).join('');}
+  nav.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b||b.disabled)return;const m=MODES[+b.dataset.go-1];if(m.n===cur||m.soon)return;
+    location.href=`../${m.dir}/${bundled?m.file:'index.html'}`;});
+  render();window.addEventListener('tl:lang',render);
+})();
+
+</script><script>
+(function() {
+  'use strict';
   // v7 · mode 3 «roads that jam» — texts. Loaded after ../shared/i18n.js. Keys shared with mode 2 keep their m.* names.
   const L=I18N.L;
   I18N.add({
@@ -1237,36 +1177,72 @@ table.result th:first-child,table.result td:first-child{text-align:left}
       '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路</span><span><i class="lk road"></i>路：灰通、橙快满、红塞</span>',
       '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot</span><span><i class="lk road"></i>roads: grey free, orange filling, red jammed</span>')
   });
+  // v7.11 · mode 1's layout: lede, cards, line panel, three rules, the clock, the bottom numbers, the years table
+  I18N.add({
+    'r3.chipTag':L('一次建好','一次建好','Built once'),
+    'r3.lede':L('Take the cars off the roads.<span class="tcb">九龍東的路已經塞。建一條新線把開車的人帶走——路一通，又有人回去開車。</span>',
+      'Take the cars off the roads.<span class="tcb">九龙东的路已经塞。建一条新线把开车的人带走——路一通，又有人回去开车。</span>',
+      'Take the cars off the roads. Kowloon East already jams: build a line to take drivers off — and once the roads clear, some drive again.'),
+    'r3.lineLbl':L('New line · 新線 <span class="tc">預算 <b id="money"></b></span>','New line · 新线 <span class="tc">预算 <b id="money"></b></span>','New line <span class="tc">budget <b id="money"></b></span>'),
+    'r3.rulesH3':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'r3.rule1':L('<b>一次建好一條新線</b>（預算 {b}：線每格 {lc}、站 {sc}、多一列車 {tc}），開通後 {y} 年不能改。','<b>一次建好一条新线</b>（预算 {b}：线每格 {lc}、站 {sc}、多一列车 {tc}），开通后 {y} 年不能改。',
+      '<b>Build one new line, once</b> (budget {b}: {lc} a block, {sc} a station, {tc} a train); nothing changes for {y} years.'),
+    'r3.rule2':L('<b>路會塞</b>：每段路多（車 ÷ 容量）² 格。新線把開車的人帶走，路就通；路一通，開車又變好走，有人回去開車（每年只改 {lp}）。','<b>路会塞</b>：每段路多（车 ÷ 容量）² 格。新线把开车的人带走，路就通；路一通，开车又变好走，有人回去开车（每年只改 {lp}）。',
+      '<b>Roads jam</b>: each section adds (cars ÷ capacity)². The line takes drivers off and the roads clear; clear roads tempt some back (drivers adjust {lp} a year).'),
+    'r3.rule3':L('<b>和第二關一樣</b>：比開車省幾格，就有幾成坐地鐵；只有知道新線的人會用（口耳相傳）。分數＝比什麼都不做少塞多少。','<b>和第二关一样</b>：比开车省几格，就有几成坐地铁；只有知道新线的人会用（口耳相传）。分数＝比什么都不做少塞多少。',
+      '<b>As in mode 2</b>: every block saved on the car, one in ten by metro; only those who know the line use it (word of mouth). Score = less jam than doing nothing.'),
+    'r3.legend2':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐公共交通的人</span><span><i class="lk jam"></i>路中間紅線：塞</span><span><i class="lk mtr"></i>觀塘綫、將軍澳綫</span><span><i class="lk newline"></i>你的新線</span>',
+      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐公共交通的人</span><span><i class="lk jam"></i>路中间红线：塞</span><span><i class="lk mtr"></i>观塘线、将军澳线</span><span><i class="lk newline"></i>你的新线</span>',
+      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: public transport</span><span><i class="lk jam"></i>red in the road: jam</span><span><i class="lk mtr"></i>觀塘綫, 將軍澳綫</span><span><i class="lk newline"></i>your line</span>'),
+    'r3.hudNew':L('New line · 坐新線','New line · 坐新线','New line'),'r3.hudRail':L('All metro · 坐地鐵','All metro · 坐地铁','All metro'),'r3.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'r3.hudJam':L('Jam · 塞車','Jam · 塞车','Jam'),
+    'r3.clockPlan':L('第 0 年','第 0 年','Year 0'),'r3.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'r3.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'r3.clockSubOpen':L('共 {m} 年 · 大家慢慢知道新線','共 {m} 年 · 大家慢慢知道新线','{m} years · people slowly find the line'),
+    'r3.laneNow':L('This year · 今年','This year · 今年','This year'),'r3.lanePv':L('Preview · 預覽','Preview · 预览','Preview'),'r3.laneNo':L('Do nothing · 什麼都不做','Do nothing · 什么都不做','Doing nothing'),
+    'r3.yearsH':L('Years · 逐年','Years · 逐年','Years'),'r3.yearChip':L('{m} 年','{m} 年','{m} years'),
+    'r3.tYear':L('年','年','Year'),'r3.tJam':L('塞車','塞车','Jam'),'r3.tNew':L('坐新線','坐新线','New line'),'r3.tKnow':L('知道','知道','Know'),
+    'r3.tideKey':L('什麼都不做時每年塞車 {n}；越少越好。灰字＝下一年的預告。','什么都不做时每年塞车 {n}；越少越好。灰字＝下一年的预告。','Doing nothing: a jam of {n} a year — lower is better. Grey = next year\'s forecast.'),
+    'r3.roadsH2':L('Roads · 路況','Roads · 路况','Roads'),'r3.roadRow':L('每趟多 {e} 格','每趟多 {e} 格','+{e} a trip'),
+    'r3.cardLine':L('線','线','Line'),'r3.cardStation':L('站','站','Stations'),'r3.cardTrain':L('列車','列车','Trains'),
+    'r3.cardLineN':L('{n} 格 · 畫線','{n} 格 · 画线','{n} cells · draw'),'r3.cardStationN':L('{n} 個 · 放站','{n} 个 · 放站','{n} · place'),'r3.cardTrainN':L('{n} 列 · ±','{n} 列 · ±','{n} · ±'),
+    'r3.spTitle':L('新線','新线','The new line'),'r3.spLine':L('線','线','Line'),'r3.spStations':L('站','站','Stations'),'r3.spTrains':L('列車','列车','Trains'),'r3.spRoom':L('每段每天最多','每段每天最多','A section carries'),
+    'r3.spLeft':L('預算還剩','预算还剩','Budget left'),'r3.spRiders':L('坐新線（今年）','坐新线（今年）','On the line (this year)'),
+    'r3.cells':L('{n} 格','{n} 格','{n} cells'),'r3.count':L('{n} 個','{n} 个','{n}'),'r3.trainsN':L('{n} 列','{n} 列','{n}'),'r3.peopleN':L('{n} 人','{n} 人','{n}'),
+    'r3.toCentre':L('坐公共交通來 {n}','坐公共交通来 {n}','{n} by public transport'),
+    'r3.run0':L('▶ 開通','▶ 开通','▶ Open'),'r3.holdAhead2':L('👁 按住看以後','👁 按住看以后','👁 Hold: later'),'r3.holdNothing2':L('👁 按住看不做','👁 按住看不做','👁 Hold: nothing')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();
 
 </script><script>
 (()=>{
   'use strict';
-  // v7 · mode 3 «roads that jam» — the page, a living map. Every estate sends people out all the time: grey cars
-  // crawl along the roads (slower where they jam), brown dots walk to a station and ride, light dots walk. Hover a
-  // cell on your line and the whole map turns into what a station there would bring (everybody knowing it, drivers
-  // settled); hold the eye button to see eight years on — or, once open, what doing nothing would look like.
+  // v7 · mode 3 «roads that jam» — the page, on mode 1's layout: the map in mode 1's style (pale road bands with a red
+  // line where they jam, trees, estates with a green ring for those on public transport), the year top left, the
+  // preview top right, four numbers at the bottom; on the left the goal, the controls, three cards (line, stations,
+  // trains) with the line's panel and three rules; on the right the years table, the roads and one line of what happens.
+  // Hover a cell on the line (stations) and the map turns into what a station there brings; hold «👁» for later, or
+  // (once open) for doing nothing.
   const {Plan,D,P,G,year,spread,walk,same,key}=Roads,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
-  const CS=56,MX=56,MY=96,STEP_MS=2600,DAY_S=7,PER_DOT=1,MAX_DOTS=640;
+  const CS=60,MX=44,MY=40,STEP_MS=2600,DAY_S=7,PER_DOT=1,MAX_DOTS=640;
   const xy=c=>[MX+c[0]*CS,MY+c[1]*CS];
   const svg=(tag,a,c='')=>`<${tag} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}>${c}</${tag}>`;
   let C={};
   function readTokens(){const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue('--s-'+n).trim();
     C={paper:v('paper'),panel:v('panel'),soft:v('soft'),raise:v('raise'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line:v('line'),line2:v('line2'),accent:v('accent'),accent2:v('accent2'),
-      warn:v('warn'),bad:v('bad'),info:v('info'),metro:v('metro'),walk:v('walk'),jam:v('jam'),free:v('free')};}
+      warn:v('warn'),bad:v('bad'),info:v('info'),metro:v('metro'),jam:v('jam'),walk:v('walk'),road:v('road'),roadEdge:v('road-edge')};}
   readTokens();
-  const text=(x,y,s,size=14,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.paper,'stroke-width':4,'paint-order':'stroke',...extra},s);
+  const text=(x,y,s,size=13,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.panel,'stroke-width':3.5,'paint-order':'stroke',...extra},s);
   const textW=(s,size)=>[...String(s)].reduce((w,ch)=>w+(ch.charCodeAt(0)>0x2e7f?size:ch===' '?size*.32:size*.6),0);
-  const pill=(x,y,s,color,size=13)=>{const w=textW(s,size)+18,x0=x-w/2;
-    return svg('rect',{x:x0.toFixed(1),y:(y-size+1).toFixed(1),width:w.toFixed(1),height:size+9,rx:(size+9)/2,fill:C.panel,stroke:color,'stroke-width':1.3,'fill-opacity':.97})+
-      svg('text',{x:(x0+w/2).toFixed(1),y:(y+3).toFixed(1),'font-size':size,fill:color,'text-anchor':'middle','font-weight':600},s);};
+  const pill=(x,y,s,color,size=12)=>{const w=textW(s,size)+16,x0=x-w/2;
+    return svg('rect',{x:x0.toFixed(1),y:(y-size+1).toFixed(1),width:w.toFixed(1),height:size+8,rx:(size+8)/2,fill:C.panel,stroke:color,'stroke-width':1.2,'fill-opacity':.97})+
+      svg('text',{x:(x0+w/2).toFixed(1),y:(y+2.5).toFixed(1),'font-size':size,fill:color,'text-anchor':'middle','font-weight':600},s);};
   function sprite(rows,x0,y0,u,pal){let out='';rows.forEach((row,j)=>{for(let i=0;i<row.length;){const ch=row[i];if(ch==='.'||!pal[ch]){i++;continue;}let k=i;while(k+1<row.length&&row[k+1]===ch)k++;
     out+=`<rect x="${(x0+i*u).toFixed(1)}" y="${(y0+j*u).toFixed(1)}" width="${((k-i+1)*u).toFixed(1)}" height="${u}" fill="${pal[ch]}"/>`;i=k+1;}});return `<g shape-rendering="crispEdges">${out}</g>`;}
   const ESTATE=["....kkkkk...","....kwklk...","....kkkkk...","....kwkwk.kk","kkk.kkkkk.kl","klk.kwkwk.kk","kkk.kkkkk.kw","kwk.klkwk.kk","kkk.kkkkk.kw","kwk.kwkwk.kk","kkk.kkkkk.kl","gggggggggggg"];
   const TOWN=["......kkkk......","....kkaaaakk....","..kkaaaaaaaakk..","kkaaaaaaaaaaaakk","kaaaaaaaaaaaaaak","rprprprprprprprp","prprprprprprprpr",".kkkkkkkkkkkkkk.",".kllkkkddkkkllk.",".kllkkkddkkkllk.",".kkkkkkddkkkkkk.","gggggggggggggggg"];
   const OFFICE=[".....kkkk.....",".....kwwk.....","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkddkwwk..","..kkkkddkkkk..","gggggggggggggg"];
   const TRAIN=[".mmmmmmmmmmmmmmmmm.","mmwwmmwwmmwwmmwwmmm","mmwwmmwwmmwwmmwwmmm","mmmmmmmmmmmmmmmmmmm","mkkmmmmmmmmmmmmkkmm","..k.............k.."];
+  const TREE=["..g..",".ggg.","ggggg",".ggg.","ggggg","..t..","..t.."],BUSH=[".gg.","gggg",".gg."],FLOWER=["f.f.",".g.f","..g."];
   const DEST={town:TOWN,jobs:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info})[k];
   const nm=o=>I.lang==='zh-Hans'?(o.hans||o.name):(o.name);
   const nameO=i=>nm(D.origins[i]),nameD=k=>nm(D.destinations[k]),shortD=k=>{const d=D.destinations[k];return I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name);};
@@ -1274,17 +1250,15 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   const roadName=r=>{const d=D.roads.find(x=>x.name===r);return d?nm(d):r;};
   const R=Math.round,f1=v=>(Math.round(v*10)/10).toFixed(1),tenth=a=>R(a*10);
   const pct=(a,b)=>{const v=b?R(100*(a-b)/b):0;return{txt:(v>0?'+':v<0?'−':'±')+Math.abs(v)+'%',cls:v<0?'good':v>0?'bad':''};};
-  const jamCol=e=>e<.25?C.ink3:e<1?'#E3A008':C.jam;
-  // roads sit a little off the cell centres (beside the railways that share their cells)
-  const OFF=7,rxy=(s,c)=>{const [x,y]=xy(c),h=s.a[1]===s.b[1];return h?[x,y+OFF]:[x+OFF,y];};
+  const jamCol=e=>e<.5?null:e<1?'#E3A008':C.jam;
+  const OFF=6,rxy=(q,c)=>{const [x,y]=xy(c),h=q.a[1]===q.b[1];return h?[x,y+OFF]:[x+OFF,y];};
   let plan=new Plan(),tool='draw',hover=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0;
-  const VBW=MX*2+(D.cols-1)*CS+80,VBH=MY+56+(D.rows-1)*CS;
+  const VBW=MX*2+(D.cols-1)*CS,VBH=MY*2+(D.rows-1)*CS;
   function snapshot(){history.push(JSON.stringify({...plan}));if(history.length>200)history.shift();}
   function restore(s){const p=new Plan();Object.assign(p,JSON.parse(s));plan=p;}
   const planKey=p=>JSON.stringify([p.line,p.stations,p.trains]);
   const memo=new Map();function cached(k,f){if(!memo.has(k)){if(memo.size>60)memo.clear();memo.set(k,f());}return memo.get(k);}
   function now(){return cached('now'+planKey(plan)+plan.year+JSON.stringify(plan.aware),()=>plan.now());}
-  // what the map shows: this year, a preview (a station toggled here, or the whole plan settled), or doing nothing
   function view(){
     if(hold&&plan.open)return{mode:'nothing',y:G.base};
     if(!plan.open){
@@ -1292,29 +1266,25 @@ table.result th:first-child,table.result td:first-child{text-align:left}
         const q=new Plan();Object.assign(q,JSON.parse(JSON.stringify({...plan})));q.toggleStation(hover);
         if(q.stations.length>=2)return{mode:'preview',y:cached('pot'+planKey(q),()=>q.potential()),cell:hover};}
       if(hold&&plan.stations.length>=2)return{mode:'ahead',y:cached('pot'+planKey(plan),()=>plan.potential())};
-      return{mode:'today',y:now()};}
+      return{mode:'plan',y:now()};}
     return{mode:'year',y:lastY||now()};
   }
-  const rowsOf=y=>[...y.est.flatMap(e=>e.to.map(x=>({from:D.origins[e.i].cell,to:D.destinations[x.k].cell,x,who:shortO(e.i),e}))),
-    ...(y.chain||[]).map(q=>({from:D.destinations[q.a].cell,to:D.destinations[q.b].cell,x:q,who:shortD(q.a),chain:true}))];
-  function roadStats(y,per){return D.roads.map(r=>{const ids=G.sections.filter(s=>s.roads.includes(r.name)).map(s=>s.id);
-    const worst=ids.reduce((b,id)=>y.extra[id]>y.extra[b]?id:b,ids[0]);
-    return{name:r.name,ids,worst,extra:y.extra[worst],felt:Math.max(...ids.map(id=>per[id])),base:Math.max(...ids.map(id=>G.base.extra[id])),cars:y.roadLoad[worst],cap:G.sections[worst].cap};});}
+  const rowsOf=y=>[...y.est.flatMap(e=>e.to.map(x=>({x,who:shortO(e.i)}))),...(y.chain||[]).map(q=>({x:q,who:shortD(q.a),chain:true}))];
+  function roadStats(y){return D.roads.map(r=>{const ids=G.sections.filter(s=>s.roads.includes(r.name)).map(s=>s.id);
+    const worst=ids.reduce((b,id)=>y.extra[id]>y.extra[b]?id:b,ids[0]);return{name:r.name,worst,extra:y.extra[worst]};});}
 
   /* -------------------------------------------------------------- the moving people */
-  // paths in board coordinates with a speed for every leg (px a second): cars slow down by 1 + the jam on a section
   const V={walk:34,car:95,rail:190};
+  const corner=(a,b)=>[...(a[0]===b[0]||a[1]===b[1]?[]:[xy([b[0],a[1]])]),xy(b)];
+  function leg(pts,sp,a,b,v){for(const q of corner(a,b)){pts.push(q);sp.push(v);}}
   function carPath(route,from,to,y){
     const pts=[xy(from)],sp=[];
     if(route&&route.sections.length){const secs=route.sections.map(id=>G.sections[id]);
-      let cur=secs.length>1?(same(secs[0].a,secs[1].a)||same(secs[0].a,secs[1].b)?secs[0].b:secs[0].a):(walk(secs[0].a,from)<=walk(secs[0].b,from)?secs[0].a:secs[0].b);
-      pts.push(rxy(secs[0],cur));sp.push(V.car);
-      for(const s of secs){const nx=same(s.a,cur)?s.b:s.a;pts.push(rxy(s,nx));sp.push(V.car/(1+(y.extra[s.id]||0)));cur=nx;}}
+      let c0=secs.length>1?(same(secs[0].a,secs[1].a)||same(secs[0].a,secs[1].b)?secs[0].b:secs[0].a):(walk(secs[0].a,from)<=walk(secs[0].b,from)?secs[0].a:secs[0].b);
+      pts.push(rxy(secs[0],c0));sp.push(V.car);
+      for(const s of secs){const nx=same(s.a,c0)?s.b:s.a;pts.push(rxy(s,nx));sp.push(V.car/(1+(y.extra[s.id]||0)));c0=nx;}}
     pts.push(xy(to));sp.push(V.car);return{pts,sp};}
-  // walking follows the grid, as the blocks are counted: across first, then up or down
-  const corner=(a,b)=>[...(a[0]===b[0]||a[1]===b[1]?[]:[xy([b[0],a[1]])]),xy(b)];
-  function leg(pts,sp,a,b,v){for(const q of corner(a,b)){pts.push(q);sp.push(v);}}
-  function railCells(name){return name==='new'?plan.line:(G.lines.find(l=>l.name===name)||{cells:[]}).cells;}
+  const railCells=name=>name==='new'?plan.line:(G.lines.find(l=>l.name===name)||{cells:[]}).cells;
   function metroPath(trip,from,to){
     const pts=[xy(from)],sp=[];let at=from;
     trip.legs.forEach((l,j)=>{const cells=railCells(trip.lines[j]),step=l.to>=l.from?1:-1;
@@ -1323,7 +1293,6 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     leg(pts,sp,at,to,V.walk);return{pts,sp};}
   function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
   function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
-  // every flow of the shown year: who, how many a day, which way
   const flowMemo=new WeakMap();
   function flowsOf(y){if(flowMemo.has(y))return flowMemo.get(y);const out=[];
     const add=(id,kind,n,mk)=>{if(n>.3)out.push({id,kind,n,mk});};
@@ -1342,62 +1311,67 @@ table.result th:first-child,table.result td:first-child{text-align:left}
       if(acc[f.id]>=1)acc[f.id]=0;}
     let s='';dots=dots.filter(d=>{d.t+=dt;if(d.t>=d.p.T)return false;const c=d.p.cum;let i=1;while(i<c.length-1&&c[i]<d.t)i++;
       const a=d.p.pts[i-1],b=d.p.pts[i],f=(d.t-c[i-1])/Math.max(1e-6,c[i]-c[i-1]),x=a[0]+(b[0]-a[0])*f,yy=a[1]+(b[1]-a[1])*f;
-      if(d.kind==='car')s+=`<rect x="${(x-3.5).toFixed(1)}" y="${(yy-2.5).toFixed(1)}" width="7" height="5" rx="1.5" fill="${C.ink}" opacity=".72"/>`;
-      else if(d.kind==='metro')s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="3.2" fill="${C.metro}"/>`;
-      else s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="2.6" fill="${C.walk}"/>`;
+      if(d.kind==='car')s+=`<rect x="${(x-3).toFixed(1)}" y="${(yy-2.2).toFixed(1)}" width="6" height="4.4" rx="1.2" fill="${C.ink}" opacity=".62"/>`;
+      else if(d.kind==='metro')s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="2.7" fill="${C.metro}"/>`;
+      else s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="2.3" fill="${C.walk}"/>`;
       return true;});
     return s;}
 
-  /* -------------------------------------------------------------- the board */
+  /* -------------------------------------------------------------- the board, in mode 1's style */
+  let decorKey='',decorSvg='';
+  function decor(){
+    const k=C.accent2+C.paper;if(k===decorKey)return decorSvg;
+    const hash=(a,b)=>{let h=Math.imul(Math.imul(a|0,73856093)^Math.imul(b|0,19349663)^83492791,2654435761)>>>0;h=(h^(h>>>15))>>>0;return(h%1000)/1000;};
+    const busy=new Set([...G.roadNodes.keys(),...(D.water||[]).map(key),...G.lines.flatMap(l=>l.cells.map(key))]);
+    for(const o of [...D.origins,...D.destinations])for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)busy.add(key([o.cell[0]+dx,o.cell[1]+dy]));
+    let out='';
+    for(let gx=0;gx<D.cols;gx++)for(let gy=0;gy<D.rows;gy++){if(busy.has(key([gx,gy])))continue;
+      for(const [ox,oy] of [[-.25,-.2],[.25,.25]]){const h=hash(gx*4+ox*8+7,gy*4+oy*8+11);if(h>.32)continue;const [cx,cy]=xy([gx+ox,gy+oy]);
+        const pick=h<.1?TREE:h<.2?BUSH:FLOWER,f=[C.warn,C.bad,C.info][Math.floor(hash(gx,gy)*3)];out+=sprite(pick,cx-5,cy-8,2.2,{g:C.accent2,t:C.ink2,f});}}
+    decorKey=k;decorSvg=`<g opacity=".55">${out}</g>`;return decorSvg;}
   function drawBase(v){
-    const y=v.y,placing=!plan.open;
+    const y=v.y,placing=!plan.open,ghost=v.mode==='nothing';
     let ground='',roads='',rails='',lines='',things='',labels='';
-    const water=new Set((D.water||[]).map(key));
-    for(let x=0;x<D.cols;x++)for(let yy=0;yy<D.rows;yy++){const [cx,cy]=xy([x,yy]),can=placing&&tool==='draw'&&plan.canExtend([x,yy])&&plan.line.length>0,wet=water.has(key([x,yy]));
-      ground+=svg('rect',{x:cx-CS/2+2,y:cy-CS/2+2,width:CS-4,height:CS-4,rx:4,fill:can?C.metro:wet?C.info:C.soft,'fill-opacity':can?.10:wet?.10:.45,stroke:can?C.metro:wet?'none':C.line,'stroke-opacity':can?.45:.7,'stroke-dasharray':can?'4 3':''});}
-    G.sections.forEach(s=>{const [x1,y1]=rxy(s,s.a),[x2,y2]=rxy(s,s.b),e=y.extra[s.id],w=5+Math.min(7,s.cap/10);
-      roads+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:jamCol(e),'stroke-width':w.toFixed(1),'stroke-opacity':e<.25?.3:.55,'stroke-linecap':'round'});});
-    G.lines.forEach(l=>{rails+=svg('path',{d:'M'+l.cells.map(c=>xy(c).join(' ')).join('L'),fill:'none',stroke:l.color,'stroke-width':5,'stroke-linejoin':'round','stroke-linecap':'round','stroke-opacity':.75});
+    for(const c of D.water||[]){const [x,yy]=xy(c);ground+=svg('rect',{x:x-CS/2,y:yy-CS/2,width:CS,height:CS,fill:C.info,'fill-opacity':.13});}
+    for(const [col,w] of [[C.roadEdge,26],[C.road,21]])for(const s of G.sections){const [x1,y1]=xy(s.a),[x2,y2]=xy(s.b);roads+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:col,'stroke-width':w,'stroke-linecap':'square'});}
+    ground+=decor();
+    for(const s of G.sections){const [x1,y1]=xy(s.a),[x2,y2]=xy(s.b),col=jamCol(y.extra[s.id]);if(col)roads+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:col,'stroke-width':3.2,'stroke-opacity':.85,'stroke-linecap':'round'});}
+    if(placing&&tool==='draw'&&plan.line.length)for(let x=0;x<D.cols;x++)for(let yy=0;yy<D.rows;yy++)if(plan.canExtend([x,yy])){const [cx,cy]=xy([x,yy]);ground+=svg('rect',{x:cx-14,y:cy-14,width:28,height:28,rx:5,fill:'none',stroke:C.metro,'stroke-width':2,'stroke-dasharray':'4 3','stroke-opacity':.8});}
+    G.lines.forEach(l=>{rails+=svg('path',{d:'M'+l.cells.map(c=>xy(c).join(' ')).join('L'),fill:'none',stroke:l.color,'stroke-width':4.5,'stroke-linejoin':'round','stroke-linecap':'round','stroke-opacity':.8});
       l.stations.forEach(s=>{const [x,yy]=xy(s);rails+=svg('circle',{cx:x,cy:yy,r:5.5,fill:C.panel,stroke:l.color,'stroke-width':2.5});});});
-    const mine=y.lines.find(l=>l.isNew),ghost=v.mode==='nothing';
-    for(let s=0;s+1<plan.line.length;s++){const [x1,y1]=xy(plan.line[s]),[x2,y2]=xy(plan.line[s+1]),f=mine&&mine.load[s]!==undefined?mine.load[s]/mine.cap:0,col=f>1?C.bad:f>.8?C.warn:C.metro;
-      lines+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:col,'stroke-width':ghost?4:10,'stroke-linecap':'round','stroke-opacity':ghost?.25:.9,'stroke-dasharray':ghost?'4 6':''});}
-    if(plan.line.length===1){const [x,yy]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:yy,r:7,fill:C.metro});}
+    const mine=y.lines.find(l=>l.isNew);
+    for(let s=0;s+1<plan.line.length;s++){const [x1,y1]=xy(plan.line[s]),[x2,y2]=xy(plan.line[s+1]),f=!ghost&&mine&&mine.load[s]!==undefined?mine.load[s]/mine.cap:0,col=f>1?C.bad:f>.8?C.warn:C.metro;
+      lines+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:col,'stroke-width':ghost?3:8,'stroke-linecap':'round','stroke-opacity':ghost?.3:.9,'stroke-dasharray':ghost?'4 6':''});}
+    if(plan.line.length===1){const [x,yy]=xy(plan.line[0]);lines+=svg('circle',{cx:x,cy:yy,r:6,fill:C.metro});}
     if(placing&&tool==='draw')for(const e of [plan.line[0],plan.line.at(-1)])if(e){const [x,yy]=xy(e);things+=svg('circle',{cx:x,cy:yy,r:9,fill:C.panel,stroke:C.metro,'stroke-width':3,'stroke-dasharray':'3 2'});}
-    // estates: a ring of how they go (car, metro, foot), the name
-    y.est.forEach(e=>{const o=D.origins[e.i],[cx,cy]=xy(o.cell),walkers=e.to.reduce((s,x)=>s+x.walkers,0)+(e.chain||[]).reduce((s,c)=>s+(c.walkers||0),0);
-      const parts=[[e.drivers,C.ink3],[e.metro,C.metro],[walkers,C.walk]],all=parts.reduce((s,p)=>s+p[0],0)||1,r=21,L=2*Math.PI*r;let off=0;
-      labels+=svg('circle',{cx,cy:cy-4,r,fill:C.panel,'fill-opacity':.85,stroke:C.raise,'stroke-width':5});
-      for(const [n,c] of parts){const len=L*n/all;if(len>.5)labels+=svg('circle',{cx,cy:cy-4,r,fill:'none',stroke:c,'stroke-width':5,'stroke-dasharray':`${len.toFixed(1)} ${L.toFixed(1)}`,'stroke-dashoffset':(-off).toFixed(1),transform:`rotate(-90 ${cx} ${cy-4})`});off+=len;}
+    y.est.forEach(e=>{const o=D.origins[e.i],[cx,cy]=xy(o.cell),walkers=e.to.reduce((s,x)=>s+x.walkers,0)+(e.chain||[]).reduce((s,c)=>s+(c.walkers||0),0),go=e.drivers+e.metro+walkers,f=go?e.metro/go:0,r=24,L=2*Math.PI*r;
+      labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.line2,'stroke-width':3,'stroke-opacity':.7});
+      if(f>.005)labels+=svg('circle',{cx,cy:cy-3,r,fill:'none',stroke:C.accent,'stroke-width':3.2,'stroke-dasharray':`${(L*f).toFixed(1)} ${L.toFixed(1)}`,transform:`rotate(-90 ${cx} ${cy-3})`,'stroke-linecap':'round'});
       labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
-      const side=o.house[0]!==0,up=o.house[1]<0,lx=side?cx+(o.house[0]>0?28:-28):cx,ly=side?cy:up?cy-31:cy+34,la=side?(o.house[0]>0?'start':'end'):'middle';
-      labels+=text(lx,ly,nameO(e.i)+(o.tag==='new'?' ★':''),13.5,C.ink,{'text-anchor':la,'font-weight':700});});
-    y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6,diff=R(d.go-d.before);
+      const sd=o.house[0]!==0,up=o.house[1]<0,lx=sd?cx+(o.house[0]>0?30:-30):cx,ly=sd?cy:up?cy-33:cy+36,la=sd?(o.house[0]>0?'start':'end'):'middle';
+      labels+=text(lx,ly,nameO(e.i),13,C.ink,{'text-anchor':la,'font-weight':600});});
+    y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6;
       labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
-      const side=o.house[0]!==0,lx=side?cx+(o.house[0]>0?w/2+6:-w/2-6):cx,ly=side?cy:cy+30,la=side?(o.house[0]>0?'start':'end'):'middle';
-      labels+=svg('text',{x:lx,y:ly,'font-size':13.5,'text-anchor':la,'font-weight':700,stroke:C.paper,'stroke-width':4,'paint-order':'stroke'},
-        `<tspan fill="${DCOL(o.kind)}">${nameD(d.k)}</tspan>`+(diff?`<tspan fill="${diff>0?C.accent:C.bad}"> ${diff>0?'↑+':'↓'}${diff}</tspan>`:''));});
-    const order=plan.stations.map(s=>({s,x:plan.line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
-    if(!ghost)order.forEach(({s},n)=>{const [x,yy]=xy(s);
-      things+=svg('circle',{cx:x,cy:yy,r:12,fill:C.panel,stroke:C.metro,'stroke-width':4.5})+svg('text',{x,y:yy+4.5,'font-size':12,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);});
+      const sd=o.house[0]!==0,lx=sd?cx+(o.house[0]>0?w/2+6:-w/2-6):cx,ly=sd?cy-4:cy+30,la=sd?(o.house[0]>0?'start':'end'):'middle';
+      labels+=text(lx,ly,nameD(d.k),13,C.ink,{'text-anchor':la,'font-weight':600})+text(lx,ly+15,t('r3.toCentre',{n:R(d.metro)}),11.5,C.accent,{'text-anchor':la,'font-weight':600});});
+    if(!ghost){const order=plan.stations.map(s=>({s,x:plan.line.findIndex(c=>same(c,s))})).sort((a,b)=>a.x-b.x);
+      order.forEach(({s},n)=>{const [x,yy]=xy(s);things+=svg('circle',{cx:x,cy:yy,r:11,fill:C.panel,stroke:C.metro,'stroke-width':4})+svg('text',{x,y:yy+4,'font-size':11.5,'font-weight':700,fill:C.metro,'text-anchor':'middle','font-family':'Geist Mono,monospace'},n+1);});}
     $('gBase').innerHTML=ground+roads+rails+lines+labels+things;
   }
   function drawTop(v){
     let s='';const placing=!plan.open;
-    if(sel>=0){const row=rowsOf(v.y)[sel];if(row){const {from:o,to:d,x}=row,seg=(a,b)=>`M${xy(a).join(' ')}L${xy([b[0],a[1]]).join(' ')}L${xy(b).join(' ')}`;
-      if(x.route)s+=x.route.sections.map(id=>{const q=G.sections[id],[x1,y1]=rxy(q,q.a),[x2,y2]=rxy(q,q.b);return svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:C.ink,'stroke-width':3,'stroke-dasharray':'1 6','stroke-linecap':'round'});}).join('');
-      if(x.trip)s+=svg('path',{d:seg(o,x.trip.from),fill:'none',stroke:C.metro,'stroke-width':2.5,'stroke-dasharray':'2 5'})+svg('path',{d:seg(x.trip.to,d),fill:'none',stroke:C.metro,'stroke-width':2.5,'stroke-dasharray':'2 5'});}}
+    if(sel>=0){const row=rowsOf(v.y)[sel];if(row&&row.x.route)s+=row.x.route.sections.map(id=>{const q=G.sections[id],[x1,y1]=rxy(q,q.a),[x2,y2]=rxy(q,q.b);return svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:C.ink,'stroke-width':3,'stroke-dasharray':'1 6','stroke-linecap':'round'});}).join('');}
     if(hover&&placing){const [hx,hy]=xy(hover);
       if(tool==='draw'){
         if(plan.canExtend(hover)){const end=!plan.line.length?null:Roads.adj(hover,plan.line.at(-1))?plan.line.at(-1):plan.line[0];
-          if(end)s+=svg('path',{d:`M${xy(end).join(' ')}L${hx} ${hy}`,stroke:C.metro,'stroke-width':10,'stroke-opacity':.35,'stroke-linecap':'round'});
-          else s+=svg('circle',{cx:hx,cy:hy,r:7,fill:C.metro,'fill-opacity':.4});
-          s+=pill(hx,hy-20,t('m.pvExtend',{c:P.lineCost}),C.metro,12);}
-        else if(plan.canShorten(hover))s+=pill(hx,hy-20,t('m.pvShorten'),C.ink2,12);}
-      else if(plan.onLine(hover)){const has=plan.isStation(hover);
-        if(!has&&plan.money<P.stationCost)s+=pill(hx,hy-22,t('m.pvNoMoney'),C.bad,12);
-        else{if(!has)s+=svg('circle',{cx:hx,cy:hy,r:14,fill:'none',stroke:C.metro,'stroke-width':4,'stroke-dasharray':'4 3'});
-          s+=pill(hx,hy-24,(has?t('m.pvRemove'):t('m.pvAdd'))+' '+t(has?'m.pvRefund':'m.pvCost',{c:P.stationCost}),C.metro,12);}}}
+          if(end)s+=svg('path',{d:`M${xy(end).join(' ')}L${hx} ${hy}`,stroke:C.metro,'stroke-width':8,'stroke-opacity':.4,'stroke-linecap':'round'});
+          else s+=svg('circle',{cx:hx,cy:hy,r:6,fill:C.metro,'fill-opacity':.45});
+          s+=pill(hx,hy-20,t('m.pvExtend',{c:P.lineCost}),C.metro,11.5);}
+        else if(plan.canShorten(hover))s+=pill(hx,hy-20,t('m.pvShorten'),C.ink2,11.5);}
+      else if(tool==='station'&&plan.onLine(hover)){const has=plan.isStation(hover);
+        if(!has&&plan.money<P.stationCost)s+=pill(hx,hy-22,t('m.pvNoMoney'),C.bad,11.5);
+        else{if(!has)s+=svg('circle',{cx:hx,cy:hy,r:13,fill:'none',stroke:C.metro,'stroke-width':3.5,'stroke-dasharray':'4 3'});
+          s+=pill(hx,hy-24,(has?t('m.pvRemove'):t('m.pvAdd'))+' '+t(has?'m.pvRefund':'m.pvCost',{c:P.stationCost}),C.metro,11.5);}}}
     $('gTop').innerHTML=s;
   }
   function drawDyn(tm,v){
@@ -1405,84 +1379,73 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     const order=plan.stations.map(q=>({q,x:plan.line.findIndex(c=>same(c,q))})).sort((a,b)=>a.x-b.x);
     if(order.length>=2&&v.mode!=='nothing'){const a=order[0].x,b=order.at(-1).x,span=Math.max(1,b-a);
       for(let k=0;k<plan.trains;k++){const ph=(tm/1000*1.6+k*2*span/plan.trains)%(2*span),pos=a+(ph<span?ph:2*span-ph),i=Math.min(plan.line.length-1,Math.floor(pos)),f=pos-i,c1=plan.line[i],c2=plan.line[Math.min(plan.line.length-1,i+1)];
-        const [x1,y1]=xy(c1),[x2,y2]=xy(c2);s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-23).toFixed(1)} ${(y1+(y2-y1)*f-7).toFixed(1)})">`+sprite(TRAIN,0,0,2.4,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
+        const [x1,y1]=xy(c1),[x2,y2]=xy(c2);s+=`<g opacity=".85" transform="translate(${(x1+(x2-x1)*f-21).toFixed(1)} ${(y1+(y2-y1)*f-6.5).toFixed(1)})">`+sprite(TRAIN,0,0,2.2,{m:C.metro,w:C.paper,k:C.ink})+'</g>';}}
     $('gDyn').innerHTML=s;
   }
-  let baseKey='';
+  // the map and its overlays follow the preview; the side panels only the plan itself
+  let baseKey='',sideKey='';
   function draw(force){const v=view(),k=JSON.stringify([planKey(plan),plan.year,v.mode,v.cell,tool,sel,I.lang,C.paper,!!lastY,hold]);
-    if(force||k!==baseKey){baseKey=k;drawBase(v);headline(v);side(v);}drawTop(v);info(v);}
+    if(force||k!==baseKey){baseKey=k;drawBase(v);overlays(v);}
+    const sk=JSON.stringify([planKey(plan),plan.year,tool,sel,I.lang,C.paper,hold,playing,history.length,plan.done,!!lastY]);
+    if(force||sk!==sideKey){sideKey=sk;side({mode:'plain',y:plan.open&&lastY?lastY:now()});}drawTop(v);}
 
-  /* -------------------------------------------------------------- headline, info card */
-  function headline(v){
-    const el=$('headline'),y=v.y,b=G.base,worst=roadStats(y,plan.perceived).sort((p,q)=>q.extra-p.extra)[0];
-    el.className='headline '+(v.mode==='preview'||v.mode==='ahead'?'preview':v.mode==='nothing'?'nothing':'');
-    let main='',sub='';
-    if(v.mode==='nothing'){main=t('r3.hlNothing',{c:R(b.drivers),j:R(b.jam)});sub=t('r3.hlNothingSub');}
-    else if(v.mode==='preview'||v.mode==='ahead'){const c=pct(y.drivers,b.drivers),j=pct(y.jam,b.jam);
-      main=t(v.mode==='preview'?'r3.hlPreview':'r3.hlAhead',{dc:c.txt,cc:c.cls,dj:j.txt,jc:j.cls,r:R(y.onNew)});sub=t('r3.hlPreviewSub');}
-    else if(plan.done){const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;main=t('r3.hlDone',{s:R(plan.total),tier:t('r.t'+tier)});sub=t('r3.hlDoneSub');}
-    else if(plan.open&&plan.log.length){const l=plan.log.at(-1),c=pct(l.drivers,b.drivers),j=pct(l.jam,l.jam0);
+  /* -------------------------------------------------------------- the overlays on the map */
+  function overlays(v){
+    const y=v.y,b=G.base;
+    $('clock').textContent=plan.open?t('r3.clockYear',{y:plan.year}):t('r3.clockPlan');
+    $('wave').textContent=t(plan.open?'r3.clockSubOpen':'r3.clockSub',{m:P.years});$('clockProg').style.width=`${100*plan.year/P.years}%`;
+    $('hudBus').textContent=R(y.onNew);$('hudRail').textContent=R(y.riders);$('hudCar').textContent=R(y.drivers);$('hudJam').textContent=R(y.jam);
+    let h='',main='',note='';
+    if(v.mode==='nothing'){h=t('r3.laneNo');main=t('r3.hlNothing',{c:R(b.drivers),j:R(b.jam)});note=t('r3.hlNothingSub');}
+    else if(v.mode==='preview'||v.mode==='ahead'){const c=pct(y.drivers,b.drivers),j=pct(y.jam,b.jam);h=t('r3.lanePv');
+      main=t(v.mode==='preview'?'r3.hlPreview':'r3.hlAhead',{dc:c.txt,cc:c.cls,dj:j.txt,jc:j.cls,r:R(y.onNew)});note=t('r3.hlPreviewSub');}
+    else if(plan.done){const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;h=t('r3.laneNow');main=t('r3.hlDone',{s:R(plan.total),tier:t('r.t'+tier)});note=t('r3.hlDoneSub');}
+    else if(plan.open&&plan.log.length){const l=plan.log.at(-1),c=pct(l.drivers,b.drivers),j=pct(l.jam,l.jam0);h=t('r3.laneNow');
       main=t('r3.hlYear',{y:l.year,dc:c.txt,cc:c.cls,dj:j.txt,jc:j.cls});
       const felt=lastY?lastY.extra.reduce((s,e)=>s+e,0)-plan.perceived.reduce((s,e)=>s+e,0):0;
-      sub=[t('r3.hlAware',{a:tenth(l.after.reduce((s,a)=>s+a,0)/l.after.length)}),Math.abs(felt)>.05?t(felt<0?'r3.cardBetter':'r3.cardWorse'):'',l.crowdedSections?t('r3.cardCrowd',{n:l.crowdedSections,cb:P.crowdBlocks}):''].filter(Boolean).join(' · ');}
-    else{main=t('r3.hlToday',{c:R(b.drivers),j:R(b.jam)});sub=t('r3.hlTodaySub',{r:roadName(worst.name),e:f1(worst.extra)});}
-    $('hlMain').innerHTML=main;$('hlSub').innerHTML=sub;
+      note=[t('r3.hlAware',{a:tenth(l.after.reduce((s,a)=>s+a,0)/l.after.length)}),Math.abs(felt)>.05?t(felt<0?'r3.cardBetter':'r3.cardWorse'):'',l.crowdedSections?t('r3.cardCrowd',{n:l.crowdedSections,cb:P.crowdBlocks}):''].filter(Boolean).join(' · ');}
+    else{const worst=roadStats(y).sort((p,q)=>q.extra-p.extra)[0];h=t('r3.laneNow');main=t('r3.hlToday',{c:R(b.drivers),j:R(b.jam)});note=t('r3.hlTodaySub',{r:roadName(worst.name),e:f1(worst.extra)});}
+    $('laneH').textContent=h;$('mapHint').innerHTML=main;
+    if(!(flash&&performance.now()<flash.until))$('notice').innerHTML=note;
   }
-  function info(v){
-    if(flash&&performance.now()<flash.until){$('infoCard').innerHTML=flash.html;return;}
-    if(!hover){$('infoCard').innerHTML='';return;}
-    const y=v.y,c=hover,h=[];
-    const oi=D.origins.findIndex(o=>same(o.cell,c));
-    if(oi>=0){const e=y.est[oi],walkers=e.to.reduce((s,x)=>s+x.walkers,0);
-      h.push(t('r3.iEst',{n:nameO(oi),p:e.n,c:R(e.drivers),m:R(e.metro),w:R(walkers),nb:R(e.nearby),a:tenth(e.aware)}));
-      e.to.forEach(x=>h.push(t('r3.iTrip',{d:shortD(x.k),car:f1(x.car),m:x.trip?f1(x.trip.blocks):'—'})));}
-    const di=D.destinations.findIndex(o=>same(o.cell,c));
-    if(di>=0){const d=y.dest[di];h.push(t('r3.iDest',{n:nameD(di),g:R(d.go),b:R(d.before),m:R(d.metro)}));}
-    for(const l of G.lines){const j=l.stations.findIndex(s=>same(s,c));if(j>=0)h.push(t('r3.iStation',{l:I.lang==='zh-Hans'?(l.hans||l.name):l.name,s:(I.lang==='zh-Hans'?l.namesHans:l.names)[j]}));}
-    const here=G.sections.filter(s=>same(s.a,c)||same(s.b,c)),seen=new Set();
-    for(const s of here){const r=s.roads[0];if(seen.has(r))continue;seen.add(r);const ids=here.filter(q=>q.roads[0]===r).map(q=>q.id),id=ids.reduce((b,q)=>y.extra[q]>y.extra[b]?q:b,ids[0]);
-      h.push(t('r3.iRoad',{r:roadName(r),c:R(y.roadLoad[id]),cap:G.sections[id].cap,e:f1(y.extra[id]),f:f1(plan.perceived[id])}));}
-    $('infoCard').innerHTML=h.join('<br>');
-  }
-  function say(html){flash={until:performance.now()+1800,html};}
+  function say(html){flash={until:performance.now()+2500};$('notice').innerHTML=html;}
 
-  /* -------------------------------------------------------------- side panels */
+  /* -------------------------------------------------------------- the side panels */
   function side(v){
-    const y=v.y,nowY=now(),nx=spread(nowY,plan.aware),hi=R(P.masterScore*1.12),at=q=>Math.max(0,Math.min(100,100*q/hi)),n0=R(G.doNothing[0]);
-    $('score').textContent=R(plan.total);$('scoreBar').style.width=`${at(plan.total)}%`;
+    const y=v.y,nowY=now(),hi=R(P.masterScore*1.12),at=q=>Math.max(0,Math.min(100,100*q/hi));
+    $('score').textContent=R(plan.total);$('goalMax').textContent=P.masterScore;$('scoreBar').style.width=`${at(plan.total)}%`;
     for(const [id,q,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){$(id).style.left=`${at(q)}%`;$(id).dataset.label=t(k,{n:q});}
-    $('yearNum').textContent=plan.done?t('m.yearDone',{m:P.years}):plan.open?t('m.yearN',{y:plan.year,m:P.years}):t('m.yearPlan');
-    $('run').textContent=plan.done?t('m.runDone'):plan.open?(playing?t('m.playing'):t('m.runN',{n:plan.year+1})):t('m.run0');
-    $('run').disabled=playing||(!plan.done&&!plan.canRun());
-    $('pause').hidden=!plan.open||plan.done;$('pause').textContent=playing?t('m.pause'):t('m.play');$('rewind').hidden=!plan.open;
-    $('hold').textContent=plan.open?t('r3.holdNothing'):t('r3.holdAhead');$('hold').disabled=!plan.open&&plan.stations.length<2;$('hold').classList.toggle('on',hold);
-    const top=Math.max(...G.doNothing,...plan.log.map(l=>l.jam),nowY.jam)*1.12;
-    let yc='';for(let k=1;k<=P.years;k++){const l=plan.log[k-1],q=l?l.jam:k===plan.year+1&&!plan.done&&plan.stations.length>=2?nowY.jam:0,h=R(52*q/top);
-      yc+=`<div class="yb ${l?'done':k===plan.year+1?'next':''} ${l&&l.crowdedSections?'crowd':''}"><i style="height:${h}px"></i><b>${q?R(q):''}</b><small>${t('m.yShort',{y:k})}</small></div>`;}
-    yc+=`<div class="ypot" style="bottom:${(18+52*G.doNothing[0]/top).toFixed(0)}px"><span>${t('r3.yNothing',{n:n0})}</span></div>`;
-    $('yChart').innerHTML=yc;
-    $('yNote').innerHTML=plan.stations.length<2?t('r3.yNoteNone'):plan.open?t('r3.yNoteN',{y:plan.year,j:R(plan.log.at(-1)?.jam??0),n:n0}):t('r3.yNote0',{j:R(nowY.jam),n:n0});
-    $('planBox').classList.toggle('locked',plan.open);
+    $('run').textContent=plan.done?t('m.runDone'):plan.open?(playing?t('m.playing'):t('m.runN',{n:plan.year+1})):t('r3.run0');$('run').disabled=playing||(!plan.done&&!plan.canRun());
+    $('pause').textContent=playing?t('m.pause'):t('m.play');$('pause').disabled=!plan.open||plan.done;
+    $('hold').textContent=plan.open?t('r3.holdNothing2'):t('r3.holdAhead2');$('hold').disabled=!plan.open&&plan.stations.length<2;$('hold').classList.toggle('on',hold);
+    $('rewind').disabled=!plan.open;
     $('money').textContent=`${plan.money} / ${P.budget}`;
-    $('moneyNote').innerHTML=t('m.money0',{lc:P.lineCost,sc:P.stationCost,tc:P.trainCost});
-    $('trainsTxt').innerHTML=t('m.trains',{n:plan.trains,c:plan.trains*P.perTrain});
-    $('trainPlus').disabled=!plan.canTrain();$('trainMinus').disabled=!plan.canUntrain();
-    document.querySelectorAll('#toolSeg [data-tool]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tool===tool)));
-    $('toolHint').textContent=plan.open?t('m.hintOpen'):tool==='draw'?(plan.line.length?t('m.hintDraw2'):t('m.hintDraw1')):(plan.line.length<2?t('m.hintNeedLine'):plan.stations.length<2?t('r3.hintStation1'):t('m.hintStation2'));
-    $('undo').disabled=!history.length||plan.open;$('clear').disabled=plan.open||!plan.line.length;
-    const scale=3;let h=`<p class="jamline">${t('r3.jamNow',{j:R(y.jam),n:n0})}</p>`;
-    roadStats(y,plan.perceived).forEach(r=>{const w=q=>Math.min(100,100*q/scale).toFixed(1);
-      h+=`<div class="rr"><span class="xn">${roadName(r.name)}</span><span class="rbar"><i style="width:${w(r.extra)}%;background:${jamCol(r.extra)}"></i><s style="left:${w(r.base)}%"></s><u style="left:${w(r.felt)}%"></u></span><b style="color:${jamCol(r.extra)}">${t('r3.extra',{e:f1(r.extra)})}</b></div>`;});
-    $('roadBox').innerHTML=h+`<p class="hbnote">${t('r3.roadNote',{lp:R(P.learn*10)+(I.lang==='en'?'/10':' 成')})}</p>`;
-    let a='';nowY.est.forEach(e=>{const q=tenth(e.aware),d=tenth(nx[e.i])-q;
-      a+=`<div class="xr"><span class="xn">${shortO(e.i)}</span><span class="abar">${Array.from({length:10},(_,k)=>`<i class="${k<q?'on':''}"></i>`).join('')}</span><b>${t('m.tenths',{n:q})}</b><em class="${d>0?'up':''}">${plan.done?'':d>0?t('m.awNext',{n:d}):t('m.awSame')}</em></div>`;});
-    $('awareBox').innerHTML=a+`<p class="hbnote">${t('r3.awNote',{s:tenth(P.aware.start)})}</p>`;
-    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('r3.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('r3.tDrive')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
-    rowsOf(y).forEach(({x,who,chain},k)=>{const jamPart=x.route?x.route.sections.reduce((s,id)=>s+plan.perceived[id],0):0;
-      tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''} ${chain?'chain':''}"><td>${who}<small>→ ${shortD(x.k)}${chain?' · '+t('m.chainTag'):''}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td>`+
-        `<td>${f1(x.car)}<small>${t('r3.carSum',{b:f1(x.car-jamPart),j:f1(jamPart)})}</small></td><td>${x.trip?(Number.isInteger(x.trip.blocks)?x.trip.blocks:f1(x.trip.blocks)):'—'}<small>${x.trip?x.trip.lines.map(n=>n==='new'?t('r3.newTag'):n).join('→'):''}</small></td>`+
-        `<td>${R(x.drivers)}</td><td><b>${x.metro>=1?R(x.metro):''}</b></td></tr>`;});
-    $('trips').innerHTML=tb+'</tbody>';
+    // three cards: the line, its stations, its trains
+    const cards=[['draw',t('r3.cardLine'),t('r3.cardLineN',{n:plan.line.length})],['station',t('r3.cardStation'),t('r3.cardStationN',{n:plan.stations.length})],['train',t('r3.cardTrain'),t('r3.cardTrainN',{n:plan.trains})]];
+    $('stations').innerHTML=cards.map(([k,n,s])=>`<button class="station-button ${tool===k?'selected':''}" data-card="${k}" aria-pressed="${tool===k}" ${plan.open?'disabled':''}><b>${n}</b><small>${s}</small></button>`).join('');
+    const mine=nowY.lines.find(l=>l.isNew);
+    const hint=plan.open?t('m.hintOpen'):tool==='draw'?(plan.line.length?t('m.hintDraw2'):t('m.hintDraw1')):tool==='station'?(plan.line.length<2?t('m.hintNeedLine'):plan.stations.length<2?t('r3.hintStation1'):t('m.hintStation2')):t('m.trains',{n:plan.trains,c:plan.trains*P.perTrain});
+    $('stopPanel').innerHTML=`<h3><span>${t('r3.spTitle')}</span><span class="lbl">NEW LINE</span></h3>`+
+      `<div class="r"><span>${t('r3.spLine')}</span><b>${t('r3.cells',{n:plan.line.length})}</b></div>`+
+      `<div class="r"><span>${t('r3.spStations')}</span><b>${t('r3.count',{n:plan.stations.length})}</b></div>`+
+      `<div class="r"><span>${t('r3.spTrains')}</span><span class="pm"><button class="btn btn-sm" id="trainMinus" ${plan.canUntrain()?'':'disabled'}>−</button><b class="c">${plan.trains}</b><button class="btn btn-sm" id="trainPlus" ${plan.canTrain()?'':'disabled'}>＋</button></span></div>`+
+      `<div class="r"><span>${t('r3.spRoom')}</span><b>${t('r3.peopleN',{n:plan.trains*P.perTrain})}</b></div>`+
+      `<div class="r"><span>${t('r3.spLeft')}</span><b>${plan.money}</b></div>`+
+      (mine?`<div class="r"><span>${t('r3.spRiders')}</span><b>${t('r3.peopleN',{n:R(nowY.onNew)})}</b></div>`:'')+
+      `<div class="tools"><div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="${tool==='draw'}" ${plan.open?'disabled':''}>${t('m.toolDraw')}</button><button data-tool="station" aria-pressed="${tool==='station'}" ${plan.open?'disabled':''}>${t('m.toolStation')}</button></div>`+
+      `<button class="btn btn-sm" id="undo" ${!history.length||plan.open?'disabled':''}>↶</button><button class="btn btn-sm" id="clear" ${plan.open||!plan.line.length?'disabled':''}>${t('m.clear')}</button></div><p>${hint}</p>`;
+    // the years table
+    $('yearChip').textContent=t('r3.yearChip',{m:P.years});
+    let tb=`<thead><tr><th>${t('r3.tYear')}</th><th>${t('r3.tJam')}</th><th>${t('r3.tNew')}</th><th>${t('r3.tKnow')}</th></tr></thead><tbody>`;
+    for(let k=1;k<=P.years;k++){const l=plan.log[k-1],next=k===plan.year+1&&!plan.done,yy=!l&&next&&plan.stations.length>=2?nowY:null;
+      tb+=`<tr class="${l?'past':''} ${next?'now next':''}"><td>${t('m.yShort',{y:k})}</td>`+
+        (l?`<td><b>${R(l.jam)}</b></td><td><b>${R(l.onNew)}</b></td><td><b>${t('m.tenths',{n:tenth(l.after.reduce((s,a)=>s+a,0)/l.after.length)})}</b></td>`:
+          yy?`<td><b>${R(yy.jam)}</b></td><td><b>${R(yy.onNew)}</b></td><td><b>${t('m.tenths',{n:tenth(plan.aware.reduce((s,a)=>s+a,0)/plan.aware.length)})}</b></td>`:'<td></td><td></td><td></td>')+'</tr>';}
+    $('tide').innerHTML=tb+'</tbody>';$('tideKey').innerHTML=t('r3.tideKey',{n:R(G.doNothing[0])});
+    $('roadBox').innerHTML=roadStats(y).sort((a,b)=>b.extra-a.extra).map(r=>`<div class="rd"><span class="n">${roadName(r.name)}</span><b style="color:${jamCol(r.extra)||C.ink3}">${t('r3.roadRow',{e:f1(r.extra)})}</b></div>`).join('');
+    let trs=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('r3.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('r3.tDrive')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
+    rowsOf(y).forEach(({x,who,chain},k)=>{trs+=`<tr data-row="${k}"><td>${who}<small>→ ${shortD(x.k)}${chain?' · '+t('m.chainTag'):''}</small></td><td>${R(x.go)}</td><td>${f1(x.car)}</td><td>${x.trip?f1(x.trip.blocks):'—'}<small>${x.trip?x.trip.lines.map(n=>n==='new'?t('r3.newTag'):n).join('→'):''}</small></td><td>${R(x.drivers)}</td><td><b>${x.metro>=1?R(x.metro):''}</b></td></tr>`;});
+    $('trips').innerHTML=trs+'</tbody>';
   }
   function render(){draw(true);}
   function fit(){$('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);}
@@ -1490,9 +1453,9 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     $('goal').innerHTML=t('r3.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
     const v={st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
       sp:P.aware.spread,lp:I.lang==='en'?P.learn*10+'/10':R(P.learn*10)+' 成',e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2};
-    $('rules').innerHTML=['r3.r0','r3.r1','r3.r2','r3.r3','r3.r4','r3.r5'].map(k=>`<li>${t(k,v)}</li>`).join('');
+    $('rules').innerHTML=['r3.rule1','r3.rule2','r3.rule3'].map(k=>`<li>${t(k,v)}</li>`).join('');
     $('infoBody').innerHTML=t('r3.info',v);$('ivBody').innerHTML=t('iv.m3.body',v);
-    $('mapLegend').innerHTML=t('r3.legend');document.title=t('r3.doc');
+    $('mapLegend').innerHTML=t('r3.legend2');document.title=t('r3.doc');
   }
 
   /* -------------------------------------------------------------- the years */
@@ -1514,12 +1477,12 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     h+='</tbody></table>';
     const tips=[],lo=plan.log.reduce((b,l)=>l.jam<b.jam?l:b,plan.log[0]),last=plan.log.at(-1);
     if(lo.year<P.years&&last.jam>lo.jam*1.05)tips.push(t('r3.tipRebound',{lo:lo.year,a:R(lo.jam),b:R(last.jam)}));
-    const worst=roadStats(lastY||now(),plan.perceived).sort((a,b)=>b.extra-a.extra)[0];if(worst&&worst.extra>=.5)tips.push(t('r3.tipWorst',{r:roadName(worst.name),e:f1(worst.extra)}));
+    const worst=roadStats(lastY||now()).sort((a,b)=>b.extra-a.extra)[0];if(worst&&worst.extra>=.5)tips.push(t('r3.tipWorst',{r:roadName(worst.name),e:f1(worst.extra)}));
     const crowdYears=plan.log.filter(l=>l.crowdedSections).length;if(crowdYears)tips.push(t('r3.tipCrowd',{n:crowdYears}));
     D.origins.forEach((o,i)=>{if(last.after[i]<=P.aware.start+.001)tips.push(t('r3.tipNever',{a:nameO(i)}));});
     $('resultBody').innerHTML=h+`<ul class="ivlist">${tips.slice(0,5).map(s=>`<li>${s}</li>`).join('')}</ul>`;
     try{const k='tl-best-m3-'+D.map;if(plan.total>(+localStorage.getItem(k)||0))localStorage.setItem(k,R(plan.total));}catch(e){}
-    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m3-roads',version:'7.9',map:D.map,score:R(plan.total),tier,tiers:[P.target,P.highScore,P.masterScore],line:plan.line,stations:plan.stations,trains:plan.trains,lang:I.lang}}));
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m3-roads',version:'7.11',map:D.map,score:R(plan.total),tier,tiers:[P.target,P.highScore,P.masterScore],line:plan.line,stations:plan.stations,trains:plan.trains,lang:I.lang}}));
     $('result').showModal();
   }
 
@@ -1528,13 +1491,13 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   function cellAt(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(board.getScreenCTM().inverse());
     const c=[Math.round((p.x-MX)/CS),Math.round((p.y-MY)/CS)];return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows?c:null;}
   function act(c){
-    if(plan.open){say(`<b>${t('m.cardLocked')}</b><br>${t('m.cardLocked2')}`);return false;}
+    if(plan.open){say(`<b>${t('m.cardLocked')}</b> ${t('m.cardLocked2')}`);return false;}
     if(tool==='draw'){
       if(plan.canExtend(c)){snapshot();plan.extend(c);return true;}
       if(plan.canShorten(c)){snapshot();plan.shorten(c);return true;}
       return false;}
-    if(!plan.onLine(c))return false;
-    if(!plan.isStation(c)&&plan.money<P.stationCost)return false;
+    if(tool!=='station'||!plan.onLine(c))return false;
+    if(!plan.isStation(c)&&plan.money<P.stationCost){say(t('m.pvNoMoney'));return false;}
     snapshot();plan.toggleStation(c);return true;
   }
   board.onpointerdown=e=>{const c=cellAt(e);if(!c)return;drag=tool==='draw'&&!plan.open;if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
@@ -1543,11 +1506,11 @@ table.result th:first-child,table.result td:first-child{text-align:left}
     if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;draw();}};
   board.onpointerup=()=>{drag=false;};
   board.onpointerleave=()=>{if(!drag&&hover){hover=null;draw();}};
-  $('toolSeg').onclick=e=>{const b=e.target.closest('[data-tool]');if(b&&!plan.open){tool=b.dataset.tool;hover=null;render();}};
-  $('undo').onclick=()=>{const s=history.pop();if(s){restore(s);render();}};
-  $('clear').onclick=()=>{if(plan.open||!plan.line.length)return;snapshot();plan.clear();tool='draw';render();};
-  $('trainPlus').onclick=()=>{snapshot();if(plan.addTrain())render();};
-  $('trainMinus').onclick=()=>{snapshot();if(plan.removeTrain())render();};
+  $('stations').onclick=e=>{const b=e.target.closest('[data-card]');if(b&&!plan.open){tool=b.dataset.card;hover=null;render();}};
+  $('stopPanel').onclick=e=>{const tb=e.target.closest('[data-tool]');if(tb&&!plan.open){tool=tb.dataset.tool;hover=null;render();return;}
+    const id=e.target.closest('button')?.id;if(!id)return;
+    if(id==='trainPlus'){snapshot();if(plan.addTrain())render();}else if(id==='trainMinus'){snapshot();if(plan.removeTrain())render();}
+    else if(id==='undo'){const s=history.pop();if(s){restore(s);render();}}else if(id==='clear'){if(plan.open||!plan.line.length)return;snapshot();plan.clear();tool='draw';render();}};
   $('run').onclick=()=>{if(plan.done)result();else if(!plan.open)open();else step();};
   $('pause').onclick=()=>{playing?stop():play();};
   $('rewind').onclick=rewind;
@@ -1560,14 +1523,14 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   $('lvInfo').onclick=()=>$('lvIntro').showModal();$('ivGo').onclick=()=>$('lvIntro').close();
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;
     if(e.key==='1'&&!plan.open){tool='draw';render();}else if(e.key==='2'&&!plan.open){tool='station';render();}
-    else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$('undo').click();}
+    else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();const s=history.pop();if(s&&!plan.open){restore(s);render();}}
     else if(e.code==='Space'&&plan.open&&!plan.done&&!e.target.closest?.('button')){e.preventDefault();$('pause').click();}
     else if(e.key==='Escape'&&sel>=0){sel=-1;render();}});
   function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
-    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
+    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();decorKey='';render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   window.addEventListener('tl:lang',()=>{texts();render();});
-  let lastFrame=0;(function loop(tm){if(tm-lastFrame>33){drawDyn(tm,view());if(flash&&tm>flash.until){flash=0;info(view());}lastFrame=tm;}requestAnimationFrame(loop);})(0);
+  let lastFrame=0;(function loop(tm){if(tm-lastFrame>33){drawDyn(tm,view());lastFrame=tm;}requestAnimationFrame(loop);})(0);
   // test hook: #intro=0&line=2,2;3,2;4,2&stations=2,2;4,2&trains=2&years=3&tool=station&sel=0&theme=dark&lang=en&hover=9,5&hold=1
   const q=new URLSearchParams(location.hash.slice(1));
   let saved=null;try{saved=localStorage.getItem('tl-theme');}catch(e){}
@@ -1580,7 +1543,6 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   if(q.get('tool'))tool=q.get('tool');if(q.get('sel'))sel=+q.get('sel');if(q.get('hover'))hover=q.get('hover').split(',').map(Number);if(q.get('hold'))hold=true;
   texts();render();
   if(q.get('intro')!=='0'&&!q.get('line'))$('lvIntro').showModal();
-  // for the AI demo (demo.js): set a plan up step by step, then open it
   const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
     extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
     train(){const ok=plan.addTrain();render();return ok;},go(){open();},halt(){stop();},get plan(){return plan;}};
@@ -1649,7 +1611,7 @@ table.result th:first-child,table.result td:first-child{text-align:left}
   .demobox .dh{display:flex;align-items:center;gap:8px;margin-bottom:6px}.demobox .dh b{color:var(--s-accent);font-size:13.5px}.demobox .dh .sp{flex:1}
   .demobox p{margin:3px 0}.demobox p b{color:var(--s-ink)}.demobox ul{margin:4px 0 0;padding-left:18px}.demobox li{margin:2px 0}
   .demobox p.old{opacity:.5}
-  .mapplate.demo .yearcard,.mapplate.demo .headline,.mapplate.demo .infocard{display:none}`;
+  .mapplate.demo .clockbox,.mapplate.demo .lanebox{display:none}`;
   document.head.append(css);
   const sleep=ms=>new Promise(r=>{const id=setTimeout(r,ms);timers.push(id);});
   let timers=[],run=0,watch=0;

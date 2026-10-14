@@ -144,5 +144,39 @@
       '<span><i class="lk car2"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路，外圈绿＝几成人知道这条线</span>',
       '<span><i class="lk car2"></i>car</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot; green outer arc = tenths who know the line</span>')
   });
+  // v7.11 · mode 1's layout: lede, cards, line panel, three rules, the clock, the bottom numbers, the years table
+  I18N.add({
+    'm2.chipTag':L('一次建好','一次建好','Built once'),
+    'm2.lede':L('Build one line, then watch it grow.<span class="tcb">畫一條線、放站。大家慢慢發現它：越來越多人坐，它到的地方也越來越多人去。</span>',
+      'Build one line, then watch it grow.<span class="tcb">画一条线、放站。大家慢慢发现它：越来越多人坐，它到的地方也越来越多人去。</span>',
+      'Build one line, then watch it grow: people discover it, more ride it, and the places it reaches draw more people.'),
+    'm2.lineLbl':L('New line · 新線 <span class="tc">預算 <b id="money"></b></span>','New line · 新线 <span class="tc">预算 <b id="money"></b></span>','New line <span class="tc">budget <b id="money"></b></span>'),
+    'm2.rulesH3':L('Three rules · 三條規則','Three rules · 三条规则','Three rules'),
+    'm2.rule1':L('<b>一次建好</b>：預算 {b}（線每格 {lc}、站 {sc}、多一列車 {tc}），開通後 {y} 年不能改。坐地鐵＝走到站（每格 {wp}）＋ 等車 {w} ＋ 路過幾站 ＋ 走路。','<b>一次建好</b>：预算 {b}（线每格 {lc}、站 {sc}、多一列车 {tc}），开通后 {y} 年不能改。坐地铁＝走到站（每格 {wp}）＋ 等车 {w} ＋ 路过几站 ＋ 走路。',
+      '<b>Built once</b>: budget {b} ({lc} a block, {sc} a station, {tc} a train), fixed for {y} years. Metro = walk ({wp} a cell) + wait {w} + stations passed + walk.'),
+    'm2.rule2':L('<b>比開車或走路省幾格，就有幾成坐地鐵</b>；一個地方變近了，原來不去的人也會去（兩個中心之間也有人順路來回）。','<b>比开车或走路省几格，就有几成坐地铁</b>；一个地方变近了，原来不去的人也会去（两个中心之间也有人顺路来回）。',
+      '<b>Every block saved on car or foot, one in ten by metro</b>; a place brought nearer draws people who never went (and some go on between the two centres).'),
+    'm2.rule3':L('<b>口耳相傳</b>：剛開通每個屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分數＝每年「每天坐地鐵的人」加起來。','<b>口耳相传</b>：刚开通每个屋苑只有 {s} 成人知道；坐的人越多，明年知道的越多。分数＝每年「每天坐地铁的人」加起来。',
+      '<b>Word of mouth</b>: {s}/10 know the line at the opening; the more ride, the more know next year. Score = daily riders of every year added up.'),
+    'm2.legend2':L('<span><i class="lk car"></i>開車</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="ringkey"></i>綠圈：坐地鐵的人</span><span><i class="lk want"></i>灰線：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的線</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk dot"></i>坐地铁</span><span><i class="ringkey"></i>绿圈：坐地铁的人</span><span><i class="lk want"></i>灰线：每天去的人（越粗越多）</span><span><i class="lk newline"></i>你的线</span>',
+      '<span><i class="lk car"></i>cars</span><span><i class="lk dot"></i>by metro</span><span><i class="ringkey"></i>green ring: by metro</span><span><i class="lk want"></i>grey line: people going (thicker = more)</span><span><i class="lk newline"></i>your line</span>'),
+    'm2.hudMetro':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'m2.hudWalk':L('On foot · 走路','On foot · 走路','On foot'),'m2.hudCar':L('Drive · 開車','Drive · 开车','Drive'),'m2.hudKnow':L('Know the line · 知道新線','Know the line · 知道新线','Know the line'),
+    'm2.clockPlan':L('第 0 年','第 0 年','Year 0'),'m2.clockYear':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'm2.clockSub':L('共 {m} 年 · 規劃中，開通後不能改','共 {m} 年 · 规划中，开通后不能改','{m} years · planning; fixed once open'),'m2.clockSubOpen':L('共 {m} 年 · 口耳相傳','共 {m} 年 · 口耳相传','{m} years · word of mouth'),
+    'm2.laneNow':L('This year · 今年','This year · 今年','This year'),'m2.lanePv':L('Preview · 預覽','Preview · 预览','Preview'),'m2.laneNo':L('No line · 沒有這條線','No line · 没有这条线','Without the line'),
+    'm2.yearsH':L('Years · 逐年','Years · 逐年','Years'),'m2.yearChip':L('{m} 年','{m} 年','{m} years'),
+    'm2.tYear':L('年','年','Year'),'m2.tMetro':L('坐地鐵','坐地铁','Metro'),'m2.tKnow':L('知道','知道','Know'),
+    'm2.tideKey':L('每天坐地鐵的人；{d0}、{d1}＝每天來的人。灰字＝下一年的預告。','每天坐地铁的人；{d0}、{d1}＝每天来的人。灰字＝下一年的预告。','Metro riders a day; {d0}, {d1} = people coming a day. Grey = next year\'s forecast.'),
+    'm2.whereH2':L('Where people go · 大家去哪裡','Where people go · 大家去哪里','Where people go'),
+    'm2.whereNote2':L('每條＝一個屋苑每天出門的人：{a}、{b}、{c}。細線＝開通前。','每条＝一个屋苑每天出门的人：{a}、{b}、{c}。细线＝开通前。','Each bar = an estate\'s people going out: {a}, {b}, {c}. Thin marks = before the line.'),
+    'm2.cardLine':L('線','线','Line'),'m2.cardStation':L('站','站','Stations'),'m2.cardTrain':L('列車','列车','Trains'),
+    'm2.cardLineN':L('{n} 格 · 畫線','{n} 格 · 画线','{n} cells · draw'),'m2.cardStationN':L('{n} 個 · 放站','{n} 个 · 放站','{n} · place'),'m2.cardTrainN':L('{n} 列 · ±','{n} 列 · ±','{n} · ±'),
+    'm2.spTitle':L('新線','新线','The new line'),'m2.spLine':L('線','线','Line'),'m2.spStations':L('站','站','Stations'),'m2.spTrains':L('列車','列车','Trains'),'m2.spRoom':L('每段每天最多','每段每天最多','A section carries'),
+    'm2.spLeft':L('預算還剩','预算还剩','Budget left'),'m2.spRiders':L('坐地鐵（下一年）','坐地铁（下一年）','By metro (next year)'),'m2.spPot':L('大家都知道以後','大家都知道以后','Once everyone knows'),
+    'm2.cells':L('{n} 格','{n} 格','{n} cells'),'m2.count':L('{n} 個','{n} 个','{n}'),'m2.peopleN':L('{n} 人','{n} 人','{n}'),
+    'm2.toCentre':L('每天來 {g}（坐地鐵 {m}）','每天来 {g}（坐地铁 {m}）','{g} a day ({m} by metro)'),
+    'm2.run0':L('▶ 開通','▶ 开通','▶ Open'),'m2.holdAhead2':L('👁 按住看以後','👁 按住看以后','👁 Hold: later'),'m2.holdNothing2':L('👁 按住看沒有線','👁 按住看没有线','👁 Hold: no line')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

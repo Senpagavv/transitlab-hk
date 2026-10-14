@@ -1,140 +1,28 @@
-/* v7 · mode 4 «buses on the road» — only what this mode adds to shared/style.css (from mode 2, plus the roads) */
-:root{--s-metro:#9A3B26}
-[data-theme="dark"]{--s-metro:#E0896B}
-.bigscore{margin-top:12px}
-.bigscore b#score{font:600 40px var(--s-mono);color:var(--s-metro);line-height:1}
-.bigscore .unit{font-size:14px;color:var(--s-ink2);margin-left:6px}
-.budget{margin-top:10px;padding:10px 12px}
-.bbar{display:flex;height:10px;border-radius:5px;background:var(--s-raise);overflow:hidden;margin:6px 0}
-.bbar i{display:block;height:100%}
-#bbLine{background:var(--s-metro);opacity:.55}#bbStation{background:var(--s-metro)}
-.tools{margin-top:12px;gap:8px;flex-wrap:wrap}
-.tools .seg button{height:32px;font-size:13px;padding:0 12px}
-.hint{font-size:12.5px;line-height:1.6;color:var(--s-ink2);margin:8px 0 10px;min-height:3.2em}
-#submit{width:100%}
-#submit:disabled{opacity:.4}
-.mapplate{position:relative}
-.maplegend{position:absolute;left:16px;bottom:12px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--s-ink2);background:var(--s-chrome);padding:6px 10px;border-radius:6px}
-.maplegend span{display:inline-flex;align-items:center;gap:6px}
-.maplegend .lk{display:inline-block;width:22px;height:8px;border-radius:4px}
-.maplegend .lk.car{background:var(--s-ink3);opacity:.5}
-.maplegend .lk.metro{background:linear-gradient(var(--s-ink3) 0 30%,var(--s-metro) 30% 70%,var(--s-ink3) 70%);opacity:.9}
-#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:13px}
-#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}
-#trips th:first-child,#trips td:first-child{text-align:left}
-#trips td{padding:6px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top;cursor:pointer}
-#trips td:first-child{font-family:inherit}
-#trips td small{display:block;font-size:10px;color:var(--s-ink3);font-family:var(--s-mono)}
-#trips tr.on td b{color:var(--s-metro)}
-#trips tr.sel td{background:color-mix(in srgb,var(--s-metro) 10%,transparent)}
-#trips tbody tr:hover td{background:var(--s-raise)}
-#trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
-#trips tfoot td b{color:var(--s-metro);font-size:15px}
-#board{cursor:crosshair;touch-action:none}
-/* v7.4 · six years: the year box, money, experience */
-.yearbox{margin-top:10px;padding:10px 12px}
-.yearbox #yearNum{font:600 15px 'Geist',sans-serif}
-.ychart{display:flex;align-items:flex-end;gap:6px;height:78px;margin-top:8px}
-.ychart .yb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-family:var(--s-mono)}
-.ychart .yb i{display:block;width:100%;max-width:30px;background:var(--s-raise);border:1px dashed var(--s-line2);border-radius:3px 3px 0 0}
-.ychart .yb.done i{background:var(--s-metro);border:none}
-.ychart .yb.next i{background:color-mix(in srgb,var(--s-metro) 22%,transparent);border:1.5px dashed var(--s-metro)}
-.ychart .yb.crowd i{box-shadow:inset 0 3px 0 var(--s-bad)}
-.ychart .yb b{font-size:10.5px;color:var(--s-ink);order:-1;margin-bottom:2px}
-.ychart .yb small{font-size:9.5px;color:var(--s-ink3);margin-top:3px}
-.money{margin-top:10px;padding:10px 12px}
-.money #money{font-size:22px;color:var(--s-metro)}
-.money .note{font-size:12px;line-height:1.55;margin:4px 0}
-.trainrow{margin-top:6px;gap:6px;font-size:13px}
-.trainrow .btn{min-width:32px}
-.expbox{margin-top:8px;padding:10px 12px}
-.xr{display:grid;grid-template-columns:3.6em auto 2.2em 1fr;align-items:center;gap:6px;font-size:12.5px;margin:4px 0}
-.xr .xn{color:var(--s-ink2)}
-.xbar{display:flex;gap:2px}.xbar i{width:11px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
-.xbar i.neg.on{background:var(--s-bad)}.xbar i.zero.on{background:var(--s-ink3)}.xbar i.pos.on{background:var(--s-accent)}
-.xr b{font:600 13px var(--s-mono);text-align:right}.xr b.pos{color:var(--s-accent)}.xr b.neg{color:var(--s-bad)}
-.xr em{font-style:normal;font-size:11px;color:var(--s-ink3)}.xr em.up{color:var(--s-accent)}.xr em.down{color:var(--s-bad)}
-.maplegend .lk.crowd{background:var(--s-bad)}
-#trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
-#trips tr.chain td:first-child{box-shadow:inset 3px 0 0 var(--s-info)}
-.mapplate .toast{z-index:5}
-/* v7.5 · build once, watch it grow: the plan box locks, the year card, awareness and where-people-go bars */
-#planBox.locked{opacity:.45;pointer-events:none}
-.yrow{margin-top:8px;gap:8px}
-.yrow .btn[hidden]{display:none}
-.ychart{position:relative}
-.ychart .ypot{position:absolute;left:0;right:0;border-top:1.5px dashed var(--s-metro);opacity:.7;pointer-events:none}
-.ychart .ypot span{position:absolute;right:0;top:-15px;font:500 10px var(--s-mono);color:var(--s-metro);background:var(--s-panel);padding:0 3px}
-.yearcard{position:absolute;top:14px;right:16px;min-width:230px;max-width:330px;display:flex;flex-direction:column;gap:3px;padding:10px 14px;border-radius:8px;
-  background:var(--s-panel);border:1.5px solid var(--s-metro);box-shadow:0 6px 24px rgb(0 0 0 / .12);font-size:13px;line-height:1.5;color:var(--s-ink2);
-  opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:4}
-.yearcard.on{opacity:1;transform:none}
-.yearcard.warn{border-color:var(--s-bad)}
-.yearcard>b{font:600 15px 'Geist',sans-serif;color:var(--s-metro)}
-.yearcard span b{color:var(--s-ink);font-family:var(--s-mono)}
-#awareBox .xr{grid-template-columns:3.6em auto 2.8em 1fr}#awareBox .xr b,#awareBox .xr em{white-space:nowrap}
-.abar{display:flex;gap:2px}.abar i{width:9px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
-.abar i.on{background:var(--s-accent);box-shadow:none}
-.wr{display:grid;grid-template-columns:3.6em 1fr 2.6em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
-.wr .xn{color:var(--s-ink2)}
-.wr b{font:600 12.5px var(--s-mono);text-align:right}
-.wbar{position:relative;display:flex;height:12px;border-radius:3px;overflow:hidden;background:var(--s-raise)}
-.wbar i{display:block;height:100%;transition:flex .6s}
-.wbar i:nth-child(1){opacity:.85}.wbar i:nth-child(2){opacity:.85}.wbar i:nth-child(3){opacity:.35}
-.wbar u{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--s-ink);opacity:.75}
-.hbnote{font-size:11.5px;line-height:1.55;color:var(--s-ink3);margin:8px 0 0}
-.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px;vertical-align:0}
-.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12.5px;color:var(--s-ink2)}
-.maplegend .lk.aware{background:repeating-linear-gradient(90deg,var(--s-accent) 0 4px,transparent 4px 6px);height:8px}
-table.result{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px;margin:8px 0}
-table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:right;padding:2px 4px 6px}
-table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
-table.result th:first-child,table.result td:first-child{text-align:left}
-.maplegend .lk.walk{background:radial-gradient(circle,var(--s-ink3) 2px,transparent 2.5px) 0 50%/7px 8px repeat-x;opacity:.8}
-/* mode 3 · the roads panel: this year's jam on each road, and what drivers reckon with (a thin mark) */
-:root{--s-jam:#C2410C;--s-free:#2F8F5B}
-[data-theme="dark"]{--s-jam:#F08A4B;--s-free:#5CC08A}
-.rr{display:grid;grid-template-columns:5.6em 1fr 3.4em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
-.rr .xn{color:var(--s-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rr b{font:600 12px var(--s-mono);text-align:right;white-space:nowrap}
-.rbar{position:relative;height:12px;border-radius:3px;background:var(--s-raise);overflow:visible}
-.rbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .6s,background .6s}
-.rbar u{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--s-ink);transition:left .6s}
-.rbar s{position:absolute;top:0;bottom:0;width:1px;background:var(--s-ink3);opacity:.6}
-.jamline{font-size:12.5px;color:var(--s-ink2);margin:2px 0 8px}.jamline b{font-family:var(--s-mono);color:var(--s-ink)}
-.ychart .yb.done i{background:var(--s-jam)}
-.ychart .yb.next i{background:color-mix(in srgb,var(--s-jam) 22%,transparent);border-color:var(--s-jam)}
-.ychart .ypot{border-top-color:var(--s-ink2)}.ychart .ypot span{color:var(--s-ink2)}
-.maplegend .lk.road{background:linear-gradient(90deg,var(--s-ink3),#E3A008,var(--s-jam))}
-.maplegend .lk.mtr{background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
-/* v7.9 · the living map: a headline over the map, an info card for what is under the cursor, hold-to-preview */
-.headline{position:absolute;left:16px;right:16px;top:12px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 14px;border-radius:10px;
-  background:color-mix(in srgb,var(--s-panel) 92%,transparent);border:1px solid var(--s-line2);text-align:center;pointer-events:none;z-index:3;transition:border-color .3s,background .3s}
-.headline b{font:600 17px 'Geist',sans-serif;color:var(--s-ink);letter-spacing:.01em}.headline b em{font-style:normal;font-family:var(--s-mono)}
-.headline b .good{color:var(--s-free)}.headline b .bad{color:var(--s-jam)}
-.headline span{font-size:12.5px;color:var(--s-ink2);line-height:1.5}
-.headline.preview{border-color:var(--s-metro);background:color-mix(in srgb,var(--s-metro) 8%,var(--s-panel))}
-.headline.nothing{border-color:var(--s-jam);background:color-mix(in srgb,var(--s-jam) 8%,var(--s-panel))}
-.infocard{position:absolute;left:16px;bottom:52px;max-width:330px;padding:8px 12px;border-radius:8px;background:var(--s-panel);border:1px solid var(--s-line2);
-  font-size:12.5px;line-height:1.6;color:var(--s-ink2);z-index:3;pointer-events:none}
-.infocard b{color:var(--s-ink)}.infocard:empty{display:none}
-.hold{margin-left:auto}.hold:disabled{opacity:.4}.hold.on{background:var(--s-metro);color:var(--s-paper);border-color:var(--s-metro)}
-.rulesd{margin-top:14px}.rulesd summary{cursor:pointer;font:500 11px var(--s-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--s-ink3)}
-.mapplate .yearcard{display:none}
-.maplegend .lk.car{background:var(--s-ink2);width:10px;height:6px;border-radius:2px}
-.maplegend .lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
-.maplegend .lk.walkdot{width:6px;height:6px;border-radius:50%;background:var(--s-walk)}
-.maplegend .lk.ring{width:12px;height:12px;border-radius:50%;background:conic-gradient(var(--s-ink3) 0 55%,var(--s-metro) 55% 85%,var(--s-walk) 85%);-webkit-mask:radial-gradient(circle,transparent 3px,#000 3.5px);mask:radial-gradient(circle,transparent 3px,#000 3.5px)}
-:root{--s-walk:#7F95AE}[data-theme="dark"]{--s-walk:#A3B6CC}
-/* mode 4 · bus routes: chips to pick a route, the routes panel, lanes */
-.routes{display:flex;gap:6px;margin:10px 0 4px;flex-wrap:wrap}
-.routes button{flex:1;min-width:72px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 8px;border-radius:7px;border:1.5px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink2);font:500 12px 'Geist',sans-serif;cursor:pointer}
-.routes button b{font-size:13px;color:var(--rc)}.routes button small{font:500 10.5px var(--s-mono);color:var(--s-ink3)}
-.routes button[aria-pressed="true"]{border-color:var(--rc);background:color-mix(in srgb,var(--rc) 10%,var(--s-panel))}
-.br{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 8px;font-size:12.5px;margin:6px 0;padding-bottom:6px;border-bottom:1px solid var(--s-line)}
-.br:last-of-type{border-bottom:none}.br i.sw2{width:12px;height:12px;border-radius:3px}.br b{font:600 13px 'Geist',sans-serif;margin-right:6px}.br small{display:block;color:var(--s-ink3);font-size:11.5px}
-.lanebtn{font:500 10.5px var(--s-mono);padding:1px 6px;border-radius:4px;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink3);cursor:pointer;margin-left:4px}
+/* v7 · mode 4 «buses on the road» — on mode 1's layout (shared/style.css); only what buses add */
+:root{--s-metro:#9A3B26;--s-jam:#C2410C;--s-free:#2F8F5B;--s-walk:#7F95AE}
+[data-theme="dark"]{--s-metro:#E0896B;--s-jam:#F08A4B;--s-free:#5CC08A;--s-walk:#A3B6CC}
+#board{cursor:crosshair}
+.station-button b{color:var(--rc)}.station-button.selected{border-color:var(--rc);box-shadow:inset 0 0 0 1px var(--rc)}
+.stopbox .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.stopbox .tools .seg button{height:28px;font-size:12px;padding:0 9px}
+.stopbox .pm{display:inline-flex;align-items:center;gap:6px}.stopbox .pm .btn{min-width:26px;height:24px;padding:0 6px}
+.stopbox .r b.c{color:var(--rc)}
+.roadbox{padding:6px 12px}
+.rd{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:4px 0;border-top:1px solid var(--s-line)}.rd:first-child{border-top:0}
+.rd .n{flex:1;color:var(--s-ink2)}.rd b{font:500 12px var(--s-mono)}
+.lanebtn{font:500 10.5px var(--s-mono);padding:1px 7px;border-radius:4px;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink3);cursor:pointer}
 .lanebtn.on{background:var(--s-bad);border-color:var(--s-bad);color:var(--s-paper)}
-.rr{grid-template-columns:5.6em 1fr 3.4em auto}
-.maplegend .lk.bus{width:12px;height:7px;border-radius:2px;background:#2F6FD6}
-.maplegend .lk.lane{width:14px;height:6px;background:repeating-linear-gradient(90deg,var(--s-bad) 0 4px,transparent 4px 7px)}
+.hold.on{background:var(--s-ink);color:var(--s-paper);border-color:var(--s-ink)}
+#tide td small{display:block;font-size:9.5px;color:var(--s-ink3)}
+#tide tr.next td b{color:var(--s-ink3);font-style:italic}
+.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12px;color:var(--s-ink3)}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:12px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:5px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top}#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3)}
+.legend i.lk{border-radius:2px}
+.legend i.lk.car{width:9px;height:6px;background:var(--s-ink);opacity:.7}
+.legend i.lk.bus{width:13px;height:7px;background:#2F6FD6}
+.legend i.lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.legend i.lk.jam{width:14px;height:4px;background:var(--s-jam)}
+.legend i.lk.lane{width:14px;height:4px;background:repeating-linear-gradient(90deg,var(--s-bad) 0 4px,transparent 4px 7px)}
