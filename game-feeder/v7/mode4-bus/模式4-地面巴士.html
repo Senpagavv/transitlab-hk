@@ -1,0 +1,1804 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 模式 4 · 地面巴士</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>/* v2.1 · design language follows the team product suite (TransitLab-產品套件):
+   paper + ink, Bodoni Moda / Geist / Geist Mono, dotted paper, hairline frames,
+   colour only where it means something — green = good (delivered), red→amber = loss. */
+:root{
+  --s-paper:#FFFCF7; --s-panel:#FFFFFF; --s-soft:#F8F6F1; --s-raise:#F1EEE7;
+  --s-ink:#0A0A0A; --s-ink2:#525252; --s-ink3:#8C8C8C;
+  --s-line:rgba(0,0,0,.08); --s-line2:rgba(0,0,0,.18); --s-grid:rgba(0,0,0,.05);
+  --s-accent:#0E7A4E; --s-accent2:#12A06A; --s-accent-soft:#E6F1EA; --s-on-accent:#FFFCF7;
+  --s-good:#0E7A4E; --s-warn:#B07C10; --s-bad:#BF3B2B; --s-bad-soft:#FBEDEA; --s-info:#1F5FA8;
+  --s-road:#EEEAE1; --s-road-edge:rgba(0,0,0,.10);
+  --s-chrome:rgba(255,252,247,.84); --s-shadow:0 12px 30px rgba(0,0,0,.09);
+  --s-top:56px; --s-nav:78px; --s-stop:30px; --s-navpad:11px; --s-stop-fs:12px;
+  --s-display:'Bodoni Moda','MTR Song','地鐵宋','Chiron Sung HK','Noto Serif TC','Songti TC','Songti SC',serif;
+  --s-serif-tc:'Noto Serif TC','Chiron Sung HK','Songti TC','PingFang HK',serif;
+  --s-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+[data-theme="dark"]{
+  --s-paper:#0A0A0A; --s-panel:#111111; --s-soft:#161616; --s-raise:#1C1C1C;
+  --s-ink:#F5F5F5; --s-ink2:#A3A3A3; --s-ink3:#8C8C8C;
+  --s-line:rgba(255,255,255,.08); --s-line2:rgba(255,255,255,.20); --s-grid:rgba(255,255,255,.06);
+  --s-accent:#4EBE84; --s-accent2:#6FD39D; --s-accent-soft:#12291F; --s-on-accent:#0A0A0A;
+  --s-good:#4EBE84; --s-warn:#E89D4A; --s-bad:#D96B4A; --s-bad-soft:#2A1512; --s-info:#7BA7E8;
+  --s-road:#202020; --s-road-edge:rgba(255,255,255,.08);
+  --s-chrome:rgba(10,10,10,.78); --s-shadow:0 12px 34px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--s-paper);color:var(--s-ink);display:flex;flex-direction:column;overflow:hidden;
+  font-family:'Geist',system-ui,-apple-system,'PingFang HK','PingFang TC','Microsoft JhengHei',sans-serif;
+  font-size:13px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px}
+button{font:inherit;color:inherit}
+.mono{font-family:var(--s-mono);font-variant-numeric:tabular-nums}
+.lbl{font-family:var(--s-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--s-ink3)}
+.lbl .tc{text-transform:none;letter-spacing:.02em}
+.tc{font-size:.9em;color:var(--s-ink2);font-weight:400;letter-spacing:0;margin-left:5px}
+.tcb{display:block;color:var(--s-ink2);font-size:13px;letter-spacing:.02em;margin-top:3px;line-height:1.55}
+.row{display:flex;align-items:center;gap:10px}.row .sp{flex:1}
+.note{color:var(--s-ink2);font-size:13px;line-height:1.62;margin:0}.note b{color:var(--s-ink);font-weight:500}
+
+/* ---- top bar + step nav (the suite's outer frame) ---- */
+#topbar{flex:0 0 auto;height:var(--s-top);display:flex;align-items:center;gap:14px;padding:0 14px;
+  background:var(--s-chrome);backdrop-filter:blur(25px) saturate(1.4);-webkit-backdrop-filter:blur(25px) saturate(1.4);
+  border-bottom:1px solid var(--s-line);z-index:60}
+.brand{display:flex;align-items:center;gap:9px;min-width:0;flex:0 0 auto}
+.brandlogo{width:22px;height:22px;image-rendering:pixelated;flex:0 0 auto;display:block}
+.brand .wm{font-family:var(--s-display);font-size:20px;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.brand .sub{color:var(--s-ink3);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--s-mono);white-space:nowrap}
+#topbar .sp{flex:1}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;white-space:nowrap;cursor:pointer;
+  border:1px solid var(--s-line);border-radius:4px;background:var(--s-soft);color:var(--s-ink2);
+  font-family:var(--s-mono);font-size:10.5px;letter-spacing:.06em}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--s-accent);flex:0 0 auto}
+.dot.live{animation:bp 2.2s ease-in-out infinite}
+@keyframes bp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.82)}}
+.btn{appearance:none;border:1px solid var(--s-line2);background:transparent;color:var(--s-ink);height:30px;padding:0 11px;
+  border-radius:4px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:12px;
+  transition:background .14s,border-color .14s,color .14s,transform .1s}
+.btn:hover{border-color:var(--s-ink);background:var(--s-soft)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.42;cursor:not-allowed}
+.btn-p{background:var(--s-ink);border-color:var(--s-ink);color:var(--s-paper);font-weight:500}
+.btn-p:hover{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-on-accent)}
+.btn-sm{height:26px;padding:0 9px;font-size:11.5px}
+.seg{display:flex;border:1px solid var(--s-line);border-radius:4px;overflow:hidden;flex:0 0 auto}
+.seg button{appearance:none;border:0;background:transparent;color:var(--s-ink2);height:28px;padding:0 10px;cursor:pointer;
+  display:flex;align-items:center;gap:6px;font-size:11.5px;white-space:nowrap}
+.seg button+button{border-left:1px solid var(--s-line)}
+.seg button[aria-pressed="true"]{background:var(--s-ink);color:var(--s-paper)}
+.seg button:hover{color:var(--s-ink)}.seg button[aria-pressed="true"]:hover{color:var(--s-paper)}
+button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--s-info);outline-offset:2px}
+#navrow{position:relative;flex:0 0 auto;height:var(--s-nav);display:flex;align-items:stretch;
+  background:var(--s-chrome);backdrop-filter:blur(25px) saturate(1.4);-webkit-backdrop-filter:blur(25px) saturate(1.4);
+  border-bottom:1px solid var(--s-line);z-index:55}
+#navrow::before{content:'';position:absolute;left:calc(100%/12);right:calc(100%/12);top:calc(var(--s-navpad) + var(--s-stop)/2 - 1.5px);
+  height:3px;border-radius:2px;background:var(--s-line2);pointer-events:none}
+#navrow button{appearance:none;border:0;background:transparent;cursor:pointer;min-width:0;flex:1 1 0;display:flex;flex-direction:column;
+  align-items:center;gap:5px;padding:var(--s-navpad) 8px 0;position:relative;color:var(--s-ink2)}
+#navrow button[disabled]{cursor:default;color:var(--s-ink3)}
+#navrow .stop{flex:0 0 auto;min-width:var(--s-stop);height:var(--s-stop);padding:0 9px;border-radius:calc(var(--s-stop)/2);
+  border:2px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink2);display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;font-family:var(--s-mono);font-style:normal;font-size:var(--s-stop-fs);font-weight:500}
+#navrow button[aria-selected="true"]{color:var(--s-ink)}
+#navrow button[aria-selected="true"] .stop{background:var(--s-ink);border-color:var(--s-ink);color:var(--s-paper)}
+#navrow .t{display:flex;flex-direction:column;align-items:center;line-height:1.18;min-width:0;max-width:100%}
+#navrow .t b{font-weight:500;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#navrow button[aria-selected="true"] .t b{font-weight:600}
+#navrow .t s{text-decoration:none;font-size:12px;color:var(--s-ink3);letter-spacing:.04em;white-space:nowrap}
+
+/* ---- the game: left column · map plate · right column ---- */
+.eg{flex:1;min-height:0;display:flex}
+/* the board stays put (the cover's blocks land exactly on it); only the side columns glide in */
+body.entered .side{animation:sideIn .8s cubic-bezier(.2,.7,.2,1) both}
+body.entered .side.right{animation-name:sideInR}
+@keyframes sideIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes sideInR{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.side{width:360px;flex:0 0 auto;border-right:1px solid var(--s-line);background:var(--s-panel);overflow:auto;padding:16px 17px 30px;scrollbar-width:thin}
+.side.right{width:318px;border-right:0;border-left:1px solid var(--s-line)}
+.scol{font-size:14px;line-height:1.58}
+.h1{font-family:var(--s-display);font-size:28px;font-weight:600;line-height:1.1;margin:6px 0 6px}
+.h1tc{display:block;font-family:var(--s-serif-tc);font-size:17px;font-weight:500;color:var(--s-ink2);letter-spacing:.08em;margin-top:6px}
+.lede{margin:0 0 12px;font-size:15px}
+.chip{border:1px solid var(--s-line);background:var(--s-soft);color:var(--s-ink2);border-radius:2px;height:23px;padding:0 8px;white-space:nowrap;
+  font-family:var(--s-mono);font-size:10.5px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:5px}
+.chip i{width:5px;height:5px;border-radius:50%;background:var(--s-accent);font-style:normal}
+.box{background:var(--s-soft);border:1px solid var(--s-line);border-radius:6px;padding:11px 12px}
+.goal .goalnum{font-size:13px;color:var(--s-ink2)}.goal .goalnum b{font-size:22px;color:var(--s-accent);font-weight:500}
+.gauge{position:relative;height:10px;margin:24px 0 20px;background:var(--s-raise);border-radius:5px}
+.gauge i{position:absolute;inset:0 auto 0 0;border-radius:5px;background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));
+  box-shadow:0 0 12px color-mix(in srgb,var(--s-accent2) 55%,transparent);transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.gauge em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--s-ink)}
+.gauge em::after{content:attr(data-label);position:absolute;top:15px;left:-3px;transform:translateX(-100%);font:500 10px var(--s-mono);color:var(--s-ink2);white-space:nowrap;font-style:normal}
+#tickHigh::after{left:50%;transform:translateX(-50%);top:auto;bottom:15px}
+#tickMaster::after{left:5px;transform:none}
+#tickMaster{background:var(--s-accent)}
+.controls{margin:14px 0 14px;gap:6px}.controls #start{flex:1;justify-content:center;height:34px;font-size:14px}
+.controls .seg button{height:32px;font-size:12.5px}
+.stations{display:flex;gap:6px;margin:6px 0 8px}
+.station-button{flex:1;appearance:none;border:1px solid var(--s-line2);background:var(--s-panel);border-radius:5px;padding:6px 8px;cursor:pointer;text-align:left;line-height:1.25}
+.station-button b{font-family:var(--s-display);font-size:18px;color:var(--s-accent)}
+.station-button small{display:block;font-family:var(--s-mono);font-size:10px;color:var(--s-ink3)}
+.station-button.selected{border-color:var(--s-ink);box-shadow:inset 0 0 0 1px var(--s-ink)}
+.stopbox{padding:10px 12px}
+.stopbox h3{margin:0 0 4px;font:600 15px 'Geist',sans-serif;display:flex;justify-content:space-between;align-items:baseline}
+.stopbox .r{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;padding:2px 0}
+.stopbox .r span:first-child{color:var(--s-ink3)}
+.stopbox .r b{font-family:var(--s-mono);font-weight:500}
+.stopbox .big{font-family:var(--s-mono);font-size:20px;color:var(--s-accent)}
+.slots{display:flex;gap:3px;margin:3px 0 5px}
+.slots i{flex:0 0 auto;width:15px;height:11px;border:1.5px solid var(--s-accent);border-radius:2px}
+.slots i.on{background:var(--s-accent)}
+.slots.queue i{border-color:var(--s-warn)}.slots.queue i.on{background:var(--s-warn)}
+.slots.queue.full i.on{background:var(--s-bad);border-color:var(--s-bad)}
+.stopbox p{margin:6px 0 0;font-size:12px;color:var(--s-ink2)}
+ol.mini{margin:6px 0 0;padding-left:17px;font-size:13px;color:var(--s-ink2);line-height:1.6}
+ol.mini b{color:var(--s-ink);font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--s-ink2);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;display:block;flex:0 0 auto}
+.glowkey{border-radius:50%}
+.glowkey.good{background:radial-gradient(var(--s-accent2),transparent 70%)}
+.glowkey.bad{background:radial-gradient(var(--s-bad),transparent 70%)}
+.tidekey{font-size:11px;gap:4px 10px}.tidekey b{font-size:11px;font-weight:500;margin-right:2px}
+.tidekey .pk{width:12px;height:10px;border:2px solid var(--s-warn);border-radius:2px}
+
+.play{flex:1;min-width:0;position:relative;padding:12px}
+.mapplate{position:relative;height:100%;border-radius:8px;overflow:hidden;isolation:isolate;background:var(--s-panel);border:1px solid var(--s-line);box-shadow:var(--s-shadow)}
+.mapplate::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:3;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;mix-blend-mode:multiply}
+[data-theme="dark"] .mapplate::after{mix-blend-mode:screen}
+#board,#fx{position:absolute;left:0;right:0;top:56px;bottom:72px;width:100%;height:calc(100% - 128px);display:block}
+#board{z-index:1;touch-action:none;user-select:none}
+#board text{font-family:'Geist','PingFang HK','Microsoft JhengHei',sans-serif;paint-order:stroke;stroke-linejoin:round}
+#board [role=button]{cursor:pointer}
+#fx{z-index:4;pointer-events:none;overflow:visible}
+.ov{position:absolute;z-index:7}
+.clockbox{left:12px;top:12px;background:var(--s-chrome);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--s-line);border-radius:7px;padding:7px 12px;box-shadow:var(--s-shadow);min-width:150px}
+.clockbox .c{font-family:var(--s-mono);font-size:22px;font-variant-numeric:tabular-nums;line-height:1.1}
+.clockbox .u{font-size:10.5px;color:var(--s-ink3)}
+.clockbox .prog{height:3px;border-radius:2px;background:var(--s-raise);margin-top:6px;overflow:hidden}
+.clockbox .prog i{display:block;height:100%;background:var(--s-ink);width:0}
+.lanebox{right:12px;top:12px;width:250px;background:var(--s-chrome);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--s-line);border-radius:7px;padding:8px 11px;box-shadow:var(--s-shadow)}
+.lanebox .h{font-family:var(--s-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--s-ink3);margin-bottom:3px}
+.lanebox .h b{color:var(--s-ink);font-size:12px}
+.lanebox .hint{font-size:11.5px;color:var(--s-ink2);line-height:1.5}
+.hud{position:absolute;left:12px;right:12px;bottom:12px;z-index:7;display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--s-chrome);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);
+  border:1px solid var(--s-line);border-radius:7px;box-shadow:var(--s-shadow);overflow:hidden}
+.hud>div{padding:8px 12px;border-right:1px solid var(--s-line);position:relative}
+.hud>div:last-child{border-right:0}
+.hud b{display:block;font-family:var(--s-mono);font-size:21px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.15}
+.hud small{display:block;font-size:10px;color:var(--s-ink3);letter-spacing:.03em}
+.hud .good b{color:var(--s-accent)}.hud .bad b{color:var(--s-bad)}
+.hud .good.pop{animation:pop .6s ease-out}
+@keyframes pop{0%{background:color-mix(in srgb,var(--s-accent2) 28%,transparent)}100%{background:transparent}}
+.hud .bad.hit{animation:hit .55s ease-out}
+@keyframes hit{0%{background:color-mix(in srgb,var(--s-bad) 30%,transparent);transform:translateX(0)}20%{transform:translateX(-3px)}40%{transform:translateX(3px)}60%{transform:translateX(-2px)}100%{background:transparent;transform:none}}
+.toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-8px);z-index:8;opacity:0;pointer-events:none;
+  padding:7px 14px;border-radius:999px;font-size:13px;font-weight:500;white-space:nowrap;color:var(--s-on-accent);
+  background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));box-shadow:0 8px 24px color-mix(in srgb,var(--s-accent) 35%,transparent);
+  transition:opacity .25s,transform .25s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.tide{background:linear-gradient(90deg,var(--s-warn),color-mix(in srgb,var(--s-warn) 70%,var(--s-bad)));box-shadow:0 8px 24px color-mix(in srgb,var(--s-warn) 35%,transparent)}
+.toast.bad{background:linear-gradient(90deg,var(--s-bad),var(--s-warn))}
+
+/* ---- tide table ---- */
+#tide{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px}
+#tide th{font-size:11px;font-weight:500;color:var(--s-ink3);padding:2px 2px 5px;text-align:center;line-height:1.2}
+#tide th:first-child{text-align:left}
+#tide td{text-align:center;padding:2px;border-top:1px solid var(--s-line);height:34px}
+#tide td:first-child{text-align:left;font:400 11px var(--s-mono);color:var(--s-ink3);white-space:nowrap}
+#tide td b{display:block;font:500 15px/1.05 var(--s-mono)}
+#tide td i{display:block;font:normal 10px/1.2 var(--s-mono);color:var(--s-accent)}
+#tide td.peak b{color:var(--s-warn)}
+#tide td.peak{box-shadow:inset 0 0 0 2px var(--s-warn);border-radius:4px}
+#tide td.hot i{color:var(--s-bad);font-weight:500}
+#tide tr.now td{background:var(--s-raise)}
+#tide tr.now td:first-child{color:var(--s-ink)}
+#tide tr.past{opacity:.35}
+#notice{min-height:60px;margin-top:6px}
+
+/* ---- map effects (the feedback layer) ---- */
+#fx .fx{transform-box:fill-box;transform-origin:center}
+#fx .glow{animation:glow var(--d,1.5s) cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes glow{0%{opacity:0;transform:scale(.35)}18%{opacity:var(--peak,1)}100%{opacity:0;transform:scale(1.55)}}
+#fx .ring{fill:none;stroke-width:2.2;animation:ring var(--d,1.3s) ease-out forwards}
+@keyframes ring{0%{opacity:.95;transform:scale(.25)}100%{opacity:0;transform:scale(1.9)}}
+#fx .float{font:600 15px var(--s-mono);paint-order:stroke;stroke-width:3;stroke-linejoin:round;animation:floatUp 1.5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes floatUp{0%{opacity:0;transform:translateY(8px)}15%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translateY(-30px)}}
+#fx .car{animation:driveOff 1.8s cubic-bezier(.5,0,.8,.4) forwards}
+@keyframes driveOff{0%{opacity:0;transform:translateX(0)}12%{opacity:1}100%{opacity:0;transform:translateX(var(--dx,-90px))}}
+#fx .flash{animation:flash .7s ease-out forwards}
+/* test hook: #fxfreeze=1 holds every effect mid-flight for screenshots */
+.fxfreeze #fx .fx{animation-play-state:paused!important;animation-delay:-.32s!important}
+@keyframes flash{0%{opacity:.9}100%{opacity:0}}
+
+/* ---- dialogs ---- */
+dialog{border:1px solid var(--s-line2);border-radius:10px;background:var(--s-panel);color:var(--s-ink);max-width:720px;width:calc(100% - 40px);
+  padding:24px 28px;max-height:88vh;overflow:auto;box-shadow:var(--s-shadow)}
+dialog::backdrop{background:rgba(10,10,10,.45);backdrop-filter:blur(3px)}
+dialog .h1{margin:4px 0 12px}
+dialog h3{font:600 15px 'Geist',sans-serif;margin:18px 0 6px}
+dialog p,dialog li{font-size:13.5px;line-height:1.75}
+.close{position:absolute;right:12px;top:10px;font-size:22px;border:0;background:none;cursor:pointer;color:var(--s-ink2)}
+ol.rules{padding-left:22px;margin:8px 0}ol.rules li{margin-bottom:8px}
+#resultScore{font-size:20px;margin:0 0 6px}
+table.result{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+table.result td,table.result th{text-align:left;padding:7px 6px;border-bottom:1px solid var(--s-line)}
+table.result th{font:500 10px var(--s-mono);letter-spacing:.08em;color:var(--s-ink3)}
+table.result td:not(:first-child),table.result th:not(:first-child){text-align:right;font-family:var(--s-mono)}
+#result .row{margin-top:14px;flex-wrap:wrap}
+#result.win .h1{background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- the hub: the opening and the map (v3.1, opening adapted from the suite's cover) ----
+   --hub-p: 0 = intro (title + tide bar), 1 = hub (map centred, menu in). --hub-q: how far the top bar is in. */
+[hidden]{display:none!important}
+:root{--hub-q:1;--chrome-h:134px}
+#topbar{position:relative;transform:translateY(calc((var(--hub-q) - 1) * 100%));opacity:var(--hub-q)}
+#navrow{transform:translateY(calc((var(--hub-q) - 1) * (100% + var(--s-top))));opacity:var(--hub-q)}
+body.chrome-off #topbar,body.chrome-off #navrow{pointer-events:none}
+body.inhub{overflow:hidden}
+#hub{--hub-p:0;position:fixed;inset:0;z-index:50;background:var(--s-paper);overflow:hidden;
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);background-size:10px 10px;transition:opacity .45s ease}
+#hub.gone{opacity:0;pointer-events:none;transition:opacity .55s ease}
+#hub.away{visibility:hidden}
+.cv-stage{position:absolute;inset:0}
+#hub canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cv-copy{position:absolute;left:max(6vw,32px);top:50%;max-width:620px;z-index:3;
+  transform:translateY(calc(-52% - var(--hub-p) * 110px));opacity:calc(1 - var(--hub-p) * 1.7)}
+/* The copy sits on a soft paper halo: solid in the middle, fading out on every side (no hard edge), with the dots
+   behind blurred under the same mask, so the black title never sits on black dots. */
+.cv-copy::before{content:'';position:absolute;inset:-150px -230px -160px -190px;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side,var(--s-paper) 0,var(--s-paper) 62%,color-mix(in srgb,var(--s-paper) 70%,transparent) 80%,transparent 100%);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  -webkit-mask-image:radial-gradient(closest-side,#000 74%,transparent 100%);mask-image:radial-gradient(closest-side,#000 74%,transparent 100%)}
+.cv-logo{width:68px;height:68px;image-rendering:pixelated;display:block;margin-bottom:26px}
+.cv-title{font-family:var(--s-display);font-weight:600;font-size:clamp(42px,5.6vw,72px);line-height:1.03;letter-spacing:-.01em;color:var(--s-ink);margin:0 0 18px;
+  text-shadow:0 0 18px var(--s-paper),0 0 3px var(--s-paper)}
+.cv-title em{font-style:italic;font-weight:500;color:var(--s-accent)}
+.cv-tc{display:block;font-family:var(--s-serif-tc);font-weight:500;color:var(--s-ink2)}
+.cv-title .cv-tc{font-size:clamp(17px,1.9vw,24px);letter-spacing:.14em;margin-top:16px}
+.cv-lede{font-size:16px;color:var(--s-ink2);margin:0 0 18px;line-height:1.6}
+.cv-lede .cv-tc{font-size:14px;margin-top:4px;letter-spacing:.06em}
+.cv-mode{margin:0;display:flex;flex-direction:column;gap:3px;font-size:14.5px;color:var(--s-ink)}
+.cv-hint{position:absolute;left:50%;bottom:100px;z-index:4;transform:translate(-50%,calc(var(--hub-p) * 60px));opacity:calc(1 - var(--hub-p) * 3);
+  appearance:none;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font:500 11px var(--s-mono);letter-spacing:.12em;color:var(--s-ink2)}
+.cv-hint span{background:var(--s-chrome);padding:3px 9px;border-radius:999px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.cv-hint .mouse{width:20px;height:31px;border:1.6px solid var(--s-ink2);border-radius:11px;position:relative;background:var(--s-chrome)}
+.cv-hint .mouse::after{content:'';position:absolute;left:50%;top:6px;width:3px;height:6px;margin-left:-1.5px;border-radius:2px;background:var(--s-ink);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(-2px)}30%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+.cv-bar{position:absolute;left:50%;bottom:22px;transform:translate(-50%,calc(var(--hub-p) * 150px));opacity:calc(1 - var(--hub-p) * 1.7);z-index:4;
+  width:min(880px,calc(100vw - 28px));height:62px;display:flex;align-items:center;
+  gap:14px;padding:0 14px;background:var(--s-chrome);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
+  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow)}
+#hub.past .cv-copy,#hub.past .cv-bar,#hub.past .cv-hint{pointer-events:none}
+.cv-play{appearance:none;border:1px solid var(--s-line2);background:transparent;color:var(--s-ink);width:32px;height:32px;border-radius:5px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.cv-play:hover{background:var(--s-soft)}
+.cv-hour .h{font-family:var(--s-mono);font-size:20px;font-variant-numeric:tabular-nums;line-height:1.05}
+.cv-hour .u{font-family:var(--s-mono);font-size:10.5px;color:var(--s-ink2);letter-spacing:.06em;text-transform:uppercase}
+.cv-mid{flex:1;min-width:0;height:46px}.cv-mid svg{width:100%;height:100%;display:block;overflow:visible;cursor:ew-resize}
+.cv-nums{display:flex;gap:18px;flex:0 0 auto}
+.cv-nums b{font-family:var(--s-mono);font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+.cv-nums span{font-size:9.5px;color:var(--s-ink2);letter-spacing:.08em;text-transform:uppercase}
+#hub .tip{position:absolute;z-index:9;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--s-panel);border:1px solid var(--s-line2);
+  border-radius:5px;box-shadow:var(--s-shadow);padding:7px 9px;font-size:11px;min-width:132px;max-width:240px}
+#hub .tip.on{opacity:1}
+#hub .tip .tt{font-weight:500;font-size:12px;margin-bottom:3px}
+#hub .tip .tv{display:flex;justify-content:space-between;gap:12px;color:var(--s-ink2);font-size:10.5px}
+#hub .tip .tv b{color:var(--s-ink);font-family:var(--s-mono);font-weight:400}
+
+/* the glass panel: what the selected menu item says */
+.hub-panel{position:absolute;left:20px;top:calc(var(--chrome-h) + 16px);width:330px;max-height:calc(100% - var(--chrome-h) - 36px);overflow:auto;z-index:6;
+  background:var(--s-chrome);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
+  border:1px solid var(--s-line);border-radius:9px;box-shadow:var(--s-shadow);padding:15px 17px 14px;scrollbar-width:thin;
+  opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+#hub.open .hub-panel{opacity:1;transform:none;pointer-events:auto}
+#hub.leaving .hub-panel,#hub.leaving .hub-marks{opacity:0!important;pointer-events:none!important;transition:opacity .2s}
+.hp-h{font-family:var(--s-display);font-size:26px;font-weight:600;line-height:1.1;margin:5px 0 8px}
+.hp-tc{display:block;font-family:var(--s-serif-tc);font-size:15px;font-weight:500;color:var(--s-ink2);letter-spacing:.08em;margin-top:5px}
+.hp-up{display:inline-block;color:var(--s-accent);animation:upNudge 1.4s ease-in-out infinite}
+@keyframes upNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.hub-panel .note{font-size:13px}
+.hub-panel .chip{margin:2px 0 8px}
+.hp-sub{margin:14px 0 6px}
+.lvls{display:flex;flex-direction:column;gap:6px}
+.lv{appearance:none;text-align:left;cursor:pointer;border:1px solid var(--s-line2);background:var(--s-panel);border-radius:6px;padding:8px 10px;
+  display:flex;flex-direction:column;gap:2px;transition:border-color .15s,box-shadow .15s,transform .1s}
+.lv:hover,.lv.hot{border-color:var(--s-accent);box-shadow:inset 0 0 0 1px var(--s-accent)}
+.lv:active{transform:translateY(1px)}
+.lv-n{display:flex;align-items:baseline;gap:8px}.lv-n b{font-size:15px;font-weight:600}
+.lv-n small{font:500 9.5px var(--s-mono);letter-spacing:.14em;color:var(--s-ink3)}
+.lv-m{font:400 11.5px var(--s-mono);color:var(--s-ink2)}.lv-m em{font-style:normal;color:var(--s-accent)}
+.lv-r{font-size:11px;color:var(--s-warn)}
+.lv.minor{padding:6px 10px}.lv.minor .lv-n b{font-size:13.5px;font-weight:500;color:var(--s-ink2)}
+.hp-detail{margin:12px 0 0;border-top:1px solid var(--s-line);padding-top:10px;min-height:74px}
+.hp-detail p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--s-ink2)}
+.hp-detail .hp-idle{color:var(--s-ink3)}
+.hp-dh{display:flex;align-items:center;gap:8px}.hp-dh b{font-size:14px}
+.tag{font:500 9.5px var(--s-mono);letter-spacing:.08em;padding:1px 6px;border-radius:3px;border:1px solid var(--s-line2);color:var(--s-ink3)}
+.tag.st-play{border-color:var(--s-accent);color:var(--s-accent)}
+.hp-tiers{font-size:11px!important;color:var(--s-ink)!important}
+.hp-legend{display:flex;gap:14px;margin-top:10px;font-size:11.5px;color:var(--s-ink2)}
+.hp-legend span{display:inline-flex;align-items:center;gap:6px}
+.hp-legend .k{width:10px;height:10px;border-radius:50%;display:block}
+.hp-legend .k.st-play{background:var(--s-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--s-accent2) 25%,transparent)}
+.hp-legend .k.st-soon{border:2px solid var(--s-ink3);background:var(--s-panel)}
+.hp-fine{margin:8px 0 0;font-size:11px;line-height:1.55;color:var(--s-ink3)}
+
+/* markers: playable stations (green, pulsing) and places not built yet (grey) */
+.hub-marks{position:absolute;inset:0;z-index:5;pointer-events:none}
+.hm{position:absolute;width:0;height:0;appearance:none;border:0;background:none;padding:0;cursor:pointer;color:var(--s-ink);
+  opacity:0;pointer-events:none;transition:opacity .4s ease calc(var(--i) * 55ms)}
+#hub.open.m1 .hm{opacity:1;pointer-events:auto}
+.hm .pin{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:var(--s-accent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--s-accent2) 28%,transparent),0 0 22px var(--s-accent2)}
+.hm.st-play .pin::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--s-accent2);animation:pinRing 2.2s ease-out infinite}
+@keyframes pinRing{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.4)}}
+.hm.minor .pin{left:-6px;top:-6px;width:12px;height:12px;box-shadow:0 0 0 3px color-mix(in srgb,var(--s-accent2) 25%,transparent)}
+.hm.minor .pin::after{display:none}
+.hm.st-soon{cursor:help}
+.hm.st-soon .pin{left:-6px;top:-6px;width:12px;height:12px;background:var(--s-panel);border:2px solid var(--s-ink3);box-shadow:none}
+.hm .lab{position:absolute;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:4px 9px 5px;border-radius:6px;
+  background:var(--s-chrome);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--s-line2);box-shadow:0 6px 16px rgba(0,0,0,.08);
+  transition:background .15s,color .15s,border-color .15s}
+.hm .lab b{font-size:14px;font-weight:600;line-height:1.2}
+.hm .lab small{font:500 9px var(--s-mono);letter-spacing:.12em;color:var(--s-ink3);text-transform:uppercase}
+.hm.st-play .lab{border-color:var(--s-accent)}
+.hm.st-play:hover .lab,.hm.st-play.hot .lab,.hm.st-play:focus-visible .lab{background:var(--s-accent);border-color:var(--s-accent);color:var(--s-on-accent)}
+.hm.st-play:hover .lab small,.hm.st-play.hot .lab small,.hm.st-play:focus-visible .lab small{color:var(--s-on-accent)}
+.hm.minor .lab b{font-size:12.5px;font-weight:500}
+.hm.st-soon .lab{padding:2px 7px 3px;border-color:var(--s-line);color:var(--s-ink2)}
+.hm.st-soon .lab b{font-size:12px;font-weight:500}.hm.st-soon .lab small{font-size:8.5px}
+.hm.st-soon.hot .lab{border-color:var(--s-ink2);color:var(--s-ink)}
+.hm[data-side=right] .lab{left:14px;top:0;transform:translateY(-50%)}
+.hm[data-side=left] .lab{right:14px;top:0;transform:translateY(-50%)}
+.hm[data-side=top] .lab{bottom:14px;left:0;transform:translateX(-50%)}
+.hm[data-side=bottom] .lab{top:14px;left:0;transform:translateX(-50%)}
+.hm[data-side=topright] .lab{bottom:10px;left:-4px}
+.hm:focus-visible{outline:none}.hm:focus-visible .pin{outline:2px solid var(--s-info);outline-offset:3px}
+
+/* menu: 02–06 are previews for now; 01 invites a first click */
+#navrow button.soon{color:var(--s-ink3)}
+#navrow button.soon .stop{border-style:dashed}
+#navrow button.invite .stop{animation:invite 1.5s ease-in-out infinite;border-color:var(--s-accent);color:var(--s-accent)}
+@keyframes invite{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--s-accent2) 55%,transparent)}60%{box-shadow:0 0 0 9px transparent}}
+.seg.lang button{min-width:34px;justify-content:center;font-size:12px}
+
+@media (max-width:1279px){.side{width:330px}.side.right{width:290px}}
+@media (max-width:1100px){body{overflow:auto;display:block}.eg{display:block}.side,.side.right{width:100%;border:0;border-bottom:1px solid var(--s-line)}
+  .play{height:72vh;position:sticky;top:0;z-index:6;background:var(--s-paper)}#navrow .t s{display:none}}
+@media (max-width:760px){.brand .sub,#srcBtn{display:none}#topbar{gap:8px;padding:0 10px}.hud{grid-template-columns:repeat(2,1fr)}.lanebox{display:none}
+  .cv-copy{left:20px;right:20px;top:auto;bottom:172px;transform:translateY(calc(var(--hub-p) * -110px));max-width:none}.cv-nums{display:none}
+  .cv-hint{bottom:92px}.hub-panel{left:8px;right:8px;width:auto;top:auto;bottom:8px;max-height:200px}
+  /* the map is small on a phone: smaller labels, "not built yet" stations show only their pin until tapped,
+     and the minor Long Ping label goes up-left so it clears Fanling */
+  .hm .lab{padding:2px 6px 3px}.hm .lab b,.hm.minor .lab b{font-size:12px}.hm .lab small{display:none}
+  .hm.st-soon .lab{display:none}.hm.st-soon.hot .lab{display:flex}
+  .hm.minor[data-side=topright] .lab{bottom:9px;left:0;transform:translateX(-85%)}}
+/* a phone-width top bar must fit, or the browser widens the whole page and the intro copy runs off the right edge */
+@media (max-width:480px){#topbar{gap:6px}#help .tc{display:none}.seg.lang button{min-width:28px;padding:0 7px}.brand .wm{font-size:18px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* v4 · rounds trial: the 3-second countdown before each round, the next round in the tide table, the level switch */
+.countdown{position:absolute;left:50%;top:50%;z-index:8;transform:translate(-50%,-50%) scale(.92);opacity:0;pointer-events:none;
+  display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 22px 12px;border-radius:14px;
+  background:var(--s-chrome);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--s-line2);
+  box-shadow:0 12px 40px color-mix(in srgb,var(--s-ink) 14%,transparent);transition:opacity .18s,transform .18s}
+.countdown.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.countdown b{font:600 52px/1 var(--s-mono);color:var(--s-warn)}
+.countdown span{font-size:14px;font-weight:600;color:var(--s-ink);white-space:nowrap}
+.countdown small{font:500 10.5px var(--s-mono);letter-spacing:.08em;color:var(--s-ink3)}
+.countdown.paused{border-color:var(--s-accent)}
+.countdown.paused b{color:var(--s-accent)}
+#tide td small{display:block;font-size:9.5px;color:var(--s-ink3)}
+#tide tr.next td{background:color-mix(in srgb,var(--s-warn) 12%,transparent)}
+#tide tr.next td:first-child{color:var(--s-warn);font-weight:600}
+.seg.lv button{font-size:12px;padding:0 10px}
+/* the countdown sits at the top centre, between the clock and the moves box, so it never covers the board */
+.countdown{top:12px;transform:translate(-50%,-6px);display:grid;grid-template-columns:auto auto;column-gap:12px;row-gap:1px;align-items:center;padding:7px 16px 7px 12px}
+.countdown.on{transform:translate(-50%,0)}
+.countdown b{grid-row:1/3;font-size:38px}
+.countdown span{align-self:end;font-size:13.5px}
+.countdown small{align-self:start}
+
+/* v4 · level editor (editor.html) */
+.ed-in{appearance:none;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink);border-radius:4px;height:28px;padding:0 8px;font:inherit;font-size:13px;min-width:0}
+.ed-in:focus{outline:2px solid var(--s-info);outline-offset:1px}
+input.ed-in[type=number]{width:62px;text-align:right}
+.ed-title{width:100%;height:36px;font-family:var(--s-display);font-size:22px;font-weight:600;margin:6px 0 4px;padding:0 10px}
+.ed-h{margin:16px 0 6px}
+.ed-tools{width:100%}.ed-tools button{flex:1;font-size:12.5px;padding:0 4px}
+.ed-size{gap:14px;margin-top:8px}.ed-size label{display:flex;align-items:center;gap:6px;font-size:13px}
+.ed-est{display:grid;grid-template-columns:1fr auto auto auto;gap:6px;align-items:center;padding:5px 6px;border:1px solid var(--s-line);border-radius:5px;margin-bottom:5px;background:var(--s-panel)}
+.ed-est.sel{border-color:var(--s-accent)}
+.ed-est .ed-in{height:26px}.ed-est select.ed-in,.ed-est select{height:26px;font-size:12px;border:1px solid var(--s-line2);border-radius:4px;background:var(--s-panel);color:var(--s-ink)}
+.ed-est .mono{font-size:11px;color:var(--s-ink3);white-space:nowrap}
+.ed-problems{margin:0;padding-left:18px;font-size:12.5px;color:var(--s-bad);line-height:1.6}.ed-problems .ok{color:var(--s-accent);list-style:'✓  '}
+.ed-plate{background-image:none}
+#edBoard{position:absolute;left:0;right:0;top:0;bottom:40px;width:100%;height:calc(100% - 40px);display:block;touch-action:none;user-select:none;cursor:crosshair}
+#edBoard text{font-family:'Geist','PingFang HK','Microsoft JhengHei',sans-serif}
+.ed-cell{position:absolute;left:0;right:0;bottom:0;height:40px;display:flex;align-items:center;padding:0 14px;font-size:12px;color:var(--s-ink2);border-top:1px solid var(--s-line);background:var(--s-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ed-actions{gap:8px;margin-bottom:8px}.ed-actions .btn{flex:1}
+.ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}.ed-grid.three{grid-template-columns:1fr 1fr 1fr}
+.ed-grid label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--s-ink2)}
+.ed-grid input.ed-in[type=number]{width:100%}
+.ed-people{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.ed-people th{font-weight:500;color:var(--s-ink3);padding:2px;text-align:center;font-size:11px}
+.ed-people td{padding:2px;text-align:center}.ed-people td:first-child{text-align:left;color:var(--s-ink3);font-size:10.5px;white-space:nowrap}
+.ed-people input.ed-in[type=number]{width:46px;height:26px;padding:0 4px}
+.ed-willing{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.ed-willing label{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;color:var(--s-ink3)}
+.ed-willing input.ed-in[type=number]{width:100%;padding:0 3px;text-align:center}
+.ed-analysis .r{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:2px 0}
+.ed-analysis .note{font-size:12px;margin:4px 0}
+.ed-analysis .gauge{height:6px;border-radius:3px;background:var(--s-raise);overflow:hidden;margin-top:6px}.ed-analysis .gauge i{display:block;height:100%;background:var(--s-accent)}
+.ed-warn{color:var(--s-warn)!important}
+/* number boxes without spinner arrows, so three digits fit */
+.ed-in[type=number]{-moz-appearance:textfield;appearance:textfield}
+.ed-in[type=number]::-webkit-inner-spin-button,.ed-in[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.ed-willing input.ed-in[type=number]{padding:0 2px;font-size:12px}
+.ed-analysis{margin-bottom:4px}
+
+.ed-toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-6px);z-index:8;opacity:0;pointer-events:none;max-width:80%;
+  padding:7px 14px;border-radius:999px;background:var(--s-ink);color:var(--s-paper);font-size:13px;transition:opacity .15s,transform .15s}
+.ed-toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* v5 · shares trial: the stop columns of the tide table (people going to A / B / C each round; amber nearly full, red overflows) */
+#tide th.stopcol{color:var(--s-accent)}
+#tide th.stopcol,#tide td.stopcol{background:color-mix(in srgb,var(--s-accent) 6%,transparent)}
+#tide th.stopcol:nth-child(1 of .stopcol),#tide td.stopcol:nth-child(1 of .stopcol){border-left:2px solid var(--s-line2)}
+#tide td.stopcol b{color:var(--s-accent)}
+#tide td.stopcol i{color:var(--s-ink3);font-style:normal}
+#tide td.stopcol.warm b{color:var(--s-warn)}
+#tide td.stopcol.warm{box-shadow:inset 0 0 0 1.5px var(--s-warn);border-radius:4px}
+#tide td.stopcol.hot b{color:var(--s-bad)}
+#tide td.stopcol.hot{box-shadow:inset 0 0 0 2px var(--s-bad);border-radius:4px;background:color-mix(in srgb,var(--s-bad) 10%,transparent)}
+.badtxt{color:var(--s-bad);font-weight:600}
+/* v5 · the goal gauge starts a little below "pass" (its lowest score on the left); labels: pass and high below, master above */
+.gauge[data-lo]:not([data-lo=""])::before{content:attr(data-lo);position:absolute;left:0;top:15px;font:500 10px var(--s-mono);color:var(--s-ink3)}
+#tickHigh::after{left:50%;transform:translateX(-50%);top:15px;bottom:auto}
+#tickMaster::after{left:auto;right:-1px;transform:none;top:auto;bottom:15px}
+/* v5.2 · ring keys in the legend */
+.legend i.ringkey{width:12px;height:12px;border-radius:50%;background:none;border:3px solid var(--s-accent);box-sizing:border-box}
+.legend i.ringkey.bad{border-color:var(--s-bad);border-right-color:var(--s-line2);border-bottom-color:var(--s-line2)}
+.legend i.ringkey.good{border-left-color:var(--s-line2)}
+/* v5.5 · effects float over the board again, but soft and see-through (blurred glows) so they never hide anything */
+#fx{z-index:4;opacity:.7}
+#fx .glow{filter:blur(3px)}
+#fx .float{font-size:12.5px}
+.countdown{top:12px;max-width:300px}
+.legend i.ringkey.bad{border:none;background:radial-gradient(circle,transparent 20%,color-mix(in srgb,var(--s-bad) 55%,transparent) 55%,transparent 75%)}
+/* v5.5 · moves left, readable; the hint turns red when none are left; a warning toast */
+.lanebox .h b#moves{font:600 20px var(--s-mono);color:var(--s-accent);vertical-align:-2px;margin:0 2px}
+.lanebox .h.none b#moves{color:var(--s-bad)}
+.lanebox .hint.bad{color:var(--s-bad);font-weight:600}
+.toast.warn{top:auto;bottom:86px;background:var(--s-panel);color:var(--s-bad);border:1px solid color-mix(in srgb,var(--s-bad) 55%,transparent);
+  box-shadow:0 8px 24px color-mix(in srgb,var(--s-bad) 18%,transparent);font-weight:600}
+#board [role=button]:focus:not(:focus-visible){outline:none}
+/* v5.4 · move tokens: pixel squares */
+.lanebox .tokens{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:4px 0 6px}
+.lanebox .tokens .tl{font:500 9.5px var(--s-mono);letter-spacing:.06em;color:var(--s-ink3);margin:0 2px 0 4px}
+.lanebox .tokens .tl:first-child{margin-left:0}
+.tk{position:relative;width:18px;height:18px;display:inline-grid;place-items:center;font-style:normal;image-rendering:pixelated;
+  background:var(--s-accent);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--s-ink) 25%,transparent);clip-path:polygon(2px 0,calc(100% - 2px) 0,100% 2px,100% calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,0 calc(100% - 2px),0 2px)}
+.tk b{font:600 10px var(--s-mono);color:var(--s-on-accent);line-height:1}
+.tk.ahead{opacity:.55}
+.tk.now{opacity:1;animation:tkGlow 1.2s ease-in-out infinite}
+.tk.used{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2)}
+.tk.used b{color:var(--s-ink3)}
+.tk.lost{background:var(--s-raise);box-shadow:inset 0 0 0 2px var(--s-line2)}
+.tk.lost b{color:var(--s-ink3);text-decoration:line-through}
+.tk.x{background:var(--s-warn)}
+.tk.x.used{background:transparent}
+@keyframes tkGlow{50%{filter:brightness(1.25);transform:translateY(-1px)}}
+/* v5.5 · break square: lights up in the break; extra moves locked in the break; the rule numbers; hold-F hint */
+.tk.empty{background:transparent;box-shadow:inset 0 0 0 2px var(--s-line2);opacity:.7}
+.tk.now{animation:tkPop .45s cubic-bezier(.2,1.6,.4,1),tkGlow 1.2s ease-in-out .45s infinite}
+@keyframes tkPop{0%{transform:scale(.4);filter:brightness(1.8)}100%{transform:scale(1)}}
+.tk.locked{opacity:.38;filter:grayscale(.6)}
+.box.facts{margin-top:10px;padding:9px 12px;font-size:11.5px;line-height:1.65;color:var(--s-ink2)}
+.box.facts b{color:var(--s-ink);font-family:var(--s-mono);font-weight:600}
+.fasthint{font:500 10px var(--s-mono);color:var(--s-ink3);letter-spacing:.04em;margin-left:2px;transition:color .2s}
+.fasthint.on{color:var(--s-accent);font-weight:600}
+.legend i.pkey{width:8px;height:8px;background:var(--s-info);border-radius:0}
+.legend i.pkey.home{background:transparent;box-shadow:inset 0 0 0 1.6px var(--s-info)}
+.legend i.pkey.pat{background:linear-gradient(90deg,var(--s-info) 33%,var(--s-warn) 33% 66%,var(--s-bad) 66%);width:18px}
+.lanebox .hint.wait{color:var(--s-ink3)}
+/* v5.8 · clicking empty ground focuses the board: no frame for mouse clicks (keyboard focus still shows) */
+#board:focus:not(:focus-visible){outline:none}
+/* v6 · groups (level 5): a colour per group for shapes and mix bars, away from the status colours */
+:root{--s-g-old:#8E4F97;--s-g-stu:#1E8584;--s-g-work:#8A5A2B}
+[data-theme="dark"]{--s-g-old:#C99AD3;--s-g-stu:#5CC4C2;--s-g-work:#D3A271}
+.gk{font:600 12px var(--s-mono);margin-right:3px}
+.gk.g-old{color:var(--s-g-old)}.gk.g-stu{color:var(--s-g-stu)}.gk.g-work{color:var(--s-g-work)}
+.legend .gleg{gap:3px 6px;flex-wrap:wrap}
+.legend .gleg .gk{margin:0 0 0 4px}
+.legend i.gsw{width:10px;height:6px;border-radius:1px}
+i.gsw.g-old,.gbar i.g-old{background:var(--s-g-old)}
+i.gsw.g-stu,.gbar i.g-stu{background:var(--s-g-stu)}
+i.gsw.g-work,.gbar i.g-work{background:var(--s-g-work)}
+#tide td .gbar{display:flex;gap:1px;height:4px;margin:3px 4px 0;border-radius:1px;overflow:hidden}
+#tide td .gbar i{display:block;height:4px}
+#tide td i.try{color:var(--s-warn)}
+/* v6 · habit (level 4): ten pixel cells per estate, the change since yesterday, riders per day */
+.box.habit{margin-top:8px;padding:10px 12px}
+.hbrows{display:grid;gap:5px}
+.hb{display:grid;grid-template-columns:3.6em 1fr 2.8em 2.4em;align-items:center;gap:6px;font-size:12px}
+.hb .hn{color:var(--s-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb .cells{display:flex;gap:2px}
+.hb .cells i{width:9px;height:9px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.hb .cells i.on{background:var(--s-accent);box-shadow:none}
+.hb b{font:600 12px var(--s-mono);text-align:right}
+.hb em{font:500 10.5px var(--s-mono);font-style:normal;color:var(--s-ink3)}
+.hb em.up{color:var(--s-accent)}.hb em.down{color:var(--s-bad)}
+.hbchart{display:block;margin-top:10px;overflow:visible}
+.hbchart .hbx{fill:none;stroke:var(--s-line2);stroke-dasharray:2 2}
+.hbchart .hbus,.hbkey i.hbus{fill:var(--s-accent);background:var(--s-accent)}
+.hbchart .hmiss,.hbkey i.hmiss{fill:var(--s-bad);background:var(--s-bad)}
+.hbchart .hhab,.hbkey i.hhab{fill:var(--s-ink3);background:var(--s-ink3);fill-opacity:.45;opacity:.6}
+.hbchart .htry{fill:var(--s-warn);fill-opacity:.25;stroke:var(--s-warn);stroke-dasharray:3 2}
+.hbkey i.htry{background:transparent;box-shadow:inset 0 0 0 1.5px var(--s-warn)}
+.hbchart text{font:600 10px var(--s-mono);fill:var(--s-ink);text-anchor:middle}
+.hbchart text.try{fill:var(--s-warn)}
+.hbchart text.hbd{font:400 9px var(--s-mono);fill:var(--s-ink3)}
+.hbkey{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:10.5px;color:var(--s-ink3);margin-top:6px}
+.hbkey span{display:inline-flex;align-items:center;gap:4px}
+.hbkey i{width:8px;height:8px;display:block}
+.hbnote{font-size:11.5px;line-height:1.55;color:var(--s-ink2);margin:6px 0 0}
+/* v6 · groups box (level 5) */
+.box.groups{margin-top:8px;padding:8px 10px}
+.gtab{width:100%;border-collapse:collapse;font-size:12px}
+.gtab th{font:500 10px var(--s-mono);color:var(--s-ink3);text-align:left;padding:2px 3px 5px}
+.gtab td{padding:4px 3px;border-top:1px solid var(--s-line);white-space:nowrap}
+.gtab td:nth-child(2){color:var(--s-ink2);font-size:11px;white-space:normal}
+.gtab td.n,.gtab th:nth-child(n+3){text-align:right;font-family:var(--s-mono)}
+/* v6 · intro card: what a level adds */
+dialog.intro{max-width:560px}
+.ivnew{margin:0 0 6px;font-size:15px}
+.ivnew .tag{display:inline-block;font:600 10px var(--s-mono);letter-spacing:.08em;color:var(--s-on-accent);background:var(--s-accent);padding:2px 7px;border-radius:3px;margin-right:8px;vertical-align:2px}
+.ivlist{margin:8px 0 10px;padding-left:20px}
+.ivlist li{margin:4px 0}
+.ivcourse{border-left:3px solid var(--s-accent);padding:4px 0 4px 10px;color:var(--s-ink2);font-size:12.5px}
+#resultExtra table.result{margin-top:2px}
+/* v6 · the level buttons on a row of their own (the hub's .lv card style no longer stacks them) */
+.side>.row:first-child{flex-wrap:wrap;row-gap:8px}
+#levelSeg{flex:1 0 100%;flex-direction:row;padding:0;gap:0;border-radius:4px;border-color:var(--s-line)}
+#levelSeg:hover{box-shadow:none}
+#levelSeg button{flex:1 1 0;padding:0 4px;white-space:nowrap}
+#levelSeg button[hidden]{display:none}
+.ivlist li.nb{list-style:none;margin-left:-14px}
+dialog.intro .row{margin-top:16px}
+/* v7 · one-line tips on teaching levels (shared/tips.js): beside what they talk about, never blocking */
+.tipbox{position:fixed;z-index:60;display:none;background:var(--s-panel);color:var(--s-ink);border:1px solid var(--s-accent);border-radius:8px;
+  box-shadow:var(--s-shadow);padding:12px 14px 10px;font-size:13.5px;line-height:1.6}
+.tipbox.on{display:block;animation:tipIn .25s ease-out}
+.tipbox .tiptext{margin:0 0 8px}
+.tipbox .tipbtns{display:flex;justify-content:flex-end;gap:8px}
+.tipbox .tipoff{color:var(--s-ink3)}
+@keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* v7 · mode 4 «buses on the road» — only what this mode adds to shared/style.css (from mode 2, plus the roads) */
+:root{--s-metro:#9A3B26}
+[data-theme="dark"]{--s-metro:#E0896B}
+.bigscore{margin-top:12px}
+.bigscore b#score{font:600 40px var(--s-mono);color:var(--s-metro);line-height:1}
+.bigscore .unit{font-size:14px;color:var(--s-ink2);margin-left:6px}
+.budget{margin-top:10px;padding:10px 12px}
+.bbar{display:flex;height:10px;border-radius:5px;background:var(--s-raise);overflow:hidden;margin:6px 0}
+.bbar i{display:block;height:100%}
+#bbLine{background:var(--s-metro);opacity:.55}#bbStation{background:var(--s-metro)}
+.tools{margin-top:12px;gap:8px;flex-wrap:wrap}
+.tools .seg button{height:32px;font-size:13px;padding:0 12px}
+.hint{font-size:12.5px;line-height:1.6;color:var(--s-ink2);margin:8px 0 10px;min-height:3.2em}
+#submit{width:100%}
+#submit:disabled{opacity:.4}
+.mapplate{position:relative}
+.maplegend{position:absolute;left:16px;bottom:12px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--s-ink2);background:var(--s-chrome);padding:6px 10px;border-radius:6px}
+.maplegend span{display:inline-flex;align-items:center;gap:6px}
+.maplegend .lk{display:inline-block;width:22px;height:8px;border-radius:4px}
+.maplegend .lk.car{background:var(--s-ink3);opacity:.5}
+.maplegend .lk.metro{background:linear-gradient(var(--s-ink3) 0 30%,var(--s-metro) 30% 70%,var(--s-ink3) 70%);opacity:.9}
+#trips{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:8px;font-size:13px}
+#trips th{font:500 10px var(--s-mono);color:var(--s-ink3);padding:2px 3px 6px;text-align:right}
+#trips th:first-child,#trips td:first-child{text-align:left}
+#trips td{padding:6px 3px;border-top:1px solid var(--s-line);text-align:right;font-family:var(--s-mono);vertical-align:top;cursor:pointer}
+#trips td:first-child{font-family:inherit}
+#trips td small{display:block;font-size:10px;color:var(--s-ink3);font-family:var(--s-mono)}
+#trips tr.on td b{color:var(--s-metro)}
+#trips tr.sel td{background:color-mix(in srgb,var(--s-metro) 10%,transparent)}
+#trips tbody tr:hover td{background:var(--s-raise)}
+#trips tfoot td{border-top:2px solid var(--s-line2);font-weight:600;cursor:default}
+#trips tfoot td b{color:var(--s-metro);font-size:15px}
+#board{cursor:crosshair;touch-action:none}
+/* v7.4 · six years: the year box, money, experience */
+.yearbox{margin-top:10px;padding:10px 12px}
+.yearbox #yearNum{font:600 15px 'Geist',sans-serif}
+.ychart{display:flex;align-items:flex-end;gap:6px;height:78px;margin-top:8px}
+.ychart .yb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-family:var(--s-mono)}
+.ychart .yb i{display:block;width:100%;max-width:30px;background:var(--s-raise);border:1px dashed var(--s-line2);border-radius:3px 3px 0 0}
+.ychart .yb.done i{background:var(--s-metro);border:none}
+.ychart .yb.next i{background:color-mix(in srgb,var(--s-metro) 22%,transparent);border:1.5px dashed var(--s-metro)}
+.ychart .yb.crowd i{box-shadow:inset 0 3px 0 var(--s-bad)}
+.ychart .yb b{font-size:10.5px;color:var(--s-ink);order:-1;margin-bottom:2px}
+.ychart .yb small{font-size:9.5px;color:var(--s-ink3);margin-top:3px}
+.money{margin-top:10px;padding:10px 12px}
+.money #money{font-size:22px;color:var(--s-metro)}
+.money .note{font-size:12px;line-height:1.55;margin:4px 0}
+.trainrow{margin-top:6px;gap:6px;font-size:13px}
+.trainrow .btn{min-width:32px}
+.expbox{margin-top:8px;padding:10px 12px}
+.xr{display:grid;grid-template-columns:3.6em auto 2.2em 1fr;align-items:center;gap:6px;font-size:12.5px;margin:4px 0}
+.xr .xn{color:var(--s-ink2)}
+.xbar{display:flex;gap:2px}.xbar i{width:11px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.xbar i.neg.on{background:var(--s-bad)}.xbar i.zero.on{background:var(--s-ink3)}.xbar i.pos.on{background:var(--s-accent)}
+.xr b{font:600 13px var(--s-mono);text-align:right}.xr b.pos{color:var(--s-accent)}.xr b.neg{color:var(--s-bad)}
+.xr em{font-style:normal;font-size:11px;color:var(--s-ink3)}.xr em.up{color:var(--s-accent)}.xr em.down{color:var(--s-bad)}
+.maplegend .lk.crowd{background:var(--s-bad)}
+#trips tr.crowd td:first-child{box-shadow:inset 3px 0 0 var(--s-bad)}
+#trips tr.chain td:first-child{box-shadow:inset 3px 0 0 var(--s-info)}
+.mapplate .toast{z-index:5}
+/* v7.5 · build once, watch it grow: the plan box locks, the year card, awareness and where-people-go bars */
+#planBox.locked{opacity:.45;pointer-events:none}
+.yrow{margin-top:8px;gap:8px}
+.yrow .btn[hidden]{display:none}
+.ychart{position:relative}
+.ychart .ypot{position:absolute;left:0;right:0;border-top:1.5px dashed var(--s-metro);opacity:.7;pointer-events:none}
+.ychart .ypot span{position:absolute;right:0;top:-15px;font:500 10px var(--s-mono);color:var(--s-metro);background:var(--s-panel);padding:0 3px}
+.yearcard{position:absolute;top:14px;right:16px;min-width:230px;max-width:330px;display:flex;flex-direction:column;gap:3px;padding:10px 14px;border-radius:8px;
+  background:var(--s-panel);border:1.5px solid var(--s-metro);box-shadow:0 6px 24px rgb(0 0 0 / .12);font-size:13px;line-height:1.5;color:var(--s-ink2);
+  opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:4}
+.yearcard.on{opacity:1;transform:none}
+.yearcard.warn{border-color:var(--s-bad)}
+.yearcard>b{font:600 15px 'Geist',sans-serif;color:var(--s-metro)}
+.yearcard span b{color:var(--s-ink);font-family:var(--s-mono)}
+#awareBox .xr{grid-template-columns:3.6em auto 2.8em 1fr}#awareBox .xr b,#awareBox .xr em{white-space:nowrap}
+.abar{display:flex;gap:2px}.abar i{width:9px;height:11px;background:var(--s-raise);box-shadow:inset 0 0 0 1px var(--s-line2)}
+.abar i.on{background:var(--s-accent);box-shadow:none}
+.wr{display:grid;grid-template-columns:3.6em 1fr 2.6em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
+.wr .xn{color:var(--s-ink2)}
+.wr b{font:600 12.5px var(--s-mono);text-align:right}
+.wbar{position:relative;display:flex;height:12px;border-radius:3px;overflow:hidden;background:var(--s-raise)}
+.wbar i{display:block;height:100%;transition:flex .6s}
+.wbar i:nth-child(1){opacity:.85}.wbar i:nth-child(2){opacity:.85}.wbar i:nth-child(3){opacity:.35}
+.wbar u{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--s-ink);opacity:.75}
+.hbnote{font-size:11.5px;line-height:1.55;color:var(--s-ink3);margin:8px 0 0}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px;vertical-align:0}
+.tripsd{margin-top:16px}.tripsd summary{cursor:pointer;font-size:12.5px;color:var(--s-ink2)}
+.maplegend .lk.aware{background:repeating-linear-gradient(90deg,var(--s-accent) 0 4px,transparent 4px 6px);height:8px}
+table.result{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px;margin:8px 0}
+table.result th{font:500 10.5px var(--s-mono);color:var(--s-ink3);text-align:right;padding:2px 4px 6px}
+table.result td{text-align:right;padding:4px;border-top:1px solid var(--s-line);font-family:var(--s-mono)}
+table.result th:first-child,table.result td:first-child{text-align:left}
+.maplegend .lk.walk{background:radial-gradient(circle,var(--s-ink3) 2px,transparent 2.5px) 0 50%/7px 8px repeat-x;opacity:.8}
+/* mode 3 · the roads panel: this year's jam on each road, and what drivers reckon with (a thin mark) */
+:root{--s-jam:#C2410C;--s-free:#2F8F5B}
+[data-theme="dark"]{--s-jam:#F08A4B;--s-free:#5CC08A}
+.rr{display:grid;grid-template-columns:5.6em 1fr 3.4em;align-items:center;gap:6px;font-size:12.5px;margin:5px 0}
+.rr .xn{color:var(--s-ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rr b{font:600 12px var(--s-mono);text-align:right;white-space:nowrap}
+.rbar{position:relative;height:12px;border-radius:3px;background:var(--s-raise);overflow:visible}
+.rbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .6s,background .6s}
+.rbar u{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--s-ink);transition:left .6s}
+.rbar s{position:absolute;top:0;bottom:0;width:1px;background:var(--s-ink3);opacity:.6}
+.jamline{font-size:12.5px;color:var(--s-ink2);margin:2px 0 8px}.jamline b{font-family:var(--s-mono);color:var(--s-ink)}
+.ychart .yb.done i{background:var(--s-jam)}
+.ychart .yb.next i{background:color-mix(in srgb,var(--s-jam) 22%,transparent);border-color:var(--s-jam)}
+.ychart .ypot{border-top-color:var(--s-ink2)}.ychart .ypot span{color:var(--s-ink2)}
+.maplegend .lk.road{background:linear-gradient(90deg,var(--s-ink3),#E3A008,var(--s-jam))}
+.maplegend .lk.mtr{background:linear-gradient(90deg,#1E9A4A 50%,#7D499D 50%)}
+/* v7.9 · the living map: a headline over the map, an info card for what is under the cursor, hold-to-preview */
+.headline{position:absolute;left:16px;right:16px;top:12px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 14px;border-radius:10px;
+  background:color-mix(in srgb,var(--s-panel) 92%,transparent);border:1px solid var(--s-line2);text-align:center;pointer-events:none;z-index:3;transition:border-color .3s,background .3s}
+.headline b{font:600 17px 'Geist',sans-serif;color:var(--s-ink);letter-spacing:.01em}.headline b em{font-style:normal;font-family:var(--s-mono)}
+.headline b .good{color:var(--s-free)}.headline b .bad{color:var(--s-jam)}
+.headline span{font-size:12.5px;color:var(--s-ink2);line-height:1.5}
+.headline.preview{border-color:var(--s-metro);background:color-mix(in srgb,var(--s-metro) 8%,var(--s-panel))}
+.headline.nothing{border-color:var(--s-jam);background:color-mix(in srgb,var(--s-jam) 8%,var(--s-panel))}
+.infocard{position:absolute;left:16px;bottom:52px;max-width:330px;padding:8px 12px;border-radius:8px;background:var(--s-panel);border:1px solid var(--s-line2);
+  font-size:12.5px;line-height:1.6;color:var(--s-ink2);z-index:3;pointer-events:none}
+.infocard b{color:var(--s-ink)}.infocard:empty{display:none}
+.hold{margin-left:auto}.hold:disabled{opacity:.4}.hold.on{background:var(--s-metro);color:var(--s-paper);border-color:var(--s-metro)}
+.rulesd{margin-top:14px}.rulesd summary{cursor:pointer;font:500 11px var(--s-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--s-ink3)}
+.mapplate .yearcard{display:none}
+.maplegend .lk.car{background:var(--s-ink2);width:10px;height:6px;border-radius:2px}
+.maplegend .lk.dot{width:7px;height:7px;border-radius:50%;background:var(--s-metro)}
+.maplegend .lk.walkdot{width:6px;height:6px;border-radius:50%;background:var(--s-walk)}
+.maplegend .lk.ring{width:12px;height:12px;border-radius:50%;background:conic-gradient(var(--s-ink3) 0 55%,var(--s-metro) 55% 85%,var(--s-walk) 85%);-webkit-mask:radial-gradient(circle,transparent 3px,#000 3.5px);mask:radial-gradient(circle,transparent 3px,#000 3.5px)}
+:root{--s-walk:#7F95AE}[data-theme="dark"]{--s-walk:#A3B6CC}
+/* mode 4 · bus routes: chips to pick a route, the routes panel, lanes */
+.routes{display:flex;gap:6px;margin:10px 0 4px;flex-wrap:wrap}
+.routes button{flex:1;min-width:72px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 8px;border-radius:7px;border:1.5px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink2);font:500 12px 'Geist',sans-serif;cursor:pointer}
+.routes button b{font-size:13px;color:var(--rc)}.routes button small{font:500 10.5px var(--s-mono);color:var(--s-ink3)}
+.routes button[aria-pressed="true"]{border-color:var(--rc);background:color-mix(in srgb,var(--rc) 10%,var(--s-panel))}
+.br{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 8px;font-size:12.5px;margin:6px 0;padding-bottom:6px;border-bottom:1px solid var(--s-line)}
+.br:last-of-type{border-bottom:none}.br i.sw2{width:12px;height:12px;border-radius:3px}.br b{font:600 13px 'Geist',sans-serif;margin-right:6px}.br small{display:block;color:var(--s-ink3);font-size:11.5px}
+.lanebtn{font:500 10.5px var(--s-mono);padding:1px 6px;border-radius:4px;border:1px solid var(--s-line2);background:var(--s-panel);color:var(--s-ink3);cursor:pointer;margin-left:4px}
+.lanebtn.on{background:var(--s-bad);border-color:var(--s-bad);color:var(--s-paper)}
+.rr{grid-template-columns:5.6em 1fr 3.4em auto}
+.maplegend .lk.bus{width:12px;height:7px;border-radius:2px;background:#2F6FD6}
+.maplegend .lk.lane{width:14px;height:6px;background:repeating-linear-gradient(90deg,var(--s-bad) 0 4px,transparent 4px 7px)}
+</style></head><body class="entered">
+
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="sp"></div>
+  <button class="btn btn-sm" id="help" data-i18n-html="top.rules">Rules <span class="tc">規則</span></button>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" aria-pressed="true">繁</button><button data-lang="zh-Hans" aria-pressed="false">简</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true">☀</button><button id="thInk" aria-pressed="false">☾</button></div>
+</header>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <div class="row"><a class="btn btn-sm" href="../开始.html" id="backHub" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="lvInfo" data-i18n="g.lvInfo">本關</button><span class="lbl" data-i18n="b4.mode">Mode 04 · 地面巴士</span></div>
+    <h1 class="h1"><span>Buses on the road</span><span class="h1tc" data-i18n="b4.levelTitle">九龍東 · 巴士補上最後一段</span></h1>
+
+    <div class="box bigscore">
+      <div class="lbl" data-i18n="b4.scoreLbl">八年少塞</div>
+      <div class="row"><b id="score">0</b><span class="unit" data-i18n="b4.scoreUnit">車·格</span></div>
+      <div class="gauge" aria-hidden="true"><i id="scoreBar"></i><em id="tickPass"></em><em id="tickHigh"></em><em id="tickMaster"></em></div>
+      <div class="note" id="goal"></div>
+    </div>
+
+    <div class="box yearbox">
+      <div class="row"><b id="yearNum"></b><div class="sp"></div><button class="btn btn-p" id="run"></button></div>
+      <div class="ychart" id="yChart"></div>
+      <div class="note" id="yNote"></div>
+      <div class="row yrow"><button class="btn btn-sm" id="pause"></button><button class="btn btn-sm" id="rewind" data-i18n="m.rewind">↺ 回到規劃</button><button class="btn btn-sm hold" id="hold"></button></div>
+    </div>
+
+    <div class="box money" id="planBox">
+      <div class="row"><span class="lbl" data-i18n="b4.budgetLbl">每年預算</span><div class="sp"></div><b class="mono" id="money"></b></div>
+      <div class="note" id="moneyNote"></div>
+      <div class="routes" id="routeSeg"></div>
+      <div class="row trainrow"><span id="routeTxt"></span><div class="sp"></div><button class="btn btn-sm" id="busMinus">−</button><button class="btn btn-sm" id="busPlus">＋</button></div>
+      <div class="row tools">
+        <div class="seg" id="toolSeg" role="group"><button data-tool="draw" aria-pressed="true" data-i18n="b4.toolDraw">✏ 路線</button><button data-tool="stop" aria-pressed="false" data-i18n="b4.toolStop">● 站</button><button data-tool="lane" aria-pressed="false" data-i18n="b4.toolLane">▤ 專線</button></div>
+        <button class="btn btn-sm" id="undo" data-i18n="m.undo">↶ 撤銷</button><button class="btn btn-sm" id="clear" data-i18n="b4.clearRoute">清空這條</button>
+      </div>
+      <p class="hint" id="toolHint"></p>
+    </div>
+
+    <details class="rulesd"><summary data-i18n="m.rulesH">How it works · 怎麼算</summary><ol class="mini" id="rules"></ol></details>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate">
+      <svg id="board" viewBox="0 0 1000 620" role="group"><g id="gBase"></g><g id="gDyn"></g><g id="gTop"></g></svg>
+      <div class="headline" id="headline" aria-live="polite"><b id="hlMain"></b><span id="hlSub"></span></div>
+      <div class="infocard" id="infoCard"></div>
+      <div class="maplegend" id="mapLegend"></div>
+      <div class="yearcard" id="yearCard" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="lbl" data-i18n="r3.roadsH">How jammed · 路有多塞</div>
+    <div class="box expbox" id="roadBox"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="b4.routesH">Bus routes · 巴士路線</div>
+    <div class="box expbox" id="busBox"></div>
+    <details class="tripsd"><summary data-i18n="m.tripsH">每條愿望線的算式</summary><table id="trips"></table></details>
+  </aside>
+</main>
+
+<dialog id="info"><button class="close" data-close="info">×</button>
+<span class="lbl" data-i18n="i.lbl">Rules · 規則</span><h2 class="h1" data-i18n="b4.infoH">地面巴士的規則</h2><div id="infoBody"></div></dialog>
+
+<dialog id="result"><span class="lbl" id="resultEn"></span><h2 class="h1" id="resultTitle"></h2><p id="resultScore" class="mono"></p>
+<div id="resultBody"></div><div class="row"><button data-close="result" class="btn btn-p" data-i18n="m.seeBoard">看看地圖</button><button id="again" class="btn" data-i18n="m.rewind">↺ 回到規劃</button></div></dialog>
+
+<dialog id="lvIntro" class="intro"><span class="lbl">MODE 04 · BUSES ON THE ROAD</span><h2 class="h1" data-i18n="b4.levelTitle"></h2>
+<p class="ivnew"><span class="tag" data-i18n="iv.new">這一關多了</span><span data-i18n-html="iv.m4.new"></span></p><ul class="ivlist" id="ivBody"></ul><p class="note ivcourse" data-i18n-html="iv.m4.course"></p>
+<div class="row"><button class="btn btn-p" id="ivGo" data-i18n="b4.ivGo">開始畫巴士線 →</button></div></dialog>
+
+<script>
+(function(root) {
+  'use strict';
+  // v7 · mode 4 «buses on the road» — levels. The same Kowloon East as mode 3, a few years on: the 東九龍綫 built in
+  // mode 3 (the AI's master line) is running, 啟德 and the 安達臣道 estates have filled up (people × about 1.5), and
+  // parking in the business areas costs more (觀塘 6, 九龍灣 5 blocks). Buses fill the last gaps. Kowloon East as a 14 × 12 grid, one cell ≈ 600 m (cell = (x − 837,500,
+  // 823,500 − y) / 600 on the HK1980 grid). Positions, population and jobs come from the model: zone centres
+  // (data/model/zone-centres.parquet) and zones-2026.geojson; congestion from the AM-peak road assignment
+  // (data/model/assignment-am-2026.parquet). Game numbers are a sketch of those (tier D, for learning only):
+  //   people      a day to the two centres, ≈ residents ÷ 2,000 (the scenario adds 安達臣道 and a full 啟德)
+  //   attraction  the pull of a business area (16 + jobs ÷ 15,000, the scenario adds half again to the jobs)
+  //   roads       waypoints on the grid (each leg horizontal, then vertical) and the cars a day a section takes
+  //   lines       the metro already there: 觀塘綫 (彩虹 → 油塘) and 將軍澳綫 (油塘 → 寶琳), stations and trains
+  const KE={title:'九龍東 · 巴士補上最後一段',cols:14,rows:12,
+    // zones: 啟德站一帶 286.2 pop 84,141 (+180%); 牛頭角 291.x/294.x ≈ 116k; 順利·安泰 292.x ≈ 72k (+ 安達臣道 ≈ 25k);
+    // 秀茂坪·寶達·安達 293S.x ≈ 109k (+21%); 藍田 297.x/290.1 ≈ 120k; 將軍澳 836–839 ≈ 300k (part of it comes this way)
+    origins:[
+      {name:'啟德',hans:'启德',cell:[2,4],house:[-1,0],people:70,tag:'new'},
+      {name:'牛頭角',hans:'牛头角',cell:[5,4],house:[0,-1],people:56},
+      {name:'順利·安達臣道',hans:'顺利·安达臣道',short:'順利',shortHans:'顺利',cell:[7,2],house:[0,-1],people:80,tag:'new'},
+      {name:'秀茂坪',hans:'秀茂坪',cell:[9,5],house:[1,0],people:62},
+      {name:'藍田',hans:'蓝田',cell:[9,8],house:[1,0],people:66},
+      {name:'將軍澳',hans:'将军澳',cell:[13,7],house:[1,0],people:84}],
+    // 觀塘站一帶 295: jobs 151,391, office 1.65 M m²; 九龍灣站一帶 280.1: jobs 86,552, office 1.14 M m²
+    destinations:[
+      {name:'觀塘商貿區',hans:'观塘商贸区',short:'觀塘',shortHans:'观塘',kind:'jobs',cell:[6,7],house:[0,1],attraction:28,carExtra:6},
+      {name:'九龍灣商貿區',hans:'九龙湾商贸区',short:'九龍灣',shortHans:'九龙湾',kind:'town',cell:[3,6],house:[-1,0],attraction:24,carExtra:5}],
+    // AM peak v/c (max on the road in this box): 觀塘繞道 1.57, 觀塘道 1.17, 清水灣道 2.35, 將軍澳隧道公路 0.89 (將軍澳道 1.15),
+    // 將藍公路 1.52, 寶琳路 1.22
+    roads:[
+      {name:'觀塘繞道',hans:'观塘绕道',via:[[0,4],[2,4],[2,5],[4,5],[4,8],[8,8]],cap:70},
+      {name:'觀塘道',hans:'观塘道',via:[[2,4],[2,3],[4,3],[4,4],[6,4],[6,6],[7,6],[7,7],[8,7],[8,8]],cap:45},
+      {name:'開源道',hans:'开源道',via:[[4,6],[6,6]],cap:40},
+      {name:'清水灣道',hans:'清水湾道',via:[[4,3],[4,2],[13,2]],cap:30},
+      {name:'秀茂坪道',hans:'秀茂坪道',via:[[8,2],[8,7]],cap:30},
+      {name:'將軍澳隧道',hans:'将军澳隧道',via:[[8,5],[12,5],[12,7]],cap:45},
+      {name:'將藍隧道',hans:'将蓝隧道',via:[[8,8],[12,8],[12,7]],cap:40}],
+    lines:[
+      {name:'觀塘綫',hans:'观塘线',color:'#1E9A4A',via:[[4,2],[4,4],[5,4],[5,5],[6,5],[6,6],[7,6],[7,7],[7,8],[8,8],[8,9]],
+        stations:[[4,2],[4,4],[5,5],[6,6],[7,7],[8,9]],names:['彩虹','九龍灣','牛頭角','觀塘','藍田','油塘'],namesHans:['彩虹','九龙湾','牛头角','观塘','蓝田','油塘'],trains:3},
+      {name:'將軍澳綫',hans:'将军澳线',color:'#7D499D',via:[[8,9],[12,9],[12,4]],stations:[[8,9],[11,9],[12,8],[12,5]],names:['油塘','調景嶺','將軍澳','寶琳'],namesHans:['油塘','调景岭','将军澳','宝琳'],trains:3},
+      // built in mode 3 (bots/v7_roads.js best plan): 寶琳 → 秀茂坪 → 觀塘商貿區 → 九龍灣商貿區
+      {name:'東九龍綫',hans:'东九龙线',color:'#9A3B26',mine:true,via:[[12,5],[6,5],[6,7],[3,7],[3,6]],stations:[[12,5],[9,5],[6,7],[3,6]],names:['寶琳','秀茂坪','觀塘商貿','九龍灣商貿'],namesHans:['宝琳','秀茂坪','观塘商贸','九龙湾商贸'],trains:3}],
+    // decoration: the harbour
+    water:[[0,6],[1,6],[0,7],[1,7],[2,7],[0,8],[1,8],[2,8],[0,9],[1,9],[2,9],[3,9],[0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[0,11],[1,11],[2,11],[3,11],[4,11],[5,11],[6,11],[7,11]],
+    // buses: wait = busHead ÷ buses on the route; perBus a day a section; busPCU cars' worth on the road; a bus lane takes
+    // laneCut of the road from the cars. A year's budget: a bus busCost, a bus lane laneCost.
+    walkPer:3,wait:2,busHead:6,perBus:16,busPCU:2,laneCut:.4,budget:12,busCost:1,laneCost:3,maxRoutes:3,perTrain:40,years:8,crowdBlocks:4,nearby:10,stay:40,learn:.3,
+    tiers:[250,500,750]};
+  const LEVELS={'m4-1':KE};
+  const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m4-1';
+  const D={};
+  const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
+  swap(LEVELS[pick]?pick:'m4-1');
+  Object.defineProperty(D,'select',{enumerable:false,value(name){return LEVELS[name]?swap(name):false;}});
+  Object.defineProperty(D,'use',{enumerable:false,value(def,name='draft'){LEVELS[name]=def;return swap(name);}});
+  Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
+  if(typeof module!=='undefined')module.exports=D;
+  root.BUS_DATA=D;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  const D=typeof module!=='undefined'?require('./data.js'):root.BUS_DATA;
+  // v7 · mode 4 «buses on the road» (2026-10-14) — mode 3's Kowloon East with the 東九龍綫 from mode 3 already built.
+  // Mode 3's rules hold (pull = attraction − blocks against «nearby»; blocks saved → tenths by public transport; going on
+  // between the two centres; roads jam by (cars ÷ capacity)²; drivers learn `learn` of the way each year; crowding is
+  // learnt too). New here:
+  //   buses     a route runs along the roads; its stops are on it. A bus trip = walk + wait + for every hop between
+  //             stops: 1 + the road sections ridden (1 + the jam each, the jam people reckon with) + walk. Wait =
+  //             `busHead` ÷ the buses on the route. A route carries buses × `perBus` a day on a section; more is crowded.
+  //   lanes     a bus lane on a road: the buses there skip the jam, but the cars lose `laneCut` of the road's capacity.
+  //   crowding  a section over its room counts toward `crowdBlocks` × how far over (a quarter over: all), learnt slowly.
+  //   buses add `busPCU` cars' worth to the road for every bus (not on a bus lane).
+  //   yearly    buses are cheap and flexible: routes, stops, buses and lanes can change every year, within a budget a
+  //             year (a bus `busCost`, a lane `laneCost`). Everyone sees a bus route at once — no word of mouth.
+  // Score: as mode 3, the jam taken off the roads each year compared with doing nothing (no buses), added up.
+  const P={walkPer:3,wait:2,busHead:8,perBus:16,busPCU:2,laneCut:.4,budget:12,busCost:1,laneCost:3,maxRoutes:3,perTrain:40,years:8,crowdBlocks:4,
+    nearby:10,stay:40,learn:.3,target:0,highScore:0,masterScore:0};
+  const NUM=['walkPer','wait','busHead','perBus','busPCU','laneCut','budget','busCost','laneCost','maxRoutes','perTrain','years','crowdBlocks','nearby','stay','learn'];
+  const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
+  const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
+  const adj=(a,b)=>walk(a,b)===1;
+  function expand(via){const out=[via[0].slice()];
+    for(let j=1;j<via.length;j++){let c=out.at(-1).slice();const t=via[j];
+      while(c[0]!==t[0]){c=[c[0]+Math.sign(t[0]-c[0]),c[1]];out.push(c);}
+      while(c[1]!==t[1]){c=[c[0],c[1]+Math.sign(t[1]-c[1])];out.push(c);}}
+    return out;}
+  const G={};
+  /* ------------------------------------------------------------------ roads */
+  function buildRoads(){
+    const sec=new Map(),nodes=new Map();G.sections=[];G.secByCells=sec;
+    for(const r of D.roads){const cells=expand(r.via);
+      for(let j=1;j<cells.length;j++){const a=cells[j-1],b=cells[j],k=[key(a),key(b)].sort().join('|');
+        if(!sec.has(k)){const s={id:G.sections.length,a,b,cap:r.cap,roads:[r.name]};sec.set(k,s);G.sections.push(s);}
+        else{const s=sec.get(k);s.cap=Math.max(s.cap,r.cap);if(!s.roads.includes(r.name))s.roads.push(r.name);}
+        for(const [x,y] of [[a,b],[b,a]]){if(!nodes.has(key(x)))nodes.set(key(x),{cell:x,out:[]});nodes.get(key(x)).out.push({to:key(y),s:sec.get(k).id});}}}
+    G.roadNodes=nodes;
+  }
+  const sectionBetween=(a,b)=>G.secByCells.get([key(a),key(b)].sort().join('|'));
+  function carRoute(o,d,reach=1){
+    const dist=new Map(),prev=new Map(),q=[];
+    for(const [k,n] of G.roadNodes){const w=walk(o,n.cell);if(w<=reach){dist.set(k,w);q.push(k);}}
+    if(!q.length)return{local:walk(o,d),sections:[]};
+    while(q.length){q.sort((a,b)=>dist.get(a)-dist.get(b));const k=q.shift(),n=G.roadNodes.get(k);
+      for(const e of n.out){const v=dist.get(k)+1;if(!dist.has(e.to)||v<dist.get(e.to)){dist.set(e.to,v);prev.set(e.to,{k,s:e.s});if(!q.includes(e.to))q.push(e.to);}}}
+    let best=null;for(const [k,n] of G.roadNodes){const w=walk(n.cell,d);if(w>reach||!dist.has(k))continue;const v=dist.get(k)+w;if(!best||v<best.v)best={k,v,w};}
+    if(!best)return{local:walk(o,d),sections:[]};
+    const sections=[];let k=best.k;while(prev.has(k)){const p=prev.get(k);sections.unshift(p.s);k=p.k;}
+    return{local:best.v-sections.length,sections};
+  }
+  const laned=(s,lanes)=>s.roads.some(r=>lanes.includes(r));
+  /* ------------------------------------------------------------------ the network: railways and buses */
+  // a line: {name, kind:'rail'|'bus', cells, stations, cap, wait, hop(j) = cost from its j-th stop to the next}
+  function network(lines){
+    const nodes=[];
+    lines.forEach((l,li)=>{l.order=l.stations.map(s=>({cell:s,idx:l.cells.findIndex(c=>same(c,s))})).filter(s=>s.idx>=0).sort((a,b)=>a.idx-b.idx);
+      l.order.forEach((s,k)=>nodes.push({li,k,idx:s.idx,cell:s.cell,wait:l.wait,out:[]}));});
+    nodes.forEach((n,i)=>nodes.forEach((m,j)=>{if(i===j)return;
+      if(n.li===m.li){if(Math.abs(n.k-m.k)===1)n.out.push({to:j,cost:lines[n.li].hop(Math.min(n.k,m.k)),ride:true});}
+      else if(walk(n.cell,m.cell)<=1)n.out.push({to:j,cost:P.walkPer*walk(n.cell,m.cell)+m.wait-1,ride:false});}));
+    return{lines,nodes};
+  }
+  // the quickest public-transport trip o → d: walk + (wait − 1) + the hops [+ walk + (wait − 1) to change] + walk
+  function transitTrip(net,o,d,crowded){
+    const N=net.nodes.length;if(!N)return null;
+    const dist=[new Array(N).fill(Infinity),new Array(N).fill(Infinity)],prev=[new Array(N).fill(null),new Array(N).fill(null)],done=[new Array(N).fill(false),new Array(N).fill(false)];
+    net.nodes.forEach((n,i)=>{dist[0][i]=P.walkPer*walk(o,n.cell)+n.wait-1;});
+    for(;;){let bi=-1,bf=0,bv=Infinity;for(let f=0;f<2;f++)for(let i=0;i<N;i++)if(!done[f][i]&&dist[f][i]<bv){bv=dist[f][i];bi=i;bf=f;}
+      if(bi<0)break;done[bf][bi]=true;
+      for(const e of net.nodes[bi].out){if(!e.ride&&bf===0)continue;const v=bv+e.cost;if(v<dist[1][e.to]){dist[1][e.to]=v;prev[1][e.to]={i:bi,f:bf};}}}
+    let best=null;net.nodes.forEach((n,i)=>{const v=dist[1][i]+P.walkPer*walk(n.cell,d);if(v<Infinity&&(!best||v<best.v))best={i,v};});
+    if(!best)return null;
+    const path=[];let s={i:best.i,f:1};while(s){path.unshift(s.i);s=prev[s.f][s.i];}
+    const legs=[];for(let j=1;j<path.length;j++){const a=net.nodes[path[j-1]],b=net.nodes[path[j]];if(a.li!==b.li)continue;
+      const last=legs.at(-1);if(last&&last.li===a.li&&last.to===a.idx)last.to=b.idx;else legs.push({li:a.li,from:a.idx,to:b.idx});}
+    let crowd=0;for(const l of legs){const name=net.lines[l.li].name;for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++)crowd=Math.max(crowd,(crowded&&crowded[name]&&crowded[name][j])||0);}
+    const first=net.nodes[path[0]],last=net.nodes[path.at(-1)];
+    return{blocks:best.v+crowd,crowd,legs,from:first.cell,to:last.cell,walkA:walk(o,first.cell),walkB:walk(last.cell,d),changes:legs.length-1,
+      bus:legs.some(l=>net.lines[l.li].kind==='bus'),rail:legs.some(l=>net.lines[l.li].kind==='rail'),lines:legs.map(l=>net.lines[l.li].name)};
+  }
+  /* ------------------------------------------------------------------ one year */
+  const carExtra=k=>D.destinations[k].carExtra??2;
+  function split(i,blocks){const pulls=D.destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
+    return{pulls,shares:pulls.map(p=>p/all),nearby:P.nearby/all};}
+  function onward(a,b,blocks){const pull=Math.max(0,D.destinations[b].attraction-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
+  // the lines running this year: the railways, and every bus route with 2 stops and a bus
+  function linesOf(plan,perceived){
+    const lanes=plan?plan.lanes:[],out=G.lines.map(l=>({...l,kind:'rail',cap:l.trains*P.perTrain,wait:P.wait,hop:()=>1}));
+    if(plan)plan.routes.forEach((r,ri)=>{if(r.stops.length<2||r.buses<1)return;
+      const stopIdx=r.stops.map(s=>r.cells.findIndex(c=>same(c,s))).filter(i=>i>=0).sort((a,b)=>a-b);
+      const road=j=>{let v=0;for(let i=stopIdx[j];i<stopIdx[j+1];i++){const s=sectionBetween(r.cells[i],r.cells[i+1]);v+=1+(s&&!laned(s,lanes)?perceived[s.id]:0);}return v;};
+      out.push({name:'bus'+ri,kind:'bus',route:ri,cells:r.cells,stations:r.stops,cap:r.buses*P.perBus,wait:P.busHead/r.buses,hop:j=>1+road(j)});});
+    return out;}
+  function year(plan,perceived,crowded){
+    const lanes=plan?plan.lanes:[],lines=linesOf(plan,perceived),net=network(lines);
+    const capOf=s=>s.cap*(laned(s,lanes)?1-P.laneCut:1);
+    const roadLoad=new Array(G.sections.length).fill(0),lineLoad={};for(const l of lines)lineLoad[l.name]=new Array(Math.max(0,l.cells.length-1)).fill(0);
+    // the buses themselves on the road (not on a bus lane)
+    for(const l of lines)if(l.kind==='bus'){const r=plan.routes[l.route];for(let i=0;i+1<l.cells.length;i++){const s=sectionBetween(l.cells[i],l.cells[i+1]);if(s&&!laned(s,lanes))roadLoad[s.id]+=r.buses*P.busPCU;}}
+    const busLoad=roadLoad.slice();
+    const ride=(t,n)=>{if(!t||!n)return;for(const l of t.legs){const arr=lineLoad[net.lines[l.li].name];for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++)arr[j]+=n;}};
+    const drive=(route,n)=>{if(n>0)for(const id of route.sections)roadLoad[id]+=n;};
+    const legOf=(route,k,from,to)=>{const car=route.local+route.sections.reduce((s,id)=>s+1+perceived[id],0)+carExtra(k),foot=P.walkPer*walk(from,to),alt=Math.min(car,foot);
+      const trip=transitTrip(net,from,to,crowded),pt=trip?trip.blocks:Infinity,save=Math.max(0,alt-pt);
+      return{car,foot,alt,byFoot:foot<car,walkTenths:Math.min(10,Math.max(0,car-foot)),route,trip,fast:Math.min(alt,pt),save,tenths:Math.min(10,save)};};
+    const pairs=[];if(P.stay>0)D.destinations.forEach((da,a)=>D.destinations.forEach((db,b)=>{if(a===b)return;
+      const L=legOf(G.carDD[a][b],b,da.cell,db.cell);pairs.push({a,b,k:b,...L,share:onward(a,b,L.fast).share});}));
+    const est=D.origins.map((o,i)=>{
+      const legs=D.destinations.map((d,k)=>legOf(G.carOD[i][k],k,o.cell,d.cell)),now=split(i,legs.map(l=>l.fast)),n=o.people;
+      const to=legs.map((L,k)=>{const go=n*now.shares[k],transit=go*L.tenths/10,rest=go-transit,walkers=rest*L.walkTenths/10,drivers=rest-walkers;
+        ride(L.trip,transit);drive(L.route,drivers);
+        return{k,...L,go,metro:transit,onBus:L.trip&&L.trip.bus?transit:0,walkers,drivers,before:G.base?G.base.est[i].to[k].go:go,pull:now.pulls[k]};});
+      const chain=pairs.map(q=>{const x=to[q.a],go=x.go*q.share,transit=go*q.tenths/10,rest=go-transit,walkers=rest*q.walkTenths/10,drivers=rest-walkers;
+        ride(q.trip,transit);drive(q.route,drivers);return{go,metro:transit,onBus:q.trip&&q.trip.bus?transit:0,drivers,walkers};});
+      const sum=(arr,f)=>arr.reduce((s,x)=>s+x[f],0);
+      return{i,n,to,chain,nearby:n*now.nearby,metro:sum(to,'metro')+sum(chain,'metro'),onBus:sum(to,'onBus')+sum(chain,'onBus'),drivers:sum(to,'drivers')+sum(chain,'drivers'),
+        walkers:sum(to,'walkers')+sum(chain,'walkers')};});
+    const chain=pairs.map((q,j)=>{const s=f=>est.reduce((t,e)=>t+e.chain[j][f],0);return{...q,go:s('go'),metro:s('metro'),onBus:s('onBus'),drivers:s('drivers'),walkers:s('walkers'),before:G.base?G.base.chain[j].go:s('go')};});
+    const extra=roadLoad.map((v,id)=>(v/capOf(G.sections[id]))**2),jam=roadLoad.reduce((s,v,id)=>s+(v-busLoad[id])*extra[id],0);
+    const lineState=lines.map(l=>{const load=lineLoad[l.name];return{name:l.name,kind:l.kind,route:l.route,cap:l.cap,wait:l.wait,load,crowded:load.map(v=>v>l.cap+1e-9)};});
+    const into=(k,f)=>chain.filter(q=>q.b===k).reduce((s,q)=>s+q[f],0);
+    const dest=D.destinations.map((d,k)=>({k,go:est.reduce((s,e)=>s+e.to[k].go,0)+into(k,'go'),metro:est.reduce((s,e)=>s+e.to[k].metro,0)+into(k,'metro'),before:G.base?G.base.dest[k].go:0}));
+    const sum=f=>est.reduce((s,e)=>s+e[f],0);
+    return{est,chain,dest,roadLoad,busLoad,extra,jam,lines:lineState,riders:sum('metro'),onBus:sum('onBus'),drivers:sum('drivers'),walkers:sum('walkers'),
+      people:D.origins.reduce((s,o)=>s+o.people,0)};
+  }
+  const learnFrom=(perceived,y)=>perceived.map((p,id)=>p+P.learn*(y.extra[id]-p));
+  // crowding people reckon with: toward crowdBlocks × how far over the room it was (a quarter over or more: all of it)
+  const crowdOf=(load,cap)=>P.crowdBlocks*Math.min(1,Math.max(0,(load/cap-1)*4));
+  const learnCrowd=(felt,y)=>{const out={};for(const l of y.lines){const was=felt[l.name]||[];out[l.name]=l.load.map((v,j)=>{const f=was[j]||0;return f+P.learn*(crowdOf(v,l.cap)-f);});}return out;};
+  /* ------------------------------------------------------------------ the level */
+  function reset(){
+    for(const k of NUM)if(D[k]!==undefined)P[k]=D[k];[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];
+    buildRoads();
+    G.carOD=D.origins.map(o=>D.destinations.map(d=>carRoute(o.cell,d.cell)));
+    G.carDD=D.destinations.map(a=>D.destinations.map(b=>carRoute(a.cell,b.cell)));
+    G.lines=(D.lines||[]).map(l=>({name:l.name,hans:l.hans,color:l.color,cells:expand(l.via),stations:l.stations,names:l.names,namesHans:l.namesHans,trains:l.trains,mine:!!l.mine}));
+    G.base=null;
+    // doing nothing: the roads settle with the railways alone
+    let per=G.sections.map(()=>0),crowd={},y=null;
+    for(let it=0;it<300;it++){y=year(null,per,crowd);const next=learnFrom(per,y);const gap=Math.max(0,...next.map((v,j)=>Math.abs(v-per[j])));per=next;crowd=learnCrowd(crowd,y);if(gap<1e-6&&it>20)break;}
+    G.base=y;G.base=year(null,per,crowd);G.base.perceived=per;G.base.crowdedStart=crowd;
+    G.doNothing=[];{let p2=per.slice(),c2=crowd;for(let t=0;t<P.years;t++){const y2=year(null,p2,c2);G.doNothing.push(y2.jam);p2=learnFrom(p2,y2);c2=learnCrowd(c2,y2);}}
+  }
+  class Plan {
+    constructor(){this.routes=Array.from({length:P.maxRoutes},()=>({cells:[],stops:[],buses:0}));this.lanes=[];this.rewind();}
+    rewind(){Object.assign(this,{year:0,perceived:G.base.perceived.slice(),crowded:JSON.parse(JSON.stringify(G.base.crowdedStart)),log:[],total:0,done:false});}
+    get open(){return this.year>0;}
+    get spent(){return this.routes.reduce((s,r)=>s+r.buses*P.busCost,0)+this.lanes.length*P.laneCost;}
+    get money(){return P.budget-this.spent;}
+    isRoad(c){return G.roadNodes.has(key(c));}
+    onRoute(r,c){return this.routes[r].cells.some(x=>same(x,c));}
+    isStop(r,c){return this.routes[r].stops.some(x=>same(x,c));}
+    canExtend(r,c){if(this.done)return false;const R=this.routes[r];if(!this.isRoad(c)||this.onRoute(r,c))return false;if(!R.cells.length)return true;
+      return [R.cells[0],R.cells.at(-1)].some(e=>sectionBetween(e,c));}
+    extend(r,c){if(!this.canExtend(r,c))return false;const R=this.routes[r];if(!R.cells.length||sectionBetween(R.cells.at(-1),c))R.cells.push(c.slice());else R.cells.unshift(c.slice());return true;}
+    isEnd(r,c){const R=this.routes[r];return R.cells.length>0&&(same(c,R.cells[0])||same(c,R.cells.at(-1)));}
+    shorten(r,c){if(this.done||!this.isEnd(r,c))return false;const R=this.routes[r];if(same(c,R.cells.at(-1)))R.cells.pop();else R.cells.shift();R.stops=R.stops.filter(s=>!same(s,c));return true;}
+    toggleStop(r,c){if(this.done||!this.onRoute(r,c))return false;const R=this.routes[r];if(this.isStop(r,c))R.stops=R.stops.filter(s=>!same(s,c));else R.stops.push(c.slice());return true;}
+    canBus(r){return !this.done&&this.money>=P.busCost;}
+    addBus(r){if(!this.canBus(r))return false;this.routes[r].buses++;return true;}
+    removeBus(r){if(this.done||this.routes[r].buses<1)return false;this.routes[r].buses--;return true;}
+    hasLane(name){return this.lanes.includes(name);}
+    toggleLane(name){if(this.done)return false;if(this.hasLane(name)){this.lanes=this.lanes.filter(x=>x!==name);return true;}if(this.money<P.laneCost)return false;this.lanes.push(name);return true;}
+    clearRoute(r){if(this.done)return false;this.routes[r]={cells:[],stops:[],buses:0};return true;}
+    get running(){return this.routes.filter(r=>r.stops.length>=2&&r.buses>=1).length;}
+    now(){return year(this,this.perceived,this.crowded);}
+    // keep this plan and let the roads settle
+    potential(){let per=this.perceived.slice(),crowd=this.crowded,y=null;for(let it=0;it<60;it++){y=year(this,per,crowd);per=learnFrom(per,y);crowd=learnCrowd(crowd,y);}return y;}
+    canRun(){return !this.done;}
+    runYear(){if(!this.canRun())return null;
+      const y=this.now(),jam0=G.doNothing[this.year];this.year++;const saved=jam0-y.jam;this.total+=saved;
+      const perBefore=this.perceived;this.perceived=learnFrom(this.perceived,y);this.crowded=learnCrowd(this.crowded,y);
+      const entry={year:this.year,jam:y.jam,jam0,saved,riders:y.riders,onBus:y.onBus,drivers:y.drivers,buses:this.routes.map(r=>r.buses),lanes:this.lanes.slice(),spent:this.spent,
+        crowdedSections:y.lines.reduce((s,l)=>s+l.crowded.filter(Boolean).length,0),dest:y.dest.map(d=>({go:d.go,metro:d.metro,before:d.before}))};
+      this.log.push(entry);if(this.year>=P.years)this.done=true;return{...entry,y,perBefore};}
+    clone(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));return p;}
+    simulate(){const p=this.clone();p.rewind();while(!p.done)p.runYear();return p;}
+  }
+  reset();
+  const API={D,P,G,Plan,year,learnFrom,learnCrowd,transitTrip,network,linesOf,carRoute,sectionBetween,laned,split,onward,expand,walk,same,key,adj,reset};
+  if(typeof module!=='undefined')module.exports=API;root.Bus=API;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // TransitLab feeder suite · v7 shared language engine (every mode loads this first, then its own strings.js).
+  // Three languages: 繁體中文 (default), 简体中文, English. Display titles stay in English in every language; the
+  // Chinese line under them follows the language and is left out in English. Estate names stay in Chinese.
+  // A mode adds its texts with I18N.add({key: I18N.L(hant, hans, en), …}) — later additions override earlier ones —
+  // then calls I18N.apply(). Static markup: data-i18n, data-i18n-html, data-i18n-title, data-i18n-aria.
+  const LANGS=['zh-Hant','zh-Hans','en'];
+  const L=(hant,hans,en)=>({'zh-Hant':hant,'zh-Hans':hans,en});
+  const S={};
+  const DIST={'东区':['東區','Eastern'],'中西区':['中西區','Central & Western'],'九龙城区':['九龍城區','Kowloon City'],'元朗区':['元朗區','Yuen Long'],
+    '北区':['北區','North'],'南区':['南區','Southern'],'大埔区':['大埔區','Tai Po'],'屯门区':['屯門區','Tuen Mun'],'沙田区':['沙田區','Sha Tin'],
+    '油尖旺区':['油尖旺區','Yau Tsim Mong'],'深水埗区':['深水埗區','Sham Shui Po'],'湾仔区':['灣仔區','Wan Chai'],'离岛区':['離島區','Islands'],
+    '荃湾区':['荃灣區','Tsuen Wan'],'葵青区':['葵青區','Kwai Tsing'],'西贡区':['西貢區','Sai Kung'],'观塘区':['觀塘區','Kwun Tong'],'黄大仙区':['黃大仙區','Wong Tai Sin']};
+  const pick=(/(?:^|[#&])lang=([\w-]+)/.exec(typeof location!=='undefined'?location.hash:'')||[])[1];
+  // tlhk-lang: the language a hosting TransitLab site saved (same codes); used until the player picks one here
+  let saved=null;try{saved=localStorage.getItem('tl-lang')||localStorage.getItem('tlhk-lang');}catch(e){}
+  let lang=LANGS.includes(pick)?pick:LANGS.includes(saved)?saved:saved?'en':'zh-Hant';   // a site language the game lacks → English
+  function t(key,vars){
+    const e=S[key];let s=e?(e[lang]??e['zh-Hant']):key;
+    if(vars)s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!==undefined?vars[k]:m);
+    return s;
+  }
+  function apply(scope){
+    const el=scope||document;
+    el.querySelectorAll('[data-i18n]').forEach(n=>{n.textContent=t(n.dataset.i18n);});
+    el.querySelectorAll('[data-i18n-html]').forEach(n=>{n.innerHTML=t(n.dataset.i18nHtml);});
+    el.querySelectorAll('[data-i18n-title]').forEach(n=>{n.title=t(n.dataset.i18nTitle);});
+    el.querySelectorAll('[data-i18n-aria]').forEach(n=>{n.setAttribute('aria-label',t(n.dataset.i18nAria));});
+    // an empty translation (the Chinese line in English) hides its element
+    el.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(n=>{n.hidden=!n.textContent&&!n.children.length;});
+    document.documentElement.lang=lang;
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  }
+  function set(next){
+    if(!LANGS.includes(next)||next===lang)return;lang=next;
+    if(typeof document==='undefined')return;            // node tests
+    try{localStorage.setItem('tl-lang',lang);}catch(e){}
+    apply();root.dispatchEvent(new CustomEvent('tl:lang',{detail:lang}));
+  }
+  const hans=()=>lang==='zh-Hans';
+  const API={LANGS,L,t,apply,set,add:o=>Object.assign(S,o),has:k=>k in S,get lang(){return lang;},
+    name:o=>hans()?(o.hans||o.name):o.name,                                   // estates stay Chinese in English
+    short:o=>hans()?(o.shortHans||o.short||o.hans||o.name):(o.short||o.name),
+    station:st=>lang==='en'?st.en.charAt(0)+st.en.slice(1).toLowerCase().replace(/ (\w)/g,(m,c)=>' '+c.toUpperCase()):st[lang],
+    district:d=>{const v=DIST[d];return !v?d:lang==='zh-Hans'?d:lang==='en'?v[1]:v[0];}};
+  root.I18N=API;
+  if(typeof document!=='undefined'){
+    document.querySelectorAll('#langSeg [data-lang]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.lang)));
+  }   // the mode's strings.js calls apply() once its texts are in
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function() {
+  'use strict';
+  // v7 · mode 4 «buses on the road» — texts. Mode 3's texts (r3.*) are reused for the roads; the b4.* block is this mode's.
+  const L=I18N.L;
+  I18N.add({
+    'sep':L('、','、',', '),
+    'brand.sub':L('HK · Feeder bus · 接駁巴士','HK · Feeder bus · 接驳巴士','HK · Feeder bus'),
+    'top.rules':L('Rules <span class="tc">規則</span>','Rules <span class="tc">规则</span>','Rules'),'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),
+    'm.back':L('← 五個模式','← 五个模式','← Five modes'),'g.lvInfo':L('本關','本关','About'),
+    'r3.mode':L('Mode 03 · 路會塞','Mode 03 · 路会塞','Mode 03 · Roads that jam'),
+    'r3.doc':L('TransitLab HK · 模式 3 · 路會塞','TransitLab HK · 模式 3 · 路会塞','TransitLab HK · Mode 3 · Roads that jam'),
+    'r3.levelTitle':L('九龍東 · 第二個商業區','九龙东 · 第二个商业区','Kowloon East · the second CBD'),
+    // score and years
+    'r3.scoreLbl':L('八年少塞','八年少塞','Jam taken off the roads, eight years'),'r3.scoreUnit':L('車·格','车·格','car-blocks'),
+    'g.tickPass':L('過關 {n}','过关 {n}','pass {n}'),'g.tickHigh':L('高分 {n}','高分 {n}','high {n}'),'g.tickMaster':L('大師 {n}','大师 {n}','master {n}'),
+    'r3.goal':L('每年比「什麼都不做」少塞多少，加起來 · <b>{pass}</b> 過關 · <b>{high}</b> 高分 · <b>{master}</b> 大師','每年比「什么都不做」少塞多少，加起来 · <b>{pass}</b> 过关 · <b>{high}</b> 高分 · <b>{master}</b> 大师',
+      'Each year\'s jam below «do nothing», added up · <b>{pass}</b> pass · <b>{high}</b> high · <b>{master}</b> master'),
+    'm.yearPlan':L('第 0 年 · 規劃','第 0 年 · 规划','Year 0 · planning'),'m.yearN':L('開通第 {y} / {m} 年','开通第 {y} / {m} 年','Year {y} / {m}'),'m.yearDone':L('{m} 年都過去了','{m} 年都过去了','All {m} years done'),
+    'm.run0':L('開通 ▶','开通 ▶','Open ▶'),'m.runN':L('下一年 ▶','下一年 ▶','Next year ▶'),'m.runDone':L('看結果','看结果','Results'),'m.playing':L('一年一年過…','一年一年过…','Years passing…'),
+    'm.pause':L('⏸ 暫停','⏸ 暂停','⏸ Pause'),'m.play':L('▶ 繼續','▶ 继续','▶ Play'),'m.rewind':L('↺ 回到規劃','↺ 回到规划','↺ Back to planning'),'m.yShort':L('第{y}年','第{y}年','Y{y}'),
+    'r3.yNothing':L('什麼都不做 {n}','什么都不做 {n}','do nothing {n}'),
+    'r3.yNoteNone':L('柱＝每年每天路上的塞車（越矮越好），虛線＝什麼都不做。放好至少 2 個站，這裡會預告第 1 年。','柱＝每年每天路上的塞车（越矮越好），虚线＝什么都不做。放好至少 2 个站，这里会预告第 1 年。',
+      'Bars = the jam on the roads each year (lower is better); dashed = do nothing. Place 2 stations to see year 1.'),
+    'r3.yNote0':L('開通第 1 年塞車約 <b>{j}</b>（什麼都不做 {n}）。大家慢慢知道新線、開車的人慢慢調整，之後幾年會再變。','开通第 1 年塞车约 <b>{j}</b>（什么都不做 {n}）。大家慢慢知道新线、开车的人慢慢调整，之后几年会再变。',
+      'Year 1: a jam of about <b>{j}</b> (do nothing {n}). As people find the line and drivers adjust, it moves on.'),
+    'r3.yNoteN':L('第 {y} 年路上塞車 <b>{j}</b> · 什麼都不做 {n}。','第 {y} 年路上塞车 <b>{j}</b> · 什么都不做 {n}。','Year {y}: jam <b>{j}</b> · do nothing {n}.'),
+    // planning
+    'm.budgetLbl':L('預算（只在開通前用）','预算（只在开通前用）','Budget (before opening)'),
+    'm.money0':L('線每格 {lc} · 站 {sc} · 多一列車 {tc}。開通以後就不能改了。','线每格 {lc} · 站 {sc} · 多一列车 {tc}。开通以后就不能改了。','{lc} a block · {sc} a station · {tc} a train. Nothing changes after opening.'),
+    'm.trains':L('列車 <b>{n}</b> 列 · 每段每天最多載 <b>{c}</b> 人','列车 <b>{n}</b> 列 · 每段每天最多载 <b>{c}</b> 人','<b>{n}</b> trains · each section carries <b>{c}</b> a day'),
+    'm.toolDraw':L('✏ 畫線','✏ 画线','✏ Draw'),'m.toolStation':L('● 放站','● 放站','● Stations'),'m.undo':L('↶ 撤銷','↶ 撤销','↶ Undo'),'m.clear':L('清空','清空','Clear'),
+    'm.hintDraw1':L('點任何一格開始畫線（或按住拖動）。可以和觀塘綫、將軍澳綫交叉，站放在一起就能換綫。','点任何一格开始画线（或按住拖动）。可以和观塘线、将军澳线交叉，站放在一起就能换线。',
+      'Click any cell to start (or press and drag). You may cross the 觀塘綫 and 將軍澳綫; a station next to theirs lets people change.'),
+    'm.hintDraw2':L('點線頭旁邊虛線框的格子延長，可以拐彎、不能分叉；點線頭可以縮短。畫好了切到「放站」。','点线头旁边虚线框的格子延长，可以拐弯、不能分叉；点线头可以缩短。画好了切到「放站」。',
+      'Click a dashed cell next to an end to extend — it may turn, never branch; click an end to shorten. Then switch to «Stations».'),
+    'm.hintNeedLine':L('先畫一條至少 2 格的線。','先画一条至少 2 格的线。','Draw a line of 2 cells at least first.'),
+    'r3.hintStation1':L('點線上的格子放站（至少 2 個）。停在格子上會先告訴你：大家都知道新線時，多幾個人坐、路上少塞多少。','点线上的格子放站（至少 2 个）。停在格子上会先告诉你：大家都知道新线时，多几个人坐、路上少塞多少。',
+      'Click a cell on the line to put a station (2 at least). Hover first: with everyone knowing the line, how many more ride and how much less jam.'),
+    'm.hintStation2':L('再點一個站就拆掉。站多走路近，但路過的人每站多 1 格。都放好了就按「開通 ▶」。','再点一个站就拆掉。站多走路近，但路过的人每站多 1 格。都放好了就按「开通 ▶」。',
+      'Click a station again to remove it. More stations, shorter walks — but riders pay 1 a stop. Ready? Press «Open ▶».'),
+    'm.hintOpen':L('已經開通：線和站不能改了。看路怎樣變通，又怎樣有人回去開車；想改方案就按「↺ 回到規劃」。','已经开通：线和站不能改了。看路怎样变通，又怎样有人回去开车；想改方案就按「↺ 回到规划」。',
+      'Open: nothing changes now. Watch the roads clear — and some drive again. To change the plan, «↺ Back to planning».'),
+    // rules
+    'm.rulesH':L('How it works · 怎麼算','How it works · 怎么算','How it works'),
+    'r3.r0':L('<b>一次建好一條新線。</b>預算 {b}，開通後 {y} 年不能改。地圖上已經有觀塘綫、將軍澳綫，大家都會用。','<b>一次建好一条新线。</b>预算 {b}，开通后 {y} 年不能改。地图上已经有观塘线、将军澳线，大家都会用。',
+      '<b>Build one new line, once.</b> Budget {b}; nothing changes for {y} years. The 觀塘綫 and 將軍澳綫 are there already, and everyone uses them.'),
+    'r3.r1':L('<b>和第二關一樣：</b>去哪裡＝吸引力 − 格數；比開車或走路省幾格，就有幾成坐地鐵；順路再去；只有知道新線的人用它；口耳相傳。走路每格算 {wp}。','<b>和第二关一样：</b>去哪里＝吸引力 − 格数；比开车或走路省几格，就有几成坐地铁；顺路再去；只有知道新线的人用它；口耳相传。走路每格算 {wp}。',
+      '<b>As in mode 2:</b> where to go = attraction − blocks; every block saved on car or foot, one in ten by metro; going on; only those who know the new line use it; word of mouth. Walking is {wp} a cell.'),
+    'r3.r2':L('<b>路會塞。</b>開車沿著路走，每段 1 格，再多花（車 ÷ 這段路的容量）² 格：剛好滿 +1，多一半 +2¼。','<b>路会塞。</b>开车沿着路走，每段 1 格，再多花（车 ÷ 这段路的容量）² 格：刚好满 +1，多一半 +2¼。',
+      '<b>Roads jam.</b> A car follows the roads, 1 block a section plus (cars ÷ the section\'s capacity)²: full +1, half again +2¼.'),
+    'r3.r3':L('<b>開車的人慢慢學。</b>今年以為的塞車 ＝ 去年以為的 ＋ {lp} ×（去年真的 − 去年以為的）。路通了，開車變好走，又有人回去開車。','<b>开车的人慢慢学。</b>今年以为的塞车 ＝ 去年以为的 ＋ {lp} ×（去年真的 − 去年以为的）。路通了，开车变好走，又有人回去开车。',
+      '<b>Drivers learn slowly.</b> The jam they reckon with = last year\'s reckoning + {lp} × (what they met − that reckoning). Clear roads make driving look good again — and some drive again.'),
+    'r3.r4':L('<b>換綫</b>＝走過去 ＋ 再等一次車。地鐵太擠，大家也是慢慢才覺得（同樣按 {lp}），最多多算 {cb} 格。','<b>换线</b>＝走过去 ＋ 再等一次车。地铁太挤，大家也是慢慢才觉得（同样按 {lp}），最多多算 {cb} 格。',
+      '<b>Changing lines</b> = walk across + wait again. Crowded trains are learnt the same slow way ({lp}), up to {cb} blocks.'),
+    'r3.r5':L('<b>分數。</b>每年「什麼都不做」的塞車 − 你的塞車，八年加起來。塞車＝每段路的車 × 多花的格數。','<b>分数。</b>每年「什么都不做」的塞车 − 你的塞车，八年加起来。塞车＝每段路的车 × 多花的格数。',
+      '<b>Score.</b> Each year, the «do nothing» jam minus yours, added up. Jam = cars on a section × the extra blocks there.'),
+    // board
+    'r3.legend':L('<span><i class="lk road"></i>路：灰＝通，橙＝快滿，紅＝塞（小點是車）</span><span><i class="lk mtr"></i>觀塘綫、將軍澳綫</span><span><i class="lk metro"></i>你的新線</span><span><i class="lk aware"></i>屋苑下十格＝幾成人知道新線</span>',
+      '<span><i class="lk road"></i>路：灰＝通，橙＝快满，红＝塞（小点是车）</span><span><i class="lk mtr"></i>观塘线、将军澳线</span><span><i class="lk metro"></i>你的新线</span><span><i class="lk aware"></i>屋苑下十格＝几成人知道新线</span>',
+      '<span><i class="lk road"></i>roads: grey = free, orange = filling, red = jammed (dots are cars)</span><span><i class="lk mtr"></i>觀塘綫, 將軍澳綫</span><span><i class="lk metro"></i>your new line</span><span><i class="lk aware"></i>ten cells = tenths who know the new line</span>'),
+    'r3.estLine':L('知道 {a} 成 · 開車 {c} · 地鐵 {m}','知道 {a} 成 · 开车 {c} · 地铁 {m}','{a}/10 know · {c} drive · {m} metro'),
+    'm.dstLine':L('每天來 {g} 人（開通前 {b}）','每天来 {g} 人（开通前 {b}）','{g} come a day (was {b})'),
+    'm.fxAware':L('+{n} 成','+{n} 成','+{n}/10'),
+    'm.crowd':L('擠！{a} / {b} 人','挤！{a} / {b} 人','crowded! {a} / {b}'),'m.nearly':L('快滿 {a} / {b} 人','快满 {a} / {b} 人','nearly full {a} / {b}'),
+    'r3.jamPill':L('{r} · 多 {e} 格','{r} · 多 {e} 格','{r} · +{e}'),
+    'm.pvExtend':L('延長 · −{c}','延长 · −{c}','extend · −{c}'),'m.pvShorten':L('點一下縮短','点一下缩短','click to shorten'),'m.pvNoMoney':L('預算不夠','预算不够','over budget'),
+    'm.pvAdd':L('放站：','放站：','station:'),'m.pvRemove':L('拆站：','拆站：','remove:'),'m.pvCost':L('−{c}','−{c}','−{c}'),'m.pvRefund':L('+{c}','+{c}','+{c}'),
+    'r3.pv':L('新線 {r} 人 · 塞車 {j}','新线 {r} 人 · 塞车 {j}','new line {r} · jam {j}'),
+    'r3.dl':L('開車 {c} · 地鐵 {m}','开车 {c} · 地铁 {m}','{c} drive · {m} metro'),
+    // right side
+    'r3.roadsH':L('How jammed · 路有多塞','How jammed · 路有多塞','How jammed the roads are'),
+    'r3.jamNow':L('每天路上塞車 <b>{j}</b> 車·格 · 什麼都不做 {n}','每天路上塞车 <b>{j}</b> 车·格 · 什么都不做 {n}','Jam a day <b>{j}</b> car-blocks · do nothing {n}'),
+    'r3.extra':L('+{e} 格','+{e} 格','+{e}'),
+    'r3.roadNote':L('條＝今年這條路最塞的一段每趟多花幾格；黑線＝開車的人以為的（明年再往條那邊改 {lp}）。','条＝今年这条路最塞的一段每趟多花几格；黑线＝开车的人以为的（明年再往条那边改 {lp}）。',
+      'Bar = the extra blocks on the road\'s worst section this year; black mark = what drivers reckon with (it moves {lp} of the way next year).'),
+    'r3.awareH':L('Who knows the new line · 知道新線的人','Who knows the new line · 知道新线的人','Who knows the new line'),
+    'm.tenths':L('{n} 成','{n} 成','{n}/10'),'m.awNext':L('明年 +{n} 成','明年 +{n} 成','next year +{n}'),'m.awSame':L('明年不變','明年不变','no change'),
+    'r3.awNote':L('剛開通每個屋苑 {s} 成人知道新線；坐新線的人越多，明年知道的越多。觀塘綫、將軍澳綫大家本來就知道。','刚开通每个屋苑 {s} 成人知道新线；坐新线的人越多，明年知道的越多。观塘线、将军澳线大家本来就知道。',
+      '{s}/10 of each estate know the new line at the opening; the more ride it, the more know next year. Everyone knows the 觀塘綫 and 將軍澳綫.'),
+    'm.tripsH':L('每條愿望線的算式','每条愿望线的算式','The sums, desire line by desire line'),
+    'm.tTrip':L('從 → 去','从 → 去','From → to'),'m.tGo':L('去','去','go'),'r3.tCar':L('開車','开车','car'),'m.tMetro':L('地鐵','地铁','metro'),
+    'r3.tDrive':L('開車人','开车人','drive'),'m.tRiders':L('坐地鐵','坐地铁','metro'),'m.was':L('開通前 {b}','开通前 {b}','was {b}'),'m.chainTag':L('順路','顺路','going on'),
+    'r3.carSum':L('{b}+塞{j}','{b}+塞{j}','{b}+{j} jam'),'r3.newTag':L('新線','新线','new'),
+    // year card
+    'm.cardTitle':L('第 {y} 年','第 {y} 年','Year {y}'),
+    'r3.cardJam':L('路上塞車 <b>{j}</b>（什麼都不做 {n}）→ 少塞 <b>{s}</b>','路上塞车 <b>{j}</b>（什么都不做 {n}）→ 少塞 <b>{s}</b>','Jam <b>{j}</b> (do nothing {n}) → <b>{s}</b> less'),
+    'r3.cardMode':L('開車 {c} 人 · 坐新線 {m} 人','开车 {c} 人 · 坐新线 {m} 人','{c} drive · {m} on the new line'),
+    'r3.cardBetter':L('開車的人覺得路好走了 → 明年有人回去開車','开车的人觉得路好走了 → 明年有人回去开车','Drivers find the roads clearer → some drive again next year'),
+    'r3.cardWorse':L('開車的人覺得路更塞了 → 明年更多人改坐地鐵','开车的人觉得路更塞了 → 明年更多人改坐地铁','Drivers find the roads worse → more take the metro next year'),
+    'm.cardAware':L('平均 {a} 成人知道新線','平均 {a} 成人知道新线','{a}/10 know the new line on average'),
+    'r3.cardCrowd':L('{n} 段地鐵太擠 → 大家慢慢覺得擠（最多多 {cb} 格）','{n} 段地铁太挤 → 大家慢慢觉得挤（最多多 {cb} 格）','{n} metro sections crowded → people slowly count it (up to {cb})'),
+    'm.cardLocked':L('已經開通','已经开通','Already open'),'m.cardLocked2':L('地鐵建好就不能改。按「↺ 回到規劃」重新來。','地铁建好就不能改。按「↺ 回到规划」重新来。','A built metro stays. «↺ Back to planning» to start again.'),
+    // results
+    'r.t0':L('還沒過關','还没过关','Not cleared yet'),'r.t1':L('過關','过关','Cleared'),'r.t2':L('高分','高分','High score'),'r.t3':L('大師','大师','Master'),
+    'r3.rScore':L('{y} 年一共少塞 {d} 車·格','{y} 年一共少塞 {d} 车·格','{d} car-blocks of jam taken off over {y} years'),
+    'm.ryYear':L('年','年','Year'),'r3.ryJam':L('塞車','塞车','Jam'),'r3.ryNothing':L('什麼都不做','什么都不做','Do nothing'),'r3.rySaved':L('少塞','少塞','Less'),
+    'r3.ryDrive':L('開車','开车','Drive'),'r3.ryNew':L('坐新線','坐新线','New line'),'m.ryAware':L('知道','知道','Know'),
+    'r3.tipRebound':L('第 {lo} 年路最通（塞車 {a}），之後回到 {b}：路一通，開車又變好走，有人回去開車——修路或修鐵路都會這樣，叫「誘發交通」。','第 {lo} 年路最通（塞车 {a}），之后回到 {b}：路一通，开车又变好走，有人回去开车——修路或修铁路都会这样，叫「诱发交通」。',
+      'Year {lo} had the clearest roads (jam {a}), then back to {b}: clear roads make driving easy again and some go back to the car — «induced traffic», for new roads and new railways alike.'),
+    'r3.tipWorst':L('最塞的路是<b>{r}</b>（每趟多 {e} 格）：新線要接走在這條路上開車的人，才幫得最多。','最塞的路是<b>{r}</b>（每趟多 {e} 格）：新线要接走在这条路上开车的人，才帮得最多。','The worst road is <b>{r}</b> (+{e} a trip): take its drivers onto the line and it helps most.'),
+    'r3.tipCrowd':L('有 <b>{n}</b> 年地鐵太擠：大家慢慢覺得擠，又回到路上。快滿（橙色）就多買一列車。','有 <b>{n}</b> 年地铁太挤：大家慢慢觉得挤，又回到路上。快满（橙色）就多买一列车。','Crowded in <b>{n}</b> years: people slowly count it and go back to the roads. Orange (nearly full)? Buy a train.'),
+    'r3.tipNever':L('<b>{a}</b> 八年都沒人坐新線：附近沒有站，或者坐地鐵不比開車快。','<b>{a}</b> 八年都没人坐新线：附近没有站，或者坐地铁不比开车快。','<b>{a}</b> never rode the new line: no station near, or no quicker than the car.'),
+    'm.seeBoard':L('看看地圖','看看地图','See the board'),
+    // rules dialog, intro
+    'i.lbl':L('Rules · 規則','Rules · 规则','Rules'),'r3.infoH':L('路會塞的規則','路会塞的规则','The rules of roads that jam'),
+    'r3.info':L('<ol class="rules"><li><b>地圖。</b>九龍東，一格約 600 米。位置、人口、岗位按全港模型的分區縮放（示意，僅供學習）。假設十多年後：啟德住滿、安達臣道新屋苑入伙、觀塘和九龍灣的寫字樓再多一半。路已經塞，地鐵還沒跟上。</li><li><b>和第二關一樣。</b>去哪裡＝吸引力 − 要幾格（開車、走路、地鐵取最快的），和「附近」（{nb}）按比例分；比開車或走路省幾格，就有幾成坐地鐵；到了一個商貿區的人有些順路再去另一個（對「辦完就回家」{st}）；只有知道新線的人用新線，開通時 {s} 成，口耳相傳 ×{sp}。走路每格 {wp}。</li><li><b>已有的地鐵。</b>觀塘綫、將軍澳綫大家都知道。坐地鐵＝走到站 ＋ 等車 {w} ＋ 路過幾個站 ＋ 走路；換綫＝走過去 ＋ 再等一次車。</li><li><b>新線。</b>開通前一次建好：線每格 {lc}、站 {sc}、多一列車 {tc}（本身有 1 列），預算 {b}。可以和舊綫交叉；站在舊綫的站上或旁邊一格，就能換綫。</li><li><b>開車。</b>從屋苑開到最近的路（每格 1），沿路走（每段 1 格），到了再開到目的地，加泊車（觀塘 {e0}、九龍灣 {e1}）。路線固定，走最短的。</li><li><b>路會塞。</b>每段路每天能過的車有上限（看路，快速公路多、山路少）。每段多花（車 ÷ 容量）² 格：一半滿 +¼，剛好滿 +1，多一半 +2¼。塞車＝每段的車 × 多花的格數，全部加起來。</li><li><b>開車的人慢慢學。</b>大家按「以為的塞車」決定開不開車、去不去。每年：以為的 ＋＝ {lp} ×（真的 − 以為的）。所以新線一開，路慢慢變通；路通了，開車又變好走，有人回去開車——上上落落，最後停在中間。</li><li><b>地鐵也會擠。</b>每段最多「列車數 × {pt}」人；太擠的段大家也是慢慢才覺得（同樣按 {lp}，最多多算 {cb} 格，一趟只算最擠的一段）。</li><li><b>分數。</b>{y} 年裡，每年「什麼都不做」的塞車減去你的塞車，加起來。</li></ol>',
+      '<ol class="rules"><li><b>地图。</b>九龙东，一格约 600 米。位置、人口、岗位按全港模型的分区缩放（示意，仅供学习）。假设十多年后：启德住满、安达臣道新屋苑入伙、观塘和九龙湾的写字楼再多一半。路已经塞，地铁还没跟上。</li><li><b>和第二关一样。</b>去哪里＝吸引力 − 要几格（开车、走路、地铁取最快的），和「附近」（{nb}）按比例分；比开车或走路省几格，就有几成坐地铁；到了一个商贸区的人有些顺路再去另一个（对「办完就回家」{st}）；只有知道新线的人用新线，开通时 {s} 成，口耳相传 ×{sp}。走路每格 {wp}。</li><li><b>已有的地铁。</b>观塘线、将军澳线大家都知道。坐地铁＝走到站 ＋ 等车 {w} ＋ 路过几个站 ＋ 走路；换线＝走过去 ＋ 再等一次车。</li><li><b>新线。</b>开通前一次建好：线每格 {lc}、站 {sc}、多一列车 {tc}（本身有 1 列），预算 {b}。可以和旧线交叉；站在旧线的站上或旁边一格，就能换线。</li><li><b>开车。</b>从屋苑开到最近的路（每格 1），沿路走（每段 1 格），到了再开到目的地，加泊车（观塘 {e0}、九龙湾 {e1}）。路线固定，走最短的。</li><li><b>路会塞。</b>每段路每天能过的车有上限（看路，快速公路多、山路少）。每段多花（车 ÷ 容量）² 格：一半满 +¼，刚好满 +1，多一半 +2¼。塞车＝每段的车 × 多花的格数，全部加起来。</li><li><b>开车的人慢慢学。</b>大家按「以为的塞车」决定开不开车、去不去。每年：以为的 ＋＝ {lp} ×（真的 − 以为的）。所以新线一开，路慢慢变通；路通了，开车又变好走，有人回去开车——上上落落，最后停在中间。</li><li><b>地铁也会挤。</b>每段最多「列车数 × {pt}」人；太挤的段大家也是慢慢才觉得（同样按 {lp}，最多多算 {cb} 格，一趟只算最挤的一段）。</li><li><b>分数。</b>{y} 年里，每年「什么都不做」的塞车减去你的塞车，加起来。</li></ol>',
+      '<ol class="rules"><li><b>The map.</b> Kowloon East, a cell ≈ 600 m. Places, residents and jobs scaled from the territory model\'s zones (a sketch, for learning only). Suppose, a decade on: 啟德 full, the 安達臣道 estates in, half again as many offices in 觀塘 and 九龍灣. The roads jam already; the metro hasn\'t caught up.</li><li><b>As in mode 2.</b> Where to go = attraction − blocks (car, foot or metro, whichever is quickest), against «nearby» ({nb}); every block saved on car or foot, one in ten by metro; some at one business area go on to the other (against «done, home», {st}); only those who know the new line use it — {s}/10 at the opening, word of mouth ×{sp}. Walking {wp} a cell.</li><li><b>The lines already there.</b> Everyone knows the 觀塘綫 and 將軍澳綫. Metro = walk to a station + wait {w} + stations passed + walk; changing = walk across + wait again.</li><li><b>The new line.</b> Built once before opening: {lc} a block, {sc} a station, {tc} a train (one comes with it), budget {b}. It may cross the old lines; a station on or next to theirs lets people change.</li><li><b>Driving.</b> From the estate to the nearest road (1 a cell), along the roads (1 a section), off to the destination, plus parking (觀塘 {e0}, 九龍灣 {e1}). The route is fixed: the shortest.</li><li><b>Roads jam.</b> Each section takes so many cars a day (more on expressways, fewer on hill roads). Each adds (cars ÷ capacity)² blocks: half full +¼, full +1, half again +2¼. Jam = cars × extra blocks, over all sections.</li><li><b>Drivers learn slowly.</b> People decide by the jam they reckon with. Each year: reckoning += {lp} × (real − reckoning). So the roads clear slowly after the opening; clear roads make driving look good and some drive again — up and down, settling in between.</li><li><b>Trains crowd too.</b> trains × {pt} a section a day; crowding is learnt the same slow way ({lp}, up to {cb} blocks, the worst section of a trip once).</li><li><b>Score.</b> Over {y} years, each year\'s «do nothing» jam minus yours, added up.</li></ol>'),
+    'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始畫線 →','开始画线 →','Start drawing →'),
+    'iv.m3.new':L('<b>路會塞</b>：開車的人越多，路越慢。新線把人從路上帶走，路就通——可是路一通，又有人回去開車。','<b>路会塞</b>：开车的人越多，路越慢。新线把人从路上带走，路就通——可是路一通，又有人回去开车。',
+      '<b>Roads that jam</b>: the more drive, the slower the roads. Your line takes people off them and they clear — and then some drive again.'),
+    'iv.m3.body':L('<li>真實的九龍東（按全港模型縮放）。假設十多年後：啟德住滿、安達臣道入伙、觀塘和九龍灣的寫字樓再多一半。<b>路已經塞，地鐵還沒跟上。</b></li><li>地圖上的路越紅越塞（灰色是通的），小點是車；綠色、紫色是已有的觀塘綫、將軍澳綫。</li><li>建一條新線（預算 {b}），把開車的人帶上地鐵。規則和第二關一樣：省幾格幾成坐、口耳相傳。</li><li>開車的人<b>慢慢學</b>：每年只往真的塞車改 {lp}。看路怎樣變通、又怎樣有人回去開車。</li><li>分數＝八年裡比「什麼都不做」少塞多少。</li>',
+      '<li>真实的九龙东（按全港模型缩放）。假设十多年后：启德住满、安达臣道入伙、观塘和九龙湾的写字楼再多一半。<b>路已经塞，地铁还没跟上。</b></li><li>地图上的路越红越塞（灰色是通的），小点是车；绿色、紫色是已有的观塘线、将军澳线。</li><li>建一条新线（预算 {b}），把开车的人带上地铁。规则和第二关一样：省几格几成坐、口耳相传。</li><li>开车的人<b>慢慢学</b>：每年只往真的塞车改 {lp}。看路怎样变通、又怎样有人回去开车。</li><li>分数＝八年里比「什么都不做」少塞多少。</li>',
+      '<li>The real Kowloon East (scaled from the territory model). Suppose, a decade on: 啟德 full, 安達臣道 in, half again as many offices in 觀塘 and 九龍灣. <b>The roads jam; the metro hasn\'t caught up.</b></li><li>Redder roads are more jammed, dots are cars; green and purple are the 觀塘綫 and 將軍澳綫.</li><li>Build one new line (budget {b}) and take drivers onto the metro. Mode 2\'s rules: tenths by blocks saved, word of mouth.</li><li>Drivers <b>learn slowly</b>: each year they move {lp} of the way to the real jam. Watch the roads clear — and some drive again.</li><li>Score = how much less jam than «do nothing», over eight years.</li>'),
+    'iv.m3.course':L('課程連結：道路容量與擁堵（BPR 曲線的簡化）、誘發交通與 Downs–Thomson 悖論、出行者的逐日學習、公共交通與道路的平衡。','课程链接：道路容量与拥堵（BPR 曲线的简化）、诱发交通与 Downs–Thomson 悖论、出行者的逐日学习、公共交通与道路的平衡。',
+      'Course link: road capacity and congestion (a simplified BPR curve), induced traffic and the Downs–Thomson paradox, travellers learning day to day, the balance of transit and roads.')
+  });
+  // v7.9 · the living map: headline, info card, hold to preview
+  I18N.add({
+    'r3.hlToday':L('今天：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em> 車·格','今天：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em> 车·格','Today: <em>{c}</em> cars a day on the roads, jam <em>{j}</em>'),
+    'r3.hlTodaySub':L('最塞的是{r}（每趟多 {e} 格）。畫一條新線把開車的人帶走；停在線上的格子，地圖會變成放站以後的樣子。','最塞的是{r}（每趟多 {e} 格）。画一条新线把开车的人带走；停在线上的格子，地图会变成放站以后的样子。',
+      'Worst: {r} (+{e} a trip). Draw a line to take drivers off; hover a cell on it and the map turns into what a station there would bring.'),
+    'r3.hlPreview':L('放這裡 → 路上的車 <em class="{cc}">{dc}</em> · 塞車 <em class="{jc}">{dj}</em> · 新線每天 <em>{r}</em> 人','放这里 → 路上的车 <em class="{cc}">{dc}</em> · 塞车 <em class="{jc}">{dj}</em> · 新线每天 <em>{r}</em> 人',
+      'A station here → cars <em class="{cc}">{dc}</em> · jam <em class="{jc}">{dj}</em> · <em>{r}</em> a day on the line'),
+    'r3.hlAhead':L('八年後 → 路上的車 <em class="{cc}">{dc}</em> · 塞車 <em class="{jc}">{dj}</em> · 新線每天 <em>{r}</em> 人','八年后 → 路上的车 <em class="{cc}">{dc}</em> · 塞车 <em class="{jc}">{dj}</em> · 新线每天 <em>{r}</em> 人',
+      'Eight years on → cars <em class="{cc}">{dc}</em> · jam <em class="{jc}">{dj}</em> · <em>{r}</em> a day on the line'),
+    'r3.hlPreviewSub':L('預覽：大家都知道新線、開車的人也習慣了以後，和今天什麼都不做比。','预览：大家都知道新线、开车的人也习惯了以后，和今天什么都不做比。','Preview: once everyone knows the line and drivers have settled, against doing nothing today.'),
+    'r3.hlYear':L('第 {y} 年 · 路上的車 <em class="{cc}">{dc}</em> · 塞車比什麼都不做 <em class="{jc}">{dj}</em>','第 {y} 年 · 路上的车 <em class="{cc}">{dc}</em> · 塞车比什么都不做 <em class="{jc}">{dj}</em>',
+      'Year {y} · cars <em class="{cc}">{dc}</em> · jam vs doing nothing <em class="{jc}">{dj}</em>'),
+    'r3.hlAware':L('平均 {a} 成人知道新線','平均 {a} 成人知道新线','{a}/10 know the new line'),
+    'r3.hlNothing':L('如果什麼都不做：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em>','如果什么都不做：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em>','Doing nothing: <em>{c}</em> cars a day, jam <em>{j}</em>'),
+    'r3.hlNothingSub':L('放開按鈕，回到你的方案。','放开按钮，回到你的方案。','Let go to see your plan again.'),
+    'r3.hlDone':L('八年少塞 <em>{s}</em> 車·格 · {tier}','八年少塞 <em>{s}</em> 车·格 · {tier}','<em>{s}</em> less jam over eight years · {tier}'),
+    'r3.hlDoneSub':L('按住「看什麼都不做」比一比；「↺ 回到規劃」可以再改。','按住「看什么都不做」比一比；「↺ 回到规划」可以再改。','Hold «doing nothing» to compare; «↺ Back to planning» to change it.'),
+    'r3.holdAhead':L('👁 按住看八年後','👁 按住看八年后','👁 Hold: eight years on'),'r3.holdNothing':L('👁 按住看什麼都不做','👁 按住看什么都不做','👁 Hold: doing nothing'),
+    'r3.iEst':L('<b>{n}</b>　每天 {p} 人出門<br>開車 <b>{c}</b> · 地鐵 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道新線 {a} 成','<b>{n}</b>　每天 {p} 人出门<br>开车 <b>{c}</b> · 地铁 <b>{m}</b> · 走路 {w} · 留在附近 {nb}<br>知道新线 {a} 成',
+      '<b>{n}</b>　{p} go out a day<br><b>{c}</b> drive · <b>{m}</b> metro · {w} walk · {nb} stay nearby<br>{a}/10 know the new line'),
+    'r3.iTrip':L('去{d}：開車 {car} 格 · 地鐵 {m} 格','去{d}：开车 {car} 格 · 地铁 {m} 格','to {d}: car {car} · metro {m}'),
+    'r3.iDest':L('<b>{n}</b><br>每天來 <b>{g}</b> 人（今天 {b}）· 坐地鐵來 {m}','<b>{n}</b><br>每天来 <b>{g}</b> 人（今天 {b}）· 坐地铁来 {m}','<b>{n}</b><br><b>{g}</b> come a day (today {b}) · {m} by metro'),
+    'r3.iRoad':L('<b>{r}</b>：每天 {c} 輛 / 能過 {cap} · 每趟多 <b>{e}</b> 格（開車的人以為 {f}）','<b>{r}</b>：每天 {c} 辆 / 能过 {cap} · 每趟多 <b>{e}</b> 格（开车的人以为 {f}）',
+      '<b>{r}</b>: {c} cars / room for {cap} · +<b>{e}</b> a trip (drivers reckon {f})'),
+    'r3.iStation':L('<b>{l}</b> · {s} 站','<b>{l}</b> · {s} 站','<b>{l}</b> · {s}'),
+    'r3.legend':L('<span><i class="lk car"></i>開車（越塞越慢）</span><span><i class="lk dot"></i>坐地鐵</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圓環＝幾成開車／地鐵／走路</span><span><i class="lk road"></i>路：灰通、橙快滿、紅塞</span>',
+      '<span><i class="lk car"></i>开车（越塞越慢）</span><span><i class="lk dot"></i>坐地铁</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk ring"></i>屋苑圆环＝几成开车／地铁／走路</span><span><i class="lk road"></i>路：灰通、橙快满、红塞</span>',
+      '<span><i class="lk car"></i>cars (slower in jams)</span><span><i class="lk dot"></i>metro</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk ring"></i>estate ring = car / metro / foot</span><span><i class="lk road"></i>roads: grey free, orange filling, red jammed</span>')
+  });
+  // v7.10 · mode 4: buses
+  I18N.add({
+    'b4.mode':L('Mode 04 · 地面巴士','Mode 04 · 地面巴士','Mode 04 · Buses on the road'),
+    'b4.doc':L('TransitLab HK · 模式 4 · 地面巴士','TransitLab HK · 模式 4 · 地面巴士','TransitLab HK · Mode 4 · Buses on the road'),
+    'b4.levelTitle':L('九龍東 · 巴士補上最後一段','九龙东 · 巴士补上最后一段','Kowloon East · buses for the last gaps'),
+    'b4.scoreLbl':L('八年少塞','八年少塞','Jam taken off the roads, eight years'),'b4.scoreUnit':L('車·格','车·格','car-blocks'),
+    'b4.goal':L('每年比「沒有巴士」少塞多少，加起來 · <b>{pass}</b> 過關 · <b>{high}</b> 高分 · <b>{master}</b> 大師','每年比「没有巴士」少塞多少，加起来 · <b>{pass}</b> 过关 · <b>{high}</b> 高分 · <b>{master}</b> 大师',
+      'Each year\'s jam below «no buses», added up · <b>{pass}</b> pass · <b>{high}</b> high · <b>{master}</b> master'),
+    'b4.budgetLbl':L('每年預算','每年预算','Budget a year'),
+    'b4.money0':L('一輛巴士 {bc} · 一條專線 {lc}（每年）。開通以後每年都可以改，下一年生效。','一辆巴士 {bc} · 一条专线 {lc}（每年）。开通以后每年都可以改，下一年生效。','A bus {bc} · a bus lane {lc} (a year). After opening you may change it all every year; it counts from the next year.'),
+    'b4.route':L('{n} 線','{n} 线','Route {n}'),'b4.chip':L('{b} 輛 · 等 {w}','{b} 辆 · 等 {w}','{b} buses · wait {w}'),'b4.chipEmpty':L('未畫','未画','not drawn'),'b4.chipNoBus':L('沒有車','没有车','no buses'),
+    'b4.routeTxt':L('<b>{n} 線</b>：{b} 輛巴士 · 等車 {w} 格 · 每段每天最多 {c} 人','<b>{n} 线</b>：{b} 辆巴士 · 等车 {w} 格 · 每段每天最多 {c} 人','<b>Route {n}</b>: {b} buses · wait {w} · {c} a day a section'),
+    'b4.toolDraw':L('✏ 路線','✏ 路线','✏ Route'),'b4.toolStop':L('● 站','● 站','● Stops'),'b4.toolLane':L('▤ 專線','▤ 专线','▤ Bus lane'),'b4.clearRoute':L('清空這條','清空这条','Clear route'),
+    'b4.hintDraw1':L('沿著路畫巴士線：點路上的任何一格開始（或按住拖動），只能走在路上。','沿着路画巴士线：点路上的任何一格开始（或按住拖动），只能走在路上。','Draw a bus route along the roads: click any road cell to start (or press and drag); it stays on the roads.'),
+    'b4.hintDraw2':L('點線頭旁邊、路上的格子延長；點線頭縮短。畫好了切到「● 站」，再按「＋」加巴士。','点线头旁边、路上的格子延长；点线头缩短。画好了切到「● 站」，再按「＋」加巴士。','Click a road cell next to an end to extend; click an end to shorten. Then «● Stops», then «＋» for buses.'),
+    'b4.hintStop':L('點線上的格子放站（至少 2 個）。指著格子：地圖會變成放了以後、路也穩定的樣子。','点线上的格子放站（至少 2 个）。指着格子：地图会变成放了以后、路也稳定的样子。','Click a cell on the route to put a stop (2 at least). Hover first: the map turns into what it brings once the roads settle.'),
+    'b4.hintBus':L('按「＋」加巴士，這條線才會開。巴士越多，等得越短：等車 ＝ {h} ÷ 巴士數。','按「＋」加巴士，这条线才会开。巴士越多，等得越短：等车 ＝ {h} ÷ 巴士数。','Press «＋» to put buses on it. More buses, shorter waits: wait = {h} ÷ buses.'),
+    'b4.hintLane':L('點一條路，把它劃成巴士專線：巴士在這條路上不塞；可是車只剩 {p} 成的路，會更塞。指著路可以先看結果。','点一条路，把它划成巴士专线：巴士在这条路上不塞；可是车只剩 {p} 成的路，会更塞。指着路可以先看结果。',
+      'Click a road to give it a bus lane: buses there skip the jam, but cars keep only {p}/10 of the road and jam more. Hover a road to see first.'),
+    'b4.hintOpen':L('每一年都可以改線、加減車、開關專線，下一年生效。按「下一年 ▶」一年一年走，或者「自動播放」。','每一年都可以改线、加减车、开关专线，下一年生效。按「下一年 ▶」一年一年走，或者「自动播放」。',
+      'Every year you may change routes, buses and lanes; it counts from the next year. «Next year ▶» one at a time, or «Autoplay».'),
+    'b4.run0':L('開通 ▶','开通 ▶','Open ▶'),'b4.runN':L('第 {n} 年 ▶','第 {n} 年 ▶','Year {n} ▶'),'b4.auto':L('▶ 自動播放','▶ 自动播放','▶ Autoplay'),'b4.autoStop':L('⏸ 停','⏸ 停','⏸ Stop'),
+    'b4.holdAhead':L('👁 按住看穩定以後','👁 按住看稳定以后','👁 Hold: settled'),'b4.holdNothing':L('👁 按住看沒有巴士','👁 按住看没有巴士','👁 Hold: no buses'),
+    'b4.hlToday':L('今天：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em> 車·格，還沒有巴士','今天：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em> 车·格，还没有巴士','Today: <em>{c}</em> cars a day, jam <em>{j}</em>, no buses yet'),
+    'b4.hlTodaySub':L('最塞的是{r}（每趟多 {e} 格）。畫巴士線接走開車的人；指著站或路，地圖會變成改了以後的樣子。','最塞的是{r}（每趟多 {e} 格）。画巴士线接走开车的人；指着站或路，地图会变成改了以后的样子。',
+      'Worst: {r} (+{e} a trip). Draw bus routes to take drivers off; hover a stop or a road and the map turns into what the change brings.'),
+    'b4.hlStep':L('這一步 → 塞車 <em class="{jc}">{dj}</em> · 坐巴士 <em class="{bc}">{db}</em> 人 · 路上的車 <em class="{cc}">{dc}</em>','这一步 → 塞车 <em class="{jc}">{dj}</em> · 坐巴士 <em class="{bc}">{db}</em> 人 · 路上的车 <em class="{cc}">{dc}</em>',
+      'This step → jam <em class="{jc}">{dj}</em> · bus riders <em class="{bc}">{db}</em> · cars <em class="{cc}">{dc}</em>'),
+    'b4.hlStepSub':L('預覽：改了以後、開車的人也習慣了，和現在的方案比。','预览：改了以后、开车的人也习惯了，和现在的方案比。','Preview: after the change, once drivers have settled, against the plan as it is.'),
+    'b4.hlAhead':L('穩定以後 → 塞車比沒有巴士 <em class="{jc}">{dj}</em> · 每天坐巴士 <em>{b}</em> 人 · 路上的車 <em class="{cc}">{dc}</em>','稳定以后 → 塞车比没有巴士 <em class="{jc}">{dj}</em> · 每天坐巴士 <em>{b}</em> 人 · 路上的车 <em class="{cc}">{dc}</em>',
+      'Settled → jam vs no buses <em class="{jc}">{dj}</em> · <em>{b}</em> by bus a day · cars <em class="{cc}">{dc}</em>'),
+    'b4.hlFirst':L('開通第 1 年 → 塞車比沒有巴士 <em class="{jc}">{dj}</em> · 每天坐巴士 <em>{b}</em> 人 · 路上的車 <em class="{cc}">{dc}</em>','开通第 1 年 → 塞车比没有巴士 <em class="{jc}">{dj}</em> · 每天坐巴士 <em>{b}</em> 人 · 路上的车 <em class="{cc}">{dc}</em>',
+      'Year 1 → jam vs no buses <em class="{jc}">{dj}</em> · <em>{b}</em> by bus a day · cars <em class="{cc}">{dc}</em>'),
+    'b4.hlFirstSub':L('巴士一開大家就看得到；開車的人要幾年才習慣路況。按住「👁」看穩定以後。','巴士一开大家就看得到；开车的人要几年才习惯路况。按住「👁」看稳定以后。','Everyone sees a bus route at once; drivers take a few years to settle. Hold «👁» to see settled.'),
+    'b4.hlAheadSub':L('預覽：照現在的方案，開車的人也習慣了以後。','预览：照现在的方案，开车的人也习惯了以后。','Preview: the plan as it is, once drivers have settled.'),
+    'b4.hlYear':L('第 {y} 年 · 塞車比沒有巴士 <em class="{jc}">{dj}</em> · 每天坐巴士 <em>{b}</em> 人 · 路上的車 <em class="{cc}">{dc}</em>','第 {y} 年 · 塞车比没有巴士 <em class="{jc}">{dj}</em> · 每天坐巴士 <em>{b}</em> 人 · 路上的车 <em class="{cc}">{dc}</em>',
+      'Year {y} · jam vs no buses <em class="{jc}">{dj}</em> · <em>{b}</em> by bus · cars <em class="{cc}">{dc}</em>'),
+    'b4.hlYearSub':L('可以改線、加減車、開關專線，下一年生效。','可以改线、加减车、开关专线，下一年生效。','Change routes, buses or lanes now; it counts from next year.'),
+    'b4.hlNothing':L('沒有巴士：路上每天 <em>{c}</em> 輛車，塞車 <em>{j}</em>','没有巴士：路上每天 <em>{c}</em> 辆车，塞车 <em>{j}</em>','No buses: <em>{c}</em> cars a day, jam <em>{j}</em>'),
+    'b4.hlDone':L('八年少塞 <em>{s}</em> 車·格 · {tier}','八年少塞 <em>{s}</em> 车·格 · {tier}','<em>{s}</em> less jam over eight years · {tier}'),
+    'b4.hlDoneSub':L('按住「看沒有巴士」比一比；「↺ 回到規劃」重來。','按住「看没有巴士」比一比；「↺ 回到规划」重来。','Hold «no buses» to compare; «↺ Back to planning» to start again.'),
+    'b4.yNoteNone':L('柱＝每年每天的塞車（越矮越好），虛線＝沒有巴士。畫一條巴士線、放 2 個站、加車，這裡會預告下一年。','柱＝每年每天的塞车（越矮越好），虚线＝没有巴士。画一条巴士线、放 2 个站、加车，这里会预告下一年。',
+      'Bars = the jam each year (lower is better); dashed = no buses. Draw a route, 2 stops, buses: this shows next year.'),
+    'b4.yNote':L('下一年塞車約 <b>{j}</b>（沒有巴士 {n}）。','下一年塞车约 <b>{j}</b>（没有巴士 {n}）。','Next year: a jam of about <b>{j}</b> (no buses {n}).'),
+    'b4.yNothing':L('沒有巴士 {n}','没有巴士 {n}','no buses {n}'),
+    'b4.routesH':L('Bus routes · 巴士路線','Bus routes · 巴士路线','Bus routes'),
+    'b4.busRow':L('<b>{n} 線</b>{b} 輛 · 等 {w} 格<small>每天坐 {r} 人 · 最擠一段 {l} / {c}{crowd}</small>','<b>{n} 线</b>{b} 辆 · 等 {w} 格<small>每天坐 {r} 人 · 最挤一段 {l} / {c}{crowd}</small>','<b>Route {n}</b>{b} buses · wait {w}<small>{r} ride a day · busiest section {l} / {c}{crowd}</small>'),
+    'b4.busCrowd':L(' · 擠','  · 挤',' · crowded'),'b4.busNone':L('還沒有巴士線。左邊選一條（A / B / C），沿著路畫。','还没有巴士线。左边选一条（A / B / C），沿着路画。','No routes yet. Pick one on the left (A / B / C) and draw it along the roads.'),
+    'b4.busNote':L('一輛巴士在路上算 {pcu} 輛車（在專線上不算）。','一辆巴士在路上算 {pcu} 辆车（在专线上不算）。','A bus counts as {pcu} cars on the road (not on a bus lane).'),
+    'b4.lane':L('專線','专线','lane'),
+    'b4.iLane':L('（巴士專線：車只剩 {p} 成路，巴士不塞）','（巴士专线：车只剩 {p} 成路，巴士不塞）','(bus lane: cars keep {p}/10 of it, buses skip the jam)'),
+    'b4.iStop':L('<b>{n} 線</b>的站 · 等車 {w} 格','<b>{n} 线</b>的站 · 等车 {w} 格','a stop on <b>route {n}</b> · wait {w}'),
+    'b4.pvStop':L('放站','放站','stop'),'b4.pvUnstop':L('拆站','拆站','remove'),'b4.pvLane':L('劃專線 −{c}','划专线 −{c}','bus lane −{c}'),'b4.pvUnlane':L('取消專線 +{c}','取消专线 +{c}','no lane +{c}'),
+    'b4.pvRoad':L('只能畫在路上','只能画在路上','roads only'),
+    'b4.legend':L('<span><i class="lk car"></i>開車</span><span><i class="lk bus"></i>巴士（一條線一種顏色）</span><span><i class="lk dot"></i>坐公共交通</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk lane"></i>巴士專線</span><span><i class="lk road"></i>路：灰通、橙快滿、紅塞</span>',
+      '<span><i class="lk car"></i>开车</span><span><i class="lk bus"></i>巴士（一条线一种颜色）</span><span><i class="lk dot"></i>坐公共交通</span><span><i class="lk walkdot"></i>走路</span><span><i class="lk lane"></i>巴士专线</span><span><i class="lk road"></i>路：灰通、橙快满、红塞</span>',
+      '<span><i class="lk car"></i>cars</span><span><i class="lk bus"></i>buses (a colour a route)</span><span><i class="lk dot"></i>public transport</span><span><i class="lk walkdot"></i>on foot</span><span><i class="lk lane"></i>bus lane</span><span><i class="lk road"></i>roads: grey free, orange filling, red jammed</span>'),
+    'b4.r0':L('<b>巴士線</b>：沿路畫、在線上放站、加巴士。每年預算 {b}：一輛巴士 {bc}、一條專線 {lc}。最多 {mr} 條線。','<b>巴士线</b>：沿路画、在线上放站、加巴士。每年预算 {b}：一辆巴士 {bc}、一条专线 {lc}。最多 {mr} 条线。',
+      '<b>Bus routes</b>: drawn along the roads, stops on them, buses on them. Budget {b} a year: {bc} a bus, {lc} a bus lane. Up to {mr} routes.'),
+    'b4.r1':L('<b>坐巴士</b>＝走到站 ＋ 等車（{h} ÷ 巴士數）＋ 每段路（1 ＋ 塞車）＋ 每停一站 1 ＋ 走路。巴士不用泊車；可以和地鐵換乘。','<b>坐巴士</b>＝走到站 ＋ 等车（{h} ÷ 巴士数）＋ 每段路（1 ＋ 塞车）＋ 每停一站 1 ＋ 走路。巴士不用泊车；可以和地铁换乘。',
+      '<b>A bus trip</b> = walk + wait ({h} ÷ buses) + each road section (1 + the jam) + 1 a stop + walk. No parking; change to and from the metro.'),
+    'b4.r2':L('<b>巴士專線</b>：巴士在這條路上不塞；可是車只剩 {p} 成的路，會更塞。','<b>巴士专线</b>：巴士在这条路上不塞；可是车只剩 {p} 成的路，会更塞。','<b>Bus lane</b>: buses there skip the jam, but cars keep only {p}/10 of the road and jam more.'),
+    'b4.r3':L('<b>和第三關一樣</b>：比開車或走路省幾格，就有幾成坐公共交通；每段路多（車 ÷ 容量）²；開車的人每年往真的塞車改 {lp}。','<b>和第三关一样</b>：比开车或走路省几格，就有几成坐公共交通；每段路多（车 ÷ 容量）²；开车的人每年往真的塞车改 {lp}。',
+      '<b>As in mode 3</b>: every block saved on car or foot, one in ten by public transport; each section adds (cars ÷ capacity)²; drivers move {lp} of the way to the real jam each year.'),
+    'b4.r4':L('<b>每年都可以改</b>：巴士便宜又靈活，改線、加減車、開關專線，下一年生效；一開大家就看得到（不用口耳相傳）。','<b>每年都可以改</b>：巴士便宜又灵活，改线、加减车、开关专线，下一年生效；一开大家就看得到（不用口耳相传）。',
+      '<b>Change it every year</b>: buses are cheap and flexible — routes, buses, lanes; it counts from the next year, and everyone sees a route at once (no word of mouth).'),
+    'b4.r5':L('<b>分數</b>：每年「沒有巴士」的塞車 − 你的塞車，八年加起來。','<b>分数</b>：每年「没有巴士」的塞车 − 你的塞车，八年加起来。','<b>Score</b>: each year\'s «no buses» jam minus yours, added up.'),
+    'b4.infoH':L('地面巴士的規則','地面巴士的规则','The rules of buses on the road'),
+    'b4.info':L('<ol class="rules"><li><b>地圖。</b>第三關的九龍東，幾年以後：你在第三關建的東九龍綫已經通車；啟德、安達臣道住滿（人多了約一半）；商貿區泊車更貴（觀塘 {e0}、九龍灣 {e1} 格）。山上的屋苑和啟德還是靠路。</li><li><b>巴士線。</b>沿著路畫（只能走在路上），在線上放站，加巴士才會開。每年預算 {b}：一輛巴士 {bc}、一條專線 {lc}。最多 {mr} 條線。</li><li><b>坐巴士要幾格。</b>走到站（每格 {wp}）＋ 等車（{h} ÷ 這條線的巴士數）＋ 每段路 1 ＋ 那段的塞車（大家以為的）＋ 每停一站 1 ＋ 從站走過去。巴士站在地鐵站上或旁邊一格就能換乘（走過去 ＋ 再等一次車）。</li><li><b>巴士也佔路。</b>一輛巴士在路上算 {pcu} 輛車。每條線每段每天最多載「巴士數 × {pb}」人，太擠大家會慢慢覺得（最多多算 {cb} 格）。</li><li><b>巴士專線。</b>巴士在這條路上不塞，也不佔車的路；可是車只剩 {p} 成的路，同樣的車會更塞。要不要劃、劃哪條，就是這一關的取捨。</li><li><b>和第三關一樣。</b>去哪裡＝吸引力 − 格數（對「附近」{nb}）；比開車或走路省幾格，就有幾成坐公共交通；順路再去；每段路多（車 ÷ 容量）²；開車的人每年往真的塞車改 {lp}。</li><li><b>每年都可以改。</b>開通以後，每一年都可以改線、加減車、開關專線，下一年生效。巴士一開大家就看得到，不用口耳相傳。</li><li><b>分數。</b>{y} 年裡，每年「沒有巴士」的塞車減去你的塞車，加起來。</li></ol>',
+      '<ol class="rules"><li><b>地图。</b>第三关的九龙东，几年以后：你在第三关建的东九龙线已经通车；启德、安达臣道住满（人多了约一半）；商贸区泊车更贵（观塘 {e0}、九龙湾 {e1} 格）。山上的屋苑和启德还是靠路。</li><li><b>巴士线。</b>沿着路画（只能走在路上），在线上放站，加巴士才会开。每年预算 {b}：一辆巴士 {bc}、一条专线 {lc}。最多 {mr} 条线。</li><li><b>坐巴士要几格。</b>走到站（每格 {wp}）＋ 等车（{h} ÷ 这条线的巴士数）＋ 每段路 1 ＋ 那段的塞车（大家以为的）＋ 每停一站 1 ＋ 从站走过去。巴士站在地铁站上或旁边一格就能换乘（走过去 ＋ 再等一次车）。</li><li><b>巴士也占路。</b>一辆巴士在路上算 {pcu} 辆车。每条线每段每天最多载「巴士数 × {pb}」人，太挤大家会慢慢觉得（最多多算 {cb} 格）。</li><li><b>巴士专线。</b>巴士在这条路上不塞，也不占车的路；可是车只剩 {p} 成的路，同样的车会更塞。要不要划、划哪条，就是这一关的取舍。</li><li><b>和第三关一样。</b>去哪里＝吸引力 − 格数（对「附近」{nb}）；比开车或走路省几格，就有几成坐公共交通；顺路再去；每段路多（车 ÷ 容量）²；开车的人每年往真的塞车改 {lp}。</li><li><b>每年都可以改。</b>开通以后，每一年都可以改线、加减车、开关专线，下一年生效。巴士一开大家就看得到，不用口耳相传。</li><li><b>分数。</b>{y} 年里，每年「没有巴士」的塞车减去你的塞车，加起来。</li></ol>',
+      '<ol class="rules"><li><b>The map.</b> Mode 3\'s Kowloon East, a few years on: the 東九龍綫 you built is running; 啟德 and 安達臣道 are full (about half again as many people); parking in the business areas costs more (觀塘 {e0}, 九龍灣 {e1}). The hill estates and 啟德 still depend on the roads.</li><li><b>Bus routes.</b> Drawn along the roads, stops on them; they run once they have buses. Budget {b} a year: {bc} a bus, {lc} a bus lane. Up to {mr} routes.</li><li><b>A bus trip in blocks.</b> Walk to a stop ({wp} a cell) + wait ({h} ÷ the route\'s buses) + 1 a road section + its jam (as people reckon it) + 1 a stop + walk. A stop on or next to a metro station lets people change (walk + wait again).</li><li><b>Buses take road too.</b> A bus counts as {pcu} cars. A route carries buses × {pb} a section a day; crowding is learnt slowly (up to {cb} blocks).</li><li><b>Bus lanes.</b> Buses skip the jam there and take no car room; but cars keep only {p}/10 of the road and the same cars jam more. Whether and where — that is this mode\'s trade-off.</li><li><b>As in mode 3.</b> Where to go = attraction − blocks (against «nearby» {nb}); every block saved on car or foot, one in ten by public transport; going on; each section adds (cars ÷ capacity)²; drivers move {lp} of the way each year.</li><li><b>Change it every year.</b> After opening, routes, buses and lanes may change every year, counting from the next. Everyone sees a route at once — no word of mouth.</li><li><b>Score.</b> Over {y} years, each year\'s «no buses» jam minus yours, added up.</li></ol>'),
+    'iv.m4.new':L('<b>地面巴士</b>：便宜又靈活，每年都可以改——可是它走在路上，路塞它也塞。巴士專線讓它不塞，可是車會更塞。','<b>地面巴士</b>：便宜又灵活，每年都可以改——可是它走在路上，路塞它也塞。巴士专线让它不塞，可是车会更塞。',
+      '<b>Buses</b>: cheap and flexible, changeable every year — but they run on the road and jam with it. A bus lane frees them, and jams the cars more.'),
+    'iv.m4.body':L('<li>還是九龍東，幾年以後：你在第三關建的<b>東九龍綫</b>已經通車，可是啟德、安達臣道住滿了，山上的屋苑還是靠路。</li><li>沿路畫巴士線（最多 {mr} 條）、放站、加巴士。巴士不用泊車；站放在地鐵站旁邊，就能接駁地鐵（第一關學過的）。</li><li>巴士走在路上，路塞它也塞。<b>巴士專線</b>讓它不塞，可是車只剩 {p} 成路。</li><li>每年預算 {b}，<b>每一年都可以改</b>，下一年生效——和地鐵「一次建好」剛好相反。</li><li>指著站或路，地圖會變成改了以後的樣子；按住「👁」看穩定以後或沒有巴士。</li>',
+      '<li>还是九龙东，几年以后：你在第三关建的<b>东九龙线</b>已经通车，可是启德、安达臣道住满了，山上的屋苑还是靠路。</li><li>沿路画巴士线（最多 {mr} 条）、放站、加巴士。巴士不用泊车；站放在地铁站旁边，就能接驳地铁（第一关学过的）。</li><li>巴士走在路上，路塞它也塞。<b>巴士专线</b>让它不塞，可是车只剩 {p} 成路。</li><li>每年预算 {b}，<b>每一年都可以改</b>，下一年生效——和地铁「一次建好」刚好相反。</li><li>指着站或路，地图会变成改了以后的样子；按住「👁」看稳定以后或没有巴士。</li>',
+      '<li>Kowloon East again, a few years on: the <b>東九龍綫</b> you built in mode 3 is running, but 啟德 and 安達臣道 are full and the hill estates still depend on the roads.</li><li>Draw bus routes along the roads (up to {mr}), stops, buses. Buses need no parking; a stop next to a station feeds the metro (as in mode 1).</li><li>Buses run on the road and jam with it. A <b>bus lane</b> frees them, but cars keep only {p}/10 of the road.</li><li>Budget {b} a year, and <b>you can change it every year</b> — the opposite of a metro built once.</li><li>Hover a stop or a road and the map shows what the change brings; hold «👁» for settled, or for no buses.</li>'),
+    'iv.m4.course':L('課程連結：巴士服務設計（路線、站距、班次與候車）、巴士專線的取捨（道路空間再分配）、接駁與幹線、短期運營調整和長期基建的分別。','课程链接：巴士服务设计（路线、站距、班次与候车）、巴士专线的取舍（道路空间再分配）、接驳与干线、短期运营调整和长期基建的分别。',
+      'Course link: bus service design (routes, stop spacing, frequency and waiting), bus lanes (reallocating road space), feeders and trunks, operations you adjust yearly against infrastructure built once.'),
+    'b4.ivGo':L('開始畫巴士線 →','开始画巴士线 →','Start drawing →'),
+    'b4.rScore':L('{y} 年一共少塞 {d} 車·格','{y} 年一共少塞 {d} 车·格','{d} car-blocks of jam taken off over {y} years'),
+    'b4.ryBus':L('坐巴士','坐巴士','By bus'),'b4.ryKit':L('巴士 / 專線','巴士 / 专线','Buses / lanes'),
+    'b4.tipLane':L('{r}的專線：巴士快了，可是車只剩 {p} 成路。看「路有多塞」：如果這條路變紅、坐巴士的人又不多，專線就不划算。','{r}的专线：巴士快了，可是车只剩 {p} 成路。看「路有多塞」：如果这条路变红、坐巴士的人又不多，专线就不划算。',
+      'The lane on {r}: buses gained, but cars kept only {p}/10 of it. If the road turned red and few rode the buses, it did not pay.'),
+    'b4.tipChange':L('你在第 {y} 年改過方案：巴士隨時可以改，這是它比地鐵靈活的地方。','你在第 {y} 年改过方案：巴士随时可以改，这是它比地铁灵活的地方。','You changed the plan in year {y}: buses can change any time — their edge over the metro.')
+  });
+  if(typeof document!=='undefined')I18N.apply();
+})();
+
+</script><script>
+(()=>{
+  'use strict';
+  // v7 · mode 4 «buses on the road» — the page. Mode 3's living map of Kowloon East with the 東九龍綫 running; the player
+  // draws up to three bus routes along the roads, puts stops and buses on them and gives roads bus lanes, within a
+  // budget a year — and may change all of it every year. Hover a stop, a road (lane tool) or ＋/− and the map turns into
+  // what the change brings once drivers settle; hold the eye button to see the plan settled, or (once open) no buses.
+  const {Plan,D,P,G,year,walk,same,key,sectionBetween,laned}=Bus,$=id=>document.getElementById(id),I=window.I18N,t=(k,v)=>I.t(k,v);
+  const CS=56,MX=56,MY=96,STEP_MS=2600,DAY_S=7,PER_DOT=1,MAX_DOTS=640;
+  const RC=['#2F6FD6','#E07B00','#C2185B'],RL=['A','B','C'];
+  const xy=c=>[MX+c[0]*CS,MY+c[1]*CS];
+  const svg=(tag,a,c='')=>`<${tag} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}>${c}</${tag}>`;
+  let C={};
+  function readTokens(){const s=getComputedStyle(document.documentElement),v=n=>s.getPropertyValue('--s-'+n).trim();
+    C={paper:v('paper'),panel:v('panel'),soft:v('soft'),raise:v('raise'),ink:v('ink'),ink2:v('ink2'),ink3:v('ink3'),line:v('line'),line2:v('line2'),accent:v('accent'),accent2:v('accent2'),
+      warn:v('warn'),bad:v('bad'),info:v('info'),metro:v('metro'),jam:v('jam'),free:v('free'),walk:v('walk')};}
+  readTokens();
+  const text=(x,y,s,size=14,fill=C.ink,extra={})=>svg('text',{x,y,'font-size':size,fill,stroke:C.paper,'stroke-width':4,'paint-order':'stroke',...extra},s);
+  const textW=(s,size)=>[...String(s)].reduce((w,ch)=>w+(ch.charCodeAt(0)>0x2e7f?size:ch===' '?size*.32:size*.6),0);
+  const pill=(x,y,s,color,size=13)=>{const w=textW(s,size)+18,x0=x-w/2;
+    return svg('rect',{x:x0.toFixed(1),y:(y-size+1).toFixed(1),width:w.toFixed(1),height:size+9,rx:(size+9)/2,fill:C.panel,stroke:color,'stroke-width':1.3,'fill-opacity':.97})+
+      svg('text',{x:(x0+w/2).toFixed(1),y:(y+3).toFixed(1),'font-size':size,fill:color,'text-anchor':'middle','font-weight':600},s);};
+  function sprite(rows,x0,y0,u,pal){let out='';rows.forEach((row,j)=>{for(let i=0;i<row.length;){const ch=row[i];if(ch==='.'||!pal[ch]){i++;continue;}let k=i;while(k+1<row.length&&row[k+1]===ch)k++;
+    out+=`<rect x="${(x0+i*u).toFixed(1)}" y="${(y0+j*u).toFixed(1)}" width="${((k-i+1)*u).toFixed(1)}" height="${u}" fill="${pal[ch]}"/>`;i=k+1;}});return `<g shape-rendering="crispEdges">${out}</g>`;}
+  const ESTATE=["....kkkkk...","....kwklk...","....kkkkk...","....kwkwk.kk","kkk.kkkkk.kl","klk.kwkwk.kk","kkk.kkkkk.kw","kwk.klkwk.kk","kkk.kkkkk.kw","kwk.kwkwk.kk","kkk.kkkkk.kl","gggggggggggg"];
+  const TOWN=["......kkkk......","....kkaaaakk....","..kkaaaaaaaakk..","kkaaaaaaaaaaaakk","kaaaaaaaaaaaaaak","rprprprprprprprp","prprprprprprprpr",".kkkkkkkkkkkkkk.",".kllkkkddkkkllk.",".kllkkkddkkkllk.",".kkkkkkddkkkkkk.","gggggggggggggggg"];
+  const OFFICE=[".....kkkk.....",".....kwwk.....","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkwwkwwk..","..kkkkkkkkkk..","..kwwkddkwwk..","..kkkkddkkkk..","gggggggggggggg"];
+  const DEST={town:TOWN,jobs:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info})[k];
+  const nm=o=>I.lang==='zh-Hans'?(o.hans||o.name):(o.name);
+  const nameO=i=>nm(D.origins[i]),nameD=k=>nm(D.destinations[k]),shortD=k=>{const d=D.destinations[k];return I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name);};
+  const shortO=i=>{const o=D.origins[i];return I.lang==='zh-Hans'?(o.shortHans||o.hans):(o.short||o.name);};
+  const roadName=r=>{const d=D.roads.find(x=>x.name===r);return d?nm(d):r;},lineLabel=n=>n.startsWith('bus')?RL[+n.slice(3)]:(()=>{const l=G.lines.find(x=>x.name===n);return l?(I.lang==='zh-Hans'?(l.hans||l.name):l.name):n;})();
+  const R=Math.round,f1=v=>(Math.round(v*10)/10).toFixed(1),tenth=a=>R(a*10);
+  const pct=(a,b)=>{const v=b?R(100*(a-b)/b):0;return{txt:(v>0?'+':v<0?'−':'±')+Math.abs(v)+'%',cls:v<0?'good':v>0?'bad':''};};
+  const sgn=(v,goodUp)=>{const r=R(v);return{txt:(r>0?'+':r<0?'−':'±')+Math.abs(r),cls:r===0?'':(r>0)===goodUp?'good':'bad'};};
+  const jamCol=e=>e<.25?C.ink3:e<1?'#E3A008':C.jam;
+  const OFF=7,rxy=(s,c,side=1)=>{const [x,y]=xy(c),h=s.a[1]===s.b[1];return h?[x,y+side*OFF]:[x+side*OFF,y];};
+  const bxy=(a,b,c)=>{const [x,y]=xy(c),h=a[1]===b[1];return h?[x,y-OFF]:[x-OFF,y];};   // bus routes run on the other side of the road
+  let plan=new Plan(),tool='draw',cur=0,hover=null,hoverBtn=null,sel=-1,drag=false,history=[],playing=false,timer=0,hold=false,lastY=null,flash=0,changedIn=[];
+  const VBW=MX*2+(D.cols-1)*CS+80,VBH=MY+56+(D.rows-1)*CS;
+  const cfg=p=>JSON.stringify([p.routes,p.lanes]);
+  function snapshot(){history.push(cfg(plan));if(history.length>200)history.shift();}
+  function restore(s){const [routes,lanes]=JSON.parse(s);plan.routes=routes;plan.lanes=lanes;}
+  const memo=new Map();function cached(k,f){if(!memo.has(k)){if(memo.size>80)memo.clear();memo.set(k,f());}return memo.get(k);}
+  const stamp=()=>cfg(plan)+plan.year+JSON.stringify(plan.perceived.map(v=>Math.round(v*1e4)));
+  function now(){return cached('now'+stamp(),()=>plan.now());}
+  const settled=p=>cached('pot'+cfg(p)+p.year+JSON.stringify(p.perceived.map(v=>Math.round(v*1e4))),()=>p.potential());
+  // the road a lane click at this cell means: one a route uses, else the first through it
+  function laneRoadAt(c){const here=G.sections.filter(s=>same(s.a,c)||same(s.b,c));if(!here.length)return null;
+    const used=here.flatMap(s=>s.roads).find(r=>plan.routes.some(R=>R.cells.some((x,i)=>i&&sectionBetween(R.cells[i-1],x)?.roads.includes(r))));return used||here[0].roads[0];}
+  // a change the cursor points at: its plan, or null
+  function intent(){
+    if(plan.done||playing)return null;
+    const q=()=>plan.clone();
+    if(hoverBtn==='plus'&&plan.canBus(cur)){const p=q();p.addBus(cur);return{p,what:'bus'};}
+    if(hoverBtn==='minus'&&plan.routes[cur].buses>0){const p=q();p.removeBus(cur);return{p,what:'bus'};}
+    if(!hover)return null;
+    if(tool==='stop'&&plan.onRoute(cur,hover)){const p=q();p.toggleStop(cur,hover);return{p,what:'stop',cell:hover};}
+    if(tool==='lane'){const r=laneRoadAt(hover);if(r&&(plan.hasLane(r)||plan.money>=P.laneCost)){const p=q();p.toggleLane(r);return{p,what:'lane',road:r};}}
+    return null;}
+  function view(){
+    if(hold&&plan.open)return{mode:'nothing',y:G.base,p:null};
+    const it=intent();if(it&&(it.p.running||plan.running))return{mode:'step',y:settled(it.p),base:settled(plan),p:it.p,it};
+    if(hold&&!plan.open&&plan.running)return{mode:'ahead',y:settled(plan),p:plan};
+    if(!plan.open)return{mode:plan.running?'first':'today',y:now(),p:plan};
+    return{mode:'year',y:lastY||now(),p:plan};
+  }
+  const rowsOf=y=>[...y.est.flatMap(e=>e.to.map(x=>({from:D.origins[e.i].cell,to:D.destinations[x.k].cell,x,who:shortO(e.i),e}))),
+    ...(y.chain||[]).map(q=>({from:D.destinations[q.a].cell,to:D.destinations[q.b].cell,x:q,who:shortD(q.a),chain:true}))];
+  function roadStats(y,p){const lanes=p?p.lanes:[];return D.roads.map(r=>{const ids=G.sections.filter(s=>s.roads.includes(r.name)).map(s=>s.id);
+    const worst=ids.reduce((b,id)=>y.extra[id]>y.extra[b]?id:b,ids[0]);
+    return{name:r.name,ids,worst,extra:y.extra[worst],felt:Math.max(...ids.map(id=>plan.perceived[id])),base:Math.max(...ids.map(id=>G.base.extra[id])),lane:lanes.includes(r.name)};});}
+
+  /* -------------------------------------------------------------- the moving people and buses */
+  const V={walk:34,car:95,bus:80,rail:190};
+  const corner=(a,b)=>[...(a[0]===b[0]||a[1]===b[1]?[]:[xy([b[0],a[1]])]),xy(b)];
+  function leg(pts,sp,a,b,v){for(const q of corner(a,b)){pts.push(q);sp.push(v);}}
+  function carPath(route,from,to,y){
+    const pts=[xy(from)],sp=[];
+    if(route&&route.sections.length){const secs=route.sections.map(id=>G.sections[id]);
+      let c0=secs.length>1?(same(secs[0].a,secs[1].a)||same(secs[0].a,secs[1].b)?secs[0].b:secs[0].a):(walk(secs[0].a,from)<=walk(secs[0].b,from)?secs[0].a:secs[0].b);
+      pts.push(rxy(secs[0],c0));sp.push(V.car);
+      for(const s of secs){const nx=same(s.a,c0)?s.b:s.a;pts.push(rxy(s,nx));sp.push(V.car/(1+(y.extra[s.id]||0)));c0=nx;}}
+    pts.push(xy(to));sp.push(V.car);return{pts,sp};}
+  const busSpeed=(a,b,y,p)=>{const s=sectionBetween(a,b);return s&&!laned(s,p.lanes)?V.bus/(1+(y.extra[s.id]||0)):V.bus;};
+  function transitPath(trip,from,to,y,p){
+    const pts=[xy(from)],sp=[];let at=from;
+    trip.legs.forEach((l,j)=>{const name=trip.lines[j],bus=name.startsWith('bus'),cells=bus?p.routes[+name.slice(3)].cells:(G.lines.find(x=>x.name===name)||{cells:[]}).cells,step=l.to>=l.from?1:-1;
+      leg(pts,sp,at,cells[l.from],V.walk);
+      for(let i=l.from+step;step>0?i<=l.to:i>=l.to;i+=step){const a=cells[i-step],b=cells[i];if(bus){pts.push(bxy(a,b,b));sp.push(busSpeed(a,b,y,p));}else{pts.push(xy(b));sp.push(V.rail);}}
+      at=cells[l.to];});
+    leg(pts,sp,at,to,V.walk);return{pts,sp};}
+  function walkPath(from,to){const pts=[xy(from)],sp=[];leg(pts,sp,from,to,V.walk);return{pts,sp};}
+  function timed(p){const cum=[0];for(let i=1;i<p.pts.length;i++){const [a,b]=[p.pts[i-1],p.pts[i]];cum.push(cum[i-1]+Math.hypot(b[0]-a[0],b[1]-a[1])/p.sp[i-1]);}return{...p,cum,T:cum.at(-1)};}
+  const flowMemo=new WeakMap();
+  function flowsOf(y,p){if(flowMemo.has(y))return flowMemo.get(y);const out=[];
+    const add=(id,kind,n,mk)=>{if(n>.3)out.push({id,kind,n,mk});};
+    const one=(id,x,from,to)=>{add(id+'c','car',x.drivers,()=>carPath(x.route,from,to,y));
+      if(x.trip)add(id+'t','metro',x.metro,()=>transitPath(x.trip,from,to,y,p||plan));
+      add(id+'w','walk',x.walkers,()=>walkPath(from,to));};
+    y.est.forEach(e=>e.to.forEach(x=>one(`e${e.i}k${x.k}`,x,D.origins[e.i].cell,D.destinations[x.k].cell)));
+    (y.chain||[]).forEach(q=>one(`d${q.a}${q.b}`,q,D.destinations[q.a].cell,D.destinations[q.b].cell));
+    flowMemo.set(y,out);return out;}
+  let dots=[],acc={},lastT=0;
+  function stepDots(tm,v){
+    const dt=Math.min(.12,Math.max(0,(tm-lastT)/1000));lastT=tm;
+    for(const f of flowsOf(v.y,v.p)){acc[f.id]=(acc[f.id]??Math.random())+f.n/PER_DOT/DAY_S*dt;
+      while(acc[f.id]>=1&&dots.length<MAX_DOTS){acc[f.id]-=1;if(!f.path)f.path=timed(f.mk());dots.push({p:f.path,kind:f.kind,t:0});}
+      if(acc[f.id]>=1)acc[f.id]=0;}
+    let s='';dots=dots.filter(d=>{d.t+=dt;if(d.t>=d.p.T)return false;const c=d.p.cum;let i=1;while(i<c.length-1&&c[i]<d.t)i++;
+      const a=d.p.pts[i-1],b=d.p.pts[i],f=(d.t-c[i-1])/Math.max(1e-6,c[i]-c[i-1]),x=a[0]+(b[0]-a[0])*f,yy=a[1]+(b[1]-a[1])*f;
+      if(d.kind==='car')s+=`<rect x="${(x-3.5).toFixed(1)}" y="${(yy-2.5).toFixed(1)}" width="7" height="5" rx="1.5" fill="${C.ink}" opacity=".7"/>`;
+      else if(d.kind==='metro')s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="3" fill="${C.metro}"/>`;
+      else s+=`<circle cx="${x.toFixed(1)}" cy="${yy.toFixed(1)}" r="2.6" fill="${C.walk}"/>`;
+      return true;});
+    return s;}
+
+  /* -------------------------------------------------------------- the board */
+  function drawBase(v){
+    const y=v.y,p=v.p||{routes:[],lanes:[]},placing=!plan.done;
+    let ground='',roads='',rails='',buses='',things='',labels='';
+    const water=new Set((D.water||[]).map(key));
+    for(let x=0;x<D.cols;x++)for(let yy=0;yy<D.rows;yy++){const [cx,cy]=xy([x,yy]),wet=water.has(key([x,yy])),road=G.roadNodes.has(key([x,yy]));
+      const can=placing&&tool==='draw'&&plan.routes[cur].cells.length&&plan.canExtend(cur,[x,yy]);
+      ground+=svg('rect',{x:cx-CS/2+2,y:cy-CS/2+2,width:CS-4,height:CS-4,rx:4,fill:can?RC[cur]:wet?C.info:C.soft,'fill-opacity':can?.14:wet?.10:road&&tool==='draw'&&placing?.7:.45,stroke:can?RC[cur]:wet?'none':C.line,'stroke-opacity':can?.6:.7,'stroke-dasharray':can?'4 3':''});}
+    G.sections.forEach(s=>{const [x1,y1]=rxy(s,s.a),[x2,y2]=rxy(s,s.b),e=y.extra[s.id],w=5+Math.min(7,s.cap/10),ln=laned(s,p.lanes);
+      roads+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:jamCol(e),'stroke-width':w.toFixed(1),'stroke-opacity':e<.25?.3:.55,'stroke-linecap':'round'});
+      if(ln){const [a1,b1]=bxy(s.a,s.b,s.a),[a2,b2]=bxy(s.a,s.b,s.b);roads+=svg('path',{d:`M${a1} ${b1}L${a2} ${b2}`,stroke:C.bad,'stroke-width':3,'stroke-dasharray':'5 4','stroke-opacity':.8});}});
+    G.lines.forEach(l=>{rails+=svg('path',{d:'M'+l.cells.map(c=>xy(c).join(' ')).join('L'),fill:'none',stroke:l.color,'stroke-width':l.mine?7:5,'stroke-linejoin':'round','stroke-linecap':'round','stroke-opacity':.75});
+      l.stations.forEach(s=>{const [x,yy]=xy(s);rails+=svg('circle',{cx:x,cy:yy,r:5.5,fill:C.panel,stroke:l.color,'stroke-width':2.5});});});
+    // bus routes: their colour, the side of the road opposite the cars; stops as squares
+    p.routes.forEach((Rt,r)=>{if(!Rt.cells.length)return;const on=r===cur&&!plan.done,run=Rt.stops.length>=2&&Rt.buses>0;
+      if(Rt.cells.length>1){const pts=Rt.cells.map((c,i)=>{const a=Rt.cells[Math.max(0,i-1)],b=Rt.cells[Math.min(Rt.cells.length-1,i+1)];return bxy(a,b,c);});
+        buses+=svg('path',{d:'M'+pts.map(q=>q.map(z=>z.toFixed(1)).join(' ')).join('L'),fill:'none',stroke:RC[r],'stroke-width':on?5:3.5,'stroke-opacity':run?.9:.45,'stroke-dasharray':run?'':'6 4','stroke-linejoin':'round'});}
+      else{const [x,yy]=xy(Rt.cells[0]);buses+=svg('circle',{cx:x,cy:yy,r:5,fill:RC[r]});}
+      Rt.stops.forEach(s=>{const i=Rt.cells.findIndex(c=>same(c,s)),a=Rt.cells[Math.max(0,i-1)],b=Rt.cells[Math.min(Rt.cells.length-1,i+1)],[x,yy]=bxy(a,b,s);
+        things+=svg('rect',{x:(x-6).toFixed(1),y:(yy-6).toFixed(1),width:12,height:12,rx:2.5,fill:C.panel,stroke:RC[r],'stroke-width':3});});
+      if(placing&&tool==='draw'&&on)for(const e of [Rt.cells[0],Rt.cells.at(-1)]){const [x,yy]=xy(e);things+=svg('circle',{cx:x,cy:yy,r:8,fill:'none',stroke:RC[r],'stroke-width':2.5,'stroke-dasharray':'3 2'});}});
+    y.est.forEach(e=>{const o=D.origins[e.i],[cx,cy]=xy(o.cell);
+      const parts=[[e.drivers,C.ink3],[e.metro,C.metro],[e.walkers,C.walk]],all=parts.reduce((s,q)=>s+q[0],0)||1,r=21,L=2*Math.PI*r;let off=0;
+      labels+=svg('circle',{cx,cy:cy-4,r,fill:C.panel,'fill-opacity':.85,stroke:C.raise,'stroke-width':5});
+      for(const [n,c] of parts){const len=L*n/all;if(len>.5)labels+=svg('circle',{cx,cy:cy-4,r,fill:'none',stroke:c,'stroke-width':5,'stroke-dasharray':`${len.toFixed(1)} ${L.toFixed(1)}`,'stroke-dashoffset':(-off).toFixed(1),transform:`rotate(-90 ${cx} ${cy-4})`});off+=len;}
+      labels+=sprite(ESTATE,cx-13,cy-19,2.2,{k:C.ink,w:C.paper,l:C.warn,g:C.ink2});
+      const side=o.house[0]!==0,up=o.house[1]<0,lx=side?cx+(o.house[0]>0?28:-28):cx,ly=side?cy:up?cy-31:cy+34,la=side?(o.house[0]>0?'start':'end'):'middle';
+      labels+=text(lx,ly,nameO(e.i)+(o.tag==='new'?' ★':''),13.5,C.ink,{'text-anchor':la,'font-weight':700});});
+    y.dest.forEach(d=>{const o=D.destinations[d.k],[cx,cy]=xy(o.cell),sp=DEST[o.kind],w=sp[0].length*2.6;
+      labels+=sprite(sp,cx-w/2,cy-20,2.6,{k:C.ink,w:C.paper,a:DCOL(o.kind),r:C.accent2,p:C.paper,l:C.warn,d:DCOL(o.kind),g:C.ink2});
+      const side=o.house[0]!==0,lx=side?cx+(o.house[0]>0?w/2+6:-w/2-6):cx,ly=side?cy:cy+30,la=side?(o.house[0]>0?'start':'end'):'middle';
+      labels+=text(lx,ly,nameD(d.k),13.5,DCOL(o.kind),{'text-anchor':la,'font-weight':700});});
+    $('gBase').innerHTML=ground+roads+rails+buses+labels+things;
+  }
+  function drawTop(v){
+    let s='';
+    if(sel>=0){const row=rowsOf(v.y)[sel];if(row){const {x}=row;
+      if(x.route)s+=x.route.sections.map(id=>{const q=G.sections[id],[x1,y1]=rxy(q,q.a),[x2,y2]=rxy(q,q.b);return svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:C.ink,'stroke-width':3,'stroke-dasharray':'1 6','stroke-linecap':'round'});}).join('');}}
+    if(hover&&!plan.done&&!playing){const [hx,hy]=xy(hover),Rt=plan.routes[cur];
+      if(tool==='draw'){
+        if(plan.canExtend(cur,hover)){const end=!Rt.cells.length?null:sectionBetween(Rt.cells.at(-1),hover)?Rt.cells.at(-1):Rt.cells[0];
+          if(end)s+=svg('path',{d:`M${xy(end).join(' ')}L${hx} ${hy}`,stroke:RC[cur],'stroke-width':6,'stroke-opacity':.5,'stroke-linecap':'round'});
+          else s+=svg('circle',{cx:hx,cy:hy,r:6,fill:RC[cur],'fill-opacity':.5});}
+        else if(plan.isEnd(cur,hover))s+=pill(hx,hy-20,t('m.pvShorten'),C.ink2,12);
+        else if(!plan.isRoad(hover))s+=pill(hx,hy-20,t('b4.pvRoad'),C.ink3,11.5);}
+      else if(tool==='stop'&&plan.onRoute(cur,hover)){const has=plan.isStop(cur,hover);
+        s+=svg('rect',{x:hx-9,y:hy-9,width:18,height:18,rx:3,fill:'none',stroke:RC[cur],'stroke-width':3,'stroke-dasharray':'4 3'})+pill(hx,hy-24,t(has?'b4.pvUnstop':'b4.pvStop'),RC[cur],12);}
+      else if(tool==='lane'){const r=laneRoadAt(hover);if(r){const on=plan.hasLane(r);
+        for(const q of G.sections.filter(x=>x.roads.includes(r))){const [x1,y1]=rxy(q,q.a),[x2,y2]=rxy(q,q.b);s+=svg('path',{d:`M${x1} ${y1}L${x2} ${y2}`,stroke:C.bad,'stroke-width':13,'stroke-opacity':.22,'stroke-linecap':'round'});}
+        s+=pill(hx,hy-22,roadName(r)+' · '+t(on?'b4.pvUnlane':'b4.pvLane',{c:P.laneCost}),C.bad,12);}}}
+    $('gTop').innerHTML=s;
+  }
+  function drawDyn(tm,v){
+    let s=stepDots(tm,v);
+    const p=v.p;if(p)p.routes.forEach((Rt,r)=>{if(Rt.stops.length<2||Rt.buses<1||Rt.cells.length<2)return;const n=Rt.cells.length-1;
+      for(let k=0;k<Rt.buses;k++){const ph=((tm/1000)*0.9+k*2*n/Rt.buses)%(2*n),pos=ph<n?ph:2*n-ph,i=Math.min(n-1,Math.floor(pos)),f=pos-i,a=Rt.cells[i],b=Rt.cells[i+1];
+        const [x1,y1]=bxy(a,b,a),[x2,y2]=bxy(a,b,b),x=x1+(x2-x1)*f,yy=y1+(y2-y1)*f,h=a[1]===b[1];
+        s+=`<rect x="${(x-(h?7:4)).toFixed(1)}" y="${(yy-(h?4:7)).toFixed(1)}" width="${h?14:8}" height="${h?8:14}" rx="2" fill="${RC[r]}" stroke="${C.paper}" stroke-width="1.2"/>`;}});
+    $('gDyn').innerHTML=s;
+  }
+  let baseKey='';
+  function draw(force){const v=view(),k=JSON.stringify([cfg(plan),plan.year,v.mode,v.it?[v.it.what,v.it.cell,v.it.road,hoverBtn]:0,tool,cur,sel,I.lang,C.paper,hold,playing]);
+    if(force||k!==baseKey){baseKey=k;drawBase(v);headline(v);side(v);}drawTop(v);info(v);}
+
+  /* -------------------------------------------------------------- headline, info card */
+  function headline(v){
+    const el=$('headline'),y=v.y,b=G.base,worst=roadStats(y,v.p).sort((p,q)=>q.extra-p.extra)[0];
+    el.className='headline '+(v.mode==='step'||v.mode==='ahead'?'preview':v.mode==='nothing'?'nothing':'');
+    let main='',sub='';
+    if(v.mode==='nothing'){main=t('b4.hlNothing',{c:R(b.drivers),j:R(b.jam)});sub=t('r3.hlNothingSub');}
+    else if(v.mode==='step'){const j=pct(y.jam,v.base.jam),c=pct(y.drivers,v.base.drivers),bb=sgn(y.onBus-v.base.onBus,true);
+      main=t('b4.hlStep',{dj:j.txt,jc:j.cls,db:bb.txt,bc:bb.cls,dc:c.txt,cc:c.cls});sub=t('b4.hlStepSub');}
+    else if(v.mode==='ahead'||v.mode==='first'){const j=pct(y.jam,b.jam),c=pct(y.drivers,b.drivers);
+      main=t(v.mode==='ahead'?'b4.hlAhead':'b4.hlFirst',{dj:j.txt,jc:j.cls,b:R(y.onBus),dc:c.txt,cc:c.cls});sub=t(v.mode==='ahead'?'b4.hlAheadSub':'b4.hlFirstSub');}
+    else if(plan.done){const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;main=t('b4.hlDone',{s:R(plan.total),tier:t('r.t'+tier)});sub=t('b4.hlDoneSub');}
+    else if(plan.open&&plan.log.length){const l=plan.log.at(-1),j=pct(l.jam,l.jam0),c=pct(l.drivers,b.drivers);
+      main=t('b4.hlYear',{y:l.year,dj:j.txt,jc:j.cls,b:R(l.onBus),dc:c.txt,cc:c.cls});
+      const felt=lastY?lastY.extra.reduce((s,e)=>s+e,0)-plan.perceived.reduce((s,e)=>s+e,0):0;
+      sub=[Math.abs(felt)>.05?t(felt<0?'r3.cardBetter':'r3.cardWorse'):'',t('b4.hlYearSub')].filter(Boolean).join(' · ');}
+    else{main=t('b4.hlToday',{c:R(b.drivers),j:R(b.jam)});sub=t('b4.hlTodaySub',{r:roadName(worst.name),e:f1(worst.extra)});}
+    $('hlMain').innerHTML=main;$('hlSub').innerHTML=sub;
+  }
+  function info(v){
+    if(flash&&performance.now()<flash.until){$('infoCard').innerHTML=flash.html;return;}
+    if(!hover){$('infoCard').innerHTML='';return;}
+    const y=v.y,c=hover,h=[],p=v.p||plan;
+    const oi=D.origins.findIndex(o=>same(o.cell,c));
+    if(oi>=0){const e=y.est[oi];h.push(t('r3.iEst',{n:nameO(oi),p:e.n,c:R(e.drivers),m:R(e.metro),w:R(e.walkers),nb:R(e.nearby),a:10}).replace(/<br>[^<]*$/,''));
+      e.to.forEach(x=>h.push(t('r3.iTrip',{d:shortD(x.k),car:f1(x.car),m:x.trip?f1(x.trip.blocks)+' ('+x.trip.lines.map(lineLabel).join('→')+')':'—'})));}
+    const di=D.destinations.findIndex(o=>same(o.cell,c));
+    if(di>=0){const d=y.dest[di];h.push(t('r3.iDest',{n:nameD(di),g:R(d.go),b:R(d.before),m:R(d.metro)}));}
+    for(const l of G.lines){const j=l.stations.findIndex(s=>same(s,c));if(j>=0)h.push(t('r3.iStation',{l:I.lang==='zh-Hans'?(l.hans||l.name):l.name,s:(I.lang==='zh-Hans'?l.namesHans:l.names)[j]}));}
+    p.routes.forEach((Rt,r)=>{if(Rt.stops.some(s=>same(s,c))&&Rt.buses>0)h.push(t('b4.iStop',{n:RL[r],w:f1(P.busHead/Rt.buses)}));});
+    const here=G.sections.filter(s=>same(s.a,c)||same(s.b,c)),seen=new Set();
+    for(const s of here){const rn=s.roads[0];if(seen.has(rn))continue;seen.add(rn);const ids=here.filter(q=>q.roads[0]===rn).map(q=>q.id),id=ids.reduce((b,q)=>y.extra[q]>y.extra[b]?q:b,ids[0]);
+      h.push(t('r3.iRoad',{r:roadName(rn),c:R(y.roadLoad[id]),cap:R(G.sections[id].cap*(laned(G.sections[id],p.lanes)?1-P.laneCut:1)),e:f1(y.extra[id]),f:f1(plan.perceived[id])})+(laned(G.sections[id],p.lanes)?' '+t('b4.iLane',{p:R((1-P.laneCut)*10)}):''));}
+    $('infoCard').innerHTML=h.join('<br>');
+  }
+  function say(html){flash={until:performance.now()+1800,html};}
+
+  /* -------------------------------------------------------------- side panels */
+  function side(v){
+    const y=v.y,nowY=now(),hi=R(P.masterScore*1.12),at=q=>Math.max(0,Math.min(100,100*q/hi)),n0=R(G.doNothing[0]);
+    $('score').textContent=R(plan.total);$('scoreBar').style.width=`${at(plan.total)}%`;
+    for(const [id,q,k] of [['tickPass',P.target,'g.tickPass'],['tickHigh',P.highScore,'g.tickHigh'],['tickMaster',P.masterScore,'g.tickMaster']]){$(id).style.left=`${at(q)}%`;$(id).dataset.label=t(k,{n:q});}
+    $('yearNum').textContent=plan.done?t('m.yearDone',{m:P.years}):plan.open?t('m.yearN',{y:plan.year,m:P.years}):t('m.yearPlan');
+    $('run').textContent=plan.done?t('m.runDone'):plan.open?t('b4.runN',{n:plan.year+1}):t('b4.run0');$('run').disabled=playing;
+    $('pause').hidden=!plan.open||plan.done;$('pause').textContent=playing?t('b4.autoStop'):t('b4.auto');$('rewind').hidden=!plan.open;
+    $('hold').textContent=plan.open?t('b4.holdNothing'):t('b4.holdAhead');$('hold').disabled=!plan.open&&!plan.running;$('hold').classList.toggle('on',hold);
+    const top=Math.max(...G.doNothing,...plan.log.map(l=>l.jam),nowY.jam)*1.12;
+    let yc='';for(let k=1;k<=P.years;k++){const l=plan.log[k-1],q=l?l.jam:k===plan.year+1&&!plan.done&&plan.running?nowY.jam:0,h=R(52*q/top);
+      yc+=`<div class="yb ${l?'done':k===plan.year+1?'next':''} ${l&&l.crowdedSections?'crowd':''}"><i style="height:${h}px"></i><b>${q?R(q):''}</b><small>${t('m.yShort',{y:k})}</small></div>`;}
+    yc+=`<div class="ypot" style="bottom:${(18+52*G.doNothing[0]/top).toFixed(0)}px"><span>${t('b4.yNothing',{n:n0})}</span></div>`;
+    $('yChart').innerHTML=yc;
+    $('yNote').innerHTML=!plan.running&&!plan.open?t('b4.yNoteNone'):t('b4.yNote',{j:R(nowY.jam),n:n0});
+    $('planBox').classList.toggle('locked',plan.done);
+    $('money').textContent=`${plan.money} / ${P.budget}`;
+    $('moneyNote').innerHTML=t('b4.money0',{bc:P.busCost,lc:P.laneCost});
+    $('routeSeg').innerHTML=plan.routes.map((Rt,r)=>`<button data-r="${r}" aria-pressed="${r===cur}" style="--rc:${RC[r]}"><b>${t('b4.route',{n:RL[r]})}</b><small>${!Rt.cells.length?t('b4.chipEmpty'):Rt.buses?t('b4.chip',{b:Rt.buses,w:f1(P.busHead/Rt.buses)}):t('b4.chipNoBus')}</small></button>`).join('');
+    const Rt=plan.routes[cur];$('routeTxt').innerHTML=t('b4.routeTxt',{n:RL[cur],b:Rt.buses,w:Rt.buses?f1(P.busHead/Rt.buses):'—',c:Rt.buses*P.perBus});
+    $('busPlus').disabled=plan.done||!plan.canBus(cur);$('busMinus').disabled=plan.done||Rt.buses<1;
+    document.querySelectorAll('#toolSeg [data-tool]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tool===tool)));
+    $('toolHint').textContent=plan.done?'':plan.open&&!Rt.cells.length?t('b4.hintOpen'):tool==='draw'?(Rt.cells.length?t('b4.hintDraw2'):t('b4.hintDraw1')):tool==='stop'?(Rt.stops.length>=2&&!Rt.buses?t('b4.hintBus',{h:P.busHead}):t('b4.hintStop')):t('b4.hintLane',{p:R((1-P.laneCut)*10)});
+    $('undo').disabled=!history.length||plan.done;$('clear').disabled=plan.done||!Rt.cells.length;
+    const scale=3,p=v.p||plan;let h=`<p class="jamline">${t('r3.jamNow',{j:R(y.jam),n:n0}).replace(/什麼都不做|什么都不做|do nothing/,t('b4.yNothing',{n:''}).trim())}</p>`;
+    roadStats(y,p).forEach(r=>{const w=q=>Math.min(100,100*q/scale).toFixed(1);
+      h+=`<div class="rr"><span class="xn">${roadName(r.name)}</span><span class="rbar"><i style="width:${w(r.extra)}%;background:${jamCol(r.extra)}"></i><s style="left:${w(r.base)}%"></s><u style="left:${w(r.felt)}%"></u></span><b style="color:${jamCol(r.extra)}">${t('r3.extra',{e:f1(r.extra)})}</b>`+
+        `<button class="lanebtn ${plan.hasLane(r.name)?'on':''}" data-lane="${r.name}" ${plan.done?'disabled':''}>${t('b4.lane')}</button></div>`;});
+    $('roadBox').innerHTML=h+`<p class="hbnote">${t('r3.roadNote',{lp:R(P.learn*10)+(I.lang==='en'?'/10':' 成')})}</p>`;
+    let bx='';y.lines.filter(l=>l.kind==='bus').forEach(l=>{const r=l.route,Rr=p.routes[r],riders=y.est.reduce((s,e)=>s+e.to.filter(x=>x.trip&&x.trip.lines.includes(l.name)).reduce((a,x)=>a+x.metro,0),0),mx=Math.max(0,...l.load);
+      bx+=`<div class="br"><i class="sw2" style="background:${RC[r]}"></i><span>${t('b4.busRow',{n:RL[r],b:Rr.buses,w:f1(l.wait),r:R(riders),l:R(mx),c:l.cap,crowd:mx>l.cap?t('b4.busCrowd'):''})}</span></div>`;});
+    $('busBox').innerHTML=(bx||`<p class="hbnote">${t('b4.busNone')}</p>`)+`<p class="hbnote">${t('b4.busNote',{pcu:P.busPCU})}</p>`;
+    let tb=`<thead><tr><th>${t('m.tTrip')}</th><th>${t('m.tGo')}</th><th>${t('r3.tCar')}</th><th>${t('m.tMetro')}</th><th>${t('r3.tDrive')}</th><th>${t('m.tRiders')}</th></tr></thead><tbody>`;
+    rowsOf(y).forEach(({x,who,chain},k)=>{tb+=`<tr data-row="${k}" class="${sel===k?'sel':''} ${x.metro>=1?'on':''} ${chain?'chain':''}"><td>${who}<small>→ ${shortD(x.k)}${chain?' · '+t('m.chainTag'):''}</small></td><td>${R(x.go)}<small>${t('m.was',{b:R(x.before)})}</small></td>`+
+      `<td>${f1(x.car)}</td><td>${x.trip?f1(x.trip.blocks):'—'}<small>${x.trip?x.trip.lines.map(lineLabel).join('→'):''}</small></td><td>${R(x.drivers)}</td><td><b>${x.metro>=1?R(x.metro):''}</b></td></tr>`;});
+    $('trips').innerHTML=tb+'</tbody>';
+  }
+  function render(){draw(true);}
+  function fit(){$('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);}
+  function texts(){
+    $('goal').innerHTML=t('b4.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
+    const v={wp:P.walkPer,w:P.wait,h:P.busHead,pb:P.perBus,pcu:P.busPCU,p:R((1-P.laneCut)*10),b:P.budget,bc:P.busCost,lc:P.laneCost,mr:P.maxRoutes,y:P.years,cb:P.crowdBlocks,nb:P.nearby,
+      lp:I.lang==='en'?P.learn*10+'/10':R(P.learn*10)+' 成',e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2};
+    $('rules').innerHTML=['b4.r0','b4.r1','b4.r2','b4.r3','b4.r4','b4.r5'].map(k=>`<li>${t(k,v)}</li>`).join('');
+    $('infoBody').innerHTML=t('b4.info',v);$('ivBody').innerHTML=t('iv.m4.body',v);
+    $('mapLegend').innerHTML=t('b4.legend');document.title=t('b4.doc');
+  }
+
+  /* -------------------------------------------------------------- the years */
+  function step(){
+    if(plan.done){stop();return;}
+    const before=plan.log.at(-1),r=plan.runYear();if(!r)return stop();
+    if(before&&JSON.stringify([before.buses,before.lanes])!==JSON.stringify([r.buses,r.lanes]))changedIn.push(r.year);
+    lastY=r.y;render();if(plan.done){stop();setTimeout(result,STEP_MS);}
+  }
+  function play(){if(plan.done)return;playing=true;clearInterval(timer);timer=setInterval(step,STEP_MS);render();}
+  function stop(){playing=false;clearInterval(timer);render();}
+  function rewind(){stop();plan.rewind();lastY=null;changedIn=[];render();}
+  function result(){
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;
+    $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
+    $('resultScore').textContent=t('b4.rScore',{d:R(plan.total),y:P.years});
+    let h=`<table class="result"><thead><tr><th>${t('m.ryYear')}</th><th>${t('r3.ryJam')}</th><th>${t('b4.yNothing',{n:''})}</th><th>${t('r3.rySaved')}</th><th>${t('r3.ryDrive')}</th><th>${t('b4.ryBus')}</th><th>${t('b4.ryKit')}</th></tr></thead><tbody>`;
+    for(const l of plan.log)h+=`<tr><td>${t('m.yShort',{y:l.year})}</td><td>${R(l.jam)}</td><td>${R(l.jam0)}</td><td>${R(l.saved)}</td><td>${R(l.drivers)}</td><td>${R(l.onBus)}</td><td>${l.buses.reduce((a,b)=>a+b,0)} / ${l.lanes.length}</td></tr>`;
+    h+='</tbody></table>';
+    const tips=[],lo=plan.log.reduce((b,l)=>l.jam<b.jam?l:b,plan.log[0]),last=plan.log.at(-1);
+    if(lo.year<P.years&&last.jam>lo.jam*1.05)tips.push(t('r3.tipRebound',{lo:lo.year,a:R(lo.jam),b:R(last.jam)}));
+    const rs=roadStats(lastY||now(),plan);const worst=rs.slice().sort((a,b)=>b.extra-a.extra)[0];if(worst&&worst.extra>=.5)tips.push(t('r3.tipWorst',{r:roadName(worst.name),e:f1(worst.extra)}));
+    rs.filter(r=>r.lane&&r.extra>=1).forEach(r=>tips.push(t('b4.tipLane',{r:roadName(r.name),p:R((1-P.laneCut)*10)})));
+    if(changedIn.length)tips.push(t('b4.tipChange',{y:changedIn[0]}));
+    $('resultBody').innerHTML=h+`<ul class="ivlist">${tips.slice(0,5).map(s=>`<li>${s}</li>`).join('')}</ul>`;
+    try{const k='tl-best-m4-'+D.map;if(plan.total>(+localStorage.getItem(k)||0))localStorage.setItem(k,R(plan.total));}catch(e){}
+    window.dispatchEvent(new CustomEvent('tl:result',{detail:{game:'feeder',mode:'m4-bus',version:'7.10',map:D.map,score:R(plan.total),tier,tiers:[P.target,P.highScore,P.masterScore],routes:plan.routes,lanes:plan.lanes,lang:I.lang}}));
+    $('result').showModal();
+  }
+
+  /* -------------------------------------------------------------- controls */
+  const board=$('board');
+  function cellAt(e){const pt=board.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(board.getScreenCTM().inverse());
+    const c=[Math.round((p.x-MX)/CS),Math.round((p.y-MY)/CS)];return c[0]>=0&&c[1]>=0&&c[0]<D.cols&&c[1]<D.rows?c:null;}
+  function act(c){
+    if(plan.done)return false;
+    if(tool==='draw'){
+      if(plan.canExtend(cur,c)){snapshot();plan.extend(cur,c);return true;}
+      if(plan.isEnd(cur,c)){snapshot();plan.shorten(cur,c);return true;}
+      return false;}
+    if(tool==='stop'){if(!plan.onRoute(cur,c))return false;snapshot();plan.toggleStop(cur,c);return true;}
+    const r=laneRoadAt(c);if(!r)return false;if(!plan.hasLane(r)&&plan.money<P.laneCost){say(t('m.pvNoMoney'));return false;}snapshot();plan.toggleLane(r);return true;
+  }
+  board.onpointerdown=e=>{const c=cellAt(e);if(!c)return;drag=tool==='draw'&&!plan.done;if(act(c))render();if(drag)board.setPointerCapture(e.pointerId);};
+  board.onpointermove=e=>{const c=cellAt(e);
+    if(drag&&c&&plan.canExtend(cur,c)){snapshot();plan.extend(cur,c);hover=null;render();return;}
+    if(JSON.stringify(c)!==JSON.stringify(hover)){hover=c;draw();}};
+  board.onpointerup=()=>{drag=false;};
+  board.onpointerleave=()=>{if(!drag&&hover){hover=null;draw();}};
+  $('toolSeg').onclick=e=>{const b=e.target.closest('[data-tool]');if(b&&!plan.done){tool=b.dataset.tool;hover=null;render();}};
+  $('routeSeg').onclick=e=>{const b=e.target.closest('[data-r]');if(b){cur=+b.dataset.r;if(!plan.routes[cur].cells.length)tool='draw';render();}};
+  $('undo').onclick=()=>{const s=history.pop();if(s){restore(s);render();}};
+  $('clear').onclick=()=>{if(plan.done)return;snapshot();plan.clearRoute(cur);tool='draw';render();};
+  $('busPlus').onclick=()=>{snapshot();if(plan.addBus(cur))render();};
+  $('busMinus').onclick=()=>{snapshot();if(plan.removeBus(cur))render();};
+  for(const [id,k] of [['busPlus','plus'],['busMinus','minus']]){$(id).addEventListener('pointerenter',()=>{hoverBtn=k;draw();});$(id).addEventListener('pointerleave',()=>{hoverBtn=null;draw();});}
+  $('roadBox').onclick=e=>{const b=e.target.closest('[data-lane]');if(!b||plan.done)return;if(!plan.hasLane(b.dataset.lane)&&plan.money<P.laneCost){say(t('m.pvNoMoney'));return;}snapshot();plan.toggleLane(b.dataset.lane);render();};
+  $('run').onclick=()=>{if(plan.done)result();else step();};
+  $('pause').onclick=()=>{playing?stop():play();};
+  $('rewind').onclick=rewind;
+  const holdOn=e=>{if($('hold').disabled)return;e.preventDefault();hold=true;draw();},holdOff=()=>{if(hold){hold=false;draw();}};
+  $('hold').addEventListener('pointerdown',holdOn);for(const ev of ['pointerup','pointerleave','pointercancel'])$('hold').addEventListener(ev,holdOff);
+  $('trips').onclick=e=>{const r=e.target.closest('[data-row]');if(!r)return;const j=+r.dataset.row;sel=sel===j?-1:j;render();};
+  $('again').onclick=()=>{$('result').close();rewind();};
+  $('help').onclick=()=>$('info').showModal();
+  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
+  $('lvInfo').onclick=()=>$('lvIntro').showModal();$('ivGo').onclick=()=>$('lvIntro').close();
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;
+    if(['1','2','3'].includes(e.key)){tool=['draw','stop','lane'][+e.key-1];render();}
+    else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$('undo').click();}
+    else if(e.code==='Space'&&plan.open&&!plan.done&&!e.target.closest?.('button')){e.preventDefault();$('pause').click();}
+    else if(e.key==='Escape'&&sel>=0){sel=-1;render();}});
+  function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
+    try{localStorage.setItem('tl-theme',th);}catch(e){}readTokens();render();}
+  $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
+  window.addEventListener('tl:lang',()=>{texts();render();});
+  let lastFrame=0;(function loop(tm){if(tm-lastFrame>33){drawDyn(tm,view());if(flash&&tm>flash.until){flash=0;info(view());}lastFrame=tm;}requestAnimationFrame(loop);})(0);
+  // test hook: #intro=0&r0=7,2;8,2;8,3&s0=7,2;8,3&b0=3&lanes=秀茂坪道&years=3&tool=stop&cur=0&hover=8,3&hold=1&theme=dark&lang=en
+  const q=new URLSearchParams(location.hash.slice(1));
+  let saved=null;try{saved=localStorage.getItem('tl-theme');}catch(e){}
+  fit();
+  if(q.get('theme')||saved)setTheme(q.get('theme')||saved);
+  for(let r=0;r<P.maxRoutes;r++){if(q.get('r'+r))for(const s of q.get('r'+r).split(';'))plan.extend(r,s.split(',').map(Number));
+    if(q.get('s'+r))for(const s of q.get('s'+r).split(';'))plan.toggleStop(r,s.split(',').map(Number));for(let k=0;k<+(q.get('b'+r)||0);k++)plan.addBus(r);}
+  if(q.get('lanes'))for(const l of q.get('lanes').split(';'))plan.toggleLane(l);
+  for(let k=0;k<+(q.get('years')||0);k++){const r=plan.runYear();if(r)lastY=r.y;}
+  if(q.get('tool'))tool=q.get('tool');if(q.get('cur'))cur=+q.get('cur');if(q.get('sel'))sel=+q.get('sel');if(q.get('hover'))hover=q.get('hover').split(',').map(Number);if(q.get('hold'))hold=true;
+  texts();render();
+  if(q.get('intro')!=='0'&&!q.get('r0'))$('lvIntro').showModal();
+  // for the AI demo (demo.js)
+  const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';cur=0;hover=null;lastY=null;changedIn=[];render();},
+    pick(r){cur=r;render();},extend(r,c){cur=r;tool='draw';const ok=plan.extend(r,c);render();return ok;},stop(r,c){cur=r;tool='stop';const ok=plan.toggleStop(r,c);render();return ok;},
+    bus(r){cur=r;const ok=plan.addBus(r);render();return ok;},lane(n){tool='lane';const ok=plan.toggleLane(n);render();return ok;},go(){step();play();},halt(){stop();},get plan(){return plan;}};
+  window.TL_BUS={api,plan:()=>({routes:JSON.parse(JSON.stringify(plan.routes)),lanes:plan.lanes.slice(),year:plan.year,money:plan.money,total:plan.total,done:plan.done,playing,jam:now().jam,dots:dots.length}),
+    cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
+})();
+
+</script><script>
+// v7 mode 4 · AI demo plans, written by bots/v7_bus.js (2026-10-14). Do not edit by hand.
+// level → {tiers, best, pass|high|master: {routes: [{cells, stops, buses}], lanes, score}} — the same plan every year
+(function(root){root.TL_BUS_DEMO={"m4-1":{"tiers":[250,500,750],"best":829,"pass":{"routes":[{"cells":[[4,4],[4,3],[4,2],[5,2],[6,2],[7,2],[8,2],[8,3],[8,4],[8,5]],"stops":[[4,4],[8,5],[4,3],[5,2],[6,2],[7,2]],"buses":4},{"cells":[[6,4],[5,4],[4,4],[4,3]],"stops":[[6,4],[5,4],[4,4],[4,3]],"buses":8},{"cells":[[10,8],[9,8],[8,8],[8,7],[8,6],[8,5],[9,5],[10,5]],"stops":[[10,8],[10,5],[8,8],[8,7],[9,5]],"buses":0}],"lanes":[],"score":253},"high":{"routes":[{"cells":[[7,2],[8,2],[8,3],[8,4],[8,5],[8,6],[8,7],[8,8]],"stops":[[7,2],[8,5]],"buses":8}],"lanes":["秀茂坪道"],"score":503},"master":{"routes":[{"cells":[[6,6],[7,6],[7,7],[8,7],[8,8],[9,8],[10,8],[11,8],[12,8],[12,7]],"stops":[[12,7],[6,6],[7,6],[7,7],[11,8],[12,8],[9,8]],"buses":6},{"cells":[[7,2],[8,2],[8,3],[8,4],[8,5],[9,5],[10,5],[11,5],[12,5]],"stops":[[7,2],[12,5],[9,5]],"buses":3}],"lanes":["將藍隧道"],"score":829}}};})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // v7 mode 4 · AI demo (temporary; remove this file, demo-plans.js and the lines marked «AI demo» in index.html and
+  // build.py). Pick a score line and the AI builds its bus network in the real game: each route along the roads, its
+  // stops (what they serve), its buses (and the wait they give), the bus lanes with why; then the years play.
+  // Plans: bots/v7_bus.js --write (the same plan every year).
+  const $=id=>document.getElementById(id),I=root.I18N,t=(k,v)=>I.t(k,v),L=I.L,M=root.Bus,{D,P,G,walk,same,sectionBetween}=M;
+  const RL=['A','B','C'];
+  I.add({
+    'demo.btn':L('AI 示範','AI 示范','AI demo'),
+    'demo.h':L('看 AI 怎樣排巴士','看 AI 怎样排巴士','Watch the AI plan its buses'),
+    'demo.intro':L('選一條分數線，AI 會在地圖上一步一步排它的巴士：畫線、放站、加車、劃專線，每一步寫著為什麼；然後播放八年。這一套每年都一樣（你自己玩的時候可以每年改）。','选一条分数线，AI 会在地图上一步一步排它的巴士：画线、放站、加车、划专线，每一步写着为什么；然后播放八年。这一套每年都一样（你自己玩的时候可以每年改）。',
+      'Pick a score line: the AI lays out its buses step by step — routes, stops, buses, lanes — with why; then eight years play. It keeps the same plan every year (you may change yours).'),
+    'demo.pass':L('過關','过关','Pass'),'demo.high':L('高分','高分','High score'),'demo.master':L('大師','大师','Master'),
+    'demo.line':L('分數線 {n} · AI 這套 {s}','分数线 {n} · AI 这套 {s}','line {n} · this plan {s}'),
+    'demo.shape':L('{r} 條線 · {b} 輛巴士 · {l} 條專線','{r} 条线 · {b} 辆巴士 · {l} 条专线','{r} routes · {b} buses · {l} lanes'),
+    'demo.go':L('看這一套 ▶','看这一套 ▶','Watch ▶'),
+    'demo.box':L('AI 示範 · {tier}（{n}）','AI 示范 · {tier}（{n}）','AI demo · {tier} ({n})'),'demo.stop':L('停止示範','停止示范','Stop'),
+    'demo.route':L('<b>① {r} 線</b>：沿路從{a}到{b}，{l} 格。','<b>① {r} 线</b>：沿路从{a}到{b}，{l} 格。','<b>① Route {r}</b>: along the roads from {a} to {b}, {l} cells.'),
+    'demo.stops':L('<b>② 站</b>：{list}。','<b>② 站</b>：{list}。','<b>② Stops</b>: {list}.'),
+    'demo.door':L('{a}門口','{a}门口','at {a}'),'demo.change':L('{s}站（換{l}）','{s}站（换{l}）','{s} (change to the {l})'),'demo.near':L('{a}旁邊','{a}旁边','next to {a}'),'demo.plain':L('路邊一站','路边一站','a roadside stop'),
+    'demo.buses':L('<b>③ 巴士</b>：{b} 輛，等車 {w} 格。','<b>③ 巴士</b>：{b} 辆，等车 {w} 格。','<b>③ Buses</b>: {b}, a wait of {w}.'),
+    'demo.lane':L('<b>④ 專線</b>：{r}。這條路上的巴士不塞；車只剩 {p} 成路。','<b>④ 专线</b>：{r}。这条路上的巴士不塞；车只剩 {p} 成路。','<b>④ Bus lane</b>: {r}. Buses there skip the jam; cars keep {p}/10 of it.'),
+    'demo.noLane':L('<b>④ 專線</b>：這一套不劃專線——塞的路上巴士不多，劃了只會讓車更塞。','<b>④ 专线</b>：这一套不划专线——塞的路上巴士不多，划了只会让车更塞。','<b>④ Bus lanes</b>: none — few buses on the jammed roads; a lane would only jam the cars.'),
+    'demo.why':L('<b>⑤ 這一套的想法</b>','<b>⑤ 这一套的想法</b>','<b>⑤ The idea</b>'),
+    'demo.wFeed':L('{n} 條線接到地鐵站：巴士只走最後一段，長的那段交給地鐵（第一關的接駁）。','{n} 条线接到地铁站：巴士只走最后一段，长的那段交给地铁（第一关的接驳）。','{n} route(s) feed a metro station: the bus does the last stretch, the metro the long one (mode 1\'s feeders).'),
+    'demo.wSettle':L('穩定以後：塞車比沒有巴士 {dj}，每天坐巴士 {b} 人，路上的車 {dc}。','稳定以后：塞车比没有巴士 {dj}，每天坐巴士 {b} 人，路上的车 {dc}。','Settled: jam vs no buses {dj}, {b} by bus a day, cars {dc}.'),
+    'demo.wLeft':L('每年還剩 {m} 沒用。','每年还剩 {m} 没用。','{m} a year left unspent.'),
+    'demo.open':L('<b>⑥ 開通</b>：看路怎樣變通、又怎樣有人回去開車。','<b>⑥ 开通</b>：看路怎样变通、又怎样有人回去开车。','<b>⑥ Open</b>: watch the roads clear — and some drive again.'),
+    'demo.year':L('第 {y} 年：塞車 <b>{j}</b>（沒有巴士 {n}）· 坐巴士 {b} 人 · 開車 {c} · 累計少塞 {t}','第 {y} 年：塞车 <b>{j}</b>（没有巴士 {n}）· 坐巴士 {b} 人 · 开车 {c} · 累计少塞 {t}','Year {y}: jam <b>{j}</b> (no buses {n}) · {b} by bus · {c} drive · {t} so far'),
+    'demo.done':L('完成：八年少塞 <b>{t}</b>（{tier} 線 {n}）。你可以接著每年改，看能不能更好。','完成：八年少塞 <b>{t}</b>（{tier} 线 {n}）。你可以接着每年改，看能不能更好。','Done: <b>{t}</b> less jam ({tier} line {n}). Change it year by year yourself and beat it.')
+  });
+  const css=document.createElement('style');css.textContent=`
+  #demoDlg .dcards{display:grid;gap:10px;margin:14px 0}
+  #demoDlg .dcard{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 14px;text-align:left;padding:12px 14px;border:1px solid var(--s-line2);border-radius:8px;background:var(--s-panel);color:var(--s-ink);cursor:pointer;font:inherit}
+  #demoDlg .dcard:hover{border-color:var(--s-metro)}
+  #demoDlg .dcard b{font-size:16px;color:var(--s-metro);grid-row:span 2}
+  #demoDlg .dcard span{font-size:13.5px}#demoDlg .dcard small{font-size:12px;color:var(--s-ink3)}
+  #demoDlg .dcard em{font-style:normal;grid-row:span 2;font-size:13px;color:var(--s-metro)}
+  .demobox{position:absolute;left:16px;right:16px;top:12px;max-height:200px;overflow:hidden;padding:10px 14px 12px;border-radius:8px;background:var(--s-panel);border:1.5px solid var(--s-accent);
+    box-shadow:0 6px 24px rgb(0 0 0 / .12);font-size:13px;line-height:1.6;color:var(--s-ink2);z-index:5}
+  .demobox .dh{display:flex;align-items:center;gap:8px;margin-bottom:6px}.demobox .dh b{color:var(--s-accent);font-size:13.5px}.demobox .dh .sp{flex:1}
+  .demobox p{margin:3px 0}.demobox p b{color:var(--s-ink)}.demobox ul{margin:4px 0 0;padding-left:18px}.demobox li{margin:2px 0}
+  .demobox p.old{opacity:.5}
+  .mapplate.demo .yearcard,.mapplate.demo .headline,.mapplate.demo .infocard{display:none}`;
+  document.head.append(css);
+  const sleep=ms=>new Promise(r=>{const id=setTimeout(r,ms);timers.push(id);});
+  let timers=[],run=0,watch=0;
+  const plans=()=>(root.TL_BUS_DEMO||{})[D.map];
+  const btn=document.createElement('button');btn.className='btn btn-sm';btn.id='demoBtn';$('lvInfo').after(btn);
+  const dlg=document.createElement('dialog');dlg.id='demoDlg';document.body.append(dlg);
+  const box=document.createElement('div');box.className='demobox';box.hidden=true;document.querySelector('.mapplate').append(box);
+  const nm=o=>I.lang==='zh-Hans'?(o.hans||o.name):o.name;
+  const places=()=>[...D.origins.map(o=>({cell:o.cell,name:nm(o)})),...D.destinations.map(d=>({cell:d.cell,name:nm(d)}))];
+  const stations=()=>G.lines.flatMap(l=>l.stations.map((s,j)=>({cell:s,line:I.lang==='zh-Hans'?(l.hans||l.name):l.name,name:(I.lang==='zh-Hans'?l.namesHans:l.names)[j]})));
+  const tierName=k=>t('demo.'+k);
+  function texts(){btn.textContent=t('demo.btn');const pl=plans();if(!pl){btn.hidden=true;return;}
+    dlg.innerHTML=`<button class="close" data-x>×</button><span class="lbl">AI DEMO</span><h2 class="h1">${t('demo.h')}</h2><p class="note">${t('demo.intro')}</p><div class="dcards">`+
+      ['pass','high','master'].filter(k=>pl[k]).map((k,j)=>{const p=pl[k];return `<button class="dcard" data-tier="${k}"><b>${tierName(k)}</b><span>${t('demo.line',{n:pl.tiers[j],s:p.score})}</span><em>${t('demo.go')}</em>`+
+        `<small>${t('demo.shape',{r:p.routes.filter(R=>R.buses>0&&R.stops.length>=2).length,b:p.routes.reduce((s,R)=>s+R.buses,0),l:p.lanes.length})}</small></button>`;}).join('')+'</div>';
+    dlg.querySelector('[data-x]').onclick=()=>dlg.close();
+    dlg.querySelectorAll('[data-tier]').forEach(b=>b.onclick=()=>{dlg.close();play(b.dataset.tier);});}
+  btn.onclick=()=>{texts();dlg.showModal();};
+  function stopDemo(keepBox){run++;timers.forEach(clearTimeout);timers=[];clearInterval(watch);$('board').style.pointerEvents='';document.querySelector('.mapplate').classList.remove('demo');if(!keepBox)box.hidden=true;}
+  function say(html,alone){const body=box.querySelector('.dbody');if(alone)body.innerHTML='';
+    body.querySelectorAll('p').forEach(p=>p.classList.add('old'));const p=document.createElement('p');p.innerHTML=html;body.append(p);while(body.children.length>2)body.firstChild.remove();}
+  const nearest=c=>places().map(x=>({...x,d:walk(x.cell,c)})).sort((a,b)=>a.d-b.d)[0];
+  function stopWhat(c){const st=stations().find(x=>walk(x.cell,c)<=1);if(st)return t('demo.change',{s:st.name,l:st.line});const n=nearest(c);return n.d===0?t('demo.door',{a:n.name}):n.d===1?t('demo.near',{a:n.name}):t('demo.plain');}
+  async function play(k){
+    stopDemo();const me=run,pl=plans(),plan=pl[k],j=['pass','high','master'].indexOf(k),api=TL_BUS.api,n0=Math.round(G.doNothing[0]);
+    for(const d of document.querySelectorAll('dialog[open]'))d.close();
+    box.hidden=false;box.innerHTML=`<div class="dh"><b>${t('demo.box',{tier:tierName(k),n:pl.tiers[j]})}</b><span class="sp"></span><button class="btn btn-sm" data-stop>${t('demo.stop')}</button></div><div class="dbody"></div>`;
+    box.querySelector('[data-stop]').onclick=()=>stopDemo();
+    $('board').style.pointerEvents='none';document.querySelector('.mapplate').classList.add('demo');api.reset();
+    const live=()=>me===run;let feeds=0;
+    for(const [r,Rt] of plan.routes.entries()){if(!live())return;if(!Rt.cells.length||!Rt.buses)continue;
+      api.pick(r);say(t('demo.route',{r:RL[r],a:nearest(Rt.cells[0]).name,b:nearest(Rt.cells.at(-1)).name,l:Rt.cells.length}),true);
+      for(const c of Rt.cells){if(!live())return;api.extend(r,c);await sleep(110);}
+      await sleep(500);
+      for(const s of Rt.stops){if(!live())return;api.stop(r,s);await sleep(350);}
+      if(Rt.stops.some(s=>stations().some(x=>walk(x.cell,s)<=1)))feeds++;
+      say(t('demo.stops',{list:Rt.stops.map(stopWhat).join(t('sep'))}));await sleep(1400);
+      for(let b=0;b<Rt.buses;b++){if(!live())return;api.bus(r);await sleep(160);}
+      say(t('demo.buses',{b:Rt.buses,w:(P.busHead/Rt.buses).toFixed(1)}));await sleep(1300);}
+    if(!live())return;
+    if(plan.lanes.length)for(const l of plan.lanes){api.lane(l);say(t('demo.lane',{r:nm(D.roads.find(x=>x.name===l)||{name:l}),p:Math.round((1-P.laneCut)*10)}),true);await sleep(1800);}
+    else{say(t('demo.noLane'),true);await sleep(1800);}
+    if(!live())return;
+    const pot=api.plan.potential(),b=G.base,pc=(a,c)=>{const v=Math.round(100*(a-c)/c);return (v>0?'+':v<0?'−':'±')+Math.abs(v)+'%';};
+    const why=[];if(feeds)why.push(t('demo.wFeed',{n:feeds}));why.push(t('demo.wSettle',{dj:pc(pot.jam,b.jam),b:Math.round(pot.onBus),dc:pc(pot.drivers,b.drivers)}));
+    if(api.plan.money>0)why.push(t('demo.wLeft',{m:api.plan.money}));
+    say(t('demo.why')+'<ul>'+why.map(s=>`<li>${s}</li>`).join('')+'</ul>',true);await sleep(5000);
+    if(!live())return;
+    say(t('demo.open'));await sleep(1000);if(!live())return;
+    api.go();let seen=0;
+    watch=setInterval(()=>{if(!live()){clearInterval(watch);return;}const p=api.plan,l=p.log.at(-1);
+      if(p.year>seen&&l){seen=p.year;say(t('demo.year',{y:l.year,j:Math.round(l.jam),n:Math.round(l.jam0),b:Math.round(l.onBus),c:Math.round(l.drivers),t:Math.round(p.total)}));}
+      if(p.done){clearInterval(watch);say(t('demo.done',{t:Math.round(p.total),tier:tierName(k),n:pl.tiers[j]}));stopDemo(true);}},250);
+  }
+  window.addEventListener('tl:lang',texts);texts();
+  root.TL_BUS_DEMO_PLAY=play;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><!-- AI demo (temporary) --></body></html>
