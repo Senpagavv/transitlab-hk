@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 00:13 · `待补` 接驳巴士 v7.20：第三关铁路线不再错开；第四关加 AI 示范 / Feeder v7.20: straight metro lines in mode 3; mode 4 AI demo
+### 00:13 · `556e40c` 接驳巴士 v7.20：第三关铁路线不再错开；第四关加 AI 示范 / Feeder v7.20: straight metro lines in mode 3; mode 4 AI demo
 - **改了什么**：`game-feeder/v7/mode3-roads/ui.js` 地铁线、列车、乘客画在格子中线（车流带挪到路的一侧）；新增 `v7/mode4-tod/demo.js`，页面和打包接上，API 加 `sell`、`next`。
 - **为什么**：发起人试玩意见。
 - **验证**：第三关截图线条是直的；第四关 AI 示范大师档真鼠标跑完，1544.55＝1545；检查全过。
