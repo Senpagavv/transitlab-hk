@@ -6,7 +6,7 @@
 
 ## 2026-10-14
 
-### 22:53 · `待补` 关卡按顺序解锁的进度记录；任务 54 按发起人补充改清楚 / Level progress for sequential unlocking; task 54 clarified
+### 22:53 · `7a68ab0` 关卡按顺序解锁的进度记录；任务 54 按发起人补充改清楚 / Level progress for sequential unlocking; task 54 clarified
 - **改了什么**：新增 `game-feeder/v7/shared/progress.js`（`TLProgress`：每关最好分和档次存本机，`open()` 判断能不能玩——同一玩法第 1 关开着，过关才开下一关，`#unlock=all` 全开）；四个玩法结算时写进度。`docs/for-codex/task-54-v3-shell.md` 加发起人补充：v3 菜单 01–04 换成四个玩法、05 沙盘先空、06 删掉；每个玩法同一张全港波点地图、关卡在真实位置、按顺序解锁、太近的关卡分散开。第四关在地图上的位置改为兆康（和第二关的天水围分开）。
 - **为什么**：发起人说明入口要和 v3 的 01 一样，并且关卡要按顺序解锁。
 - **验证**：第四关打完，本机记下「4/m4-1 · 大师」；四个玩法重新打包无误。
