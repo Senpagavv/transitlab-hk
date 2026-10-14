@@ -6,7 +6,7 @@
 
 ## 2026-10-14
 
-### 19:07 · `待补` 第三关改版、第四关换成站旁开发：两份 Codex 任务书 / Codex tasks 49–50: mode 3 rework, mode 4 → station-side development
+### 19:07 · `06c0e3d` 第三关改版、第四关换成站旁开发：两份 Codex 任务书 / Codex tasks 49–50: mode 3 rework, mode 4 → station-side development
 - **改了什么**：新增 `docs/for-codex/task-49-mode3-traffic-interaction.md`（第三关：图层开关、车流与地铁平行错开、城市按年长、线分两期、每年「新线让多少车下路 / 路通了多少车回来」、点路看车从哪来）和 `task-50-mode4-station-development.md`（第四关改为地铁＋站旁开发：站旁空地每年最多卖 2 块，住宅＝多住 16 人、商业＝站旁商场；地价当场算；分数＝车费＋卖地；巴士退出第四关，留给第五关沙盘）。
 - **为什么**：发起人试玩：第三关沿红路画线就高分、感受不到地铁和车流的来回；第四关巴士看不懂。为省 Claude 用量，改成 Codex 先做粗版、Claude 审和收尾。
 - **验证**：只是任务书，未改游戏代码。
