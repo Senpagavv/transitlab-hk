@@ -415,6 +415,16 @@
   const api={reset(){stop();plan=new Plan();history=[];sel=-1;tool='draw';hover=null;lastY=null;render();},
     extend(c){const ok=plan.extend(c);render();return ok;},station(c){tool='station';const ok=plan.toggleStation(c);render();return ok;},
     train(){const ok=plan.addTrain();render();return ok;},continue(){if(plan.continuePhase2()){phaseBanner=false;step();play();return true;}return false;},go(){open();},halt(){stop();},get plan(){return plan;}};
+    // For the hub's hand-off (shared/flyin.js): this board's blocks in screen pixels — roads and the metro lines grey, the estates and the
+  // places people go dark — so the hub's dots land on this level's own map.
+  window.TL_BOARD={targets(){const m=board.getScreenCTM();if(!m)return null;
+    const k=Math.hypot(m.a,m.b),at=(x,y)=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f],items=[],tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const road=tok('--s-road')||'#EEEAE1',faint=tok('--s-ink3')||'#9A9A9A',dark=tok('--s-ink')||'#0A0A0A';
+    for(const s of G.sections){const [x1,y1]=xy(s.a),[x2,y2]=xy(s.b),h=s.a[1]===s.b[1];items.push({p:at((x1+x2)/2,(y1+y2)/2),w:(h?CS:20)*k,h:(h?20:CS)*k,color:road,kind:'road'});}
+    for(const l of G.lines)for(const c of l.cells){const [x,y]=xy(c);items.push({p:at(x,y),w:9*k,h:9*k,color:faint,kind:'road'});}
+    for(const o of D.origins){const [x,y]=xy(o.cell);items.push({p:at(x,y-3),w:26*k,h:30*k,color:dark,kind:'house'});}
+    for(const d of D.destinations){const [x,y]=xy(d.cell);items.push({p:at(x,y-3),w:30*k,h:32*k,color:dark,kind:'house'});}
+    const c=D.destinations[0]?xy(D.destinations[0].cell):xy([D.cols>>1,D.rows>>1]);return{items,hub:at(c[0],c[1]-3),k};}};
   window.TL_ROADS={api,plan:()=>({line:plan.line.map(c=>c.slice()),stations:plan.stations.map(c=>c.slice()),year:plan.year,money:plan.money,trains:plan.trains,total:plan.total,done:plan.done,playing,jam:now().jam,dots:dots.length}),
     cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();

@@ -149,5 +149,16 @@
     'r3.toCentre':L('坐公共交通來 {n}','坐公共交通来 {n}','{n} by public transport'),
     'r3.run0':L('▶ 開通','▶ 开通','▶ Open'),'r3.holdAhead2':L('👁 按住看以後','👁 按住看以后','👁 Hold: later'),'r3.holdNothing2':L('👁 按住看不做','👁 按住看不做','👁 Hold: nothing')
   });
+  // the level's opening card (lost in the v7.12 rewrite, back from v7.11)
+  I18N.add({
+    'iv.new':L('這一關多了','这一关多了','New here'),'iv.go':L('開始畫線 →','开始画线 →','Start drawing →'),
+    'iv.m3.new':L('<b>路會塞</b>：開車的人越多，路越慢。新線把人從路上帶走，路就通——可是路一通，又有人回去開車。','<b>路会塞</b>：开车的人越多，路越慢。新线把人从路上带走，路就通——可是路一通，又有人回去开车。',
+      '<b>Roads that jam</b>: the more drive, the slower the roads. Your line takes people off them and they clear — and then some drive again.'),
+    'iv.m3.body':L('<li>真實的九龍東（按全港模型縮放）。假設十多年後：啟德住滿、安達臣道入伙、觀塘和九龍灣的寫字樓再多一半。<b>路已經塞，地鐵還沒跟上。</b></li><li>地圖上的路越紅越塞（灰色是通的），小點是車；綠色、紫色是已有的觀塘綫、將軍澳綫。</li><li>建一條新線（預算 {b}），把開車的人帶上地鐵。規則和第二關一樣：省幾格幾成坐、口耳相傳。</li><li>開車的人<b>慢慢學</b>：每年只往真的塞車改 {lp}。看路怎樣變通、又怎樣有人回去開車。</li><li>分數＝八年裡比「什麼都不做」少塞多少。</li>',
+      '<li>真实的九龙东（按全港模型缩放）。假设十多年后：启德住满、安达臣道入伙、观塘和九龙湾的写字楼再多一半。<b>路已经塞，地铁还没跟上。</b></li><li>地图上的路越红越塞（灰色是通的），小点是车；绿色、紫色是已有的观塘线、将军澳线。</li><li>建一条新线（预算 {b}），把开车的人带上地铁。规则和第二关一样：省几格几成坐、口耳相传。</li><li>开车的人<b>慢慢学</b>：每年只往真的塞车改 {lp}。看路怎样变通、又怎样有人回去开车。</li><li>分数＝八年里比「什么都不做」少塞多少。</li>',
+      '<li>The real Kowloon East (scaled from the territory model). Suppose, a decade on: 啟德 full, 安達臣道 in, half again as many offices in 觀塘 and 九龍灣. <b>The roads jam; the metro hasn\'t caught up.</b></li><li>Redder roads are more jammed, dots are cars; green and purple are the 觀塘綫 and 將軍澳綫.</li><li>Build one new line (budget {b}) and take drivers onto the metro. Mode 2\'s rules: tenths by blocks saved, word of mouth.</li><li>Drivers <b>learn slowly</b>: each year they move {lp} of the way to the real jam. Watch the roads clear — and some drive again.</li><li>Score = how much less jam than «do nothing», over eight years.</li>'),
+    'iv.m3.course':L('課程連結：道路容量與擁堵（BPR 曲線的簡化）、誘發交通與 Downs–Thomson 悖論、出行者的逐日學習、公共交通與道路的平衡。','课程链接：道路容量与拥堵（BPR 曲线的简化）、诱发交通与 Downs–Thomson 悖论、出行者的逐日学习、公共交通与道路的平衡。',
+      'Course link: road capacity and congestion (a simplified BPR curve), induced traffic and the Downs–Thomson paradox, travellers learning day to day, the balance of transit and roads.')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

@@ -294,5 +294,15 @@
     'tod.hudRiders':L('By metro · 坐地鐵','By metro · 坐地铁','By metro'),'tod.hudHomes':L('New residents · 新住戶','New residents · 新住户','New residents'),
     'tod.hudMall':L('To the shops · 來站旁商場','To the shops · 来站旁商场','To the station shops'),'tod.hudLedger':L('Ledger · 賬','Ledger · 账','Ledger')
   });
+  // the level's opening card
+  I18N.add({
+    'iv.m4.new':L('<b>站旁開發</b>：站旁的空地也歸你。賣成住宅，站上多住人；賣成商場，這裡多一個大家要去的地方。地價當場算。','<b>站旁开发</b>：站旁的空地也归你。卖成住宅，站上多住人；卖成商场，这里多一个大家要去的地方。地价当场算。',
+      '<b>Station-side development</b>: the land beside the stations is yours too. Homes put people on the line; shops make the station a place people go. Land is priced when you sell.'),
+    'iv.m4.body':L('<li>第二關的新界西北，洪水橋還是一片空地。</li><li>先建一條線（和第二關一樣，開通後不能改）。</li><li>每年最多賣兩塊站旁空地：住宅或商業。</li><li>分數＝每年坐地鐵的人（車費）＋賣地的錢——港鐵的「鐵路＋物業」。</li>',
+      '<li>第二关的新界西北，洪水桥还是一片空地。</li><li>先建一条线（和第二关一样，开通后不能改）。</li><li>每年最多卖两块站旁空地：住宅或商业。</li><li>分数＝每年坐地铁的人（车费）＋卖地的钱——港铁的「铁路＋物业」。</li>',
+      '<li>Mode 2\'s north-west New Territories; Hung Shui Kiu is still empty land.</li><li>Build one line first (as in mode 2, fixed once open).</li><li>Sell up to two lots beside the stations a year: homes or shops.</li><li>Score = metro riders every year (fares) + land sold — the MTR\'s rail-plus-property.</li>'),
+    'iv.m4.course':L('課程連結：公共交通導向發展（TOD）、土地價值捕獲（鐵路＋物業）、職住平衡。','课程链接：公共交通导向发展（TOD）、土地价值捕获（铁路＋物业）、职住平衡。',
+      'Course link: transit-oriented development (TOD), land value capture (rail plus property), the balance of homes and jobs.')
+  });
   if(typeof document!=='undefined')I18N.apply();
 })();

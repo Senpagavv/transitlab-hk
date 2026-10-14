@@ -102,7 +102,7 @@
   const kindLine = s => s.challenge ? t('hub.challenge') : t('hub.teach');
 
   /* ---- state ---- */
-  // mode: 'cover' (intro ↔ hub, driven by p), 'leaving' (dots fly onto the board, then the level's page opens)
+  // mode: 'cover' (intro ↔ hub, driven by p), 'leaving' (the map fades round the level's dots), 'entering' (its page opens)
   let mode = 'cover', p = 0, target = 0, frozen = false, nav = 0, hot = null, hour = LH, riseRaf = 0, loopRaf = 0, runId = 0;
   const cv = $('cvDots'), ctx = cv.getContext('2d');
   const light = () => root.getAttribute('data-theme') !== 'dark';
@@ -378,89 +378,51 @@
     });
   }
 
-  /* ---- the hand-off: dots gather into a board, then the level's page opens ---- */
-  const FADE = 520, FLY = 760, SPREAD = 620, HOLD = 140, END = 160 + SPREAD + FLY + HOLD;
-  // The board the dots fly into: where the level page's map will be (between its side columns), a grid of streets,
-  // blocks and the station in the middle — seeded by the level, so each level assembles its own way.
-  function boardTargets(s) {
-    const W = window.innerWidth, H = window.innerHeight, top = chromeH();
-    const left = W >= 1180 ? 372 : W >= 760 ? 300 : 10, right = W >= 1180 ? 330 : 10;
-    const bx = left + 16, by = top + 16, bw = Math.max(200, W - left - right - 32), bh = Math.max(160, H - top - 32);
-    const cols = 14, rows = 10, cs = Math.min(bw / cols, bh / rows), ox = bx + (bw - cs * cols) / 2, oy = by + (bh - cs * rows) / 2;
-    let seed = 7; for (const ch of s.mode + s.key) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
-    const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
-    const L = light(), road = L ? '#D6D0C4' : '#3A3A3A', ink = L ? '#222222' : '#E8E8E8', acc = css('--s-accent') || '#0E7A4E', items = [];   // pale streets, dark blocks
-    const avenueR = [1 + (rnd() * 2 | 0), 5 + (rnd() * 2 | 0), 8], avenueC = [2 + (rnd() * 2 | 0), 7, 11 + (rnd() * 2 | 0)];
-    for (const r of avenueR) for (let c = 0; c < cols; c++) items.push({ p: [ox + (c + .5) * cs, oy + r * cs], w: cs * .98, h: cs * .2, color: road, kind: 'road' });
-    for (const c of avenueC) for (let r = 0; r < rows; r++) items.push({ p: [ox + c * cs, oy + (r + .5) * cs], w: cs * .2, h: cs * .98, color: road, kind: 'road' });
-    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (rnd() < .26 && Math.hypot(c + .5 - 7, r + .5 - 5) > 1) items.push({ p: [ox + (c + .5) * cs, oy + (r + .5) * cs], w: cs * .52, h: cs * .52, color: ink, kind: 'house' });
-    const hubP = [ox + 7 * cs, oy + 5 * cs];
-    items.push({ p: hubP, w: cs * .9, h: cs * .9, color: acc, kind: 'hub' });
-    return { hub: hubP, items };
-  }
+  /* ---- the hand-off: the map fades, the dots round the level stay; the level's page flies them onto its board ---- */
+  const FADE = 520, KEEP = 420;
   function play(key) {
     const s = site(key);
     if (!s || mode !== 'cover' || p < .97) return;
     if (!s.open) { lockedMsg = t('hub.lockedP', { p: nameOf(s.prev) }); hot = null; renderDetail(); setHot(key); return; }
+    if (window.TL_SAVE && !window.TL_SAVE.confirmSwitch(s.mode, s.key)) return;
     handoff(s);
   }
-  function handoff(s, frozenAt) {
+  function handoff(s) {
     const run = ++runId;
     stopRise(); mode = 'leaving';
     hub.classList.add('leaving'); $('cvTip').classList.remove('on'); setHot(null);
     renderNav();
-    const g = geom(), B = boardTargets(s);
-    const dpr = size(), m = TIDE[hour], L = light(), [lpx, lpy] = screenXY(s.lon, s.lat, g);
-    // the live dots nearest the level's place, nearest first
-    const live = [];
+    const g = geom(), m = TIDE[hour], [lpx, lpy] = screenXY(s.lon, s.lat, g), live = [];
+    // the live dots nearest the level's place, nearest first: they stay; shared/flyin.js on the level's page lands them
     for (let i = 0; i < DOTS.n; i++) {
       const val = DOTS.v[i] * baseMax * m; if (val <= 0.5) continue;
       const sx = g.ox + DOTS.x[i] * g.s, sy = g.oy + DOTS.y[i] * g.s, v = tVis(val);
       live.push({ i, x: sx, y: sy, r: (1.05 + 1.35 * v) * g.s, a: 0.09 + 0.91 * v, d: (sx - lpx) * (sx - lpx) + (sy - lpy) * (sy - lpy) });
     }
     live.sort((a, b) => a.d - b.d);
-    // blocks ordered from the station outwards, so the board assembles like a ripple leaving it
-    const items = B.items.slice().sort((a, b) => {
-      const da = Math.hypot(a.p[0] - B.hub[0], a.p[1] - B.hub[1]), db = Math.hypot(b.p[0] - B.hub[0], b.p[1] - B.hub[1]);
-      return (a.kind === 'hub' ? -1 : 0) - (b.kind === 'hub' ? -1 : 0) || da - db;
-    });
-    const inkC = rgba(L ? '#0A0A0A' : '#F5F5F5'), skip = new Uint8Array(DOTS.n), parts = [], n = Math.min(items.length, live.length);
-    for (let j = 0; j < n; j++) {
-      const src = live[j], dst = items[j]; skip[src.i] = 1;
-      parts.push({ x0: src.x, y0: src.y, r0: Math.max(1.4, src.r), a0: src.a, x1: dst.p[0], y1: dst.p[1], w1: dst.w, h1: dst.h,
-        c1: rgba(dst.color), delay: 160 + SPREAD * (j / Math.max(1, n - 1)), house: dst.kind !== 'road' });
-    }
-    // roads underneath, buildings and the station on top
-    const order = parts.filter(x => !x.house).concat(parts.filter(x => x.house));
-    const T0 = performance.now(); let done = false;
-    // rAF stops in background tabs and can crawl on slow machines: the hand-off always finishes on time anyway
-    if (frozenAt === undefined) setTimeout(() => { if (run !== runId || done) return; done = true; enter(s); }, END + 500);
-    function frame(now) {
-      if (run !== runId) return;
-      const u = frozenAt === undefined ? now - T0 : frozenAt;
+    const keep = live.slice(0, KEEP), skip = new Uint8Array(DOTS.n), ink = light() ? '10,10,10' : '245,245,245';
+    keep.forEach(d => { skip[d.i] = 1; });
+    const dpr = size(), T0 = performance.now();
+    setTimeout(() => { if (run === runId && mode === 'leaving') enter(s, keep); }, FADE + 600);
+    (function frame(now) {
+      if (run !== runId || mode !== 'leaving') return;
+      const u = now - T0;
       drawMap(1 - easeOut(clamp(u / FADE)), skip, g);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      for (const x of order) {
-        const v = clamp((u - x.delay) / FLY), e = easeInOut(v), sc = easeOut(clamp((v - .55) / .45));
-        const px = x.x0 + (x.x1 - x.x0) * e, py = x.y0 + (x.y1 - x.y0) * e;
-        // a dot first, then it opens out into its block as it lands
-        const w = 2 * x.r0 + (x.w1 - 2 * x.r0) * sc, hgt = 2 * x.r0 + (x.h1 - 2 * x.r0) * sc, rad = Math.min(w, hgt) / 2 * (1 - sc) + (x.house ? 3 : 1.5) * sc;
-        const c = [0, 1, 2].map(z => Math.round(inkC[z] + (x.c1[z] - inkC[z]) * sc)), a = x.a0 + (Math.max(.9, x.c1[3]) - x.a0) * easeOut(v);
-        ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
-        ctx.beginPath();
-        if (ctx.roundRect) ctx.roundRect(px - w / 2, py - hgt / 2, w, hgt, rad); else ctx.rect(px - w / 2, py - hgt / 2, w, hgt);
-        ctx.fill();
-      }
-      if (frozenAt !== undefined) return;
-      if (u >= END) { if (!done) { done = true; enter(s); } } else requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
+      for (const d of keep) { ctx.fillStyle = 'rgba(' + ink + ',' + d.a.toFixed(3) + ')'; ctx.beginPath(); ctx.arc(d.x, d.y, Math.max(1.4, d.r), 0, 6.2832); ctx.fill(); }
+      if (u < FADE) requestAnimationFrame(frame); else enter(s, keep);
+    })(T0);
   }
-  // the board is built: fade to paper and open the level's page
-  function enter(s) {
+  // hand the dots over and open the level's page
+  function enter(s, keep) {
+    if (mode !== 'leaving') return;
+    mode = 'entering';
     const m = MODES[s.mode];
-    body.classList.add('veil');
-    setTimeout(() => { location.href = m.dir + '/' + (bundled ? m.file : 'index.html') + '#map=' + encodeURIComponent(s.key); }, 260);
+    try {
+      sessionStorage.setItem('tl-flyin', JSON.stringify({ at: Date.now(), key: s.key, dark: !light(),
+        dots: keep.map(d => ({ x: +d.x.toFixed(1), y: +d.y.toFixed(1), r: +Math.max(1.4, d.r).toFixed(2), a: +d.a.toFixed(3) })) }));
+    } catch (e) {}
+    location.href = m.dir + '/' + (bundled ? m.file : 'index.html') + '#map=' + encodeURIComponent(s.key);
   }
   // back from a level's page with the browser's ← (the page may come back from the cache mid-hand-off)
   function backToHub() {
@@ -493,16 +455,15 @@
 
   /* ---- start ---- */
   // Test hooks: #hub=1&nav=3 (the map, mode 03 — also how a mode's «← Five modes» comes back) · #hubp=0.5 (frozen
-  // mid-scroll) · #coverfx=900&nav=1&site=l1 (hand-off frozen at 900 ms) · #hot=l2 (a level's details) · #unlock=all
+  // mid-scroll) · #hot=l2 (a level's details) · #unlock=all
   document.title = t('doc.title');
   buildNav(); renderTide();
   if (q.get('hubp')) { frozen = true; p = target = clamp(+q.get('hubp')); setHour(8); applyP(); return; }
-  if (q.get('hub') || q.get('coverfx')) {
+  if (q.get('hub')) {
     p = target = 1; nav = q.has('nav') ? +q.get('nav') : 1; hub.classList.toggle('m1', nav >= 1 && nav <= 4);
     SITES = sitesOf(nav); buildMarks();
     setHour(PH); applyP(); renderPanel(); renderNav();
     if (q.get('hot')) setHot(q.get('hot'));
-    if (q.get('coverfx')) setTimeout(() => { const s = site(q.get('site')) || SITES[0]; if (s) handoff(s, +q.get('coverfx')); }, 250);
     return;
   }
   applyP(); renderPanel();

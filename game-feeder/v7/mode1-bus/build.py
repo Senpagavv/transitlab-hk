@@ -21,6 +21,6 @@ def bundle(page, scripts, out):
     (p / out).write_text(s, encoding='utf8')
     print('written', p / out, f'{len(s) // 1024} KB')
 
-bundle('index.html', ['../levels/registry.js', 'data.js', 'engine.js', '../shared/i18n.js', '../shared/nav.js', '../shared/progress.js', 'strings.js', '../shared/tips.js', 'ui.js',
+bundle('index.html', ['../shared/flyin.js', '../levels/registry.js', 'data.js', 'engine.js', '../shared/i18n.js', '../shared/nav.js', '../shared/progress.js', 'strings.js', '../shared/tips.js', 'ui.js',
         'demo-plans.js', 'demo.js'], '模式1-车站与步行.html')   # the last two: AI demo (temporary)
 bundle('editor.html', ['data.js', 'engine.js', '../shared/i18n.js', 'strings.js', 'editor.js'], '模式1-关卡编辑器.html')
