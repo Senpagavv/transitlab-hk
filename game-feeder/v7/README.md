@@ -123,3 +123,12 @@ v7/
 ## 和 v6 的關係
 
 v7 模式 1 的規則和數值與 v6 相同（v6 第 1–3 關和第 5 關）。v6 第 4 關（青衣 · 習慣）沒有放進模式 1：習慣是「一週一週地變」，屬於之後的地鐵模式。v6 原樣保留。
+
+## 第五關的 AI（v7.12 起，2026-10-14）
+
+一句話 → 關卡請求 → 切關卡 → 機器人驗收。AI 只能從菜單選（20 個片區、四種時段、最多 4 條改動：某地住的人 / 崗位 / 路能過的車，各有上下限），其餘都是程式（切關卡見 `docs/for-codex/task-53-level-cutter.md`）。
+
+- **後台**：`backend/feeder_ai.py`（FastAPI，掛在 `backend/main.py`）：`GET /api/feeder/ai/status`、`POST /api/feeder/ai/level`（`{sentence, lang, names?, feedback?}`，不合格自動重問一次；與交通無關或有害的話會拒絕）、`POST /api/feeder/ai/comment`（復盤點評，裡面的數字必須是遊戲給的，程式核對）。錯誤格式 `{message}`，同組員網站的 `/api/game/ai/*`。密鑰只在後台：`.env` 的 `DEEPSEEK_API_KEY`（`DEEPSEEK_BASE_URL`、`DEEPSEEK_MODEL` 可選，預設 `deepseek-chat`）。遊戲頁面也從後台的 `/feeder/` 提供，和 AI 同源。
+- **頁面**：`ai/client.js`（`TLAI.generate(一句話, {build, names})`：問 AI → 交給切關卡 → 有問題把原因回給 AI 再試一次；沒有後台或沒有密鑰時，用 5 個現成示例按關鍵字對上）、`TLAI.comment(summary)`（AI 不在時用程式寫的一句）。
+- **測試**：`uv run pytest backend/test_feeder_ai.py`（16 項，用假回覆、不聯網）；有密鑰後 `uv run python game-feeder/tools/ai-test/run_sentences.py` 跑 30 句固定測試（`ai/test-sentences.json`），記通過率、時延，寫到 `data/cache/ai-test/`。
+

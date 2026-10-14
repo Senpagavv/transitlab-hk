@@ -150,3 +150,10 @@ from game.api import GAME_UI, router as game_router  # noqa: E402
 
 app.include_router(game_router)
 app.mount("/game", StaticFiles(directory=GAME_UI, html=True, check_dir=False), name="game")
+
+# Feeder game v7 (game-feeder/v7/): its AI under /api/feeder/ai (backend/feeder_ai.py), the pages at /feeder/ — served
+# from here so the pages and the AI share an origin when the sandbox is run locally.
+from backend.feeder_ai import router as feeder_ai_router  # noqa: E402
+
+app.include_router(feeder_ai_router)
+app.mount("/feeder", StaticFiles(directory=ROOT / "game-feeder" / "v7", html=True, check_dir=False), name="feeder")
