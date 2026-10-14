@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 23:22 · `待补` 接驳巴士 v7.16：顶上一排回到地图选关、关卡页只有这一关、中途离开先提醒、先不锁关 / Feeder v7.16: the top row returns to the hub; leave warning; all levels open
+### 23:22 · `c88d044` 接驳巴士 v7.16：顶上一排回到地图选关、关卡页只有这一关、中途离开先提醒、先不锁关 / Feeder v7.16: the top row returns to the hub; leave warning; all levels open
 - **改了什么**：`game-feeder/v7/shared/nav.js`（01–05 和「← 五个模式」都回入口地图；玩到一半先确认「这一局就作废」）；四个玩法页加 `TL_INPROGRESS`；第一关页内的关卡按钮和编辑器链接收起；`shared/progress.js` 先全部开放。
 - **为什么**：发起人：关卡只在地图上选，关卡页只放当前关；中途离开要提醒；锁关等有注册后台再做。
 - **验证**：真鼠标走完：全开、进关无选关按钮、未开局直接回、半局离开弹提醒（取消留下 / 确定回地图）；四个玩法检查全过；无报错。
