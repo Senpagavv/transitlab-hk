@@ -13,7 +13,11 @@ shared = p / 'shared'
 s = (p / 'index.html').read_text(encoding='utf8')
 s = s.replace('<link rel="stylesheet" href="shared/style.css">', '<style>' + (shared / 'style.css').read_text(encoding='utf8') + '</style>')
 s = s.replace('src="shared/logo-tide.svg"', 'src="data:image/svg+xml;base64,' + base64.b64encode((shared / 'logo-tide.svg').read_bytes()).decode() + '"')
-s = s.replace('<script src="shared/i18n.js"></script>', '<script>\n' + (shared / 'i18n.js').read_text(encoding='utf8') + '\n</script>')
-assert 'src="shared/' not in s and 'href="shared/' not in s, 'a shared file was not inlined'
+# the hub (v3's cover and dot map): its scripts, the level registry and this browser's progress
+for f in ['shared/i18n.js', 'levels/registry.js', 'shared/progress.js', 'hub/stations.js', 'hub/cover-data.js', 'hub/strings.js', 'hub/hub.js']:
+    tag = f'<script src="{f}"></script>'
+    assert tag in s, f'missing {tag}'
+    s = s.replace(tag, '<script>\n' + (p / f).read_text(encoding='utf8') + '\n</script>')
+assert 'src="shared/' not in s and 'href="shared/' not in s and '<script src=' not in s, 'a file was not inlined'
 (p / '开始.html').write_text(s, encoding='utf8')
 print('written', p / '开始.html', f'{len(s) // 1024} KB')

@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 接駁巴士 v7</title>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 五個模式</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet">
 <style>/* v2.1 · design language follows the team product suite (TransitLab-產品套件):
    paper + ink, Bodoni Moda / Geist / Geist Mono, dotted paper, hairline frames,
    colour only where it means something — green = good (delivered), red→amber = loss. */
@@ -587,38 +587,40 @@ dialog.intro .row{margin-top:16px}
 @keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 </style>
 <style>
-  /* v7 launcher: one card per mode. Placeholder for the final hub (v3's dotted Hong Kong map with the fly-in), which
-     will list the same modes. Each mode is its own page and its own bundle. */
-  .launch{max-width:980px;margin:0 auto;padding:28px 20px 60px}
-  .launch .lede{max-width:640px}
-  .modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:22px}
-  .mode{display:flex;flex-direction:column;gap:6px;border:1px solid var(--s-line2);border-radius:8px;background:var(--s-panel);padding:16px 16px 14px;color:var(--s-ink);text-decoration:none;min-height:150px}
-  a.mode:hover{border-color:var(--s-accent);box-shadow:inset 0 0 0 1px var(--s-accent)}
-  .mode .n{font:500 10px var(--s-mono);letter-spacing:.14em;color:var(--s-ink3)}
-  .mode b{font:600 18px 'Geist',sans-serif}
-  .mode p{margin:0;font-size:13px;line-height:1.6;color:var(--s-ink2)}
-  .mode .st{margin-top:auto;font:500 11px var(--s-mono);color:var(--s-accent)}
-  .mode.soon{opacity:.62;background:var(--s-soft)}
-  .mode.soon .st{color:var(--s-ink3)}
-  .launch .note{margin-top:22px}
-</style></head><body class="entered">
+  /* v7 hub: v3's cover and dot map (shared/style.css has its styles); levels locked until the one before is passed */
+  .hub-panel .lv.locked{opacity:.55}
+  .hub-panel .lv.locked .lv-m{color:var(--s-ink3)}
+  /* the level's page opens after the board is built: fade to paper */
+  body::after{content:'';position:fixed;inset:0;background:var(--s-paper);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200}
+  body.veil::after{opacity:1}
+</style></head><body class="inhub chrome-off">
 <header id="topbar">
-  <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · 交通遊戲 · 五個模式</span></div>
   <div class="sp"></div>
-  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" aria-pressed="true">繁</button><button data-lang="zh-Hans" aria-pressed="false">简</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
 </header>
-<main class="launch">
-  <h1 class="h1"><span>Five modes</span><span class="h1tc" data-i18n="lc.title">五個模式</span></h1>
-  <p class="lede" data-i18n="lc.lede">從一座車站開始，一層一層加上真實城市的規則：地鐵、塞車、地面巴士，最後是整個片區的沙盤。</p>
-  <div class="modes">
-    <a class="mode" id="m1" href="mode1-bus/index.html"><span class="n">MODE 01</span><b data-i18n="lc.m1">車站與步行</b><p data-i18n="lc.m1d">人願意走多遠、怎樣分去幾座站、站會不會爆。四關：朗屏（引導）、元朗南、粉嶺、大埔墟。</p><span class="st" data-i18n="lc.play">可以玩 →</span></a>
-    <a class="mode" id="m2" href="mode2-metro/index.html"><span class="n">MODE 02</span><b data-i18n="lc.m2">地鐵</b><p data-i18n="lc.m2d">一次建好一條線，再看八年：大家慢慢發現它，越來越多人坐；它讓哪裡變近，哪裡就多人去。</p><span class="st" data-i18n="lc.draft">初稿 · 可以玩 →</span></a>
-    <a class="mode" id="m3" href="mode3-roads/index.html"><span class="n">MODE 03</span><b data-i18n="lc.m3">路會塞</b><p data-i18n="lc.m3d">真實的九龍東：路已經塞，建一條新線把人從路上帶走——路一通，又有人回去開車。</p><span class="st" data-i18n="lc.draft">初稿 · 可以玩 →</span></a>
-    <a class="mode" id="m4" href="mode4-tod/index.html"><span class="n">MODE 04</span><b data-i18n="lc.m4">站旁開發</b><p data-i18n="lc.m4d">新界西北：建好地鐵線，再把站旁空地賣成住宅或商場。</p><span class="st" data-i18n="lc.draft">初稿 · 可以玩 →</span></a>
-    <div class="mode soon"><span class="n">MODE 05</span><b data-i18n="lc.m5">全融合沙盤</b><p data-i18n="lc.m5d">真實片區、站旁開發，城市跟著交通長；用一句話讓 AI 出題。</p><span class="st" data-i18n="lc.soon">設計中</span></div>
+<nav id="navrow"></nav>
+<!-- The hub: the opening (title + tide bar) and, after a scroll, the map every mode starts from. -->
+<div id="hub" data-i18n-aria="hub.aria">
+  <div class="cv-stage"><canvas id="cvDots"></canvas><div class="tip" id="cvTip"></div></div>
+  <div class="hub-marks" id="hubMarks"></div>
+  <aside class="hub-panel" id="hubPanel"></aside>
+  <div class="cv-copy" id="cvCopy">
+    <img class="cv-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab · Green Genre" width="68" height="68">
+    <h1 class="cv-title">This city tides<br><em>twice</em> a day<span class="cv-tc" data-i18n="cv.titleTc">這座城市，一天漲潮兩次</span></h1>
+    <p class="cv-lede">761 trunk-road detectors, 24 weekdays, one reading every hour.<span class="cv-tc" data-i18n="cv.ledeTc">運輸署實測，逐小時。</span></p>
+    <p class="cv-mode"><span class="lbl">Five modes</span><span data-i18n="cv.mode">五個模式：車站與步行 · 地鐵 · 路會塞 · 站旁開發 · 沙盤</span></p>
   </div>
-  <p class="note" data-i18n="lc.note">之後這一頁會換成全港波點地圖的入口（點進去，波點飛成棋盤）。</p>
-</main>
+  <button class="cv-hint" id="cvHint"><i class="mouse" aria-hidden="true"></i><span data-i18n="cv.scroll">向下滾動，打開地圖</span></button>
+  <footer class="cv-bar">
+    <button class="cv-play" id="cvPlay" data-i18n-title="cv.replay" data-i18n-aria="cv.replay"><svg width="13" height="14" viewBox="0 0 11 12" fill="currentColor"><path d="M1 0.6 10 6 1 11.4z"/></svg></button>
+    <div class="cv-hour"><div class="h" id="cvHour">03:00</div><div class="u" id="cvPhase">trough</div></div>
+    <div class="cv-mid"><svg id="cvTide"></svg></div>
+    <div class="cv-nums"><div><b id="cvFlow">—</b><span>veh/h</span></div><div><b id="cvSpeed">—</b><span>km/h</span></div></div>
+  </footer>
+</div>
+
 <script>
 (function(root) {
   'use strict';
@@ -672,26 +674,607 @@ dialog.intro .row{margin-top:16px}
   }   // the mode's strings.js calls apply() once its texts are in
 })(typeof window!=='undefined'?window:globalThis);
 
-</script>
-<script>
-  // the launcher's own texts (each page brings its own strings; the language engine is shared)
-  (function(){const L=I18N.L;I18N.add({
-    'brand.sub':L('HK · Feeder bus · 接駁巴士','HK · Feeder bus · 接驳巴士','HK · Feeder bus'),'top.lang':L('語言','语言','Language'),
-    'lc.title':L('五個模式','五个模式',''),
-    'lc.lede':L('從一座車站開始，一層一層加上真實城市的規則：地鐵、塞車、地面巴士，最後是整個片區的沙盤。','从一座车站开始，一层一层加上真实城市的规则：地铁、塞车、地面巴士，最后是整个片区的沙盘。',
-      'Start with one station, then add the rules of a real city layer by layer: the metro, congestion, buses on the road, and finally a whole district as a sandbox.'),
-    'lc.m1':L('車站與步行','车站与步行','Stations and walking'),
-    'lc.m1d':L('人願意走多遠、怎樣分去幾座站、站會不會爆。四關：朗屏（引導）、元朗南、粉嶺、大埔墟。','人愿意走多远、怎样分去几座站、站会不会爆。四关：朗屏（引导）、元朗南、粉岭、大埔墟。',
-      'How far people will walk, how they split between stops, whether a stop overflows. Four levels: Long Ping (intro), Yuen Long South, Fanling, Tai Po Market.'),
-    'lc.m2':L('地鐵','地铁','The metro'),'lc.m2d':L('一次建好一條線，再看八年：大家慢慢發現它，越來越多人坐；它讓哪裡變近，哪裡就多人去。','一次建好一条线，再看八年：大家慢慢发现它，越来越多人坐；它让哪里变近，哪里就多人去。','Build one line, then watch eight years: people discover it, more ride it, and the places it brings nearer draw more people.'),
-    'lc.m3':L('路會塞','路会塞','Congestion'),'lc.m3d':L('真實的九龍東：路已經塞，建一條新線把人從路上帶走——路一通，又有人回去開車。','真实的九龙东：路已经塞，建一条新线把人从路上带走——路一通，又有人回去开车。','The real Kowloon East: the roads jam; build a line to take people off them — and once they clear, some drive again.'),
-    'lc.m4':L('站旁開發','站旁开发','Station-side development'),'lc.m4d':L('新界西北：建好地鐵線，再把站旁空地賣成住宅或商場。','新界西北：建好地铁线，再把站旁空地卖成住宅或商场。','North-west New Territories: build the metro, then sell vacant station-side land for homes or shops.'),
-    'lc.m5':L('全融合沙盤','全融合沙盘','The whole city'),'lc.m5d':L('真實片區、站旁開發，城市跟著交通長；用一句話讓 AI 出題。','真实片区、站旁开发，城市跟着交通长；用一句话让 AI 出题。','A real district, development by the stations, a city that grows with its transport; ask the AI for a level in one sentence.'),
-    'lc.play':L('可以玩 →','可以玩 →','Play →'),'lc.draft':L('初稿 · 可以玩 →','初稿 · 可以玩 →','Draft · play →'),'lc.soon':L('設計中','设计中','In design'),
-    'lc.note':L('之後這一頁會換成全港波點地圖的入口（點進去，波點飛成棋盤）。','之后这一页会换成全港波点地图的入口（点进去，波点飞成棋盘）。','This page will become the dotted Hong Kong map entrance (click in and the dots fly into the board).')
-  });I18N.apply();
-  // the bundled launcher opens the bundled mode
-  if(/开始|%E5%BC%80%E5%A7%8B/.test(location.pathname)){document.getElementById('m1').href='mode1-bus/模式1-车站与步行.html';document.getElementById('m2').href='mode2-metro/模式2-地铁.html';document.getElementById('m3').href='mode3-roads/模式3-路会塞.html';document.getElementById('m4').href='mode4-tod/模式4-站旁开发.html';}})();
+</script><script>
+// Generated by levels/build_registry.py — do not edit. Add a level: put a «tl-level/1» JSON file in levels/m1…m4/
+// and run python v7/build.py (see levels/README.md).
+(function(root){const list=[{"mode":1,"key":"l1","order":1,"challenge":false,"title":{"zh-Hant":"朗屏","zh-Hans":"朗屏","en":"Long Ping"},"hub":{"station":"朗屏"},"builtin":true},{"mode":1,"key":"l2","order":2,"challenge":false,"title":{"zh-Hant":"元朗南","zh-Hans":"元朗南","en":"Yuen Long South"},"hub":{"station":"元朗","lonlat":[114.033,22.432],"side":"left"},"builtin":true},{"mode":1,"key":"l3","order":3,"challenge":false,"title":{"zh-Hant":"粉嶺","zh-Hans":"粉岭","en":"Fanling"},"hub":{"station":"粉嶺"},"builtin":true},{"mode":1,"key":"l4","order":4,"challenge":true,"title":{"zh-Hant":"大埔墟","zh-Hans":"大埔墟","en":"Tai Po Market"},"hub":{"station":"大埔墟"},"builtin":true},{"mode":2,"key":"m2-1","order":1,"challenge":false,"title":{"zh-Hant":"新界西北 · 一條新線","zh-Hans":"新界西北 · 一条新线","en":"North-west New Territories"},"hub":{"station":"天水圍"},"builtin":true},{"mode":3,"key":"m3-1","order":1,"challenge":false,"title":{"zh-Hant":"九龍東 · 第二個商業區","zh-Hans":"九龙东 · 第二个商业区","en":"Kowloon East"},"hub":{"station":"觀塘"},"builtin":true},{"mode":4,"key":"m4-1","order":1,"challenge":false,"title":{"zh-Hant":"新界西北 · 站旁開發","zh-Hans":"新界西北 · 站旁开发","en":"North-west New Territories · station-side development"},"hub":{"station":"兆康"},"builtin":true}];
+  root.TL_LEVELS={list,mode:n=>list.filter(l=>l.mode===n),get:(n,k)=>list.find(l=>l.mode===n&&l.key===k)||null};
+  if(typeof module!=='undefined')module.exports=root.TL_LEVELS;
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function(root) {
+  'use strict';
+  // v7 · progress in this browser (2026-10-14): each level's best score and tier, written when its result shows.
+  // The hub opens a mode's levels one after another: the first (by `order` in levels/registry.js) is open, the next
+  // opens when the one before it is passed. #unlock=all in the hub's address opens everything (for testing and demos).
+  const K='tl-progress';
+  const read=()=>{try{return JSON.parse(localStorage.getItem(K)||'{}');}catch(e){return{};}};
+  function record(mode,key,score,tiers){
+    const all=read(),id=mode+'/'+key,t=tiers||[0,0,0],tier=score>=t[2]?3:score>=t[1]?2:score>=t[0]?1:0,was=all[id]||{best:0,tier:0};
+    all[id]={best:Math.max(was.best,score),tier:Math.max(was.tier,tier),at:Date.now()};
+    try{localStorage.setItem(K,JSON.stringify(all));}catch(e){}
+    return all[id];}
+  const get=(mode,key)=>read()[mode+'/'+key]||null;
+  const passed=(mode,key)=>((get(mode,key)||{}).tier||0)>=1;
+  function open(mode,key){
+    if(typeof location!=='undefined'&&/(?:^|[#&])unlock=all/.test(location.hash))return true;
+    const L=root.TL_LEVELS?root.TL_LEVELS.mode(mode):[],i=L.findIndex(l=>l.key===key);
+    return i<=0||passed(mode,L[i-1].key);}
+  root.TLProgress={record,get,passed,open};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+// Generated by hub/make_stations.py from data/web/places.json — MTR and Light Rail stations, [lon, lat].
+window.TL_STATIONS={"三聖":[113.97686,22.382896],"Sam Shing":[113.97686,22.382896],"何福堂":[113.977402,22.397373],"Hoh Fuk Tong":[113.977402,22.397373],"元朗":[114.035309,22.446251],"Yuen Long":[114.035309,22.446251],"兆康":[113.978729,22.4121],"Siu Hong":[113.978729,22.4121],"兆禧":[113.966896,22.375244],"Siu Hei":[113.966896,22.375244],"兆麟":[113.97509,22.384556],"Siu Lun":[113.97509,22.384556],"友愛":[113.973526,22.386721],"Yau Oi":[113.973526,22.386721],"坑尾村":[114.005524,22.445086],"Hang Mei Tsuen":[114.005524,22.445086],"塘坊村":[114.007042,22.440113],"Tong Fong Tsuen":[114.007042,22.440113],"大棠路":[114.028969,22.444523],"Tai Tong Road":[114.028969,22.444523],"大興(北)":[113.969986,22.404598],"Tai Hing (North)":[113.969986,22.404598],"大興(南)":[113.97197,22.402668],"Tai Hing (South)":[113.97197,22.402668],"天富":[113.997704,22.464539],"Tin Fu":[113.997704,22.464539],"天慈":[114.00602,22.4527],"Tin Tsz":[114.00602,22.4527],"天榮":[114.002602,22.459532],"Tin Wing":[114.002602,22.459532],"天水圍":[114.004623,22.448032],"Tin Shui Wai":[114.004623,22.448032],"天湖":[114.005768,22.454992],"Tin Wu":[114.005768,22.454992],"天瑞":[113.999435,22.455915],"Tin Shui":[113.999435,22.455915],"天耀":[114.00267,22.450384],"Tin Yiu":[114.00267,22.450384],"天逸":[113.998833,22.466969],"Tin Yat":[113.998833,22.466969],"安定":[113.975067,22.387644],"On Ting":[113.975067,22.387644],"屏山":[114.011757,22.442818],"Ping Shan":[114.011757,22.442818],"屯門碼頭":[113.967117,22.372707],"Tuen Mun Ferry Pier":[113.967117,22.372707],"屯門":[113.97316,22.395229],"Tuen Mun":[113.97316,22.395229],"屯門醫院":[113.977142,22.407766],"Tuen Mun Hospital":[113.977142,22.407766],"山景(北)":[113.966621,22.398506],"Shan King (North)":[113.966621,22.398506],"山景(南)":[113.965981,22.396618],"Shan King (South)":[113.965981,22.396618],"市中心":[113.974884,22.391365],"Town Centre":[113.974884,22.391365],"康樂路":[114.026611,22.444548],"Hong Lok Road":[114.026611,22.444548],"建安":[113.968903,22.395132],"Kin On":[113.968903,22.395132],"建生":[113.969185,22.406727],"Kin Sang":[113.969185,22.406727],"新圍":[113.964417,22.405294],"San Wai":[113.964417,22.405294],"新墟":[113.978043,22.400219],"San Hui":[113.978043,22.400219],"景峰":[113.9795,22.403128],"Prime View":[113.9795,22.403128],"杯渡":[113.976807,22.394609],"Pui To":[113.976807,22.394609],"樂湖":[114.001076,22.453037],"Locwood":[114.001076,22.453037],"水邊圍":[114.020447,22.44446],"Shui Pin Wai":[114.020447,22.44446],"河田":[113.973129,22.397377],"Ho Tin":[113.973129,22.397377],"泥圍":[113.98632,22.423655],"Nai Wai":[113.98632,22.423655],"洪水橋":[113.99736,22.433645],"Hung Shui Kiu":[113.99736,22.433645],"海皇路":[113.970634,22.384413],"Hoi Wong Road":[113.970634,22.384413],"澤豐":[113.975891,22.403494],"Affluence":[113.975891,22.403494],"田景":[113.966431,22.407709],"Tin King":[113.966431,22.407709],"石排":[113.96769,22.401381],"Shek Pai":[113.96769,22.401381],"美樂":[113.961113,22.375048],"Melody Garden":[113.961113,22.375048],"翠湖":[113.999535,22.459719],"Chestwood":[113.999535,22.459719],"良景":[113.963631,22.406693],"Leung King":[113.963631,22.406693],"蔡意橋":[113.974167,22.399935],"Choy Yee Bridge":[113.974167,22.399935],"藍地":[113.981628,22.418501],"Lam Tei":[113.981628,22.418501],"蝴蝶":[113.961662,22.378172],"Butterfly":[113.961662,22.378172],"豐年路":[114.023895,22.444473],"Fung Nin Road":[114.023895,22.444473],"豐景園":[113.972984,22.383272],"Goodview Garden":[113.972984,22.383272],"輕鐵車廠":[113.963425,22.381805],"Light Rail Depot":[113.963425,22.381805],"銀圍":[113.974838,22.402391],"Ngan Wai":[113.974838,22.402391],"銀座":[114.00489,22.457556],"Ginza":[114.00489,22.457556],"鍾屋村":[113.992226,22.429657],"Chung Uk Tsuen":[113.992226,22.429657],"青山村":[113.966965,22.390398],"Tsing Shan Tsuen":[113.966965,22.390398],"青松":[113.972527,22.407291],"Ching Chung":[113.972527,22.407291],"青雲":[113.967407,22.394344],"Tsing Wun":[113.967407,22.394344],"頌富":[113.996956,22.462027],"Chung Fu":[113.996956,22.462027],"鳳地":[113.978737,22.40674],"Fung Tei":[113.978737,22.40674],"鳴琴":[113.967346,22.397062],"Ming Kum":[113.967346,22.397062],"麒麟":[113.976341,22.410973],"Kei Lun":[113.976341,22.410973],"龍門":[113.964981,22.385256],"Lung Mun":[113.964981,22.385256],"上水":[114.127861,22.501383],"Sheung Shui":[114.127861,22.501383],"上環":[114.151497,22.286856],"Sheung Wan":[114.151497,22.286856],"中環":[114.159241,22.281895],"Central":[114.159241,22.281895],"九龍塘":[114.176674,22.337118],"Kowloon Tong":[114.176674,22.337118],"九龍灣":[114.214081,22.323433],"Kowloon Bay":[114.214081,22.323433],"九龍":[114.161736,22.304787],"Kowloon":[114.161736,22.304787],"佐敦":[114.171707,22.304852],"Jordan":[114.171707,22.304852],"何文田":[114.182678,22.310026],"Ho Man Tin":[114.182678,22.310026],"利東":[114.156013,22.242201],"Lei Tung":[114.156013,22.242201],"北角":[114.200478,22.291155],"North Point":[114.200478,22.291155],"南昌":[114.153824,22.326466],"Nam Cheong":[114.153824,22.326466],"博覽館":[113.942017,22.321898],"AsiaWorld-Expo":[113.942017,22.321898],"啟德":[114.199654,22.330637],"Kai Tak":[114.199654,22.330637],"土瓜灣":[114.187531,22.316935],"To Kwa Wan":[114.187531,22.316935],"坑口":[114.264168,22.315828],"Hang Hau":[114.264168,22.315828],"堅尼地城":[114.128525,22.281401],"Kennedy Town":[114.128525,22.281401],"大圍":[114.178368,22.373064],"Tai Wai":[114.178368,22.373064],"大埔墟":[114.170555,22.444481],"Tai Po Market":[114.170555,22.444481],"大學":[114.210327,22.413624],"University":[114.210327,22.413624],"大水坑":[114.222595,22.408207],"Tai Shui Hang":[114.222595,22.408207],"大窩口":[114.125038,22.370817],"Tai Wo Hau":[114.125038,22.370817],"天后":[114.191811,22.282251],"Tin Hau":[114.191811,22.282251],"太古":[114.216209,22.285162],"Tai Koo":[114.216209,22.285162],"太和":[114.161072,22.451057],"Tai Wo":[114.161072,22.451057],"太子":[114.168343,22.324657],"Prince Edward":[114.168343,22.324657],"奧運":[114.160187,22.317804],"Olympic":[114.160187,22.317804],"宋皇臺":[114.191216,22.326944],"Sung Wong Toi":[114.191216,22.326944],"寶琳":[114.257767,22.322718],"Po Lam":[114.257767,22.322718],"將軍澳":[114.259903,22.307365],"Tseung Kwan O":[114.259903,22.307365],"尖東":[114.173897,22.296206],"East Tsim Sha Tsui":[114.173897,22.296206],"尖沙咀":[114.172379,22.297295],"Tsim Sha Tsui":[114.172379,22.297295],"康城":[114.268654,22.295492],"LOHAS Park":[114.268654,22.295492],"彩虹":[114.208801,22.334806],"Choi Hung":[114.208801,22.334806],"恆安":[114.225746,22.417505],"Heng On":[114.225746,22.417505],"旺角東":[114.172714,22.322163],"Mong Kok East":[114.172714,22.322163],"旺角":[114.169365,22.319468],"Mong Kok":[114.169365,22.319468],"會展":[114.175194,22.281607],"Exhibition Centre":[114.175194,22.281607],"朗屏":[114.025421,22.447773],"Long Ping":[114.025421,22.447773],"杏花邨":[114.239632,22.276541],"Heng Fa Chuen":[114.239632,22.276541],"東涌":[113.941528,22.289341],"Tung Chung":[113.941528,22.289341],"柯士甸":[114.166664,22.30447],"Austin":[114.166664,22.30447],"柴灣":[114.237122,22.264599],"Chai Wan":[114.237122,22.264599],"樂富":[114.18676,22.33787],"Lok Fu":[114.18676,22.33787],"機場":[113.93647,22.315905],"Airport":[113.93647,22.315905],"欣澳":[114.028946,22.33189],"Sunny Bay":[114.028946,22.33189],"沙田圍":[114.194992,22.377033],"Sha Tin Wai":[114.194992,22.377033],"沙田":[114.187363,22.382463],"Sha Tin":[114.187363,22.382463],"油塘":[114.237167,22.297813],"Yau Tong":[114.237167,22.297813],"油麻地":[114.170593,22.312769],"Yau Ma Tei":[114.170593,22.312769],"海怡半島":[114.149033,22.242483],"South Horizons":[114.149033,22.242483],"海洋公園":[114.174377,22.248594],"Ocean Park":[114.174377,22.248594],"深水埗":[114.162285,22.330757],"Sham Shui Po":[114.162285,22.330757],"灣仔":[114.172913,22.277237],"Wan Chai":[114.172913,22.277237],"火炭":[114.198357,22.395607],"Fo Tan":[114.198357,22.395607],"炮台山":[114.193756,22.287699],"Fortress Hill":[114.193756,22.287699],"烏溪沙":[114.243935,22.429146],"Wu Kai Sha":[114.243935,22.429146],"牛頭角":[114.218925,22.315502],"Ngau Tau Kok":[114.218925,22.315502],"石硤尾":[114.168846,22.331827],"Shek Kip Mei":[114.168846,22.331827],"石門":[114.208267,22.387674],"Shek Mun":[114.208267,22.387674],"第一城":[114.203522,22.382856],"City One":[114.203522,22.382856],"筲箕灣":[114.229065,22.279549],"Shau Kei Wan":[114.229065,22.279549],"粉嶺":[114.138649,22.492132],"Fanling":[114.138649,22.492132],"紅磡":[114.181808,22.302441],"Hung Hom":[114.181808,22.302441],"羅湖":[114.113708,22.528067],"Lo Wu":[114.113708,22.528067],"美孚":[114.138397,22.338305],"Mei Foo":[114.138397,22.338305],"茘景":[114.12616,22.348324],"Lai King":[114.12616,22.348324],"茘枝角":[114.148071,22.336561],"Lai Chi Kok":[114.148071,22.336561],"荃灣":[114.117828,22.373615],"Tsuen Wan":[114.117828,22.373615],"荃灣西":[114.10997,22.368067],"Tsuen Wan West":[114.10997,22.368067],"落馬洲":[114.065681,22.515001],"Lok Ma Chau":[114.065681,22.515001],"葵興":[114.131355,22.363169],"Kwai Hing":[114.131355,22.363169],"葵芳":[114.127808,22.356848],"Kwai Fong":[114.127808,22.356848],"藍田":[114.233063,22.306932],"Lam Tin":[114.233063,22.306932],"西灣河":[114.222038,22.282007],"Sai Wan Ho":[114.222038,22.282007],"西營盤":[114.143082,22.286091],"Sai Ying Pun":[114.143082,22.286091],"觀塘":[114.226578,22.312143],"Kwun Tong":[114.226578,22.312143],"調景嶺":[114.252266,22.303947],"Tiu Keng Leng":[114.252266,22.303947],"車公廟":[114.186172,22.374769],"Che Kung Temple":[114.186172,22.374769],"迪士尼":[114.044907,22.315393],"Disneyland Resort":[114.044907,22.315393],"金鐘":[114.165955,22.278383],"Admiralty":[114.165955,22.278383],"銅鑼灣":[114.183868,22.279579],"Causeway Bay":[114.183868,22.279579],"錦上路":[114.063423,22.434797],"Kam Sheung Road":[114.063423,22.434797],"鑽石山":[114.201408,22.339869],"Diamond Hill":[114.201408,22.339869],"長沙灣":[114.156425,22.33539],"Cheung Sha Wan":[114.156425,22.33539],"青衣":[114.107025,22.358324],"Tsing Yi":[114.107025,22.358324],"顯徑":[114.170792,22.363922],"Hin Keng":[114.170792,22.363922],"香港大學":[114.134743,22.284563],"HKU":[114.134743,22.284563],"香港":[114.158157,22.284687],"Hong Kong":[114.158157,22.284687],"馬鞍山":[114.231606,22.424795],"Ma On Shan":[114.231606,22.424795],"鰂魚涌":[114.208946,22.288774],"Quarry Bay":[114.208946,22.288774],"黃埔":[114.190186,22.304804],"Whampoa":[114.190186,22.304804],"黃大仙":[114.194084,22.341625],"Wong Tai Sin":[114.194084,22.341625],"黃竹坑":[114.167572,22.248241],"Wong Chuk Hang":[114.167572,22.248241]};
+
+</script><script>
+// Generated by tools/extract_cover.py from the team product suite. Do not edit by hand.
+window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dcols":122,"coast":"M1040 70h10M1060 70h10M1050 80h10M1070 80h20M1020 90h20M1090 90h10M1110 90h110M1430 90h10M1100 100h10M1220 100h10M1320 100h10M1360 100h10M1420 100h10M1820 100h20M1010 110h10M1230 110h10M1280 110h20M1360 110h10M1450 110h30M1310 120h10M1330 120h10M1450 120h30M970 130h30M1210 130h30M1300 130h10M1330 130h10M1420 130h10M1440 130h10M1540 130h10M1820 130h10M1840 130h10M1860 130h10M940 140h30M1000 140h10M1270 140h10M1330 140h20M1430 140h10M1470 140h10M1540 140h10M1830 140h30M830 150h20M930 150h10M1200 150h10M1340 150h20M1420 150h20M1450 150h30M1850 150h20M820 160h10M850 160h40M910 160h20M1190 160h10M1260 160h10M1340 160h20M1420 160h40M1480 160h10M1510 160h10M800 170h20M890 170h20M1220 170h10M1240 170h20M1340 170h10M1460 170h10M1490 170h30M1180 180h10M1230 180h10M1350 180h10M1380 180h10M1480 180h20M1510 180h10M1180 190h40M1340 190h10M1360 190h20M1400 190h10M1480 190h40M790 200h10M820 200h10M1390 200h30M760 210h30M820 210h10M1370 210h10M1390 210h10M1410 210h10M1500 210h20M750 220h10M1380 220h10M1510 220h10M740 230h10M1370 230h10M1400 230h10M1450 230h30M1490 230h20M1550 230h10M1380 240h20M1410 240h10M1430 240h20M1470 240h20M1540 240h10M690 250h20M1420 250h10M1450 250h20M1500 250h40M1550 250h10M1630 250h10M680 260h10M710 260h30M1450 260h10M1470 260h30M1530 260h20M1620 260h10M670 270h10M1460 270h10M1520 270h10M1630 270h10M660 280h10M1510 280h10M1620 280h10M1500 290h10M570 300h10M1480 300h20M560 310h10M580 310h30M650 310h10M1620 310h20M650 320h10M1470 320h10M550 330h10M640 330h20M1440 330h30M1540 330h10M540 340h10M600 340h10M620 340h20M1430 340h10M1500 340h20M1540 340h10M1570 340h10M1640 340h10M530 350h10M600 350h20M1410 350h20M1490 350h10M1540 350h10M520 360h10M1230 360h30M1370 360h40M1480 360h10M1520 360h30M1620 360h10M1640 360h10M1190 370h40M1260 370h10M1470 370h10M1560 370h10M1580 370h10M510 380h10M1270 380h10M1350 380h20M1530 380h20M1630 380h10M1280 390h10M1340 390h10M1460 390h10M1530 390h10M1550 390h10M1570 390h20M500 400h10M1160 400h20M1210 400h10M1250 400h10M1290 400h10M1430 400h10M1630 400h20M480 410h20M1180 410h10M1200 410h20M1240 410h10M1330 410h10M1410 410h10M1440 410h20M1560 410h10M1630 410h10M1650 410h10M460 420h20M1100 420h60M1190 420h10M1210 420h10M1230 420h30M1300 420h30M1400 420h10M1560 420h10M1610 420h30M440 430h20M1190 430h30M1230 430h10M1420 430h10M1650 430h10M1390 440h10M1570 440h10M1610 440h10M420 450h20M830 450h10M1100 450h20M1390 450h10M1570 450h10M1650 450h10M1720 450h10M680 460h10M830 460h10M1120 460h30M1220 460h10M1560 460h10M1580 460h10M1670 460h10M1700 460h30M680 470h10M1150 470h20M1220 470h10M1270 470h30M1400 470h10M1660 470h10M1680 470h20M1720 470h30M410 480h10M1170 480h10M1290 480h80M1590 480h10M1610 480h10M1740 480h10M400 490h10M1180 490h10M1260 490h10M1290 490h10M1410 490h10M1550 490h10M380 500h10M1190 500h10M1240 500h20M1370 500h10M1550 500h30M1590 500h10M1610 500h10M330 510h50M390 510h10M1230 510h10M1370 510h10M1400 510h20M1590 510h20M320 520h10M1360 520h10M1380 520h20M1610 520h10M1700 520h30M1740 520h20M310 530h10M1360 530h10M1690 530h10M300 540h10M1220 540h10M1370 540h10M1730 540h10M290 550h10M1200 550h10M1380 550h10M1740 550h20M280 560h10M1210 560h10M1380 560h10M1670 560h20M280 570h30M1670 570h10M310 580h10M1660 580h20M1390 600h30M1500 600h10M1680 600h10M1660 590h20M320 610h10M1420 610h10M1480 610h20M1690 610h10M330 620h10M1380 620h10M1430 620h20M1700 620h20M1380 630h10M1450 630h30M210 640h10M1380 640h20M1510 640h10M210 650h20M330 650h10M480 650h20M510 650h10M1370 650h10M1390 650h10M1460 650h10M1480 650h10M1520 650h20M220 660h10M320 660h10M480 660h10M500 660h10M520 660h10M1370 660h10M1430 660h10M1450 660h10M1490 660h10M1520 660h10M1540 660h20M1690 660h10M1710 660h10M220 670h10M320 670h10M440 670h40M530 670h10M1450 670h30M1520 670h20M1680 670h10M1710 670h10M220 680h10M330 680h10M430 680h10M480 680h10M540 680h10M810 680h10M870 680h20M1350 680h10M1370 680h10M1420 680h10M1460 680h10M1500 680h10M1700 680h10M340 690h20M420 690h10M540 690h10M740 690h10M790 690h20M820 690h50M890 690h10M1340 690h10M1360 690h10M1440 690h10M1460 690h10M1510 690h10M1550 690h10M1680 690h10M360 700h10M380 700h20M410 700h10M540 700h30M580 700h40M720 700h20M750 700h40M860 700h30M1330 700h10M1370 700h10M1420 700h10M1440 700h10M1510 700h10M1530 700h10M1680 700h10M1710 700h10M370 710h10M400 710h10M570 710h10M620 710h10M690 710h30M810 710h50M900 710h10M1350 710h20M1380 710h10M1510 710h10M1550 710h20M200 720h10M630 720h10M670 720h20M1320 720h10M1350 720h20M1430 720h20M1520 720h20M1570 720h10M200 730h10M240 730h10M640 730h30M740 730h20M890 730h10M1320 730h30M1370 730h20M1440 730h10M1530 730h10M1570 730h10M1640 730h40M240 740h10M750 740h10M810 740h10M1350 740h10M1590 740h20M1630 740h20M240 750h10M700 750h10M750 750h10M910 750h20M1520 750h10M1570 750h20M1640 750h10M240 760h10M710 760h20M740 760h20M830 760h10M900 760h10M1350 760h10M1470 760h30M1520 760h10M690 770h10M730 770h10M750 770h10M820 770h10M680 780h10M750 780h10M930 780h20M1350 780h10M1530 780h10M1550 780h10M1610 780h10M1630 780h20M660 790h20M730 790h10M910 790h10M940 790h10M970 790h10M1230 790h10M1360 790h10M1500 790h10M1550 790h10M1620 790h10M470 800h10M630 800h10M650 800h10M730 800h10M970 800h10M1230 800h10M1660 800h10M470 810h10M610 810h20M870 810h10M910 810h10M940 810h30M1430 810h20M1630 810h20M1660 810h10M600 820h10M640 820h10M730 820h10M840 820h30M880 820h30M940 820h30M990 820h30M1430 820h10M1450 820h10M1510 820h30M1600 820h20M360 830h20M390 830h20M420 830h20M580 830h20M730 830h10M930 830h10M990 830h20M1020 830h10M1160 830h10M1370 830h20M1440 830h20M1610 830h10M330 840h30M380 840h10M440 840h20M560 840h20M730 840h10M930 840h20M970 840h10M1000 840h10M1140 840h40M1390 840h30M1590 840h10M1630 840h20M300 850h30M950 850h20M980 850h20M1030 850h10M1160 850h30M1420 850h10M1600 850h10M1630 850h10M1650 850h10M270 860h30M400 860h10M420 860h10M450 860h10M550 860h10M730 860h10M1070 860h10M1170 860h40M1590 860h10M1660 860h10M260 870h10M430 870h20M520 870h30M620 870h50M720 870h20M1070 870h10M1180 870h20M1210 870h10M1450 870h20M1640 870h30M260 880h10M450 880h10M510 880h10M670 880h50M1110 880h10M1190 880h20M1220 880h10M1350 880h10M1440 880h10M440 890h10M460 890h10M500 890h10M620 890h10M1030 890h10M1110 890h10M1200 890h10M1350 890h10M1430 890h10M1470 890h20M390 900h10M430 900h10M470 900h30M620 900h10M1040 900h20M1120 900h20M1230 900h10M1330 900h20M260 910h10M410 910h20M630 910h20M1030 910h10M1060 910h10M1090 910h30M1240 910h20M1320 910h10M1480 910h10M260 920h90M400 920h10M620 920h20M1160 920h20M1310 920h10M1350 920h10M270 930h10M290 930h110M640 930h10M680 930h30M980 930h30M1070 930h20M1130 930h30M1180 930h30M1260 930h10M1300 930h10M1360 930h10M1430 930h10M1470 930h10M260 940h10M280 940h10M380 940h10M690 940h10M960 940h20M1010 940h40M1210 940h20M1290 940h10M1360 940h10M1420 940h10M1440 940h30M350 950h10M550 950h10M630 950h10M680 950h20M790 950h20M900 950h10M940 950h20M1050 950h10M1080 950h10M1120 950h10M1230 950h10M1260 950h30M370 960h10M550 960h10M700 960h10M790 960h20M900 960h10M920 960h20M1060 960h20M1090 960h30M1240 960h20M240 970h20M360 970h10M690 970h10M910 970h10M1270 970h10M1350 970h10M1420 970h20M1450 970h10M1490 970h10M910 980h10M1280 980h10M1360 980h10M1430 980h20M1490 980h10M220 990h10M570 990h20M920 990h10M1290 990h10M1350 990h20M1400 990h10M1430 990h10M1600 990h10M190 1000h30M230 1000h10M590 1000h10M930 1000h10M1300 1000h10M1360 1000h10M1410 1000h20M1460 1000h20M1590 1000h20M570 1010h10M600 1010h40M1310 1010h10M1430 1010h10M1450 1010h30M180 1020h10M580 1020h10M710 1020h30M940 1020h10M1320 1020h10M1370 1020h30M1440 1020h20M1590 1020h10M150 1030h30M730 1030h10M1320 1030h10M1450 1030h10M140 1040h10M590 1040h10M650 1040h80M950 1040h10M1420 1040h30M1600 1040h10M140 1050h10M600 1050h10M650 1050h20M700 1050h10M1400 1050h20M1440 1050h10M1600 1050h10M580 1060h30M670 1060h20M700 1060h10M960 1060h10M1310 1060h10M1440 1060h10M150 1070h10M570 1070h10M970 1070h70M1300 1070h10M1440 1070h10M140 1080h20M560 1080h10M1000 1080h50M1100 1080h30M1230 1080h10M1400 1080h10M490 1090h10M510 1090h10M550 1090h10M690 1090h20M1000 1090h10M1040 1090h20M1090 1090h10M1120 1090h10M1240 1090h20M1300 1090h10M1410 1090h10M1430 1090h10M470 1100h20M500 1100h10M550 1100h30M900 1100h30M1010 1100h20M1040 1100h10M1120 1100h10M1140 1100h10M1230 1100h20M1310 1100h10M1420 1100h10M110 1110h20M420 1110h30M460 1110h10M510 1110h10M580 1110h10M880 1110h20M1030 1110h10M1080 1110h10M1110 1110h30M1150 1110h10M130 1120h10M400 1120h20M450 1120h10M590 1120h40M880 1120h20M1040 1120h10M1060 1120h20M1110 1120h20M1230 1120h10M1260 1120h10M1330 1120h10M100 1130h10M380 1130h20M510 1130h10M890 1130h10M930 1130h10M1040 1130h10M1150 1130h10M1210 1130h20M1240 1130h10M1310 1130h10M1330 1130h10M350 1140h30M610 1140h20M960 1140h10M1140 1140h10M250 1150h20M330 1150h20M600 1150h10M650 1150h30M880 1150h10M940 1150h10M1140 1150h20M1200 1150h10M1310 1150h10M100 1160h10M220 1160h30M330 1160h10M350 1160h10M560 1160h10M590 1160h10M870 1160h10M910 1160h20M950 1160h10M970 1160h10M1160 1160h10M1190 1160h20M1270 1160h10M270 1170h10M340 1170h10M360 1170h10M520 1170h10M540 1170h20M570 1170h20M660 1170h20M870 1170h10M970 1170h10M1150 1170h20M1180 1170h10M1210 1170h20M1280 1170h10M200 1180h10M280 1180h10M320 1180h10M530 1180h10M890 1180h20M960 1180h10M1010 1180h10M1160 1180h20M1220 1180h10M190 1190h10M210 1190h10M290 1190h10M330 1190h10M350 1190h20M650 1190h20M680 1190h10M880 1190h10M950 1190h10M970 1190h20M1000 1190h10M1020 1190h20M1150 1190h10M1190 1190h10M1330 1190h10M110 1200h20M300 1200h20M340 1200h10M640 1200h20M670 1200h10M960 1200h10M990 1200h10M1010 1200h10M1190 1200h10M1290 1200h30M140 1210h50M530 1210h10M660 1210h30M950 1210h10M1000 1210h10M1020 1210h20M1220 1210h10M1330 1210h10M120 1220h10M540 1220h10M630 1220h10M650 1220h10M1190 1220h10M120 1230h20M520 1230h10M630 1230h20M990 1230h10M1190 1230h10M520 1240h10M550 1240h10M990 1240h10M1200 1240h30M530 1250h10M550 1250h10M920 1250h10M970 1250h10M1310 1250h10M1410 1250h20M300 1260h10M540 1260h10M910 1260h10M980 1260h10M1000 1260h10M1290 1260h20M1320 1260h10M1420 1260h10M310 1270h20M970 1270h10M990 1270h20M1460 1270h10M290 1280h30M910 1280h10M930 1280h10M950 1280h20M1290 1280h40M1350 1280h10M1410 1280h10M1460 1280h10M290 1290h10M320 1290h10M920 1290h10M940 1290h10M970 1290h10M1330 1290h20M1360 1290h10M290 1300h10M1320 1300h10M290 1310h10M1310 1310h10M300 1320h30M1370 1320h10M300 1330h10M320 1330h10M1310 1330h10M1350 1330h10M280 1340h30M1340 1340h10M1360 1340h20M300 1350h20M1320 1350h10M280 1360h20M340 1360h10M1330 1360h10M340 1370h10M1040 70v20M1040 850v40M1040 900v10M1040 1070v20M1040 1100v10M1040 1120v10M1040 1190v20M1050 70v10M1050 940v10M1050 1080v20M1050 1120v10M1060 70v10M1060 900v10M1060 950v10M1060 1090v30M1070 70v10M1070 860v10M1070 910v20M1090 80v10M1090 910v20M1090 950v10M1090 1090v20M1020 90v20M1020 820v10M1020 1180v10M1020 1200v10M1100 90v10M1100 420v30M1100 1080v10M1110 90v10M1110 880v10M1110 1110v10M1220 90v10M1220 170v20M1220 400v10M1220 420v10M1220 460v10M1220 540v20M1220 870v10M1220 1180v30M1430 90v10M1430 130v10M1430 240v10M1430 340v10M1430 400v30M1430 610v10M1430 660v20M1430 700v20M1430 810v10M1430 850v40M1430 930v10M1430 980v10M1430 1000v10M1430 1090v10M1430 1250v10M1440 90v40M1440 140v10M1440 330v10M1440 400v10M1440 660v30M1440 700v30M1440 820v10M1440 880v10M1440 930v10M1440 970v20M1440 1010v10M1440 1050v10M1440 1070v20M1230 100v10M1230 170v10M1230 360v10M1230 420v10M1230 460v10M1230 510v30M1230 790v10M1230 880v20M1230 940v10M1230 1080v20M1230 1120v10M1230 1170v10M1230 1210v30M1320 100v20M1320 720v10M1320 910v10M1320 1010v10M1320 1030v30M1320 1100v30M1320 1150v50M1320 1250v10M1320 1300v10M1320 1330v20M1330 100v20M1330 130v10M1330 410v10M1330 700v20M1330 900v10M1330 1020v10M1330 1120v10M1330 1190v20M1330 1260v20M1330 1290v10M1330 1350v10M1360 100v10M1360 150v10M1360 180v10M1360 520v10M1360 680v10M1360 740v20M1360 780v10M1360 880v10M1360 920v10M1360 940v30M1360 980v20M1360 1280v10M1360 1330v10M1370 100v10M1370 210v20M1370 360v20M1370 480v20M1370 510v10M1370 530v10M1370 650v10M1370 680v10M1370 700v10M1370 720v10M1370 790v40M1370 930v10M1370 980v10M1370 1000v20M1370 1290v30M1420 100v30M1420 150v10M1420 200v10M1420 240v10M1420 410v20M1420 490v20M1420 600v10M1420 680v20M1420 840v10M1420 940v30M1420 1040v10M1420 1090v10M1420 1260v20M1820 100v30M1840 100v30M1010 110v30M1010 830v10M1010 930v10M1010 1090v10M1010 1180v10M1010 1200v10M1010 1260v10M1240 110v20M1240 170v10M1240 410v20M1240 500v10M1240 790v10M1240 900v10M1240 950v10M1240 1080v10M1240 1120v10M1280 110v30M1280 380v10M1280 970v10M1280 1160v10M1300 110v20M1300 400v20M1300 470v20M1300 930v10M1300 990v10M1300 1070v20M1450 110v10M1450 130v20M1450 230v10M1450 250v10M1450 620v10M1450 660v10M1450 690v10M1450 720v10M1450 810v10M1450 870v10M1450 970v10M1450 1010v20M1450 1040v10M1450 1060v10M1480 110v10M1480 140v10M1480 160v20M1480 190v40M1480 300v20M1480 360v10M1480 610v20M1480 650v20M1480 910v20M1480 1000v10M1310 120v10M1310 920v10M1310 1000v10M1310 1060v10M1310 1090v10M1310 1130v20M1310 1250v10M1310 1310v20M1340 120v10M1340 150v10M1340 170v20M1340 390v20M1340 690v10M1340 1120v10M1340 1190v20M1340 1340v20M970 130v10M970 790v10M970 810v10M970 840v10M970 1060v10M970 1140v20M970 1170v10M970 1190v10M970 1250v20M970 1280v10M1000 130v10M1000 840v10M1000 1080v10M1000 1190v10M1000 1210v20M1000 1240v20M1210 130v20M1210 400v20M1210 550v10M1210 860v10M1210 880v10M1210 930v10M1210 1130v20M1210 1160v10M1540 130v10M1540 240v10M1540 330v10M1540 350v40M1540 650v10M1540 670v30M1540 720v10M1540 780v40M1550 130v10M1550 230v10M1550 250v10M1550 330v10M1550 350v10M1550 380v10M1550 490v10M1550 690v20M1550 780v10M1830 130v10M1850 130v20M1860 130v10M1870 130v20M940 140v10M940 790v20M940 820v10M940 950v10M940 1000v20M940 1130v20M940 1280v10M1270 140v20M1270 370v10M1270 470v20M1270 930v40M1270 1120v40M1350 140v30M1350 180v10M1350 380v10M1350 680v10M1350 710v10M1350 730v10M1350 760v20M1350 880v10M1350 900v20M1350 970v20M1350 1280v10M1350 1330v10M1470 140v30M1470 240v10M1470 260v10M1470 320v10M1470 370v20M1470 650v30M1470 690v70M1470 870v20M1470 930v10M1470 1270v10M830 150v10M830 200v10M830 450v10M830 760v10M850 150v10M930 150v10M930 750v30M930 830v10M930 990v10M930 1100v30M930 1160v90M930 1280v10M1200 150v10M1200 410v10M1200 500v50M1200 870v20M1200 1150v40M1200 1200v20M1200 1230v10M820 160v10M820 200v10M820 680v10M820 740v30M890 160v10M890 680v10M890 700v30M890 1130v20M890 1180v10M910 160v10M910 710v40M910 760v30M910 810v10M910 950v10M910 970v10M910 1160v20M910 1260v20M1190 160v20M1190 370v40M1190 420v10M1190 490v10M1190 850v30M1190 1160v10M1190 1190v10M1190 1220v10M1260 160v10M1260 360v10M1260 400v20M1260 490v10M1260 910v20M1260 950v10M1260 1090v30M1460 160v10M1460 260v10M1460 390v20M1460 650v10M1460 680v10M1460 820v10M1460 970v30M1460 1020v10M1460 1270v10M1490 160v10M1490 230v10M1490 350v10M1490 650v10M1490 890v20M1490 970v10M1510 160v20M1510 220v10M1510 280v10M1510 600v40M1510 680v10M1510 700v10M1510 790v30M1520 160v10M1520 180v10M1520 210v10M1520 270v10M1520 340v20M1520 640v10M1520 660v10M1520 690v10M1520 710v10M1520 750v10M800 170v30M1180 180v10M1180 400v10M1180 480v10M1180 840v30M1180 920v10M1180 1170v10M1380 180v10M1380 210v10M1380 230v10M1380 500v10M1380 520v20M1380 550v10M1380 620v10M1380 640v10M1380 660v20M1380 700v10M1380 1320v20M1390 180v20M1390 210v10M1390 440v10M1390 550v10M1390 600v20M1390 630v20M1390 710v20M1390 830v10M1500 180v30M1500 250v10M1500 290v10M1500 340v10M1500 600v10M1500 660v20M1500 760v30M1500 970v10M1400 190v20M1400 230v10M1400 420v20M1400 450v20M1400 510v10M1400 640v10M1400 990v30M1400 1050v30M1410 190v20M1410 230v10M1410 350v10M1410 410v10M1410 470v20M1410 990v10M1410 1080v10M1410 1250v30M790 200v10M790 690v10M790 950v10M760 210v10M760 730v10M760 750v10M760 770v10M750 220v10M750 690v10M750 740v10M750 770v10M740 230v30M740 690v10M740 730v30M740 770v20M740 800v20M740 830v10M740 860v10M740 1020v10M1560 230v20M1560 370v20M1560 410v10M1560 460v30M1560 660v30M1560 780v10M690 250v10M690 460v10M690 710v10M690 770v10M690 940v30M690 1060v30M690 1190v20M710 250v10M710 750v10M710 930v30M710 1020v30M710 1060v30M1630 250v10M1630 270v10M1630 360v20M1630 400v10M1630 740v40M1630 790v20M1630 840v10M1640 250v20M1640 310v30M1640 360v20M1640 410v10M1640 730v20M1640 850v20M680 260v10M680 460v10M680 780v10M680 930v20M680 1150v20M680 1190v10M1530 260v10M1530 380v10M1530 660v40M1530 730v20M1530 760v20M1620 260v20M1620 310v50M1620 440v40M1620 500v20M1620 780v10M1620 820v10M670 270v10M670 720v10M670 870v10M670 1050v10M670 1190v10M660 280v30M660 320v10M660 790v10M660 1170v30M660 1210v10M570 300v10M570 700v10M570 990v20M570 1070v10M570 1160v10M580 300v10M580 700v10M580 830v10M580 1010v10M580 1060v10M580 1100v10M560 310v20M560 840v20M560 950v10M560 1080v10M560 1160v10M560 1240v10M610 310v30M610 810v10M610 1050v10M610 1140v10M650 310v10M650 800v20M650 910v20M650 1040v10M650 1150v40M650 1220v10M550 330v10M550 680v10M550 860v10M550 950v10M550 1090v10M550 1220v20M550 1250v10M640 330v10M640 720v10M640 800v20M640 920v10M640 950v60M640 1200v20M540 340v10M540 670v10M540 690v10M540 1170v10M540 1210v10M540 1250v10M600 340v10M600 820v10M600 1000v10M600 1040v10M600 1150v10M620 340v10M620 700v10M620 870v20M620 900v20M1570 340v30M1570 390v20M1570 420v20M1570 450v10M1570 710v10M1570 730v20M1580 340v30M1580 440v10M1580 460v40M1580 720v10M1650 340v20M1650 400v10M1650 430v20M1650 740v10M1650 780v30M1650 840v10M530 350v10M530 660v10M530 1170v10M530 1210v20M530 1240v10M520 360v20M520 650v10M520 870v10M520 1090v20M520 1130v40M520 1230v10M1590 370v20M1590 460v20M1590 500v10M1590 740v10M1590 840v20M1590 1000v20M510 380v20M510 650v10M510 880v10M510 1090v10M510 1110v20M1290 390v10M1290 480v10M1290 940v10M1290 980v10M1290 1170v30M1290 1260v20M500 400v10M500 650v10M500 890v10M500 1090v10M1160 400v20M1160 830v20M1160 920v10M1160 1110v20M1160 1150v10M1160 1180v10M1250 400v10M1250 1100v30M480 410v10M480 650v10M480 670v10M480 800v10M1660 410v20M1660 450v20M1660 580v10M1660 800v10M1660 850v10M460 420v10M460 840v20M460 880v10M460 1110v10M1610 420v20M1610 480v20M1610 510v10M1610 740v40M1610 830v20M1610 990v10M1610 1040v10M440 430v20M440 670v10M440 830v10M440 890v10M420 450v30M420 690v10M420 830v30M420 1110v10M840 450v10M840 760v60M1120 450v10M1120 880v10M1120 900v10M1120 950v10M1120 1090v10M1720 450v20M1720 620v40M1720 670v30M1730 450v10M1730 520v20M1150 460v10M1150 1100v10M1150 1130v10M1150 1170v20M1670 460v10M1670 560v10M1670 800v10M1670 860v10M1680 460v10M1680 570v10M1680 590v10M1680 670v20M1680 700v30M1700 460v10M1700 520v10M1700 610v10M1700 660v20M1170 470v10M1170 830v30M1170 1160v10M1750 470v10M410 480v10M410 700v10M410 830v30M410 910v10M1600 480v20M1600 820v20M1600 850v10M1600 990v30M1600 1040v10M1740 480v40M1740 540v10M400 490v20M400 700v10M400 860v40M400 920v10M400 1120v10M380 500v10M380 700v10M380 830v10M380 940v20M380 1130v10M390 500v10M390 830v10M390 900v40M330 510v10M330 610v10M330 650v10M330 670v10M330 840v10M330 1150v10M330 1180v10M330 1270v20M330 1320v10M320 520v10M320 580v30M320 660v10M320 1180v20M320 1280v10M320 1330v20M1760 520v30M310 530v10M310 570v10M310 1260v10M310 1330v10M1690 530v30M1690 600v10M1690 660v10M1690 690v10M300 540v10M300 850v10M300 1190v10M300 1260v30M300 1300v10M300 1320v10M300 1350v10M290 550v10M290 930v10M290 1180v10M290 1280v10M290 1300v10M280 560v10M280 930v10M280 1170v10M280 1340v20M340 620v30M340 680v10M340 1160v10M340 1190v10M340 1360v10M210 640v10M210 720v10M210 1180v10M220 640v20M220 670v10M220 990v10M220 1160v30M230 650v10M230 670v10M230 990v10M490 660v20M490 1090v10M1710 660v10M1710 680v20M430 680v10M430 860v10M430 900v10M810 680v10M810 710v30M810 950v10M870 680v10M870 810v10M870 1160v10M360 690v10M360 830v10M360 950v20M360 1160v10M900 690v20M900 730v30M900 950v10M900 1100v10M900 1120v10M370 700v10M370 960v10M370 1170v20M720 700v10M720 870v10M860 700v10M630 710v10M630 800v10M630 890v10M630 910v40M630 1120v20M630 1220v10M200 720v10M200 1180v10M240 730v10M240 750v10M240 970v30M250 730v10M250 750v10M250 1150v10M700 750v20M700 940v10M700 960v10M700 1050v10M730 760v10M730 790v10M730 820v10M730 840v20M730 1030v10M950 780v10M950 840v10M950 1020v20M950 1150v10M950 1190v20M950 1280v10M920 790v20M920 960v10M920 980v10M920 1250v10M920 1280v10M980 790v10M980 840v10M980 930v10M980 1160v10M980 1250v10M980 1270v20M470 800v10M470 890v10M470 1100v10M880 810v10M880 1110v10M880 1150v10M880 1170v20M990 820v10M990 1190v10M990 1230v10M990 1260v10M1030 830v20M1030 890v20M1030 1100v10M1140 840v60M1140 1100v10M1140 1140v10M270 860v10M270 880v30M270 930v10M270 1150v20M450 860v10M450 880v10M450 1110v10M1080 860v10M1080 950v10M1080 1110v10M260 870v10M260 910v10M260 940v30M350 920v30M350 1140v10M350 1160v10M350 1190v10M350 1360v10M1130 930v20M1130 1080v10M1130 1100v20M960 940v10M960 1040v20M960 1140v20M960 1180v10M960 1200v10M590 990v10M590 1020v20M590 1110v10M590 1160v10M190 1000v20M190 1190v20M180 1020v10M150 1030v10M150 1050v20M140 1040v10M140 1080v40M140 1210v20M160 1070v10M110 1110v20M110 1160v40M130 1110v10M130 1200v20M100 1130v30M120 1220v10","land":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8+z8AAAgAAAAAAAAAAAAAAAAAAAAAAADA//8HEMEAAAAAwAAAAAAAAAAAAAAAAAAA/v//MAHsAAAAAAwAAAAAAAAAAAAAAAAA4P//DzvAAAAAAMAAAAAAAAAAAAAAAAAA4P7/H/ABGEAAAABYAAAAAAAAAAAAAAAAwP///4F/AAkAAAAABgAAAAAAAAAAAACAAf7//w/4C3wAAAAAAAAAAAAAAAAAAAAA/Pn//3/AfwCUAAAAAAAAAAAAAAAAAAAA8P////9H/wMABwAAAAAAAAAAAAAAAAAAAP////8//L8EwAAAAAAAAAAAAAAAAAAAAPD///////9/AQMAAAAAAAAAAAAAAAAAAID7////////LzAAAAAAAAAAAAAAAAAAAAD/////////XwAPAAAAAAAAAAAAAAAAAAD4/////////wFwAAAAAAAAAAAAAAAAAADA/////////z/hgQAAAAAAAAAAAAAAAAAA/P////////+/BwwAAAAAAAAAAAAAAAAAxv//////////H3yAAAAAAAAAAAAAAAAA8P////////////sBDAAAAAAAAAAAAAAAgP////////////8PQAAAAAAAAAAAAAAAAPz///////////9/AAAAAAAAAAAAAAAAAMD/////////////AwAAAAAAAAAAAAAAAAL8////////////DwAAAAAAAAAAAAAAAPDh/////////////wDAAAAAAAAAAAAAAAAf/P///////////wcADAAAAAAAAAAAAAD48f///////////w9AwAAAAAAAAAAAAADAz////////////3/AIBwAAAAAAAAAAAAA/v////////////8BTsIBAAAAAAAAAAAA8P//////////x/8B8CMIAAAAAAAAAAAAAP//////////B/gfgD+HAAAAAAAAAAAAAPj/////////fwB/APh1AAAAAAAAAAAAAID//////////wfgA8D/AQAAAAAAAAAAAAD8/////////08iPID8HxgAAAAAAAAAAADw//////////8QwwH6/wADAAAAAAAAAADA/////////z+ACwCw/x8+AAAAAAAAAAAA//////////8DAAAA///hAQAAAAAAAAAA8P////////8/AAAA+P8/HAAAAAAAAAAAwP////9/////DwAAAP//wQMBAAAAAAAAAPz//+///////wcEAPD/T7wMAAAAAAAAAMD///////////8BOAD+/8T/BwAAAAAAAAD+//////////8/gP3h/8/+PwAAAAAAAADw////////////B/wf/H/s/wMAAAAAAABA//////////////D/w/9//D8AAAAAAADg/////////////4//H///3/8DAAAAAAAA///////////////4//z////jAAAAAAAA+P////////////+P/9////8fDgAAAAAAwP///////////////P//////wQAAAAAAAP7/////////////3/+/////HwAAAAAAAPD/////////////////////fwAAAAAAAAD4/////////////////////w8AAAAAAAAA/////////////////////z8AAAAAAAAA8P////////////////////8PAAAAAAAAAP/////////////////Hv///AQAAAAAAAOD///////////////9/+Pj/PwAAAAAAAAD8////////////////A47//w8AAAAAAADA////////////////fwD4//8AAAAAACAA/P///////////////wsA//8PAAAAAAAE4P9P/////////////x9Awf//AAAAAAAAAP//4f////////////+DNvH/BQAAAAAABOD/EPz///////////8/iCP/zwAAAAAAAAD8B4D///99/v////9/wXzy/wgAAAAAAAAAPwD8/78HwP//////A5yv/58AAAAAAAAAIAEAwv8AwP3/////H4J4+P8AAAAAAAAAAAAAAPgB4J///////3mID/4PAAAAAAAQAAAAAAAHAP75/////w8G+cP/AAAAAAAAEAAAAAAAwOC///////8HgB/+AAAAAAAAAAAAAAAAAAT8+///////APhhFgAAAAAAABAAAAAAAMTAP/7/////D4APYAAAAAAAAAAAAAAAAMAB9Of/////fwDAAQYAAAAAAAAAAAAAAAC+AH/+/////wcAHGAAAAAAAAAAAAAAAADwA/CH//////8AwAscAAAAAAAAAAAAAADAHwD/3P//f/8fADiAAQAAAAAAAAAAgACA/gPwz///////AYADWAAAAAAAAAAAAAAA7j8Ad+D/////Hxg4AAAAAAAAAAAAAAAA8P8BAMDH/////wEDAAMAAAAAAAAAANsAwP8/AAD++f/+/38AABAAAAAAAAAAAP49AP//AQCAjf/T//8/AIAZAAAAAAAAAPzfA/D/HwAAAPA/+v//BwAIAwAAAAAAAPj/GID//wMAAAD3Q/7/fwAAcAAAAAAAAMD/DwD/gw8AAADwP8j//2cAAAAAAAAAAAD4/yD4PwAAAAAAfwP5f38HAAAAAAAAAACA/w/H/wcAAAAA+D+A////AQAAAAAAAAAA+H/4/z8AAAAAgPwA8J//HwAAAAAAAAAAwP/n//8bAAAAAIABAPz4/wAAAAAAAAAAAAB4//9/AQAAAAAYMMAH/w8AAAAAAAAAAIB++P//BwcAAMAB4B844HcAAAAAAAAAAAD8x///f1AAAAD/Af6HAT8AAAAAAAAAAADA//z/9w8GGED8P/H/BPADAAAAAAAAAAAA/O////8gAADw////fwA/AAAAAAAAAAAA8P////8PAACA/////w/4LwIAAAAAAAAAAP//////AAAA8P////+BfgMAAAAAAAAAAPT///+fDwAAAP7///8/8D4AEAAAAAAAAPj/////8QAAAMD/////B44PgAAAAAAAAID/////PwAAAAD8/////+AQAAgAAAAAAAD8/////weAAwCA/////x8AAgAAAAAAAAD4/////38AGAAA+P////8AAAAAAAAAAADA//////8PfgAAAP////8PwAEAAQAAAAAA+P//////gQMAAPD/////AA8AAAAAAAAAgP//////A2AAAAD+////B/ABAAAAAAAAAPD/////HwAGAAAA8P//PwAPAAAAAAAAAMD//////wBgAAAA8D7+9wPgAAAAAAAAAAD8////XwcAAAAAAN7xf3wABAAAAAAAAADA////f/ADAAAAHIAc+t8PAAAAAAAAAACA/f//P4J/AAAA8AHAGP/9AAAAAAAAAAAA+P///wD4fwAAABwAAfCXLwAAAAAAAAAAwP///wMA/wcAAOADAIAfeAAAAAAAAAAAAPz//wcA8B8AAAA+AQD8gQcAAAAAAAAAAMD/nx8AAP/gAADwFwAAD/gAAAAAAAAAAAD4P/gLAPAGDgCA5wMAYAEPAAAAAAAAAACA/wP/AQACIAAAcB4AgHPgAAAAAAAAAAAA+C/gHgAAAAIAAOEgAAgDDgAAAAAAAAAAgH8ATAAAAEABAABmDwA44AIAAAAAAAAAAOAHAAAAAAAfAABg3wAAAyAAAAAAAAAAAAACAAAAAAIwAAAA/gAAcAAAAAAAAAAAAAAwAAAAAGCAAQAA4A8AgAcAAAAAAAAAAAAAAAAAAAAHAAAAAH4AAHAAAAAAAAAAAAAAAAAAAADgAAAAAOAPAAAAAAAAAAAAAAAAAAAAAAAABAAAAADfAAAAgAAGAAAAAAAAAAAAQAAAAAAAAAD4GQAAAB4gAAAAAAAAAAAAABwAAAAAAACAPwAAAOABQgAAAAAAAAAAACABAAAAAAAAUAIAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA8AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgB8AAAAAAAAAAAAAwAEAAAAAAAAAAAAAAPgDAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA3AAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","dotsI":"KQIqAqMCpAKlAhwDHQMeAx8DIAMhAyIDIwMkAyUDJgMnAygDLgMxAzUDTgOVA5YDlwOYA5kDmgObA5wDnQOeA58DoAOhA6IDpgOoA6kDrwPIAw0EDwQQBBEEEgQTBBQEFQQWBBcEGAQZBBoEGwQgBCEEIgQpBCoEMARCBEMERAR+BIQEhQSGBIcEiASJBIoEiwSMBI0EjgSPBJAEkQSSBJMElASZBJoEmwScBJ0EngSjBKQEpQT3BPgE+QT6BPsE/QT+BP8EAAUBBQIFAwUEBQUFBgUHBQgFCQUKBQsFDAUNBRMFFAUVBRYFFwUfBSAFIgVwBXEFcgVzBXQFdQV2BXcFeAV5BXoFewV8BX0FfgV/BYAFgQWCBYMFhAWFBYYFhwWKBYsFjAWNBY4FjwWQBZEFkgWUBZwF6QXqBewF7QXuBe8F8AXxBfIF8wX0BfUF9gX3BfgF+QX6BfsF/AX9Bf4F/wUABgEGAgYDBgQGBQYGBgcGCAYJBgoGCwYMBg0GDgYQBhQGFQZhBmIGYwZkBmUGZgZnBmgGaQZqBmsGbAZtBm4GbwZwBnEGcgZzBnQGdQZ2BncGeAZ5BnoGewZ8Bn0GfgZ/BoAGgQaCBoMGhAaFBoYGhwaIBo4GjwaQBtoG2wbcBt0G3gbfBuAG4QbiBuMG5AblBuYG5wboBukG6gbrBuwG7QbuBu8G8AbxBvIG8wb0BvUG9gb3BvgG+Qb6BvsG/Ab9Bv4G/wYABwEHAwcHBwgHVAdVB1YHVwdYB1kHWgdbB1wHXQdeB18HYAdhB2IHYwdkB2UHZgdnB2gHaQdqB2sHbAdtB24HbwdwB3EHcgdzB3QHdQd2B3cHeAd5B3oHewd8B30Hfgd/B4AHgQeGB8oHywfMB80HzgfPB9AH0QfSB9MH1AfVB9YH1wfYB9kH2gfbB9wH3QfeB98H4AfhB+IH4wfkB+UH5gfnB+gH6QfqB+sH7AftB+4H7wfwB/EH8gfzB/QH9Qf2B/cH+Af5B/oH/Af9B/4H/wcFCEMIRAhFCEYIRwhICEkISghLCEwITQhOCE8IUAhRCFIIUwhUCFUIVghXCFgIWQhaCFsIXAhdCF4IXwhgCGEIYghjCGQIZQhmCGcIaAhpCGoIawhsCG0IbghvCHAIcQhyCHMIdAh1CHYIdwi9CL4IvwjACMEIwgjDCMQIxQjGCMcIyAjJCMoIywjMCM0IzgjPCNAI0QjSCNMI1AjVCNYI1wjYCNkI2gjbCNwI3QjeCN8I4AjhCOII4wjkCOUI5gjnCOgI6QjqCOsI7AjtCO4I7wjwCPEIMQkyCTMJNwk4CTkJOgk7CTwJPQk+CT8JQAlBCUIJQwlECUUJRglHCUgJSQlKCUsJTAlNCU4JTwlQCVEJUglTCVQJVQlWCVcJWAlZCVoJWwlcCV0JXglfCWAJYQliCWMJZAllCWYJZwloCWkJcwmrCawJrQmxCbIJswm0CbUJtgm3CbgJuQm6CbsJvAm9Cb4JvwnACcEJwgnDCcQJxQnGCccJyAnJCcoJywnMCc0JzgnPCdAJ0QnSCdMJ1AnVCdYJ1wnYCdkJ2gnbCdwJ3QneCd8J4AnhCeIJ4wntCSQKJQomCikKKgorCiwKLQouCi8KMAoxCjIKMwo0CjUKNgo3CjgKOQo6CjsKPAo9Cj4KPwpACkEKQgpDCkQKRQpGCkcKSApJCkoKSwpMCk0KTgpPClAKUQpSClMKVApVClYKVwpYClkKWgpgCmQKZwpoCpwKnQqeCp8KoAqhCqIKowqkCqUKpgqnCqgKqQqqCqsKrAqtCq4KrwqwCrEKsgqzCrQKtQq2CrcKuAq5CroKuwq8Cr0Kvgq/CsAKwQrCCsMKxArFCsYKxwrICssKzArNCs4KzwrQCtEK2ArZCtoK2wreChYLFwsYCxkLGgsbCxwLHQseCx8LIAshCyILIwskCyULJgsnCygLKQsqCysLLAstCy4LLwswCzELMgszCzQLNQs2CzcLOAs5CzoLOws8Cz0LPgs/C0ULRgtHC0gLSQtKC0sLUgtTC1QLVQtXC1gLkAuRC5ILkwuUC5ULlguXC5gLmQuaC5sLnAudC54LnwugC6ELogujC6QLpQumC6cLqAupC6oLqwusC60LrguvC7ALsQuyC7MLtAu1C7YLtwu4C7kLwQvCC8MLywvMC80LzgvPC9AL0QsJDAoMCwwMDA0MDgwPDBAMEQwSDBMMFAwVDBYMFwwYDBkMGgwbDBwMHQweDB8MIAwhDCIMIwwkDCUMJgwnDCgMKQwqDCsMLAwtDC4MLwwwDDEMOAw7DDwMPQxDDEUMRgxHDEgMSQxKDEsMUAyBDIIMgwyEDIUMhgyHDIgMiQyKDIsMjAyNDI4MjwyQDJEMkgyTDJQMlQyWDJcMmAyZDJoMmwycDJ0MngyfDKAMoQyiDKMMpAylDKYMpwyoDK4Mrwy7DLwMvQy+DL8MwAzBDMIMwwzEDMUMyQzKDMsM+Qz6DPsM/Az9DP4M/wwADQENAg0DDQQNBQ0GDQcNCA0JDQoNCw0MDQ0NDg0PDRANEQ0SDRMNFA0VDRYNFw0YDRkNGg0bDRwNHQ0eDR8NIA0hDSINNQ02DTcNOA05DToNOw08DT0NPg0/DUANQw1EDXINcw10DXUNdg13DXgNeQ16DXsNfA19DX4Nfw2ADYENgg2DDYQNhQ2GDYcNiA2JDYoNiw2MDY0Njg2PDZANkQ2SDZMNlA2VDZYNlw2YDZkNmg2bDZwNnQ2vDbANsQ2yDbMNtA21DbYNtw24DbkNvQ2+Db8Nww3sDe0N7g3vDfAN8Q3yDfMN9A31DfYN9w34DfkN+g37DfwN/Q3+Df8NAA4BDgIOAw4EDgUOBg4HDggOCQ4KDgsODA4NDg4ODw4QDhEOEg4TDhQOFQ4WDhcOGA4ZDhoOIQ4iDioOKw4sDi0OLg4vDjAOMQ4yDjcOOA45DjoOOw48Dj0OPg5mDmcOaA5pDmoOaw5sDm0Obg5vDnAOcQ5yDnMOdA51DnYOdw54DnkOeg57DnwOfQ5+Dn8OgA6BDoIOgw6EDoUOhg6HDogOiQ6KDosOjA6NDo4Ojw6QDpEOkg6TDpQOlQ6bDpwOnQ6eDp8OoA6hDqQOpQ6mDqcOqA6pDqoOqw6sDq8OsQ6yDrMOtA61DrYOtw64Dt8O4A7hDuIO4w7kDuUO5g7nDugO6Q7qDusO7A7tDu4O7w7wDvEO8g7zDvQO9Q72DvcO+A75DvoO+w78Dv0O/g7/DgAPAQ8CDwMPBA8FDwYPBw8IDwkPCg8LDwwPDQ8ODw8PEA8TDxQPFQ8WDxcPGA8ZDxoPGw8fDyAPIQ8iDyMPJA8lDyYPJw8oDysPLA8tDy4PLw8wDzEPMg9UD1UPVg9XD1gPWQ9aD1sPXA9dD14PXw9gD2EPYg9jD2QPZQ9mD2cPaA9pD2oPaw9sD20Pbg9vD3APcQ9yD3MPdA91D3YPdw94D3kPeg97D3wPfQ9+D38PgA+BD4IPgw+ED4UPhg+HD4gPiQ+KD40Pjg+PD5APkQ+SD5MPlA+WD5cPmA+ZD5oPmw+cD50Png+fD6APoQ+iD6MPpA+lD6YPpw+oD6kPrA+tD80Pzg/PD9AP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RxVIFUkVShVMFU0VThVRFVQVVRVWFVoVWxVcFV0VXhVfFWAVfhWaFZsVpRWmFacVqBWpFasVrBWtFa4VrxWwFbEVshWzFbQVtRW2FbcVuBW5FboVuxW8Fb0VvhW/FcAVwRXCFcMVyBXMFc4VzxXQFdEV1RXWFdcV2BXZFdoVGhYfFiAWIRYiFiMWJRYmFicWKBYpFioWKxYsFi0WLhYvFjAWMRYyFjMWNBY1FjYWNxY4FjkWOhY7FjwWPRY+Fj8WQBZIFkkWShZLFk4WURZSFpIWkxaZFpoWmxacFp0WnhagFqEWohajFqQWpRamFqcWqBapFqoWqxasFq0WrhavFrAWsRayFrMWtBa1FrYWtxa4FrkWxBbFFssWCxcMFw0XFBcVFxYXFxcYFxoXGxccFx0XHhcfFyAXIRciFyMXJBclFyYXJxcoFykXKhcrFywXLRcuFy8XMBcxFzIXMxc+Fz8XRReDF4QXhReGF4cXjhePF5AXkReSF5UXlheXF5gXmReaF5sXnBedF54XnxegF6EXohejF6QXpRemF6cXqBepF6oXqxesF60XrhevF7gXuRfAF/EX+xf9F/4X/xcAGAEYCBgJGAoYCxgMGA8YEBgRGBIYExgUGBUYFhgXGBgYGRgaGBsYHBgdGB4YHxggGCEYIhgjGCQYJRgmGCcYKBgpGDIYMxg6GHMYdBh1GHYYdxh4GHkYehh7GIkYihiLGI4YjxiQGJEYkhiTGJQYlRiWGJcYmBiZGJoYmxicGJ0YnhifGKAYoRiiGKMYqBiyGN0Y3hjfGOAY4RjiGOMY5BjrGOwY7RjuGO8Y8BjxGPIY8xj0GPUYAxkEGQUZCBkJGQoZCxkMGQ0ZDhkQGRIZExkUGRUZFhkXGRgZGRkaGRsZHBkdGR4ZHxkgGSsZLBkuGVUZVhlXGVgZWRlaGVsZXBldGV4ZZRlmGWcZaBlpGWoZaxlsGW0ZbhlvGYMZhBmFGYYZhxmIGYsZjBmNGY4ZjxmQGZEZkhmTGZQZlRmWGZcZmBmZGZoZpRmoGakZzBnNGc4ZzxnQGdEZ0hnTGdQZ3BndGd4Z3xngGeEZ4hnmGecZ6Bn9Gf4Z/xkAGgEaAhoGGggaCRoKGgsaDBoNGg4aDxoQGhEaEhoTGhQaFxpHGkgaSRpKGksaTBpNGk4aUhpWGlcaWBpZGloaWxpcGncaeBp5GnoafBqBGoMahBqFGoYahxqIGokaixqMGo0ajhqQGpEawRrCGsMaxBrFGsYaxxrLGswazRrOGs8a0BrRGtIa0xrUGtUa1hrwGvIa8xr0GvUa/Rr+Gv8aABsBGwIbBBsFGwYbBxsIGwkbChsLGwwbQBtBG0MbRBtFG0YbRxtIG0kbShtLG0wbTRtOG08bUBtSG20bchtzG3kbeht7G38bgBuBG4IbgxuEG4Ubthu3G7gbuRu8G70bvhu/G8AbwRvCG8MbxBvFG8YbxxvIG8kbyhvOG88b4RviG+sb7BvtG+4b7xvzG/Qb+hv7G/wb/hv/Gy4cLxwwHDEcMhwzHDYcNxw4HDkcOhw7HDwcPRw+HD8cQRxCHEMcRBxFHEkcTxxQHFYcWRxaHFscXBxdHF4cXxxhHGQcZRxmHGccaBxpHGoccxx0HHUcdhyoHKkcqhyrHKwcrRyvHLAcsRyyHLMctBy1HLYctxy4HLkcuhy7HLwcvRy+HL8cwxzRHNIc0xzUHNUc1hzXHNgc2RzaHNsc3BzdHN4c3xzgHOEc4hzjHOQc5RzmHO0c7hzvHPAcIR0iHSMdJB0lHSYdJx0oHSkdKh0rHSwdLR0uHS8dMB0xHTIdMx00HTUdNh03HTgdOR1LHUwdTR1OHU8dUB1RHVIdUx1UHVUdVh1XHVgdWR1aHVsdXB1dHV4dXx1gHWEdYh1mHWgdaR1qHWwdmB2ZHZodmx2cHZ0dnh2fHaAdoR2iHaMdpB2lHaYdpx2oHakdqh2rHawdrR2uHa8dsR2yHbMdxx3IHckdyh3LHcwdzR3OHc8d0B3RHdId0x3UHdUd1h3XHdgd2R3aHdsd3B3dHeId5R3mHecd7x0SHhMeFB4VHhYeFx4YHhkeGh4bHhweHR4eHh8eIB4hHiIeIx4kHiUeJh4nHigeKR5BHkIeQx5EHkUeRh5HHkgeSR5KHkseTB5NHk4eTx5QHlEeUh5THlQeVR5WHlceXB5gHmkeiR6KHosejB6NHo4ejx6QHpEekh6THpQelR6WHpcemB6ZHpoemx6cHp0enh6fHqAeoR6iHqMepB6sHq0eux68Hr0evh6/HsAewR7CHsMexB7FHsYexx7IHskeyh7LHswezR7OHs8e0B7RHgMfBB8FHwYfBx8IHwkfCh8LHwwfDR8OHw8fEB8RHxIfEx8UHxUfFh8XHxgfGR8aHxsfHB8dHx4fIx8kHyUfNh83HzgfOR86HzsfPB89Hz4fPx9AH0EfQh9DH0QfRR9GH0cfSB9JH0ofSx9TH1QfXh99H34ffx+AH4Efgh+DH4QfhR+GH4cfiB+JH4ofix+MH40fjh+PH5AfkR+SH5MflB+VH5Yflx+fH7Efsh+zH7QftR+2H7cfuB+5H7ofux+8H70fvh+/H8AfwR/CH8MfxB/FH8sfzB/NH84f9x/4H/kf+h/7H/wf/R/+H/8fACABIAIgAyAEIAUgBiAHIAggCSAKIAsgDCANIA4gDyAQIBkgLCAtIC4gMCAxIDIgNSA2IDcgOCA5IDogOyA8ID0gPiBGIEcgcSByIHMgdCB1IHYgdyB4IHkgeiB7IHwgfSB+IH8ggCCBIIIggyCEIIUghiCHIIggiSCnIKggqSCqIKsgriCvILAgsSCyILMgtCC3ILgguSDpIOsg7CDtIO4g7yDwIPEg8iDzIPQg9SD2IPcg+CD5IPog+yD+IAIhAyEEIQUhBiEZIRohGyEkISchKCEqISshLCEtIS4hLyExITIhMyFjIWQhZSFmIWchaCFpIWohayFsIW0hbiFvIXAhcSFyIXMhdCF8IX0hfiF/IYAhgSGCIZQhlSGdIaQhpSGmIachqCGpIashrCGtIa8h3CHdId4h3yHgIeEh4iHjIeQh5SHmIech6CHpIeoh6yH2Ifch+CH5Ifoh+yEOIg8iECISIh0iHiIfIiAiISIlIiYiJyJXIlgiWSJaIlsiXCJdImEiYiJjImQicCJxInIidCJ5IoYihyKIIooiiyKMIpkimyKgIqEi0SLSItMi1CLVItYi1yLbItwi3SLeIt8i4CLrIgEjAiMEIwUjBiMSIxMjFSMWIxsjSyNMI00jTiNPI1cjWSNtI24jfiOBI4IjgyOEI44jjyOVI5cjxiPHI8gjySPmI+cj6CP4I/oj+yP8I/4jCSQRJD8kQCRZJF8kYCRyJHMkdCR1JIIkgySEJNMk1CTsJO0k7iTvJGUlZiVnJWglaSWEJbkluiXfJeAl4SXiJfcl+CX+JQEmMiY0JlkmdCasJuwm7SbuJu8mJycoJ2YnZydoJ2knoSfgJ+En4ycZKBooWyiXKA==","dotsV":"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","dotZ":"//9fAV8BXwFfAV8BXwFfAV8BYAFgAWABYAFgAWABYAFgAWABYAH//2ABeQFfAV8BXwFfAV8BYAFgAWABYAFgAWABYAFgAWABYAFgAWAB//95AU0BXwFfAV8BXwFfAV8BYAFgAWABYAFgAWAB//9gAWABYAH//////////3kBeQFNAU0BTQFNAU0BTQFfAV8BXwFfAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAf//YAFNAU0BTQFNAU0BTQFNAU0BTQFNAU0BTQFfAV8BXwFgAWABYAFgAWABYAFgAWABYAFgAWABYAH//2AB//9NAU0BTQFNAU0BTQFNAU0BTQFNAU0BTQFNAU0BTQFfAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAf//TQFNAU0BSwFNAUsBTQFQAVABTQFNAU0BTQFNAU0BXgFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFGAUYBRgFGAUYBSwFLAUsBSwFOAVABUAFQAVABXgFNAU0BXgFeAV4BXgFeAWABYAFgAWABYAFgAWABYAFgAWABYQFhAWABYAFgAWABYAFgAWABYAH//0YBRgFGAUYBRgFGAUYBSQFLAU4BTgFQAVABUQFPAU8BXgFeAV4BXgFeAV4BXgFeAWABYAFgAWABYAFgAWABYQFhAWEBYQFhAWEBYAFgAWABYAFgAWABRgFGAUYBRgFGAUYBSwFJAUsBSwFOAVUBUQFPAU8BUwFTAV4BXgFeAV4BXgFeAV4BXgFgAWABYAFgAWABYQFhAWEBYQFhAWEBYQFgAWABYAFgAWABYAH//2AB//9hAUYBRgFGAUYBRgFGAUYBRgFHAUcBRwFHAUoBSgFKAUwBVQFPAVQBVAFTAV4BXgFeAV4BXgFeAV4BXgFgAWABYAFgAWEBYQFhAWEBYQFhAWEBYAFgAWABYAFgAWABYAFgAWABYAFgAWEB//95AUYBRgFGAUYBRgFGAUYBRgFHAUcBRwFHAUcBSgFMAUwBTAFWAVkBVAFSAV4BXgFeAV4BXgFeAV4BXQFdAWABYAFgAWABYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWABYAFgAWABYQFGAUYBRgFGAUYBRgFHAUcBRwFHAUcBRwFKAUoBTAFMAUwBTAFMAVkBUgFSAV4BXgFeAV4BXgFdAV0BXQFdAV0BXQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBLQEtAS0BRgFGAUUBRgFGAUcBRwFHAUcBRwFHAUoBSgFKAUoBTAFMAUwBTAFdAVsBXAFdAV0BXQFdAV0BXQFdAV0BXQFdAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBeQEtAS0BLQFFAUYBRQFFAUUBRwFHAUcBSAFHAUgBSgFKAUoBSgFKAUwBTAFdAV0BXQFdAV0BXQFdAV0BXQFdAWMBXQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEB//95AS0BLQEtAS8BLwFFAUUBRQFFAUUBSAFIAUgBSAFIAUMBSgFKAUoBSgFKAUwBTAFdAV0BXQFdAV0BXQFdAV0BXQFdAV0BYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBYQF5AXkBeQF5Af//LQEtASkBJwEmAS8BLwEvAUUBRQFFAUUBRQFIAUgBSAFIAUMBQwFKAUoBSgFKAUwBTAFMAUwBXQFdAV0BXQFdAV0BXQFkAWQBYwFjAWMBYwFhAWEBYQFhAWEBYQFhAWEBYQFhAWEBeQF5AXkBeQF5ASwBLQEcAR8BJgEvAS8BLwFAAUUBRQFFAUUBSAFIAUgBSAFIAUMBQwFDAUwBTAFMAUwBTAFMAV0BXQFdAV0BZQFlAWUBZAFkAWQBYwFjAWMBYwFhAWEBYQFhAWEBYQFhAf//eQF5AXkBeQF5AXkBLAEqASoBGwEiATABMAFAAUABRQFFAUUBRQFIATsBOwE7ATsBQwFDAUMBQwFMAUwBTAFMAWoBagFqAWoBagFlAWUBZQFkAWQBZAFkAWMBYwFjAWEBYQFhAf//eQF5AXkBeQF5AXkBeQEsASoBKgEqASABIQEwATABMAFAAToBOgE6AToBOwE7ATsBOwE7AUMBQwFDAUMBQwFMAUwBTAFqAWoBagFqAWoBYgFlAWUBcAFtAWQBZAFjAWMB//9hAWEB//95AXkBeQF5AXkBeQF5Af//eQEsASwBKgEqASoBKgElASEBMAEwAT0BNgE5ATkBOgE6ATsBOwE7ATMBQwFDAUMBQwFDAUMBQwFMAWoBagFqAWoBagFqAWIBZwFmAWYBaAFkAWEB//95AXkBeQF5AXkBeQF5AXkBeQF5AXkBeQF5Af//LAEsASwBLAEsASwBKwErAS4BLgEwATABPgE2ATgBNwE6ATsBOwE7ATMBMwFDAUMBQwFDAUMBQwFDAWoBagFqAWoBagFqAWIBYgFrAWcBaQFoAf//eQF5AXkBeQF5AXkBeQF5AXkBeQF5Af//eQF5ASwBLAEsASwBLAEsASwBKwErAS4BMAEyATIBPwFBAUEBQQE1ATsBOwEzATMBQgFCAUIBRAFEAUMBQwFDAWoBagFqAWoBagFqAWIBagFrAWsBawFyAXIBcgF5AXkBeQF5AXkBeQF5AXkBeQF5Af//eQF5Af//lQEsASwBLAEsASwBLAEsASsBKwEyATIBMgExATEBQQFBATUBNQE1ATsBOwFCAUIBQgFCAUIBRAFEAUMBQwFDAWoBagFqAWoBagFqAWoBawFrAWsBawFrAXIBcgFxAXEBhgGGAXkBeQF5AXkBeQF5AXkBeQF5AXkBlQGVAZUBlQGVAZUBlQEYARgBGAEYARgBGgErASsBGQEyATIBMgExATQBNAE1ATQBNAE0ATsBOwFCAUIBQgFCAUIBRAFEAUQBRAFEAWoBagFqAWoBagFqAWsBawFrAWsBawFqAWoBcQFxAXEBcQGGAYYBhwGHAXkBeQH//3kBeQF5AXkBeQF5AXkBeQF5AXkBeQF5AZUBlQGVAZUBlQH//ywBGAEYARgBGAEaARoBGgEZARkBMgEyATIBNAE0ATQBNAE0ATQBNAE7ATQBNAFCAUIBQgFCAUQBRAFEAUQBRAFEAWoBagFqAWoBagFrAWsBawFrAWoBagFqAWoBcQF3AXcBcQGJAYQBigH//4cBhwF5AXkB//95AXkBeQGVAZUBeQF5AXkBeQF5AXkBeQGVAZUBlQGVAZUBlQEYARgBGAEYARgBGAEYARgBGAEYARoBGgEZARkBGQEZARkBNAE0ATQBNAE0ATQBNAE0ATQBQgFCAUIBQgFCAUIBRAFEAUQBRAFEAUQBRAFqAWoBagFqAWoBagFrAWoBagFqAWoBagF3AXcBdwF3AYgBiAGAAYABeQF5AXkBeQF5AXkBeQF5AXkBeQGVAZUBlQF5AXkBeQF5AXkBeQF5AXkBlQGVAZUBlQGVARgBGAEYARgBGAEYARgBGAEYARgBBwEHAQwBEwEZARkBGQH9ADQBNAE0ATQBNAE0ATQBNAE0ATQBQgFCAUIBQgFCAUIBRAFEAUQBRAFEAdAA0ADQANAA0ABqAWoBagFqAXgBeAF3AXcBdwF3AXcBdwGDAYABgAGCAXkBeQF5AXkBeQF5AXkBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAXkBeQF5AZUBlQGVAf//lQGVARgBGAEYARgBGAEYARgBGAEYAQoBCgEJAQQBDAETAf0A/QD9AP0ANAE0ATQBNAE0ATQBNAE0ATQBQgFCAUIBQgFCAUIBQgFEAUQBRAFEAdAA0ADQANAA0ADQANAAdQF1AXgBeAF4AXgBeAF3AXcBdwF3Af//hQGFAYMBggGCAYIBeQF5AXkBeQF5AZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAXkBeQGVAZUBlQH/////GAEYARgBGAEYARgBGAEYARgBCgEKAQoBAwEVARUBFQH9AP0A/QD9AP0A/QD9AP0A/QD9AP0A/QBCAUIBQgFCAUIBQgFCAfEA8QDQANAA0ADQANAA0ADQANAA0AB1AXUBeAF4AXgBeAF4AXYBdgF2AXYBgAGFAYUBhQGFAYgBigF5AXkBeQF5AXkBeQGYAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVARgBGAEYARgBGAEYARgBCAEIAQgBBQEVARUB/QD9AP0A/QD9AP0A/QD9AP0A/QD9AP0A/QBCAUIBQgFCAUIB8QDxAPEA8QDxANAA0ADQANAA0ADQANAA0AB1AXUBeAF4AXgBeAF4AXYBdgF2AYABgAGAAYUBggGCAYIBggF5AXkBmgF5AZgBmAGYAZgBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVARgBGAEYARgBGAEYARgBCAEIAQgBBgERAf0A/QD9AP0A/QD9AP0A/QD9AP0A/QD9AP0A/QD9AP0AQgHxAPEA8QDxAPEA0ADQANAA0ADQANAA0ADQANAA0AB1AXUBdQF0AXgBeAF4AXgBdgGAAYABgAGCAYIBggGCAYIBggGaAZgBmAGYAZgBmAGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVARgBGAEYARgBGAEYAf8ACwELAQ4BEAH9AP0A/QD9AP0A/QD9AP0A/QD9AP0A/QD9AP0A/QDxAPEA8QDxAPEA8QDxAPEA0ADQANAA0ADQANAA0ADQAHUBdQF1AXUBdAGLAYsBjQGMAYABgAGAAYIBggGCAYIBggGCAZoBmgGYAZgBmAH//5UBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVARgBGAEYARgBGAH+AP8A/wALAQ4BEgEWAf0A/QD9AP0A/QD9AP0A/QD9AP0A/QD9APEA8QDxAPEA8QDxAPEA8QDxANwA2ADQANAA0ADQANAA0ADQAHUBdQF1AXUBdQF0AXQBiwGNAXsBfwGCAYIBggGCAYIBggGCAZoBmgGbAZgBnAGcAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUB//8AARgBGAEYARgB/gD+AAEB/wD/////FgH9AP0A/QD9AP0A/QD9AP0A/QDxAPEA8QDxAPEA8QDxAPEA8QDxAPEA8QDcANkA2ADQANAA3gDeAOoA0ABzAXUBdQF1AXUBdAF0AYsBfgF/AX8BggGCAYIBggGCAYIBggGaAZoBmwGdAf//lQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBAAEAAQABAAEAAf4A/gD+AP4AAgH//xcBFwEXARcB/QD9AP0A/QD9APEA8QDxAPEA8gDyAPIA8QDxAPEA8QDxANsA0gDRANEA3wDdAN4A6gCBAXMBcwFzAXUBdQF0AY4BfQF6AX8BfwGCAYIBggGCAYIBmgGaAZoBmgH//5cBnQGVAf//lQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQEAAQABAAEAAf4A/gAXARcB/QD9AP0A/QD9AP0A/QDxAPEA8gDyAPIA8gDxAP//8QDaANsA0gDWAOMA5gDtAO0AgQGBAXMBcwFzAZQBkAGTAY4BfwF/AX8BggGCAYIBmgGaAZoBmgGaAZoBlwH//5UBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAf//AAEAAf4A//8XARcB///9AP0A/QD9APEA8QDxAPIA///yANcA1gDlAOEA8ADsAIEBgQGBAXMBjwGPAZIBfwH//38BfwF/AYIBggGCAZoBmgGaAZoBlgGWAf//lQH//5UBlQH//5UBlQGVAZUBlQGVAZUBlQGVAf0A/QDxAPEA+QD7APsA8wDzANQA5ADnAOwA7ACBAYEBgQFzAZEBjwGBAX8BfwF/AX8BfwGCAYIBggGaAZoBlgGWAZYBmQGXAf//lwGVAZUBlQGVAZUBlQGVAZUBlQGVAZUB////////+QD7APsA8wD4ANQA1ADwAOsA6wCBAYEBgQGBAYEBgQGBAYEBfwF/AZQAlACqAKoAmgGaAZoBlgGWAZYB/////5UBlQGVAf//lQGVAZUBlQGVAf//xQH5APwA9gD2APgA1ADUAO4A6wDpAIEBgQGBAYEBgQGBAY4AngCYAJUAlACcAKoAqgCaAZoBmgGWAZYBlgGZAZkBmQGVAZUBlQH//5UBlQH//8QB//////wA9gD1APUA///UAO4A7wDpAOkAfAB8AIAAgQCOAI4AnwCTAJkAlgCXAKoAqwCaAZoBmgGaAZ4BngGeAZ4BlQH//5UBxAHEAcQB/AD3APUA9QD1ANMA1QB6AHoAfAB8AIIAfgCBAIwAjwCPAKEAoQCSAKoAqwCrAKsAngGeAZ4BngGeAZ4BngGVAZUBlQHEAcQBxAHEAcQB9wD3APcA9wD0ANUA1QB7AHcAhACGAH4AfwCMAI4AjwCgAKMApgCnAK8AqQC0ALYAngGeAZ4BngGmAZ4BngH//5UBlQGVAf//xAHEAcQBxAHEAcQB9wD3APcA9wD0AP//1QCNAI0AeACGAIsAjACMAI4AjgCkAKYApgCRAJEAsQC0ALUAugCeAZ4BpgGmAagBngGeAZUBlQH//8QBxAHEAcQBxAHEAcQBxAH//9MAjQCNAHYAUgBVAF0AXgBvAGYApgCmAJAAkACzALcAuQC6ALwApgGkAakBrQGsAZ4BngH//70BvQG9Ab0B//++Ab4BvgHEAcQBxAHEAcQBxAHEAcQBxAHEAf//0wCNAI0AdQBUAFsAYABfAGMAaAClAJAAxADFAMMAuwC4AJ4BpAGkAacBrAGsAZ4BngGeAZUBlQGVAcEBvQG9Ab0BvQG9Ab0BvgG+Af//xAHEAcQBxAHEAcQBxAHEAcQBxAHEAXQAWgBRAGIAYwBrAKUA///HAMcAxgC/AMkAyQCkAaQBrwGrAbcBngGeAZ4BlQGVAf//wQHBAcEBwQHBAb0BvQG9Af//xAHEAcQBxAHEAcQBxAHEAcQBxAFyAFgAUQBRAGoAaQClAMcArgDKAMsApAGkAaEBtAGwAbcBtwGeAZ4BnwHBAcEBwQHBAb0BvQG9Ab0BvgHEAcMBwwHEAcQBxAHEAXEATABNAE4AbgD//64ArADIAKQBoAGiAbEBtwG3AZ8BnwGfAZ8BwQHBAcEBwQHBAb8BvwHCAcIBwgHDAcMBwwHDAcMBxAHEAcQB/////0wATQBOAP////+tAM0AoAGiAaIBtQG1AbUBnwGfAZ8BnwGfAZ8BvwG/Ab8BwgHCAcMBwwHDAcMBwwHDAcMBxAHEAcQBxAH//04AIQD//84AogGiAbUBtQGfAZ8BnwGfAZ8BuwG7AbsBuwG/Ab8BwgHCAcMBwwHDAcMBwwHDAcMBxAHEAcQBxAHGAf//BQAIACAAHwAjACQAJgDOAKIBtQGfAf//nwH//7sBuwG7AbsBuwG7AcABvwG/AcIBwwHDAcMBwwHDAcMBwwHEAcQBxAHEAcYBxAH/////AgARABEAEwAHAAoACgAPABgAHgAlACUAJQAlACcAtQG1AbYB//+7AbsBuwG7AcABwAHAAcABwAG/Ab8BwgHDAcMBwwHDAcMBwwHDAcMBwwHDAcMB//8BAAEAAAARAEUARQASAAoACgAKAAwADQAYABcAGQAlACUAJQA0ADUALQArALYBtgGfAZ8BuwG7AbsBuwG7AcABwAHAAcABwAHAAcABwAHCAcIBwwHDAcMBwwHDAcMBwwHDAcMBwwE5AAEAOQARAEUARQASABQAFAAQAAwAFQAVABcAGgBHACUAJQAlACUAMwAuAC4A/////58BnwGfAZ8BuwG7AbsBuwG7AbsBuwHAAcABwAHAAcABwAHAAcABwAHAAcIBwwHDAcMBwwHDAf//wwHDAcMBOQA5AEUARQBFAEUARQBGAEYAEAAWABoARwBHACUAJQAlACUAJQAvADAAMAD//58BnwGfAZ8BnwG7AbsBuwG7AbsBuwG7AcABwAHAAcABwAHAAcABwAHAAcABwAG6AcMBwwHDAcMBwwE5ADsAOwBFAEUARQBFAEYARgBGAEYAFgBHACUAJQAlACUAJQAzADIAMAAxADgAnwGfAZ8BvAG8AbsBuwG7AbsBuwG7AbsBuwG7AcABwAHAAcABwAHAAcABugG6AboBugG6AboBugG6AcMBugHDAf//OQA5ADsARQBFAD8APgBGAEYARgBGAEYARwBHACUAJQAlACUAMgAyADIANgA2AP//vAG8AbsBuwG7AbsBuwG7AbsBuwHAAcABwAHAAcABwAHAAboBugG6AboBugG6AboBugG6AboB///DAcMBPAA6AEUAPwA+AEQARABEAEQASABIAEcARwBHAEcARwBHAEoASwBLAEsANgCfAf///////7wBvAG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBwAHAAboBugG6AboBugG6AboBugG6AboBugHDAf////8/AD4ARABEAEQASABIAEgARwBHAEcARwBHAEcASgBKAEsASwA2AJ8BnwGfAf//uwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AboBugG6AboBugG6AboBugG6AcMBQgBBAEMARABEAP//RwBHAEcARwBHAEoASgBKAEoASwCfAZ8BuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG6AboBugG6AboB/////7oBugH//0MA//9EAEQASABHAEcARwBHAEcASgBKAEsASwC7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwH//7oBugG6AboBugG4AbgBuAFEAEgA//9HAEcARwBHAEoASgBKAEsASwC7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsB//+6AboBugG6AboBugG6AbgBuAH//0cARwBHAEoA/////0oASwBLAP//uwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsBuwG7AbsB/////7oBugG6AboBugG4AbgBuAH//0cARwBJAEkA//9KAEsASwC7AbsBuwG7AbsBuwG7AbsBuwG7AbsBugG6AboB//+5AbgBuAH//7gB//+4AUkA//9KAEsAuwG7AbsBuwG7AbsB/////7sBuwG7AbsBuwG6Af////+4AbgB//9JAP//SQD//0sAuwG7AbsBuwG7AbsB//+5AbkBuAG4AbgBuAG4AUkASQBLAP//uwH///////+5Af//uQG4AbgBuAG4Af//SQD//7sBuwG6AbkB//+4AbgBuAH//0kASQBJALoBugG4AbgBuAG4AbgBuAG4Af//uAG4AbsB//+4AbgBuAG4AbgBuAG4Af//////////uAH//7gBuAG4AbgBuwH//7gBuAG4AbgBuwG4AbgBuAG7Af///////w==","baseMax":301374.7,"geom":{"W":980,"H":720,"step":8,"bstep":5,"cols":196,"rows":144,"scale":1589.0061,"kx":0.924827116080655,"offx":-167242.8403542901,"offy":35886.52106643134,"lon0":113.83503,"lat0":22.15349},"distNames":["东区","中西区","九龙城区","元朗区","北区","南区","大埔区","屯门区","沙田区","油尖旺区","深水埗区","湾仔区","离岛区","荃湾区","葵青区","西贡区","观塘区","黄大仙区"],"tide":{"factor24":[0.4989,0.3292,0.239,0.1931,0.1935,0.2647,0.578,1.3195,1.5258,1.4147,1.3095,1.2823,1.2382,1.2447,1.3001,1.3451,1.4087,1.5383,1.6183,1.3349,1.0664,1.0426,0.985,0.7295],"flow24":[609,402,292,236,236,323,706,1612,1864,1728,1600,1567,1513,1521,1588,1643,1721,1879,1977,1631,1303,1274,1203,891],"speed24":[80.58,81.34,81.81,81.69,81.71,81.34,80.95,76.26,71.65,72.21,74.46,75.27,75.79,75.87,75.4,75.23,74.9,73.56,70.14,71.94,76.56,76.92,77.86,79.39],"source":"Transport Department — Traffic Data of Strategic / Major Roads (DATA.GOV.HK)","period":"2026-08-24 – 2026-09-21"},"zones":[{"l":"堅尼地城站一帶","di":10,"ti":28118},{"l":"湖苑","di":10,"ti":2449},{"l":"何東夫人堂","di":10,"ti":15805},{"l":"西營盤站一帶","di":10,"ti":16348},{"l":"德輔道西","di":10,"ti":24195},{"l":"西區警署","di":10,"ti":21227},{"l":"上環文娛中心","di":10,"ti":114151},{"l":"上環站一帶","di":10,"ti":158709},{"l":"中山紀念公園","di":10,"ti":18944},{"l":"香港大學站一帶","di":10,"ti":11054},{"l":"中環站一帶","di":10,"ti":398311},{"l":"中央廣場","di":10,"ti":53226},{"l":"灣仔站一帶","di":16,"ti":239926},{"l":"南洋酒店","di":16,"ti":199707},{"l":"伊利莎伯大廈","di":16,"ti":125848},{"l":"會展站一帶","di":16,"ti":94585},{"l":"竹林苑","di":16,"ti":16892},{"l":"豫苑","di":10,"ti":32804},{"l":"嘉富麗苑","di":10,"ti":18429},{"l":"孫中山紀念館","di":10,"ti":18768},{"l":"堅麗閣","di":10,"ti":23146},{"l":"跑馬地馬場","di":16,"ti":52436},{"l":"安慧苑","di":16,"ti":29803},{"l":"皇仁書院","di":16,"ti":30525},{"l":"銅鑼灣站一帶","di":16,"ti":203018},{"l":"勵德邨","di":16,"ti":10388},{"l":"盛苑","di":16,"ti":14892},{"l":"炮臺山站一帶","di":2,"ti":57320},{"l":"天后站一帶","di":16,"ti":32757},{"l":"城市花園","di":2,"ti":37803},{"l":"勵德邨","di":2,"ti":36837},{"l":"北角站一帶","di":2,"ti":20126},{"l":"新時代廣場","di":2,"ti":40364},{"l":"港運城","di":2,"ti":21676},{"l":"健威花園","di":2,"ti":12292},{"l":"模範邨","di":2,"ti":43760},{"l":"鰂魚涌站一帶","di":2,"ti":74401},{"l":"太古站一帶","di":2,"ti":37162},{"l":"太古城中心","di":2,"ti":16364},{"l":"太康樓","di":2,"ti":10981},{"l":"太古城中心","di":2,"ti":22116},{"l":"海灣華庭","di":2,"ti":19220},{"l":"西灣河站一帶","di":2,"ti":15837},{"l":"明華大廈 1 座","di":2,"ti":6520},{"l":"東旭苑","di":2,"ti":13532},{"l":"筲箕灣站一帶","di":2,"ti":20069},{"l":"杏花邨站一帶","di":2,"ti":24096},{"l":"柴灣站一帶","di":2,"ti":22291},{"l":"漁灣邨","di":2,"ti":40680},{"l":"新廈街近柴灣邨","di":2,"ti":11639},{"l":"興華邨","di":2,"ti":14351},{"l":"山翠苑","di":2,"ti":7711},{"l":"東熹苑","di":2,"ti":8239},{"l":"耀東邨","di":2,"ti":10023},{"l":"小西灣邨","di":2,"ti":9039},{"l":"富欣花園","di":2,"ti":49047},{"l":"富怡花園","di":2,"ti":10548},{"l":"湖苑","di":15,"ti":63588},{"l":"華貴邨","di":15,"ti":10595},{"l":"富仁苑","di":15,"ti":25193},{"l":"華富邨","di":15,"ti":18161},{"l":"田灣邨","di":15,"ti":9319},{"l":"漁暉苑","di":15,"ti":23472},{"l":"田灣邨","di":15,"ti":8133},{"l":"利東站一帶","di":15,"ti":15680},{"l":"海怡半島站一帶","di":15,"ti":17459},{"l":"怡韻閣","di":15,"ti":10551},{"l":"利東邨","di":15,"ti":10927},{"l":"黃竹坑站一帶","di":15,"ti":118947},{"l":"僑福閣","di":10,"ti":17930},{"l":"松柏新邨","di":16,"ti":21287},{"l":"香港島","di":15,"ti":27538},{"l":"蒲苑","di":15,"ti":9951},{"l":"馬坑邨","di":15,"ti":18706},{"l":"輝百苑","di":15,"ti":5735},{"l":"大頭洲","di":15,"ti":1700},{"l":"中港城","di":11,"ti":305691},{"l":"佐敦站一帶","di":11,"ti":211549},{"l":"紅磡站一帶","di":4,"ti":234128},{"l":"尖東站一帶","di":11,"ti":89398},{"l":"海灣軒 - 海景酒店","di":11,"ti":46603},{"l":"伊利沙伯醫院","di":11,"ti":76341},{"l":"洋松街休憩處","di":11,"ti":32936},{"l":"基榮小學 維景酒店","di":11,"ti":85504},{"l":"大同新村","di":11,"ti":52659},{"l":"太子港鐵站","di":11,"ti":48270},{"l":"旺角東站一帶","di":11,"ti":141882},{"l":"油麻地站一帶","di":11,"ti":20096},{"l":"上海街 廟街夜市","di":11,"ti":53770},{"l":"信和中心","di":11,"ti":112730},{"l":"上海街388號外","di":11,"ti":28989},{"l":"旺角街市","di":11,"ti":134216},{"l":"麒麟閣","di":4,"ti":5112},{"l":"太子道西","di":4,"ti":12871},{"l":"太子道西","di":4,"ti":1410},{"l":"常樂邨","di":4,"ti":39045},{"l":"九龍維景酒店","di":4,"ti":14370},{"l":"何文田站一帶","di":4,"ti":14953},{"l":"愛民邨","di":4,"ti":21017},{"l":"何文田邨","di":4,"ti":15418},{"l":"土瓜灣站一帶","di":4,"ti":15976},{"l":"欣榮花園","di":4,"ti":13210},{"l":"香港盲人輔導會","di":4,"ti":13278},{"l":"浙江街遊樂場","di":4,"ti":12234},{"l":"美華工業中心","di":4,"ti":9235},{"l":"紅磡邨","di":4,"ti":23473},{"l":"家維邨","di":4,"ti":13655},{"l":"海逸豪園","di":4,"ti":66951},{"l":"黃埔站一帶","di":4,"ti":21990},{"l":"寶其利街2號","di":4,"ti":8902},{"l":"九龍海逸君綽酒店","di":4,"ti":35767},{"l":"馬頭圍邨","di":4,"ti":18304},{"l":"翔龍灣","di":4,"ti":5850},{"l":"九龍站一帶","di":11,"ti":121578},{"l":"高鐵西九龍站","di":11,"ti":1931},{"l":"奧運站一帶","di":11,"ti":17027},{"l":"富榮花園","di":11,"ti":14246},{"l":"維港灣","di":11,"ti":75619},{"l":"南昌站一帶","di":8,"ti":12213},{"l":"海麗邨","di":8,"ti":39278},{"l":"海達邨","di":8,"ti":13942},{"l":"西邨","di":8,"ti":10477},{"l":"美孚站一帶","di":8,"ti":20502},{"l":"美孚轉車站","di":8,"ti":18391},{"l":"蝴蝶谷新村","di":8,"ti":130724},{"l":"蘇屋邨","di":8,"ti":13881},{"l":"寶熙苑","di":8,"ti":14890},{"l":"石硤尾站一帶","di":8,"ti":39642},{"l":"澤安邨","di":8,"ti":8303},{"l":"豐力樓","di":8,"ti":5813},{"l":"蘇屋邨","di":8,"ti":44219},{"l":"茘枝角站一帶","di":8,"ti":51872},{"l":"長沙灣站一帶","di":8,"ti":45454},{"l":"寶血醫院","di":8,"ti":32085},{"l":"怡閣苑","di":8,"ti":35221},{"l":"深水埗站一帶","di":8,"ti":18795},{"l":"通州街公園","di":8,"ti":3077},{"l":"深水埗公立醫局","di":8,"ti":15579},{"l":"福華街休憩公園","di":8,"ti":19999},{"l":"石硤尾街休憩花園","di":8,"ti":13397},{"l":"南山邨","di":8,"ti":78915},{"l":"海盈邨","di":8,"ti":10566},{"l":"九龍塘站一帶","di":4,"ti":51865},{"l":"九龍塘站","di":4,"ti":19199},{"l":"九龍灣站一帶","di":1,"ti":195869},{"l":"啟業邨","di":1,"ti":42972},{"l":"鑽石山站一帶","di":9,"ti":20368},{"l":"黃大仙上邨","di":9,"ti":7625},{"l":"慈正邨","di":9,"ti":6309},{"l":"順田樓","di":9,"ti":3020},{"l":"鳳鑽苑","di":9,"ti":17571},{"l":"志蓮淨苑","di":9,"ti":5644},{"l":"竹園邨","di":9,"ti":6852},{"l":"竹園南邨","di":9,"ti":15269},{"l":"慈愛苑","di":9,"ti":12742},{"l":"啟翔苑","di":9,"ti":5744},{"l":"慈民邨","di":9,"ti":23139},{"l":"樂富站一帶","di":9,"ti":8534},{"l":"天宏苑","di":9,"ti":7560},{"l":"嘉強苑","di":9,"ti":15660},{"l":"康強苑","di":9,"ti":3805},{"l":"黃大仙站一帶","di":9,"ti":20041},{"l":"東頭邨","di":9,"ti":18019},{"l":"太子道東","di":9,"ti":89471},{"l":"太子道西","di":4,"ti":23870},{"l":"啟德郵輪碼頭","di":4,"ti":19652},{"l":"啟德站一帶","di":4,"ti":79677},{"l":"彩虹邨","di":9,"ti":11176},{"l":"彩虹站一帶","di":9,"ti":8807},{"l":"牛池灣街彩雲邨","di":9,"ti":13813},{"l":"富山邨","di":9,"ti":13405},{"l":"曉暉花園第一座","di":9,"ti":5661},{"l":"藍田站一帶","di":1,"ti":5930},{"l":"油塘 (油麗邨","di":1,"ti":12275},{"l":"麗港中心","di":1,"ti":14807},{"l":"啟業邨","di":1,"ti":11782},{"l":"牛頭角下邨","di":1,"ti":6006},{"l":"彩盈邨","di":1,"ti":10959},{"l":"彩興苑","di":1,"ti":8877},{"l":"彩盈邨","di":1,"ti":19504},{"l":"順利邨","di":1,"ti":8045},{"l":"安泰邨","di":1,"ti":14828},{"l":"順利邨","di":1,"ti":9357},{"l":"順利邨","di":1,"ti":11106},{"l":"寶達邨","di":1,"ti":11614},{"l":"秀茂坪邨","di":1,"ti":14873},{"l":"安柏苑","di":5,"ti":4711},{"l":"秀茂坪邨","di":1,"ti":20860},{"l":"安秀苑","di":5,"ti":3324},{"l":"安達邨","di":1,"ti":10610},{"l":"牛頭角站一帶","di":1,"ti":11582},{"l":"翠屏南邨","di":1,"ti":11989},{"l":"祥和苑","di":1,"ti":6767},{"l":"樂雅苑","di":1,"ti":7756},{"l":"和樂邨","di":1,"ti":15429},{"l":"寶珮苑","di":1,"ti":13209},{"l":"牛頭角上邨","di":1,"ti":14909},{"l":"樂華南邨","di":1,"ti":15645},{"l":"觀塘(翠屏北邨","di":1,"ti":13291},{"l":"觀塘站一帶","di":1,"ti":314080},{"l":"康栢苑","di":1,"ti":7054},{"l":"德田邨","di":1,"ti":8417},{"l":"啟田邨","di":1,"ti":27302},{"l":"德田邨","di":1,"ti":10352},{"l":"康雅苑","di":1,"ti":16276},{"l":"油塘站一帶","di":1,"ti":15346},{"l":"鯉魚門邨","di":1,"ti":26729},{"l":"高俊苑","di":1,"ti":11938},{"l":"三棟屋村","di":13,"ti":3676},{"l":"荃灣站一帶","di":13,"ti":39838},{"l":"荃灣西站一帶","di":13,"ti":143610},{"l":"昂船洲軍營","di":7,"ti":403},{"l":"四號貨櫃碼頭","di":7,"ti":50429},{"l":"華潤國際物流中心","di":7,"ti":10423},{"l":"尚翠苑","di":13,"ti":102950},{"l":"海灣花園","di":13,"ti":46465},{"l":"光板田村四段","di":13,"ti":5231},{"l":"愉景新城","di":13,"ti":22064},{"l":"金麗苑","di":13,"ti":10501},{"l":"灣景花園","di":13,"ti":25564},{"l":"荃灣中心","di":13,"ti":20808},{"l":"國瑞路公園","di":13,"ti":9218},{"l":"石圍角新村","di":13,"ti":19354},{"l":"大窩口站一帶","di":13,"ti":13599},{"l":"葵芳站一帶","di":7,"ti":28396},{"l":"葵興站一帶","di":7,"ti":15847},{"l":"大窩口邨","di":7,"ti":10559},{"l":"葵涌邨","di":7,"ti":15136},{"l":"葵盛西邨","di":7,"ti":31018},{"l":"葵盛邨","di":7,"ti":12912},{"l":"葵涌邨","di":7,"ti":14444},{"l":"葵芳邨","di":7,"ti":14246},{"l":"葵涌邨","di":7,"ti":15122},{"l":"鐘山臺","di":7,"ti":252},{"l":"梨木樹邨","di":7,"ti":41226},{"l":"華員邨","di":7,"ti":11511},{"l":"石籬邨","di":7,"ti":38240},{"l":"安蔭邨","di":7,"ti":27594},{"l":"茘景站一帶","di":7,"ti":19682},{"l":"清麗苑","di":7,"ti":10910},{"l":"華員邨","di":7,"ti":78298},{"l":"豪景花園","di":13,"ti":15001},{"l":"浪翠園第三期","di":13,"ti":29334},{"l":"青衣站一帶","di":7,"ti":23073},{"l":"閘口大樓","di":7,"ti":1418},{"l":"長青邨","di":7,"ti":18148},{"l":"長康邨","di":7,"ti":16676},{"l":"南灣角","di":7,"ti":10861},{"l":"綠悠雅苑","di":7,"ti":18619},{"l":"鑊底灣","di":7,"ti":584},{"l":"青衣轉車站 - 長安邨","di":7,"ti":28553},{"l":"長亨邨","di":7,"ti":16205},{"l":"青華苑","di":7,"ti":4695},{"l":"小欖新村","di":6,"ti":6074},{"l":"美樂站一帶","di":6,"ti":9973},{"l":"輕鐵車廠站一帶","di":6,"ti":10869},{"l":"中電 A廠","di":6,"ti":5084},{"l":"蝴蝶站一帶","di":6,"ti":21230},{"l":"屯門碼頭站一帶","di":6,"ti":23588},{"l":"澤豐站一帶","di":6,"ti":7311},{"l":"青松站一帶","di":6,"ti":17200},{"l":"蔡意橋站一帶","di":6,"ti":11964},{"l":"河田站一帶","di":6,"ti":37407},{"l":"和田邨","di":6,"ti":6492},{"l":"山景(北)站一帶","di":6,"ti":42536},{"l":"建生站一帶","di":6,"ti":30641},{"l":"新圍站一帶","di":6,"ti":25537},{"l":"龍門站一帶","di":6,"ti":27363},{"l":"兆康站一帶","di":6,"ti":15004},{"l":"豐景園站一帶","di":6,"ti":16602},{"l":"兆麟站一帶","di":6,"ti":14255},{"l":"屯門站一帶","di":6,"ti":20364},{"l":"安定站一帶","di":6,"ti":22177},{"l":"市中心站一帶","di":6,"ti":36323},{"l":"屯門兆麟政府綜合大樓","di":6,"ti":11919},{"l":"富泰邨","di":6,"ti":20668},{"l":"顯發邨","di":6,"ti":7078},{"l":"景峰站一帶","di":6,"ti":20386},{"l":"三聖站一帶","di":6,"ti":18292},{"l":"小欖新村","di":6,"ti":45006},{"l":"曾咀 (曾咀靈灰安置所)","di":6,"ti":1096},{"l":"泥圍","di":6,"ti":11745},{"l":"藍地站一帶","di":6,"ti":3240},{"l":"翠湖站一帶","di":3,"ti":12740},{"l":"頌富站一帶","di":3,"ti":7877},{"l":"銀座站一帶","di":3,"ti":8751},{"l":"樂湖站一帶","di":3,"ti":11732},{"l":"天富站一帶","di":3,"ti":11352},{"l":"天瑞站一帶","di":3,"ti":3719},{"l":"天慈站一帶","di":3,"ti":10521},{"l":"天榮站一帶","di":3,"ti":13733},{"l":"伊利沙伯中學舊生會湯國華中學","di":3,"ti":4780},{"l":"天逸站一帶","di":3,"ti":10427},{"l":"天耀站一帶","di":3,"ti":10843},{"l":"天晴邨","di":3,"ti":10692},{"l":"香港溼地公園","di":3,"ti":4898},{"l":"天瑞邨","di":3,"ti":7465},{"l":"天恆邨","di":3,"ti":5940},{"l":"廈村","di":3,"ti":4781},{"l":"鍾屋村站一帶","di":3,"ti":6779},{"l":"流浮山","di":3,"ti":1232},{"l":"新慶村","di":3,"ti":1230},{"l":"洪水橋站一帶","di":3,"ti":18968},{"l":"大井圍","di":3,"ti":2022},{"l":"坑尾村站一帶","di":3,"ti":6368},{"l":"山下村","di":3,"ti":2033},{"l":"唐人新村","di":3,"ti":20706},{"l":"大江埔","di":3,"ti":11558},{"l":"元朗(崇山新村","di":3,"ti":13461},{"l":"東華三院馬振玉中學(近朗善邨","di":3,"ti":10205},{"l":"康樂路站一帶","di":3,"ti":44661},{"l":"元朗站一帶","di":3,"ti":61087},{"l":"大棠路站一帶","di":3,"ti":55048},{"l":"尚豪庭","di":3,"ti":49501},{"l":"博愛醫院","di":3,"ti":9036},{"l":"凹頭","di":3,"ti":13888},{"l":"豐年路站一帶","di":3,"ti":27788},{"l":"朗屏邨","di":3,"ti":31060},{"l":"水邊圍站一帶","di":3,"ti":28252},{"l":"翹翠峰","di":3,"ti":23156},{"l":"橫洲東頭圍 蔡福善堂","di":3,"ti":34698},{"l":"蝶翠峰","di":3,"ti":38963},{"l":"錦上路站一帶","di":3,"ti":21250},{"l":"八鄉警署","di":3,"ti":7932},{"l":"上村新村","di":3,"ti":4028},{"l":"青山公路－潭尾段","di":3,"ti":16753},{"l":"落馬洲站一帶","di":3,"ti":9947},{"l":"攸潭尾村","di":3,"ti":2921},{"l":"壆圍","di":3,"ti":1840},{"l":"河上鄉","di":14,"ti":2577},{"l":"東塘新村","di":14,"ti":11039},{"l":"古洞","di":14,"ti":691},{"l":"哥爾夫球場","di":14,"ti":1438},{"l":"羅湖站一帶","di":14,"ti":3088},{"l":"金錢","di":14,"ti":1474},{"l":"上水站一帶","di":14,"ti":24816},{"l":"鳳溪第一中學","di":14,"ti":9401},{"l":"上水 (寶運路)","di":14,"ti":27799},{"l":"粉嶺站一帶","di":14,"ti":26035},{"l":"鳳凰嶺邨","di":14,"ti":28986},{"l":"北區公園北門","di":14,"ti":15772},{"l":"彩蒲苑","di":14,"ti":34597},{"l":"清河邨","di":14,"ti":17128},{"l":"上水官立中學","di":14,"ti":5532},{"l":"雍盛苑","di":14,"ti":8030},{"l":"嘉盛苑","di":14,"ti":14623},{"l":"欣盛苑","di":14,"ti":11953},{"l":"華明邨","di":14,"ti":15800},{"l":"和合石新村","di":14,"ti":13305},{"l":"九龍坑","di":12,"ti":3127},{"l":"山麗苑","di":14,"ti":17101},{"l":"打鼓嶺警署","di":14,"ti":1927},{"l":"大塘湖","di":14,"ti":4313},{"l":"馬屎洲","di":12,"ti":15335},{"l":"帝欣苑","di":12,"ti":1971},{"l":"大埔工業邨","di":12,"ti":55707},{"l":"富亨邨","di":12,"ti":36926},{"l":"大埔公眾泳池","di":12,"ti":11381},{"l":"廣福道轉車站","di":12,"ti":31617},{"l":"馬窩","di":12,"ti":8817},{"l":"廣福邨","di":12,"ti":11662},{"l":"大埔墟站一帶","di":12,"ti":20697},{"l":"林村新村","di":12,"ti":4268},{"l":"荔枝山","di":12,"ti":7375},{"l":"太和站一帶","di":12,"ti":19912},{"l":"怡雅苑","di":12,"ti":12392},{"l":"林村河畔","di":12,"ti":17266},{"l":"新興花園","di":12,"ti":8436},{"l":"大元邨","di":12,"ti":15469},{"l":"樟樹灘","di":12,"ti":102422},{"l":"南苑","di":12,"ti":8433},{"l":"沙田花園","di":0,"ti":2881},{"l":"美林邨","di":0,"ti":28857},{"l":"美田邨","di":0,"ti":30131},{"l":"火炭站一帶","di":0,"ti":70085},{"l":"大學站一帶","di":0,"ti":54695},{"l":"穗禾苑","di":0,"ti":59059},{"l":"澳頭新村","di":12,"ti":10570},{"l":"沙田圍站一帶","di":0,"ti":11907},{"l":"富豪花園","di":0,"ti":8517},{"l":"水泉澳邨","di":0,"ti":19955},{"l":"乙明邨","di":0,"ti":18391},{"l":"沙田圍新村","di":0,"ti":26489},{"l":"第一城站一帶","di":0,"ti":62231},{"l":"石門站一帶","di":0,"ti":115882},{"l":"九龍水塘","di":0,"ti":296},{"l":"廣源邨","di":0,"ti":32234},{"l":"恆安站一帶","di":0,"ti":22822},{"l":"馬鞍山站一帶","di":0,"ti":19024},{"l":"大水坑站一帶","di":0,"ti":16949},{"l":"烏溪沙站一帶","di":0,"ti":22940},{"l":"樟木頭帝琴灣","di":12,"ti":4567},{"l":"耀安邨","di":0,"ti":15124},{"l":"頌安邨","di":0,"ti":22995},{"l":"利安邨","di":0,"ti":14606},{"l":"沙田站一帶","di":0,"ti":42459},{"l":"禾輋邨","di":0,"ti":11485},{"l":"瀝源邨","di":0,"ti":21537},{"l":"車公廟站一帶","di":0,"ti":15642},{"l":"顯徑站一帶","di":0,"ti":21412},{"l":"大圍站一帶","di":0,"ti":17625},{"l":"青沙公路巴士轉乘站","di":0,"ti":555},{"l":"顯徑邨","di":0,"ti":23891},{"l":"新田圍邨","di":0,"ti":15579},{"l":"隆亨邨","di":0,"ti":29262},{"l":"大網仔新村","di":5,"ti":2785},{"l":"北圍","di":5,"ti":2536},{"l":"白沙灣","di":5,"ti":1649},{"l":"南山新村","di":5,"ti":2636},{"l":"南圍","di":5,"ti":2499},{"l":"漁民新村","di":5,"ti":1829},{"l":"西貢大會堂","di":5,"ti":2566},{"l":"西貢警署","di":5,"ti":15595},{"l":"官門漁村","di":5,"ti":2683},{"l":"打鼓嶺新村","di":5,"ti":36841},{"l":"下洋新村","di":5,"ti":1705},{"l":"調景嶺站一帶","di":5,"ti":17617},{"l":"彩明苑","di":5,"ti":6552},{"l":"將軍澳華人永遠墳場","di":5,"ti":6118},{"l":"健明邨","di":5,"ti":10507},{"l":"翠林邨","di":5,"ti":12517},{"l":"寶琳站一帶","di":5,"ti":15767},{"l":"寶林邨","di":5,"ti":4714},{"l":"景林邨","di":5,"ti":8722},{"l":"欣明苑","di":5,"ti":10878},{"l":"翠林邨","di":5,"ti":12044},{"l":"坑口站一帶","di":5,"ti":11880},{"l":"煜明苑","di":5,"ti":10878},{"l":"明德邨","di":5,"ti":9337},{"l":"厚德邨","di":5,"ti":6999},{"l":"將軍澳站一帶","di":5,"ti":23248},{"l":"廣明苑","di":5,"ti":11064},{"l":"清水灣半島","di":5,"ti":3791},{"l":"怡明邨","di":5,"ti":13447},{"l":"將軍澳中心","di":5,"ti":7277},{"l":"唐明苑","di":5,"ti":13836},{"l":"佛教志蓮小學","di":5,"ti":12783},{"l":"康城站一帶","di":5,"ti":117390},{"l":"TVB","di":5,"ti":15926},{"l":"消防及救護學院","di":5,"ti":7122},{"l":"南丫島","di":17,"ti":1113},{"l":"長洲","di":17,"ti":5656},{"l":"南山營地","di":17,"ti":1016},{"l":"法華苑","di":17,"ti":690},{"l":"龍田邨","di":17,"ti":962},{"l":"機場站一帶","di":17,"ti":59730},{"l":"大橋香港口岸","di":17,"ti":556},{"l":"東涌站一帶","di":17,"ti":87922},{"l":"逸東邨","di":17,"ti":20744},{"l":"政府飛行服務隊","di":17,"ti":35795},{"l":"裕雅苑","di":17,"ti":24662},{"l":"銀灣邨","di":17,"ti":1690},{"l":"迪士尼站一帶","di":17,"ti":15642},{"l":"田寮新村","di":13,"ti":9688},{"l":"坪洲","di":17,"ti":1089}],"from":{"file":"TransitLab-產品套件(1).html","sha256":"652fa62786001ee0e579a73b057ec95348a5f54a0485dd70746d867bf5b44bec"}};
+
+</script><script>
+(function() {
+  'use strict';
+  // v7 · the hub's words (the cover and the map you pick levels from). The cover's own words come from v3.
+  const I=window.I18N,L=I.L;
+  I.add({
+    'doc.title':L('TransitLab HK · 五個模式','TransitLab HK · 五个模式','TransitLab HK · Five modes'),
+    'brand.sub':L('HK · 交通遊戲 · 五個模式','HK · 交通游戏 · 五个模式','HK · Transport games · five modes'),
+    'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),'top.paper':L('淺色','浅色','Light'),'top.ink':L('深色','深色','Dark'),
+    'nav.aria':L('五個模式','五个模式','Five modes'),
+    'nav.m1':L('車站與步行','车站与步行','Stations & walking'),'nav.m2':L('地鐵','地铁','The metro'),'nav.m3':L('路會塞','路会塞','Roads that jam'),
+    'nav.m4':L('站旁開發','站旁开发','Station-side development'),'nav.m5':L('沙盤 · 即將推出','沙盘 · 即将推出','Sandbox · soon'),
+    // the cover (v3)
+    'cv.titleTc':L('這座城市，一天漲潮兩次','这座城市，一天涨潮两次',''),
+    'cv.ledeTc':L('運輸署實測，逐小時。','运输署实测，逐小时。',''),
+    'cv.mode':L('五個模式：車站與步行 · 地鐵 · 路會塞 · 站旁開發 · 沙盤','五个模式：车站与步行 · 地铁 · 路会塞 · 站旁开发 · 沙盘','Five modes: stations · the metro · roads that jam · station-side development · sandbox'),
+    'cv.scroll':L('向下滾動，打開地圖','向下滚动，打开地图','Scroll to open the map'),
+    'cv.replay':L('重播潮汐','重播潮汐','Replay the tide'),
+    'cv.crest':L('crest 滿潮','crest 满潮','crest'),'cv.trough':L('trough 低潮','trough 低潮','trough'),
+    'cv.rising':L('rising 漲潮','rising 涨潮','rising'),'cv.ebbing':L('ebbing 退潮','ebbing 退潮','ebbing'),
+    'cv.trips':L('Trips now 此刻出行','Trips now 此刻出行','Trips now'),
+    // the map and its glass panel
+    'hub.aria':L('香港地圖：選一個關卡','香港地图：选一个关卡','Map of Hong Kong: pick a level'),
+    'hub.start':L('Start · 開始','Start · 开始','Start'),
+    'hub.pickH':L('從上方選一個模式','从上方选一个模式','Pick a mode above'),
+    'hub.pickP':L('每個模式的關卡都在這張地圖上的真實地點。從第 1 關開始，過一關，開下一關。','每个模式的关卡都在这张地图上的真实地点。从第 1 关开始，过一关，开下一关。','Every mode’s levels sit at real places on this map. Start with level 1; pass a level to open the next.'),
+    'hub.levels':L('Levels · 關卡','Levels · 关卡','Levels'),
+    'hub.play':L('可以玩','可以玩','Open'),'hub.locked':L('先通過上一關','先通过上一关','Pass the one before'),
+    'hub.lockedP':L('這一關還鎖著：先通過「{p}」。','这一关还锁着：先通过「{p}」。','Locked: pass «{p}» first.'),
+    'hub.teach':L('教學','教学','Lesson'),'hub.challenge':L('挑戰 🏆','挑战 🏆','Challenge 🏆'),
+    'hub.best':L('最佳 {n}','最佳 {n}','best {n}'),
+    'hub.tier1':L('已過關','已过关','Passed'),'hub.tier2':L('高分','高分','High score'),'hub.tier3':L('大師','大师','Master'),
+    'hub.hover':L('把滑鼠停在地圖上的關卡，看看那一關。','把鼠标停在地图上的关卡，看看那一关。','Hover a level on the map to see it.'),
+    'hub.challengeP':L('挑戰關：沒有 AI 示範，成績可以上排行榜。','挑战关：没有 AI 示范，成绩可以上排行榜。','Challenge: no AI demo; the score can go on the leaderboard.'),
+    'hub.teachP':L('教學關：卡住了可以看 AI 示範怎麼解。','教学关：卡住了可以看 AI 示范怎么解。','Lesson: stuck? Watch the AI demo solve it.'),
+    'hub.go':L('進入 →','进入 →','Enter →'),
+    'hub.coming':L('即將推出','即将推出','Coming soon'),
+    'hub.m1H':L('車站與步行','车站与步行','Stations & walking'),
+    'hub.m1P':L('在港鐵站旁放接駁站，把原本開車的人接上港鐵。四關從朗屏到大埔墟，一關比一關難。','在港铁站旁放接驳站，把原本开车的人接上港铁。四关从朗屏到大埔墟，一关比一关难。','Place feeder stops round an MTR station and win drivers over to the train. Four levels, Long Ping to Tai Po Market, each harder.'),
+    'hub.m2H':L('地鐵','地铁','The metro'),
+    'hub.m2P':L('畫一條新地鐵線、放站，看大家慢慢發現它，越來越多人坐，它到的地方越來越多人去。','画一条新地铁线、放站，看大家慢慢发现它，越来越多人坐，它到的地方越来越多人去。','Draw a new line and its stations; watch people discover it, ride it, and go where it goes.'),
+    'hub.m3H':L('路會塞','路会塞','Roads that jam'),
+    'hub.m3P':L('地鐵和馬路互相影響：新線把車帶走，路通了又有人回去開車；城市還在長。','地铁和马路互相影响：新线把车带走，路通了又有人回去开车；城市还在长。','The metro and the roads push on each other: a line takes cars off, a clear road brings drivers back — and the city keeps growing.'),
+    'hub.m4H':L('站旁開發','站旁开发','Station-side development'),
+    'hub.m4P':L('修好地鐵，再把站旁的空地賣成住宅或商場——港鐵的「鐵路＋物業」。','修好地铁，再把站旁的空地卖成住宅或商场——港铁的「铁路＋物业」。','Build the line, then sell the land beside its stations for homes or shops — the MTR’s rail-plus-property.'),
+    'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
+    'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
+    'hub.m5a':L('AI 出關卡','AI 出关卡','AI makes a level'),'hub.m5b':L('操控整個沙盤','操控整个沙盘','Run the sandbox'),'hub.m5c':L('查香港數據','查香港数据','Hong Kong data')
+  });
+})();
+
+</script><script>
+/* v7 · the hub (2026-10-15) — v3's cover and dot map, now the way into the five modes.
+   Intro: title + tide bar over the territory's dot field. Scrolling (wheel, touch, ↓ / PgDn / Enter) carries it into
+   the hub: the copy and the tide bar move away, the dot map settles centred behind, the top bar and the 01–05 menu
+   slide in. Modes 01–04 put their levels on the map at real places (levels/registry.js; `hub.station` or
+   `hub.lonlat`), opened one after another (shared/progress.js: a level opens when the one before it is passed).
+   Clicking an open level gathers the dots round it into a board — as in v3 — and then goes to that mode's page
+   (#map=<key>). 05 (the sandbox) only has its panel for now. A mode's «← Five modes» comes back with #hub=1&nav=N.
+   Adapted from v3/hub.js; the cover, the scroll and the fly-in are v3's. */
+(function () {
+  'use strict';
+  const CV = window.COVER, hub = document.getElementById('hub'), I = window.I18N, LV = window.TL_LEVELS, PR = window.TLProgress, ST = window.TL_STATIONS || {};
+  if (!hub) return;
+  const $ = id => document.getElementById(id), t = (k, v) => I.t(k, v), root = document.documentElement, body = document.body;
+  const q = new URLSearchParams(location.hash.slice(1));
+  const clamp = v => v < 0 ? 0 : v > 1 ? 1 : v;
+  const easeInOut = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+  const easeOut = u => 1 - Math.pow(1 - u, 3);
+  const grp = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const hh = x => (x < 10 ? '0' + x : '' + x) + ':00';
+  // the modes: where each one's page is (the bundled single file when the hub itself is one)
+  const MODES = [null,
+    { n: 1, en: 'Stations & walking', dir: 'mode1-bus', file: '模式1-车站与步行.html' },
+    { n: 2, en: 'The metro', dir: 'mode2-metro', file: '模式2-地铁.html' },
+    { n: 3, en: 'Roads that jam', dir: 'mode3-roads', file: '模式3-路会塞.html' },
+    { n: 4, en: 'Station-side development', dir: 'mode4-tod', file: '模式4-站旁开发.html' },
+    { n: 5, en: 'Sandbox', soon: true }];
+  const bundled = !/index\.html$|\/$/.test(location.pathname);
+  function rgba(c) {                            // '#RRGGBB' or 'rgba(r,g,b,a)' → [r,g,b,a]
+    c = String(c).trim();
+    if (c.charAt(0) === '#') { const n = parseInt(c.slice(1, 7), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255, 1]; }
+    const m = c.match(/[\d.]+/g) || [0, 0, 0, 1]; return [+m[0], +m[1], +m[2], m[3] === undefined ? 1 : +m[3]];
+  }
+  const css = name => getComputedStyle(root).getPropertyValue(name).trim();
+
+  /* ---- the dot field (the suite's data) ---- */
+  function b64u8(s) { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function b64u16(s) { const b = b64u8(s); return new Uint16Array(b.buffer, b.byteOffset, b.byteLength >> 1); }
+  function runsToPath(bytes, cols, rows, step) {
+    const p = new Path2D();
+    for (let j = 0; j < rows; j++) {
+      let run = -1;
+      for (let i = 0; i <= cols; i++) {
+        const k = j * cols + i, on = i < cols && ((bytes[k >> 3] >> (k & 7)) & 1);
+        if (on && run < 0) run = i;
+        else if (!on && run >= 0) { p.rect(run * step, j * step, (i - run) * step, step); run = -1; }
+      }
+    }
+    return p;
+  }
+  const DOTS = (function () {
+    const idx = b64u16(CV.dotsI), val = b64u16(CV.dotsV), zi = b64u16(CV.dotZ), n = idx.length;
+    const x = new Float32Array(n), y = new Float32Array(n), v = new Float32Array(n), z = new Int16Array(n);
+    for (let k = 0; k < n; k++) {
+      const c = idx[k];
+      x[k] = (c % CV.dcols + 0.5) * CV.STEP; y[k] = ((c / CV.dcols) | 0) * CV.STEP + 0.5 * CV.STEP;
+      v[k] = val[k] / 65535; z[k] = zi[k] === 65535 ? -1 : zi[k];
+    }
+    return { n, x, y, v, z };
+  })();
+  const LAND = runsToPath(b64u8(CV.land), CV.cols, CV.rows, CV.BORDER_STEP);
+  const COAST = new Path2D(); COAST.addPath(new Path2D(CV.coast), new DOMMatrix([0.5, 0, 0, 0.5, 0, 0]));
+  const LANDX = [Infinity, -Infinity];             // west and east edge of the dot field, in map units
+  for (let i = 0; i < DOTS.n; i++) { if (DOTS.x[i] < LANDX[0]) LANDX[0] = DOTS.x[i]; if (DOTS.x[i] > LANDX[1]) LANDX[1] = DOTS.x[i]; }
+  const G = CV.geom, mapXY = (lon, lat) => [lon * G.kx * G.scale + G.offx, -lat * G.scale + G.offy];
+
+  const TIDE = CV.tide.factor24, FLOW = CV.tide.flow24, SPEED = CV.tide.speed24;
+  let PH = 0, LH = 0;
+  for (let h = 0; h < 24; h++) { if (TIDE[h] > TIDE[PH]) PH = h; if (TIDE[h] < TIDE[LH]) LH = h; }
+  const FMAX = TIDE[PH], baseMax = CV.baseMax;
+  const tOf = v => Math.log(1 + v) / Math.log(1 + baseMax * FMAX);
+  const POSV = [];
+  for (let k = 0; k < DOTS.n; k++) if (DOTS.v[k] * baseMax > 0.5) POSV.push(DOTS.v[k] * baseMax * FMAX);
+  POSV.sort((a, b) => a - b);
+  const TREF = Math.max(0.05, tOf(POSV[Math.floor(POSV.length * 0.85)] || baseMax));
+  const tVis = v => { const x = Math.min(1, tOf(v) / TREF); return x * x * (1.9 - 0.9 * x); };
+
+  /* ---- the levels on the map ---- */
+  const nameOf = o => !o ? '' : typeof o === 'string' ? o : (o[I.lang] || o['zh-Hant'] || o.en || '');
+  const km = (a, b) => Math.hypot((a[0] - b[0]) * 102.6, (a[1] - b[1]) * 110.9);
+  const stationAt = name => ST[String(name || '').replace(/站$/, '')] || null;
+  let SITES = [];
+  // a mode's levels in order, each at its station; two closer than 1.5 km: the later one moves to the nearest station
+  // nobody uses, so every level gets its own place on the map
+  function sitesOf(n) {
+    const out = [];
+    for (const l of (LV && n >= 1 && n <= 4 ? LV.mode(n) : [])) {
+      let ll = l.hub && l.hub.lonlat ? l.hub.lonlat : stationAt(l.hub && l.hub.station);
+      if (!ll) continue;
+      if (out.some(s => km([s.lon, s.lat], ll) < 1.5)) {
+        const free = Object.values(ST).filter(c => out.every(s => km([s.lon, s.lat], c) >= 1.5)).sort((a, b) => km(a, ll) - km(b, ll));
+        if (free.length) ll = free[0];
+      }
+      const prev = out[out.length - 1];
+      out.push({ key: l.key, mode: n, title: l.title, challenge: !!l.challenge, lon: ll[0], lat: ll[1], station: (l.hub && l.hub.station) || '',
+        open: PR ? PR.open(n, l.key) : true, prog: PR ? PR.get(n, l.key) : null, prev: prev ? prev.title : null, i: out.length + 1,
+        side: (l.hub && l.hub.side) || 'right' });
+    }
+    return out;
+  }
+  const site = key => SITES.find(s => s.key === key);
+  const progLine = s => s.prog && s.prog.tier ? t('hub.tier' + s.prog.tier) + ' · ' + t('hub.best', { n: grp(s.prog.best) }) : '';
+  const kindLine = s => s.challenge ? t('hub.challenge') : t('hub.teach');
+
+  /* ---- state ---- */
+  // mode: 'cover' (intro ↔ hub, driven by p), 'leaving' (dots fly onto the board, then the level's page opens)
+  let mode = 'cover', p = 0, target = 0, frozen = false, nav = 0, hot = null, hour = LH, riseRaf = 0, loopRaf = 0, runId = 0;
+  const cv = $('cvDots'), ctx = cv.getContext('2d');
+  const light = () => root.getAttribute('data-theme') !== 'dark';
+  const chromeH = () => $('topbar').offsetHeight + $('navrow').offsetHeight;
+  // Intro: the territory fills the screen from the right (centred on narrow screens). Hub: the whole territory,
+  // centred in the space under the menu. Between them the geometry follows the scroll.
+  function gIntro(w, h) {
+    const s = w / h > CV.W / CV.H ? w / CV.W : h / CV.H;
+    return w < 1024 ? { s, ox: (w - CV.W * s) / 2, oy: (h - CV.H * s) / 2 } : { s, ox: w - CV.W * s, oy: (h - CV.H * s) / 2 };
+  }
+  function gHub(w, h) {
+    const top = chromeH() + 6, pad = w < 760 ? 8 : 24, bot = w < 760 ? 210 : 14, aw = w - 2 * pad, ah = Math.max(160, h - top - bot);
+    const s = Math.min(aw / CV.W, ah / CV.H);
+    let ox = (w - CV.W * s) / 2;
+    // centred, but nudged right just enough that the glass panel does not cover the west of the territory
+    const panel = w >= 760 ? $('hubPanel').offsetLeft + $('hubPanel').offsetWidth + 14 : 0, west = ox + LANDX[0] * s;
+    if (panel > west) ox = Math.min(ox + panel - west, w - pad - LANDX[1] * s);
+    return { s, ox, oy: top + (ah - CV.H * s) / 2 };
+  }
+  function geom() {
+    const w = cv.clientWidth, h = cv.clientHeight, a = gIntro(w, h), b = gHub(w, h), e = easeInOut(p);
+    return { s: a.s + (b.s - a.s) * e, ox: a.ox + (b.ox - a.ox) * e, oy: a.oy + (b.oy - a.oy) * e };
+  }
+  const screenXY = (lon, lat, g) => { const [x, y] = mapXY(lon, lat); return [g.ox + x * g.s, g.oy + y * g.s]; };
+  function size() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1), W = Math.round(cv.clientWidth * dpr), H = Math.round(cv.clientHeight * dpr);
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    return dpr;
+  }
+  // The territory: land, coast and the dot field. `alpha` fades it; `skip` leaves out dots that are flying.
+  function drawMap(alpha, skip, g) {
+    const dpr = size(), L = light(), m = TIDE[hour];
+    g = g || geom();
+    const k = g.s * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+    if (alpha <= 0) return;
+    ctx.globalAlpha = alpha;
+    ctx.setTransform(k, 0, 0, k, g.ox * dpr, g.oy * dpr);
+    ctx.fillStyle = L ? '#FFFFFF' : '#1B1B1B'; ctx.fill(LAND);
+    ctx.strokeStyle = L ? 'rgba(14,122,78,.85)' : 'rgba(110,217,150,.6)'; ctx.lineWidth = 1.1 / k; ctx.stroke(COAST);
+    const RGBA = 'rgba(' + (L ? '10,10,10' : '245,245,245') + ',';
+    for (let i = 0; i < DOTS.n; i++) {
+      if (skip && skip[i]) continue;
+      const val = DOTS.v[i] * baseMax * m;
+      if (val <= 0.5) continue;
+      const v = tVis(val);
+      ctx.fillStyle = RGBA + (0.09 + 0.91 * v).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(DOTS.x[i], DOTS.y[i], 1.05 + 1.35 * v, 0, 6.2832); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+  const draw = () => { if (mode === 'cover') drawMap(1); };
+
+  /* ---- hover: one zone card ---- */
+  (function () {
+    const tip = $('cvTip');
+    cv.addEventListener('pointermove', function (e) {
+      if (mode !== 'cover') return;
+      const rect = cv.getBoundingClientRect(), g = geom(), x = (e.clientX - rect.left - g.ox) / g.s, y = (e.clientY - rect.top - g.oy) / g.s;
+      let best = -1, bd = 256;
+      for (let i = 0; i < DOTS.n; i++) { const dx = DOTS.x[i] - x, dy = DOTS.y[i] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; best = i; } }
+      const z = best >= 0 ? DOTS.z[best] : -1;
+      if (z < 0) { tip.classList.remove('on'); return; }
+      const m = CV.zones[z];
+      tip.innerHTML = '<div class="tt">' + m.l + ' <span class="tc">' + I.district(CV.distNames[m.di] || '') + '</span></div><div class="tv"><span>' + t('cv.trips') + '</span><b>' + grp(m.ti * TIDE[hour] / FMAX) + '</b></div>';
+      tip.classList.add('on');
+      let lx = e.clientX - rect.left + 14; const ly = e.clientY - rect.top + 12;
+      if (lx + tip.offsetWidth > rect.width - 6) lx = e.clientX - rect.left - tip.offsetWidth - 14;
+      tip.style.left = lx + 'px'; tip.style.top = Math.max(6, Math.min(ly, rect.height - tip.offsetHeight - 6)) + 'px';
+    });
+    cv.addEventListener('pointerleave', () => tip.classList.remove('on'));
+  })();
+
+  /* ---- the tide bar ---- */
+  let TW = 600, TH = 46;
+  const PAD = { t: 10, b: 8, l: 6, r: 6 };
+  const TX = i => PAD.l + i / 23 * (TW - PAD.l - PAD.r);
+  const TY = v => PAD.t + (TH - PAD.t - PAD.b) * (1 - v / (FMAX * 1.06));
+  function renderTide() {
+    const mid = $('cvTide'), rect = mid.getBoundingClientRect();
+    TW = Math.max(220, Math.round(rect.width)); TH = Math.max(40, Math.round(rect.height));
+    mid.setAttribute('viewBox', '0 0 ' + TW + ' ' + TH); mid.setAttribute('preserveAspectRatio', 'none');
+    let line = '';
+    for (let j = 0; j < 24; j++) line += (j ? 'L' : 'M') + TX(j).toFixed(1) + ' ' + TY(TIDE[j]).toFixed(1);
+    const area = line + ' L' + TX(23).toFixed(1) + ' ' + (TH - PAD.b) + ' L' + TX(0).toFixed(1) + ' ' + (TH - PAD.b) + ' Z';
+    let s = '<defs><linearGradient id="cvtg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s-accent);stop-opacity:.38"/><stop offset="1" style="stop-color:var(--s-accent);stop-opacity:.02"/></linearGradient></defs>';
+    s += '<path d="' + area + '" fill="url(#cvtg)"/>';
+    s += '<line x1="' + PAD.l + '" y1="' + TY(1).toFixed(1) + '" x2="' + (TW - PAD.r) + '" y2="' + TY(1).toFixed(1) + '" style="stroke:var(--s-line2)" stroke-width="1" stroke-dasharray="3 4"/>';
+    s += '<path d="' + line + '" fill="none" style="stroke:var(--s-accent)" stroke-width="1.7" stroke-linejoin="round"/>';
+    s += '<circle cx="' + TX(PH) + '" cy="' + TY(TIDE[PH]).toFixed(1) + '" r="3.2" style="fill:var(--s-ink)"/>';
+    s += '<text x="' + TX(PH) + '" y="' + (TY(TIDE[PH]) - 7).toFixed(1) + '" text-anchor="middle" style="fill:var(--s-ink);font:500 10px Geist Mono,monospace">high ' + hh(PH) + '</text>';
+    s += '<circle cx="' + TX(LH) + '" cy="' + TY(TIDE[LH]).toFixed(1) + '" r="2.8" fill="none" style="stroke:var(--s-ink2)" stroke-width="1.3"/>';
+    s += '<text x="' + TX(LH) + '" y="' + (TY(TIDE[LH]) + 14).toFixed(1) + '" text-anchor="middle" style="fill:var(--s-ink2);font:500 10px Geist Mono,monospace">low ' + hh(LH) + '</text>';
+    s += '<g id="cvPh"></g>';
+    mid.innerHTML = s; playhead();
+  }
+  function playhead() {
+    const g = $('cvPh'); if (!g) return;
+    const x = TX(hour).toFixed(1), y = TY(TIDE[hour]).toFixed(1);
+    g.innerHTML = '<line x1="' + x + '" y1="0" x2="' + x + '" y2="' + (TH - PAD.b) + '" style="stroke:var(--s-accent2)" stroke-width="1.3"/>' +
+      '<circle cx="' + x + '" cy="' + y + '" r="4.2" style="fill:var(--s-accent2);stroke:var(--s-paper)" stroke-width="1.6"/>';
+  }
+  (function () {                                // scrub the curve
+    const mid = $('cvTide'); let drag = false;
+    function set(e) { const rc = mid.getBoundingClientRect(); stopRise(); setHour(Math.round(clamp((e.clientX - rc.left) / rc.width) * 23)); }
+    mid.addEventListener('pointerdown', e => { drag = true; mid.setPointerCapture(e.pointerId); set(e); });
+    mid.addEventListener('pointermove', e => { if (drag) set(e); });
+    mid.addEventListener('pointerup', () => { drag = false; });
+  })();
+  const phaseTxt = x => t(x === PH ? 'cv.crest' : x === LH ? 'cv.trough' : TIDE[x] >= 1 ? 'cv.rising' : 'cv.ebbing');
+  function setHour(x) {
+    hour = Math.max(0, Math.min(23, x));
+    $('cvHour').textContent = hh(hour); $('cvPhase').textContent = phaseTxt(hour);
+    $('cvFlow').textContent = grp(FLOW[hour]); $('cvSpeed').textContent = SPEED[hour].toFixed(1);
+    playhead(); draw();
+  }
+  function stopRise() { if (riseRaf) { cancelAnimationFrame(riseRaf); riseRaf = 0; } }
+  function rise() {                             // 03:00 ebb lifts to the 18:00 crest, then rests
+    stopRise();
+    const t0 = performance.now(), from = hour === PH ? LH : hour;
+    (function step(now) {
+      let u = Math.min(1, (now - t0) / 2600); u = 0.5 - 0.5 * Math.cos(Math.PI * u);
+      setHour(Math.round(from + (PH - from) * u));
+      riseRaf = u < 1 ? requestAnimationFrame(step) : 0;
+    })(t0);
+  }
+  $('cvPlay').addEventListener('click', rise);
+
+  /* ---- scroll: intro ↔ hub ---- */
+  function applyP() {
+    hub.style.setProperty('--hub-p', p.toFixed(4));
+    const qv = mode === 'cover' ? clamp((p - .3) / .7) : 1;
+    root.style.setProperty('--hub-q', qv.toFixed(4)); root.style.setProperty('--chrome-h', chromeH() + 'px');
+    body.classList.toggle('chrome-off', qv < .5);
+    hub.classList.toggle('past', p > .5);
+    const open = p > .97;
+    if (open !== hub.classList.contains('open')) { hub.classList.toggle('open', open); renderNav(); }
+    draw();
+    if (open) placeMarks();
+  }
+  function tick() {
+    loopRaf = 0;
+    if (!frozen) { const d = target - p; p = Math.abs(d) < .002 ? target : p + d * .12; }
+    applyP();
+    if (p !== target && !frozen) loopRaf = requestAnimationFrame(tick);
+  }
+  const kick = () => { if (!loopRaf) loopRaf = requestAnimationFrame(tick); };
+  // One gesture opens or closes all the way: started from the intro, any scroll opens; from the hub, scrolling up closes.
+  let gesture = null, gestureTimer = 0, closedAt = -1e9;
+  function endGesture() {
+    const g = gesture; gesture = null;
+    if (g === 'open') target = target > .1 ? 1 : 0; else if (g === 'close') { target = target < .9 ? 0 : 1; if (!target) closedAt = performance.now(); }
+    kick();
+  }
+  function nudge(d) {
+    // a notched wheel turned slowly sends one event per notch, each its own gesture: the notches after the one that
+    // closed must not count as "any scroll opens", or scrolling up bounces straight back to the map. Each such notch
+    // extends the pause, so only an upward scroll after a real stop (1.2 s) opens again.
+    if (!gesture && target < .5 && d < 0 && performance.now() - closedAt < 1200) { closedAt = performance.now(); return; }
+    if (!gesture) gesture = target < .5 ? 'open' : 'close';
+    if (gesture === 'open') target = clamp(target + Math.abs(d) / 650);
+    else if (d < 0) target = clamp(target + d / 650);
+    clearTimeout(gestureTimer); gestureTimer = setTimeout(endGesture, 170);
+    kick();
+  }
+  const blocked = () => mode !== 'cover' || frozen || document.querySelector('dialog[open]');
+  window.addEventListener('wheel', function (e) {
+    if (blocked() || e.target.closest && e.target.closest('.hub-panel')) return;
+    e.preventDefault();
+    nudge(e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1));
+  }, { passive: false });
+  let ty = null;
+  hub.addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, { passive: true });
+  hub.addEventListener('touchmove', function (e) {
+    if (ty === null || blocked() || e.target.closest('.hub-panel,.cv-mid')) return;
+    const y = e.touches[0].clientY, d = ty - y; ty = y;
+    if (!gesture) gesture = target < .5 ? 'open' : 'close';
+    if (gesture === 'open' ? d > 0 : d < 0) nudge(d * 1.6);
+    e.preventDefault();
+  }, { passive: false });
+  hub.addEventListener('touchend', () => { ty = null; });
+  document.addEventListener('keydown', function (e) {
+    if (blocked()) return;
+    const k = e.key, onButton = e.target.closest && e.target.closest('button,a,input');
+    if (target < .5 && (['ArrowDown', 'PageDown'].includes(k) || ([' ', 'Enter'].includes(k) && !onButton))) { e.preventDefault(); target = 1; kick(); }
+    else if (target > .5 && ['ArrowUp', 'PageUp'].includes(k)) { e.preventDefault(); target = 0; kick(); }
+    else if (target > .5 && nav === 0 && k === 'Enter' && !onButton) { e.preventDefault(); selectNav(1); }
+  });
+  $('cvHint').addEventListener('click', () => { target = 1; kick(); });
+
+  /* ---- the 01–05 menu and the glass panel ---- */
+  function buildNav() {
+    const el = $('navrow'); el.setAttribute('aria-label', t('nav.aria'));
+    el.innerHTML = MODES.slice(1).map(m => '<button data-mode="' + m.n + '" aria-selected="false"' + (m.soon ? ' class="soon"' : '') + '><i class="stop">0' + m.n +
+      '</i><span class="t"><b>' + m.en + '</b><s>' + t('nav.m' + m.n) + '</s></span></button>').join('');
+    el.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => selectNav(+b.dataset.mode)));
+    renderNav();
+  }
+  function renderNav() {
+    document.querySelectorAll('#navrow [data-mode]').forEach(b => {
+      const m = +b.dataset.mode;
+      b.setAttribute('aria-selected', String(mode === 'cover' && p > .5 && m === nav || mode === 'leaving' && m === nav));
+      b.classList.toggle('invite', mode === 'cover' && hub.classList.contains('open') && nav === 0 && m === 1);
+    });
+  }
+  function selectNav(n) {
+    if (mode !== 'cover') return;
+    nav = n; target = 1; kick();
+    hub.classList.toggle('m1', nav >= 1 && nav <= 4); hot = null;
+    SITES = sitesOf(nav); buildMarks();
+    renderNav(); renderPanel();
+  }
+  function levelButton(s) {
+    const pl = progLine(s);
+    return '<button class="lv' + (s.open ? '' : ' locked') + '" data-site="' + s.key + '"><span class="lv-n"><b>' + s.i + ' · ' + nameOf(s.title) + '</b><small>' + (s.station || '') + '</small></span>' +
+      '<span class="lv-m">' + (s.open ? kindLine(s) + (pl ? ' · <em>' + pl + '</em>' : '') : '🔒 ' + t('hub.locked')) + '</span></button>';
+  }
+  const tc = s => I.lang === 'en' ? '' : '<span class="hp-tc">' + s + '</span>';
+  function renderPanel() {
+    let h;
+    if (nav === 0) h = '<span class="lbl">' + t('hub.start') + '</span><h2 class="hp-h">' + t('hub.pickH') + ' <span class="hp-up">↑</span></h2><p class="note">' + t('hub.pickP') + '</p>';
+    else if (nav <= 4) {
+      h = '<span class="lbl">Mode 0' + nav + ' · ' + MODES[nav].en + '</span><h2 class="hp-h">' + MODES[nav].en + tc(t('hub.m' + nav + 'H')) + '</h2><p class="note">' + t('hub.m' + nav + 'P') + '</p>' +
+        '<div class="lbl hp-sub">' + t('hub.levels') + '</div><div class="lvls">' + SITES.map(levelButton).join('') + '</div>' +
+        '<div class="hp-detail" id="hubDetail" aria-live="polite"></div>' +
+        '<div class="hp-legend"><span><i class="k st-play"></i>' + t('hub.play') + '</span><span><i class="k st-soon"></i>' + t('hub.locked') + '</span></div>';
+    } else h = '<span class="lbl">Mode 05 · Sandbox</span><h2 class="hp-h">Sandbox' + tc(t('hub.m5H')) + '</h2>' +
+      '<span class="chip"><i></i>' + t('hub.coming') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
+      '<div class="lvls">' + ['m5a', 'm5b', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
+    $('hubPanel').innerHTML = h;
+    $('hubPanel').querySelectorAll('.lv[data-site]').forEach(b => {
+      b.addEventListener('click', () => play(b.dataset.site));
+      b.addEventListener('pointerenter', () => setHot(b.dataset.site)); b.addEventListener('focus', () => setHot(b.dataset.site));
+      b.addEventListener('pointerleave', () => setHot(null)); b.addEventListener('blur', () => setHot(null));
+    });
+    renderDetail();
+  }
+  let lockedMsg = null;
+  function renderDetail() {
+    const el = $('hubDetail'); if (!el) return;
+    const s = hot && site(hot);
+    if (!s) { el.innerHTML = '<p class="hp-idle">' + (lockedMsg || t('hub.hover')) + '</p>'; return; }
+    const pl = progLine(s);
+    el.innerHTML = '<div class="hp-dh"><b>' + nameOf(s.title) + '</b><span class="tag st-' + (s.open ? 'play' : 'soon') + '">' + (s.open ? kindLine(s) : '🔒 ' + t('hub.locked')) + '</span></div>' +
+      '<p>' + (s.open ? t(s.challenge ? 'hub.challengeP' : 'hub.teachP') : t('hub.lockedP', { p: nameOf(s.prev) })) + '</p>' + (pl ? '<p class="mono hp-tiers">' + pl + '</p>' : '');
+  }
+  function setHot(key) {
+    hot = key; if (key) lockedMsg = null; renderDetail();
+    $('hubMarks').querySelectorAll('.hm').forEach(el => el.classList.toggle('hot', el.dataset.site === key));
+    $('hubPanel').querySelectorAll('.lv').forEach(el => el.classList.toggle('hot', el.dataset.site === key));
+  }
+
+  /* ---- markers on the map ---- */
+  function buildMarks() {
+    $('hubMarks').innerHTML = SITES.map((s, i) => {
+      const sub = s.open ? kindLine(s) + (progLine(s) ? ' · ' + progLine(s) : '') : '🔒 ' + t('hub.locked');
+      return '<button class="hm st-' + (s.open ? 'play' : 'soon') + '" data-site="' + s.key + '" data-side="' + s.side + '" style="--i:' + i + '"' +
+        ' aria-label="' + nameOf(s.title) + ' · ' + sub + '"><i class="pin"></i><span class="lab"><b>' + s.i + ' · ' + nameOf(s.title) + '</b><small>' + sub + '</small></span></button>';
+    }).join('');
+    $('hubMarks').querySelectorAll('.hm').forEach(el => {
+      el.addEventListener('click', () => play(el.dataset.site));
+      el.addEventListener('pointerenter', () => setHot(el.dataset.site)); el.addEventListener('focus', () => setHot(el.dataset.site));
+      el.addEventListener('pointerleave', () => setHot(null)); el.addEventListener('blur', () => setHot(null));
+    });
+    placeMarks();
+  }
+  function placeMarks() {
+    const g = geom();
+    $('hubMarks').querySelectorAll('.hm').forEach(el => {
+      const s = site(el.dataset.site); if (!s) return;
+      const [x, y] = screenXY(s.lon, s.lat, g);
+      el.style.left = x.toFixed(1) + 'px'; el.style.top = y.toFixed(1) + 'px';
+    });
+  }
+
+  /* ---- the hand-off: dots gather into a board, then the level's page opens ---- */
+  const FADE = 520, FLY = 760, SPREAD = 620, HOLD = 140, END = 160 + SPREAD + FLY + HOLD;
+  // The board the dots fly into: where the level page's map will be (between its side columns), a grid of streets,
+  // blocks and the station in the middle — seeded by the level, so each level assembles its own way.
+  function boardTargets(s) {
+    const W = window.innerWidth, H = window.innerHeight, top = chromeH();
+    const left = W >= 1180 ? 372 : W >= 760 ? 300 : 10, right = W >= 1180 ? 330 : 10;
+    const bx = left + 16, by = top + 16, bw = Math.max(200, W - left - right - 32), bh = Math.max(160, H - top - 32);
+    const cols = 14, rows = 10, cs = Math.min(bw / cols, bh / rows), ox = bx + (bw - cs * cols) / 2, oy = by + (bh - cs * rows) / 2;
+    let seed = 7; for (const ch of s.mode + s.key) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const L = light(), road = L ? '#D6D0C4' : '#3A3A3A', ink = L ? '#222222' : '#E8E8E8', acc = css('--s-accent') || '#0E7A4E', items = [];   // pale streets, dark blocks
+    const avenueR = [1 + (rnd() * 2 | 0), 5 + (rnd() * 2 | 0), 8], avenueC = [2 + (rnd() * 2 | 0), 7, 11 + (rnd() * 2 | 0)];
+    for (const r of avenueR) for (let c = 0; c < cols; c++) items.push({ p: [ox + (c + .5) * cs, oy + r * cs], w: cs * .98, h: cs * .2, color: road, kind: 'road' });
+    for (const c of avenueC) for (let r = 0; r < rows; r++) items.push({ p: [ox + c * cs, oy + (r + .5) * cs], w: cs * .2, h: cs * .98, color: road, kind: 'road' });
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (rnd() < .26 && Math.hypot(c + .5 - 7, r + .5 - 5) > 1) items.push({ p: [ox + (c + .5) * cs, oy + (r + .5) * cs], w: cs * .52, h: cs * .52, color: ink, kind: 'house' });
+    const hubP = [ox + 7 * cs, oy + 5 * cs];
+    items.push({ p: hubP, w: cs * .9, h: cs * .9, color: acc, kind: 'hub' });
+    return { hub: hubP, items };
+  }
+  function play(key) {
+    const s = site(key);
+    if (!s || mode !== 'cover' || p < .97) return;
+    if (!s.open) { lockedMsg = t('hub.lockedP', { p: nameOf(s.prev) }); hot = null; renderDetail(); setHot(key); return; }
+    handoff(s);
+  }
+  function handoff(s, frozenAt) {
+    const run = ++runId;
+    stopRise(); mode = 'leaving';
+    hub.classList.add('leaving'); $('cvTip').classList.remove('on'); setHot(null);
+    renderNav();
+    const g = geom(), B = boardTargets(s);
+    const dpr = size(), m = TIDE[hour], L = light(), [lpx, lpy] = screenXY(s.lon, s.lat, g);
+    // the live dots nearest the level's place, nearest first
+    const live = [];
+    for (let i = 0; i < DOTS.n; i++) {
+      const val = DOTS.v[i] * baseMax * m; if (val <= 0.5) continue;
+      const sx = g.ox + DOTS.x[i] * g.s, sy = g.oy + DOTS.y[i] * g.s, v = tVis(val);
+      live.push({ i, x: sx, y: sy, r: (1.05 + 1.35 * v) * g.s, a: 0.09 + 0.91 * v, d: (sx - lpx) * (sx - lpx) + (sy - lpy) * (sy - lpy) });
+    }
+    live.sort((a, b) => a.d - b.d);
+    // blocks ordered from the station outwards, so the board assembles like a ripple leaving it
+    const items = B.items.slice().sort((a, b) => {
+      const da = Math.hypot(a.p[0] - B.hub[0], a.p[1] - B.hub[1]), db = Math.hypot(b.p[0] - B.hub[0], b.p[1] - B.hub[1]);
+      return (a.kind === 'hub' ? -1 : 0) - (b.kind === 'hub' ? -1 : 0) || da - db;
+    });
+    const inkC = rgba(L ? '#0A0A0A' : '#F5F5F5'), skip = new Uint8Array(DOTS.n), parts = [], n = Math.min(items.length, live.length);
+    for (let j = 0; j < n; j++) {
+      const src = live[j], dst = items[j]; skip[src.i] = 1;
+      parts.push({ x0: src.x, y0: src.y, r0: Math.max(1.4, src.r), a0: src.a, x1: dst.p[0], y1: dst.p[1], w1: dst.w, h1: dst.h,
+        c1: rgba(dst.color), delay: 160 + SPREAD * (j / Math.max(1, n - 1)), house: dst.kind !== 'road' });
+    }
+    // roads underneath, buildings and the station on top
+    const order = parts.filter(x => !x.house).concat(parts.filter(x => x.house));
+    const T0 = performance.now(); let done = false;
+    // rAF stops in background tabs and can crawl on slow machines: the hand-off always finishes on time anyway
+    if (frozenAt === undefined) setTimeout(() => { if (run !== runId || done) return; done = true; enter(s); }, END + 500);
+    function frame(now) {
+      if (run !== runId) return;
+      const u = frozenAt === undefined ? now - T0 : frozenAt;
+      drawMap(1 - easeOut(clamp(u / FADE)), skip, g);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      for (const x of order) {
+        const v = clamp((u - x.delay) / FLY), e = easeInOut(v), sc = easeOut(clamp((v - .55) / .45));
+        const px = x.x0 + (x.x1 - x.x0) * e, py = x.y0 + (x.y1 - x.y0) * e;
+        // a dot first, then it opens out into its block as it lands
+        const w = 2 * x.r0 + (x.w1 - 2 * x.r0) * sc, hgt = 2 * x.r0 + (x.h1 - 2 * x.r0) * sc, rad = Math.min(w, hgt) / 2 * (1 - sc) + (x.house ? 3 : 1.5) * sc;
+        const c = [0, 1, 2].map(z => Math.round(inkC[z] + (x.c1[z] - inkC[z]) * sc)), a = x.a0 + (Math.max(.9, x.c1[3]) - x.a0) * easeOut(v);
+        ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(px - w / 2, py - hgt / 2, w, hgt, rad); else ctx.rect(px - w / 2, py - hgt / 2, w, hgt);
+        ctx.fill();
+      }
+      if (frozenAt !== undefined) return;
+      if (u >= END) { if (!done) { done = true; enter(s); } } else requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  // the board is built: fade to paper and open the level's page
+  function enter(s) {
+    const m = MODES[s.mode];
+    body.classList.add('veil');
+    setTimeout(() => { location.href = m.dir + '/' + (bundled ? m.file : 'index.html') + '#map=' + encodeURIComponent(s.key); }, 260);
+  }
+  // back from a level's page with the browser's ← (the page may come back from the cache mid-hand-off)
+  function backToHub() {
+    runId++; mode = 'cover'; p = target = 1; body.classList.remove('veil'); hub.classList.remove('leaving', 'gone', 'away');
+    SITES = sitesOf(nav); buildMarks(); renderPanel(); applyP(); renderNav();
+  }
+  window.addEventListener('pageshow', e => { if (e.persisted) backToHub(); });
+  // the address changed in place (#nav=…, #unlock=all): read the levels again
+  window.addEventListener('hashchange', () => {
+    if (mode !== 'cover') return;
+    const q2 = new URLSearchParams(location.hash.slice(1));
+    if (q2.has('nav')) nav = +q2.get('nav');
+    SITES = sitesOf(nav); buildMarks(); renderPanel(); renderNav();
+  });
+
+  /* ---- language, theme, size ---- */
+  function setTheme(th) {
+    root.setAttribute('data-theme', th);
+    $('thPaper').setAttribute('aria-pressed', String(th === 'light')); $('thInk').setAttribute('aria-pressed', String(th === 'dark'));
+    try { localStorage.setItem('tl-theme', th); } catch (e) {}
+  }
+  $('thPaper').addEventListener('click', () => setTheme('light')); $('thInk').addEventListener('click', () => setTheme('dark'));
+  { let th = q.get('theme'); if (!th) try { th = localStorage.getItem('tl-theme'); } catch (e) {} if (th === 'dark' || th === 'light') setTheme(th); }
+  window.addEventListener('tl:lang', () => {
+    document.title = t('doc.title');
+    $('cvPhase').textContent = phaseTxt(hour); buildNav(); buildMarks(); renderPanel(); setHot(hot);
+  });
+  new MutationObserver(draw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  window.addEventListener('resize', () => { if (mode === 'cover') { renderTide(); applyP(); } });
+
+  /* ---- start ---- */
+  // Test hooks: #hub=1&nav=3 (the map, mode 03 — also how a mode's «← Five modes» comes back) · #hubp=0.5 (frozen
+  // mid-scroll) · #coverfx=900&nav=1&site=l1 (hand-off frozen at 900 ms) · #hot=l2 (a level's details) · #unlock=all
+  document.title = t('doc.title');
+  buildNav(); renderTide();
+  if (q.get('hubp')) { frozen = true; p = target = clamp(+q.get('hubp')); setHour(8); applyP(); return; }
+  if (q.get('hub') || q.get('coverfx')) {
+    p = target = 1; nav = q.has('nav') ? +q.get('nav') : 1; hub.classList.toggle('m1', nav >= 1 && nav <= 4);
+    SITES = sitesOf(nav); buildMarks();
+    setHour(PH); applyP(); renderPanel(); renderNav();
+    if (q.get('hot')) setHot(q.get('hot'));
+    if (q.get('coverfx')) setTimeout(() => { const s = site(q.get('site')) || SITES[0]; if (s) handoff(s, +q.get('coverfx')); }, 250);
+    return;
+  }
+  applyP(); renderPanel();
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) setHour(PH);
+  else { setHour(LH); setTimeout(rise, 650); }
+})();
+
 </script>
 </body></html>
-

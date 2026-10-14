@@ -91,7 +91,9 @@
     const nums={base:P.headwayBase,step:P.headwayStep,seats:P.seats,queue:P.queue,moves:P.moves,cool:P.cool,n:D.waves.length};
     $('rule2').innerHTML=t('g.rule2',nums);$('rule3').innerHTML=t('g.rule3',nums);
     $('infoR3').innerHTML=t('i.r3',nums);$('infoR5').innerHTML=t('i.r5',nums);$('infoR6').innerHTML=t('i.r6',nums);
-    document.querySelectorAll('#levelSeg [data-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.level===D.map)));
+    document.querySelectorAll('#levelSeg [data-level]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.level===D.map));
+      // levels open one after another (shared/progress.js), as on the hub
+      b.disabled=!!window.TLProgress&&b.dataset.level!=='custom'&&b.dataset.level!==D.map&&!TLProgress.open(1,b.dataset.level);});
     $('source').textContent=t('src.'+D.map)+' '+t(D.habit?'src.demandD':D.groups?'src.demandG':'src.demand');
     // v6 · what this level adds: a fourth rule, the lede, the facts, the tide table's words, the side boxes
     const G=D.groups,gx={bell:G?.stu?.bell,hw:G?.work?.maxHeadway,ow:G?Math.round(P.walkStep*(G.old.walk||1)):0,days:D.waves.length,s:D.habit?Math.round(D.habit.start*100):0};

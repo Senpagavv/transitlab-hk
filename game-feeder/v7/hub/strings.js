@@ -1,0 +1,49 @@
+(function() {
+  'use strict';
+  // v7 · the hub's words (the cover and the map you pick levels from). The cover's own words come from v3.
+  const I=window.I18N,L=I.L;
+  I.add({
+    'doc.title':L('TransitLab HK · 五個模式','TransitLab HK · 五个模式','TransitLab HK · Five modes'),
+    'brand.sub':L('HK · 交通遊戲 · 五個模式','HK · 交通游戏 · 五个模式','HK · Transport games · five modes'),
+    'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),'top.paper':L('淺色','浅色','Light'),'top.ink':L('深色','深色','Dark'),
+    'nav.aria':L('五個模式','五个模式','Five modes'),
+    'nav.m1':L('車站與步行','车站与步行','Stations & walking'),'nav.m2':L('地鐵','地铁','The metro'),'nav.m3':L('路會塞','路会塞','Roads that jam'),
+    'nav.m4':L('站旁開發','站旁开发','Station-side development'),'nav.m5':L('沙盤 · 即將推出','沙盘 · 即将推出','Sandbox · soon'),
+    // the cover (v3)
+    'cv.titleTc':L('這座城市，一天漲潮兩次','这座城市，一天涨潮两次',''),
+    'cv.ledeTc':L('運輸署實測，逐小時。','运输署实测，逐小时。',''),
+    'cv.mode':L('五個模式：車站與步行 · 地鐵 · 路會塞 · 站旁開發 · 沙盤','五个模式：车站与步行 · 地铁 · 路会塞 · 站旁开发 · 沙盘','Five modes: stations · the metro · roads that jam · station-side development · sandbox'),
+    'cv.scroll':L('向下滾動，打開地圖','向下滚动，打开地图','Scroll to open the map'),
+    'cv.replay':L('重播潮汐','重播潮汐','Replay the tide'),
+    'cv.crest':L('crest 滿潮','crest 满潮','crest'),'cv.trough':L('trough 低潮','trough 低潮','trough'),
+    'cv.rising':L('rising 漲潮','rising 涨潮','rising'),'cv.ebbing':L('ebbing 退潮','ebbing 退潮','ebbing'),
+    'cv.trips':L('Trips now 此刻出行','Trips now 此刻出行','Trips now'),
+    // the map and its glass panel
+    'hub.aria':L('香港地圖：選一個關卡','香港地图：选一个关卡','Map of Hong Kong: pick a level'),
+    'hub.start':L('Start · 開始','Start · 开始','Start'),
+    'hub.pickH':L('從上方選一個模式','从上方选一个模式','Pick a mode above'),
+    'hub.pickP':L('每個模式的關卡都在這張地圖上的真實地點。從第 1 關開始，過一關，開下一關。','每个模式的关卡都在这张地图上的真实地点。从第 1 关开始，过一关，开下一关。','Every mode’s levels sit at real places on this map. Start with level 1; pass a level to open the next.'),
+    'hub.levels':L('Levels · 關卡','Levels · 关卡','Levels'),
+    'hub.play':L('可以玩','可以玩','Open'),'hub.locked':L('先通過上一關','先通过上一关','Pass the one before'),
+    'hub.lockedP':L('這一關還鎖著：先通過「{p}」。','这一关还锁着：先通过「{p}」。','Locked: pass «{p}» first.'),
+    'hub.teach':L('教學','教学','Lesson'),'hub.challenge':L('挑戰 🏆','挑战 🏆','Challenge 🏆'),
+    'hub.best':L('最佳 {n}','最佳 {n}','best {n}'),
+    'hub.tier1':L('已過關','已过关','Passed'),'hub.tier2':L('高分','高分','High score'),'hub.tier3':L('大師','大师','Master'),
+    'hub.hover':L('把滑鼠停在地圖上的關卡，看看那一關。','把鼠标停在地图上的关卡，看看那一关。','Hover a level on the map to see it.'),
+    'hub.challengeP':L('挑戰關：沒有 AI 示範，成績可以上排行榜。','挑战关：没有 AI 示范，成绩可以上排行榜。','Challenge: no AI demo; the score can go on the leaderboard.'),
+    'hub.teachP':L('教學關：卡住了可以看 AI 示範怎麼解。','教学关：卡住了可以看 AI 示范怎么解。','Lesson: stuck? Watch the AI demo solve it.'),
+    'hub.go':L('進入 →','进入 →','Enter →'),
+    'hub.coming':L('即將推出','即将推出','Coming soon'),
+    'hub.m1H':L('車站與步行','车站与步行','Stations & walking'),
+    'hub.m1P':L('在港鐵站旁放接駁站，把原本開車的人接上港鐵。四關從朗屏到大埔墟，一關比一關難。','在港铁站旁放接驳站，把原本开车的人接上港铁。四关从朗屏到大埔墟，一关比一关难。','Place feeder stops round an MTR station and win drivers over to the train. Four levels, Long Ping to Tai Po Market, each harder.'),
+    'hub.m2H':L('地鐵','地铁','The metro'),
+    'hub.m2P':L('畫一條新地鐵線、放站，看大家慢慢發現它，越來越多人坐，它到的地方越來越多人去。','画一条新地铁线、放站，看大家慢慢发现它，越来越多人坐，它到的地方越来越多人去。','Draw a new line and its stations; watch people discover it, ride it, and go where it goes.'),
+    'hub.m3H':L('路會塞','路会塞','Roads that jam'),
+    'hub.m3P':L('地鐵和馬路互相影響：新線把車帶走，路通了又有人回去開車；城市還在長。','地铁和马路互相影响：新线把车带走，路通了又有人回去开车；城市还在长。','The metro and the roads push on each other: a line takes cars off, a clear road brings drivers back — and the city keeps growing.'),
+    'hub.m4H':L('站旁開發','站旁开发','Station-side development'),
+    'hub.m4P':L('修好地鐵，再把站旁的空地賣成住宅或商場——港鐵的「鐵路＋物業」。','修好地铁，再把站旁的空地卖成住宅或商场——港铁的「铁路＋物业」。','Build the line, then sell the land beside its stations for homes or shops — the MTR’s rail-plus-property.'),
+    'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
+    'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
+    'hub.m5a':L('AI 出關卡','AI 出关卡','AI makes a level'),'hub.m5b':L('操控整個沙盤','操控整个沙盘','Run the sandbox'),'hub.m5c':L('查香港數據','查香港数据','Hong Kong data')
+  });
+})();

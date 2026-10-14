@@ -2,7 +2,7 @@
   "note": "The levels written inside each mode's data.js: what the hub and the leaderboard need to know about them. A JSON file in m1…m4/ with the same mode and key replaces the level (see README.md).",
   "levels": [
     {"mode": 1, "key": "l1", "order": 1, "challenge": false, "title": {"zh-Hant": "朗屏", "zh-Hans": "朗屏", "en": "Long Ping"}, "hub": {"station": "朗屏"}},
-    {"mode": 1, "key": "l2", "order": 2, "challenge": false, "title": {"zh-Hant": "元朗南", "zh-Hans": "元朗南", "en": "Yuen Long South"}, "hub": {"station": "元朗"}},
+    {"mode": 1, "key": "l2", "order": 2, "challenge": false, "title": {"zh-Hant": "元朗南", "zh-Hans": "元朗南", "en": "Yuen Long South"}, "hub": {"station": "元朗", "lonlat": [114.033, 22.432], "side": "left"}},
     {"mode": 1, "key": "l3", "order": 3, "challenge": false, "title": {"zh-Hant": "粉嶺", "zh-Hans": "粉岭", "en": "Fanling"}, "hub": {"station": "粉嶺"}},
     {"mode": 1, "key": "l4", "order": 4, "challenge": true, "title": {"zh-Hant": "大埔墟", "zh-Hans": "大埔墟", "en": "Tai Po Market"}, "hub": {"station": "大埔墟"}},
     {"mode": 2, "key": "m2-1", "order": 1, "challenge": false, "title": {"zh-Hant": "新界西北 · 一條新線", "zh-Hans": "新界西北 · 一条新线", "en": "North-west New Territories"}, "hub": {"station": "天水圍"}},

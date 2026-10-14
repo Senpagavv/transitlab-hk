@@ -688,5 +688,6 @@
     'tip.break':L('兩輪之間的停頓：地圖顯示下一輪。這時候可以隨便挪站，不扣次數；按空格可以停下來慢慢想。','两轮之间的停顿：地图显示下一轮。这时候可以随便挪站，不扣次数；按空格可以停下来慢慢想。',
       'The break between rounds: the map shows the next round. Move stops freely now, no count; press Space to stop and think.')
   });
+  I18N.add({'m.back':L('← 五個模式','← 五个模式','← Five modes')});   // back to the hub (also in shared/nav.js)
   if(typeof document!=='undefined')I18N.apply();
 })();

@@ -12,6 +12,7 @@ def bundle(page, scripts, out):
     s = (p / page).read_text(encoding='utf8')
     s = s.replace('<link rel="stylesheet" href="../shared/style.css">', '<style>' + css + '</style>')
     s = s.replace('src="../shared/logo-tide.svg"', f'src="{logo}"')
+    s = s.replace('href="../index.html', 'href="../开始.html')   # back to the hub: the bundled one
     for f in scripts:
         tag = f'<script src="{f}"></script>'
         assert tag in s, f'missing {tag} in {page}'

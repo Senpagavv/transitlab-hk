@@ -4,6 +4,13 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-15
+
+### 23:09 · `待补` 接驳巴士 v7.15：入口换成 v3 的潮汐封面 + 全港波点地图，关卡按顺序解锁 / Feeder v7.15: v3's tide cover and dot map as the hub
+- **改了什么**：`game-feeder/v7/index.html`（打包 `开始.html`）换成 v3 的入口；新增 `v7/hub/`（`hub.js` 改自 v3、`strings.js`、`cover-data.js`、`stations.js` + `make_stations.py`）；菜单 01–04＝四个玩法、05 沙盘先空；关卡点从关卡登记读、按真实站点摆、按顺序解锁；点开时波点飞成棋盘再进玩法页；玩法页返回带 `#hub=1&nav=N`；第一关补「← 五个模式」、页内关卡按钮跟解锁顺序。任务 54 标为已由 Claude 完成。
+- **为什么**：发起人要入口和 v3 的 01 一样，四个玩法都从全港地图进关、过一关开下一关。
+- **验证**：真鼠标走完封面 → 选模式 → 锁关提示 → 进关 → 返回；解锁四种情形都对；四个玩法检查全过；无报错。
+
 ## 2026-10-14
 
 ### 22:53 · `7a68ab0` 关卡按顺序解锁的进度记录；任务 54 按发起人补充改清楚 / Level progress for sequential unlocking; task 54 clarified

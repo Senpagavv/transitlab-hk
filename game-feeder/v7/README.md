@@ -141,6 +141,10 @@ v7 模式 1 的規則和數值與 v6 相同（v6 第 1–3 關和第 5 關）。
 - 挤改成「慢慢學」（同第三關）：第二關那種「擠了明年一律 +4 格」在住宅填滿以後讓坐地鐵的人一年高一年低。
 - 機器人 `bots/v7_tod.js`：只修線 655、全住宅 1309、全商場 1201、最好混合 1545 → 門檻 900 / 1250 / 1400。AI 示範還沒接。
 
+## 入口（v7.15）：v3 的潮汐封面 + 全港波點地圖
+
+`index.html`（打包成 `开始.html`）＝v3 的入口：潮汐封面往下滾進全港波點地圖，頂上 01 車站與步行 · 02 地鐵 · 03 路會塞 · 04 站旁開發 · 05 沙盤（先空著）。點 01–04：同一張地圖上，這個玩法的關卡在真實地點（`levels/registry.js` 的 `hub.station` → `hub/stations.js` 的港鐵 / 輕鐵站經緯度；`hub.lonlat` 可以直接給；同一玩法兩關相距 < 1.5 公里，後一關挪到附近沒人用的站）；**按順序解鎖**（`shared/progress.js`，過一關開下一關，`#unlock=all` 全開）。點開一關：周圍的波點飛成一塊棋盤（街道、樓、中間的站），淡出，打開那個玩法的頁面 `#map=<key>`；玩法頁「← 五個模式」回到 `#hub=1&nav=N`。程式 `hub/hub.js`（改自 `v3/hub.js`），文字 `hub/strings.js`，封面數據 `hub/cover-data.js`（v3 原樣），站點表 `hub/make_stations.py` 從 `data/web/places.json` 生成。
+
 ## 關卡檔（v7.14）：一關一個 JSON，放進去就有、刪掉就沒
 
 `levels/m1…m4/*.json`（格式 `tl-level/1`）＝一關；打包時登記進 `levels/registry.js`，四個玩法頁都讀它（同 key 取代內建關卡）。做關卡、檢查、讓機器人定門檻的步驟見 [`levels/README.md`](levels/README.md)；工具 `tools/levels/levels.js`（`export` / `check`），機器人 `--level <檔>`。

@@ -13,7 +13,7 @@ for f in ['../levels/registry.js', 'data.js', 'engine.js', '../shared/i18n.js', 
     tag = f'<script src="{f}"></script>'
     assert tag in s, f'missing {tag}'
     s = s.replace(tag, '<script>\n' + (p / f).resolve().read_text(encoding='utf8') + '\n</script>')
-s = s.replace('href="../index.html"', 'href="../开始.html"')
+s = s.replace('href="../index.html', 'href="../开始.html')
 assert 'src="' not in s.split('<body')[1].replace('src="data:', ''), 'a local file reference was not inlined'
 (p / '模式2-地铁.html').write_text(s, encoding='utf8')
 print('written', p / '模式2-地铁.html', f'{len(s) // 1024} KB')
