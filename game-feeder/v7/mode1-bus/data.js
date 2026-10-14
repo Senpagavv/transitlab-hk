@@ -121,7 +121,10 @@
       'release','seats','queue','cool','moves','willing','patience','tail'])if(L[k]!==undefined)out[k]=L[k];
     return out;
   }
-  const first=custom&&(/(?:^|[#&])lv=/.test(typeof location!=='undefined'?location.hash:'')||pick==='custom')?'custom':LEVELS[pick]?pick:'l1';
+  // a level pack (shared/levelpack.js: an AI-made or imported level kept for this browser session): #pack=<id>
+  if(typeof sessionStorage!=='undefined'&&typeof location!=='undefined'){const m=/(?:^|[#&])pack=([\w-]+)/.exec(location.hash);
+    if(m)try{const p=JSON.parse(sessionStorage.getItem('tl-packs/1')||'{}')[m[1]];if(p&&p.mode===1&&p.level){LEVELS[p.id]=p.level;root.TL_ACTIVE_PACK=p;}}catch(e){}}
+  const first=root.TL_ACTIVE_PACK&&LEVELS[root.TL_ACTIVE_PACK.id]?root.TL_ACTIVE_PACK.id:custom&&(/(?:^|[#&])lv=/.test(typeof location!=='undefined'?location.hash:'')||pick==='custom')?'custom':LEVELS[pick]?pick:'l1';
   const D=make(first,LEVELS[first]);
   const swap=next=>{for(const k of Object.keys(D))delete D[k];Object.assign(D,next);return true;};
   Object.defineProperty(D,'select',{enumerable:false,value(name){return LEVELS[name]?swap(make(name,LEVELS[name])):false;}});

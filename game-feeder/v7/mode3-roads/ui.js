@@ -341,7 +341,7 @@
   function open(){if(!plan.canRun())return;history=[];tool='draw';hover=null;step();play();}
   function rewind(){stop();plan.rewind();lastY=null;render();}
   function result(){
-    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;if(window.TLProgress)TLProgress.record(3,D.map,plan.total,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(3,D.map);
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;if(window.TLProgress)TLProgress.record(3,D.map,plan.total,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(3,D.map);if(window.TLBoard)TLBoard.result({level:'feeder/m3/'+D.map,score:Math.round(plan.total),plan:TLBoard.snapshot(3,plan),tier});
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
     $('resultScore').textContent=t('r3.rScore',{d:R(plan.total),y:P.years});
     let h=`<table class="result"><thead><tr><th>${t('m.ryYear')}</th><th>${t('r3.ryJam')}</th><th>${t('r3.ryNothing')}</th><th>${t('r3.rySaved')}</th><th>${t('r3.ryDrive')}</th><th>${t('r3.ryNew')}</th><th>${t('m.ryAware')}</th></tr></thead><tbody>`;

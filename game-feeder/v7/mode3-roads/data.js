@@ -46,7 +46,10 @@
   // a level made on the spot (shared/levelgen: a cut of the Hong Kong grid, e.g. from one sentence): #map=gen reads it
   // from this browser
   if(typeof localStorage!=='undefined')try{const g=JSON.parse(localStorage.getItem('tl-gen-level')||'null');if(g&&g.cols)LEVELS.gen=g;}catch(e){}
-  const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m3-1';
+  // a level pack (shared/levelpack.js: an AI-made or imported level kept for this browser session): #pack=<id>
+  if(typeof sessionStorage!=='undefined'&&typeof location!=='undefined'){const m=/(?:^|[#&])pack=([\w-]+)/.exec(location.hash);
+    if(m)try{const p=JSON.parse(sessionStorage.getItem('tl-packs/1')||'{}')[m[1]];if(p&&p.mode===3&&p.level){LEVELS[p.id]=p.level;root.TL_ACTIVE_PACK=p;}}catch(e){}}
+  const pick=(root.TL_ACTIVE_PACK&&root.TL_ACTIVE_PACK.id)||(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m3-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
   swap(LEVELS[pick]?pick:'m3-1');

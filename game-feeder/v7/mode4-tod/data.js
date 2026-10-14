@@ -27,7 +27,10 @@
   const LEVELS={'m4-1':NW};
   // levels added as files (v7/levels/m4/*.json → levels/registry.js) join these; the same key replaces one
   for(const L of (root.TL_LEVELS?root.TL_LEVELS.mode(4):[]))if(L.level)LEVELS[L.key]=L.level;
-  const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m4-1';
+  // a level pack (shared/levelpack.js: an AI-made or imported level kept for this browser session): #pack=<id>
+  if(typeof sessionStorage!=='undefined'&&typeof location!=='undefined'){const m=/(?:^|[#&])pack=([\w-]+)/.exec(location.hash);
+    if(m)try{const p=JSON.parse(sessionStorage.getItem('tl-packs/1')||'{}')[m[1]];if(p&&p.mode===4&&p.level){LEVELS[p.id]=p.level;root.TL_ACTIVE_PACK=p;}}catch(e){}}
+  const pick=(root.TL_ACTIVE_PACK&&root.TL_ACTIVE_PACK.id)||(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m4-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
   swap(LEVELS[pick]?pick:'m4-1');

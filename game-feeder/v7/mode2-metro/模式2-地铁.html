@@ -585,6 +585,56 @@ dialog.intro .row{margin-top:16px}
 .tipbox .tipbtns{display:flex;justify-content:flex-end;gap:8px}
 .tipbox .tipoff{color:var(--s-ink3)}
 @keyframes tipIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* v7 leaderboard (task 56, shared/board.js) */
+.tl-board-open[hidden] { display: none !important; }
+.tl-board-panel {
+  box-sizing: border-box; width: min(560px, calc(100vw - 24px)); max-height: min(740px, calc(100dvh - 32px));
+  padding: 24px; border: 1px solid var(--s-line, #c8c6bd); border-radius: 14px;
+  background: var(--s-panel, #faf8f1); color: var(--s-ink, #27342e);
+  font: 16px/1.5 system-ui, sans-serif; overflow: auto; box-shadow: 0 18px 70px #0004;
+}
+.tl-board-panel::backdrop { background: #18231ccc; }
+.tl-board-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.tl-board-head h2 { margin: 0; font-size: 24px; }
+.tl-board-panel .btn { border: 1px solid #637568; border-radius: 6px; background: transparent; color: inherit; padding: 8px 14px; font: inherit; cursor: pointer; margin: 4px 6px 4px 0; }
+.tl-board-panel .btn:disabled { opacity: .5; cursor: default; }
+.tl-board-panel :focus-visible { outline: 3px solid #b75f2e; outline-offset: 3px; }
+.tl-board-panel a { color: inherit; text-decoration: underline; }
+.tl-board-level { display: block; overflow-wrap: anywhere; margin: 8px 0; font-size: 12px; opacity: .7; }
+.tl-board-panel table { width: 100%; border-collapse: collapse; margin: 16px 0; table-layout: fixed; }
+.tl-board-panel caption { text-align: left; font-weight: 600; padding-bottom: 8px; }
+.tl-board-panel th, .tl-board-panel td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #89978b55; overflow-wrap: anywhere; }
+.tl-board-panel th:first-child, .tl-board-panel td:first-child { width: 17%; }
+.tl-board-panel th:last-child, .tl-board-panel td:last-child { text-align: right; width: 26%; font-variant-numeric: tabular-nums; }
+.tl-board-status { padding: 10px 12px; background: #d9c28b33; border-left: 3px solid #a9782f; }
+.tl-board-mine { font-weight: 600; }
+@media (max-width: 400px) { .tl-board-panel { padding: 16px; font-size: 14px; } }
+
+/* v7 leaderboard (task 56, shared/board.js) */
+.tl-board-open[hidden] { display: none !important; }
+.tl-board-panel {
+  box-sizing: border-box; width: min(560px, calc(100vw - 24px)); max-height: min(740px, calc(100dvh - 32px));
+  padding: 24px; border: 1px solid var(--s-line, #c8c6bd); border-radius: 14px;
+  background: var(--s-panel, #faf8f1); color: var(--s-ink, #27342e);
+  font: 16px/1.5 system-ui, sans-serif; overflow: auto; box-shadow: 0 18px 70px #0004;
+}
+.tl-board-panel::backdrop { background: #18231ccc; }
+.tl-board-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.tl-board-head h2 { margin: 0; font-size: 24px; }
+.tl-board-panel .btn { border: 1px solid #637568; border-radius: 6px; background: transparent; color: inherit; padding: 8px 14px; font: inherit; cursor: pointer; margin: 4px 6px 4px 0; }
+.tl-board-panel .btn:disabled { opacity: .5; cursor: default; }
+.tl-board-panel :focus-visible { outline: 3px solid #b75f2e; outline-offset: 3px; }
+.tl-board-panel a { color: inherit; text-decoration: underline; }
+.tl-board-level { display: block; overflow-wrap: anywhere; margin: 8px 0; font-size: 12px; opacity: .7; }
+.tl-board-panel table { width: 100%; border-collapse: collapse; margin: 16px 0; table-layout: fixed; }
+.tl-board-panel caption { text-align: left; font-weight: 600; padding-bottom: 8px; }
+.tl-board-panel th, .tl-board-panel td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #89978b55; overflow-wrap: anywhere; }
+.tl-board-panel th:first-child, .tl-board-panel td:first-child { width: 17%; }
+.tl-board-panel th:last-child, .tl-board-panel td:last-child { text-align: right; width: 26%; font-variant-numeric: tabular-nums; }
+.tl-board-status { padding: 10px 12px; background: #d9c28b33; border-left: 3px solid #a9782f; }
+.tl-board-mine { font-weight: 600; }
+@media (max-width: 400px) { .tl-board-panel { padding: 16px; font-size: 14px; } }
 /* v7 · mode 2 «the metro» — on mode 1's layout (shared/style.css); only what this mode adds */
 :root{--s-metro:#9A3B26;--s-jam:#C2410C;--s-free:#2F8F5B;--s-walk:#7F95AE}
 [data-theme="dark"]{--s-metro:#E0896B;--s-jam:#F08A4B;--s-free:#5CC08A;--s-walk:#A3B6CC}
@@ -813,7 +863,10 @@ dialog.intro .row{margin-top:16px}
   const LEVELS={'m2-1':NW};
   // levels added as files (v7/levels/m2/*.json → levels/registry.js) join these; the same key replaces one
   for(const L of (root.TL_LEVELS?root.TL_LEVELS.mode(2):[]))if(L.level)LEVELS[L.key]=L.level;
-  const pick=(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
+  // a level pack (shared/levelpack.js: an AI-made or imported level kept for this browser session): #pack=<id>
+  if(typeof sessionStorage!=='undefined'&&typeof location!=='undefined'){const m=/(?:^|[#&])pack=([\w-]+)/.exec(location.hash);
+    if(m)try{const p=JSON.parse(sessionStorage.getItem('tl-packs/1')||'{}')[m[1]];if(p&&p.mode===2&&p.level){LEVELS[p.id]=p.level;root.TL_ACTIVE_PACK=p;}}catch(e){}}
+  const pick=(root.TL_ACTIVE_PACK&&root.TL_ACTIVE_PACK.id)||(typeof location!=='undefined'&&(/(?:^|[#&])map=([\w-]+)/.exec(location.hash)||[])[1])||'m2-1';
   const D={};
   const swap=name=>{const L=JSON.parse(JSON.stringify(LEVELS[name]));for(const k of Object.keys(D))delete D[k];Object.assign(D,L,{map:name,levels:Object.keys(LEVELS)});return true;};
   swap(LEVELS[pick]?pick:'m2-1');
@@ -1098,6 +1151,369 @@ dialog.intro .row{margin-top:16px}
   };
   root.TL_SAVE=API;
 })(typeof window!=='undefined'?window:globalThis);
+
+</script><script>
+(function (root) {
+  'use strict';
+  const I = root.I18N;
+  if (!I) throw new Error('Load shared/i18n.js before levelpack.js');
+  const L = I.L;
+  I.add({
+    'pack.invalid': L('關卡檔格式不正確', '关卡文件格式不正确', 'Invalid level file'),
+    'pack.hash': L('關卡內容與雜湊不符', '关卡内容与哈希不符', 'Level content does not match its hash'),
+    'pack.storage': L('無法儲存本次網頁的關卡', '无法保存本次网页的关卡', 'Cannot save levels in this browser session'),
+    'pack.closed': L('關卡庫即將開放', '关卡库即将开放', 'Level library coming soon'),
+    'pack.upload': L('上傳到關卡庫', '上传到关卡库', 'Upload to level library'),
+    'pack.failed': L('上傳失敗，請稍後再試', '上传失败，请稍后再试', 'Upload failed. Please try again later'),
+    'pack.missing': L('這個關卡包不在本次網頁中，請重新導入', '这个关卡包不在本次网页中，请重新导入', 'This level pack is missing from this session. Import it again'),
+    'pack.mode': L('關卡包的玩法與這個模式頁不同', '关卡包的玩法与这个模式页不同', 'This level pack belongs to a different mode')
+  });
+  root.TL_FEATURES = Object.assign({ levelUpload: false }, root.TL_FEATURES || {});
+  const KEY = 'tl-packs/1', MAX = 2 * 1024 * 1024;
+  const copy = x => JSON.parse(JSON.stringify(x));
+  const fail = (key = 'pack.invalid', field = '') => { throw new Error(I.t(key) + (field ? ': ' + field : '')); };
+  const obj = x => !!x && typeof x === 'object' && !Array.isArray(x);
+  // Sorted object keys; array order is meaningful. Used identically in Node and the browser.
+  function canonical(x) {
+    if (x === null || typeof x === 'boolean' || typeof x === 'string') return JSON.stringify(x);
+    if (typeof x === 'number' && Number.isFinite(x)) return JSON.stringify(x);
+    if (Array.isArray(x)) return '[' + x.map(canonical).join(',') + ']';
+    if (obj(x)) return '{' + Object.keys(x).sort().map(k => JSON.stringify(k) + ':' + canonical(x[k])).join(',') + '}';
+    fail();
+  }
+  function safeJSON(x, depth = 0) {
+    if (depth > 32) fail();
+    if (x && typeof x === 'object') {
+      for (const k of Object.keys(x)) {
+        if (['__proto__', 'prototype', 'constructor'].includes(k)) fail();
+        safeJSON(x[k], depth + 1);
+      }
+    } else if (!['string', 'number', 'boolean'].includes(typeof x) && x !== null) fail();
+    if (typeof x === 'number' && !Number.isFinite(x)) fail();
+  }
+  function validate(p) {
+    safeJSON(p);
+    if (!obj(p) || p.format !== 'tl-level/1' || ![1, 2, 3, 4].includes(p.mode) || !obj(p.level)) fail();
+    if (!(typeof p.title === 'string' && p.title.trim()) && !(obj(p.title) && ['zh-Hant', 'zh-Hans', 'en'].every(k => typeof p.title[k] === 'string' && p.title[k].trim()))) fail('pack.invalid', 'title');
+    if (!Array.isArray(p.story) || !p.story.every(s => typeof s === 'string' || (obj(s) && ['zh-Hant', 'zh-Hans', 'en'].every(k => typeof s[k] === 'string')))) fail('pack.invalid', 'story');
+    const lv = p.level;
+    for (const k of ['cols', 'rows']) if (!Number.isInteger(lv[k]) || lv[k] < 1 || lv[k] > 512) fail('pack.invalid', k);
+    const cell = c => Array.isArray(c) && c.length === 2 && c.every(Number.isInteger) && c[0] >= 0 && c[0] < lv.cols && c[1] >= 0 && c[1] < lv.rows;
+    const cells = a => Array.isArray(a) && a.every(cell);
+    const tiers = a => Array.isArray(a) && a.length === 3 && a.every(Number.isFinite) && a[0] <= a[1] && a[1] <= a[2];
+    if (!tiers(p.tiers) || !tiers(lv.tiers) || canonical(p.tiers) !== canonical(lv.tiers)) fail('pack.invalid', 'tiers');
+    if (!obj(p.source) || !['ai', 'user'].includes(p.source.by) || (p.source.request !== undefined && !obj(p.source.request))) fail('pack.invalid', 'source');
+    if (p.mode === 1) {
+      if (!cell(lv.hub) || !cells(lv.roads) || !cells(lv.candidates) || lv.candidates.length < 3 || !Array.isArray(lv.estates) || !lv.estates.length || !lv.estates.every(o => obj(o) && typeof o.name === 'string' && cell(o.cell))) fail('pack.invalid', 'mode1');
+      if (!Array.isArray(lv.waves) || !lv.waves.length || !lv.waves.every(w => Array.isArray(w) && w.length === lv.estates.length && w.every(n => Number.isFinite(n) && n >= 0))) fail('pack.invalid', 'waves');
+    } else {
+      for (const [k, n] of [['origins', 'people'], ['destinations', 'attraction']]) if (!Array.isArray(lv[k]) || !lv[k].length || !lv[k].every(o => obj(o) && typeof o.name === 'string' && cell(o.cell) && Number.isFinite(o[n]) && o[n] >= 0)) fail('pack.invalid', k);
+      for (const k of ['budget', 'lineCost', 'stationCost', 'trainCost', 'perTrain', 'years']) if (!Number.isFinite(lv[k]) || lv[k] < 0) fail('pack.invalid', k);
+      if (!Number.isInteger(lv.years) || lv.years < 1 || lv.years > 100) fail('pack.invalid', 'years');
+      if (p.mode === 3 && (!Array.isArray(lv.roads) || !lv.roads.length || !lv.roads.every(r => obj(r) && typeof r.name === 'string' && cells(r.via) && r.via.length >= 2 && Number.isFinite(r.cap) && r.cap > 0) || !Number.isFinite(lv.phase2Budget) || lv.phase2Budget < 0 || lv.years <= 4)) fail('pack.invalid', 'roads/phase2Budget/years');
+      if (p.mode === 4 && (!Array.isArray(lv.land) || !lv.land.every(r => obj(r) && cell(r.cell)))) fail('pack.invalid', 'land');
+      if (lv.lines !== undefined && (!Array.isArray(lv.lines) || !lv.lines.every(r => obj(r) && cells(r.via) && r.via.length >= 2 && cells(r.stations) && Number.isInteger(r.trains) && r.trains > 0))) fail('pack.invalid', 'lines');
+    }
+    if (canonical(p).length > MAX) fail();
+    return p;
+  }
+  async function hash(level) {
+    const text = canonical(level);
+    if (root.crypto && root.crypto.subtle) {
+      const bytes = new TextEncoder().encode(text);
+      const digest = await root.crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest), n => n.toString(16).padStart(2, '0')).join('').slice(0, 16);
+    }
+    if (typeof require === 'function') return require('node:crypto').createHash('sha256').update(text).digest('hex').slice(0, 16);
+    fail('pack.invalid', 'SHA-256 requires localhost or HTTPS');
+  }
+  async function prepare(input, requireHash = false) {
+    if (!obj(input)) fail();
+    safeJSON(input);
+    const p = copy(input);
+    p.tiers = p.tiers || p.level?.tiers;
+    validate(p);
+    const h = await hash(p.level);
+    if ((requireHash || p.hash !== undefined) && p.hash !== h) fail('pack.hash');
+    if (p.id !== undefined && p.id !== 'custom-' + h.slice(0, 8)) fail('pack.hash', 'id');
+    p.hash = h; p.id = 'custom-' + h.slice(0, 8);
+    p.created = p.created || new Date().toISOString();
+    if (typeof p.created !== 'string' || !Number.isFinite(Date.parse(p.created))) fail('pack.invalid', 'created');
+    return p;
+  }
+  function read() {
+    try { const x = JSON.parse(root.sessionStorage.getItem(KEY) || '{}'); if (!obj(x)) fail(); return x; }
+    catch (_) { fail('pack.storage'); }
+  }
+  function write(x) { try { root.sessionStorage.setItem(KEY, JSON.stringify(x)); } catch (_) { fail('pack.storage'); } }
+  async function save(input) {
+    const p = await prepare(input), all = read();
+    if (all[p.id] && (all[p.id].hash !== p.hash || all[p.id].mode !== p.mode)) fail('pack.hash', 'id collision');
+    all[p.id] = p; write(all); return copy(p);
+  }
+  async function load(id) { const p = read()[id]; return p ? prepare(p, true) : null; }
+  function list() { return Object.values(read()).map(copy); }
+  function remove(id) { const all = read(), existed = Object.hasOwn(all, id); delete all[id]; write(all); return existed; }
+  async function importFile(file) {
+    if (!file || typeof file.text !== 'function' || file.size > MAX) fail();
+    const text = await file.text(); if (text.length > MAX) fail();
+    let p; try { p = JSON.parse(text); } catch (_) { fail(); }
+    return save(await prepare(p, true));
+  }
+  async function exportFile(input) {
+    const p = await prepare(input), text = JSON.stringify(p, null, 2) + '\n';
+    const out = { name: p.id + '.tlevel.json', text, pack: p };
+    if (typeof document !== 'undefined') {
+      const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+      const a = document.createElement('a'); a.href = url; a.download = out.name;
+      document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    return out;
+  }
+  async function upload(input) {
+    if (root.TL_FEATURES.levelUpload !== true) return { ok: false, disabled: true, message: I.t('pack.closed') };
+    const p = await prepare(input);
+    const r = await root.fetch('/api/feeder/levels', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) });
+    if (!r.ok) fail('pack.failed');
+    return r.json();
+  }
+  function uploadButton(input, parent) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn';
+    const render = () => { b.disabled = root.TL_FEATURES.levelUpload !== true; b.textContent = I.t(b.disabled ? 'pack.closed' : 'pack.upload'); };
+    render(); root.addEventListener('tl:lang', render);
+    b.addEventListener('click', async () => { b.disabled = true; try { await upload(input); } catch (e) { b.title = e.message; } finally { render(); } });
+    parent.append(b); return b;
+  }
+  // Replace only the ui/demo script tags with this awaited boot. D/E have already loaded;
+  // D.use + E.reset happen BEFORE ui.js constructs its first Game/Plan.
+  async function startMode({ mode, D, E, ui = 'ui.js', demos = [] }) {
+    const id = new URLSearchParams(root.location.hash.slice(1)).get('pack');
+    let pack = null;
+    if (id) {
+      pack = await load(id); if (!pack) fail('pack.missing'); if (pack.mode !== mode) fail('pack.mode');
+      D.use(pack.level, pack.id); E.reset(); root.TL_ACTIVE_PACK = pack;
+      const tri = x => typeof x === 'string' ? L(x, x, x) : L(x['zh-Hant'], x['zh-Hans'], x.en);
+      I.add({ ['site.' + pack.id]: tri(pack.title), ['lvEn.' + pack.id]: tri(pack.title) });
+    }
+    const script = src => new Promise((resolve, reject) => { const s = document.createElement('script'); s.src = src; s.onload = resolve; s.onerror = () => reject(new Error('Cannot load ' + src)); document.body.append(s); });
+    await script(ui);
+    if (pack) {
+      const pick = x => typeof x === 'string' ? x : x[I.lang] || x['zh-Hant'];
+      const paint = () => {
+        if (D.map !== pack.id) return;
+        const card = document.querySelector('#lvIntro'), title = document.querySelector('#ivTitle') || card?.querySelector('h2'), body = document.querySelector('#ivBody');
+        if (title) title.textContent = pick(pack.title);
+        if (body) { body.replaceChildren(); for (const line of pack.story) { const li = document.createElement('li'); li.textContent = pick(line); body.append(li); } }
+        const en = document.querySelector('#ivEn'); if (en) en.textContent = pick(pack.title);
+      };
+      paint(); root.addEventListener('tl:lang', paint);
+      const card = document.querySelector('#lvIntro');
+      if (card && new URLSearchParams(root.location.hash.slice(1)).get('intro') !== '0' && !card.open) card.showModal();
+      const info = document.querySelector('#lvInfo');
+      if (info) { const previous = info.onclick; info.onclick = e => { if (D.map !== pack.id) return previous?.call(info, e); paint(); if (card && !card.open) card.showModal(); }; }
+    } else if (!root.TL_LEVELS?.get(mode, D.map)?.challenge) {
+      for (const src of demos) await script(src);
+    }
+    return pack;
+  }
+  const API = { save, list, load, remove, exportFile, importFile, upload, uploadButton, startMode, hash, prepare, validate, canonical };
+  root.TLPack = API;
+  if (typeof module !== 'undefined') module.exports = API;
+})(typeof window !== 'undefined' ? window : globalThis);
+// v7 integration (Claude, 2026-10-15): pages read the pack in data.js (synchronously, bundles too) and call this after
+// ui.js to put the pack's title and story on the opening card, again on each language change.
+(function (root) {
+  if (typeof document === 'undefined') return;
+  root.TLPackIntro = function (pack) {
+    const I = root.I18N, pick = x => typeof x === 'string' ? x : x[I.lang] || x['zh-Hant'];
+    const paint = () => {
+      const card = document.querySelector('#lvIntro'); if (!card) return;
+      const title = document.querySelector('#ivTitle') || card.querySelector('h2'), body = document.querySelector('#ivBody');
+      if (title) title.textContent = pick(pack.title);
+      if (body && pack.story) { body.replaceChildren(); for (const line of pack.story) { const li = document.createElement('li'); li.textContent = pick(line); body.append(li); } }
+    };
+    paint(); root.addEventListener('tl:lang', () => setTimeout(paint, 0));
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script><script>
+(function (root) {
+  'use strict';
+  const I = root.I18N;
+  if (!I) throw new Error('Load shared/i18n.js before board.js');
+  const L = I.L;
+  I.add({
+    'board.title': L('排行榜', '排行榜', 'Leaderboard'),
+    'board.local': L('本機', '本机', 'This device'),
+    'board.offline': L('排行榜暫時連不上，顯示本機成績', '排行榜暂时连不上，显示本机成绩', 'Leaderboard unavailable. Showing scores on this device'),
+    'board.login': L('登入後可上傳', '登录后可上传', 'Sign in to upload'),
+    'board.signin': L('登入', '登录', 'Sign in'),
+    'board.upload': L('上傳本局成績', '上传本局成绩', 'Upload this score'),
+    'board.uploaded': L('已上傳', '已上传', 'Uploaded'),
+    'board.rejected': L('成績未被接受，請重新檢查方案', '成绩未被接受，请重新检查方案', 'Score was rejected. Please check the plan'),
+    'board.refresh': L('重新整理', '刷新', 'Refresh'),
+    'board.close': L('關閉', '关闭', 'Close'),
+    'board.loading': L('讀取中…', '读取中…', 'Loading…'),
+    'board.rank': L('名次', '名次', 'Rank'),
+    'board.player': L('玩家', '玩家', 'Player'),
+    'board.score': L('成績', '成绩', 'Score'),
+    'board.me': L('我的名次：{rank}', '我的名次：{rank}', 'My rank: {rank}'),
+    'board.unranked': L('尚未上榜', '尚未上榜', 'Not ranked yet'),
+    'board.empty': L('暫無成績', '暂无成绩', 'No scores yet'),
+    'board.you': L('我', '我', 'Me'),
+    'board.storage': L('瀏覽器未能保存成績，只在這次頁面顯示', '浏览器未能保存成绩，只在这次页面显示', 'Scores could not be saved; available only on this page')
+  });
+  const cfg = { mode: null, container: '#result .row', loginUrl: '/login', timeout: 4000 };
+  const memory = new Map();
+  let current = null, button = null, dialog = null, model = null, ticket = 0, busy = false;
+  const copy = x => JSON.parse(JSON.stringify(x));
+  function parts(id) {
+    const m = /^feeder\/(m[1-5](?:-bus)?)\/([a-z0-9][a-z0-9-]*)$/.exec(id || '');
+    return m ? { mode: m[1], n: Number(m[1][1]), key: m[2] } : null;
+  }
+  function eligible(id) {
+    const p = parts(id); if (!p) return false;
+    if (p.key.startsWith('custom-')) {
+      try { return !!root.TLPack?.list().some(x => x.id === p.key && x.mode === p.n); } catch (_) { return false; }
+    }
+    return !!root.TL_LEVELS?.get(p.n, p.key)?.challenge;
+  }
+  function local(id) {
+    // setItem can fail (quota/private mode) while getItem still succeeds. Keep the
+    // just-finished score visible in that case too, not only when both methods throw.
+    if (memory.has(id)) return copy(memory.get(id));
+    try {
+      const a = JSON.parse(root.localStorage.getItem('tl-board/1/' + id) || '[]');
+      return Array.isArray(a) ? a.filter(x => x && Number.isFinite(x.score) && typeof x.created === 'string').sort((a, b) => b.score - a.score || a.created.localeCompare(b.created)).slice(0, 10) : [];
+    } catch (_) { return memory.get(id) || []; }
+  }
+  function record(r) {
+    const a = local(r.level).concat({ score: r.score, tier: r.tier, created: new Date().toISOString() }).sort((a, b) => b.score - a.score || a.created.localeCompare(b.created)).slice(0, 10);
+    memory.set(r.level, a);
+    try { root.localStorage.setItem('tl-board/1/' + r.level, JSON.stringify(a)); return true; } catch (_) { return false; }
+  }
+  function receive(r) {
+    ++ticket; busy = false;
+    if (!r || !eligible(r.level) || !Number.isFinite(r.score) || !r.plan || typeof r.plan !== 'object') {
+      current = null; if (button) button.hidden = true; if (dialog?.open) dialog.close(); return false;
+    }
+    try { current = copy({ level: r.level, score: r.score, plan: r.plan, tier: r.tier, lang: I.lang }); } catch (_) { return false; }
+    current.saved = record(current); current.uploaded = false; model = null;
+    mount(); if (button) button.hidden = false; if (dialog?.open) refresh(); return true;
+  }
+  function mount() {
+    const parent = typeof cfg.container === 'string' ? document.querySelector(cfg.container) : cfg.container;
+    if (!parent) return;
+    if (!button || button.parentNode !== parent) {
+      button?.remove(); button = document.createElement('button'); button.type = 'button'; button.className = 'btn tl-board-open';
+      button.addEventListener('click', open); parent.append(button);
+    }
+    button.textContent = I.t('board.title'); button.hidden = !current;
+  }
+  async function request(url, opts = {}) {
+    const controller = new AbortController(), timer = setTimeout(() => controller.abort(), cfg.timeout);
+    try {
+      const r = await root.fetch(url, { ...opts, credentials: 'same-origin', signal: controller.signal });
+      if (r.status === 401) return { unauthorized: true };
+      if (!r.ok) { const e = new Error('HTTP ' + r.status); e.status = r.status; throw e; }
+      return await r.json();
+    } finally { clearTimeout(timer); }
+  }
+  function element(tag, text, className) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (className) e.className = className; return e; }
+  function action(key, fn, disabled = false) { const b = element('button', I.t(key), 'btn'); b.type = 'button'; b.disabled = disabled; b.addEventListener('click', fn); return b; }
+  function rowsOf(data) {
+    const rows = Array.isArray(data) ? data : data?.entries || data?.leaderboard || data?.scores;
+    if (!Array.isArray(rows)) throw new Error('Bad leaderboard response');
+    return rows.slice(0, 50).map((x, i) => {
+      if (!x || !Number.isFinite(x.score)) throw new Error('Bad score response');
+      return { rank: Number.isInteger(x.rank) && x.rank > 0 ? x.rank : i + 1, name: String(x.name || x.displayName || x.user?.name || x.username || '—'), score: x.score };
+    });
+  }
+  function render() {
+    if (!dialog || !current) return;
+    dialog.replaceChildren();
+    const head = element('div', undefined, 'tl-board-head'), h = element('h2', I.t('board.title')); h.id = 'tl-board-title';
+    head.append(h, action('board.close', () => dialog.close())); dialog.append(head);
+    dialog.append(element('code', current.level, 'tl-board-level'));
+    if (!current.saved) dialog.append(element('p', I.t('board.storage'), 'tl-board-status'));
+    if (!model) { dialog.append(element('p', I.t('board.loading'), 'tl-board-status')); return; }
+    const offline = model.offline;
+    if (offline) dialog.append(element('p', I.t('board.offline'), 'tl-board-status'));
+    const rows = offline ? local(current.level).map((x, i) => ({ rank: i + 1, name: I.t('board.local'), score: x.score })) : model.rows;
+    const table = element('table'), cap = element('caption', offline ? I.t('board.local') + ' · 10' : I.t('board.title') + ' · 50'); table.append(cap);
+    const thead = element('thead'), tr = element('tr');
+    for (const k of ['board.rank', 'board.player', 'board.score']) { const th = element('th', I.t(k)); th.scope = 'col'; tr.append(th); } thead.append(tr); table.append(thead);
+    const body = element('tbody'); rows.forEach(x => { const row = element('tr'); row.append(element('td', String(x.rank)), element('td', x.name), element('td', String(Math.round(x.score * 100) / 100))); body.append(row); });
+    table.append(body); dialog.append(table);
+    if (!rows.length) dialog.append(element('p', I.t('board.empty')));
+    if (offline) {
+      const n = rows.findIndex(x => Math.abs(x.score - current.score) < 0.000001);
+      dialog.append(element('p', I.t('board.local') + ' · ' + I.t('board.me', { rank: n < 0 ? I.t('board.unranked') : n + 1 })));
+    } else if (model.user) {
+      dialog.append(element('p', I.t('board.me', { rank: model.me?.rank || I.t('board.unranked') }), 'tl-board-mine'));
+      dialog.append(action(current.uploaded ? 'board.uploaded' : 'board.upload', submit, busy || current.uploaded));
+    } else {
+      const p = element('p', I.t('board.login') + ' '), a = element('a', I.t('board.signin'));
+      const url = new URL(cfg.loginUrl, root.location.href);
+      if (['http:', 'https:'].includes(url.protocol)) a.href = url.href;
+      p.append(a); dialog.append(p);
+    }
+    if (model.message) dialog.append(element('p', I.t(model.message), 'tl-board-status'));
+    dialog.append(action('board.refresh', refresh, busy));
+  }
+  async function refresh() {
+    if (!current || busy) return;
+    const mine = ++ticket, r = current; model = null; render();
+    try {
+      const q = '?mode=' + encodeURIComponent(r.level);
+      const [auth, data] = await Promise.all([request('/api/auth/me'), request('/api/game/leaderboard' + q + '&limit=50')]);
+      const rows = rowsOf(data), user = !auth.unauthorized && auth.user;
+      const me = user ? await request('/api/game/leaderboard/me' + q) : null;
+      if (mine !== ticket || r !== current) return;
+      model = { rows, user, me: me?.entry || me };
+    } catch (_) { if (mine !== ticket || r !== current) return; model = { offline: true }; }
+    render();
+  }
+  async function submit() {
+    if (!current || busy || !model?.user || model.offline || current.uploaded) return;
+    busy = true; const r = current, mine = ticket; render();
+    try {
+      const out = await request('/api/game/leaderboard', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: r.level, score: r.score, plan: r.plan, lang: r.lang }) });
+      if (r !== current || mine !== ticket) return;
+      if (out.unauthorized) { model.user = null; return; }
+      if (out.ok === false) { model.message = 'board.rejected'; return; }
+      r.uploaded = true; busy = false; await refresh();
+    } catch (e) {
+      if (r !== current || mine !== ticket) return;
+      if (e.status >= 400 && e.status < 500) model.message = 'board.rejected'; else model = { offline: true };
+    } finally { if (r === current) { busy = false; render(); } }
+  }
+  function open() {
+    if (!current) return false;
+    if (!dialog) {
+      dialog = element('dialog', undefined, 'tl-board-panel'); dialog.setAttribute('aria-labelledby', 'tl-board-title');
+      dialog.setAttribute('aria-live', 'polite'); document.body.append(dialog);
+      dialog.addEventListener('close', () => { ++ticket; busy = false; button?.focus(); });
+    }
+    render(); if (!dialog.open) dialog.showModal(); refresh(); return true;
+  }
+  function bind(options = {}) { Object.assign(cfg, options); mount(); return API; }
+  function result(detail) { root.dispatchEvent(new CustomEvent('feeder:result', { detail })); }
+  function snapshot(mode, p) {
+    if (mode === 1) return copy({ seed: p.seed, opening: p.opening, moves: p.commands.map(a => ({ time: a.time, id: a.id, cell: a.cell })) });
+    if (![2, 3, 4].includes(mode)) throw new Error('tl-level/1 supports modes 1–4');
+    const initial = mode === 3 ? p.phase1State || p : p;
+    const out = { line: initial.line, stations: initial.stations, trains: initial.trains };
+    if (mode === 3) out.phase2 = p.phase2Actions || [];
+    if (mode === 4) out.sales = (p.sales || []).concat(p.pendingSales || []).map(a => ({ cell: a.cell, use: a.use, year: a.year }));
+    return copy(out);
+  }
+  const API = { bind, result, snapshot, open, refresh, eligible, local, receive };
+  root.TLBoard = API;
+  root.addEventListener('feeder:result', e => receive(e.detail));
+  root.addEventListener('tl:lang', () => { mount(); render(); });
+  if (typeof module !== 'undefined') module.exports = API;
+})(typeof window !== 'undefined' ? window : globalThis);
 
 </script><script>
 (function() {
@@ -1526,7 +1942,7 @@ dialog.intro .row{margin-top:16px}
   function open(){if(!plan.canRun())return;history=[];tool='draw';hover=null;step();play();}
   function rewind(){stop();plan.rewind();lastY=null;render();}
   function result(){
-    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(2,D.map,plan.total,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(2,D.map);
+    const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0,pot=plan.potential();if(window.TLProgress)TLProgress.record(2,D.map,plan.total,[P.target,P.highScore,P.masterScore]);if(window.TL_SAVE)TL_SAVE.clearIf(2,D.map);if(window.TLBoard)TLBoard.result({level:'feeder/m2/'+D.map,score:Math.round(plan.total),plan:TLBoard.snapshot(2,plan),tier});
     $('result').classList.toggle('win',tier>0);$('resultTitle').textContent=t('r.t'+tier);$('resultEn').textContent=['Try again','Cleared','High score','Master'][tier];
     $('resultScore').textContent=t('m.rScore',{d:R(plan.total),y:P.years});
     let h=`<table class="result"><thead><tr><th>${t('m.ryYear')}</th><th>${t('m.ryRiders')}</th><th>${t('m.ryAware')}</th><th>${shortD(0)}</th><th>${shortD(1)}</th><th>${t('m.ryCrowd')}</th></tr></thead><tbody>`;
@@ -1620,7 +2036,7 @@ dialog.intro .row{margin-top:16px}
     cellXY:c=>{const m=board.getScreenCTM(),[x,y]=xy(c);return[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f];}};
 })();
 
-</script><script>
+</script><script>TLBoard.bind({mode:2,container:'#result .row',loginUrl:'/login'});if(window.TL_ACTIVE_PACK)TLPackIntro(window.TL_ACTIVE_PACK);</script><script>
 // v7 mode 2 · AI demo plans, written by bots/v7_metro_grow.js (2026-10-14). Do not edit by hand.
 // level → {tiers, best, pass|high|master: {line, stations, trains, score}}
 (function(root){root.TL_METRO_DEMO={"m2-1":{"tiers":[550,760,900],"best":969,"pass":{"line":[[5,6],[5,5],[5,4],[6,4],[7,4],[8,4],[9,4],[10,4],[11,4],[12,4],[13,4],[13,3],[13,2],[13,1],[12,1],[11,1],[10,1]],"stations":[[5,6],[10,1],[13,4],[7,4]],"trains":2,"score":581},"high":{"line":[[13,4],[12,4],[11,4],[10,4],[9,4],[8,4],[7,4],[6,4],[5,4],[4,4],[3,4],[2,4],[2,3],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2]],"stations":[[13,4],[7,2],[5,4],[2,4]],"trains":3,"score":813},"master":{"line":[[13,4],[13,3],[13,2],[12,2],[11,2],[10,2],[9,2],[8,2],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[6,7],[5,7],[4,7],[3,7],[2,7],[1,7]],"stations":[[1,7],[13,4],[7,2],[5,7]],"trains":3,"score":969}}};})(typeof window!=='undefined'?window:globalThis);
