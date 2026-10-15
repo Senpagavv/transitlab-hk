@@ -6,6 +6,11 @@
 
 ## 2026-10-15
 
+### 22:14 · 交接文档：换电脑、换 AI 接着做 / Handoff
+- **改了什么**：新 `docs/HANDOFF-2026-10-15.md`（项目是什么、先读什么、新电脑怎么跑起来、现在的状态和已知问题、新的分支工作方式、合进 main 前的检查清单）；`docs/for-codex/task-69-handoff-to-github.md`（原电脑的 Codex 把做完 / 做到一半的任务推到 `codex/task-NN` 分支，绝不碰 main）；真浏览器验收脚本收进 `game-feeder/tools/browser-tests/`（附 README）；队列更新。
+- **为什么**：Claude 和原电脑 Codex 的额度快用完，后面的工作换到同学的电脑和 Codex 上，要能从 GitHub 无缝接上。
+- **验证**：交接前 `git status` 干净、本地与 origin/main 一致；不在 git 上的只有 `.env`（密钥）、`frontend/dist`（可构建）、`data/build/basemap/`（可重建，游戏不需要）；脚本扫描无密钥。
+
 ### 15:30 · `0cfc579` 接驳巴士 v7.34：AI 出关卡扩展到第二、四关，第三关道路精简到 10 条以内（Codex 任务 59） / Feeder v7.34: AI levels for modes 2 and 4
 - **改了什么**：新 `shared/levelgen/layout.js`（第二、四关自动排版：按早高峰出行选 5–6 个居住组和 2–3 个去处，摆到约 14×9 格保留东西南北，第四关加 12–15 块空地）、`bot24.js`（第二、四关浏览器机器人，第四关含卖地、一年两块）、`simplify.js`（任务 57 的走廊精简，第三关切完后留 6–10 条）、`generate.js`（浏览器与命令行共用流程，接受沙盘自选范围 `box`）；`worker.js` 按玩法载入对应引擎。`backend/feeder_ai.py` 允许玩法 2/3/4（开发 / 卖地→4、道路 / 塞车→3、只说修地铁→2、拿不准→3；第二、四关出现减路容量会让 AI 重试）；沙盘 AI 卡加「做成：自动 / 第二关 / 第三关 / 第四关」，结果卡写清玩法，按钮用对应玩法打开；离线示例补第二、四关各两个；`bots/v7_levelgen.js --mode N [--batch]`。
 - **为什么**：发起人：AI 只能出第三关；第三关切出来的路太多。
