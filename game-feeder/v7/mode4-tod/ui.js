@@ -105,6 +105,8 @@
   function drawBase(v){
     const y=v.y,placing=!plan.open,ghost=v.mode==='nothing'||v.mode==='today';
     let ground=decor(),want='',lines='',things='',labels='';
+    // a river (the level editor, 2026-10-15): blue cells; with waterBlocksWalk nobody walks across it
+    for(const c of D.water||[]){const [wx,wy]=xy(c);ground+=svg('rect',{x:wx-CS/2,y:wy-CS/2,width:CS,height:CS,fill:C.info,'fill-opacity':D.waterBlocksWalk?.2:.12});}
     D.land.forEach(q=>{const c=q.cell,[cx,cy]=xy(c),sale=plan.allSales().find(s=>same(s.cell,c)),near=!plan.onLine(c)&&!!plan.stationForLand(c);
       if(plan.onLine(c)&&!sale)return;   // the line runs over it: not land to sell any more, so not drawn as such
       ground+=svg('rect',{x:cx-17,y:cy-17,width:34,height:34,rx:3,fill:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.soft,'fill-opacity':sale?0.2:near?0.17:0.08,stroke:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.line2,'stroke-width':sale?2:near?2:1.2,'stroke-dasharray':sale?'':'4 3'});});

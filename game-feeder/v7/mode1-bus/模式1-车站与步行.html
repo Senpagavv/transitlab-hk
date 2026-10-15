@@ -965,6 +965,7 @@ dialog.intro .row{margin-top:16px}
   Object.defineProperty(D,'build',{enumerable:false,value:build});
   // the editor: load its level in place, and read the built-in levels as starting points
   Object.defineProperty(D,'loadEditor',{enumerable:false,value(def){return swap(make('custom',fromEditor(def)));}});
+  Object.defineProperty(D,'fromEditor',{enumerable:false,value:fromEditor});   // the editor's level → a level file's `level` (2026-10-15)
   Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
   if(typeof module!=='undefined') module.exports=D;
   root.TIDE_DATA=D;
@@ -2198,6 +2199,18 @@ dialog.intro .row{margin-top:16px}
   });
   // v4 level editor (editor.html), and the game's side of it
   I18N.add({
+    // the level's facts and the tl-level/1 file (2026-10-15; the same as the editor for modes 2–4)
+    'e1.m1':L('01 車站與步行','01 车站与步行','01 Stations'),'e1.m2':L('02 地鐵','02 地铁','02 Metro'),'e1.m3':L('03 路會塞','03 路会塞','03 Roads'),'e1.m4':L('04 站旁開發','04 站旁开发','04 Development'),
+    'e1.myLevel':L('我的關卡','我的关卡','My level'),
+    'e1.meta':L('關卡資料','关卡资料','About this level'),'e1.key':L('編號','编号','Key'),'e1.order':L('排第幾','排第几','Order'),
+    'e1.keyHint':L('小寫字母、數字和「-」，例如 l5；和現有的一樣＝取代它','小写字母、数字和「-」，例如 l5；和现有的一样＝取代它','Lower-case letters, digits and «-», e.g. l5; the same as an existing one replaces it'),
+    'e1.challenge':L('挑戰關（沒有 AI 示範，上排行榜）','挑战关（没有 AI 示范，上排行榜）','Challenge level (no AI demo, on the leaderboard)'),
+    'e1.tHans':L('標題（簡）','标题（简）','Title (Simplified)'),'e1.tEn':L('標題（英）','标题（英）','Title (English)'),
+    'e1.story':L('開場兩句（玩家一進來先看到）','开场两句（玩家一进来先看到）','Two opening lines (the first thing players read)'),
+    'e1.station':L('在全港地圖上放在哪個站','在全港地图上放在哪个站','Which station it sits at on the Hong Kong map'),
+    'e1.author':L('作者','作者','Author'),'e1.source':L('數字從哪裡來','数字从哪里来','Where the numbers come from'),
+    'e1.exported':L('已導出「{s}」。把它（和其他關卡檔）壓縮成一個 zip 交給發起人。','已导出「{s}」。把它（和其他关卡档）压缩成一个 zip 交给发起人。','Exported «{s}». Zip it (with your other level files) and send it to the organiser.'),
+    'e1.otherMode':L('這是第 {n} 關的關卡檔，請用上面「0{n}」的編輯器打開。','这是第 {n} 关的关卡档，请用上面「0{n}」的编辑器打开。','That file is for mode {n}: open it in the «0{n}» editor above.'),
     'doc.editor':L('TransitLab HK · 關卡編輯器','TransitLab HK · 关卡编辑器','TransitLab HK · Level editor'),
     'ed.brand':L('Level editor · 關卡編輯器','Level editor · 关卡编辑器','Level editor'),
     'ed.lbl':L('Level editor · 關卡編輯器','Level editor · 关卡编辑器','Level editor'),

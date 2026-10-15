@@ -104,6 +104,8 @@
   function drawBase(v){
     const y=v.y,placing=!plan.open,ghost=v.mode==='nothing'||v.mode==='today';
     let ground=decor(),want='',lines='',things='',labels='';
+    // a river (the level editor, 2026-10-15): blue cells; with waterBlocksWalk nobody walks across it
+    for(const c of D.water||[]){const [wx,wy]=xy(c);ground+=svg('rect',{x:wx-CS/2,y:wy-CS/2,width:CS,height:CS,fill:C.info,'fill-opacity':D.waterBlocksWalk?.2:.12});}
     // where people go: faint grey lines (thicker = more), the brown part by metro
     rowsOf(y).forEach(({from,to,x},j)=>{const d=curve(from,to,j),w=1+x.go/7,on=sel===j;
       want+=svg('path',{d,fill:'none',stroke:on?C.ink:C.ink3,'stroke-width':w.toFixed(1),'stroke-opacity':on?.45:.16,'stroke-linecap':'round'});

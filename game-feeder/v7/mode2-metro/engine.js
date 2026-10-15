@@ -26,7 +26,19 @@
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
   const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
   const adj=(a,b)=>walk(a,b)===1;
-  function reset(){for(const k of ['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby','stay'])P[k]=D[k]??({stay:0})[k]??P[k];
+  // rivers (2026-10-15, the level editor): a level with `waterBlocksWalk` walks round its `water` cells (the shortest
+  // way on the grid; a place on the water can be reached, not walked through); cars and the metro still cross. Without
+  // it walking is cells apart, as before — the existing levels do not change.
+  let wetFoot=null;
+  const footReset=()=>{wetFoot=D.waterBlocksWalk&&(D.water||[]).length?{wet:new Set(D.water.map(key)),from:new Map()}:null;};
+  function footCells(a,b){if(!wetFoot)return walk(a,b);const W=D.cols,H=D.rows;let d=wetFoot.from.get(key(a));
+    if(!d){d=new Int16Array(W*H).fill(-1);const q=[a];d[a[1]*W+a[0]]=0;
+      for(let h=0;h<q.length;h++){const c=q[h],v=d[c[1]*W+c[0]];
+        for(const n of [[c[0]+1,c[1]],[c[0]-1,c[1]],[c[0],c[1]+1],[c[0],c[1]-1]]){if(n[0]<0||n[1]<0||n[0]>=W||n[1]>=H||d[n[1]*W+n[0]]>=0)continue;
+          d[n[1]*W+n[0]]=v+1;if(!wetFoot.wet.has(key(n)))q.push(n);}}
+      wetFoot.from.set(key(a),d);}
+    const v=b[0]>=0&&b[1]>=0&&b[0]<W&&b[1]<H?d[b[1]*W+b[0]]:-1;return v>=0?v:99;}
+  function reset(){footReset();for(const k of ['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','nearby','stay'])P[k]=D[k]??({stay:0})[k]??P[k];
     if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];}
   reset();
   // the fastest metro trip from estate i to destination k: the station pair with the fewest blocks (sections that were
@@ -37,14 +49,14 @@
     let b=null;
     order.forEach((a,ia)=>order.forEach((z,iz)=>{if(ia===iz)return;
       const lo=Math.min(a.x,z.x),hi=Math.max(a.x,z.x);let crowd=0;for(let j=lo;j<hi;j++)if(crowdedBefore[j])crowd=P.crowdBlocks;
-      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
+      const wa=footCells(o,a.c),wz=footCells(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
       if(!b||blocks<b.blocks)b={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,crowd,blocks};}));
     return b;
   }
   // by car: the blocks apart + the destination's parking and access (`carExtra`, 2 if not given)
   const carBlocks=(i,k)=>walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2);
   // on foot all the way: the cells apart × walkPer
-  const footBlocks=(i,k)=>P.walkPer*walk(D.origins[i].cell,D.destinations[k].cell);
+  const footBlocks=(i,k)=>P.walkPer*footCells(D.origins[i].cell,D.destinations[k].cell);
   // going on from destination a to destination b, given the blocks between them: pull against «done, home»
   function onward(a,b,blocks){const pull=Math.max(0,D.destinations[b].attraction-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
   // shares of estate i over the destinations and «nearby» (last), given the blocks to each destination
@@ -54,7 +66,7 @@
   function year(line,stations,aware,trains,crowdedBefore=[]){
     // the legs between destinations (a → b): blocks by car, on foot, by metro — the same for everyone
     const pairs=[];if(P.stay>0)D.destinations.forEach((da,a)=>D.destinations.forEach((db,b)=>{if(a===b)return;
-      const dist=walk(da.cell,db.cell),car=dist+(db.carExtra??2),foot=P.walkPer*dist,alt=Math.min(car,foot);
+      const dist=walk(da.cell,db.cell),car=dist+(db.carExtra??2),foot=P.walkPer*footCells(da.cell,db.cell),alt=Math.min(car,foot);
       const trip=stations.length>=2?tripBetween(da.cell,db.cell,line,stations,crowdedBefore):null,save=trip?Math.max(0,alt-trip.blocks):0;
       pairs.push({a,b,k:b,car,foot,alt,byFoot:foot<car,trip,save,tenths:Math.min(10,save),shareNow:onward(a,b,trip?Math.min(alt,trip.blocks):alt).share,shareBefore:onward(a,b,alt).share});}));
     const est=D.origins.map((o,i)=>{
@@ -119,6 +131,6 @@
     // the whole run at once (bots, the «expected» line)
     simulate(){const p=new Plan();Object.assign(p,JSON.parse(JSON.stringify({...this})));p.rewind();while(!p.done)p.runYear();return p;}
   }
-  const API={D,P,Plan,year,spread,metroTrip,tripBetween,onward,carBlocks,footBlocks,split,walk,same,key,adj,reset};
+  const API={D,P,Plan,year,spread,metroTrip,tripBetween,onward,carBlocks,footBlocks,footCells,split,walk,same,key,adj,reset};
   if(typeof module!=='undefined')module.exports=API;root.Metro=API;
 })(typeof window!=='undefined'?window:globalThis);

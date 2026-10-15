@@ -11,6 +11,7 @@ logo = 'data:image/svg+xml;base64,' + base64.b64encode((shared / 'logo-tide.svg'
 def bundle(page, scripts, out):
     s = (p / page).read_text(encoding='utf8')
     s = s.replace('<link rel="stylesheet" href="../shared/style.css">', '<style>' + css + '</style>')
+    s = s.replace('<link rel="stylesheet" href="../editor/editor.css">', '<style>' + (p.parent / 'editor' / 'editor.css').read_text(encoding='utf8') + '</style>')
     s = s.replace('src="../shared/logo-tide.svg"', f'src="{logo}"')
     s = s.replace('href="../index.html', 'href="../开始.html')   # back to the hub: the bundled one
     for f in scripts:
@@ -23,4 +24,4 @@ def bundle(page, scripts, out):
 
 bundle('index.html', ['../shared/flyin.js', '../levels/registry.js', 'data.js', 'engine.js', '../shared/i18n.js', '../shared/nav.js', '../shared/progress.js', '../shared/save.js', '../shared/levelpack.js', '../shared/board.js', 'strings.js', '../shared/tips.js', 'ui.js',
         'demo-plans.js', 'demo.js'], '模式1-车站与步行.html')   # the last two: AI demo (temporary)
-bundle('editor.html', ['data.js', 'engine.js', '../shared/i18n.js', 'strings.js', 'editor.js'], '模式1-关卡编辑器.html')
+bundle('editor.html', ['../levels/registry.js', '../hub/stations.js', 'data.js', 'engine.js', '../shared/i18n.js', 'strings.js', 'editor.js'], '模式1-关卡编辑器.html')

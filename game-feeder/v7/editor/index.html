@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 關卡編輯器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../shared/style.css"><link rel="stylesheet" href="editor.css"></head><body class="entered ed">
+<!-- v7 · the level editor for modes 2–4 (2026-10-15): draw a level, test-play it, let a bot estimate the tiers, export one
+     tl-level/1 file (levels/README.md) to hand in. Mode 1 (stations and walking) has its own editor: mode1-bus/editor.html. -->
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="../shared/logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="e.brand">Level editor · 關卡編輯器</span></div>
+  <div class="seg ee-modes" id="eeModes" role="group" data-i18n-aria="e.modeAria">
+    <a class="btn btn-sm" id="eeMode1" href="../mode1-bus/editor.html" data-i18n="e.m1">01 車站與步行</a>
+    <button data-mode="2" data-i18n="e.m2">02 地鐵</button><button data-mode="3" data-i18n="e.m3">03 路會塞</button><button data-mode="4" data-i18n="e.m4">04 站旁開發</button>
+  </div>
+  <div class="sp"></div>
+  <button class="btn btn-sm" id="eeHelp" data-i18n="e.help">怎麼交關卡</button>
+  <a class="btn btn-sm" id="eeHub" href="../index.html#hub=1" data-i18n="e.hub">← 五個模式</a>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
+</header>
+
+<main id="app" class="eg">
+  <aside class="side scol">
+    <input id="eeTitle" class="ed-in ed-title" maxlength="24">
+    <div class="lbl ed-h" data-i18n="e.tools">工具</div>
+    <div class="seg ed-tools ee-tools" id="eeTools" role="group"></div>
+    <p class="note" id="eeToolHint"></p>
+    <div class="row ed-size"><label><span data-i18n="e.cols">寬</span> <input id="eeCols" class="ed-in mono" type="number" min="6" max="20"></label>
+      <label><span data-i18n="e.rows">高</span> <input id="eeRows" class="ed-in mono" type="number" min="5" max="16"></label></div>
+    <div class="lbl ed-h" data-i18n="e.origins">屋苑</div><div id="eeOrigins"></div>
+    <div class="lbl ed-h" data-i18n="e.dests">去處</div><div id="eeDests"></div>
+    <div id="eeRoadsBox"><div class="lbl ed-h" data-i18n="e.roads">道路</div><div id="eeRoads"></div></div>
+    <div id="eeLinesBox"><div class="lbl ed-h" data-i18n="e.lines">現有港鐵線</div><div id="eeLines"></div></div>
+    <p class="note" id="eeLandCount"></p>
+    <div class="lbl ed-h" data-i18n="e.check">檢查</div>
+    <ul id="eeProblems" class="ed-problems"></ul>
+    <div class="lbl ed-h" data-i18n="e.start">從這裡開始</div>
+    <select id="eeStart" class="ed-in" data-i18n-aria="e.start"></select>
+  </aside>
+
+  <div class="play">
+    <div class="mapplate ed-plate">
+      <svg id="eeBoard" viewBox="0 0 800 560" role="application"></svg>
+      <div class="ed-cell mono" id="eeCell"></div>
+      <div class="ed-toast" id="eeToast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <aside class="side right scol">
+    <div class="row ed-actions"><button class="btn btn-p" id="eePlay" data-i18n="e.play">▶ 試玩</button><button class="btn" id="eeAnalyse" data-i18n="e.analyse">機器人試算</button></div>
+    <div class="row ed-actions"><button class="btn btn-sm" id="eeExport" data-i18n="e.export">導出 .json</button><button class="btn btn-sm" id="eeImport" data-i18n="e.import">導入</button><input type="file" id="eeFile" accept=".json,application/json" hidden></div>
+    <p class="note ee-small" data-i18n="e.playNote"></p>
+    <div id="eeAnalysis" class="box ed-analysis"></div>
+    <div class="lbl ed-h" data-i18n="e.sel">選中的</div>
+    <div id="eeSel" class="ee-sel"></div>
+    <div class="lbl ed-h" data-i18n="e.meta">關卡資料</div>
+    <div class="ee-meta">
+      <div class="ed-grid">
+        <label><span data-i18n="e.key">編號</span><input id="eeKey" class="ed-in mono" maxlength="24" placeholder="m3-5"></label>
+        <label><span data-i18n="e.order">排第幾</span><input id="eeOrder" class="ed-in mono" type="number" min="1" max="20"></label>
+      </div>
+      <p class="note ee-small" data-i18n="e.keyHint"></p>
+      <label class="ee-check"><input type="checkbox" id="eeChallenge"> <span data-i18n="e.challenge">挑戰關</span></label>
+      <label class="ee-f"><span data-i18n="e.tHans">標題（簡）</span><input id="eeTitleHans" class="ed-in" maxlength="24"></label>
+      <label class="ee-f"><span data-i18n="e.tEn">標題（英）</span><input id="eeTitleEn" class="ed-in" maxlength="60"></label>
+      <label class="ee-f"><span data-i18n="e.story">開場兩句</span><textarea id="eeStory0" class="ed-in ee-ta" maxlength="120" rows="2"></textarea><textarea id="eeStory1" class="ed-in ee-ta" maxlength="120" rows="2"></textarea></label>
+      <label class="ee-f"><span data-i18n="e.station">在哪個站</span><input id="eeStation" class="ed-in" list="eeStations" maxlength="20"></label><datalist id="eeStations"></datalist>
+      <div class="ed-grid">
+        <label><span data-i18n="e.author">作者</span><input id="eeAuthor" class="ed-in" maxlength="40"></label>
+        <label><span data-i18n="e.source">數字從哪裡來</span><input id="eeSource" class="ed-in" maxlength="200"></label>
+      </div>
+    </div>
+    <div class="lbl ed-h" data-i18n="e.rules">規則數字</div>
+    <div class="ed-grid" id="eeRules"></div>
+    <div class="lbl ee-sub" data-i18n="e.tiers">門檻</div>
+    <div class="ed-grid three" id="eeTiers"></div>
+    <label class="ee-check" id="eeWaterBox"><input type="checkbox" id="eeWaterBlocks"> <span data-i18n="e.waterBlocks">河擋住走路</span></label>
+    <details class="ee-adv"><summary data-i18n="e.advanced">進階規則</summary><div class="ed-grid" id="eeAdvanced"></div></details>
+  </aside>
+</main>
+<dialog id="eeHelpDlg" class="intro"><span class="lbl">TRANSITLAB · LEVEL EDITOR</span><h2 class="h1" data-i18n="e.help">怎麼交關卡</h2><div class="note" data-i18n-html="e.helpBody"></div><button class="btn btn-p" id="eeHelpOk">OK</button></dialog>
+<script src="../levels/registry.js"></script><script src="../hub/stations.js"></script>
+<script src="../mode2-metro/data.js"></script><script src="../mode2-metro/engine.js"></script>
+<script src="../mode3-roads/data.js"></script><script src="../mode3-roads/engine.js"></script>
+<script src="../mode4-tod/data.js"></script><script src="../mode4-tod/engine.js"></script>
+<script src="../shared/i18n.js"></script><script src="../shared/levelpack.js"></script><script src="strings.js"></script><script src="analyse.js"></script><script src="editor.js"></script></body></html>

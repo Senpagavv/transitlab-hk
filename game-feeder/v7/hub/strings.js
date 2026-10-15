@@ -45,6 +45,7 @@
     'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
     'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
     'hub.first':L('第一版','第一版','First version'),
+    'hub.editor':L('✎ 關卡編輯器','✎ 关卡编辑器','✎ Level editor'),
     'hub.m5live':L('全港數據地圖','全港数据地图','Hong Kong data map'),
     'hub.m5liveP':L('最早那張 TransitLab 地圖：分區人口崗位、實時車流，不帶遊戲','最早那张 TransitLab 地图：分区人口岗位、实时车流，不带游戏','The first TransitLab map: zone people and jobs, live traffic, no game'),
     'hub.m5aP':L('寫一句情境，AI 切出一關，用第三關的玩法玩','写一句情境，AI 切出一关，用第三关的玩法玩','Write one sentence; the AI cuts a level to play with mode 3'),

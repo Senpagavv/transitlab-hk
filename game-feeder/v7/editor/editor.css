@@ -1,0 +1,22 @@
+/* v7 · the level editor for modes 2–4 (2026-10-15); the layout and most pieces come from shared/style.css (.eg, .ed-*),
+   the same as mode 1's editor */
+.ee-modes{margin-left:18px}
+.ee-modes .btn,.ee-modes button{font-size:12px;padding:0 10px;height:28px;display:inline-flex;align-items:center;text-decoration:none;color:var(--s-ink2)}
+.ee-modes a.btn{border:0;background:none;border-radius:0}
+.ee-tools button{min-width:0}
+.ee-row{grid-template-columns:1fr 64px auto;cursor:pointer}
+.ee-row .ed-in[type=number]{width:64px}
+.ee-sel{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+.ee-f{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--s-ink2);margin-bottom:6px}
+.ee-f .ed-in{width:100%;box-sizing:border-box}
+.ee-f input[type=color].ed-in{height:28px;padding:2px}
+.ee-ta{height:auto;padding:6px 8px;line-height:1.5;resize:vertical;margin-bottom:4px}
+.ee-check{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--s-ink2);margin:6px 0}
+.ee-more summary,.ee-adv summary{cursor:pointer;font-size:12px;color:var(--s-ink2);margin:6px 0}
+.ee-adv .ed-grid{margin-top:4px}
+.ee-sub{margin:10px 0 4px}
+.ee-small{font-size:11.5px;margin:2px 0 6px}
+.ee-warn-li{color:var(--s-warn);list-style:'!  '}
+.ee-meta .ed-grid{margin-bottom:6px}
+#eeBoard{touch-action:none}
+.ee-meta .ed-grid .ed-in,.ed-grid label input.ed-in{width:100%;box-sizing:border-box;min-width:0}

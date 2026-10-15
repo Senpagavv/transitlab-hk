@@ -132,6 +132,7 @@
   Object.defineProperty(D,'build',{enumerable:false,value:build});
   // the editor: load its level in place, and read the built-in levels as starting points
   Object.defineProperty(D,'loadEditor',{enumerable:false,value(def){return swap(make('custom',fromEditor(def)));}});
+  Object.defineProperty(D,'fromEditor',{enumerable:false,value:fromEditor});   // the editor's level → a level file's `level` (2026-10-15)
   Object.defineProperty(D,'example',{enumerable:false,value(name){return LEVELS[name]?JSON.parse(JSON.stringify(LEVELS[name])):null;}});
   if(typeof module!=='undefined') module.exports=D;
   root.TIDE_DATA=D;

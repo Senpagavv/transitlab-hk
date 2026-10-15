@@ -99,4 +99,11 @@ test('AI demo plans: each fits the budget, scores what demo-plans.js says and cl
     const s=p.simulate().total;assert.equal(Math.round(s),d.score);assert(s>=L.tiers[j],name);});
   assert.equal(L.master.score,L.best);
 });
+test('a river (the level editor): with waterBlocksWalk walking goes round the water; drawn only, nothing changes',()=>{
+  const M=require('./engine.js'),lv=M.D.example(D.map),wall=[0,1,2,3,4,5].map(y=>[9,y]);
+  M.D.use({...lv,water:wall},'river-drawn');M.reset();assert.equal(M.footCells([2,2],[13,4]),13);
+  M.D.use({...lv,water:wall,waterBlocksWalk:true},'river');M.reset();assert.equal(M.footCells([2,2],[13,4]),17,'round the end of the river');
+  M.D.use({...lv,water:[...wall,[9,6],[9,7],[9,8]],waterBlocksWalk:true},'river-across');M.reset();assert(M.footCells([2,2],[13,4])>=99,'no way across on foot');
+  M.D.select('m2-1');M.reset();assert.equal(M.footCells([2,2],[13,4]),13,'back to the level: as before');
+});
 console.log(`\n${passed} checks passed`);

@@ -639,7 +639,8 @@ dialog.intro .row{margin-top:16px}
 <style>
   /* v7 hub: v3's cover and dot map (shared/style.css has its styles); levels locked until the one before is passed */
   .hub-panel .lv.locked{opacity:.55}
-  .hub-panel a.lv{text-decoration:none;color:var(--s-ink)}.hub-panel a.lv .lv-m{text-decoration:none}
+  .hub-panel a.lv{text-decoration:none;color:var(--s-ink)}
+  .hub-editor{text-decoration:none;color:var(--s-ink2);margin-right:8px}.hub-panel a.lv .lv-m{text-decoration:none}
   .hub-panel .lv.locked .lv-m{color:var(--s-ink3)}
   /* the level's page opens after the board is built: fade to paper */
   body::after{content:'';position:fixed;inset:0;background:var(--s-paper);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200}
@@ -648,6 +649,7 @@ dialog.intro .row{margin-top:16px}
 <header id="topbar">
   <div class="brand"><img class="brandlogo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRyYW5zaXRMYWIgSEsg4oCUIEdyZWVuIEdlbnJlIOe2oOiJsua9ruaxkOaomeiqjCI+DQogIDx0aXRsZT5UcmFuc2l0TGFiIEhLIOKAlCBHcmVlbiBHZW5yZSDntqDoibLmva7msZDmqJnoqow8L3RpdGxlPg0KICA8cmVjdCB3aWR0aD0nNDAnIGhlaWdodD0nNDAnIGZpbGw9JyMwZDMwMjQnLz48ZyBmaWxsPScjZjJlZmUzJz48cmVjdCB4PScyNCcgeT0nNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjxyZWN0IHg9JzIyJyB5PSc2JyB3aWR0aD0nMTInIGhlaWdodD0nOCcvPjxyZWN0IHg9JzI0JyB5PScxNCcgd2lkdGg9JzgnIGhlaWdodD0nMicvPjwvZz48ZyBmaWxsPScjNmNjNzliJz48cmVjdCB4PScwJyB5PScyMicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PScxMCcgeT0nMjQnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMjAnIHk9JzI2JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzMwJyB5PScyOCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+PGcgZmlsbD0nIzNmOGY2Myc+PHJlY3QgeD0nMCcgeT0nMjYnIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PHJlY3QgeD0nMTAnIHk9JzI4JyB3aWR0aD0nMTAnIGhlaWdodD0nNCcvPjxyZWN0IHg9JzIwJyB5PSczMCcgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48cmVjdCB4PSczMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc0Jy8+PC9nPjxnIGZpbGw9JyMxZjUzNDAnPjxyZWN0IHg9JzAnIHk9JzMwJyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnLz48cmVjdCB4PScxMCcgeT0nMzInIHdpZHRoPScxMCcgaGVpZ2h0PSc4Jy8+PHJlY3QgeD0nMjAnIHk9JzM0JyB3aWR0aD0nMTAnIGhlaWdodD0nNicvPjxyZWN0IHg9JzMwJyB5PSczNicgd2lkdGg9JzEwJyBoZWlnaHQ9JzQnLz48L2c+DQo8L3N2Zz4NCg==" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · 交通遊戲 · 五個模式</span></div>
   <div class="sp"></div>
+  <a class="btn btn-sm hub-editor" id="hubEditor" href="editor/关卡编辑器.html" data-i18n="hub.editor">✎ 關卡編輯器</a>
   <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
   <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
 </header>
@@ -843,6 +845,7 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
     'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
     'hub.first':L('第一版','第一版','First version'),
+    'hub.editor':L('✎ 關卡編輯器','✎ 关卡编辑器','✎ Level editor'),
     'hub.m5live':L('全港數據地圖','全港数据地图','Hong Kong data map'),
     'hub.m5liveP':L('最早那張 TransitLab 地圖：分區人口崗位、實時車流，不帶遊戲','最早那张 TransitLab 地图：分区人口岗位、实时车流，不带游戏','The first TransitLab map: zone people and jobs, live traffic, no game'),
     'hub.m5aP':L('寫一句情境，AI 切出一關，用第三關的玩法玩','写一句情境，AI 切出一关，用第三关的玩法玩','Write one sentence; the AI cuts a level to play with mode 3'),

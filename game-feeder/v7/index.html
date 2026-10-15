@@ -6,7 +6,8 @@
 <style>
   /* v7 hub: v3's cover and dot map (shared/style.css has its styles); levels locked until the one before is passed */
   .hub-panel .lv.locked{opacity:.55}
-  .hub-panel a.lv{text-decoration:none;color:var(--s-ink)}.hub-panel a.lv .lv-m{text-decoration:none}
+  .hub-panel a.lv{text-decoration:none;color:var(--s-ink)}
+  .hub-editor{text-decoration:none;color:var(--s-ink2);margin-right:8px}.hub-panel a.lv .lv-m{text-decoration:none}
   .hub-panel .lv.locked .lv-m{color:var(--s-ink3)}
   /* the level's page opens after the board is built: fade to paper */
   body::after{content:'';position:fixed;inset:0;background:var(--s-paper);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200}
@@ -15,6 +16,7 @@
 <header id="topbar">
   <div class="brand"><img class="brandlogo" src="shared/logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · 交通遊戲 · 五個模式</span></div>
   <div class="sp"></div>
+  <a class="btn btn-sm hub-editor" id="hubEditor" href="editor/index.html" data-i18n="hub.editor">✎ 關卡編輯器</a>
   <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div>
   <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
 </header>

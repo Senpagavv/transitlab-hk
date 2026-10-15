@@ -913,7 +913,19 @@ dialog.intro .row{margin-top:16px}
     target:0,highScore:0,masterScore:0};
   const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1];
   const walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]),adj=(a,b)=>walk(a,b)===1;
-  function reset(){
+  // rivers (2026-10-15, the level editor): a level with `waterBlocksWalk` walks round its `water` cells (the shortest
+  // way on the grid; a place on the water can be reached, not walked through); cars and the metro still cross. Without
+  // it walking is cells apart, as before — the existing levels do not change.
+  let wetFoot=null;
+  const footReset=()=>{wetFoot=D.waterBlocksWalk&&(D.water||[]).length?{wet:new Set(D.water.map(key)),from:new Map()}:null;};
+  function footCells(a,b){if(!wetFoot)return walk(a,b);const W=D.cols,H=D.rows;let d=wetFoot.from.get(key(a));
+    if(!d){d=new Int16Array(W*H).fill(-1);const q=[a];d[a[1]*W+a[0]]=0;
+      for(let h=0;h<q.length;h++){const c=q[h],v=d[c[1]*W+c[0]];
+        for(const n of [[c[0]+1,c[1]],[c[0]-1,c[1]],[c[0],c[1]+1],[c[0],c[1]-1]]){if(n[0]<0||n[1]<0||n[0]>=W||n[1]>=H||d[n[1]*W+n[0]]>=0)continue;
+          d[n[1]*W+n[0]]=v+1;if(!wetFoot.wet.has(key(n)))q.push(n);}}
+      wetFoot.from.set(key(a),d);}
+    const v=b[0]>=0&&b[1]>=0&&b[0]<W&&b[1]<H?d[b[1]*W+b[0]]:-1;return v>=0?v:99;}
+  function reset(){footReset();
     for(const k of ['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','years','crowdBlocks','learn','nearby','stay','homePeople','shopBase','shopPer','carExtra','homeRate','shopRate'])P[k]=D[k]??P[k];
     if(D.aware)P.aware={...P.aware,...D.aware};
     [P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];
@@ -939,14 +951,14 @@ dialog.intro .row{margin-top:16px}
     order.forEach((a,ia)=>order.forEach((z,iz)=>{
       if(ia===iz)return;const lo=Math.min(a.x,z.x),hi=Math.max(a.x,z.x);let crowd=0;
       for(let j=lo;j<hi;j++)crowd=Math.max(crowd,+crowdedBefore[j]||0);
-      const wa=walk(o,a.c),wz=walk(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
+      const wa=footCells(o,a.c),wz=footCells(z.c,d),pass=Math.abs(iz-ia)-1,blocks=P.walkPer*(wa+wz)+P.wait+pass+crowd;
       if(!best||blocks<best.blocks)best={from:a.c,to:z.c,fx:a.x,tx:z.x,walkA:wa,pass,walkB:wz,crowd,blocks};
     }));
     return best;
   }
   const metroTrip=(i,k,line,stations,crowdedBefore=[])=>tripBetween(D.origins[i].cell,D.destinations[k].cell,line,stations,crowdedBefore);
   const carBlocks=(i,k)=>walk(D.origins[i].cell,D.destinations[k].cell)+(D.destinations[k].carExtra??2);
-  const footBlocks=(i,k)=>P.walkPer*walk(D.origins[i].cell,D.destinations[k].cell);
+  const footBlocks=(i,k)=>P.walkPer*footCells(D.origins[i].cell,D.destinations[k].cell);
   function onward(a,b,blocks,destinations=D.destinations){const pull=Math.max(0,destinations[b].attraction-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
   function split(i,blocks,destinations=D.destinations){
     const pulls=destinations.map((d,k)=>Math.max(0,d.attraction-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;
@@ -955,13 +967,13 @@ dialog.intro .row{margin-top:16px}
   function year(line,stations,aware,trains,crowdedBefore=[],sales=[]){
     const origins=originsFor(sales),destinations=destinationsFor(sales),known=awareFor(origins,aware),pairs=[];
     if(P.stay>0)destinations.forEach((da,a)=>destinations.forEach((db,b)=>{
-      if(a===b)return;const dist=walk(da.cell,db.cell),car=dist+(db.carExtra??2),foot=P.walkPer*dist,alt=Math.min(car,foot);
+      if(a===b)return;const dist=walk(da.cell,db.cell),car=dist+(db.carExtra??2),foot=P.walkPer*footCells(da.cell,db.cell),alt=Math.min(car,foot);
       const trip=stations.length>=2?tripBetween(da.cell,db.cell,line,stations,crowdedBefore):null,save=trip?Math.max(0,alt-trip.blocks):0;
       pairs.push({a,b,k:b,car,foot,alt,byFoot:foot<car,trip,save,tenths:Math.min(10,save),
         shareNow:onward(a,b,trip?Math.min(alt,trip.blocks):alt,destinations).share,shareBefore:onward(a,b,alt,destinations).share});
     }));
     const est=origins.map((o,i)=>{
-      const car=destinations.map(d=>walk(o.cell,d.cell)+(d.carExtra??2)),foot=destinations.map(d=>P.walkPer*walk(o.cell,d.cell)),alt=car.map((c,k)=>Math.min(c,foot[k]));
+      const car=destinations.map(d=>walk(o.cell,d.cell)+(d.carExtra??2)),foot=destinations.map(d=>P.walkPer*footCells(o.cell,d.cell)),alt=car.map((c,k)=>Math.min(c,foot[k]));
       const trip=destinations.map(d=>stations.length>=2?tripBetween(o.cell,d.cell,line,stations,crowdedBefore):null),fast=alt.map((b,k)=>trip[k]?Math.min(b,trip[k].blocks):b);
       const before=split(i,alt,destinations),now=split(i,fast,destinations),a=known[i],n=o.people;
       const to=destinations.map((d,k)=>{
@@ -995,7 +1007,7 @@ dialog.intro .row{margin-top:16px}
     const sales=plan.allSales(),station=stationInfo?stationInfo.s:landStation(plan.stations,plan.line,cell)?.s;if(!station)return{ok:false,price:0,visitors:0};
     if(use==='home'){
       const ds=destinationsFor(sales);let value=0;
-      for(const d of ds){const dist=walk(cell,d.cell),car=dist+(d.carExtra??2),foot=P.walkPer*dist;let fastest=Math.min(car,foot);
+      for(const d of ds){const dist=walk(cell,d.cell),car=dist+(d.carExtra??2),foot=P.walkPer*footCells(cell,d.cell);let fastest=Math.min(car,foot);
         if(plan.stations.length>=2){const mt=tripBetween(cell,d.cell,plan.line,plan.stations,plan.crowded);if(mt)fastest=Math.min(fastest,mt.blocks);}
         value+=Math.max(0,d.attraction-fastest);}
       return{ok:true,price:P.homeRate*value,visitors:0};
@@ -1064,7 +1076,7 @@ dialog.intro .row{margin-top:16px}
       return p;
     }
   }
-  const API={D,P,Plan,year,spread,metroTrip,tripBetween,onward,carBlocks,footBlocks,split,walk,same,key,adj,originsFor,destinationsFor,landQuote,landStation,reset};
+  const API={D,P,Plan,year,spread,metroTrip,tripBetween,onward,carBlocks,footBlocks,footCells,split,walk,same,key,adj,originsFor,destinationsFor,landQuote,landStation,reset};
   if(typeof module!=='undefined')module.exports=API;
   root.TOD=API;
 })(typeof window!=='undefined'?window:globalThis);
@@ -2013,6 +2025,8 @@ dialog.intro .row{margin-top:16px}
   function drawBase(v){
     const y=v.y,placing=!plan.open,ghost=v.mode==='nothing'||v.mode==='today';
     let ground=decor(),want='',lines='',things='',labels='';
+    // a river (the level editor, 2026-10-15): blue cells; with waterBlocksWalk nobody walks across it
+    for(const c of D.water||[]){const [wx,wy]=xy(c);ground+=svg('rect',{x:wx-CS/2,y:wy-CS/2,width:CS,height:CS,fill:C.info,'fill-opacity':D.waterBlocksWalk?.2:.12});}
     D.land.forEach(q=>{const c=q.cell,[cx,cy]=xy(c),sale=plan.allSales().find(s=>same(s.cell,c)),near=!plan.onLine(c)&&!!plan.stationForLand(c);
       if(plan.onLine(c)&&!sale)return;   // the line runs over it: not land to sell any more, so not drawn as such
       ground+=svg('rect',{x:cx-17,y:cy-17,width:34,height:34,rx:3,fill:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.soft,'fill-opacity':sale?0.2:near?0.17:0.08,stroke:sale?(sale.use==='home'?C.info:C.warn):near?C.accent:C.line2,'stroke-width':sale?2:near?2:1.2,'stroke-dasharray':sale?'':'4 3'});});

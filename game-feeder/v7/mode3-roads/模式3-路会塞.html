@@ -928,6 +928,18 @@ const D=typeof module!=='undefined'?require('./data.js'):root.ROADS_DATA;
 const P={walkPer:2,wait:2,lineCost:1,stationCost:3,trainCost:4,perTrain:40,budget:20,phase2Budget:12,years:8,crowdBlocks:4,aware:{start:.2,spread:2},nearby:10,stay:40,learn:.5,target:0,highScore:0,masterScore:0};
 const NUM=['walkPer','wait','lineCost','stationCost','trainCost','perTrain','budget','phase2Budget','years','crowdBlocks','nearby','stay','learn'];
 const key=c=>c.join(','),same=(a,b)=>a&&b&&a[0]===b[0]&&a[1]===b[1],walk=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]),adj=(a,b)=>walk(a,b)===1;
+// rivers (2026-10-15, the level editor): a level with `waterBlocksWalk` walks round its `water` cells (the shortest
+// way on the grid; a place on the water can be reached, not walked through); cars and the metro still cross. Without
+// it walking is cells apart, as before — the existing levels do not change.
+let wetFoot=null;
+const footReset=()=>{wetFoot=D.waterBlocksWalk&&(D.water||[]).length?{wet:new Set(D.water.map(key)),from:new Map()}:null;};
+function footCells(a,b){if(!wetFoot)return walk(a,b);const W=D.cols,H=D.rows;let d=wetFoot.from.get(key(a));
+  if(!d){d=new Int16Array(W*H).fill(-1);const q=[a];d[a[1]*W+a[0]]=0;
+    for(let h=0;h<q.length;h++){const c=q[h],v=d[c[1]*W+c[0]];
+      for(const n of [[c[0]+1,c[1]],[c[0]-1,c[1]],[c[0],c[1]+1],[c[0],c[1]-1]]){if(n[0]<0||n[1]<0||n[0]>=W||n[1]>=H||d[n[1]*W+n[0]]>=0)continue;
+        d[n[1]*W+n[0]]=v+1;if(!wetFoot.wet.has(key(n)))q.push(n);}}
+    wetFoot.from.set(key(a),d);}
+  const v=b[0]>=0&&b[1]>=0&&b[0]<W&&b[1]<H?d[b[1]*W+b[0]]:-1;return v>=0?v:99;}
 function valueAt(o,f,t){const pts=[[0,Number(o[f]||0)],...(o.grow||[])].sort((a,b)=>a[0]-b[0]);if(t<=pts[0][0])return pts[0][1];
  for(let j=1;j<pts.length;j++){const a=pts[j-1],b=pts[j];if(t<=b[0])return a[1]+(b[1]-a[1])*(t-a[0])/(b[0]-a[0]);}return pts.at(-1)[1];}
 const peopleAt=(i,t)=>valueAt(D.origins[i],'people',t),attractionAt=(k,t)=>valueAt(D.destinations[k],'attraction',t);
@@ -944,16 +956,16 @@ function network(extra){const lines=[...G.lines,...(extra&&extra.stations.length
  lines.forEach((l,li)=>l.stations.map(s=>({cell:s,idx:l.cells.findIndex(c=>same(c,s))})).filter(s=>s.idx>=0).sort((a,b)=>a.idx-b.idx).forEach(s=>nodes.push({li,idx:s.idx,cell:s.cell,out:[]})));
  nodes.forEach((n,i)=>nodes.forEach((m,j)=>{if(i===j)return;if(n.li===m.li){const own=nodes.filter(x=>x.li===n.li);if(Math.abs(own.indexOf(n)-own.indexOf(m))===1)n.out.push({to:j,cost:1,ride:true});}else if(walk(n.cell,m.cell)<=1)n.out.push({to:j,cost:P.walkPer*walk(n.cell,m.cell)+P.wait-1,ride:false});}));return{lines,nodes};}
 function metroTrip(net,o,d,crowded){const N=net.nodes.length;if(!N)return null;const dist=[Array(N).fill(Infinity),Array(N).fill(Infinity)],prev=[Array(N).fill(null),Array(N).fill(null)],done=[Array(N).fill(false),Array(N).fill(false)];
- net.nodes.forEach((n,i)=>dist[0][i]=P.walkPer*walk(o,n.cell)+P.wait-1);for(;;){let bi=-1,bf=0,bv=Infinity;for(let f=0;f<2;f++)for(let i=0;i<N;i++)if(!done[f][i]&&dist[f][i]<bv){bi=i;bf=f;bv=dist[f][i];}if(bi<0)break;done[bf][bi]=true;
+ net.nodes.forEach((n,i)=>dist[0][i]=P.walkPer*footCells(o,n.cell)+P.wait-1);for(;;){let bi=-1,bf=0,bv=Infinity;for(let f=0;f<2;f++)for(let i=0;i<N;i++)if(!done[f][i]&&dist[f][i]<bv){bi=i;bf=f;bv=dist[f][i];}if(bi<0)break;done[bf][bi]=true;
  for(const e of net.nodes[bi].out){if(!e.ride&&bf===0)continue;const v=bv+e.cost;if(v<dist[1][e.to]){dist[1][e.to]=v;prev[1][e.to]={i:bi,f:bf};}}}
- let best=null;net.nodes.forEach((n,i)=>{const v=dist[1][i]+P.walkPer*walk(n.cell,d);if(v<Infinity&&(!best||v<best.v))best={i,v};});if(!best)return null;
+ let best=null;net.nodes.forEach((n,i)=>{const v=dist[1][i]+P.walkPer*footCells(n.cell,d);if(v<Infinity&&(!best||v<best.v))best={i,v};});if(!best)return null;
  const path=[];let s={i:best.i,f:1};while(s){path.unshift(s.i);s=prev[s.f][s.i];}const legs=[];for(let j=1;j<path.length;j++){const a=net.nodes[path[j-1]],b=net.nodes[path[j]];if(a.li!==b.li)continue;const last=legs.at(-1);if(last&&last.li===a.li&&last.to===a.idx)last.to=b.idx;else legs.push({li:a.li,from:a.idx,to:b.idx});}
  let crowd=0;for(const l of legs){const n=net.lines[l.li].name;for(let j=Math.min(l.from,l.to);j<Math.max(l.from,l.to);j++)crowd=Math.max(crowd,(crowded&&crowded[n]&&crowded[n][j])||0);}
- const first=net.nodes[path[0]],last=net.nodes[path.at(-1)];return{blocks:best.v+crowd,crowd,legs,from:first.cell,to:last.cell,walkA:walk(o,first.cell),walkB:walk(last.cell,d),changes:legs.length-1,usesNew:legs.some(l=>net.lines[l.li].isNew),lines:legs.map(l=>net.lines[l.li].name)};}
+ const first=net.nodes[path[0]],last=net.nodes[path.at(-1)];return{blocks:best.v+crowd,crowd,legs,from:first.cell,to:last.cell,walkA:footCells(o,first.cell),walkB:footCells(last.cell,d),changes:legs.length-1,usesNew:legs.some(l=>net.lines[l.li].isNew),lines:legs.map(l=>net.lines[l.li].name)};}
 const carExtra=k=>D.destinations[k].carExtra??2,carBlocks=(r,k,p)=>r.local+r.sections.reduce((s,id)=>s+1+p[id],0)+carExtra(k);
 function split(blocks,t){const pulls=D.destinations.map((d,k)=>Math.max(0,attractionAt(k,t)-blocks[k])),all=pulls.reduce((a,b)=>a+b,0)+P.nearby;return{pulls,shares:pulls.map(x=>x/all),nearby:P.nearby/all};}
 function onward(b,blocks,t){const pull=Math.max(0,attractionAt(b,t)-blocks);return{pull,share:pull+P.stay>0?pull/(pull+P.stay):0};}
-function legOf(route,k,from,to,old,neu,per,crowd){const car=carBlocks(route,k,per),foot=P.walkPer*walk(from,to),alt=Math.min(car,foot),tOld=metroTrip(old,from,to,crowd),tNew=neu?metroTrip(neu,from,to,crowd):tOld,
+function legOf(route,k,from,to,old,neu,per,crowd){const car=carBlocks(route,k,per),foot=P.walkPer*footCells(from,to),alt=Math.min(car,foot),tOld=metroTrip(old,from,to,crowd),tNew=neu?metroTrip(neu,from,to,crowd):tOld,
  mo=tOld?tOld.blocks:Infinity,mn=tNew?tNew.blocks:Infinity,saveOld=Math.max(0,alt-mo),saveNew=Math.max(0,alt-mn);
  return{car,foot,alt,byFoot:foot<car,walkTenths:Math.min(10,Math.max(0,car-foot)),route,tOld,tNew,trip:tNew,fastOld:Math.min(alt,mo),fastNew:Math.min(alt,mn),tenthsOld:Math.min(10,saveOld),tenthsNew:Math.min(10,saveNew),save:saveNew,tenths:Math.min(10,saveNew)};}
 function yearCore(plan,aware,per,crowded,t){const extraLine=plan&&plan.stations.length>=2?{name:'new',isNew:true,cells:plan.line,stations:plan.stations,trains:plan.trains}:null,old=G.netOld,neu=extraLine?network(extraLine):null,nets=neu||old;
@@ -978,7 +990,7 @@ function year(plan,aware,per,crowded,t=0,accounting=false){const y=yearCore(plan
  y.offRoadTotal=y.offRoad.reduce((s,n)=>s+Math.max(0,n),0);y.offRoadNet=y.offRoad.reduce((s,n)=>s+n,0);y.reboundTotal=y.rebound.reduce((s,n)=>s+n,0);y.noLineRoadLoad=noLine.roadLoad;y.frozenRoadLoad=frozen.roadLoad;return y;}
 const spread=(y,a)=>y.est.map((e,i)=>Math.min(1,a[i]+Math.min(1,P.aware.spread*e.share)*(1-a[i]))),learnFrom=(p,y)=>p.map((v,i)=>v+P.learn*(y.extra[i]-v));
 const learnCrowd=(felt,y)=>{const out={};for(const l of y.lines){const was=felt[l.name]||[];out[l.name]=l.crowded.map((c,j)=>(was[j]||0)+P.learn*((c?P.crowdBlocks:0)-(was[j]||0)));}return out;};
-function reset(){for(const k of NUM)if(D[k]!==undefined)P[k]=D[k];if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];buildRoads();
+function reset(){footReset();for(const k of NUM)if(D[k]!==undefined)P[k]=D[k];if(D.aware)P.aware={...P.aware,...D.aware};[P.target,P.highScore,P.masterScore]=D.tiers||[0,0,0];buildRoads();
  G.carOD=D.origins.map(o=>D.destinations.map(d=>carRoute(o.cell,d.cell)));G.carDD=D.destinations.map(a=>D.destinations.map(b=>carRoute(a.cell,b.cell)));
  G.lines=(D.lines||[]).map(l=>({name:l.name,hans:l.hans,color:l.color,cells:expand(l.via),stations:l.stations,names:l.names,namesHans:l.namesHans,trains:l.trains}));G.netOld=network(null);G.base=null;
  let per=G.sections.map(()=>0),crowd={},y=null,zero=D.origins.map(()=>0);for(let it=0;it<300;it++){y=yearCore(null,zero,per,crowd,0);const next=learnFrom(per,y),gap=Math.max(0,...next.map((v,j)=>Math.abs(v-per[j])));per=next;crowd=learnCrowd(crowd,y);if(gap<1e-6&&it>20)break;}
@@ -1013,7 +1025,7 @@ class Plan{
  if(p.phase===2){for(const a of actions){if(a.type==='extend')p.extend(a.cell);else if(a.type==='station')p.toggleStation(a.cell);else if(a.type==='train')p.addTrain();}p.continuePhase2();}while(!p.done)if(!p.runYear())break;return p;}
 }
 reset();
-const API={D,P,G,Plan,year,spread,learnFrom,learnCrowd,metroTrip,network,carRoute,carBlocks,split,onward,expand,walk,same,key,adj,reset,valueAt,peopleAt,attractionAt};
+const API={D,P,G,Plan,year,spread,learnFrom,learnCrowd,metroTrip,network,carRoute,carBlocks,split,onward,expand,walk,footCells,same,key,adj,reset,valueAt,peopleAt,attractionAt};
 if(typeof module!=='undefined')module.exports=API;root.Roads=API;
 })(typeof window!=='undefined'?window:globalThis);
 

@@ -12,11 +12,14 @@
   const here=decodeURIComponent(location.pathname.split('/').pop()||'');
   const GAME=here==='模式1-关卡编辑器.html'?'模式1-车站与步行.html':'index.html';
   $('edToGame').href=GAME;
+  if(here==='关卡编辑器.html'||here==='模式1-关卡编辑器.html')for(const n of [2,3,4])$('edOther'+n).href='../editor/'+encodeURIComponent('关卡编辑器.html')+'#mode='+n;
 
   /* ------------------------------------------------------------------ the level */
   function blank(){return{v:4,title:'',cols:12,rows:8,roads:[],waterCells:[],hub:null,candidates:[],estates:[],
     rounds:4,hold:1,phases:[],firstWave:20,interval:120,release:110,headway:[40,4],seats:8,queue:8,cool:20,moves:1,
-    patience:210,willing:[100,90,80,70,60,50,40],tiers:[0,0,0]};}
+    patience:210,willing:[100,90,80,70,60,50,40],tiers:[0,0,0],meta:blankMeta()};}
+  // the level's facts for the tl-level/1 file (levels/README.md), as in the editor for modes 2–4 (2026-10-15)
+  function blankMeta(){return{key:'',order:2,challenge:false,titleHans:'',titleEn:'',story:['',''],station:'',author:'',source:''};}
   // a built-in level as an editor level
   function fromLevel(L,title){
     const water=[];for(const [x1,y1,x2,y2] of L.water||[])for(let x=x1;x<=x2;x++)for(let y=y1;y<=y2;y++)water.push([x,y]);
@@ -123,6 +126,8 @@
     document.title=t('doc.editor');
     drawBoard();
     num('edTitle',lv.title);$('edTitle').placeholder=t('ed.titlePh');num('edCols',lv.cols);num('edRows',lv.rows);
+    {const M=lv.meta||blankMeta();num('edKey',M.key);num('edOrder',M.order);$('edChallenge').checked=!!M.challenge;num('edTitleHans',M.titleHans);num('edTitleEn',M.titleEn);
+      num('edStory0',M.story[0]||'');num('edStory1',M.story[1]||'');num('edStation',M.station);num('edAuthor',M.author);num('edSource',M.source);}
     document.querySelectorAll('#edTools [data-tool]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tool===tool)));
     $('edToolHint').textContent=t('ed.t.'+tool);
     $('edCell').textContent=cellInfo(hover);
@@ -284,19 +289,40 @@
     try{localStorage.setItem(LEVEL,JSON.stringify(level));}catch(e){}
     const code=encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(level)))));
     window.open(`${encodeURIComponent(GAME)}#map=custom&lv=${code}`,'_blank');};
-  $('edExport').onclick=()=>{const blob=new Blob([JSON.stringify({level:toLevel(lv),editor:lv},null,1)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`TransitLab-level-${(lv.title||'draft').replace(/[^\w一-鿿-]+/g,'_')}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
+  // the file to hand in: tl-level/1, `level` as the game keeps it (data.js fromEditor), the editor's own state alongside
+  function levelFile(){const M=lv.meta=lv.meta||blankMeta();if(!M.key){M.key='m1-new-'+Math.random().toString(36).slice(2,6);save();render();}   // a key the checks accept
+    const hant=lv.title.trim()||t('e1.myLevel'),level=D.fromEditor(toLevel(lv));delete level.tiersGuess;delete level.v;
+    level.title=hant;level.story=M.story.map(x=>x.trim()).filter(Boolean);
+    return{format:'tl-level/1',mode:1,key:M.key||'',order:M.order||2,challenge:!!M.challenge,title:{'zh-Hant':hant,'zh-Hans':M.titleHans.trim()||hant,en:M.titleEn.trim()||hant},
+      story:level.story,hub:M.station?{station:M.station}:{},author:M.author||'',source:M.source||'level editor (TransitLab v7)',level,editor:lv};}
+  $('edExport').onclick=()=>{const f=levelFile(),name=(f.key||'l-'+f.title['zh-Hant'].replace(/[^\w一-鿿-]+/g,'_'))+'.json';
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(f,null,1)+'\n'],{type:'application/json'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);flash(t('e1.exported',{s:name}));};
   $('edImport').onclick=()=>$('edFile').click();
   $('edFile').onchange=async()=>{const f=$('edFile').files[0];if(!f)return;
-    try{const j=JSON.parse(await f.text());lv=j.editor?{...blank(),...j.editor}:fromLevel(j.level||j,j.title||'');selEstate=-1;changed();flash(t('ed.imported',{s:f.name}));}
+    try{const j=JSON.parse(await f.text());
+      if(j.format==='tl-level/1'&&j.mode!==1){flash(t('e1.otherMode',{n:j.mode}));$('edFile').value='';return;}
+      const hant=j.title&&typeof j.title==='object'?j.title['zh-Hant']:j.title||'';
+      lv=j.editor?{...blank(),...j.editor}:fromLevel(j.level||j,hant||'');
+      if(j.format==='tl-level/1')lv.meta={...blankMeta(),...(lv.meta||{}),key:j.key||'',order:j.order||2,challenge:!!j.challenge,titleHans:(j.title&&j.title['zh-Hans'])||'',titleEn:(j.title&&j.title.en)||'',
+        story:(j.story||[]).map(x=>typeof x==='string'?x:x['zh-Hant']||'').concat(['','']).slice(0,2),station:(j.hub&&j.hub.station)||'',author:j.author||'',source:typeof j.source==='string'?j.source:''};
+      selEstate=-1;changed();flash(t('ed.imported',{s:f.name}));}
     catch(e){flash(t('ed.badFile'));}$('edFile').value='';};
   $('edExample').onchange=e=>{const v=e.target.value;e.target.value='';if(!v)return;
-    if(v==='blank')lv=blank();else lv=fromLevel(D.example(v),t('site.'+v));selEstate=-1;changed();};
+    if(v==='blank')lv=blank();else{const e=window.TL_LEVELS&&TL_LEVELS.get(1,v);lv=fromLevel(D.example(v),e&&!e.builtin&&e.title?e.title['zh-Hant']||'':t('site.'+v));}
+    selEstate=-1;changed();};
+  // level files of this mode (levels/m1/*.json) as starting points too; the stations for «which station»
+  for(const e of (window.TL_LEVELS?TL_LEVELS.mode(1):[]))if(!e.builtin&&e.level){const o=document.createElement('option');o.value=e.key;o.textContent=e.order+' · '+(e.title['zh-Hant']||e.key);$('edExample').append(o);}
+  $('edStations').innerHTML=Object.keys(window.TL_STATIONS||{}).filter(x=>/[\u3400-\u9fff]/.test(x)).map(x=>`<option value="${esc(x)}">`).join('');
+  const metaField=(id,f,fn=v=>v)=>$(id).addEventListener('input',()=>{lv.meta=lv.meta||blankMeta();lv.meta[f]=fn($(id).value);save();});
+  metaField('edKey','key',v=>v.trim().toLowerCase());metaField('edOrder','order',v=>Math.max(1,Math.round(+v||1)));metaField('edTitleHans','titleHans');metaField('edTitleEn','titleEn');
+  metaField('edStation','station',v=>v.trim());metaField('edAuthor','author');metaField('edSource','source');
+  for(const j of [0,1])$('edStory'+j).addEventListener('input',()=>{lv.meta=lv.meta||blankMeta();lv.meta.story[j]=$('edStory'+j).value;save();});
+  $('edChallenge').onchange=()=>{lv.meta=lv.meta||blankMeta();lv.meta.challenge=$('edChallenge').checked;save();};
   window.addEventListener('tl:lang',render);
   function setTheme(th){document.documentElement.setAttribute('data-theme',th);$('thPaper').setAttribute('aria-pressed',String(th==='light'));$('thInk').setAttribute('aria-pressed',String(th==='dark'));
     try{localStorage.setItem('tl-theme',th);}catch(e){}render();}
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   try{const th=localStorage.getItem('tl-theme');if(th)document.documentElement.setAttribute('data-theme',th);}catch(e){}
-  window.TL_EDITOR={pad:[MX,MY],get level(){return lv;},toLevel:()=>toLevel(lv),analyse,get analysis(){return analysis;}};
+  window.TL_EDITOR={pad:[MX,MY],get level(){return lv;},toLevel:()=>toLevel(lv),levelFile:()=>levelFile(),analyse,get analysis(){return analysis;}};
   fixPhases();render();
 })();
