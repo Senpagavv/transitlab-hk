@@ -702,4 +702,13 @@
   });
   I18N.add({'m.back':L('← 五個模式','← 五个模式','← Five modes')});   // back to the hub (also in shared/nav.js)
   if(typeof document!=='undefined')I18N.apply();
+
+  if (typeof window !== 'undefined' && window.TL_SITE?.submit) {   // the browser only: the engine checks load this file in Node
+    const submit = String(window.TL_SITE.submit), isDefault = submit === '發給發起人';
+    const hant = submit, hans = isDefault ? '发给发起人' : submit, english = isDefault ? 'Send it to the organiser.' : submit;
+    const html = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+    I18N.add({
+      'e1.exported': L('已導出「{s}」。' + hant, '已导出「{s}」。' + hans, 'Exported «{s}». ' + english)
+    });
+  }
 })();

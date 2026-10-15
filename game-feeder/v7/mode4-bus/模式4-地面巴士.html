@@ -742,6 +742,11 @@ dialog.intro .row{margin-top:16px}
 <div class="row"><button class="btn btn-p" id="ivGo" data-i18n="b4.ivGo">開始畫巴士線 →</button></div></dialog>
 
 <script>
+// Local and offline defaults. Only build_static.py writes the static-site configuration.
+window.TL_SITE = { static: false, ai: true, dataMap: true, board: true, submit: '' };
+
+</script>
+<script>
 (function(root) {
   'use strict';
   // v7 · mode 4 «buses on the road» — levels. The same Kowloon East as mode 3, a few years on: the 東九龍綫 built in

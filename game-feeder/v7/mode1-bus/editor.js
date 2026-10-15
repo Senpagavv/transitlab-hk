@@ -324,5 +324,14 @@
   $('thPaper').onclick=()=>setTheme('light');$('thInk').onclick=()=>setTheme('dark');
   try{const th=localStorage.getItem('tl-theme');if(th)document.documentElement.setAttribute('data-theme',th);}catch(e){}
   window.TL_EDITOR={pad:[MX,MY],get level(){return lv;},toLevel:()=>toLevel(lv),levelFile:()=>levelFile(),analyse,get analysis(){return analysis;}};
+  if (window.TL_SITE?.submit) {
+    I.add({'e1.handIn': I.L('怎麼交關卡', '怎么交关卡', 'How to hand in'), 'e1.submit': I.L(window.TL_SITE.submit, window.TL_SITE.submit === '發給發起人' ? '发给发起人' : window.TL_SITE.submit, window.TL_SITE.submit === '發給發起人' ? 'Send it to the organiser.' : window.TL_SITE.submit)});
+    const help = document.createElement('button'); help.className = 'btn btn-sm'; help.dataset.i18n = 'e1.handIn';
+    const dialog = document.createElement('dialog'); dialog.className = 'intro';
+    const text = document.createElement('p'); text.dataset.i18n = 'e1.submit';
+    const close = document.createElement('button'); close.className = 'btn'; close.textContent = 'OK'; close.onclick = () => dialog.close();
+    dialog.append(text, close); document.body.append(dialog); help.onclick = () => dialog.showModal(); $('edExport').after(help);
+    I.apply();
+  }
   fixPhases();render();
 })();

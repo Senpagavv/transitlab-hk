@@ -54,6 +54,15 @@
     if (built || !root.TL_SANDBOX || !root.TL_SANDBOX.v2) return; built = true;
     const S = root.TL_SANDBOX, v2 = S.v2, b = S.base, map = document.querySelector('.sandbox-map'), name = z => z ? (I.lang === 'zh-Hans' ? (z.hans || z.name) : I.lang === 'en' ? (z.en || z.name) : z.name) : '';
     document.body.classList.add('sb3');
+    if (root.TL_SITE?.static) {
+      I.add({
+        'v.aiNote': L('AI 正式版稍後開放；現在可以試這幾句：啟德多五萬人、沙田多三萬人、銅鑼灣假日人潮、將軍澳隧道封一條線、北部都會區。', 'AI 正式版稍后开放；现在可以试这几句：启德多五万人、沙田多三万人、铜锣湾假日人潮、将军澳隧道封一条线、北部都会区。', 'Full AI is coming later. Try: Kai Tak population growth; Sha Tin population growth; Causeway Bay holiday crowds; TKO tunnel closure; Northern Metropolis.'),
+        'ai.ask': L('① 正在配對現成示例…', '① 正在匹配现成示例…', '① Matching a ready-made example…'),
+        'ai.readyEx': L('示例關卡做好了。AI 正式版稍後開放。', '示例关卡做好了。AI 正式版稍后开放。', 'The example level is ready. Full AI is coming later.'),
+        'sb.mobile': L('沙盤建議用電腦玩', '沙盘建议用电脑玩', 'The sandbox works best on a computer'),
+        'sb.sources': L('鐵路：© OpenStreetMap contributors（ODbL）；土地、分區：規劃署、地政總署；道路、交通：運輸署、GTFS／TransitLab 推算。僅供學習。', '铁路：© OpenStreetMap contributors（ODbL）；土地、分区：规划署、地政总署；道路、交通：运输署、GTFS／TransitLab 推算。仅供学习。', 'Railways: © OpenStreetMap contributors (ODbL). Land/zones: Planning and Lands Departments. Roads/traffic: Transport Department, GTFS / TransitLab estimates. For learning only.')
+      });
+    }
     if (v2.mode !== 'play') v2.setMode('play');
     // ---- the top bar: back, the four times of day, zoom, the data map
     const top = $('topbar'), brand = top.querySelector('.brand');
@@ -62,8 +71,9 @@
     back.after($('periodTabs'));
     const zoom = el('div', 'sb-zoom'); zoom.append($('zoomOut'), $('zoomIn'), $('resetView'));
     const live = el('a', 'btn btn-sm sb-topbar-link'); live.href = '/'; live.dataset.i18n = 'sb.dataMap';
-    if (location.protocol === 'file:') live.hidden = true;
-    $('help').before(zoom, live);
+    if (location.protocol === 'file:' || root.TL_SITE?.dataMap === false) live.hidden = true;
+    $('help').before(zoom);
+    if (root.TL_SITE?.dataMap !== false) $('help').before(live);
     // ---- the scene: title, what is being computed, the challenges
     const scene = card('sb-scene', 'sb.scene');
     scene.append(el('h2', '', ''), el('div', 'sb-scope', '<span></span><button class="btn btn-sm" hidden></button>'));
@@ -108,6 +118,27 @@
     for (const id of ['runStep', 'runStable']) $(id).addEventListener('click', () => { result.hidden = false; });
     // ---- the layers
     const layers = card('sb-layers', 'sb.layers'); for (const lab of [...map.querySelectorAll('.layer-corner label')]) layers.append(lab); map.append(layers);
+    if (root.TL_SITE?.static) {
+      const credit = el('p', 'sb-attribution'); credit.dataset.i18n = 'sb.sources';
+      function placeCredit() {
+        if (root.innerWidth <= 640) {
+          credit.style.cssText = 'position:absolute;left:8px;right:8px;bottom:58px;z-index:11;background:var(--s-panel);border-radius:5px;padding:4px 6px;font-size:9px;line-height:1.35;margin:0;pointer-events:none';
+          map.append(credit);
+        } else {
+          credit.style.cssText = 'font-size:10px;line-height:1.45;margin:7px 0 0;max-width:240px';
+          layers.append(credit);
+        }
+      }
+      placeCredit(); root.addEventListener('resize', placeCredit);
+      let seen = false; try { seen = sessionStorage.getItem('tl-static-mobile') === '1'; } catch (_) {}
+      if (root.innerWidth < 700 && !seen) {
+        const note = el('div', 'sb-mobile-note'); note.setAttribute('role', 'status');
+        note.style.cssText = 'position:fixed;top:58px;left:8px;right:8px;z-index:150;padding:8px 12px;background:var(--s-paper);border:1px solid var(--s-line);border-radius:8px;display:flex;align-items:center;justify-content:space-between';
+        const label = el('span'); label.dataset.i18n = 'sb.mobile'; const dismiss = el('button', 'btn btn-sm', '×'); dismiss.dataset.i18nAria = 'sb.close';
+        dismiss.onclick = () => note.remove(); note.append(label, dismiss); document.body.append(note);
+        try { sessionStorage.setItem('tl-static-mobile', '1'); } catch (_) {}
+      }
+    }
 
     // ---- tools: the dock follows ui.js's tool; the card follows the dock
     let page = null;

@@ -1,0 +1,32 @@
+/*
+  X-Robots-Tag: noindex
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/feeder/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/feeder/*/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/feeder/index
+  Cache-Control: public, max-age=0, must-revalidate
+
+/feeder/*/index
+  Cache-Control: public, max-age=0, must-revalidate
+
+/feeder/mode1-bus/editor
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/*.css
+  Cache-Control: public, max-age=300, must-revalidate
+
+/feeder/hk/*.json
+  Cache-Control: public, max-age=3600, must-revalidate
+

@@ -680,6 +680,11 @@ dialog.intro .row{margin-top:16px}
 @keyframes growth-pop{0%{opacity:.8;transform:scale(.65)}65%{opacity:.2;transform:scale(1.18)}100%{opacity:0;transform:scale(1.35)}}
 .growth-flash{transform-box:fill-box;transform-origin:center;animation:growth-pop 1.5s ease-out forwards}</style></head><body class="entered">
 <script>
+// Local and offline defaults. Only build_static.py writes the static-site configuration.
+window.TL_SITE = { static: false, ai: true, dataMap: true, board: true, submit: '' };
+
+</script>
+<script>
 (function() {
   'use strict';
   // v7 · the second half of the hub's hand-off (2026-10-15). The hub fades its map but leaves the dots round the level
@@ -1429,6 +1434,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     try { root.localStorage.setItem('tl-board/1/' + r.level, JSON.stringify(a)); return true; } catch (_) { return false; }
   }
   function receive(r) {
+    if (root.TL_SITE?.board === false) return false;
     ++ticket; busy = false;
     if (!r || !eligible(r.level) || !Number.isFinite(r.score) || !r.plan || typeof r.plan !== 'object') {
       current = null; if (button) button.hidden = true; if (dialog?.open) dialog.close(); return false;
@@ -1438,6 +1444,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     mount(); if (button) button.hidden = false; if (dialog?.open) refresh(); return true;
   }
   function mount() {
+    if (root.TL_SITE?.board === false) return ;
     const parent = typeof cfg.container === 'string' ? document.querySelector(cfg.container) : cfg.container;
     if (!parent) return;
     if (!button || button.parentNode !== parent) {
@@ -1447,6 +1454,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     button.textContent = I.t('board.title'); button.hidden = !current;
   }
   async function request(url, opts = {}) {
+    if (root.TL_SITE?.board === false) throw new Error('Leaderboard disabled');
     const controller = new AbortController(), timer = setTimeout(() => controller.abort(), cfg.timeout);
     try {
       const r = await root.fetch(url, { ...opts, credentials: 'same-origin', signal: controller.signal });
@@ -1498,6 +1506,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     dialog.append(action('board.refresh', refresh, busy));
   }
   async function refresh() {
+    if (root.TL_SITE?.board === false) return ;
     if (!current || busy) return;
     const mine = ++ticket, r = current; model = null; render();
     try {
@@ -1511,6 +1520,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     render();
   }
   async function submit() {
+    if (root.TL_SITE?.board === false) return ;
     if (!current || busy || !model?.user || model.offline || current.uploaded) return;
     busy = true; const r = current, mine = ticket; render();
     try {
@@ -1525,6 +1535,7 @@ if(typeof module!=='undefined')module.exports=API;root.Roads=API;
     } finally { if (r === current) { busy = false; render(); } }
   }
   function open() {
+    if (root.TL_SITE?.board === false) return false;
     if (!current) return false;
     if (!dialog) {
       dialog = element('dialog', undefined, 'tl-board-panel'); dialog.setAttribute('aria-labelledby', 'tl-board-title');

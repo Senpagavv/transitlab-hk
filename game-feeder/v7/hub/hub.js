@@ -347,8 +347,8 @@
       '<div class="lvls"><a class="lv" id="hubSandbox" href="mode5-sandbox/index.html"><span class="lv-n"><b>' + t('hub.m5b') + ' →</b></span><span class="lv-m">' + t(location.protocol === 'file:' ? 'hub.m5file' : 'hub.m5open') + '</span></a>' +
       // the AI and the data map need the backend (the desktop shortcut); opened as a file they wait
       (location.protocol === 'file:' ? ['m5a', 'm5live'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.m5file') + '</span></button>').join('')
-        : '<a class="lv" id="hubAI" href="mode5-sandbox/index.html#tab=ai"><span class="lv-n"><b>' + t('hub.m5a') + ' →</b></span><span class="lv-m">' + t('hub.m5aP') + '</span></a>' +
-          '<a class="lv" id="hubLive" href="/"><span class="lv-n"><b>' + t('hub.m5live') + ' →</b></span><span class="lv-m">' + t('hub.m5liveP') + '</span></a>') + '</div>';
+        : '<a class="lv" id="hubAI" href="mode5-sandbox/index.html#tab=ai"><span class="lv-n"><b>' + t('hub.m5a') + ' →</b></span><span class="lv-m">' + t(window.TL_SITE?.static ? 'hub.m5aStatic' : 'hub.m5aP') + '</span></a>' +
+          (window.TL_SITE?.dataMap === false ? '' : '<a class="lv" id="hubLive" href="/"><span class="lv-n"><b>' + t('hub.m5live') + ' →</b></span><span class="lv-m">' + t('hub.m5liveP') + '</span></a>')) + '</div>';
     $('hubPanel').innerHTML = resumeBlock() + h;
     const rb = $('hubResume'); if (rb) rb.addEventListener('click', resume);
     $('hubPanel').querySelectorAll('.lv[data-site]').forEach(b => {

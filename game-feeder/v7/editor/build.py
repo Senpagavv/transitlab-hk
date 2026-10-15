@@ -11,7 +11,7 @@ s = s.replace('<link rel="stylesheet" href="../shared/style.css">', '<style>' + 
 s = s.replace('<link rel="stylesheet" href="editor.css">', '<style>' + (p / 'editor.css').read_text(encoding='utf8') + '</style>')
 s = s.replace('src="../shared/logo-tide.svg"', 'src="data:image/svg+xml;base64,' + base64.b64encode((v7 / 'shared' / 'logo-tide.svg').read_bytes()).decode() + '"')
 s = s.replace('href="../index.html', 'href="../开始.html')
-for f in ['../levels/registry.js', '../hub/stations.js', '../mode2-metro/data.js', '../mode2-metro/engine.js', '../mode3-roads/data.js', '../mode3-roads/engine.js',
+for f in ['../shared/site.js', '../levels/registry.js', '../hub/stations.js', '../mode2-metro/data.js', '../mode2-metro/engine.js', '../mode3-roads/data.js', '../mode3-roads/engine.js',
           '../mode4-tod/data.js', '../mode4-tod/engine.js', '../shared/i18n.js', '../shared/levelpack.js', 'strings.js', 'analyse.js', 'editor.js']:
     tag = f'<script src="{f}"></script>'
     assert tag in s, f'missing {tag}'

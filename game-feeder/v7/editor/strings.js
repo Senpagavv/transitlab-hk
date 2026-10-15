@@ -112,4 +112,14 @@
       '<ol><li>上面选玩法，画地图：屋苑、去处、河；第三关加道路和现有港铁；第四关加空地。</li><li>右边填「关卡资料」：编号、标题、开场两句、在哪个站。</li><li>按「▶ 试玩」自己玩一次；按「机器人试算」看难不难，觉得可以就「用这个门槛」。</li><li>按「导出 .json」。所有关卡档一起压成一个 zip，交给发起人；Claude 会检查、定门槛、做 AI 示范、放上游戏。</li></ol>',
       '<ol><li>Pick the mode above and draw the map: estates, destinations, river; roads and existing MTR in mode 3; lots in mode 4.</li><li>Fill in «About this level» on the right: key, title, two opening lines, which station.</li><li>Press «▶ Test play» and play it; press «Bot estimate» to see how hard it is and «Use these tiers» if it looks right.</li><li>Press «Export .json». Zip all your level files and send them to the organiser; Claude checks them, sets the tiers, makes the AI demo and puts them in the game.</li></ol>')
   });
+
+  if (window.TL_SITE?.submit) {
+    const submit = String(window.TL_SITE.submit), isDefault = submit === '發給發起人';
+    const hant = submit, hans = isDefault ? '发给发起人' : submit, english = isDefault ? 'Send it to the organiser.' : submit;
+    const html = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+    I.add({
+      'e.exported': L('已導出「{s}」。' + hant, '已导出「{s}」。' + hans, 'Exported «{s}». ' + english),
+      'e.helpBody': L('<ol><li>畫關卡、填資料。</li><li>先試玩，再用機器人試算門檻。</li><li>導出 .json；多個檔可壓成 zip。</li></ol><p>' + html(hant) + '</p>', '<ol><li>画关卡、填资料。</li><li>先试玩，再用机器人试算门槛。</li><li>导出 .json；多个档可压成 zip。</li></ol><p>' + html(hans) + '</p>', '<ol><li>Draw the level and fill in its details.</li><li>Test play it, then estimate the tiers with the bot.</li><li>Export .json; zip multiple files if needed.</li></ol><p>' + html(english) + '</p>')
+    });
+  }
 })(typeof window !== 'undefined' ? window : globalThis);

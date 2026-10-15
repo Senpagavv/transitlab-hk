@@ -16,7 +16,7 @@ s = (p / 'index.html').read_text(encoding='utf8')
 s = s.replace('<link rel="stylesheet" href="shared/style.css">', '<style>' + (shared / 'style.css').read_text(encoding='utf8') + '</style>')
 s = s.replace('src="shared/logo-tide.svg"', 'src="data:image/svg+xml;base64,' + base64.b64encode((shared / 'logo-tide.svg').read_bytes()).decode() + '"')
 # the hub (v3's cover and dot map): its scripts, the level registry and this browser's progress
-for f in ['shared/i18n.js', 'levels/registry.js', 'shared/progress.js', 'shared/save.js', 'hub/stations.js', 'hub/cover-data.js', 'hub/strings.js', 'hub/hub.js']:
+for f in ['shared/site.js', 'shared/i18n.js', 'levels/registry.js', 'shared/progress.js', 'shared/save.js', 'hub/stations.js', 'hub/cover-data.js', 'hub/strings.js', 'hub/hub.js']:
     tag = f'<script src="{f}"></script>'
     assert tag in s, f'missing {tag}'
     s = s.replace(tag, '<script>\n' + (p / f).read_text(encoding='utf8') + '\n</script>')

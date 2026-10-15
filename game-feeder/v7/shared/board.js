@@ -54,6 +54,7 @@
     try { root.localStorage.setItem('tl-board/1/' + r.level, JSON.stringify(a)); return true; } catch (_) { return false; }
   }
   function receive(r) {
+    if (root.TL_SITE?.board === false) return false;
     ++ticket; busy = false;
     if (!r || !eligible(r.level) || !Number.isFinite(r.score) || !r.plan || typeof r.plan !== 'object') {
       current = null; if (button) button.hidden = true; if (dialog?.open) dialog.close(); return false;
@@ -63,6 +64,7 @@
     mount(); if (button) button.hidden = false; if (dialog?.open) refresh(); return true;
   }
   function mount() {
+    if (root.TL_SITE?.board === false) return ;
     const parent = typeof cfg.container === 'string' ? document.querySelector(cfg.container) : cfg.container;
     if (!parent) return;
     if (!button || button.parentNode !== parent) {
@@ -72,6 +74,7 @@
     button.textContent = I.t('board.title'); button.hidden = !current;
   }
   async function request(url, opts = {}) {
+    if (root.TL_SITE?.board === false) throw new Error('Leaderboard disabled');
     const controller = new AbortController(), timer = setTimeout(() => controller.abort(), cfg.timeout);
     try {
       const r = await root.fetch(url, { ...opts, credentials: 'same-origin', signal: controller.signal });
@@ -123,6 +126,7 @@
     dialog.append(action('board.refresh', refresh, busy));
   }
   async function refresh() {
+    if (root.TL_SITE?.board === false) return ;
     if (!current || busy) return;
     const mine = ++ticket, r = current; model = null; render();
     try {
@@ -136,6 +140,7 @@
     render();
   }
   async function submit() {
+    if (root.TL_SITE?.board === false) return ;
     if (!current || busy || !model?.user || model.offline || current.uploaded) return;
     busy = true; const r = current, mine = ticket; render();
     try {
@@ -150,6 +155,7 @@
     } finally { if (r === current) { busy = false; render(); } }
   }
   function open() {
+    if (root.TL_SITE?.board === false) return false;
     if (!current) return false;
     if (!dialog) {
       dialog = element('dialog', undefined, 'tl-board-panel'); dialog.setAttribute('aria-labelledby', 'tl-board-title');

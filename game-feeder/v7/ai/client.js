@@ -20,7 +20,7 @@
     {keys:['隧道','封','將軍澳','将军澳','tko'],request:{area:'tseung-kwan-o',period:'am',mode:3,
       changes:[{place:'將軍澳隧道',what:'road_cap',pct:-40}],
       title:'將軍澳隧道封一條線',story:['假設將軍澳隧道維修，少了四成車能過。','早上出九龍的車怎麼辦？'],note:'將軍澳隧道 −40%'}},
-    {keys:['北部都會','北都','新田','古洞','northern'],request:{area:'northern-metropolis',period:'am',mode:3,
+    {keys:['北部都會','北部都会','北都','新田','古洞','northern'],request:{area:'northern-metropolis',period:'am',mode:3,
       changes:[{place:'新田',what:'jobs',pct:100,by_year:6},{place:'古洞',what:'people',pct:80,by_year:6}],
       title:'北都新田科技城',story:['假設新田科技城六年內建成，古洞多住八成人。','新的工作和新的家之間，要一條怎樣的線？'],note:'新田岗位 +100%、古洞住的人 +80%，六年內'}}];
   const low=s=>String(s||'').toLowerCase();
@@ -28,12 +28,13 @@
     for(const e of EXAMPLES){const h=e.keys.filter(k=>s.includes(low(k))).length;if(h>hits){hits=h;best=e;}}
     return best?JSON.parse(JSON.stringify(best.request)):null;}
   async function call(path,body){
+    if(root.TL_SITE?.ai===false){const err=new Error('examples_only');err.code='examples_only';throw err;}
     let r;try{r=await fetch(BASE+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});}
     catch(e){const err=new Error('offline');err.code='offline';throw err;}
     let j={};try{j=await r.json();}catch(e){}
     if(!r.ok){const err=new Error(j.message||('HTTP '+r.status));err.code=j.code||(r.status===503?'no_key':'http_'+r.status);err.problems=j.problems;throw err;}
     return j;}
-  async function status(){try{return await call('/status');}catch(e){return{ready:false,offline:e.code==='offline'};}}
+  async function status(){if(root.TL_SITE?.ai===false)return{ready:false,examples:true};try{return await call('/status');}catch(e){return{ready:false,offline:e.code==='offline'};}}
   // sentence → {request, level, report, source:'ai'|'example', tries, notes}
   //   build(request) → {level, report, problems} or a promise of it (problems: [{code, message}] from the level builder;
   //   [] = playable)
@@ -46,7 +47,7 @@
       try{const j=await call('/level',{sentence,lang,names,feedback});request=j.request;notes=j.notes||[];}
       catch(e){if(e.code==='refuse')throw e;
         request=pickExample(sentence);source='example';
-        if(!request){const err=new Error(e.code==='offline'||e.code==='no_key'?'AI 暂时用不了，也没有对得上的示例':e.message);err.code=e.code;throw err;}}
+        if(!request){const err=new Error(e.code==='examples_only'?({'zh-Hant':'請試啟德、沙田、銅鑼灣、將軍澳隧道或北部都會區。','zh-Hans':'请试启德、沙田、铜锣湾、将军澳隧道或北部都会区。',en:'Try Kai Tak, Sha Tin, Causeway Bay, TKO tunnel or Northern Metropolis.'}[lang]||'Try Kai Tak') : e.code==='offline'||e.code==='no_key'?'AI 暂时用不了，也没有对得上的示例':e.message);err.code=e.code;throw err;}}
       onStep({step:'build',try:t,request,source});
       const out=build?await build(request):{level:null,report:null,problems:[]};
       last={...out,request,source,tries:t,notes};
@@ -55,6 +56,7 @@
     return last;}
   // a commentary from the AI, checked server-side to use only the game's numbers; without the AI, a plain one
   async function comment(summary,{lang='zh-Hans'}={}){
+    if(root.TL_SITE?.ai===false)return{text:plainComment(summary,lang),source:'plain'};
     try{const j=await call('/comment',{summary,lang});return{text:j.comment,source:'ai'};}
     catch(e){return{text:plainComment(summary,lang),source:'plain'};}}
   function plainComment(s,lang){const t=s.tiers||[],sc=Math.round(s.score||0);

@@ -3,6 +3,7 @@
   // v7 · the hub's words (the cover and the map you pick levels from). The cover's own words come from v3.
   const I=window.I18N,L=I.L;
   I.add({
+    'hub.m5aStatic': L('AI 正式版稍後開放；現在可試啟德、沙田、銅鑼灣、將軍澳隧道、北部都會區。', 'AI 正式版稍后开放；现在可试启德、沙田、铜锣湾、将军澳隧道、北部都会区。', 'Full AI is coming later. Try Kai Tak, Sha Tin, Causeway Bay, TKO tunnel or Northern Metropolis.'),
     'doc.title':L('TransitLab HK · 五個模式','TransitLab HK · 五个模式','TransitLab HK · Five modes'),
     'brand.sub':L('HK · 交通遊戲 · 五個模式','HK · 交通游戏 · 五个模式','HK · Transport games · five modes'),
     'top.lang':L('語言','语言','Language'),'top.theme':L('主題','主题','Theme'),'top.paper':L('淺色','浅色','Light'),'top.ink':L('深色','深色','Dark'),

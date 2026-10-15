@@ -786,7 +786,7 @@
         const label = () => { fb.textContent = t('m5.focus'); }; label(); root.addEventListener('tl:lang', label);
         ($('selectTool') || $('board')).after(fb);
         // the first TransitLab map (TransitLab Live, frontend/dist at the backend's root): all game layers off, its own way of looking things up
-        if (location.protocol !== 'file:') { const live = document.createElement('a'); live.className = 'btn btn-sm'; live.id = 'liveMap'; live.href = '/';
+        if (location.protocol !== 'file:' && root.TL_SITE?.dataMap !== false) { const live = document.createElement('a'); live.className = 'btn btn-sm'; live.id = 'liveMap'; live.href = '/';
           const ll = () => { live.textContent = t('m5.live'); live.title = t('m5.liveTitle'); }; ll(); root.addEventListener('tl:lang', ll); fb.after(live); }
         fb.onclick = () => { const sel = v2.selectedZones(); if (!sel.length && !scope) { setStatus(t('m5.focusNone')); return; } setScope(scope ? null : sel); };
       }

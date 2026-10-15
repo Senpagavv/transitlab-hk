@@ -36,3 +36,7 @@ data/snapshots/
 
 # Game engine cache (government benchmarks, regenerated automatically)
 game/.cache/
+
+# the static website build (game-feeder/tools/deploy/build_static.py); never committed
+/site/
+/site-*.json
