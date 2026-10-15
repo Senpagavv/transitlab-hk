@@ -160,6 +160,8 @@ def main():
             if re.search(r'\.(?:split|join|replace)\(\s*$', s[max(0,m.start()-40):m.start()]): continue
             if re.fullmatch(r'/\d+',url): continue  # score denominators, e.g. /10
             if url=='/' and re.search(r'\+\s*$',s[max(0,m.start()-8):m.start()]): continue  # storage-key separator
+            # a file name joined onto a relative directory: '../' + mode dir + '/index.html#pack=…', '../../' + dir + '/data.js'
+            if re.fullmatch(r'/[\w.-]+\.(?:html|js)(?:#[\w=-]*)?', url) and re.search(r'\+\s*$', s[max(0,m.start()-8):m.start()]): continue
             if url not in expected: raise ValueError('Unreviewed absolute URL: ' + rel + ' ' + url)
             if rel not in policies: raise ValueError('Unreviewed absolute URL: ' + rel + ' ' + url)
             root_urls.append({'file':rel,'line':s[:m.start()].count('\n')+1,'url':url,'guard':policies[rel]})
