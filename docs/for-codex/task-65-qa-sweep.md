@@ -7,7 +7,7 @@
 
 ## 二、硬规矩
 1. 项目只读，不做 git。复制到 `%USERPROFILE%\Desktop\TransitLab五模式-Codex\任务65\`。
-2. 用本机后台（`scripts/start-feeder.cmd`，`http://127.0.0.1:8000/feeder/`）或静态服务器挂 `/feeder/`；Playwright 用项目已有的 `frontend/node_modules/playwright`。AI 后台请求可以发到本机后台（会用发起人的密钥，**每次跑最多 5 句**），或直接用离线示例。
+2. 用本机后台（`scripts/start-feeder.cmd`，`http://127.0.0.1:8000/feeder/`）或静态服务器挂 `/feeder/`；Playwright 用项目已有的 `frontend/node_modules/playwright`。**AI 只用离线示例**：不要请求 `/api/feeder/ai/*`（会用发起人的密钥）；测试时把这些请求拦下返回 503，页面会自动退回示例。真 AI 由 Claude 测。
 3. **可以改的只有文字文件**：各玩法 `strings.js`、`hub/strings.js`、`editor/strings.js`、`mode5-sandbox/strings.js`（错字、繁简混用、漏翻译、英文不通）。`layout.js`、`ai-level.js`、`experience.js` 里的文字有问题**只记录**（任务 63、67 正在改这些文件，避免合并冲突）。其他问题也只记录。
 
 ## 三、检查什么（每一项都要截图证据）
