@@ -1,4 +1,4 @@
-# 给 Codex 的任务单（2026-10-15 更新）
+# 给 Codex 的任务单（2026-10-15 下午更新）
 
 > 发起人：Codex 能做的都交给它，Claude 留最后的审核、调试和收尾。一个任务交回、Claude 看过没大问题，就发下一个。
 
@@ -16,9 +16,13 @@
 | 1 | **55 沙盘第二版：看得懂、知道玩什么** | 读 F:\transitlab-hk\docs\for-codex\task-55-sandbox-v2.md，严格按里面的硬规矩和优先顺序做。 |
 | 1（同时） | **56 排行榜和关卡包** | 读 F:\transitlab-hk\docs\for-codex\task-56-leaderboard-and-custom-levels.md，严格按里面的硬规矩和优先顺序做。 |
 | 2 | **57 第二到四关各补 3 关 + AI 示范** | 读 F:\transitlab-hk\docs\for-codex\task-57-new-levels.md，严格按里面的硬规矩和优先顺序做。 |
-| 3 | 58 四步法课件（任务书待写，等 55 交回） | — |
+| 4 | **59 AI 出关卡扩展到第二、四关（第三关精简道路）** | 读 F:	ransitlab-hk\docsor-codex	ask-59-ai-levels-modes-2-4.md，严格按里面的硬规矩和优先顺序做。 |
+| 4（同时） | **60 全港数据地图换成游戏的配色和画风** | 读 F:	ransitlab-hk\docsor-codex	ask-60-data-map-restyle.md，严格按里面的硬规矩和优先顺序做。 |
+| 5 | 58 四步法课件（任务书待写） | — |
 
-已完成、不用再发：49、50、51、52、53、55、56（已收进项目），54（Claude 做了）。**现在发 57。**
+已完成、不用再发：49、50、51、52、53、55、56、57（已收进项目），54（Claude 做了）。**现在发 59 和 60（两个对话同时）。**
+
+Claude 自己做（不发 Codex）：四个玩法的关卡编辑器（给组员做关卡）、沙盘整体大改（全屏地图 + 浮动卡片，先出设计）。
 
 ## 每个任务交回后
 Claude 读回项目、用真鼠标走一遍、跑文字检查（`node game-feeder/tools/check_strings.js`）和各玩法检查、修小问题、提交；有大问题就写回给 Codex 改。
