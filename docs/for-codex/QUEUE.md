@@ -16,8 +16,8 @@
 | 1 | **55 沙盘第二版：看得懂、知道玩什么** | 读 F:\transitlab-hk\docs\for-codex\task-55-sandbox-v2.md，严格按里面的硬规矩和优先顺序做。 |
 | 1（同时） | **56 排行榜和关卡包** | 读 F:\transitlab-hk\docs\for-codex\task-56-leaderboard-and-custom-levels.md，严格按里面的硬规矩和优先顺序做。 |
 | 2 | **57 第二到四关各补 3 关 + AI 示范** | 读 F:\transitlab-hk\docs\for-codex\task-57-new-levels.md，严格按里面的硬规矩和优先顺序做。 |
-| 4 | **59 AI 出关卡扩展到第二、四关（第三关精简道路）** | 读 F:	ransitlab-hk\docsor-codex	ask-59-ai-levels-modes-2-4.md，严格按里面的硬规矩和优先顺序做。 |
-| 4（同时） | **60 全港数据地图换成游戏的配色和画风** | 读 F:	ransitlab-hk\docsor-codex	ask-60-data-map-restyle.md，严格按里面的硬规矩和优先顺序做。 |
+| 4 | **59 AI 出关卡扩展到第二、四关（第三关精简道路）** | 读 F:\transitlab-hk\docs\for-codex\task-59-ai-levels-modes-2-4.md，严格按里面的硬规矩和优先顺序做。 |
+| 4（同时） | **60 全港数据地图换成游戏的配色和画风** | 读 F:\transitlab-hk\docs\for-codex\task-60-data-map-restyle.md，严格按里面的硬规矩和优先顺序做。 |
 | 5 | 58 四步法课件（任务书待写） | — |
 
 已完成、不用再发：49、50、51、52、53、55、56、57（已收进项目），54（Claude 做了）。**现在发 59 和 60（两个对话同时）。**
