@@ -6,7 +6,7 @@
 
 ## 2026-10-15
 
-### 15:07 · `HASH` 接驳巴士 v7.32：全港数据地图换成游戏的配色画风（Codex 任务 60）；车队的东西全部去掉 / Feeder v7.32: data map restyled, fleet removed
+### 15:07 · `d52540b` 接驳巴士 v7.32：全港数据地图换成游戏的配色画风（Codex 任务 60）；车队的东西全部去掉 / Feeder v7.32: data map restyled, fleet removed
 - **改了什么**：`frontend/`（原 TransitLab Live）：纸色、白卡片、游戏绿，标题 Bodoni / Noto Serif TC，数字 Geist Mono；顶栏用游戏的潮汐标志和字标，右边「← 五個模式」回入口 05；底图海、陆、路、区界改成和沙盘一样的浅色；分区人口绿、岗位蓝等单色渐变（分档和数字不变）；车流颜色降饱和；繁简体（读游戏的 `tl-lang`，英文暂回退繁体）、深色主题；手机图例收成抽屉。删 `FleetPanel.tsx`、`DeploymentPanel.tsx`；Claude 另把 Codex 按任务书保留的两个车队指标（叫车需求、车队缩小后的接单率）和 `/api/fleet/scenarios` 的读取去掉（发起人：车队的东西全删）。
 - **为什么**：发起人：全港数据地图的配色画风要和游戏匹配，车队的页用不上。
 - **验证**：`npm run build`、`npm run lint` 通过；真浏览器真鼠标（1500×920 与 390×844）：首页、点分区出详情、搜「沙田」有建议、指标只剩 6 个、没有横向滚动、「← 五個模式」回到 `/feeder/index.html#hub=1&nav=5`，无报错。Codex 自查：455 区 × 8 指标的数值与 51 个分档前后一致。
