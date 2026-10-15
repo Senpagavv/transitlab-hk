@@ -1,3 +1,4 @@
+import { text } from '../i18n'
 import type { ZoneProps } from './zones'
 
 interface ZonePanelProps {
@@ -14,11 +15,11 @@ const m2 = (v: number) => (v >= 10000 ? `${(v / 10000).toFixed(v >= 1e6 ? 0 : 1)
 function Row({ name, value, basis, sub }: { name: string; value: string; basis: Basis; sub?: string }) {
   return (
     <div className="zone-row">
-      <dt>{name}</dt>
+      <dt>{text(name)}</dt>
       <dd>
-        <span className="zone-value">{value}</span>
+        <span className="zone-value">{text(value)}</span>
         {sub && <span className="zone-sub">{sub}</span>}
-        <span className={`basis basis-${basis}`}>{basis}</span>
+        <span className={`basis basis-${basis}`}>{text(basis)}</span>
       </dd>
     </div>
   )
@@ -29,23 +30,23 @@ export default function ZonePanel({ zone, onClose }: ZonePanelProps) {
     zone.growth_pct === null ? undefined : `2021 年 ${n(zone.population_2021)}，${zone.growth_pct > 0 ? '+' : ''}${zone.growth_pct}%`
 
   return (
-    <aside className="zone-panel" aria-label={`${zone.label} 交通分区数据`}>
+    <aside className="zone-panel" aria-label={`${zone.label} ${text('交通分区数据')}`}>
       <header className="zone-panel-head">
         <div>
           <h2>{zone.label}</h2>
           <p>
-            {zone.district} · 交通分区 {zone.zone} · {zone.area_km2} km²
+            {zone.district} · {text('交通分区')} {zone.zone} · {zone.area_km2} km²
           </p>
         </div>
-        <button type="button" className="zone-close" onClick={onClose} aria-label="关闭">
+        <button type="button" className="zone-close" onClick={onClose} aria-label={text('关闭')}>
           ×
         </button>
       </header>
 
-      {!zone.road_access && <p className="zone-flag">没有公路连接，进出靠渡轮或步行</p>}
+      {!zone.road_access && <p className="zone-flag">{text('没有公路连接，进出靠渡轮或步行')}</p>}
 
       <section>
-        <h3>住在这里的人（2026 年）</h3>
+        <h3>{text("住在这里的人（2026 年）")}</h3>
         <dl>
           <Row name="人口" value={n(zone.population)} basis="推算" sub={growth} />
           <Row name="住户" value={n(zone.households)} basis="推算" />
@@ -57,7 +58,7 @@ export default function ZonePanel({ zone, onClose }: ZonePanelProps) {
       </section>
 
       <section>
-        <h3>吸引出行的地方</h3>
+        <h3>{text("吸引出行的地方")}</h3>
         <dl>
           <Row name="写字楼楼面" value={m2(zone.floor_office_m2)} basis="估算" />
           <Row name="零售楼面" value={m2(zone.floor_retail_m2)} basis="估算" />
@@ -69,7 +70,7 @@ export default function ZonePanel({ zone, onClose }: ZonePanelProps) {
       </section>
 
       <section>
-        <h3>工作日出行（2026 年，坐车或开车）</h3>
+        <h3>{text("工作日出行（2026 年，坐车或开车）")}</h3>
         <dl>
           <Row name="岗位" value={n(zone.jobs)} basis="估算" />
           <Row name="从这里出发" value={`${n(zone.trips_out)} 人次`} basis="估算" />
@@ -78,11 +79,7 @@ export default function ZonePanel({ zone, onClose }: ZonePanelProps) {
         </dl>
       </section>
 
-      <p className="zone-foot">
-        推算：全港及各年龄段总数对齐统计处 2026 年中估计（临时数），各分区分布依规划署 2023–2031 人口分布推算。
-        估算：由建筑物高度、占地、屋宇署用途及教育局数据计算，总量已对上官方数字，但分区内的分配是模型做的。
-        出行：各区出行率与吸引量取运输署出行调查 2022，不含全程步行和单车；跨境取入境处与教育局数字。
-      </p>
+      <p className="zone-foot">{text("推算：全港及各年龄段总数对齐统计处 2026 年中估计（临时数），各分区分布依规划署 2023–2031 人口分布推算。 估算：由建筑物高度、占地、屋宇署用途及教育局数据计算，总量已对上官方数字，但分区内的分配是模型做的。 出行：各区出行率与吸引量取运输署出行调查 2022，不含全程步行和单车；跨境取入境处与教育局数字。") }</p>
     </aside>
   )
 }

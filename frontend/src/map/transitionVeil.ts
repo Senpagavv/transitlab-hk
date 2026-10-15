@@ -24,7 +24,7 @@ const SHATTER_CELL_CSS_PX = 40
 const SOFT_FROM_STRETCH = 1.3 // start softening the enlarged old picture
 const SOFT_FULL_STRETCH = 2.5
 const SOFT_DOWNSCALE = 8 // the softened copy is 1/8 size, upscaled smoothly = a cheap blur
-const BACKDROP = 'rgb(243, 244, 236)' // same light land tone as the basemap background
+const backdrop = () => document.documentElement.dataset.theme === 'dark' ? '#1d2a31' : '#d9e8ef'
 
 interface Snapshot {
   sharp: ImageBitmap
@@ -219,7 +219,7 @@ export class TransitionVeil {
     const { x, y, w, h } = this.placement(snapshot)
     const soft = clamp01((this.stretch(snapshot) - SOFT_FROM_STRETCH) / (SOFT_FULL_STRETCH - SOFT_FROM_STRETCH))
     ctx.globalAlpha = 1
-    ctx.fillStyle = BACKDROP
+    ctx.fillStyle = backdrop()
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
     ctx.imageSmoothingEnabled = true
     if (soft < 1) {

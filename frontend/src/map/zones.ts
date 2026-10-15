@@ -1,3 +1,4 @@
+import type { Theme } from '../i18n'
 import { useEffect, useState } from 'react'
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson'
 
@@ -29,11 +30,6 @@ export interface ZoneProps {
   trips_crossing: number
   area_km2: number
   road_access: boolean
-  // Added by useZones from /api/fleet/scenarios (pipeline/31); absent until that file exists.
-  taxi_requests?: number
-  served_share?: number | null
-  served_share_small?: number | null
-  wait_min?: number | null
 }
 
 export type ZoneFeature = Feature<Polygon | MultiPolygon, ZoneProps>
@@ -43,13 +39,15 @@ type RGB = [number, number, number]
 
 const hex = (h: string): RGB => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)) as RGB
 
-// Ramps validated with the dataviz ordinal checks against the basemap ground (#f3f4ec): one hue,
-// monotone lightness, light end >= 2:1. Violet keeps clear of the sea (blue) and of live traffic
-// (green -> red); the decline arm is brown, and "about the same" is a receding grey.
-const VIOLET = ['#b5a0dd', '#a187d0', '#8e6fc1', '#7959ad', '#654694', '#51347a'].map(hex)
-const BROWN = ['#8c5626', '#b47846', '#d5a075'].map(hex) // strongest decline first
-const GROWTH = ['#b5a0dd', '#8e6fc1', '#654694'].map(hex)
-const NEUTRAL = hex('#dededb')
+// Game-coordinated colours. All existing bin tests and numeric thresholds are unchanged.
+const GREEN = ['#FFFCF7', '#9fc796', '#71a77b', '#458e65', '#216d50', '#0b5037'].map(hex)
+const BLUE = ['#FFFCF7', '#9cbad8', '#779fc5', '#4e80b1', '#2e6598', '#1b4c79'].map(hex)
+const TEAL = ['#FFFCF7', '#b4d3c7', '#85b8a7', '#569989', '#337b70', '#165c55'].map(hex)
+const SAND = ['#FFFCF7', '#e3d3a6', '#cdb77a', '#b29a50', '#8f7934', '#695721'].map(hex)
+const CLAY = ['#FFFCF7', '#e5c4b2', '#cea68e', '#b58366', '#966044', '#74412d'].map(hex)
+const BROWN = ['#8c5626', '#b47846', '#d5a075'].map(hex)
+const GROWTH = ['#9fc796', '#458e65', '#0b5037'].map(hex)
+const NEUTRAL = hex('#e4e3de')
 
 export interface ZoneClass {
   label: string
@@ -70,14 +68,14 @@ export interface ZoneMetric {
 const wan = (v: number) => (v >= 10000 ? `${+(v / 10000).toFixed(v >= 100000 ? 0 : 1)}万` : v.toLocaleString('zh-CN'))
 
 /** Ordered bins over a one-hue ramp; `zero` adds a grey class for "none at all". */
-function steps(edges: number[], labels: string[], zero?: string): ZoneClass[] {
+function steps(ramp: RGB[], edges: number[], labels: string[], zero?: string): ZoneClass[] {
   const out: ZoneClass[] = []
   if (zero) out.push({ label: zero, color: NEUTRAL, test: (v) => v <= 0 })
   edges.forEach((low, i) => {
     const high = edges[i + 1] ?? Infinity
     out.push({
       label: labels[i],
-      color: VIOLET[i],
+      color: ramp[i],
       test: (v) => (zero ? v > 0 : true) && v >= low && v < high,
     })
   })
@@ -92,7 +90,7 @@ export const ZONE_METRICS: ZoneMetric[] = [
     note: '规划署推算；分区内按住宅楼面分摊，属估算',
     value: (z) => z.density,
     format: (v) => `${wan(Math.round(v))} 人/km²`,
-    classes: steps(
+    classes: steps(GREEN,
       [0, 5000, 20000, 40000, 70000, 100000],
       ['< 5千', '5千 – 2万', '2 – 4万', '4 – 7万', '7 – 10万', '≥ 10万'],
     ),
@@ -101,7 +99,7 @@ export const ZONE_METRICS: ZoneMetric[] = [
     id: 'growth',
     name: '人口变化',
     unit: '2021 → 2026 年',
-    note: '规划署推算；褐色为减少，紫色为增加',
+    note: '规划署推算；褐色为减少，绿色为增加',
     value: (z) => z.growth_pct,
     format: (v) => `${v > 0 ? '+' : ''}${v.toFixed(1)}%`,
     classes: [
@@ -121,7 +119,7 @@ export const ZONE_METRICS: ZoneMetric[] = [
     note: '规划署 18 区就业总数；分区内按楼面用途和人口分摊，属估算',
     value: (z) => z.jobs_density,
     format: (v) => `${wan(Math.round(v))} 个/km²`,
-    classes: steps(
+    classes: steps(BLUE,
       [0, 1000, 5000, 15000, 40000, 100000],
       ['< 1千', '1千 – 5千', '5千 – 1.5万', '1.5 – 4万', '4 – 10万', '≥ 10万'],
     ),
@@ -133,7 +131,7 @@ export const ZONE_METRICS: ZoneMetric[] = [
     note: '按运输署出行调查 2022 分区吸引量校准；不含全程步行、单车',
     value: (z) => z.trips_in,
     format: (v) => `${wan(Math.round(v))} 人次`,
-    classes: steps(
+    classes: steps(TEAL,
       [0, 5000, 10000, 20000, 50000, 100000],
       ['< 5千', '5千 – 1万', '1 – 2万', '2 – 5万', '5 – 10万', '≥ 10万'],
     ),
@@ -145,7 +143,7 @@ export const ZONE_METRICS: ZoneMetric[] = [
     note: '学校位置为实测；学额按区内学校平均分摊，属估算',
     value: (z) => z.school_places,
     format: (v) => `${Math.round(v).toLocaleString('zh-CN')} 个`,
-    classes: steps(
+    classes: steps(SAND,
       [0, 500, 1000, 2000, 3500, 6000],
       ['< 500', '500 – 1千', '1千 – 2千', '2千 – 3.5千', '3.5千 – 6千', '≥ 6千'],
       '没有学校',
@@ -158,40 +156,10 @@ export const ZONE_METRICS: ZoneMetric[] = [
     note: '规划署各区年龄推算；分区内按住宅楼面分摊，属估算',
     value: (z) => z.elderly_pct,
     format: (v) => `${v.toFixed(1)}%`,
-    classes: steps(
+    classes: steps(CLAY,
       [0, 15, 20, 24, 28, 32],
       ['< 15%', '15 – 20%', '20 – 24%', '24 – 28%', '28 – 32%', '≥ 32%'],
     ),
-  },
-  {
-    id: 'taxi_demand',
-    name: '叫车需求',
-    unit: '一个工作日，出发端，2026 年',
-    note: 'pipeline/28 把的士人次矩阵展开成逐条请求；总量锚定运输署月报的载客量',
-    value: (z) => z.taxi_requests ?? null,
-    format: (v) => `${wan(Math.round(v))} 单`,
-    classes: steps(
-      [0, 500, 1500, 3000, 6000, 12000],
-      ['< 500', '500 – 1.5千', '1.5 – 3千', '3 – 6千', '6千 – 1.2万', '≥ 1.2万'],
-      '没有需求',
-    ),
-  },
-  {
-    id: 'service_small',
-    name: '车队缩到 8 千辆时的接单率',
-    unit: '与今天的 17,695 辆相比',
-    note: 'pipeline/31 的调度模拟；红色是先被放弃的地方，多为偏远分区',
-    value: (z) => (z.served_share_small == null ? null : z.served_share_small * 100),
-    format: (v) => `${v.toFixed(0)}%`,
-    // Low is bad here, so the ramp is reversed: the deepest colour marks the worst service.
-    classes: [
-      { label: '没有需求', color: NEUTRAL, test: (v) => !(v > 0) },
-      { label: '< 60%（先被放弃）', color: VIOLET[5], test: (v) => v > 0 && v < 60 },
-      { label: '60 – 75%', color: VIOLET[4], test: (v) => v >= 60 && v < 75 },
-      { label: '75 – 85%', color: VIOLET[3], test: (v) => v >= 75 && v < 85 },
-      { label: '85 – 90%', color: VIOLET[2], test: (v) => v >= 85 && v < 90 },
-      { label: '≥ 90%', color: VIOLET[1], test: (v) => v >= 90 },
-    ],
   },
 ]
 
@@ -199,27 +167,6 @@ export function zoneColor(metric: ZoneMetric, zone: ZoneProps): RGB {
   const v = metric.value(zone)
   if (v === null || Number.isNaN(v)) return NEUTRAL
   return (metric.classes.find((c) => c.test(v)) ?? metric.classes[metric.classes.length - 1]).color
-}
-
-interface FleetZone {
-  zone: string
-  requests: number
-  served_share: number
-  mean_wait_min: number
-}
-
-/** The fleet simulation, keyed by zone. Missing is fine - the two fleet metrics then show nothing. */
-async function fleetByZone(signal: AbortSignal): Promise<Map<string, [FleetZone, FleetZone]>> {
-  const res = await fetch('/api/fleet/scenarios', { signal })
-  if (!res.ok) return new Map()
-  const data = (await res.json()) as { zones: { base: FleetZone[]; small: FleetZone[] } }
-  const small = new Map(data.zones.small.map((r) => [r.zone, r]))
-  const out = new Map<string, [FleetZone, FleetZone]>()
-  for (const base of data.zones.base) {
-    const pair = small.get(base.zone)
-    if (pair) out.set(base.zone, [base, pair])
-  }
-  return out
 }
 
 export function useZones(enabled: boolean) {
@@ -234,17 +181,7 @@ export function useZones(enabled: boolean) {
         if (!res.ok) throw new Error(`/api/zones ${res.status}`)
         return res.json() as Promise<ZoneCollection>
       })
-      .then(async (data) => {
-        const fleet = await fleetByZone(controller.signal).catch(() => new Map())
-        for (const feature of data.features) {
-          const pair = fleet.get(feature.properties.zone)
-          if (!pair) continue
-          const [base, small] = pair
-          feature.properties.taxi_requests = base.requests
-          feature.properties.served_share = base.served_share
-          feature.properties.served_share_small = small.served_share
-          feature.properties.wait_min = small.mean_wait_min
-        }
+      .then((data) => {
         setZones(data)
         setFailed(false)
       })
@@ -255,4 +192,24 @@ export function useZones(enabled: boolean) {
   }, [enabled, zones])
 
   return { zones, failed }
+}
+
+// The legend and the map use the same colour conversion in the optional ink theme.
+const DARK_RAMPS = [
+  [GREEN, ['#28332c','#3f6043','#4f7a4a','#65a25d','#89bd80','#b4dbac']],
+  [BLUE, ['#28333d','#3f6585','#4c7aa2','#6394bf','#85b1d8','#b3d4ee']],
+  [TEAL, ['#263530','#345c50','#477d6d','#5c9d8b','#87c1b0','#b3dfd0']],
+  [SAND, ['#343125','#625732','#84713e','#a38a4f','#c6ab6a','#e4cc91']],
+  [CLAY, ['#352d28','#624c40','#87634f','#aa7d62','#c99d7e','#e6bea0']],
+  [BROWN, ['#e1ba84','#b18b59','#785f3f']],
+  [[NEUTRAL], ['#353a36']],
+] as const
+
+export function themeColor(color: RGB, theme: Theme): RGB {
+  if (theme === 'light') return color
+  for (const [light, dark] of DARK_RAMPS) {
+    const index = light.findIndex(c => c.every((v, i) => v === color[i]))
+    if (index >= 0) return hex(dark[index])
+  }
+  return color
 }

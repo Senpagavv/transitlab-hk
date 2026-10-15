@@ -1,3 +1,4 @@
+import { text, type Theme } from '../i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { StyleSpecification } from 'maplibre-gl'
 import {
@@ -30,7 +31,7 @@ import TransitionVeilLayer from './TransitionVeilLayer'
 import TrafficLegend from './TrafficLegend'
 import ZoneLegend from './ZoneLegend'
 import ZonePanel from './ZonePanel'
-import { ZONE_METRICS, useZones, zoneColor, type ZoneProps } from './zones'
+import { ZONE_METRICS, useZones, zoneColor, themeColor, type ZoneProps } from './zones'
 import {
   corridorColors,
   corridorWidth,
@@ -76,12 +77,15 @@ const LABEL_SOURCE = 'landsd-label'
 const ZONE_FILL = 'zones-fill'
 
 interface MapCanvasProps {
+  theme: Theme
   selected: Place | null
 }
 
-export default function MapCanvas({ selected }: MapCanvasProps) {
+export default function MapCanvas({ selected, theme }: MapCanvasProps) {
   const mapRef = useRef<MapRef>(null)
   const [mapStyle, setMapStyle] = useState<string | StyleSpecification | null>(null)
+  const [styleFailed, setStyleFailed] = useState(false)
+  const [legendOpen, setLegendOpen] = useState(false)
   const [trafficOn, setTrafficOn] = useState(true)
   const { snapshot: traffic, failed: trafficFailed } = useLiveTraffic(trafficOn)
   const corridors = useTrafficCorridors()
@@ -100,8 +104,10 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
   }
 
   useEffect(() => {
-    loadBasemapStyle().then(setMapStyle)
-  }, [])
+    let current = true
+    loadBasemapStyle(theme).then(style => { if (current) { setMapStyle(style); setStyleFailed(false) } }).catch(() => { if (current) setStyleFailed(true) })
+    return () => { current = false }
+  }, [theme])
 
   useEffect(() => {
     if (selected) {
@@ -162,13 +168,13 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
     if (!detector) return null
     // Each lane as the detector measured it: the average hides a jammed slow lane beside a free fast one.
     const lanes = (detector.lanes ?? [])
-      .map((lane) => `${laneName(lane.name)}：${lane.speed_kph ?? '—'} km/h · ${lane.vehicles_per_hour} 辆/小时`)
+      .map((lane) => `${text(laneName(lane.name))}：${lane.speed_kph ?? '—'} km/h · ${lane.vehicles_per_hour} ${text('辆/小时')}`)
       .join('<br/>')
     return {
-      html: `<b>${detector.road_zh}</b><br/>${detector.vehicles_per_hour} 辆/小时` +
-        (detector.speed_kph ? ` · 平均 ${detector.speed_kph} km/h（畅通约 ${detector.free_flow_kph}）` : '') +
+      html: `<b>${detector.road_zh}</b><br/>${detector.vehicles_per_hour} ${text('辆/小时')}` +
+        (detector.speed_kph ? ` · ${text('平均')} ${detector.speed_kph} km/h（${text('畅通约')} ${detector.free_flow_kph}）` : '') +
         (lanes ? `<br/><span style="opacity:.85">${lanes}</span>` : '') +
-        ('detectors' in object ? '<br/><span style="opacity:.7">两个探测器之间的颜色为插值</span>' : ''),
+        ('detectors' in object ? `<br/><span style="opacity:.7">${text('两个探测器之间的颜色为插值')}</span>` : ''),
     }
   }
 
@@ -179,10 +185,10 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
         ...zones,
         features: zones.features.map((f) => ({
           ...f,
-          properties: { ...f.properties, fill: `rgb(${zoneColor(metric, f.properties).join(',')})` },
+          properties: { ...f.properties, fill: `rgb(${themeColor(zoneColor(metric, f.properties), theme).join(',')})` },
         })),
       },
-    [zones, metric],
+    [zones, metric, theme],
   )
   const zonesById = useMemo(
     () => new Map((zones?.features ?? []).map((f) => [f.properties.zone, f.properties])),
@@ -198,13 +204,16 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
 
   function handleClick(e: MapLayerMouseEvent) {
     const code = zoneAt(e)
-    if (code) setPickedZone(zonesById.get(code) ?? null)
+    if (code) {
+      setPickedZone(zonesById.get(code) ?? null)
+      if (window.matchMedia('(max-width: 640px)').matches) setLegendOpen(false)
+    }
   }
 
   function handleMouseMove(e: MapLayerMouseEvent) {
     const code = zoneAt(e)
     if (code !== hoverZone) setHoverZone(code)
-    if (tipRef.current) tipRef.current.style.transform = `translate(${e.point.x + 14}px, ${e.point.y + 14}px)`
+    if (tipRef.current) tipRef.current.style.transform = `translate(${Math.max(4, Math.min(e.point.x + 14, e.target.getCanvas().clientWidth - 260))}px, ${Math.max(4, Math.min(e.point.y + 14, e.target.getCanvas().clientHeight - 75))}px)`
   }
 
   // Sized in screen pixels, so the marker stays the same size at every zoom level.
@@ -219,7 +228,7 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
               getPosition: (d) => [d.lon, d.lat],
               radiusUnits: 'pixels',
               getRadius: 14,
-              getFillColor: [230, 80, 40, 50],
+              getFillColor: [14, 122, 78, 50],
             }),
             new ScatterplotLayer<Place>({
               id: 'selected-place',
@@ -227,7 +236,7 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
               getPosition: (d) => [d.lon, d.lat],
               radiusUnits: 'pixels',
               getRadius: 6,
-              getFillColor: [230, 80, 40, 255],
+              getFillColor: [14, 122, 78, 255],
               stroked: true,
               lineWidthUnits: 'pixels',
               getLineWidth: 2,
@@ -240,7 +249,7 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
 
   const layers = [...trafficLayers, ...markerLayers]
 
-  if (!mapStyle) return null
+  if (!mapStyle) return <div className="map-loading" role="status">{text(styleFailed ? '底图读取失败，请刷新重试' : '正在读取地图…')}</div>
 
   return (
     <MapGL
@@ -271,20 +280,20 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
             id={ZONE_FILL}
             type="fill"
             beforeId={labelLayer}
-            paint={{ 'fill-color': ['get', 'fill'], 'fill-opacity': 0.92 }}
+            paint={{ 'fill-color': ['get', 'fill'], 'fill-opacity': 0.72 }}
           />
           <Layer
             id="zones-outline"
             type="line"
             beforeId={labelLayer}
-            paint={{ 'line-color': '#ffffff', 'line-width': 0.8, 'line-opacity': 0.85 }}
+            paint={{ 'line-color': theme === 'dark' ? '#a5b3a7' : '#465046', 'line-width': 0.8, 'line-opacity': 0.22 }}
           />
           <Layer
             id="zones-picked"
             type="line"
             beforeId={labelLayer}
             filter={['==', ['get', 'zone'], pickedZone?.zone ?? '']}
-            paint={{ 'line-color': '#1f2328', 'line-width': 2.5 }}
+            paint={{ 'line-color': theme === 'dark' ? '#7fd1b1' : '#2b6c58', 'line-width': 2.5 }}
           />
         </Source>
       )}
@@ -305,18 +314,23 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
           <>
             <strong>{hovered.label}</strong>
             <span>
-              {metric.name}：
+              {text(metric.name)}：
               {(() => {
                 const value = metric.value(hovered)
-                return value === null ? '—' : metric.format(value)
+                return value === null ? '—' : text(metric.format(value))
               })()}
             </span>
           </>
         )}
       </div>
       {pickedZone && <ZonePanel zone={pickedZone} onClose={() => setPickedZone(null)} />}
-      <div className="map-legends">
+      <div className={`map-legends${legendOpen ? ' is-open' : ''}${pickedZone ? ' has-selection' : ''}`}>
+        <button type="button" className="legend-toggle" onClick={() => setLegendOpen(!legendOpen)} aria-expanded={legendOpen} aria-controls="map-legend-body">
+          {text('图层与图例')}<span>{text(metric.name)} · {legendOpen ? '−' : '+'}</span>
+        </button>
+        <div className="legend-body" id="map-legend-body">
         <ZoneLegend
+          theme={theme}
           enabled={zonesOn}
           onToggle={setZonesOn}
           metric={metric}
@@ -326,6 +340,7 @@ export default function MapCanvas({ selected }: MapCanvasProps) {
           count={zones ? zones.features.length : null}
         />
         <TrafficLegend snapshot={traffic} failed={trafficFailed} enabled={trafficOn} onToggle={setTrafficOn} />
+        </div>
       </div>
     </MapGL>
   )

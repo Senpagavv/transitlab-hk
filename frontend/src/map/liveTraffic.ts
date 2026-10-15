@@ -50,11 +50,11 @@ const BUSY_FLOW = 4000 // vehicles/hour treated as "very busy" when setting line
 export type Rgb = [number, number, number]
 
 const RAMP: { at: number; color: Rgb }[] = [
-  { at: 0.0, color: [96, 178, 120] }, // free flowing: muted, so jams stand out
-  { at: 0.3, color: [163, 199, 62] },
-  { at: 0.5, color: [242, 194, 48] },
-  { at: 0.7, color: [239, 125, 42] },
-  { at: 1.0, color: [226, 59, 46] }, // stopped
+  { at: 0.0, color: [94, 152, 111] }, // free flowing: muted, so jams stand out
+  { at: 0.3, color: [161, 174, 91] },
+  { at: 0.5, color: [210, 179, 83] },
+  { at: 0.7, color: [207, 137, 75] },
+  { at: 1.0, color: [191, 80, 62] }, // stopped
 ]
 
 const UNKNOWN: Rgb = [150, 155, 160] // detector reporting flow but no valid speed

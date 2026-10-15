@@ -1,27 +1,58 @@
 :root {
-  --bg: #f7f7f5;
-  --panel: #ffffff;
-  --text: #1f2328;
-  --muted: #6b7280;
-  --border: #e3e3df;
-  --accent: #0f766e;
-  --danger: #b42318;
-
-  font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color-scheme: light;
+  --paper: #FFFCF7;
+  --panel: #FFFFFF;
+  --soft: #F8F6F1;
+  --text: #0A0A0A;
+  --secondary: #525252;
+  --muted: #8C8C8C;
+  --border: rgba(0,0,0,.08);
+  --line-strong: rgba(0,0,0,.18);
+  --accent: #0E7A4E;
+  --accent-soft: #E6F1EA;
+  --warning: #B07C10;
+  --danger: #BF3B2B;
+  --info: #1F5FA8;
+  --sea: #d9e8ef;
+  --shadow: 0 4px 18px rgba(0,0,0,.07);
+  --display: 'Bodoni Moda', 'Noto Serif TC', 'Songti TC', 'Songti SC', serif;
+  --mono: 'Geist Mono', ui-monospace, Consolas, monospace;
+  font-family: 'Geist', system-ui, 'PingFang HK', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #0A0A0A;
+  --panel: #111111;
+  --soft: #161616;
+  --text: #F5F5F5;
+  --secondary: #A3A3A3;
+  --muted: #8C8C8C;
+  --border: rgba(255,255,255,.08);
+  --line-strong: rgba(255,255,255,.20);
+  --accent: #4EBE84;
+  --accent-soft: #12291F;
+  --warning: #E89D4A;
+  --danger: #D96B4A;
+  --info: #7BA7E8;
+  --sea: #1d2a31;
+  --shadow: 0 4px 18px rgba(0,0,0,.28);
 }
-
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; min-width: 0; }
+body { overflow: hidden; }
+button, input, select { font: inherit; color: inherit; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--info); outline-offset: 3px;
+}
+input[type='checkbox'] { accent-color: var(--accent); margin: 0; width: 14px; height: 14px; flex: none; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

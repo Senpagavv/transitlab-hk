@@ -1,3 +1,4 @@
+import { text } from '../i18n'
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent } from 'react'
 
 import { searchPlaces, suggestPlaces, type Place, type PlaceKind } from '../api/client'
@@ -160,7 +161,8 @@ export default function SearchBox({ onSelect, onClear }: SearchBoxProps) {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onFocus={() => q && q !== pickedNameRef.current && setOpen(true)}
-          placeholder="输入地点或车站，例如：九龙塘、古洞、沙田"
+          placeholder={text('输入地点或车站，例如：九龙塘、古洞、沙田')}
+          aria-label={text('搜索地点或车站')}
           role="combobox"
           aria-expanded={open}
           aria-controls="search-listbox"
@@ -168,7 +170,7 @@ export default function SearchBox({ onSelect, onClear }: SearchBoxProps) {
           aria-autocomplete="list"
         />
         {query && (
-          <button type="button" className="search-clear" onClick={clear} aria-label="清除">
+          <button type="button" className="search-clear" onClick={clear} aria-label={text('清除')}>
             ×
           </button>
         )}
@@ -187,7 +189,7 @@ export default function SearchBox({ onSelect, onClear }: SearchBoxProps) {
               onClick={() => pick(p)}
               onMouseEnter={() => setActiveIndex(i)}
             >
-              <span className={`kind kind-${p.kind}`}>{KIND_LABEL[p.kind]}</span>
+              <span className={`kind kind-${p.kind}`}>{text(KIND_LABEL[p.kind])}</span>
               <span className="option-text">
                 <strong>{p.name_zh || p.name_en}</strong>
                 {subtitle(p) && <small>{subtitle(p)}</small>}
@@ -195,8 +197,8 @@ export default function SearchBox({ onSelect, onClear }: SearchBoxProps) {
             </li>
           ))}
         </ul>
-        {remoteLoading && <div className="search-status">正在搜索更多地点…</div>}
-        {showEmpty && <div className="search-status">没有找到相关地点</div>}
+        {remoteLoading && <div className="search-status">{text('正在搜索更多地点…')}</div>}
+        {showEmpty && <div className="search-status">{text('没有找到相关地点')}</div>}
       </div>
     </div>
   )

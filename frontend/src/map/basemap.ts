@@ -1,3 +1,5 @@
+import { styleForTheme } from './mapTheme'
+import type { Theme } from '../i18n'
 import { addProtocol, type RequestTransformFunction, type StyleSpecification } from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 
@@ -43,13 +45,17 @@ const ARCHIVES: Record<string, string> = {
   'landsd-raster-placeholder': 'hk-landsd-raster',
 }
 
+let protocolAdded = false
+
 /** The basemap style: tiles via the backend cache by default, or from PMTiles archives when configured. */
-export async function loadBasemapStyle(): Promise<StyleSpecification | string> {
-  if (!PMTILES_BASE) return HK_BASEMAP_STYLE_URL
+export async function loadBasemapStyle(theme: Theme = 'light'): Promise<StyleSpecification> {
+  const response = await fetch(HK_BASEMAP_STYLE_URL)
+  if (!response.ok) throw new Error('Basemap style unavailable')
+  const style = styleForTheme(await response.json() as StyleSpecification, theme)
+  if (!PMTILES_BASE) return style
 
   const base = new URL(PMTILES_BASE, window.location.href).href.replace(/\/$/, '')
-  addProtocol('pmtiles', new Protocol().tile)
-  const style: StyleSpecification = await (await fetch(HK_BASEMAP_STYLE_URL)).json()
+  if (!protocolAdded) { addProtocol('pmtiles', new Protocol().tile); protocolAdded = true }
   for (const [sourceId, archive] of Object.entries(ARCHIVES)) {
     const source = { ...style.sources[sourceId] } as { tiles?: string[]; url?: string }
     delete source.tiles

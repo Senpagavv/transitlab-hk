@@ -1,3 +1,4 @@
+import { text } from '../i18n'
 import { congestionColor, type LiveTrafficSnapshot } from './liveTraffic'
 
 interface TrafficLegendProps {
@@ -19,7 +20,7 @@ export default function TrafficLegend({ snapshot, failed, enabled, onToggle }: T
     <div className="map-legend traffic-legend">
       <label className="map-legend-title">
         <input type="checkbox" checked={enabled} onChange={(e) => onToggle(e.target.checked)} />
-        实时车流
+        {text('实时车流')}
       </label>
 
       {enabled && (
@@ -30,25 +31,25 @@ export default function TrafficLegend({ snapshot, failed, enabled, onToggle }: T
             ))}
           </div>
           <div className="traffic-scale">
-            <span>畅通</span>
-            <span>拥堵</span>
+            <span>{text('畅通')}</span>
+            <span>{text('拥堵')}</span>
           </div>
           <p className="map-legend-note">
-            线越粗表示车流越多；两个方向各靠行车方向左侧
+            {text('线越粗表示车流越多；两个方向各靠行车方向左侧')}
             <br />
-            探测器只设在主干道，线条连接相邻探测器，其间颜色为插值
+            {text('探测器只设在主干道，线条连接相邻探测器，其间颜色为插值')}
             <br />
-            没有线条的路段是那里没有探测器，或那段路上只有一个、连不成线
+            {text('没有线条的路段是那里没有探测器，或那段路上只有一个、连不成线')}
             <br />
-            {failed && <span className="traffic-error">暂时取不到数据</span>}
+            {failed && <span className="traffic-error">{text('暂时取不到数据')}</span>}
             {!failed && snapshot && (
               <>
-                数据时间 {readingTime(snapshot.observed_at)} · {snapshot.detectors.length} 个探测器
+                {text('数据时间')} {readingTime(snapshot.observed_at)} · {snapshot.detectors.length} {text('个探测器')}
                 <br />
-                来源：运输署主要道路交通数据（每 3 分钟更新）
+                {text('来源：运输署主要道路交通数据（每 3 分钟更新）')}
               </>
             )}
-            {!failed && !snapshot && '读取中…'}
+            {!failed && !snapshot && text('读取中…')}
           </p>
         </>
       )}

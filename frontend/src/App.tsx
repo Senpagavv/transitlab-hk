@@ -1,23 +1,29 @@
 import { useState } from 'react'
-
 import type { Place } from './api/client'
 import SearchBox from './components/SearchBox'
 import MapCanvas from './map/MapCanvas'
+import { text, usePresentation } from './i18n'
 import './App.css'
 
-// The Hong Kong data map (the game's «全港數據地圖», 2026-10-15): zones, live traffic and search only. The fleet
-// sandbox (FleetPanel) and the driverless-fleet scenario (DeploymentPanel) are off the page; their files stay for now.
 export default function App() {
   const [selected, setSelected] = useState<Place | null>(null)
+  const { theme } = usePresentation()
 
   return (
     <div className="app">
       <header className="topbar">
-        <span className="brand">TransitLab HK</span>
+        <div className="brand">
+          <img className="brand-logo" src="/logo-tide.svg" width="24" height="24" alt="" />
+          <div className="brand-copy">
+            <span className="brand-wordmark">TransitLab</span>
+            <span className="brand-sub">HK · {text('全港数据地图')}</span>
+          </div>
+        </div>
         <SearchBox onSelect={setSelected} onClear={() => setSelected(null)} />
+        <a className="hub-link" href="/feeder/index.html#hub=1&nav=5">← {text('五个模式')}</a>
       </header>
-      <main className="map-area">
-        <MapCanvas selected={selected} />
+      <main className="map-area" aria-label={text('全港数据地图')}>
+        <MapCanvas selected={selected} theme={theme} />
       </main>
     </div>
   )
