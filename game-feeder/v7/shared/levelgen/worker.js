@@ -23,7 +23,9 @@ onmessage = async e => {
   try {
     postMessage({ progress: 'cut' });
     const period = ['am', 'day', 'holiday'].includes(request.period) ? request.period : 'am';   // the cutter has no pm yet
-    const base = await grid('hk-base.json'), demand = await grid('hk-demand-' + period + '.json');
+    let base = await grid('hk-base.json'); const demand = await grid('hk-demand-' + period + '.json');
+    // a box of the sandbox's own choosing (its selection, «play this area with mode 3»): an extra area for the cutter
+    if (Array.isArray(request.box) && request.box.length === 4) { base = { ...base, areas: [...base.areas, { key: 'selection', name: request.boxName || 'selection', hans: request.boxName || 'selection', box: request.box }] }; request.area = 'selection'; }
     const req = toPct(base, JSON.parse(JSON.stringify({ ...request, period, mode: 3 })));
     const res = LevelCutter.cut(base, demand, req);
     if (!res.level) { postMessage({ done: true, level: null, problems: res.problems, notes: res.notes, request: req }); return; }

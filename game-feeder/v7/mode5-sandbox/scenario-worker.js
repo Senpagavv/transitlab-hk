@@ -12,7 +12,11 @@ self.onmessage=function(event){
   const input=event.data;
   if(input.type==='init'||input.type==='period'){
     try{
-      const raw=input.demand,changed=SandboxScenarios.adjust(raw,input.scenario,input.weights||{zones:{}});
+      // «only this area» (v7.31, 2026-10-15): with a scope, only the trips that start or end in those zones choose
+      // again; the roads keep the model's background traffic (demand.sections), so jams stay real and a round is quick
+      const all=input.demand,inside=input.scope&&input.scope.length?new Set(input.scope.map(String)):null;
+      const raw=inside?{...all,pairs:all.pairs.filter(p=>inside.has(String(all.zones[p[0]]))||inside.has(String(all.zones[p[1]])))}:all;
+      const changed=SandboxScenarios.adjust(raw,input.scenario,input.weights||{zones:{}});
       originalCar=raw.pairs.reduce((n,p)=>n+p[2],0);originalPT=raw.pairs.reduce((n,p)=>n+p[3],0);
       const loads=new Map(raw.sections.map(s=>[String(s[0]),s[1]]));originalJam=input.base.sections.reduce((n,s)=>{const load=loads.get(String(s.id))||0;return n+load*(load/s.cap)**2;},0);
       let adjusted=changed.demand;

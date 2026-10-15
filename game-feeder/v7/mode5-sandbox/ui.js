@@ -6,7 +6,8 @@
   let v2 = null;
   let model = null, base = null, demands = {}, demand = null, fixture = false;
   let worker = null, syncPrepared = null, syncState = null, workerReady = false, requestNo = 0, pendingPreview = 0;
-  let plan = E.emptyPlan(), activeLine = -1, tool = 'pan', activeArea = null;   // no tool picked: drag to look round, wheel to zoom
+  let plan = E.emptyPlan(), activeLine = -1, tool = 'pan', activeArea = null;
+  let scope = null;   // «only this area»: the chosen zones' ids, or null for all of Hong Kong (setScope)   // no tool picked: drag to look round, wheel to zoom
   let convergenceFailed = false, computing = false, displayStats = { totals: [], shares: [], loads: [] };
   let activeMetrics = null, previewMetrics = null, rows = [], camera = { x: 0, y: 0, zoom: 1 }, firstFit = true;
   let canvas, ctx, dpr = 1, pointerMap = new Map(), gesture = null, lastCell = null, dragMoved = false;
@@ -317,7 +318,7 @@
     };
     try {
       worker = new Worker('scenario-worker.js'); worker.onmessage = onMessage; worker.onerror = fallback;
-      requestNo++; worker.postMessage({ type: 'init', base, demand, plan, scenario:v2?v2.configs:{}, weights:v2?v2.weights:{zones:{}}, runId: requestNo });
+      requestNo++; worker.postMessage({ type: 'init', base, demand, plan, scenario:v2?v2.configs:{}, weights:v2?v2.weights:{zones:{}}, scope, runId: requestNo });
     } catch (_) { fallback(); }
   }
 
@@ -332,7 +333,7 @@
     for (const b of document.querySelectorAll('#periodTabs [data-period]')) b.setAttribute('aria-pressed', String(b.dataset.period === period));
     canvas.style.backgroundColor = (demand.theme && demand.theme.paper) || paperByPeriod[period];
     $('mapMessage').textContent = t('m5.selectPeriod', { name: periodName(period) });
-    if (worker) worker.postMessage({ type: 'period', base, demand, plan, scenario:v2?v2.configs:{}, weights:v2?v2.weights:{zones:{}}, runId: requestNo });
+    if (worker) worker.postMessage({ type: 'period', base, demand, plan, scenario:v2?v2.configs:{}, weights:v2?v2.weights:{zones:{}}, scope, runId: requestNo });
     else if (fixture) {
       try { syncPrepared = E.prepare(base, demand); syncState = E.createState(syncPrepared, plan); updateRunButtons(); sendPlan(); } catch (e) { setStatus(e.message); }
     }
@@ -340,7 +341,7 @@
   }
 
   function periodName(p) { return t('p.' + p); }
-  function setTool(next) { tool = next; updatePlanUI(); if ($('selectTool')) $('selectTool').setAttribute('aria-pressed', String(next === 'select')); updateMapToolHint(); draw(); $('toolHint').textContent = t(next === 'line' ? 'm5.newTrack' : next === 'station' ? 'm5.newStation' : 'm5.panHint'); }
+  function setTool(next) { tool = next; root.dispatchEvent(new CustomEvent('tl:tool', { detail: next })); updatePlanUI(); if ($('selectTool')) $('selectTool').setAttribute('aria-pressed', String(next === 'select')); updateMapToolHint(); draw(); $('toolHint').textContent = t(next === 'line' ? 'm5.newTrack' : next === 'station' ? 'm5.newStation' : 'm5.panHint'); }
   function startNewLine() {
     if (getActive() && !getActive().cells.length) { setStatus(t('m5.newTrack')); return; }
     plan.lines.push({ id: 'new-' + (plan.lines.length + 1), cells: [], stations: [], trains: 1 });
@@ -432,10 +433,12 @@
       ctx.strokeStyle = line.color || '#687c93'; ctx.globalAlpha = .72; ctx.lineWidth = Math.min(5, 1.3 + 2 * ratio); linePath(cells, -3); ctx.globalAlpha = 1;
     }
     // Player tracks remain visible while editing even when the passenger-flow overlay is hidden.
+    // on the clean map (vec) the player's line keeps the same width on screen at any zoom, like the MTR's
+    const px = vec ? Math.min(1, 1.6 / camera.zoom) : 1;
     if(!v2||!v2.before) plan.lines.forEach((line, index) => {
-      ctx.setLineDash([5, 3]); ctx.lineCap = 'round'; ctx.strokeStyle = '#d9505f'; ctx.lineWidth = index === activeLine ? 5 : 3;
-      linePath(line.cells, -3); ctx.setLineDash([]);
-      line.stations.forEach(st => drawStation(st.cell, '#c84250', true));
+      ctx.setLineDash([5 * px, 3 * px]); ctx.lineCap = 'round'; ctx.strokeStyle = '#d9505f'; ctx.lineWidth = (index === activeLine ? 5 : 3) * px;
+      linePath(line.cells, vec ? 0 : -3); ctx.setLineDash([]);
+      line.stations.forEach(st => drawStation(st.cell, '#c84250', true, px));
     });
     if (transitOn) for (const station of base.stations || []) {
       drawStation(station.cell, lineColor(station.lines && station.lines[0]), false);
@@ -447,10 +450,10 @@
   }
 
   function lineColor(id) { const l = (base.lines || []).find(x => String(x.id) === String(id)); return l && l.color || '#617b8f'; }
-  function drawStation(cell, color, fresh) {
+  function drawStation(cell, color, fresh, px = 1) {
     const x = cell[0] * CELL + CELL / 2, y = cell[1] * CELL + CELL / 2;
-    ctx.beginPath(); ctx.arc(x, y, fresh ? 5 : 3.5, 0, Math.PI * 2);
-    ctx.fillStyle = '#fffdf8'; ctx.fill(); ctx.lineWidth = fresh ? 2.4 : 1.8; ctx.strokeStyle = color; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x, y, (fresh ? 5 : 3.5) * px, 0, Math.PI * 2);
+    ctx.fillStyle = '#fffdf8'; ctx.fill(); ctx.lineWidth = (fresh ? 2.4 : 1.8) * px; ctx.strokeStyle = color; ctx.stroke();
   }
   function drawBuildings() {
     const showPop = $('layerPop').checked, showJobs = $('layerJobs').checked;
@@ -689,6 +692,16 @@
     return distance <= 1 ? best : null;
   }
 
+  // «only this area»: zoom to the zones, fade the rest, and let only their trips choose again (scenario-worker.js);
+  // null = back to all of Hong Kong
+  function setScope(indices) {
+    scope = indices && indices.length ? indices.map(i => String(base.zones[i].id)) : null;
+    if (root.SandboxVector) SandboxVector.S.focus = !!scope;
+    if ($('focusSel')) $('focusSel').setAttribute('aria-pressed', String(!!scope));
+    if (scope && root.SandboxVector && SandboxVector.S.ready) fitBox(SandboxVector.bounds(indices)); else fitMap();
+    if (worker) worker.terminate(); worker = null; clearResults(); initializeWorker(); draw();
+    root.dispatchEvent(new CustomEvent('tl:scope', { detail: scope ? indices.slice() : null }));
+  }
   function zoneAt(event) {
     if (!event || !root.SandboxVector || !SandboxVector.S.ready) return null;
     const rect = canvas.getBoundingClientRect(), x = (event.clientX - rect.left - camera.x) / camera.zoom / CELL, y = (event.clientY - rect.top - camera.y) / camera.zoom / CELL;
@@ -775,14 +788,13 @@
         // the first TransitLab map (TransitLab Live, frontend/dist at the backend's root): all game layers off, its own way of looking things up
         if (location.protocol !== 'file:') { const live = document.createElement('a'); live.className = 'btn btn-sm'; live.id = 'liveMap'; live.href = '/';
           const ll = () => { live.textContent = t('m5.live'); live.title = t('m5.liveTitle'); }; ll(); root.addEventListener('tl:lang', ll); fb.after(live); }
-        fb.onclick = () => { const sel = v2.selectedZones(); if (!sel.length && !SandboxVector.S.focus) { setStatus(t('m5.focusNone')); return; }
-          SandboxVector.S.focus = !SandboxVector.S.focus; fb.setAttribute('aria-pressed', String(SandboxVector.S.focus));
-          if (SandboxVector.S.focus) fitBox(SandboxVector.bounds(sel)); else fitMap(); draw(); };
+        fb.onclick = () => { const sel = v2.selectedZones(); if (!sel.length && !scope) { setStatus(t('m5.focusNone')); return; } setScope(scope ? null : sel); };
       }
       firstFit = true; fitMap(); initializeWorker(); updateMapToolHint(); setTool(tool); loadOtherPeriods();
       // for tests and tools: a grid point (cell units) → a point on the page
-      root.TL_SANDBOX = { get tool() { return tool; }, selected: () => v2.selectedZones(), toPage(x, y) { const r = canvas.getBoundingClientRect();
+      root.TL_SANDBOX = { get tool() { return tool; }, get scope() { return scope; }, get plan() { return plan; }, setScope, setTool, zoneAt, get base() { return base; }, get demand() { return demand; }, v2, selected: () => v2.selectedZones(), toPage(x, y) { const r = canvas.getBoundingClientRect();
         return [r.left + camera.x + x * CELL * camera.zoom, r.top + camera.y + y * CELL * camera.zoom]; }, fitBox, draw };
+      root.dispatchEvent(new CustomEvent('tl:sandbox-ready'));   // layout.js arranges the page into its cards
     } catch (e) { $('mapStatus').textContent = e.message; }
   }
   boot();

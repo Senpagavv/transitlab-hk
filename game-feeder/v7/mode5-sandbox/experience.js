@@ -281,7 +281,7 @@
     function reset(){renderGoal(null);$('openReport').disabled=true;$('reportSummary').textContent=t('v.noResult');if(report.open)report.close();}
     refresh();const tab=(/(?:^|[#&])tab=(ai|data)/.exec(location.hash)||[])[1];   // the hub's «AI 出關卡» opens #tab=ai
     if(tab)setMode(tab);else if(!saved('tl-m5-played-v2',false))openHelp();
-    return {selectedZones:()=>[...selected],draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get configs(){return configs},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
+    return {selectedZones:()=>[...selected],select(list){selected=new Set(list);renderPopulation();renderData();q.draw();},inspect(item){inspected=item;renderData();},setMode,rightTab,get mode(){return mode},draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get configs(){return configs},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
   }
   root.SandboxV2={create,districtName};
 })(window);
