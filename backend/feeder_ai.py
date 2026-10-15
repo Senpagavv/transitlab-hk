@@ -7,7 +7,7 @@ cutting the area out of the Hong Kong grid, building the level, the bot that set
 
 Routes (errors as {"message": ...}, like the team site's /api/game/ai/*):
   GET  /api/feeder/ai/status    {ready, model}
-  POST /api/feeder/ai/level     {sentence, lang?, names?, feedback?}  → {request, notes, attempts, ms}
+  POST /api/feeder/ai/level     {sentence, lang?, mode?, names?, feedback?}  → {request, notes, attempts, ms}
   POST /api/feeder/ai/comment   {summary, lang?}                      → {comment, checked, ms}
 The key stays on the server: DEEPSEEK_API_KEY (and DEEPSEEK_BASE_URL, DEEPSEEK_MODEL) from the environment / .env.
 """
@@ -50,7 +50,7 @@ AREAS: list[dict[str, str]] = [
 ]
 AREA_KEYS = {a["key"] for a in AREAS}
 PERIODS = {"am": "平日早高峰 08–09", "pm": "平日晚高峰 18–19", "day": "平日日常（白天平峰）", "holiday": "節假日大流量"}
-MODES = {3}                                   # mode 3 (metro + roads) first; 2 and 4 once the cutter supports them
+MODES = {2, 3, 4}                                   # metro, metro + roads, metro + station-side development
 WHAT = {"people": (-50, 150), "jobs": (-50, 150), "road_cap": (-60, 50)}   # allowed % change
 ADD = {"people": (-200_000, 300_000), "jobs": (-200_000, 300_000)}           # or an absolute number (the code turns it
                                                                                # into a % with the real population / jobs)
@@ -58,7 +58,7 @@ MAX_CHANGES, MAX_YEAR = 4, 8
 LANGS = {"zh-Hant", "zh-Hans", "en"}
 
 
-def system_prompt(lang: str = "zh-Hans", names: dict[str, list[str]] | None = None) -> str:
+def system_prompt(lang: str = "zh-Hans", names: dict[str, list[str]] | None = None, mode: int | None = None) -> str:
     """The instructions for one sentence → one level request. `names`: place names inside each area, when the game has
     the Hong Kong grid loaded (then the AI must pick from them)."""
     areas = "\n".join(
@@ -74,7 +74,12 @@ def system_prompt(lang: str = "zh-Hans", names: dict[str, list[str]] | None = No
 
 时段 period：am（{PERIODS['am']}）、pm（{PERIODS['pm']}）、day（{PERIODS['day']}）、holiday（{PERIODS['holiday']}）。
   说上班 / 早上 → am；下班 / 晚上 → pm；周末 / 节日 / 假期 / 演唱会 / 烟花 → holiday；白天购物 / 办事 → day；没说就用 am。
-规则 mode：现在只有 3（地铁 + 路会塞）。
+规则 mode：2（地铁）、3（地铁 + 路会塞）、4（地铁 + 站旁开发）。
+- 玩家明确指定玩法时优先遵守。当前面板指定：{mode if mode is not None else '自动'}。
+- 卖地 / 賣地 / 开发 / 開發 / 物业 / 物業 / 新屋苑 → 4；
+- 塞车 / 塞車 / 路 / 隧道 / 车流 / 車流 → 3；
+- 只说修地铁 / 修地鐵 / 新线 / 新線 / 没地铁 → 2；拿不准 → 3。
+- road_cap 只允许 mode 3；指定 mode 2 或 4 时不要添加 road_cap 改动。
 
 改动 changes：0 到 {MAX_CHANGES} 条，每条 {{"place": 地名, "what": "people"|"jobs"|"road_cap", "pct": 整数, "add": 整数, "by_year": 整数}}（pct 和 add 二选一，by_year 可省）
 - place：这一片里的真实地名（屋苑、商业区、场馆、路名），用繁體中文；有「可选地名」时只能从里面选。不要写坐标。
@@ -100,7 +105,7 @@ def system_prompt(lang: str = "zh-Hans", names: dict[str, list[str]] | None = No
 {{"area": "kowloon-east", "period": "am", "mode": 3, "changes": [{{"place": "啟德", "what": "people", "pct": 50, "by_year": 4}}], "title": "…", "story": ["…", "…"], "note": "…"}}"""
 
 
-def validate(obj: Any, names: dict[str, list[str]] | None = None) -> tuple[dict | None, list[dict], list[str]]:
+def validate(obj: Any, names: dict[str, list[str]] | None = None, mode: int | None = None) -> tuple[dict | None, list[dict], list[str]]:
     """Check and tidy a level request. Returns (request or None, problems that need the AI again, notes on what was
     tidied). A problem has a code: bad_json, refuse, area_unknown, too_many_changes, change_bad, place_unknown,
     text_missing."""
@@ -117,8 +122,9 @@ def validate(obj: Any, names: dict[str, list[str]] | None = None) -> tuple[dict 
     if period not in PERIODS:
         notes.append(f"period {period!r} → am")
         period = "am"
-    mode = obj.get("mode", 3)
-    if mode not in MODES:
+    requested_mode = mode
+    mode = requested_mode if requested_mode is not None else obj.get("mode", 3)
+    if type(mode) is not int or mode not in MODES:
         notes.append(f"mode {mode!r} → 3")
         mode = 3
     raw = obj.get("changes") or []
@@ -132,6 +138,9 @@ def validate(obj: Any, names: dict[str, list[str]] | None = None) -> tuple[dict 
     for c in raw[:MAX_CHANGES]:
         if not isinstance(c, dict) or c.get("what") not in WHAT or not str(c.get("place", "")).strip():
             problems.append({"code": "change_bad", "message": f"bad change {c!r}"})
+            continue
+        if c["what"] == "road_cap" and mode != 3:
+            problems.append({"code": "change_mode_conflict", "message": "road_cap is supported only in mode 3; keep the requested mode and remove this change"})
             continue
         place = str(c["place"]).strip()[:20]
         if allowed is not None and place not in allowed:
@@ -237,8 +246,11 @@ async def level(payload: dict = Body(...)):
     if not sentence:
         return _fail(400, "sentence is empty")
     lang = payload.get("lang") if payload.get("lang") in LANGS else "zh-Hans"
+    requested_mode = payload.get("mode")
+    if requested_mode is not None and (type(requested_mode) is not int or requested_mode not in MODES):
+        return _fail(400, "mode must be 2, 3 or 4 (omit it for automatic)")
     names = payload.get("names") if isinstance(payload.get("names"), dict) else None
-    messages = [{"role": "system", "content": system_prompt(lang, names)}, {"role": "user", "content": sentence}]
+    messages = [{"role": "system", "content": system_prompt(lang, names, requested_mode)}, {"role": "user", "content": sentence}]
     if payload.get("feedback"):
         messages.append({"role": "user", "content": "上一次的关卡不行，原因：" + json.dumps(payload["feedback"], ensure_ascii=False)[:600]
                          + "。请换片区、地点或规模再给一次（仍然只输出 JSON）。"})
@@ -249,7 +261,7 @@ async def level(payload: dict = Body(...)):
         except AIUnavailable as exc:
             return _fail(503, str(exc))
         obj = _parse(text)
-        req, problems, notes = validate(obj, names)
+        req, problems, notes = validate(obj, names, requested_mode)
         if req:
             return {"request": req, "notes": notes, "attempts": attempt, "ms": round((time.perf_counter() - t0) * 1000)}
         if problems and problems[0]["code"] == "refuse":

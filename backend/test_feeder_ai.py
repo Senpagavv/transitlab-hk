@@ -28,7 +28,7 @@ def replies(monkeypatch, *texts):
 
 
 def test_validate_good_and_tidy():
-    req, problems, notes = feeder_ai.validate({**GOOD, "period": "dawn", "mode": 2,
+    req, problems, notes = feeder_ai.validate({**GOOD, "period": "dawn", "mode": 99,
                                                "changes": [{"place": "觀塘繞道", "what": "road_cap", "pct": -90}]})
     assert problems == [] and req["period"] == "am" and req["mode"] == 3
     assert req["changes"] == [{"place": "觀塘繞道", "what": "road_cap", "pct": -60}]
@@ -117,3 +117,43 @@ def test_comment_numbers_checked(monkeypatch):
     assert r.status_code == 200 and r.json()["comment"].startswith("你拿了 2617")
     replies(monkeypatch, "4000", "5000")
     assert client.post("/api/feeder/ai/comment", json={"summary": SUMMARY}).status_code == 422
+
+
+@pytest.mark.parametrize("mode", [2, 3, 4])
+def test_all_modes_and_forced_mode(monkeypatch, mode):
+    replies(monkeypatch, json.dumps(GOOD))
+    r = client.post("/api/feeder/ai/level", json={"sentence": "修地铁", "mode": mode})
+    assert r.status_code == 200 and r.json()["request"]["mode"] == mode
+    assert feeder_ai.validate({**GOOD, "mode": mode})[0]["mode"] == mode
+
+
+@pytest.mark.parametrize("mode", [2, 4])
+def test_road_capacity_cannot_leak_to_other_modes(monkeypatch, mode):
+    bad = {**GOOD, "mode": mode, "changes": [{"place": "觀塘道", "what": "road_cap", "pct": -30}]}
+    assert feeder_ai.validate(bad)[1][0]["code"] == "change_mode_conflict"
+    seen = replies(monkeypatch, json.dumps(bad), json.dumps({**GOOD, "mode": 3}))
+    r = client.post("/api/feeder/ai/level", json={"sentence": "修地铁", "mode": mode})
+    assert r.status_code == 200 and r.json()["attempts"] == 2
+    assert r.json()["request"]["mode"] == mode
+    assert "change_mode_conflict" in seen[1][-1]["content"]
+
+
+@pytest.mark.parametrize("mode", [1, 5, "2", True, [], {}])
+def test_invalid_player_modes_are_rejected_without_ai(monkeypatch, mode):
+    async def forbidden(*args, **kwargs):
+        raise AssertionError("must not call AI for invalid mode")
+    monkeypatch.setattr(feeder_ai, "chat", forbidden)
+    r = client.post("/api/feeder/ai/level", json={"sentence": "修地铁", "mode": mode})
+    assert r.status_code == 400
+
+
+def test_prompt_has_mode_selection_rules():
+    p = feeder_ai.system_prompt(mode=4)
+    assert "当前面板指定：4" in p
+    assert all(word in p for word in ["卖地", "开发", "物业", "新屋苑", "塞车", "隧道", "新线", "road_cap"])
+
+
+def test_automatic_mode_uses_ai_choice(monkeypatch):
+    replies(monkeypatch, json.dumps({**GOOD, "mode": 4}))
+    r = client.post("/api/feeder/ai/level", json={"sentence": "东涌卖地建新屋苑"})
+    assert r.status_code == 200 and r.json()["request"]["mode"] == 4

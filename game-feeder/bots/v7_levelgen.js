@@ -3,6 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const cutter=require('../v7/shared/levelgen/cut.js');
 const checker=require('../v7/shared/levelgen/check.js');
 const bot=require('../v7/shared/levelgen/bot.js');
+const generator=require('../v7/shared/levelgen/generate.js');
 const comparison=require('../v7/shared/levelgen/compare.js');
 function parse(argv){
   const out={},flags=new Set(['help','compare','batch','serve','benchmark']);
@@ -10,30 +11,25 @@ function parse(argv){
     const arg=argv[i];if(!arg.startsWith('--'))throw new Error('未知参数：'+arg);
     const key=arg.slice(2);
     if(flags.has(key)){out[key]=true;continue;}
-    if(!['base','demand','area','request','seconds','out','engine','port'].includes(key))throw new Error('未知参数：'+arg);
+    if(!['base','demand','am-demand','area','request','seconds','out','engine','port','mode'].includes(key))throw new Error('未知参数：'+arg);
     if(!argv[i+1]||argv[i+1].startsWith('--'))throw new Error('缺少参数值：'+arg);
     out[key]=argv[++i];
   }
   return out;
 }
 function usage(){
-  console.log('node bots/v7_levelgen.js --base <hk-base.json> --demand <hk-demand-am.json> --area kowloon-east [--request req.json] [--seconds 20] [--out level.json] [--compare] [--engine engine.js]');
-  console.log('另外三片及九龙东：将 --area 替换成 --batch；预览：node bots/v7_levelgen.js --serve [--port 8053]');
+  console.log('node bots/v7_levelgen.js --mode 2|3|4 --area <key> [--base hk-base.json] [--demand hk-demand-am.json] [--request req.json] [--seconds 20] [--out level.json] [--compare] [--engine engine.js]');
+  console.log('全部 20 个片区：用 --batch --mode N；预览：node bots/v7_levelgen.js --serve [--port 8053]');
 }
 const readJSON=p=>JSON.parse(fs.readFileSync(path.resolve(p),'utf8').replace(/^\uFEFF/,''));
 function evaluate(base,demand,request,Engine,seconds){
-  const res=cutter.cut(base,demand,request);
-  if(!res.level)return {level:null,request,report:{doNothing:null,best:0,bestPlan:null,tiers:[0,0,0],seconds:0},problems:res.problems,notes:res.notes};
-  const calibration=checker.calibrateRoads(res.level,Engine);
-  const searched=bot.search(res.level,Engine,seconds);
-  const checked=checker.check(res.level,Engine,searched);
-  return {level:res.level,request,report:checked.report,problems:res.problems.concat(checked.problems),notes:res.notes.concat(calibration.notes,checked.notes)};
+  return generator.evaluate(base,demand,request,Engine,seconds);
 }
 function summarize(res){
-  console.log('\n片区：'+res.request.area+' · '+(res.level?res.level.title:'切片失败'));
-  if(res.level)console.log(res.level.origins.length+' 屋苑 / '+res.level.destinations.length+' 去处 / '+res.level.roads.length+' 道路折线 / '+res.level.lines.length+' 港铁线');
-  const r=res.report;
-  console.log('doNothing jam='+ (r.doNothing?r.doNothing.jam:'-')+' · stable='+ (r.doNothing?r.doNothing.stable:'-')+' · best='+r.best+' · tiers='+r.tiers.join(', ')+' · '+r.seconds+'s');
+  console.log('\n玩法 '+res.request.mode+' · 片区：'+res.request.area+' · '+(res.level?res.level.title:'切片失败'));
+  if(res.level)console.log(res.level.origins.length+' 屋苑 / '+res.level.destinations.length+' 去处 / '+(res.level.roads||[]).length+' 道路走廊 / '+(res.level.land||[]).length+' 空地');
+  const r=res.report||{doNothing:null,best:0,tiers:[0,0,0],seconds:0};
+  console.log((res.request.mode===3?'doNothing jam='+ (r.doNothing?r.doNothing.jam:'-')+' · stable='+ (r.doNothing?r.doNothing.stable:'-')+' · ':'')+'best='+r.best+' · tiers='+r.tiers.join(', ')+' · '+r.seconds+'s');
   console.log('problems: '+(res.problems.map(p=>p.code).join(', ')||'none'));
   if(r.roadRank)console.log('v/c Spearman='+r.roadRank.spearman+' · model='+r.roadRank.modelTop.map(x=>x.name+':'+x.vc).join(' / ')+' · game='+r.roadRank.gameTop.map(x=>x.name+':'+x.vc).join(' / '));
 }
@@ -94,23 +90,35 @@ function run(){
     if(args.out){const file=path.resolve(args.out);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(result,null,2),'utf8');console.log('wrote '+file);}
     return;
   }
-  if(!args.base||!args.demand||(!args.area&&!args.batch)){usage();process.exitCode=2;return;}
-  const seconds=Number(args.seconds||20);if(!Number.isFinite(seconds)||seconds<=0)throw new Error('seconds 必须为正数');
+  if(!args.area&&!args.batch&&!args.request){usage();process.exitCode=2;return;}
+  const mode=Number(args.mode||3);if(![2,3,4].includes(mode))throw Error('mode 必须是 2、3 或 4');
+  const seconds=Number(args.seconds||20);if(!Number.isFinite(seconds)||seconds<=0||seconds>20)throw new Error('seconds 必须大于 0 且不超过 20');
+  const requestInput=args.request?readJSON(args.request):{};
+  const effectiveMode=args.mode?mode:Number(requestInput.mode||mode);
+  if(![2,3,4].includes(effectiveMode))throw Error('请求 mode 必须是 2、3 或 4');
+  args.base=args.base||path.join(__dirname,'../v7/hk/hk-base.json');
+  args.demand=args.demand||path.join(__dirname,'../v7/hk/hk-demand-'+generator.period(requestInput)+'.json');
   const crypto=require('node:crypto');
   const load=p=>{const file=path.resolve(p),raw=fs.readFileSync(file);return {data:JSON.parse(raw.toString('utf8').replace(/^\uFEFF/,'')),source:{path:file,bytes:raw.length,sha256:crypto.createHash('sha256').update(raw).digest('hex')}};};
-  const baseInput=load(args.base),demandInput=load(args.demand),base=baseInput.data,demand=demandInput.data;
+  const baseInput=load(args.base),demandInput=load(args.demand),base=baseInput.data;
+  let demand=demandInput.data;
   const inputs={base:baseInput.source,demand:demandInput.source};
-  const Engine=require(args.engine?path.resolve(args.engine):'../v7/mode3-roads/engine.js');
-  const requests=args.batch?batchRequests(base,demand):[{...(args.request?readJSON(args.request):{}),area:args.area}];
+  if(effectiveMode!==3&&demand.period!=='am'){
+    const am=load(args['am-demand']||path.join(__dirname,'../v7/hk/hk-demand-am.json'));
+    demand={...demand,amDemand:am.data};inputs.amDemand=am.source;
+  }
+  const Engine=require(args.engine?path.resolve(args.engine):'../v7/'+({2:'mode2-metro',3:'mode3-roads',4:'mode4-tod'}[effectiveMode])+'/engine.js');
+  const requests=args.batch?base.areas.map(a=>({area:a.key,mode:effectiveMode,period:demand.period||'am',changes:[]})):[{...requestInput,mode:effectiveMode,...(args.area?{area:args.area}:{})}];
   const results=requests.map(req=>{
     req={...req,period:req.period||demand.period||'am',mode:req.mode==null?3:req.mode,changes:req.changes||[]};
     const result=evaluate(base,demand,req,Engine,seconds);summarize(result);
-    if((args.compare||args.batch)&&req.area==='kowloon-east'&&req.changes.length===0)compareWithManual(result,Engine,seconds);
+    if(args.compare&&effectiveMode===3&&req.area==='kowloon-east'&&req.changes.length===0)compareWithManual(result,Engine,seconds);
     return result;
   });
+  if(args.batch)console.table(results.map(r=>({area:r.request.area,mode:r.request.mode,ok:!!r.level&&!r.problems.some(p=>p.code!=='model_vc_mismatch'),best:r.report?.best||0,problems:r.problems.map(p=>p.code+': '+p.message).join('; ')})));
   const output=args.batch?{inputs,results}:{...results[0],inputs};
   if(args.out){const file=path.resolve(args.out);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(output,null,2),'utf8');console.log('\nwrote '+file);}
   else console.log(JSON.stringify(output,null,2));
-  if(results.some(x=>!x.level))process.exitCode=2;
+  if(results.some(x=>!x.level||x.problems.some(p=>p.code!=='model_vc_mismatch')))process.exitCode=2;
 }
 try{run();}catch(e){console.error(e.stack||e.message);process.exitCode=1;}

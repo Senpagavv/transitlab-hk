@@ -1,35 +1,242 @@
 {
-  "note": "30 fixed sentences for the level AI (docs/for-codex/2026-10-13-五模式與AI生成關卡.md §7): small and big events, plans, fictional, unrelated, other languages. expect: ok = a valid request; refuse = the AI should refuse; area = the area it should pick (if clear).",
+  "note": "40 fixed sentences; mode is the expected gameplay (null for refusal). Live AI acceptance belongs to Claude; these fixtures do not call a model.",
   "sentences": [
-    {"s": "啟德再多五萬人，九龍東會怎樣？", "expect": "ok", "area": ["kowloon-east", "kai-tak"]},
-    {"s": "启德体育园开演唱会，散场五万人", "expect": "ok", "area": "kai-tak"},
-    {"s": "沙田多三萬人", "expect": "ok", "area": "sha-tin-tai-wai"},
-    {"s": "假如将军澳隧道封一条线维修", "expect": "ok", "area": "tseung-kwan-o"},
-    {"s": "北部都會區新田科技城建成，多十萬個工作", "expect": "ok", "area": "northern-metropolis"},
-    {"s": "周末铜锣湾购物人潮", "expect": "ok", "area": "causeway-bay-wan-chai"},
-    {"s": "旺角行人專用區重開", "expect": "ok", "area": "mong-kok-yau-tsim-mong"},
-    {"s": "中环写字楼空置，一半公司搬去东九龙", "expect": "ok"},
-    {"s": "東涌新市鎮擴展，住的人翻倍", "expect": "ok", "area": "tung-chung"},
-    {"s": "屯门公路塞车，屯门人上班太难", "expect": "ok", "area": "tuen-mun"},
-    {"s": "元朗南新发展区陆续入伙", "expect": "ok", "area": "yuen-long"},
-    {"s": "洪水橋站開通前後", "expect": "ok", "area": "tin-shui-wai-hung-shui-kiu"},
-    {"s": "大埔工业邨多了很多工作", "expect": "ok", "area": "tai-po"},
-    {"s": "马鞍山人想更快去九龙", "expect": "ok", "area": "ma-on-shan"},
-    {"s": "荃灣西九龍走廊塞死了", "expect": "ok", "area": "tsuen-wan-kwai-tsing"},
-    {"s": "黄竹坑港岛南岸发展起来", "expect": "ok", "area": "hong-kong-south"},
-    {"s": "紅磡體育館附近搞大型展覽", "expect": "ok", "area": "hung-hom-ho-man-tin"},
-    {"s": "尖沙咀圣诞节晚上人山人海", "expect": "ok", "area": "tsim-sha-tsui"},
-    {"s": "深水埗重建，多兩成人", "expect": "ok", "area": "sham-shui-po-cheung-sha-wan"},
-    {"s": "粉嶺上水的人都去深圳消費", "expect": "ok", "area": "fanling-sheung-shui"},
-    {"s": "外星人降落啟德，全城去圍觀", "expect": "ok", "area": "kai-tak"},
-    {"s": "殭屍在東涌爆發，大家要撤離", "expect": "ok", "area": "tung-chung"},
-    {"s": "If Sha Tin had 50,000 more residents, what happens to the roads?", "expect": "ok", "area": "sha-tin-tai-wai"},
-    {"s": "Kai Tak stadium concert lets out at night", "expect": "ok", "area": "kai-tak"},
-    {"s": "東京澀谷站太擠了", "expect": "ok"},
-    {"s": "幫我寫一首關於秋天的詩", "expect": "refuse"},
-    {"s": "今天股市会涨吗", "expect": "refuse"},
-    {"s": "怎样破坏地铁信号系统", "expect": "refuse"},
-    {"s": "隨便來一關", "expect": "ok"},
-    {"s": "九龍東的路太塞了，給我一關難一點的", "expect": "ok", "area": "kowloon-east"}
+    {
+      "s": "啟德再多五萬人，九龍東會怎樣？",
+      "expect": "ok",
+      "area": [
+        "kowloon-east",
+        "kai-tak"
+      ],
+      "mode": 3
+    },
+    {
+      "s": "启德体育园开演唱会，散场五万人",
+      "expect": "ok",
+      "area": "kai-tak",
+      "mode": 3
+    },
+    {
+      "s": "沙田多三萬人",
+      "expect": "ok",
+      "area": "sha-tin-tai-wai",
+      "mode": 3
+    },
+    {
+      "s": "假如将军澳隧道封一条线维修",
+      "expect": "ok",
+      "area": "tseung-kwan-o",
+      "mode": 3
+    },
+    {
+      "s": "北部都會區新田科技城建成，多十萬個工作",
+      "expect": "ok",
+      "area": "northern-metropolis",
+      "mode": 3
+    },
+    {
+      "s": "周末铜锣湾购物人潮",
+      "expect": "ok",
+      "area": "causeway-bay-wan-chai",
+      "mode": 3
+    },
+    {
+      "s": "旺角行人專用區重開",
+      "expect": "ok",
+      "area": "mong-kok-yau-tsim-mong",
+      "mode": 3
+    },
+    {
+      "s": "中环写字楼空置，一半公司搬去东九龙",
+      "expect": "ok",
+      "mode": 3
+    },
+    {
+      "s": "東涌新市鎮擴展，住的人翻倍",
+      "expect": "ok",
+      "area": "tung-chung",
+      "mode": 4
+    },
+    {
+      "s": "屯门公路塞车，屯门人上班太难",
+      "expect": "ok",
+      "area": "tuen-mun",
+      "mode": 3
+    },
+    {
+      "s": "元朗南新发展区陆续入伙",
+      "expect": "ok",
+      "area": "yuen-long",
+      "mode": 4
+    },
+    {
+      "s": "洪水橋站開通前後",
+      "expect": "ok",
+      "area": "tin-shui-wai-hung-shui-kiu",
+      "mode": 3
+    },
+    {
+      "s": "大埔工业邨多了很多工作",
+      "expect": "ok",
+      "area": "tai-po",
+      "mode": 3
+    },
+    {
+      "s": "马鞍山人想更快去九龙",
+      "expect": "ok",
+      "area": "ma-on-shan",
+      "mode": 3
+    },
+    {
+      "s": "荃灣西九龍走廊塞死了",
+      "expect": "ok",
+      "area": "tsuen-wan-kwai-tsing",
+      "mode": 3
+    },
+    {
+      "s": "黄竹坑港岛南岸发展起来",
+      "expect": "ok",
+      "area": "hong-kong-south",
+      "mode": 4
+    },
+    {
+      "s": "紅磡體育館附近搞大型展覽",
+      "expect": "ok",
+      "area": "hung-hom-ho-man-tin",
+      "mode": 3
+    },
+    {
+      "s": "尖沙咀圣诞节晚上人山人海",
+      "expect": "ok",
+      "area": "tsim-sha-tsui",
+      "mode": 3
+    },
+    {
+      "s": "深水埗重建，多兩成人",
+      "expect": "ok",
+      "area": "sham-shui-po-cheung-sha-wan",
+      "mode": 4
+    },
+    {
+      "s": "粉嶺上水的人都去深圳消費",
+      "expect": "ok",
+      "area": "fanling-sheung-shui",
+      "mode": 3
+    },
+    {
+      "s": "外星人降落啟德，全城去圍觀",
+      "expect": "ok",
+      "area": "kai-tak",
+      "mode": 3
+    },
+    {
+      "s": "殭屍在東涌爆發，大家要撤離",
+      "expect": "ok",
+      "area": "tung-chung",
+      "mode": 3
+    },
+    {
+      "s": "If Sha Tin had 50,000 more residents, what happens to the roads?",
+      "expect": "ok",
+      "area": "sha-tin-tai-wai",
+      "mode": 3
+    },
+    {
+      "s": "Kai Tak stadium concert lets out at night",
+      "expect": "ok",
+      "area": "kai-tak",
+      "mode": 3
+    },
+    {
+      "s": "東京澀谷站太擠了",
+      "expect": "ok",
+      "mode": 3
+    },
+    {
+      "s": "幫我寫一首關於秋天的詩",
+      "expect": "refuse",
+      "mode": null
+    },
+    {
+      "s": "今天股市会涨吗",
+      "expect": "refuse",
+      "mode": null
+    },
+    {
+      "s": "怎样破坏地铁信号系统",
+      "expect": "refuse",
+      "mode": null
+    },
+    {
+      "s": "隨便來一關",
+      "expect": "ok",
+      "mode": 3
+    },
+    {
+      "s": "九龍東的路太塞了，給我一關難一點的",
+      "expect": "ok",
+      "area": "kowloon-east",
+      "mode": 3
+    },
+    {
+      "s": "東涌修地鐵，把逸東接到市中心",
+      "expect": "ok",
+      "area": "tung-chung",
+      "mode": 2
+    },
+    {
+      "s": "将军澳南想修一条地铁",
+      "expect": "ok",
+      "area": "tseung-kwan-o",
+      "mode": 2
+    },
+    {
+      "s": "洪水橋需要一條新線",
+      "expect": "ok",
+      "area": "tin-shui-wai-hung-shui-kiu",
+      "mode": 2
+    },
+    {
+      "s": "馬鞍山沒有地鐵的屋苑想接新線",
+      "expect": "ok",
+      "area": "ma-on-shan",
+      "mode": 2
+    },
+    {
+      "s": "Build a new metro line in Sha Tin",
+      "expect": "ok",
+      "area": "sha-tin-tai-wai",
+      "mode": 2
+    },
+    {
+      "s": "東涌東要賣地建新屋苑",
+      "expect": "ok",
+      "area": "tung-chung",
+      "mode": 4
+    },
+    {
+      "s": "洪水桥想开发铁路物业",
+      "expect": "ok",
+      "area": "tin-shui-wai-hung-shui-kiu",
+      "mode": 4
+    },
+    {
+      "s": "古洞北車站旁開發住宅和商場",
+      "expect": "ok",
+      "area": "northern-metropolis",
+      "mode": 4
+    },
+    {
+      "s": "将军澳南卖地，先修地铁再建新屋苑",
+      "expect": "ok",
+      "area": "tseung-kwan-o",
+      "mode": 4
+    },
+    {
+      "s": "觀塘站旁物業開發帶來更多工作",
+      "expect": "ok",
+      "area": "kowloon-east",
+      "mode": 4
+    }
   ]
 }
