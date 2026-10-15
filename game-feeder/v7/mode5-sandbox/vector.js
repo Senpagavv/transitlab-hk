@@ -10,11 +10,14 @@
   // Population or jobs colour the zones; selected zones are outlined, and «only the selection» fades the rest.
   const S = { ready: false, hover: null, focus: false };
   let Z = [], D = [], coast = null, roadsMain = null, roadsMinor = null, zoneIndex = new Map(), lines = [], rail = [];
-  const X0 = 800000, YT = 850000, CELL_M = 400;
+  // the grid's own origin (hk-base.json x0 / y_top); hk-shapes.json is written in the same units
+  let X0 = 800000, YT = 848000, CELL_M = 400;
   const at = xy => [(xy[0] - X0) / CELL_M, (YT - xy[1]) / CELL_M];
   function ringPath(p, ring) { ring.forEach((q, i) => i ? p.lineTo(q[0], q[1]) : p.moveTo(q[0], q[1])); p.closePath(); }
   function area(ring) { let a = 0; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) a += (ring[j][0] + ring[i][0]) * (ring[j][1] - ring[i][1]); return Math.abs(a / 2); }
   function load(shapes, base) {
+    X0 = base.x0 ?? X0; YT = base.y_top ?? YT; CELL_M = base.cell_m ?? CELL_M;
+    if (shapes.y_top !== undefined && (shapes.y_top !== YT || shapes.x0 !== X0)) console.warn('hk-shapes.json and hk-base.json have different origins');
     const byId = new Map((base.zones || []).map((z, i) => [String(z.id), { z, i }]));
     Z = shapes.zones.map(s => {
       const p = new Path2D(); let a = 0, x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
@@ -93,5 +96,13 @@
       b = b ? [Math.min(b[0], q.box[0]), Math.min(b[1], q.box[1]), Math.max(b[2], q.box[2]), Math.max(b[3], q.box[3])] : q.box.slice(); }
     return b;
   }
-  root.SandboxVector = { S, load, draw, bounds, setHover(c) { S.hover = c; } };
+  // the zone whose outline holds a point (grid units), or -1
+  let probe = null;
+  function zoneAt(x, y) {
+    if (!S.ready) return -1;
+    if (!probe) probe = document.createElement('canvas').getContext('2d');
+    for (const q of Z) if (q.idx >= 0 && x >= q.box[0] && x <= q.box[2] && y >= q.box[1] && y <= q.box[3] && probe.isPointInPath(q.path, x, y)) return q.idx;
+    return -1;
+  }
+  root.SandboxVector = { S, load, draw, bounds, zoneAt, setHover(c) { S.hover = c; } };
 })(typeof window !== 'undefined' ? window : globalThis);

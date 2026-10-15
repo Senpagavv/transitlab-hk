@@ -90,7 +90,7 @@
     'm5.roadVc': L("v/c {vc} · 基準 {base} · 容量 {cap}", "v/c {vc} · 基准 {base} · 容量 {cap}", "v/c {vc} · base {base} · capacity {cap}"),
     'm5.noEffect': L('新線暫時沒有明顯影響。', '新线暂时没有明显影响。', 'The new line has little effect so far.'),
     'm5.mapCars': L('道路車輛變化 {n}', '道路车辆变化 {n}', 'Road vehicles changed {n}'),
-    'm5.panHint': L('拖動平移 · 滾輪縮放', '拖动平移 · 滚轮缩放', 'Drag to pan · wheel to zoom'),
+    'm5.panHint': L('拖動看地圖 · 滾輪縮放 · 點「線路」「車站」才開始畫（Esc 放下）', '拖动看地图 · 滚轮缩放 · 点「线路」「车站」才开始画（Esc 放下）', 'Drag to look round · wheel to zoom · pick «Line» or «Station» to build (Esc puts it down)'),
     'm5.newStation': L('在線上點一下放站，距離舊站一格內可以換乘。', '在线上点一下放站，距离旧站一格内可以换乘。', 'Click the line to place a station. It transfers within one cell of an old station.'),
     'm5.newTrack': L('拖動地圖畫一條不分叉的 4 連通路線。', '拖动地图画一条不分叉的 4 连通线路。', 'Drag on the map to draw an unbranched, 4-connected route.'),
     'm5.selectPeriod': L('時段：{name}', '时段：{name}', 'Period: {name}'),

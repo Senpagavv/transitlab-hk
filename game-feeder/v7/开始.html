@@ -639,6 +639,7 @@ dialog.intro .row{margin-top:16px}
 <style>
   /* v7 hub: v3's cover and dot map (shared/style.css has its styles); levels locked until the one before is passed */
   .hub-panel .lv.locked{opacity:.55}
+  .hub-panel a.lv{text-decoration:none;color:var(--s-ink)}.hub-panel a.lv .lv-m{text-decoration:none}
   .hub-panel .lv.locked .lv-m{color:var(--s-ink3)}
   /* the level's page opens after the board is built: fade to paper */
   body::after{content:'';position:fixed;inset:0;background:var(--s-paper);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200}
@@ -842,8 +843,9 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
     'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
     'hub.first':L('第一版','第一版','First version'),
-    'hub.m5live':L('原版地圖 · TransitLab Live','原版地图 · TransitLab Live','Original map · TransitLab Live'),
-    'hub.m5liveP':L('最早那張全港地圖：實時車流、分區數據，不帶遊戲','最早那张全港地图：实时车流、分区数据，不带游戏','The first Hong Kong map: live traffic and zone data, no game'),
+    'hub.m5live':L('全港數據地圖','全港数据地图','Hong Kong data map'),
+    'hub.m5liveP':L('最早那張 TransitLab 地圖：分區人口崗位、實時車流，不帶遊戲','最早那张 TransitLab 地图：分区人口岗位、实时车流，不带游戏','The first TransitLab map: zone people and jobs, live traffic, no game'),
+    'hub.m5aP':L('寫一句情境，AI 切出一關，用第三關的玩法玩','写一句情境，AI 切出一关，用第三关的玩法玩','Write one sentence; the AI cuts a level to play with mode 3'),
     'hub.m5open':L('全港 400 米格子 · 畫線放站 · 四種時段','全港 400 米格子 · 画线放站 · 四种时段','All of Hong Kong · lines and stations · four times of day'),
     'hub.m5file':L('要從本機服務打開：雙擊 scripts\\start-feeder.cmd','要从本机服务打开：双击 scripts\\start-feeder.cmd','Open it from the local server: scripts\\start-feeder.cmd'),
     'hub.m5a':L('AI 出關卡','AI 出关卡','AI makes a level'),'hub.m5b':L('操控整個沙盤','操控整个沙盘','Run the sandbox'),'hub.m5c':L('查香港數據','查香港数据','Hong Kong data')
@@ -1198,8 +1200,10 @@ window.COVER={"W":980,"H":720,"STEP":8,"BORDER_STEP":5,"cols":196,"rows":144,"dc
     } else h = '<span class="lbl">Mode 05 · Sandbox</span><h2 class="hp-h">Sandbox' + tc(t('hub.m5H')) + '</h2>' +
       '<span class="chip"><i></i>' + t('hub.first') + '</span><p class="note">' + t('hub.m5P') + '</p>' +
       '<div class="lvls"><a class="lv" id="hubSandbox" href="mode5-sandbox/index.html"><span class="lv-n"><b>' + t('hub.m5b') + ' →</b></span><span class="lv-m">' + t(location.protocol === 'file:' ? 'hub.m5file' : 'hub.m5open') + '</span></a>' +
-      (location.protocol === 'file:' ? '' : '<a class="lv" id="hubLive" href="/"><span class="lv-n"><b>' + t('hub.m5live') + ' →</b></span><span class="lv-m">' + t('hub.m5liveP') + '</span></a>') +
-      ['m5a', 'm5c'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.coming') + '</span></button>').join('') + '</div>';
+      // the AI and the data map need the backend (the desktop shortcut); opened as a file they wait
+      (location.protocol === 'file:' ? ['m5a', 'm5live'].map(k => '<button class="lv locked" disabled><span class="lv-n"><b>' + t('hub.' + k) + '</b></span><span class="lv-m">' + t('hub.m5file') + '</span></button>').join('')
+        : '<a class="lv" id="hubAI" href="mode5-sandbox/index.html#tab=ai"><span class="lv-n"><b>' + t('hub.m5a') + ' →</b></span><span class="lv-m">' + t('hub.m5aP') + '</span></a>' +
+          '<a class="lv" id="hubLive" href="/"><span class="lv-n"><b>' + t('hub.m5live') + ' →</b></span><span class="lv-m">' + t('hub.m5liveP') + '</span></a>') + '</div>';
     $('hubPanel').innerHTML = resumeBlock() + h;
     const rb = $('hubResume'); if (rb) rb.addEventListener('click', resume);
     $('hubPanel').querySelectorAll('.lv[data-site]').forEach(b => {

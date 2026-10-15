@@ -45,8 +45,9 @@
     'hub.m5H':L('全港沙盤','全港沙盘','The Hong Kong sandbox'),
     'hub.m5P':L('整個香港的格子地圖：自由擺地鐵、巴士站和開發，調人口和吸引力，看全城怎麼變。','整个香港的格子地图：自由摆地铁、巴士站和开发，调人口和吸引力，看全城怎么变。','All of Hong Kong on one grid: place lines, bus stops and development, change people and pull, and watch the city respond.'),
     'hub.first':L('第一版','第一版','First version'),
-    'hub.m5live':L('原版地圖 · TransitLab Live','原版地图 · TransitLab Live','Original map · TransitLab Live'),
-    'hub.m5liveP':L('最早那張全港地圖：實時車流、分區數據，不帶遊戲','最早那张全港地图：实时车流、分区数据，不带游戏','The first Hong Kong map: live traffic and zone data, no game'),
+    'hub.m5live':L('全港數據地圖','全港数据地图','Hong Kong data map'),
+    'hub.m5liveP':L('最早那張 TransitLab 地圖：分區人口崗位、實時車流，不帶遊戲','最早那张 TransitLab 地图：分区人口岗位、实时车流，不带游戏','The first TransitLab map: zone people and jobs, live traffic, no game'),
+    'hub.m5aP':L('寫一句情境，AI 切出一關，用第三關的玩法玩','写一句情境，AI 切出一关，用第三关的玩法玩','Write one sentence; the AI cuts a level to play with mode 3'),
     'hub.m5open':L('全港 400 米格子 · 畫線放站 · 四種時段','全港 400 米格子 · 画线放站 · 四种时段','All of Hong Kong · lines and stations · four times of day'),
     'hub.m5file':L('要從本機服務打開：雙擊 scripts\\start-feeder.cmd','要从本机服务打开：双击 scripts\\start-feeder.cmd','Open it from the local server: scripts\\start-feeder.cmd'),
     'hub.m5a':L('AI 出關卡','AI 出关卡','AI makes a level'),'hub.m5b':L('操控整個沙盤','操控整个沙盘','Run the sandbox'),'hub.m5c':L('查香港數據','查香港数据','Hong Kong data')

@@ -2,7 +2,8 @@
 
 Reads data/web/zones-2026.geojson and data/model/road-links + road-nodes (read only) and writes
 game-feeder/v7/hk/hk-shapes.json, everything in the grid's own units (one unit = one 400 m cell, the same as
-hk-base.json: x = (E - 800000) / 400, y = (850000 - N) / 400), so the sandbox draws it with the same camera:
+hk-base.json: x = (E - x0) / 400, y = (y_top - N) / 400, read from hk-base.json), so the sandbox draws it with the same
+camera (the first version used y_top 850000 against the grid's 848000: everything sat 5 cells low, clicks missed):
   zones      455 zone outlines (id, district, rings), simplified to ~25 m
   districts  18 district outlines and a point for each name
   coast      the land's outline
@@ -19,7 +20,8 @@ from shapely.ops import unary_union
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / 'game-feeder' / 'v7' / 'hk' / 'hk-shapes.json'
-X0, YTOP, CELL = 800000, 850000, 400
+_BASE = json.loads((ROOT / 'game-feeder' / 'v7' / 'hk' / 'hk-base.json').read_text(encoding='utf-8'))
+X0, YTOP, CELL = _BASE['x0'], _BASE['y_top'], _BASE['cell_m']
 u = lambda x, y: [round((x - X0) / CELL, 3), round((YTOP - y) / CELL, 3)]
 
 
@@ -70,7 +72,7 @@ for name, kind, geom in zip(osm.name.fillna(''), osm.railway, osm.geometry):
         rail.append({'c': colour, 'k': {'subway': 0, 'rail': 0, 'light_rail': 1}[kind] if 'High Speed' not in name else 2,
                      'pts': [u(x, y) for x, y in p.coords]})
 
-out = {'version': 1, 'units': '400 m cells from (800000, 850000) HK1980',
+out = {'version': 1, 'units': f'400 m cells from ({X0}, {YTOP}) HK1980', 'x0': X0, 'y_top': YTOP,
        'source': 'data/web/zones-2026.geojson; data/model/road-links, road-nodes; data/raw/osm/hong-kong-latest.osm.pbf (railways, © OpenStreetMap contributors)',
        'zones': zones, 'districts': districts, 'coast': coast, 'roads': roads, 'rail': rail}
 OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')

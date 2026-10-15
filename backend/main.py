@@ -53,7 +53,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="TransitLab HK API", version="0.1.0", lifespan=lifespan)
-app.add_middleware(GZipMiddleware, minimum_size=2000)  # the traffic snapshot compresses ~7x
+app.add_middleware(GZipMiddleware, minimum_size=2000, compresslevel=4)  # the traffic snapshot compresses ~7x; level 4: the sandbox's 3.8 MB demand file in 0.08 s instead of 1.3 s at level 9, only ~10% larger
 
 # Packaged basemap (pipeline/04), served like a static web host would (with HTTP range requests),
 # so the deployment setup can be tested locally with /?basemap=pmtiles.

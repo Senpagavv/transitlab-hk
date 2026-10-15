@@ -99,7 +99,6 @@
     'v.noDemand':L('這裡沒有本時段出發出行資料','这里没有本时段出发出行数据','No departing-trip data for this period'),
     'm5.runStable':L('▶ 跑到穩定','▶ 跑到稳定','▶ Run to stable'),
     'm5.newTrack':L('拖動畫線 · 點格選分區 · 滾輪縮放','拖动画线 · 点格选分区 · 滚轮缩放','Drag to draw · click to select a zone · scroll to zoom'),
-    'm5.panHint':L('拖動平移 · 滾輪縮放','拖动平移 · 滚轮缩放','Drag to pan · scroll to zoom'),
     'v.mapJump':L('到地圖畫線 ↓','到地图画线 ↓','Draw on the map ↓'),
     'v.mobileLine':L('畫線','画线','Draw'),
     'v.mobileStation':L('放站','放站','Stations'),
@@ -121,7 +120,7 @@
   function districtName(s){const n=districtNames[s];return n?(I.lang==='en'?n[1]:I.lang==='zh-Hans'?n[0]:s):s;}
   function create(q){
     const b=q.base,ctx=q.ctx,C=18;
-    let selected=new Set(),inspected=null,mode='play',changes=false,before=false,challenge=null;
+    let selected=new Set(),inspected=null,mode='play',changes=false,before=false,challenge=null,showFlags=false;   // problem flags: off until «free play» asks for them (2026-10-15: the map was too busy)
     const pick=o=>typeof o==='string'?o:(o&&o[I.lang]||o&&o['zh-Hant']||'');
     const esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     function saved(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback;}catch(_){return fallback;}}
@@ -136,7 +135,7 @@
       for(const [dx,dy] of [[1,0],[0,1]]){const n=b.zones[ids[(y+dy)*b.cols+x+dx]];if(n&&n.district!==z.district)boundaries.push(dx?[x+1,y,x+1,y+1]:[x,y+1,x+1,y+1]);}
     }
     const zoomLabel=document.createElement('span');zoomLabel.id='zoomLevel';zoomLabel.className='zoom-level';document.querySelector('.maptoolbar').prepend(zoomLabel);
-    const select=document.createElement('button');select.id='selectTool';select.className='btn btn-sm';select.dataset.i18n='v.select';select.textContent=t('v.select');document.querySelector('.maptools').prepend(select);select.onclick=()=>q.setTool('select');
+    const select=document.createElement('button');select.id='selectTool';select.className='btn btn-sm';select.dataset.i18n='v.select';select.textContent=t('v.select');document.querySelector('.maptools').prepend(select);select.onclick=()=>q.setTool(q.tool==='select'?'pan':'select');
     document.querySelector('.sandbox-right .areas').style.maxHeight='none';
     const challengeBox=document.createElement('section');challengeBox.innerHTML='<div class="lbl" data-i18n="v.challenges"></div><div id="challengeList" class="challenge-list"></div><button id="freePlay" class="btn btn-sm" data-i18n="v.free"></button><div id="activeGoal" class="active-goal" role="status"></div>';document.querySelector('.sandbox .lede').after(challengeBox);
     const objective=document.createElement('div');objective.id='mapObjective';objective.className='map-corner map-objective';document.querySelector('.sandbox-map').append(objective);
@@ -170,7 +169,7 @@
     const modeTabs=document.createElement('nav');modeTabs.className='sandbox-modes';modeTabs.setAttribute('aria-label','Sandbox views');modeTabs.innerHTML='<button class="btn btn-sm" data-mode="play" aria-pressed="true" data-i18n="v.controlTab"></button><button class="btn btn-sm" data-mode="data" aria-pressed="false" data-i18n="v.browseTab"></button><button class="btn btn-sm" data-mode="ai" aria-pressed="false" data-i18n="v.aiTab"></button>';$('app').before(modeTabs);
     const aiPanel=document.createElement('section');aiPanel.id='aiPanel';aiPanel.hidden=true;aiPanel.innerHTML='<div class="ai-card"><span class="lbl">TRANSITLAB · AI</span><h2 data-i18n="v.aiTitle"></h2><label for="aiSentence" data-i18n="v.aiPrompt"></label><textarea id="aiSentence" rows="3" maxlength="600"></textarea><button class="btn btn-p" id="aiGenerate" data-i18n="v.aiGenerate"></button><p id="aiStatus" class="note" role="status"></p><div id="aiOut"></div><details id="aiJson" hidden><summary data-i18n="v.aiJson"></summary><pre id="aiRequest" tabindex="0"></pre></details><p class="note" data-i18n="v.aiNote"></p></div>';$('app').after(aiPanel);
     modeTabs.dataset.i18nAria='v.views';
-    function setMode(next){mode=next;$('app').hidden=next==='ai';aiPanel.hidden=next!=='ai';document.body.dataset.sandboxMode=next;modeTabs.querySelectorAll('[data-mode]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.mode===next)));if(next==='data'){rightTab(true);q.setTool('inspect');}else if(next==='play')q.setTool('line');requestAnimationFrame(q.draw);}
+    function setMode(next){mode=next;$('app').hidden=next==='ai';aiPanel.hidden=next!=='ai';document.body.dataset.sandboxMode=next;modeTabs.querySelectorAll('[data-mode]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.mode===next)));if(next==='data'){rightTab(true);q.setTool('inspect');}else if(next==='play'&&q.tool!=='line'&&q.tool!=='station')q.setTool('pan');requestAnimationFrame(q.draw);}
     modeTabs.onclick=e=>{const btn=e.target.closest('[data-mode]');if(btn)setMode(btn.dataset.mode);};
     $('aiGenerate').onclick=async()=>{const sentence=$('aiSentence').value.trim();if(!sentence){$('aiStatus').textContent=t('v.aiEmpty');return;}$('aiGenerate').disabled=true;$('aiJson').hidden=true;$('aiRequest').textContent='';try{const names=Object.fromEntries(b.areas.map(a=>[a.key,b.zones.filter(z=>inside(z.cell,a.box)).map(z=>q.displayName(z))]));const res=await root.TLAILevel.run(sentence,{lang:I.lang,names,status:$('aiStatus'),out:$('aiOut'),areas:b.areas});if(res&&res.request){$('aiRequest').textContent=JSON.stringify(res.request,null,2);$('aiJson').hidden=false;}}catch(e){$('aiStatus').textContent=t('v.aiError');}finally{$('aiGenerate').disabled=false;}};
     function renderPopulation(updateSlider=true){const n=selected.size;$('selectedZones').textContent=n?t('v.selected',{n})+' · '+[...selected].map(i=>q.displayName(b.zones[i])).join('、'):t('v.noSelection');
@@ -199,7 +198,7 @@
       renderGoal();
     }
     function chooseChallenge(c){challenge=c;if(c){const i=b.areas.findIndex(a=>a.key===c.area);if(i>=0)q.selectArea(i);}renderChallenges();q.draw();if(window.innerWidth<=700&&c)document.querySelector('.sandbox-play').scrollIntoView({behavior:'smooth',block:'start'});}
-    $('challengeList').onclick=e=>{const btn=e.target.closest('[data-challenge]');if(btn)chooseChallenge(root.SandboxChallenges.find(c=>c.key===btn.dataset.challenge));};$('freePlay').onclick=()=>chooseChallenge(null);
+    $('challengeList').onclick=e=>{const btn=e.target.closest('[data-challenge]');if(btn)chooseChallenge(root.SandboxChallenges.find(c=>c.key===btn.dataset.challenge));};$('freePlay').onclick=()=>{showFlags=!(showFlags&&!challenge);$('freePlay').setAttribute('aria-pressed',String(showFlags));chooseChallenge(null);};
     const inside=(cell,box)=>cell[0]>=box[0]&&cell[1]>=box[1]&&cell[0]<box[2]&&cell[1]<box[3];
     function goalValue(c,m){if(!c||!m)return 0;const g=c.goal;
       if(g.metric==='roadVehiclesReduced'){const roads=new Set(b.roads.filter(r=>g.where.roads.includes(r.en)).map(r=>String(r.id)));return Math.max(0,...b.sections.map((s,i)=>roads.has(String(s.road))?q.stats.loads[i]-m.sectionLoads[i]:0));}
@@ -257,7 +256,7 @@
         if(level===2)for(const r of b.roads||[]){const c=r.cells[Math.floor(r.cells.length/2)];if(c)place(q.displayName(r),screen(c),10,'#826440',0,0);}
       }
       if(q.area!=null&&b.areas[q.area]){const a=b.areas[q.area],p=screen([a.box[0],a.box[1]]);label(q.displayName(a),Math.max(65,Math.min(w-65,p.x+55)),Math.max(32,p.y-8),14,'#a73750',600);}
-      if(!challenge)flags.forEach((f,i)=>{const p=screen(f.cell);if(!visible(p))return;ctx.strokeStyle='#a23845';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(p.x,p.y+7);ctx.lineTo(p.x,p.y-15);ctx.stroke();ctx.fillStyle='#c34d59';ctx.beginPath();ctx.moveTo(p.x,p.y-15);ctx.lineTo(p.x+19,p.y-15);ctx.lineTo(p.x+15,p.y-2);ctx.lineTo(p.x,p.y-2);ctx.fill();ctx.fillStyle='#fff';ctx.font='bold 9px Geist';ctx.textAlign='center';ctx.fillText(i+1,p.x+8,p.y-8);});
+      if(!challenge&&showFlags)flags.forEach((f,i)=>{const p=screen(f.cell);if(!visible(p))return;ctx.strokeStyle='#a23845';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(p.x,p.y+7);ctx.lineTo(p.x,p.y-15);ctx.stroke();ctx.fillStyle='#c34d59';ctx.beginPath();ctx.moveTo(p.x,p.y-15);ctx.lineTo(p.x+19,p.y-15);ctx.lineTo(p.x+15,p.y-2);ctx.lineTo(p.x,p.y-2);ctx.fill();ctx.fillStyle='#fff';ctx.font='bold 9px Geist';ctx.textAlign='center';ctx.fillText(i+1,p.x+8,p.y-8);});
       ctx.restore();
     }
     function tooltip(e,zone){const z=zone.z,m=before?null:q.metrics||q.preview,share=m&&Number.isFinite(m.zoneCarShare[zone.i])?m.zoneCarShare[zone.i]:q.stats.shares[zone.i]||0;
@@ -266,21 +265,22 @@
     }
     function pointer(e,cell){
       if(q.tool==='pan'||e.button===1||e.button===2)return false;
-      if(!challenge){const r=q.canvas.getBoundingClientRect();const f=flags.find(f=>{const p=screen(f.cell);return Math.hypot(e.clientX-r.left-p.x-8,e.clientY-r.top-p.y+8)<15;});if(f){inspected=f;$('mapMessage').textContent=flagText(f);q.status(flagText(f));return true;}}
+      if(!challenge&&showFlags){const r=q.canvas.getBoundingClientRect();const f=flags.find(f=>{const p=screen(f.cell);return Math.hypot(e.clientX-r.left-p.x-8,e.clientY-r.top-p.y+8)<15;});if(f){inspected=f;$('mapMessage').textContent=flagText(f);q.status(flagText(f));return true;}}
       if(q.tool==='inspect'||mode==='data'){
         const type=$('inspectType').value;let item=null;
-        if(type==='zone'){const z=q.nearestZone(cell);if(z){selected=new Set([z.i]);item={kind:'zone',index:z.i};renderPopulation();}}
+        if(type==='zone'){const z=q.zoneAt(e)||q.nearestZone(cell);if(z){selected=new Set([z.i]);item={kind:'zone',index:z.i};renderPopulation();}}
         if(type==='road'){const s=q.nearestSection(cell,e);if(s)item={kind:'road',index:s.i};}
         if(type==='station'){const r=q.canvas.getBoundingClientRect();let distance=18;(b.stations||[]).forEach((s,i)=>{const p=screen(s.cell),d=Math.hypot(e.clientX-r.left-p.x,e.clientY-r.top-p.y);if(d<distance){distance=d;item={kind:'station',index:i};}});}
         if(item){inspected=item;renderData();}else q.status(t('v.noNearby'));q.draw();return true;
       }
       if(q.tool!=='select'&&!e.shiftKey)return false;tap(e,cell);return true;
     }
-    function tap(e,cell){const zone=q.nearestZone(cell);if(!zone)return;if(!e.shiftKey)selected.clear();selected.add(zone.i);inspected={kind:'zone',index:zone.i};renderPopulation();renderData();q.draw();}
+    function tap(e,cell){const zone=q.zoneAt(e)||q.nearestZone(cell);if(!zone)return;if(!e.shiftKey)selected.clear();selected.add(zone.i);inspected={kind:'zone',index:zone.i};renderPopulation();renderData();q.draw();}
     function refresh(){I.apply();rebuildFlags();$('aiSentence').placeholder=t('v.aiPlaceholder');renderChallenges();renderPopulation();renderData();select.textContent=t('v.select');if(q.metrics)result({metrics:q.metrics,stable:false});q.draw();}
     function roadColor(i,normal){if(!changes)return normal;const m=q.metrics||q.preview;if(before||!m)return '#9daba7';const delta=m.sectionLoads[i]-q.stats.loads[i];return Math.abs(delta)<.5?'#9daba7':delta<0?'#168263':'#cc4752';}
     function reset(){renderGoal(null);$('openReport').disabled=true;$('reportSummary').textContent=t('v.noResult');if(report.open)report.close();}
-    refresh();if(!saved('tl-m5-played-v2',false))openHelp();
+    refresh();const tab=(/(?:^|[#&])tab=(ai|data)/.exec(location.hash)||[])[1];   // the hub's «AI 出關卡» opens #tab=ai
+    if(tab)setMode(tab);else if(!saved('tl-m5-played-v2',false))openHelp();
     return {selectedZones:()=>[...selected],draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get configs(){return configs},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
   }
   root.SandboxV2={create,districtName};

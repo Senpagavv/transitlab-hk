@@ -6,6 +6,7 @@
 <style>
   /* v7 hub: v3's cover and dot map (shared/style.css has its styles); levels locked until the one before is passed */
   .hub-panel .lv.locked{opacity:.55}
+  .hub-panel a.lv{text-decoration:none;color:var(--s-ink)}.hub-panel a.lv .lv-m{text-decoration:none}
   .hub-panel .lv.locked .lv-m{color:var(--s-ink3)}
   /* the level's page opens after the board is built: fade to paper */
   body::after{content:'';position:fixed;inset:0;background:var(--s-paper);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200}

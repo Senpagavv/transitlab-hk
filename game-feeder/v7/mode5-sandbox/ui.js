@@ -6,7 +6,7 @@
   let v2 = null;
   let model = null, base = null, demands = {}, demand = null, fixture = false;
   let worker = null, syncPrepared = null, syncState = null, workerReady = false, requestNo = 0, pendingPreview = 0;
-  let plan = E.emptyPlan(), activeLine = -1, tool = 'line', activeArea = null;
+  let plan = E.emptyPlan(), activeLine = -1, tool = 'pan', activeArea = null;   // no tool picked: drag to look round, wheel to zoom
   let convergenceFailed = false, computing = false, displayStats = { totals: [], shares: [], loads: [] };
   let activeMetrics = null, previewMetrics = null, rows = [], camera = { x: 0, y: 0, zoom: 1 }, firstFit = true;
   let canvas, ctx, dpr = 1, pointerMap = new Map(), gesture = null, lastCell = null, dragMoved = false;
@@ -23,19 +23,19 @@
   const emptyMetrics = () => ({ newLineRiders: 0, switchedToTransit: 0, vehiclesReduced: 0, congestionReduced: 0, personMinutesSaved: 0, sectionChanges: [], zoneCarShare: [] });
 
   async function jsonFile(name) {
-    const response = await fetch(name, { cache: 'no-store' });
+    const response = await fetch(name, { cache: 'no-cache' });   // revalidates (304) instead of downloading again
     if (!response.ok) throw new Error(name + ' returned ' + response.status);
     return response.json();
   }
   async function loadModel() {
     if (location.protocol !== 'file:') {
       try {
-        const realBase = await jsonFile('../hk/hk-base.json'), found = {};
-        for (const p of periods) {
-          try { found[p] = await jsonFile('../hk/hk-demand-' + p + '.json'); } catch (_) {}
-        }
-        if (found.am) { let shapes = null; try { shapes = await jsonFile('../hk/hk-shapes.json'); } catch (_) {}   // the clean base map (vector.js)
-          return { base: realBase, demands: found, fixture: false, shapes }; }
+        // the map first: the grid, the clean base map (vector.js) and the morning, side by side; the other three times
+        // of day (2 MB) follow once the map is up (loadOtherPeriods) — before, all four came first and the map was
+        // black for seven seconds
+        const [realBase, am, shapes] = await Promise.all([jsonFile('../hk/hk-base.json'), jsonFile('../hk/hk-demand-am.json'),
+          jsonFile('../hk/hk-shapes.json').catch(() => null)]);
+        return { base: realBase, demands: { am }, fixture: false, shapes };
       } catch (_) {}
     }
     return Object.assign(SandboxFallback.make(root.ROADS_DATA), { fixture: true });
@@ -340,7 +340,7 @@
   }
 
   function periodName(p) { return t('p.' + p); }
-  function setTool(next) { tool = next; updatePlanUI(); $('toolHint').textContent = t(next === 'line' ? 'm5.newTrack' : next === 'station' ? 'm5.newStation' : 'm5.panHint'); }
+  function setTool(next) { tool = next; updatePlanUI(); if ($('selectTool')) $('selectTool').setAttribute('aria-pressed', String(next === 'select')); updateMapToolHint(); draw(); $('toolHint').textContent = t(next === 'line' ? 'm5.newTrack' : next === 'station' ? 'm5.newStation' : 'm5.panHint'); }
   function startNewLine() {
     if (getActive() && !getActive().cells.length) { setStatus(t('m5.newTrack')); return; }
     plan.lines.push({ id: 'new-' + (plan.lines.length + 1), cells: [], stations: [], trains: 1 });
@@ -541,6 +541,10 @@
     document.title = 'TransitLab HK · ' + t('m5.mode');
   }
 
+  async function loadOtherPeriods() {
+    if (fixture) return;
+    for (const p of periods) if (!demands[p]) { try { demands[p] = await jsonFile('../hk/hk-demand-' + p + '.json'); } catch (_) {} renderPeriodButtons(); }
+  }
   function renderPeriodButtons() {
     document.querySelectorAll('#periodTabs [data-period]').forEach(b => {
       b.disabled = !demands[b.dataset.period];
@@ -548,8 +552,9 @@
     });
   }
   function bindControls() {
-    $('lineTool').addEventListener('click', () => setTool('line'));
-    $('stationTool').addEventListener('click', () => setTool('station'));
+    $('lineTool').addEventListener('click', () => setTool(tool === 'line' ? 'pan' : 'line'));
+    $('stationTool').addEventListener('click', () => setTool(tool === 'station' ? 'pan' : 'station'));
+    window.addEventListener('keydown', e => { if (e.key === 'Escape' && tool !== 'pan' && !document.querySelector('dialog[open]')) setTool('pan'); });
     $('panTool').addEventListener('click', () => setTool('pan'));
     $('newLine').addEventListener('click', startNewLine);
     $('examplePlan').addEventListener('click', () => {
@@ -684,6 +689,12 @@
     return distance <= 1 ? best : null;
   }
 
+  function zoneAt(event) {
+    if (!event || !root.SandboxVector || !SandboxVector.S.ready) return null;
+    const rect = canvas.getBoundingClientRect(), x = (event.clientX - rect.left - camera.x) / camera.zoom / CELL, y = (event.clientY - rect.top - camera.y) / camera.zoom / CELL;
+    const i = SandboxVector.zoneAt(x, y);
+    return i >= 0 && base.zones[i] ? { z: base.zones[i], i } : null;
+  }
   function nearestSection(cell, event) {
     if (!cell || !event || !$('layerRoads').checked) return null;
     const rect = canvas.getBoundingClientRect(), x = (event.clientX - rect.left - camera.x) / camera.zoom, y = (event.clientY - rect.top - camera.y) / camera.zoom;
@@ -735,6 +746,8 @@
   }
   async function boot() {
     canvas = $('board'); ctx = canvas.getContext('2d', { alpha: false });
+    { const w = canvas.clientWidth, h = canvas.clientHeight, r = window.devicePixelRatio || 1;   // paper, not black, while loading
+      if (w && h) { canvas.width = Math.round(w * r); canvas.height = Math.round(h * r); ctx.fillStyle = paperByPeriod.am; ctx.fillRect(0, 0, canvas.width, canvas.height); } }
     $('mapStatus').textContent = t('m5.loading');
     try {
       model = await loadModel(); base = model.base; demands = model.demands; fixture = !!model.fixture;
@@ -748,7 +761,7 @@
         get metrics(){return activeMetrics}, get preview(){return previewMetrics}, get stats(){return displayStats},
         get plan(){return plan}, get rows(){return rows}, get area(){return activeArea}, get tool(){return tool},
         get fixture(){return fixture}, get computing(){return computing},
-        draw, setTool, roadName, displayName, nearestZone, nearestSection, getCell,
+        draw, setTool, roadName, displayName, nearestZone, zoneAt, nearestSection, getCell,
         selectArea(i){activeArea=i;renderAreas();fitArea(i)},
         changeDemand(next){demand=next;prepareDisplayData();if(worker)worker.terminate();clearResults();initializeWorker();renderSourceNote()},
         rebuildScenario(){if(worker)worker.terminate();clearResults();initializeWorker()},
@@ -766,7 +779,10 @@
           SandboxVector.S.focus = !SandboxVector.S.focus; fb.setAttribute('aria-pressed', String(SandboxVector.S.focus));
           if (SandboxVector.S.focus) fitBox(SandboxVector.bounds(sel)); else fitMap(); draw(); };
       }
-      firstFit = true; fitMap(); initializeWorker(); updateMapToolHint();
+      firstFit = true; fitMap(); initializeWorker(); updateMapToolHint(); setTool(tool); loadOtherPeriods();
+      // for tests and tools: a grid point (cell units) → a point on the page
+      root.TL_SANDBOX = { get tool() { return tool; }, selected: () => v2.selectedZones(), toPage(x, y) { const r = canvas.getBoundingClientRect();
+        return [r.left + camera.x + x * CELL * camera.zoom, r.top + camera.y + y * CELL * camera.zoom]; }, fitBox, draw };
     } catch (e) { $('mapStatus').textContent = e.message; }
   }
   boot();
