@@ -1,0 +1,585 @@
+{
+  "format": "tl-level/1",
+  "mode": 2,
+  "key": "m2-2",
+  "order": 2,
+  "challenge": false,
+  "title": {
+    "zh-Hant": "東涌·北大嶼山",
+    "zh-Hans": "东涌·北大屿山",
+    "en": "Tung Chung · North Lantau"
+  },
+  "story": [
+    "逸東到東涌東的居民，要去市中心或機場。兩個去處分在不同方向。",
+    "先選服務哪批人，再留錢買車；開通後不能重修。"
+  ],
+  "hub": {
+    "station": "東涌"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "cols": 14,
+    "rows": 9,
+    "walkPer": 2,
+    "nearby": 10,
+    "stay": 40,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 38,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "tiers": [
+      276,
+      449,
+      608
+    ],
+    "origins": [
+      {
+        "name": "逸東邨·西",
+        "hans": "逸东邨·西",
+        "cell": [
+          1,
+          6
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 45,
+        "zoneIds": [
+          "950S.4"
+        ],
+        "sourcePop": 26098,
+        "sourceAM": 3782.399999999999,
+        "sourceFraction": 0.5
+      },
+      {
+        "name": "逸東邨·東",
+        "hans": "逸东邨·东",
+        "cell": [
+          3,
+          6
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 45,
+        "zoneIds": [
+          "950S.4"
+        ],
+        "sourcePop": 26098,
+        "sourceAM": 3782.399999999999,
+        "sourceFraction": 0.5
+      },
+      {
+        "name": "東涌站一帶",
+        "hans": "东涌站一带",
+        "cell": [
+          5,
+          4
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 88,
+        "zoneIds": [
+          "950S.3"
+        ],
+        "sourcePop": 42854,
+        "sourceAM": 7352.600000000007,
+        "sourceFraction": 1
+      },
+      {
+        "name": "裕雅苑·西",
+        "hans": "裕雅苑·西",
+        "cell": [
+          9,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 51,
+        "zoneIds": [
+          "950S.6"
+        ],
+        "sourcePop": 29212,
+        "sourceAM": 4296.699999999993,
+        "sourceFraction": 0.5
+      },
+      {
+        "name": "裕雅苑·東",
+        "hans": "裕雅苑·东",
+        "cell": [
+          12,
+          3
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 51,
+        "zoneIds": [
+          "950S.6"
+        ],
+        "sourcePop": 29212,
+        "sourceAM": 4296.699999999993,
+        "sourceFraction": 0.5
+      }
+    ],
+    "destinations": [
+      {
+        "name": "東涌市中心",
+        "hans": "东涌站一带",
+        "short": "東涌市中心",
+        "shortHans": "东涌站一带",
+        "kind": "jobs",
+        "cell": [
+          6,
+          5
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 24,
+        "carExtra": 2,
+        "jobs": 37982,
+        "zoneIds": [
+          "950S.3"
+        ]
+      },
+      {
+        "name": "機場就業區",
+        "hans": "机场站一带",
+        "short": "機場就業區",
+        "shortHans": "机场站一带",
+        "kind": "jobs",
+        "cell": [
+          3,
+          0
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 23.248697,
+        "carExtra": 2,
+        "jobs": 34415,
+        "zoneIds": [
+          "950S.1"
+        ]
+      }
+    ],
+    "source": {
+      "method": "Manual schematic; origin AM car+pt outflow scaled to 280; attraction=16+8*jobs/max(selected jobs), matching the built-in attraction range",
+      "amTotal": 23510.799999999992,
+      "scale": 0.01190942035149804,
+      "maxJobs": 37982,
+      "difficulty": [
+        "新增：兩個去處分向，線路不能只穿一個中心。"
+      ],
+      "coordinateNote": "14×9 teaching layout, preserves broad west/east and north/south; split zone fractions and lot positions are D-tier schematic assumptions.",
+      "assumptions": {
+        "budget": 38,
+        "land": null,
+        "subdivision": [
+          {
+            "name": "逸東邨·西",
+            "zone": "950S.4",
+            "fraction": 0.5
+          },
+          {
+            "name": "逸東邨·東",
+            "zone": "950S.4",
+            "fraction": 0.5
+          },
+          {
+            "name": "裕雅苑·西",
+            "zone": "950S.6",
+            "fraction": 0.5
+          },
+          {
+            "name": "裕雅苑·東",
+            "zone": "950S.6",
+            "fraction": 0.5
+          }
+        ]
+      }
+    },
+    "title": "東涌·北大嶼山",
+    "story": [
+      "逸東到東涌東的居民，要去市中心或機場。兩個去處分在不同方向。",
+      "先選服務哪批人，再留錢買車；開通後不能重修。"
+    ],
+    "demo": {
+      "tiers": [
+        276,
+        449,
+        608
+      ],
+      "best": 691,
+      "pass": {
+        "line": [
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            6,
+            5
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "trains": 2,
+        "score": 285
+      },
+      "high": {
+        "line": [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "stations": [
+          [
+            9,
+            2
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "trains": 2,
+        "score": 473
+      },
+      "master": {
+        "line": [
+          [
+            12,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "stations": [
+          [
+            9,
+            2
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            11,
+            3
+          ]
+        ],
+        "trains": 2,
+        "score": 691
+      }
+    }
+  },
+  "verification": {
+    "bot": "v7_metro_grow.js",
+    "restarts": 400,
+    "seconds": 6.99,
+    "best": 691,
+    "tiers": [
+      276,
+      449,
+      608
+    ],
+    "demoScores": {
+      "pass": 285,
+      "high": 473,
+      "master": 691
+    },
+    "strategyScores": {
+      "pass": 285,
+      "high": 473,
+      "master": 691
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "東涌市中心",
+      "to": "機場就業區",
+      "score": 250,
+      "gap": -26,
+      "plan": {
+        "line": [
+          [
+            6,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            6,
+            5
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "trains": 1,
+        "actions": [],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 250
+    },
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m2-2",
+          "tier": "pass",
+          "score": 285
+        },
+        {
+          "key": "m2-2",
+          "tier": "high",
+          "score": 473
+        },
+        {
+          "key": "m2-2",
+          "tier": "master",
+          "score": 691
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2261 @@
+{
+  "format": "tl-level/1",
+  "mode": 3,
+  "key": "m3-2",
+  "order": 2,
+  "challenge": false,
+  "title": {
+    "zh-Hant": "沙田·大圍",
+    "zh-Hans": "沙田·大围",
+    "en": "Sha Tin · Tai Wai"
+  },
+  "story": [
+    "早高峰人口、工作點和道路來自全港底板切片，保留有車流的主走廊。",
+    "新增：南北通勤與河兩岸接駁；第二期要把通道補完整。 道路暢通後仍可能有人重新開車，要看八年的總減堵。"
+  ],
+  "hub": {
+    "station": "大圍"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "title": "沙田·大圍",
+    "story": [
+      "早高峰人口、工作點和道路來自全港底板切片，保留有車流的主走廊。",
+      "新增：南北通勤與河兩岸接駁；第二期要把通道補完整。 道路暢通後仍可能有人重新開車，要看八年的總減堵。"
+    ],
+    "cols": 16,
+    "rows": 12,
+    "origins": [
+      {
+        "name": "隆亨邨",
+        "hans": "隆亨邨",
+        "cell": [
+          6,
+          10
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 67,
+        "zoneIds": [
+          "759.7",
+          "759.3",
+          "759.6"
+        ],
+        "aliases": [
+          "隆亨邨",
+          "大圍站一帶",
+          "大围站一带",
+          "新田圍邨",
+          "新田围邨"
+        ],
+        "sourcePop": 61809
+      },
+      {
+        "name": "美田邨",
+        "hans": "美田邨",
+        "cell": [
+          5,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 58,
+        "zoneIds": [
+          "731S.3",
+          "731S.2"
+        ],
+        "aliases": [
+          "美田邨",
+          "美林邨"
+        ],
+        "sourcePop": 55027
+      },
+      {
+        "name": "第一城站一帶",
+        "hans": "第一城站一带",
+        "cell": [
+          12,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 52,
+        "zoneIds": [
+          "756S.1",
+          "755.2"
+        ],
+        "aliases": [
+          "第一城站一帶",
+          "第一城站一带",
+          "富豪花園",
+          "富豪花园"
+        ],
+        "sourcePop": 45164
+      },
+      {
+        "name": "水泉澳邨",
+        "hans": "水泉澳邨",
+        "cell": [
+          11,
+          9
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 44,
+        "zoneIds": [
+          "755.3",
+          "755.1"
+        ],
+        "aliases": [
+          "水泉澳邨",
+          "沙田圍站一帶",
+          "沙田围站一带"
+        ],
+        "sourcePop": 43069
+      },
+      {
+        "name": "乙明邨",
+        "hans": "乙明邨",
+        "cell": [
+          9,
+          8
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 39,
+        "zoneIds": [
+          "755.4",
+          "759.1"
+        ],
+        "aliases": [
+          "乙明邨",
+          "車公廟站一帶",
+          "车公庙站一带"
+        ],
+        "sourcePop": 35774
+      },
+      {
+        "name": "沙田站一帶",
+        "hans": "沙田站一带",
+        "cell": [
+          8,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 40,
+        "zoneIds": [
+          "758.1",
+          "758.3"
+        ],
+        "aliases": [
+          "沙田站一帶",
+          "沙田站一带",
+          "瀝源邨",
+          "沥源邨"
+        ],
+        "sourcePop": 35110
+      }
+    ],
+    "destinations": [
+      {
+        "name": "石門站一帶",
+        "hans": "石门站一带",
+        "kind": "jobs",
+        "cell": [
+          13,
+          3
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 28679,
+        "attraction": 17.911933333333334,
+        "carExtra": 2,
+        "zoneIds": [
+          "756S.2"
+        ],
+        "aliases": [
+          "石門站一帶",
+          "石门站一带"
+        ]
+      },
+      {
+        "name": "穗禾苑",
+        "hans": "穗禾苑",
+        "kind": "jobs",
+        "cell": [
+          8,
+          2
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 22171,
+        "attraction": 17.478066666666667,
+        "carExtra": 2,
+        "zoneIds": [
+          "732S.3"
+        ],
+        "aliases": [
+          "穗禾苑"
+        ]
+      },
+      {
+        "name": "往南面",
+        "hans": "往南面",
+        "kind": "gate",
+        "cell": [
+          8,
+          11
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobsEquivalent": 25123,
+        "attraction": 17.674893333333333,
+        "carExtra": 2,
+        "sourceTarget": "121S"
+      }
+    ],
+    "roads": [
+      {
+        "name": "獅子山隧道公路",
+        "hans": "狮子山隧道公路",
+        "aliases": [
+          "LION ROCK TUNNEL ROAD"
+        ],
+        "via": [
+          [
+            8,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            7,
+            11
+          ],
+          [
+            6,
+            11
+          ]
+        ],
+        "cap": 18.32322836647261
+      },
+      {
+        "name": "SHA LEK HIGHWAY",
+        "hans": "SHA LEK HIGHWAY",
+        "aliases": [
+          "SHA LEK HIGHWAY"
+        ],
+        "via": [
+          [
+            14,
+            6
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            8
+          ]
+        ],
+        "cap": 57.5024846052078
+      },
+      {
+        "name": "TATE'S CAIRN HIGHWAY",
+        "hans": "TATE'S CAIRN HIGHWAY",
+        "aliases": [
+          "TATE'S CAIRN HIGHWAY"
+        ],
+        "via": [
+          [
+            15,
+            0
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            14,
+            1
+          ],
+          [
+            14,
+            2
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            6
+          ],
+          [
+            14,
+            7
+          ],
+          [
+            14,
+            8
+          ]
+        ],
+        "cap": 39.91112938987988
+      },
+      {
+        "name": "TSING SHA HIGHWAY",
+        "hans": "TSING SHA HIGHWAY",
+        "aliases": [
+          "TSING SHA HIGHWAY"
+        ],
+        "via": [
+          [
+            7,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            2,
+            11
+          ]
+        ],
+        "cap": 44.77221445410791
+      },
+      {
+        "name": "火炭路",
+        "hans": "火炭路",
+        "aliases": [
+          "FO TAN ROAD"
+        ],
+        "via": [
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            3
+          ]
+        ],
+        "cap": 20.834884052070738
+      },
+      {
+        "name": "TAI PO ROAD - SHA TIN",
+        "hans": "TAI PO ROAD - SHA TIN",
+        "aliases": [
+          "TAI PO ROAD - SHA TIN"
+        ],
+        "via": [
+          [
+            13,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            12,
+            1
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            10,
+            3
+          ]
+        ],
+        "cap": 34.29075320902175
+      },
+      {
+        "name": "大涌橋路",
+        "hans": "大涌桥路",
+        "aliases": [
+          "TAI CHUNG KIU ROAD"
+        ],
+        "via": [
+          [
+            11,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "cap": 25.07386841233856
+      },
+      {
+        "name": "SHA TIN ROAD",
+        "hans": "SHA TIN ROAD",
+        "aliases": [
+          "SHA TIN ROAD"
+        ],
+        "via": [
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ]
+        ],
+        "cap": 48.83078498623068
+      },
+      {
+        "name": "大老山隧道",
+        "hans": "大老山隧道",
+        "aliases": [
+          "TATE'S CAIRN TUNNEL"
+        ],
+        "via": [
+          [
+            15,
+            8
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            14,
+            9
+          ],
+          [
+            14,
+            10
+          ],
+          [
+            14,
+            11
+          ]
+        ],
+        "cap": 17.790793541907117
+      },
+      {
+        "name": "SHING MUN TUNNEL ROAD",
+        "hans": "SHING MUN TUNNEL ROAD",
+        "aliases": [
+          "SHING MUN TUNNEL ROAD"
+        ],
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "cap": 24.51457661065983
+      }
+    ],
+    "lines": [
+      {
+        "name": "東鐵綫",
+        "hans": "东铁线",
+        "color": "#5EB7E8",
+        "via": [
+          [
+            6,
+            11
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            12,
+            1
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            13,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            6,
+            9
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            11,
+            2
+          ]
+        ],
+        "names": [
+          "大圍",
+          "沙田",
+          "火炭"
+        ],
+        "namesHans": [
+          "大围",
+          "沙田",
+          "火炭"
+        ],
+        "trains": 4,
+        "sourceTrains": 3
+      },
+      {
+        "name": "屯馬綫",
+        "hans": "屯马线",
+        "color": "#923011",
+        "via": [
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            14,
+            2
+          ],
+          [
+            15,
+            2
+          ],
+          [
+            15,
+            1
+          ]
+        ],
+        "stations": [
+          [
+            4,
+            11
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            13,
+            4
+          ]
+        ],
+        "names": [
+          "顯徑",
+          "大圍",
+          "車公廟",
+          "沙田圍",
+          "第一城",
+          "石門"
+        ],
+        "namesHans": [
+          "显径",
+          "大围",
+          "车公庙",
+          "沙田围",
+          "第一城",
+          "石门"
+        ],
+        "trains": 4,
+        "sourceTrains": 3
+      }
+    ],
+    "water": [],
+    "walkPer": 3,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 30,
+    "budget": 24,
+    "phase2Budget": 12,
+    "years": 8,
+    "crowdBlocks": 6,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "nearby": 10,
+    "stay": 40,
+    "learn": 0.1,
+    "tiers": [
+      484,
+      786,
+      1064
+    ],
+    "source": {
+      "area": "sha-tin-tai-wai",
+      "period": "am",
+      "box": [
+        85,
+        46,
+        101,
+        58
+      ],
+      "scale": 0.010431734727940354,
+      "changes": [],
+      "roadCapCoeff": 0.5,
+      "roadSections": [
+        {
+          "name": "獅子山隧道公路",
+          "modelCap": 3512.9782043624405,
+          "segments": [
+            {
+              "a": [
+                8,
+                7
+              ],
+              "b": [
+                8,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1210"
+              ]
+            },
+            {
+              "a": [
+                8,
+                8
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1264"
+              ]
+            },
+            {
+              "a": [
+                8,
+                9
+              ],
+              "b": [
+                8,
+                10
+              ],
+              "modelVC": 1.5,
+              "sectionIds": [
+                "1330"
+              ]
+            },
+            {
+              "a": [
+                8,
+                10
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 1.5,
+              "sectionIds": [
+                "1396"
+              ]
+            },
+            {
+              "a": [
+                7,
+                10
+              ],
+              "b": [
+                7,
+                11
+              ],
+              "modelVC": 1.5,
+              "sectionIds": [
+                "1397"
+              ]
+            },
+            {
+              "a": [
+                6,
+                11
+              ],
+              "b": [
+                7,
+                11
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1442"
+              ]
+            },
+            {
+              "a": [
+                7,
+                7
+              ],
+              "b": [
+                8,
+                7
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1208"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHA LEK HIGHWAY",
+          "modelCap": 11024.52968846939,
+          "segments": [
+            {
+              "a": [
+                13,
+                6
+              ],
+              "b": [
+                14,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1162"
+              ]
+            },
+            {
+              "a": [
+                13,
+                6
+              ],
+              "b": [
+                13,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1163"
+              ]
+            },
+            {
+              "a": [
+                12,
+                7
+              ],
+              "b": [
+                13,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1217"
+              ]
+            },
+            {
+              "a": [
+                11,
+                7
+              ],
+              "b": [
+                12,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1215"
+              ]
+            },
+            {
+              "a": [
+                11,
+                7
+              ],
+              "b": [
+                11,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1216"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TATE'S CAIRN HIGHWAY",
+          "modelCap": 7651.868156306147,
+          "segments": [
+            {
+              "a": [
+                15,
+                0
+              ],
+              "b": [
+                15,
+                1
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "976"
+              ]
+            },
+            {
+              "a": [
+                15,
+                1
+              ],
+              "b": [
+                14,
+                1
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "1001"
+              ]
+            },
+            {
+              "a": [
+                14,
+                1
+              ],
+              "b": [
+                14,
+                2
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "1002"
+              ]
+            },
+            {
+              "a": [
+                14,
+                2
+              ],
+              "b": [
+                14,
+                3
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "1028"
+              ]
+            },
+            {
+              "a": [
+                14,
+                3
+              ],
+              "b": [
+                14,
+                4
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1054"
+              ]
+            },
+            {
+              "a": [
+                14,
+                4
+              ],
+              "b": [
+                14,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1084"
+              ]
+            },
+            {
+              "a": [
+                14,
+                5
+              ],
+              "b": [
+                14,
+                6
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1117"
+              ]
+            },
+            {
+              "a": [
+                14,
+                6
+              ],
+              "b": [
+                14,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1165"
+              ]
+            },
+            {
+              "a": [
+                14,
+                7
+              ],
+              "b": [
+                14,
+                8
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1219"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING SHA HIGHWAY",
+          "modelCap": 8583.84834771345,
+          "segments": [
+            {
+              "a": [
+                6,
+                7
+              ],
+              "b": [
+                7,
+                7
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "1206"
+              ]
+            },
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                6,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1204"
+              ]
+            },
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                5,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1205"
+              ]
+            },
+            {
+              "a": [
+                5,
+                8
+              ],
+              "b": [
+                5,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1258"
+              ]
+            },
+            {
+              "a": [
+                4,
+                9
+              ],
+              "b": [
+                5,
+                9
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1321"
+              ]
+            },
+            {
+              "a": [
+                4,
+                9
+              ],
+              "b": [
+                4,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1322"
+              ]
+            },
+            {
+              "a": [
+                4,
+                10
+              ],
+              "b": [
+                3,
+                10
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "1388"
+              ]
+            },
+            {
+              "a": [
+                3,
+                10
+              ],
+              "b": [
+                3,
+                11
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "1389"
+              ]
+            },
+            {
+              "a": [
+                3,
+                11
+              ],
+              "b": [
+                2,
+                11
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "1437"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "火炭路",
+          "modelCap": 3994.5195301538092,
+          "segments": [
+            {
+              "a": [
+                9,
+                1
+              ],
+              "b": [
+                9,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "995"
+              ]
+            },
+            {
+              "a": [
+                9,
+                2
+              ],
+              "b": [
+                10,
+                2
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1022"
+              ]
+            },
+            {
+              "a": [
+                10,
+                2
+              ],
+              "b": [
+                10,
+                3
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1025"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TAI PO ROAD - SHA TIN",
+          "modelCap": 6574.31464724221,
+          "segments": [
+            {
+              "a": [
+                12,
+                0
+              ],
+              "b": [
+                13,
+                0
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "973"
+              ]
+            },
+            {
+              "a": [
+                12,
+                0
+              ],
+              "b": [
+                12,
+                1
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "974"
+              ]
+            },
+            {
+              "a": [
+                12,
+                1
+              ],
+              "b": [
+                12,
+                2
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "1000"
+              ]
+            },
+            {
+              "a": [
+                11,
+                2
+              ],
+              "b": [
+                12,
+                2
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "1026"
+              ]
+            },
+            {
+              "a": [
+                11,
+                2
+              ],
+              "b": [
+                11,
+                3
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1027"
+              ]
+            },
+            {
+              "a": [
+                10,
+                3
+              ],
+              "b": [
+                11,
+                3
+              ],
+              "modelVC": 1.1,
+              "sectionIds": [
+                "1049"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大涌橋路",
+          "modelCap": 4807.22891566265,
+          "segments": [
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                10,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1110"
+              ]
+            },
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1111"
+              ]
+            },
+            {
+              "a": [
+                10,
+                6
+              ],
+              "b": [
+                10,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1157"
+              ]
+            },
+            {
+              "a": [
+                10,
+                7
+              ],
+              "b": [
+                9,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1211"
+              ]
+            },
+            {
+              "a": [
+                9,
+                7
+              ],
+              "b": [
+                9,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1212"
+              ]
+            },
+            {
+              "a": [
+                8,
+                8
+              ],
+              "b": [
+                9,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1263"
+              ]
+            },
+            {
+              "a": [
+                10,
+                7
+              ],
+              "b": [
+                11,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1213"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHA TIN ROAD",
+          "modelCap": 9361.96831298678,
+          "segments": [
+            {
+              "a": [
+                11,
+                3
+              ],
+              "b": [
+                11,
+                4
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1051"
+              ]
+            },
+            {
+              "a": [
+                11,
+                4
+              ],
+              "b": [
+                11,
+                5
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1079"
+              ]
+            },
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1112"
+              ]
+            },
+            {
+              "a": [
+                12,
+                5
+              ],
+              "b": [
+                12,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1115"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大老山隧道",
+          "modelCap": 3410.8983799705456,
+          "segments": [
+            {
+              "a": [
+                14,
+                8
+              ],
+              "b": [
+                15,
+                8
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "1270"
+              ]
+            },
+            {
+              "a": [
+                14,
+                8
+              ],
+              "b": [
+                14,
+                9
+              ],
+              "modelVC": 1.1,
+              "sectionIds": [
+                "1271"
+              ]
+            },
+            {
+              "a": [
+                14,
+                9
+              ],
+              "b": [
+                14,
+                10
+              ],
+              "modelVC": 1.1,
+              "sectionIds": [
+                "1333"
+              ]
+            },
+            {
+              "a": [
+                14,
+                10
+              ],
+              "b": [
+                14,
+                11
+              ],
+              "modelVC": 1.1,
+              "sectionIds": [
+                "1398"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHING MUN TUNNEL ROAD",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                2,
+                6
+              ],
+              "b": [
+                3,
+                6
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1148"
+              ]
+            },
+            {
+              "a": [
+                3,
+                6
+              ],
+              "b": [
+                4,
+                6
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1150"
+              ]
+            },
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1151"
+              ]
+            },
+            {
+              "a": [
+                5,
+                6
+              ],
+              "b": [
+                5,
+                7
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1152"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        }
+      ],
+      "simplification": {
+        "inputRoadObjects": 41,
+        "outputCorridors": 10,
+        "policy": "Positive-flow source spines, one displayed corridor per name; minimum source-edge connectors retained for reachability; harmonic-mean capacity; no invented edges",
+        "moves": [],
+        "connectors": [
+          {
+            "corridor": "獅子山隧道公路",
+            "via": [
+              [
+                8,
+                7
+              ],
+              [
+                7,
+                7
+              ]
+            ],
+            "sourceRoads": [
+              "SHING MUN TUNNEL ROAD"
+            ],
+            "sectionIds": [
+              "1208"
+            ]
+          },
+          {
+            "corridor": "大涌橋路",
+            "via": [
+              [
+                10,
+                7
+              ],
+              [
+                11,
+                7
+              ]
+            ],
+            "sourceRoads": [
+              "沙田圍路"
+            ],
+            "sectionIds": [
+              "1213"
+            ]
+          }
+        ]
+      },
+      "calibration": {
+        "coefficient": 0.5,
+        "ranking": {
+          "sections": 58,
+          "spearman": -0.342,
+          "modelTop": [
+            {
+              "name": "獅子山隧道公路",
+              "vc": 1.5
+            },
+            {
+              "name": "TATE'S CAIRN HIGHWAY",
+              "vc": 1.3
+            },
+            {
+              "name": "TAI PO ROAD - SHA TIN",
+              "vc": 1.1
+            },
+            {
+              "name": "大老山隧道",
+              "vc": 1.1
+            },
+            {
+              "name": "TSING SHA HIGHWAY",
+              "vc": 0.7
+            },
+            {
+              "name": "火炭路",
+              "vc": 0.6
+            },
+            {
+              "name": "SHING MUN TUNNEL ROAD",
+              "vc": 0.6
+            }
+          ],
+          "gameTop": [
+            {
+              "name": "獅子山隧道公路",
+              "vc": 1.68
+            },
+            {
+              "name": "火炭路",
+              "vc": 0.77
+            },
+            {
+              "name": "大涌橋路",
+              "vc": 0.77
+            },
+            {
+              "name": "TATE'S CAIRN HIGHWAY",
+              "vc": 0.68
+            },
+            {
+              "name": "SHA LEK HIGHWAY",
+              "vc": 0.47
+            },
+            {
+              "name": "TAI PO ROAD - SHA TIN",
+              "vc": 0.47
+            },
+            {
+              "name": "SHA TIN ROAD",
+              "vc": 0.33
+            }
+          ]
+        },
+        "notes": [
+          "道路容量统一系数搜索结果：0.500；匹配 58 段，Spearman=-0.342；系数搜索内最大逐年跳变 0.0%。"
+        ]
+      },
+      "operatingScenario": {
+        "perTrain": 30,
+        "perTrainBase": 40,
+        "fraction": 0.75,
+        "crowdBlocks": 6,
+        "learn": 0.1,
+        "note": "D-tier teaching scenario: new units carry 75% / 62.5% of built-in 40; crowd penalty is 1.5x / 2x built-in 4; learning=one third of built-in .3. All existing rail branches retained; their unit counts are rounded up to preserve at least the source 3x40 total capacity. These are teaching units, not real train capacities."
+      },
+      "finalRoadRank": {
+        "sections": 58,
+        "spearman": -0.342,
+        "modelTop": [
+          {
+            "name": "獅子山隧道公路",
+            "vc": 1.5
+          },
+          {
+            "name": "TATE'S CAIRN HIGHWAY",
+            "vc": 1.3
+          },
+          {
+            "name": "TAI PO ROAD - SHA TIN",
+            "vc": 1.1
+          },
+          {
+            "name": "大老山隧道",
+            "vc": 1.1
+          },
+          {
+            "name": "TSING SHA HIGHWAY",
+            "vc": 0.7
+          },
+          {
+            "name": "火炭路",
+            "vc": 0.6
+          },
+          {
+            "name": "SHING MUN TUNNEL ROAD",
+            "vc": 0.6
+          }
+        ],
+        "gameTop": [
+          {
+            "name": "獅子山隧道公路",
+            "vc": 1.68
+          },
+          {
+            "name": "火炭路",
+            "vc": 0.77
+          },
+          {
+            "name": "大涌橋路",
+            "vc": 0.77
+          },
+          {
+            "name": "TATE'S CAIRN HIGHWAY",
+            "vc": 0.68
+          },
+          {
+            "name": "SHA LEK HIGHWAY",
+            "vc": 0.47
+          },
+          {
+            "name": "TAI PO ROAD - SHA TIN",
+            "vc": 0.47
+          },
+          {
+            "name": "SHA TIN ROAD",
+            "vc": 0.33
+          }
+        ]
+      },
+      "cutNotes": [
+        "出行人数来自所选两个岗位团及最大出框方向的 car+pt；总量 28758.4 缩放到约 300，scale=0.0104317。",
+        "岗位团 attraction=16+岗位/15,000；出口用所选方向的出框 car+pt 人数代作岗位量，折算规则相同。",
+        "时段 am 的去处按岗位团选择。",
+        "道路容量初值=模型 cap×scale，roadCapCoeff=1；check.js 会用模型 v/c 对照调一个全局系数并记录排名相关性。"
+      ],
+      "difficulty": [
+        "新增：南北通勤與河兩岸接駁；第二期要把通道補完整。"
+      ]
+    },
+    "demo": {
+      "tiers": [
+        484,
+        786,
+        1064
+      ],
+      "best": 1209,
+      "pass": {
+        "line": [
+          [
+            8,
+            11
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "stations": [
+          [
+            8,
+            11
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "trains": 3,
+        "phase2": [],
+        "score": 512
+      },
+      "high": {
+        "line": [
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            7,
+            11
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "stations": [
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "trains": 1,
+        "phase2": [
+          {
+            "type": "train"
+          }
+        ],
+        "score": 797
+      },
+      "master": {
+        "line": [
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "stations": [
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "trains": 2,
+        "phase2": [
+          {
+            "type": "train"
+          },
+          {
+            "type": "extend",
+            "cell": [
+              5,
+              8
+            ]
+          },
+          {
+            "type": "station",
+            "cell": [
+              7,
+              7
+            ]
+          }
+        ],
+        "score": 1209
+      }
+    }
+  },
+  "verification": {
+    "bot": "v7_roads.js",
+    "restarts": 18,
+    "seconds": 4.26,
+    "best": 1209,
+    "tiers": [
+      484,
+      786,
+      1064
+    ],
+    "demoScores": {
+      "pass": 512,
+      "high": 797,
+      "master": 1209
+    },
+    "strategyScores": {
+      "pass": 512,
+      "high": 797,
+      "master": 1209
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "乙明邨",
+      "to": "往南面",
+      "score": 474,
+      "gap": -10,
+      "plan": {
+        "line": [
+          [
+            9,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "stations": [
+          [
+            9,
+            8
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "trains": 1,
+        "actions": [],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 630
+    },
+    "followUp": "Three strongest simple layouts improved with the same original climb/phase-two routines; no additional randomized restart",
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m3-2",
+          "tier": "pass",
+          "score": 512
+        },
+        {
+          "key": "m3-2",
+          "tier": "high",
+          "score": 797
+        },
+        {
+          "key": "m3-2",
+          "tier": "master",
+          "score": 1209
+        }
+      ]
+    }
+  }
+}

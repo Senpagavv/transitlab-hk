@@ -29,6 +29,7 @@
   const TREE=["..g..",".ggg.","ggggg",".ggg.","ggggg","..t..","..t.."],BUSH=[".gg.","gggg",".gg."],FLOWER=["f.f.",".g.f","..g."],HOME=["...kkkk...","..krrrrk..","..kwkkwk..",".kkkkkkkk.",".kwkkwkkk.",".kkkkkkkk.","...k..k..."],SHOP=["..kkkkkk..",".kwwwwwk..",".kkkkkkk..",".kwkddwk..",".kkkkkkk..","..kkkkk..."];
   const DEST={town:TOWN,jobs:OFFICE,shop:OFFICE},DCOL=k=>({town:C.warn,jobs:C.info,shop:C.accent})[k];
   let shownDestinations=D.destinations; const nameOrigin=o=>o.home?t('tod.homeName',{n:o.landIndex}):I.name(o); const nameO=i=>nameOrigin(D.origins[i]); const nameD=k=>{const d=shownDestinations[k]||D.destinations[k];return d.kind==='shop'?t('tod.shopName',{n:d.stationNo}):I.name(d);}; const shortD=k=>{const d=shownDestinations[k]||D.destinations[k];return d.kind==='shop'?t('tod.shopName',{n:d.stationNo}):(I.lang==='zh-Hans'?(d.shortHans||d.hans):(d.short||d.name));};
+  const restD=f=>D.destinations.slice(2).map((_,j)=>f(j+2)).join('');   // the destinations after the first two (task 57's levels have three)
   const R=Math.round,tenth=a=>R(a*10),sw=c=>`<i class="sw" style="background:${c}"></i>`;
   const signed=v=>{const r=R(v);return{txt:(r>0?'+':r<0?'−':'±')+Math.abs(r),cls:r>0?'good':r<0?'bad':''};};
   window.TL_INPROGRESS=()=>!plan.done&&(plan.year>0||plan.line.length>0);   // leaving now loses this round (shared/nav.js asks)
@@ -177,15 +178,17 @@
   /* -------------------------------------------------------------- the overlays on the map */
   function overlays(v){
     const y=v.y,n=noLine(),d0=shortD(0),d1=shortD(1),gains=yy=>[0,1].map(k=>signed(yy.dest[k].go-n.dest[k].go));
+    // a third destination (task 57's levels): the headlines were written for two, the others are added on
+    const moreAbs=()=>restD(k=>t('m2.hlMoreAbs',{d:shortD(k),v:R(n.dest[k].go)})),moreGain=yy=>restD(k=>{const g=signed(yy.dest[k].go-n.dest[k].go);return t('m2.hlMoreGain',{d:shortD(k),c:g.cls,v:g.txt});});
     $('clock').textContent=plan.open?t('m2.clockYear',{y:plan.year}):t('m2.clockPlan');
     $('wave').textContent=t(plan.open?'m2.clockSubOpen':'m2.clockSub',{m:P.years});$('clockProg').style.width=`${100*plan.year/P.years}%`;
     const newResidents=y.origins.filter(o=>o.home).reduce((a,o)=>a+o.people,0),mallVisitors=y.dest.filter(d=>d.kind==='shop').reduce((a,d)=>a+d.go,0);
     let shownLedger=plan.total+plan.pendingSales.reduce((a,q)=>a+q.price,0);if(v.mode==='landPreview'&&v.quote)shownLedger+=v.quote.price;
     $('hudBus').textContent=R(y.riders);$('hudRail').textContent=R(newResidents);$('hudCar').textContent=R(mallVisitors);$('hudJam').textContent=R(shownLedger);
     let h='',main='',note='';
-    if(v.mode==='nothing'){h=t('m2.laneNo');main=t('m2.hlNothing',{d0,d1,a:R(n.dest[0].go),b:R(n.dest[1].go)});note=t('m2.hlNothingSub');}
+    if(v.mode==='nothing'){h=t('m2.laneNo');main=t('m2.hlNothing',{d0,d1,a:R(n.dest[0].go),b:R(n.dest[1].go)})+moreAbs();note=t('m2.hlNothingSub');}
     else if(v.mode==='landPreview'){h=t('m2.lanePv');main=t('tod.previewLine',{homes:R(plan.quote(v.cell,'home').price),shops:R(plan.quote(v.cell,'shop').price),visitors:R(v.y.dest.filter(d=>d.kind==='shop').reduce((a,d)=>a+d.go,0))});note=t('tod.lockHint');}
-    else if(v.mode==='preview'||v.mode==='ahead'){const [a,b]=gains(y);h=t('m2.lanePv');main=t(v.mode==='preview'?'m2.hlPreview':'m2.hlAhead',{r:R(y.riders),d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls});note=t('m2.hlPreviewSub',{s:tenth(P.aware.start)});}
+    else if(v.mode==='preview'||v.mode==='ahead'){const [a,b]=gains(y);h=t('m2.lanePv');main=t(v.mode==='preview'?'m2.hlPreview':'m2.hlAhead',{r:R(y.riders),d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls})+moreGain(y);note=t('m2.hlPreviewSub',{s:tenth(P.aware.start)});}
     else if(plan.done){const tier=plan.total>=P.masterScore?3:plan.total>=P.highScore?2:plan.total>=P.target?1:0;h=t('m2.laneNow');main=t('m2.hlDone',{s:R(plan.total),tier:t('r.t'+tier)});note=t('m2.hlDoneSub');}
     else if(plan.open&&plan.log.length){
       const l=plan.log.at(-1),prev=plan.log.at(-2),[a,b]=gains(lastY||now()),nx=spread(now(),plan.aware);
@@ -197,7 +200,7 @@
       }else{
         const mall=(lastY||now()).dest.find(d=>d.kind==='shop');
         main=mall?t('tod.mallSentence',{name:t('tod.shopName',{n:mall.stationNo}),n:R(mall.go)}):
-          t('m2.hlYear',{y:l.year,r:R(l.riders),d:signed(l.riders-(prev?prev.riders:0)).txt,d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls});
+          t('m2.hlYear',{y:l.year,r:R(l.riders),d:signed(l.riders-(prev?prev.riders:0)).txt,d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls})+moreGain(lastY||now());
       }
       if(plan.pendingSales.length){
         const homes=plan.pendingSales.filter(s=>s.use==='home').length,shops=plan.pendingSales.filter(s=>s.use==='shop').length;
@@ -208,14 +211,14 @@
     }
     else if(v.mode==='plan'){
       const [a,b]=gains(y);h=t('m2.laneNow');
-      main=t('m2.hlYear',{y:1,r:R(y.riders),d:signed(y.riders).txt,d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls});
+      main=t('m2.hlYear',{y:1,r:R(y.riders),d:signed(y.riders).txt,d0,d1,a:a.txt,ca:a.cls,b:b.txt,cb:b.cls})+moreGain(y);
       if(plan.pendingSales.length){
         const homes=plan.pendingSales.filter(s=>s.use==='home').length,shops=plan.pendingSales.filter(s=>s.use==='shop').length;
         main+=' · '+t('tod.pendingSentence',{homes,shops,revenue:R(plan.pendingSales.reduce((s,q)=>s+q.price,0))});
       }
       note=t('m2.hlPreviewSub',{s:tenth(P.aware.start)});
     }
-    else{h=t('m2.laneNow');main=t('m2.hlToday',{d0,d1,a:R(n.dest[0].go),b:R(n.dest[1].go)});note=t('m2.hlTodaySub');}
+    else{h=t('m2.laneNow');main=t('m2.hlToday',{d0,d1,a:R(n.dest[0].go),b:R(n.dest[1].go)})+moreAbs();note=t('m2.hlTodaySub');}
     $('laneH').textContent=h;$('mapHint').innerHTML=main;
     if(!(flash&&performance.now()<flash.until))$('notice').innerHTML=note;
   }
@@ -251,7 +254,7 @@
     let tb='<thead><tr><th>'+t('tod.year')+'</th><th>'+t('tod.riders')+'</th><th>'+t('tod.sales')+'</th><th>'+t('tod.ledger')+'</th></tr></thead><tbody>';
     for(let k=1;k<=P.years;k++){const l=plan.log[k-1],next=k===plan.year+1&&!plan.done,yy=!l&&next&&plan.stations.length>=2?nowY:null;
       tb+='<tr class="'+(l?'past ':'')+(next?'now next':'')+'"><td>'+t('m.yShort',{y:k})+'</td>'+(l?'<td><b>'+R(l.riders)+'</b></td><td><b>'+R(l.revenue)+'</b></td><td><b>'+R(l.ledger)+'</b></td>':yy?'<td><b>'+R(yy.riders)+'</b></td><td><b>'+R(pendingRevenue)+'</b></td><td><b>'+R(plan.total+pendingRevenue+yy.riders)+'</b></td>':'<td></td><td></td><td></td>')+'</tr>';}
-    $('tide').innerHTML=tb+'</tbody>';$('tideKey').innerHTML=t('m2.tideKey',{d0:shortD(0),d1:shortD(1)});
+    $('tide').innerHTML=tb+'</tbody>';$('tideKey').innerHTML=t('m2.tideKey',{d0:shortD(0),d1:shortD(1)+restD(k=>t('m2.sep')+shortD(k))});
     const sales=plan.allSales();
     let w=y.dest.filter(d=>d.kind==='shop').map(d=>'<div class="rd"><span class="n">'+t('tod.shopName',{n:d.stationNo})+'</span><b>'+t('tod.mallDaily',{n:R(d.go)})+'</b></div>').join('');
     w+=sales.map(q=>'<div class="rd"><span class="n">'+(q.use==='home'?t('tod.soldHome'):t('tod.soldShop'))+' · '+t('tod.lot',{n:q.landIndex})+'</span><b>'+R(q.price)+'</b><small>'+(plan.pendingSales.includes(q)?t('tod.pending'):t('tod.locked'))+'</small></div>').join('');
@@ -267,7 +270,7 @@
   function texts(){
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
     const v={st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
-      sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction,e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2,d0:shortD(0),d1:shortD(1),
+      sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction+restD(k=>t('m2.sep')+shortD(k)+' '+D.destinations[k].attraction),e0:D.destinations[0].carExtra??2,e1:(D.destinations[1].carExtra??2)+restD(k=>t('m2.sep')+shortD(k)+' '+(D.destinations[k].carExtra??2)),d0:shortD(0),d1:shortD(1),
       hp:P.homePeople,sb:P.shopBase,spc:P.shopPer,ce:P.carExtra,hr:P.homeRate,sr:P.shopRate};
     $('rules').innerHTML=['m2.rule1','m2.rule2','m2.rule3'].map(k=>`<li>${t(k,v)}</li>`).join('');
     $('infoBody').innerHTML=t('tod.fullRules',v);$('ivBody').innerHTML=t('iv.m4.body',v);

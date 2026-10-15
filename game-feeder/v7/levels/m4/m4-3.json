@@ -1,0 +1,868 @@
+{
+  "format": "tl-level/1",
+  "mode": 4,
+  "key": "m4-3",
+  "order": 3,
+  "challenge": false,
+  "title": {
+    "zh-Hant": "東涌東·分期賣地",
+    "zh-Hans": "东涌东·分期卖地",
+    "en": "Tung Chung East · phased land sales"
+  },
+  "story": [
+    "東涌東空地離機場和舊市中心各有一段距離。",
+    "預算更緊、去處更多；要把車先買夠，並安排住宅與商場的出售年份。"
+  ],
+  "hub": {
+    "station": "東涌"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "cols": 14,
+    "rows": 9,
+    "walkPer": 2,
+    "nearby": 10,
+    "stay": 40,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 35,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "homePeople": 16,
+    "shopBase": 4,
+    "shopPer": 6,
+    "carExtra": 5,
+    "homeRate": 3,
+    "shopRate": 0.5,
+    "tiers": [
+      587,
+      954,
+      1292
+    ],
+    "origins": [
+      {
+        "name": "逸東邨·西",
+        "hans": "逸东邨·西",
+        "cell": [
+          1,
+          6
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 45,
+        "zoneIds": [
+          "950S.4"
+        ],
+        "sourcePop": 26098,
+        "sourceAM": 3782.399999999999,
+        "sourceFraction": 0.5
+      },
+      {
+        "name": "逸東邨·東",
+        "hans": "逸东邨·东",
+        "cell": [
+          3,
+          6
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 45,
+        "zoneIds": [
+          "950S.4"
+        ],
+        "sourcePop": 26098,
+        "sourceAM": 3782.399999999999,
+        "sourceFraction": 0.5
+      },
+      {
+        "name": "東涌站一帶",
+        "hans": "东涌站一带",
+        "cell": [
+          5,
+          4
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 88,
+        "zoneIds": [
+          "950S.3"
+        ],
+        "sourcePop": 42854,
+        "sourceAM": 7352.600000000007,
+        "sourceFraction": 1
+      },
+      {
+        "name": "裕雅苑·西",
+        "hans": "裕雅苑·西",
+        "cell": [
+          9,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 51,
+        "zoneIds": [
+          "950S.6"
+        ],
+        "sourcePop": 29212,
+        "sourceAM": 4296.699999999993,
+        "sourceFraction": 0.5
+      },
+      {
+        "name": "裕雅苑·東",
+        "hans": "裕雅苑·东",
+        "cell": [
+          12,
+          3
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 51,
+        "zoneIds": [
+          "950S.6"
+        ],
+        "sourcePop": 29212,
+        "sourceAM": 4296.699999999993,
+        "sourceFraction": 0.5
+      }
+    ],
+    "destinations": [
+      {
+        "name": "東涌市中心",
+        "hans": "东涌站一带",
+        "short": "東涌市中心",
+        "shortHans": "东涌站一带",
+        "kind": "jobs",
+        "cell": [
+          5,
+          5
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 24,
+        "carExtra": 2,
+        "jobs": 37982,
+        "zoneIds": [
+          "950S.3"
+        ]
+      },
+      {
+        "name": "機場就業區",
+        "hans": "机场站一带",
+        "short": "機場就業區",
+        "shortHans": "机场站一带",
+        "kind": "jobs",
+        "cell": [
+          2,
+          0
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 23.248697,
+        "carExtra": 2,
+        "jobs": 34415,
+        "zoneIds": [
+          "950S.1"
+        ]
+      },
+      {
+        "name": "東涌東商業區",
+        "hans": "裕雅苑",
+        "short": "東涌東商業區",
+        "shortHans": "裕雅苑",
+        "kind": "jobs",
+        "cell": [
+          12,
+          2
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 18.833763,
+        "carExtra": 2,
+        "jobs": 13454,
+        "zoneIds": [
+          "950S.6"
+        ]
+      }
+    ],
+    "land": [
+      {
+        "cell": [
+          1,
+          4
+        ]
+      },
+      {
+        "cell": [
+          2,
+          4
+        ]
+      },
+      {
+        "cell": [
+          3,
+          4
+        ]
+      },
+      {
+        "cell": [
+          5,
+          3
+        ]
+      },
+      {
+        "cell": [
+          6,
+          3
+        ]
+      },
+      {
+        "cell": [
+          7,
+          3
+        ]
+      },
+      {
+        "cell": [
+          7,
+          5
+        ]
+      },
+      {
+        "cell": [
+          9,
+          1
+        ]
+      },
+      {
+        "cell": [
+          10,
+          1
+        ]
+      },
+      {
+        "cell": [
+          11,
+          1
+        ]
+      },
+      {
+        "cell": [
+          9,
+          3
+        ]
+      },
+      {
+        "cell": [
+          11,
+          3
+        ]
+      },
+      {
+        "cell": [
+          11,
+          5
+        ]
+      }
+    ],
+    "source": {
+      "method": "Manual schematic; origin AM car+pt outflow scaled to 280; attraction=16+8*jobs/max(selected jobs), matching the built-in attraction range",
+      "amTotal": 23510.799999999992,
+      "scale": 0.01190942035149804,
+      "maxJobs": 37982,
+      "difficulty": [
+        "承接分散地塊；再新增：三個去處、運力與售地時序同時受限。"
+      ],
+      "coordinateNote": "14×9 teaching layout, preserves broad west/east and north/south; split zone fractions and lot positions are D-tier schematic assumptions.",
+      "assumptions": {
+        "budget": 35,
+        "land": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "subdivision": [
+          {
+            "name": "逸東邨·西",
+            "zone": "950S.4",
+            "fraction": 0.5
+          },
+          {
+            "name": "逸東邨·東",
+            "zone": "950S.4",
+            "fraction": 0.5
+          },
+          {
+            "name": "裕雅苑·西",
+            "zone": "950S.6",
+            "fraction": 0.5
+          },
+          {
+            "name": "裕雅苑·東",
+            "zone": "950S.6",
+            "fraction": 0.5
+          }
+        ]
+      }
+    },
+    "title": "東涌東·分期賣地",
+    "story": [
+      "東涌東空地離機場和舊市中心各有一段距離。",
+      "預算更緊、去處更多；要把車先買夠，並安排住宅與商場的出售年份。"
+    ],
+    "demo": {
+      "tiers": [
+        587,
+        954,
+        1292
+      ],
+      "best": 1468,
+      "pass": {
+        "line": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        "stations": [
+          [
+            9,
+            2
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "trains": 3,
+        "actions": [
+          {
+            "cell": [
+              9,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              10,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              9,
+              3
+            ],
+            "use": "shop",
+            "year": 1
+          }
+        ],
+        "score": 1197
+      },
+      "high": {
+        "line": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        "stations": [
+          [
+            9,
+            2
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "trains": 3,
+        "actions": [
+          {
+            "cell": [
+              9,
+              1
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              9,
+              3
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              10,
+              1
+            ],
+            "use": "home",
+            "year": 1
+          }
+        ],
+        "score": 1406
+      },
+      "master": {
+        "line": [
+          [
+            12,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "stations": [
+          [
+            9,
+            2
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            12,
+            2
+          ]
+        ],
+        "trains": 4,
+        "actions": [
+          {
+            "cell": [
+              9,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              9,
+              3
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              10,
+              1
+            ],
+            "use": "home",
+            "year": 1
+          },
+          {
+            "cell": [
+              11,
+              1
+            ],
+            "use": "home",
+            "year": 1
+          },
+          {
+            "cell": [
+              11,
+              3
+            ],
+            "use": "home",
+            "year": 2
+          }
+        ],
+        "score": 1468
+      }
+    }
+  },
+  "verification": {
+    "bot": "v7_tod.js",
+    "restarts": 60,
+    "seconds": 5.07,
+    "best": 1468,
+    "tiers": [
+      587,
+      954,
+      1292
+    ],
+    "demoScores": {
+      "pass": 1197,
+      "high": 1406,
+      "master": 1468
+    },
+    "strategyScores": {
+      "pass": 1197,
+      "high": 1406,
+      "master": 1468
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "東涌市中心",
+      "to": "東涌東商業區",
+      "score": 587,
+      "gap": 0,
+      "plan": {
+        "line": [
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            2
+          ]
+        ],
+        "stations": [
+          [
+            5,
+            5
+          ],
+          [
+            12,
+            2
+          ]
+        ],
+        "trains": 1,
+        "actions": [
+          {
+            "cell": [
+              11,
+              1
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              11,
+              3
+            ],
+            "use": "home",
+            "year": 0
+          }
+        ],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 857
+    },
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m4-3",
+          "tier": "pass",
+          "score": 1197
+        },
+        {
+          "key": "m4-3",
+          "tier": "high",
+          "score": 1406
+        },
+        {
+          "key": "m4-3",
+          "tier": "master",
+          "score": 1468
+        }
+      ]
+    }
+  }
+}

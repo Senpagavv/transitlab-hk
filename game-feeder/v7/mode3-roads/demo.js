@@ -57,7 +57,7 @@
   document.head.append(css);
   const sleep=ms=>new Promise(r=>{const id=setTimeout(r,ms);timers.push(id);});
   let timers=[],run=0,watch=0;
-  const plans=()=>(root.TL_ROADS_DEMO||{})[D.map];
+  const plans=()=>(root.TL_ROADS_DEMO||{})[D.map]||D.demo;
   const btn=document.createElement('button');btn.className='btn btn-sm';btn.id='demoBtn';
   $('lvInfo').after(btn);
   const dlg=document.createElement('dialog');dlg.id='demoDlg';document.body.append(dlg);

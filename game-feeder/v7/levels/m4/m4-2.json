@@ -1,0 +1,1128 @@
+{
+  "format": "tl-level/1",
+  "mode": 4,
+  "key": "m4-2",
+  "order": 2,
+  "challenge": false,
+  "title": {
+    "zh-Hant": "古洞北·兩端開發",
+    "zh-Hans": "古洞北·两端开发",
+    "en": "Kwu Tung North · two development nodes"
+  },
+  "story": [
+    "古洞北到上水的屋苑，隔著兩片可開發地。人口來自現有底板，空地是教學配置。",
+    "先讓鐵路接通工作點，再比較住宅和商場怎樣互相抬價。"
+  ],
+  "hub": {
+    "station": "上水"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "cols": 14,
+    "rows": 9,
+    "walkPer": 2,
+    "nearby": 10,
+    "stay": 40,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 38,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "homePeople": 16,
+    "shopBase": 4,
+    "shopPer": 6,
+    "carExtra": 5,
+    "homeRate": 3,
+    "shopRate": 0.5,
+    "tiers": [
+      1005,
+      1633,
+      2211
+    ],
+    "origins": [
+      {
+        "name": "河上鄉",
+        "hans": "河上乡",
+        "cell": [
+          1,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 9,
+        "zoneIds": [
+          "545"
+        ],
+        "sourcePop": 4854,
+        "sourceAM": 226.70000000000005,
+        "sourceFraction": 1
+      },
+      {
+        "name": "古洞",
+        "hans": "古洞",
+        "cell": [
+          3,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 3,
+        "zoneIds": [
+          "548S"
+        ],
+        "sourcePop": 1287,
+        "sourceAM": 67.69999999999999,
+        "sourceFraction": 1
+      },
+      {
+        "name": "金錢",
+        "hans": "金钱",
+        "cell": [
+          6,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 26,
+        "zoneIds": [
+          "623"
+        ],
+        "sourcePop": 4469,
+        "sourceAM": 626.6999999999997,
+        "sourceFraction": 1
+      },
+      {
+        "name": "鳳溪第一中學",
+        "hans": "凤溪第一中学",
+        "cell": [
+          9,
+          4
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 45,
+        "zoneIds": [
+          "624S.2"
+        ],
+        "sourcePop": 7535,
+        "sourceAM": 1097.5999999999995,
+        "sourceFraction": 1
+      },
+      {
+        "name": "彩蒲苑",
+        "hans": "彩蒲苑",
+        "cell": [
+          11,
+          7
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 197,
+        "zoneIds": [
+          "626"
+        ],
+        "sourcePop": 28250,
+        "sourceAM": 4762.000000000004,
+        "sourceFraction": 1
+      }
+    ],
+    "destinations": [
+      {
+        "name": "上水商貿區",
+        "hans": "上水 (宝运路)",
+        "short": "上水商貿區",
+        "shortHans": "上水 (宝运路)",
+        "kind": "jobs",
+        "cell": [
+          11,
+          4
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 24,
+        "carExtra": 2,
+        "jobs": 9399,
+        "zoneIds": [
+          "624S.3"
+        ]
+      },
+      {
+        "name": "上水市中心",
+        "hans": "上水站一带",
+        "short": "上水市中心",
+        "shortHans": "上水站一带",
+        "kind": "jobs",
+        "cell": [
+          13,
+          6
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 22.057666,
+        "carExtra": 2,
+        "jobs": 7117,
+        "zoneIds": [
+          "624S.1"
+        ]
+      }
+    ],
+    "land": [
+      {
+        "cell": [
+          2,
+          1
+        ]
+      },
+      {
+        "cell": [
+          3,
+          1
+        ]
+      },
+      {
+        "cell": [
+          4,
+          1
+        ]
+      },
+      {
+        "cell": [
+          2,
+          3
+        ]
+      },
+      {
+        "cell": [
+          4,
+          3
+        ]
+      },
+      {
+        "cell": [
+          7,
+          2
+        ]
+      },
+      {
+        "cell": [
+          8,
+          2
+        ]
+      },
+      {
+        "cell": [
+          6,
+          4
+        ]
+      },
+      {
+        "cell": [
+          8,
+          4
+        ]
+      },
+      {
+        "cell": [
+          10,
+          3
+        ]
+      },
+      {
+        "cell": [
+          11,
+          3
+        ]
+      },
+      {
+        "cell": [
+          12,
+          3
+        ]
+      },
+      {
+        "cell": [
+          10,
+          5
+        ]
+      },
+      {
+        "cell": [
+          12,
+          5
+        ]
+      }
+    ],
+    "source": {
+      "method": "Manual schematic; origin AM car+pt outflow scaled to 280; attraction=16+8*jobs/max(selected jobs), matching the built-in attraction range",
+      "amTotal": 6780.700000000003,
+      "scale": 0.04129367174480509,
+      "maxJobs": 9399,
+      "difficulty": [
+        "新增：空地分成兩端，不是把站全放在一個開發團就足夠。"
+      ],
+      "coordinateNote": "14×9 teaching layout, preserves broad west/east and north/south; split zone fractions and lot positions are D-tier schematic assumptions.",
+      "assumptions": {
+        "budget": 38,
+        "land": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            12,
+            5
+          ]
+        ],
+        "subdivision": []
+      }
+    },
+    "title": "古洞北·兩端開發",
+    "story": [
+      "古洞北到上水的屋苑，隔著兩片可開發地。人口來自現有底板，空地是教學配置。",
+      "先讓鐵路接通工作點，再比較住宅和商場怎樣互相抬價。"
+    ],
+    "demo": {
+      "tiers": [
+        1005,
+        1633,
+        2211
+      ],
+      "best": 2513,
+      "pass": {
+        "line": [
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            3,
+            2
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            13,
+            6
+          ]
+        ],
+        "trains": 2,
+        "actions": [
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              3,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              4,
+              1
+            ],
+            "use": "shop",
+            "year": 1
+          },
+          {
+            "cell": [
+              2,
+              3
+            ],
+            "use": "shop",
+            "year": 1
+          },
+          {
+            "cell": [
+              12,
+              5
+            ],
+            "use": "shop",
+            "year": 2
+          },
+          {
+            "cell": [
+              4,
+              3
+            ],
+            "use": "shop",
+            "year": 2
+          },
+          {
+            "cell": [
+              10,
+              3
+            ],
+            "use": "shop",
+            "year": 3
+          },
+          {
+            "cell": [
+              11,
+              3
+            ],
+            "use": "shop",
+            "year": 3
+          },
+          {
+            "cell": [
+              12,
+              3
+            ],
+            "use": "shop",
+            "year": 4
+          },
+          {
+            "cell": [
+              10,
+              5
+            ],
+            "use": "shop",
+            "year": 4
+          }
+        ],
+        "score": 1624
+      },
+      "high": {
+        "line": [
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            3,
+            2
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            13,
+            6
+          ]
+        ],
+        "trains": 2,
+        "actions": [
+          {
+            "cell": [
+              3,
+              1
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              4,
+              1
+            ],
+            "use": "home",
+            "year": 1
+          },
+          {
+            "cell": [
+              11,
+              3
+            ],
+            "use": "home",
+            "year": 1
+          },
+          {
+            "cell": [
+              10,
+              3
+            ],
+            "use": "home",
+            "year": 2
+          },
+          {
+            "cell": [
+              12,
+              5
+            ],
+            "use": "home",
+            "year": 2
+          },
+          {
+            "cell": [
+              12,
+              3
+            ],
+            "use": "home",
+            "year": 3
+          },
+          {
+            "cell": [
+              10,
+              5
+            ],
+            "use": "home",
+            "year": 3
+          },
+          {
+            "cell": [
+              2,
+              3
+            ],
+            "use": "home",
+            "year": 4
+          },
+          {
+            "cell": [
+              4,
+              3
+            ],
+            "use": "home",
+            "year": 4
+          }
+        ],
+        "score": 1798
+      },
+      "master": {
+        "line": [
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            3,
+            2
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            13,
+            6
+          ]
+        ],
+        "trains": 2,
+        "actions": [
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              3,
+              1
+            ],
+            "use": "shop",
+            "year": 0
+          },
+          {
+            "cell": [
+              11,
+              3
+            ],
+            "use": "home",
+            "year": 5
+          },
+          {
+            "cell": [
+              4,
+              1
+            ],
+            "use": "shop",
+            "year": 1
+          },
+          {
+            "cell": [
+              2,
+              3
+            ],
+            "use": "shop",
+            "year": 2
+          },
+          {
+            "cell": [
+              4,
+              3
+            ],
+            "use": "shop",
+            "year": 2
+          },
+          {
+            "cell": [
+              12,
+              5
+            ],
+            "use": "home",
+            "year": 3
+          },
+          {
+            "cell": [
+              12,
+              3
+            ],
+            "use": "home",
+            "year": 3
+          },
+          {
+            "cell": [
+              10,
+              5
+            ],
+            "use": "home",
+            "year": 4
+          },
+          {
+            "cell": [
+              10,
+              3
+            ],
+            "use": "home",
+            "year": 4
+          }
+        ],
+        "score": 2513
+      }
+    }
+  },
+  "verification": {
+    "bot": "v7_tod.js",
+    "restarts": 60,
+    "seconds": 43.75,
+    "best": 2513,
+    "tiers": [
+      1005,
+      1633,
+      2211
+    ],
+    "demoScores": {
+      "pass": 1624,
+      "high": 1798,
+      "master": 2513
+    },
+    "strategyScores": {
+      "pass": 1624,
+      "high": 1798,
+      "master": 2513
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "古洞",
+      "to": "上水商貿區",
+      "score": 1109,
+      "gap": 104,
+      "plan": {
+        "line": [
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            3,
+            2
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "trains": 1,
+        "actions": [
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              3,
+              1
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              4,
+              1
+            ],
+            "use": "home",
+            "year": 1
+          },
+          {
+            "cell": [
+              2,
+              3
+            ],
+            "use": "home",
+            "year": 1
+          },
+          {
+            "cell": [
+              4,
+              3
+            ],
+            "use": "home",
+            "year": 2
+          },
+          {
+            "cell": [
+              10,
+              3
+            ],
+            "use": "home",
+            "year": 2
+          },
+          {
+            "cell": [
+              12,
+              3
+            ],
+            "use": "home",
+            "year": 3
+          },
+          {
+            "cell": [
+              10,
+              5
+            ],
+            "use": "home",
+            "year": 3
+          },
+          {
+            "cell": [
+              12,
+              5
+            ],
+            "use": "home",
+            "year": 4
+          }
+        ],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 1220
+    },
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m4-2",
+          "tier": "pass",
+          "score": 1624
+        },
+        {
+          "key": "m4-2",
+          "tier": "high",
+          "score": 1798
+        },
+        {
+          "key": "m4-2",
+          "tier": "master",
+          "score": 2513
+        }
+      ]
+    }
+  }
+}

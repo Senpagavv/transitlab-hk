@@ -1,0 +1,2093 @@
+{
+  "format": "tl-level/1",
+  "mode": 3,
+  "key": "m3-3",
+  "order": 3,
+  "challenge": false,
+  "title": {
+    "zh-Hant": "荃灣·葵青",
+    "zh-Hans": "荃湾·葵青",
+    "en": "Tsuen Wan · Kwai Tsing"
+  },
+  "story": [
+    "早高峰人口、工作點和道路來自全港底板切片，保留有車流的主走廊。",
+    "承接兩期投資；再新增：青衣與葵青支路、分離客源及更緊首期預算。 道路暢通後仍可能有人重新開車，要看八年的總減堵。"
+  ],
+  "hub": {
+    "station": "葵芳"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "title": "荃灣·葵青",
+    "story": [
+      "早高峰人口、工作點和道路來自全港底板切片，保留有車流的主走廊。",
+      "承接兩期投資；再新增：青衣與葵青支路、分離客源及更緊首期預算。 道路暢通後仍可能有人重新開車，要看八年的總減堵。"
+    ],
+    "cols": 16,
+    "rows": 12,
+    "origins": [
+      {
+        "name": "青衣轉車站 - 長安邨",
+        "hans": "青衣转车站 - 长安邨",
+        "cell": [
+          4,
+          11
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 72,
+        "zoneIds": [
+          "351.2",
+          "350.1",
+          "351.3"
+        ],
+        "aliases": [
+          "青衣轉車站 - 長安邨",
+          "青衣转车站 - 长安邨",
+          "青衣站一帶",
+          "青衣站一带",
+          "長亨邨",
+          "长亨邨"
+        ],
+        "sourcePop": 99719
+      },
+      {
+        "name": "葵芳邨",
+        "hans": "葵芳邨",
+        "cell": [
+          11,
+          9
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 69,
+        "zoneIds": [
+          "326.8",
+          "326.6",
+          "326.7",
+          "326.9",
+          "326.2"
+        ],
+        "aliases": [
+          "葵芳邨",
+          "葵盛邨",
+          "葵涌邨",
+          "葵興站一帶",
+          "葵兴站一带"
+        ],
+        "sourcePop": 90671
+      },
+      {
+        "name": "荃灣西站一帶",
+        "hans": "荃湾西站一带",
+        "cell": [
+          7,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 56,
+        "zoneIds": [
+          "320S.2",
+          "320S.1"
+        ],
+        "aliases": [
+          "荃灣西站一帶",
+          "荃湾西站一带",
+          "荃灣站一帶",
+          "荃湾站一带"
+        ],
+        "sourcePop": 64222
+      },
+      {
+        "name": "梨木樹邨",
+        "hans": "梨木树邨",
+        "cell": [
+          14,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 34,
+        "zoneIds": [
+          "327.2",
+          "327.5"
+        ],
+        "aliases": [
+          "梨木樹邨",
+          "梨木树邨",
+          "安蔭邨",
+          "安荫邨"
+        ],
+        "sourcePop": 51758
+      },
+      {
+        "name": "尚翠苑",
+        "hans": "尚翠苑",
+        "cell": [
+          8,
+          8
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 42,
+        "zoneIds": [
+          "320S.6",
+          "320S.7"
+        ],
+        "aliases": [
+          "尚翠苑",
+          "海灣花園",
+          "海湾花园"
+        ],
+        "sourcePop": 49055
+      },
+      {
+        "name": "大窩口邨",
+        "hans": "大窝口邨",
+        "cell": [
+          9,
+          8
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 28,
+        "zoneIds": [
+          "326.3",
+          "326.4"
+        ],
+        "aliases": [
+          "大窩口邨",
+          "大窝口邨",
+          "葵涌邨"
+        ],
+        "sourcePop": 38125
+      }
+    ],
+    "destinations": [
+      {
+        "name": "荃灣西站一帶",
+        "hans": "荃湾西站一带",
+        "kind": "jobs",
+        "cell": [
+          6,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 56889,
+        "attraction": 19.7926,
+        "carExtra": 2,
+        "zoneIds": [
+          "320S.2",
+          "323.1"
+        ],
+        "aliases": [
+          "荃灣西站一帶",
+          "荃湾西站一带",
+          "愉景新城"
+        ]
+      },
+      {
+        "name": "尚翠苑",
+        "hans": "尚翠苑",
+        "kind": "jobs",
+        "cell": [
+          8,
+          8
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 54298,
+        "attraction": 19.619866666666667,
+        "carExtra": 2,
+        "zoneIds": [
+          "320S.6",
+          "320S.1",
+          "326.3"
+        ],
+        "aliases": [
+          "尚翠苑",
+          "荃灣站一帶",
+          "荃湾站一带",
+          "大窩口邨",
+          "大窝口邨"
+        ]
+      },
+      {
+        "name": "往南面",
+        "hans": "往南面",
+        "kind": "gate",
+        "cell": [
+          8,
+          11
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobsEquivalent": 34114,
+        "attraction": 18.274279999999997,
+        "carExtra": 2,
+        "sourceTarget": "121S"
+      }
+    ],
+    "roads": [
+      {
+        "name": "TSUEN WAN ROAD",
+        "hans": "TSUEN WAN ROAD",
+        "aliases": [
+          "TSUEN WAN ROAD"
+        ],
+        "via": [
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "cap": 46.0515007638627
+      },
+      {
+        "name": "TSING TSUEN ROAD",
+        "hans": "TSING TSUEN ROAD",
+        "aliases": [
+          "TSING TSUEN ROAD"
+        ],
+        "via": [
+          [
+            7,
+            9
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            4,
+            10
+          ]
+        ],
+        "cap": 18.961931856447386
+      },
+      {
+        "name": "德士古道",
+        "hans": "德士古道",
+        "aliases": [
+          "TEXACO ROAD"
+        ],
+        "via": [
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "cap": 22.706423325205485
+      },
+      {
+        "name": "興芳路",
+        "hans": "兴芳路",
+        "aliases": [
+          "HING FONG ROAD"
+        ],
+        "via": [
+          [
+            11,
+            10
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "cap": 25.23154894963938
+      },
+      {
+        "name": "和宜合道",
+        "hans": "和宜合道",
+        "aliases": [
+          "WO YI HOP ROAD"
+        ],
+        "via": [
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            13,
+            8
+          ],
+          [
+            13,
+            9
+          ]
+        ],
+        "cap": 12.91579875389637
+      },
+      {
+        "name": "CHEUNG PEI SHAN ROAD",
+        "hans": "CHEUNG PEI SHAN ROAD",
+        "aliases": [
+          "CHEUNG PEI SHAN ROAD"
+        ],
+        "via": [
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "cap": 33.61961776828146
+      },
+      {
+        "name": "荃錦公路",
+        "hans": "荃锦公路",
+        "aliases": [
+          "ROUTE TWISK"
+        ],
+        "via": [
+          [
+            5,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "cap": 4.09107160865061
+      },
+      {
+        "name": "屯門公路",
+        "hans": "屯门公路",
+        "aliases": [
+          "TUEN MUN ROAD"
+        ],
+        "via": [
+          [
+            5,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "cap": 26.147102766471992
+      },
+      {
+        "name": "葵涌道",
+        "hans": "葵涌道",
+        "aliases": [
+          "KWAI CHUNG ROAD"
+        ],
+        "via": [
+          [
+            12,
+            8
+          ],
+          [
+            12,
+            9
+          ],
+          [
+            12,
+            10
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            11,
+            11
+          ]
+        ],
+        "cap": 29.424219147678997
+      },
+      {
+        "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+        "hans": "CASTLE PEAK ROAD - KWAI CHUNG",
+        "aliases": [
+          "CASTLE PEAK ROAD - KWAI CHUNG"
+        ],
+        "via": [
+          [
+            12,
+            9
+          ],
+          [
+            13,
+            9
+          ],
+          [
+            13,
+            10
+          ],
+          [
+            12,
+            10
+          ],
+          [
+            12,
+            11
+          ]
+        ],
+        "cap": 9.65967303590265
+      }
+    ],
+    "lines": [
+      {
+        "name": "荃灣綫",
+        "hans": "荃湾线",
+        "color": "#ED1D24",
+        "via": [
+          [
+            11,
+            11
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            10,
+            8
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "stations": [
+          [
+            11,
+            11
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "names": [
+          "葵芳",
+          "葵興",
+          "大窩口",
+          "荃灣"
+        ],
+        "namesHans": [
+          "葵芳",
+          "葵兴",
+          "大窝口",
+          "荃湾"
+        ],
+        "trains": 5,
+        "sourceTrains": 3
+      }
+    ],
+    "water": [
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        2,
+        9
+      ]
+    ],
+    "walkPer": 3,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 25,
+    "budget": 21,
+    "phase2Budget": 12,
+    "years": 8,
+    "crowdBlocks": 8,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "nearby": 10,
+    "stay": 40,
+    "learn": 0.1,
+    "tiers": [
+      501,
+      814,
+      1103
+    ],
+    "source": {
+      "area": "tsuen-wan-kwai-tsing",
+      "period": "am",
+      "box": [
+        67,
+        48,
+        83,
+        60
+      ],
+      "scale": 0.006875750602774135,
+      "changes": [],
+      "roadCapCoeff": 0.7,
+      "roadSections": [
+        {
+          "name": "TSUEN WAN ROAD",
+          "modelCap": 9568.098384421675,
+          "segments": [
+            {
+              "a": [
+                5,
+                6
+              ],
+              "b": [
+                5,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1245"
+              ]
+            },
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                6,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1304"
+              ]
+            },
+            {
+              "a": [
+                6,
+                7
+              ],
+              "b": [
+                6,
+                8
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "1306"
+              ]
+            },
+            {
+              "a": [
+                6,
+                8
+              ],
+              "b": [
+                7,
+                8
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1373"
+              ]
+            },
+            {
+              "a": [
+                7,
+                8
+              ],
+              "b": [
+                7,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1375"
+              ]
+            },
+            {
+              "a": [
+                7,
+                9
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1423"
+              ]
+            },
+            {
+              "a": [
+                8,
+                9
+              ],
+              "b": [
+                8,
+                10
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "1426"
+              ]
+            },
+            {
+              "a": [
+                8,
+                10
+              ],
+              "b": [
+                9,
+                10
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1476"
+              ]
+            },
+            {
+              "a": [
+                9,
+                10
+              ],
+              "b": [
+                9,
+                11
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1479"
+              ]
+            },
+            {
+              "a": [
+                9,
+                11
+              ],
+              "b": [
+                10,
+                11
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "1515"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING TSUEN ROAD",
+          "modelCap": 3939.711552322714,
+          "segments": [
+            {
+              "a": [
+                7,
+                9
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1424"
+              ]
+            },
+            {
+              "a": [
+                6,
+                10
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1473"
+              ]
+            },
+            {
+              "a": [
+                5,
+                10
+              ],
+              "b": [
+                6,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1471"
+              ]
+            },
+            {
+              "a": [
+                4,
+                10
+              ],
+              "b": [
+                5,
+                10
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1469"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "德士古道",
+          "modelCap": 4717.702761695408,
+          "segments": [
+            {
+              "a": [
+                9,
+                7
+              ],
+              "b": [
+                9,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1312"
+              ]
+            },
+            {
+              "a": [
+                9,
+                8
+              ],
+              "b": [
+                9,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1379"
+              ]
+            },
+            {
+              "a": [
+                8,
+                9
+              ],
+              "b": [
+                9,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1425"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "興芳路",
+          "modelCap": 5242.3469102432655,
+          "segments": [
+            {
+              "a": [
+                10,
+                10
+              ],
+              "b": [
+                11,
+                10
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1480"
+              ]
+            },
+            {
+              "a": [
+                10,
+                10
+              ],
+              "b": [
+                10,
+                11
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1481"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "和宜合道",
+          "modelCap": 2683.5093567166905,
+          "segments": [
+            {
+              "a": [
+                13,
+                4
+              ],
+              "b": [
+                13,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1144"
+              ]
+            },
+            {
+              "a": [
+                13,
+                5
+              ],
+              "b": [
+                13,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1196"
+              ]
+            },
+            {
+              "a": [
+                13,
+                6
+              ],
+              "b": [
+                13,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1253"
+              ]
+            },
+            {
+              "a": [
+                13,
+                7
+              ],
+              "b": [
+                13,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1319"
+              ]
+            },
+            {
+              "a": [
+                13,
+                8
+              ],
+              "b": [
+                13,
+                9
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1386"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CHEUNG PEI SHAN ROAD",
+          "modelCap": 6985.131974374045,
+          "segments": [
+            {
+              "a": [
+                14,
+                4
+              ],
+              "b": [
+                14,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1145"
+              ]
+            },
+            {
+              "a": [
+                13,
+                4
+              ],
+              "b": [
+                14,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1143"
+              ]
+            },
+            {
+              "a": [
+                12,
+                4
+              ],
+              "b": [
+                13,
+                4
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1141"
+              ]
+            },
+            {
+              "a": [
+                12,
+                4
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1142"
+              ]
+            },
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1194"
+              ]
+            },
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                11,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1192"
+              ]
+            },
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1193"
+              ]
+            },
+            {
+              "a": [
+                9,
+                6
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1251"
+              ]
+            },
+            {
+              "a": [
+                8,
+                6
+              ],
+              "b": [
+                9,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1249"
+              ]
+            },
+            {
+              "a": [
+                7,
+                6
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1248"
+              ]
+            },
+            {
+              "a": [
+                6,
+                6
+              ],
+              "b": [
+                7,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1246"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "荃錦公路",
+          "modelCap": 849.9999999999999,
+          "segments": [
+            {
+              "a": [
+                5,
+                0
+              ],
+              "b": [
+                4,
+                0
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1019"
+              ]
+            },
+            {
+              "a": [
+                4,
+                0
+              ],
+              "b": [
+                4,
+                1
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1020"
+              ]
+            },
+            {
+              "a": [
+                4,
+                1
+              ],
+              "b": [
+                4,
+                2
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1045"
+              ]
+            },
+            {
+              "a": [
+                4,
+                2
+              ],
+              "b": [
+                5,
+                2
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1072"
+              ]
+            },
+            {
+              "a": [
+                5,
+                2
+              ],
+              "b": [
+                5,
+                3
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1073"
+              ]
+            },
+            {
+              "a": [
+                5,
+                3
+              ],
+              "b": [
+                6,
+                3
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1104"
+              ]
+            },
+            {
+              "a": [
+                6,
+                3
+              ],
+              "b": [
+                6,
+                4
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1105"
+              ]
+            },
+            {
+              "a": [
+                6,
+                4
+              ],
+              "b": [
+                7,
+                4
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1137"
+              ]
+            },
+            {
+              "a": [
+                7,
+                4
+              ],
+              "b": [
+                7,
+                5
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1138"
+              ]
+            },
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                8,
+                5
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1189"
+              ]
+            },
+            {
+              "a": [
+                8,
+                5
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1191"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "屯門公路",
+          "modelCap": 5432.57109078857,
+          "segments": [
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "1242"
+              ]
+            },
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                4,
+                7
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "1243"
+              ]
+            },
+            {
+              "a": [
+                3,
+                7
+              ],
+              "b": [
+                4,
+                7
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1301"
+              ]
+            },
+            {
+              "a": [
+                3,
+                7
+              ],
+              "b": [
+                2,
+                7
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "1300"
+              ]
+            },
+            {
+              "a": [
+                2,
+                7
+              ],
+              "b": [
+                1,
+                7
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "1298"
+              ]
+            },
+            {
+              "a": [
+                1,
+                7
+              ],
+              "b": [
+                1,
+                8
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "1299"
+              ]
+            },
+            {
+              "a": [
+                0,
+                8
+              ],
+              "b": [
+                1,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1370"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "葵涌道",
+          "modelCap": 6113.456000780338,
+          "segments": [
+            {
+              "a": [
+                12,
+                8
+              ],
+              "b": [
+                12,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1384"
+              ]
+            },
+            {
+              "a": [
+                12,
+                9
+              ],
+              "b": [
+                12,
+                10
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "1434"
+              ]
+            },
+            {
+              "a": [
+                11,
+                10
+              ],
+              "b": [
+                12,
+                10
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1482"
+              ]
+            },
+            {
+              "a": [
+                11,
+                10
+              ],
+              "b": [
+                11,
+                11
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "1483"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+          "modelCap": 2006.985666825191,
+          "segments": [
+            {
+              "a": [
+                12,
+                9
+              ],
+              "b": [
+                13,
+                9
+              ],
+              "modelVC": 1.1,
+              "sectionIds": [
+                "1433"
+              ]
+            },
+            {
+              "a": [
+                13,
+                9
+              ],
+              "b": [
+                13,
+                10
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "1436"
+              ]
+            },
+            {
+              "a": [
+                12,
+                10
+              ],
+              "b": [
+                13,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1484"
+              ]
+            },
+            {
+              "a": [
+                12,
+                10
+              ],
+              "b": [
+                12,
+                11
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "1485"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        }
+      ],
+      "simplification": {
+        "inputRoadObjects": 44,
+        "outputCorridors": 10,
+        "policy": "Positive-flow source spines, one displayed corridor per name; minimum source-edge connectors retained for reachability; harmonic-mean capacity; no invented edges",
+        "moves": [],
+        "connectors": []
+      },
+      "calibration": {
+        "coefficient": 0.7,
+        "ranking": {
+          "sections": 61,
+          "spearman": -0.149,
+          "modelTop": [
+            {
+              "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+              "vc": 1.1
+            },
+            {
+              "name": "屯門公路",
+              "vc": 0.9
+            },
+            {
+              "name": "TSUEN WAN ROAD",
+              "vc": 0.8
+            },
+            {
+              "name": "TSING TSUEN ROAD",
+              "vc": 0.6
+            },
+            {
+              "name": "荃錦公路",
+              "vc": 0.6
+            },
+            {
+              "name": "德士古道",
+              "vc": 0.5
+            },
+            {
+              "name": "CHEUNG PEI SHAN ROAD",
+              "vc": 0.5
+            }
+          ],
+          "gameTop": [
+            {
+              "name": "TSUEN WAN ROAD",
+              "vc": 1.72
+            },
+            {
+              "name": "TSING TSUEN ROAD",
+              "vc": 1.21
+            },
+            {
+              "name": "興芳路",
+              "vc": 1.18
+            },
+            {
+              "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+              "vc": 0.55
+            },
+            {
+              "name": "和宜合道",
+              "vc": 0.48
+            },
+            {
+              "name": "德士古道",
+              "vc": 0.47
+            },
+            {
+              "name": "CHEUNG PEI SHAN ROAD",
+              "vc": 0.19
+            }
+          ]
+        },
+        "notes": [
+          "道路容量统一系数搜索结果：0.700；匹配 61 段，Spearman=-0.149；系数搜索内最大逐年跳变 0.0%。"
+        ]
+      },
+      "operatingScenario": {
+        "perTrain": 25,
+        "perTrainBase": 40,
+        "fraction": 0.625,
+        "crowdBlocks": 8,
+        "learn": 0.1,
+        "note": "D-tier teaching scenario: new units carry 75% / 62.5% of built-in 40; crowd penalty is 1.5x / 2x built-in 4; learning=one third of built-in .3. All existing rail branches retained; their unit counts are rounded up to preserve at least the source 3x40 total capacity. These are teaching units, not real train capacities."
+      },
+      "finalRoadRank": {
+        "sections": 61,
+        "spearman": -0.149,
+        "modelTop": [
+          {
+            "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+            "vc": 1.1
+          },
+          {
+            "name": "屯門公路",
+            "vc": 0.9
+          },
+          {
+            "name": "TSUEN WAN ROAD",
+            "vc": 0.8
+          },
+          {
+            "name": "TSING TSUEN ROAD",
+            "vc": 0.6
+          },
+          {
+            "name": "荃錦公路",
+            "vc": 0.6
+          },
+          {
+            "name": "德士古道",
+            "vc": 0.5
+          },
+          {
+            "name": "CHEUNG PEI SHAN ROAD",
+            "vc": 0.5
+          }
+        ],
+        "gameTop": [
+          {
+            "name": "TSUEN WAN ROAD",
+            "vc": 1.72
+          },
+          {
+            "name": "TSING TSUEN ROAD",
+            "vc": 1.21
+          },
+          {
+            "name": "興芳路",
+            "vc": 1.18
+          },
+          {
+            "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+            "vc": 0.55
+          },
+          {
+            "name": "和宜合道",
+            "vc": 0.48
+          },
+          {
+            "name": "德士古道",
+            "vc": 0.47
+          },
+          {
+            "name": "CHEUNG PEI SHAN ROAD",
+            "vc": 0.19
+          }
+        ]
+      },
+      "cutNotes": [
+        "出行人数来自所选两个岗位团及最大出框方向的 car+pt；总量 43631.6 缩放到约 300，scale=0.00687575。",
+        "岗位团 attraction=16+岗位/15,000；出口用所选方向的出框 car+pt 人数代作岗位量，折算规则相同。",
+        "时段 am 的去处按岗位团选择。",
+        "道路容量初值=模型 cap×scale，roadCapCoeff=1；check.js 会用模型 v/c 对照调一个全局系数并记录排名相关性。"
+      ],
+      "difficulty": [
+        "承接兩期投資；再新增：青衣與葵青支路、分離客源及更緊首期預算。"
+      ]
+    },
+    "demo": {
+      "tiers": [
+        501,
+        814,
+        1103
+      ],
+      "best": 1253,
+      "pass": {
+        "line": [
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            7,
+            11
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "stations": [
+          [
+            4,
+            11
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "trains": 1,
+        "phase2": [],
+        "score": 546
+      },
+      "high": {
+        "line": [
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "stations": [
+          [
+            4,
+            11
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "trains": 1,
+        "phase2": [],
+        "score": 828
+      },
+      "master": {
+        "line": [
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "stations": [
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "trains": 2,
+        "phase2": [
+          {
+            "type": "train"
+          }
+        ],
+        "score": 1253
+      }
+    }
+  },
+  "verification": {
+    "bot": "v7_roads.js",
+    "restarts": 18,
+    "seconds": 2.4,
+    "best": 1253,
+    "tiers": [
+      501,
+      814,
+      1103
+    ],
+    "demoScores": {
+      "pass": 546,
+      "high": 828,
+      "master": 1253
+    },
+    "strategyScores": {
+      "pass": 546,
+      "high": 828,
+      "master": 1253
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "尚翠苑",
+      "to": "荃灣西站一帶",
+      "score": 456,
+      "gap": -45,
+      "plan": {
+        "line": [
+          [
+            8,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "stations": [
+          [
+            8,
+            8
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "trains": 1,
+        "actions": [],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 828
+    },
+    "followUp": "Three strongest simple layouts improved with the same original climb/phase-two routines; no additional randomized restart",
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m3-3",
+          "tier": "pass",
+          "score": 546
+        },
+        {
+          "key": "m3-3",
+          "tier": "high",
+          "score": 828
+        },
+        {
+          "key": "m3-3",
+          "tier": "master",
+          "score": 1253
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2134 @@
+{
+  "format": "tl-level/1",
+  "mode": 3,
+  "key": "m3-4",
+  "order": 4,
+  "challenge": true,
+  "title": {
+    "zh-Hant": "銅鑼灣·灣仔",
+    "zh-Hans": "铜锣湾·湾仔",
+    "en": "Causeway Bay · Wan Chai"
+  },
+  "story": [
+    "早高峰人口、工作點和道路來自全港底板切片，保留有車流的主走廊。",
+    "組合：三個去處、既有多線轉乘、跨海出口與最緊兩期預算；沒有示範。 道路暢通後仍可能有人重新開車，要看八年的總減堵。"
+  ],
+  "hub": {
+    "station": "銅鑼灣"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "title": "銅鑼灣·灣仔",
+    "story": [
+      "早高峰人口、工作點和道路來自全港底板切片，保留有車流的主走廊。",
+      "組合：三個去處、既有多線轉乘、跨海出口與最緊兩期預算；沒有示範。 道路暢通後仍可能有人重新開車，要看八年的總減堵。"
+    ],
+    "cols": 16,
+    "rows": 12,
+    "origins": [
+      {
+        "name": "新時代廣場",
+        "hans": "新时代广场",
+        "cell": [
+          11,
+          3
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 52,
+        "zoneIds": [
+          "153.2",
+          "153.1",
+          "151.3"
+        ],
+        "aliases": [
+          "新時代廣場",
+          "新时代广场",
+          "北角站一帶",
+          "北角站一带",
+          "城市花園",
+          "城市花园"
+        ],
+        "sourcePop": 55883
+      },
+      {
+        "name": "灣仔站一帶",
+        "hans": "湾仔站一带",
+        "cell": [
+          6,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 76,
+        "zoneIds": [
+          "131",
+          "132"
+        ],
+        "aliases": [
+          "灣仔站一帶",
+          "湾仔站一带",
+          "南洋酒店"
+        ],
+        "sourcePop": 39647
+      },
+      {
+        "name": "健威花園",
+        "hans": "健威花园",
+        "cell": [
+          13,
+          3
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 28,
+        "zoneIds": [
+          "153.4",
+          "154",
+          "153.3"
+        ],
+        "aliases": [
+          "健威花園",
+          "健威花园",
+          "模範邨",
+          "模范邨",
+          "港運城",
+          "港运城"
+        ],
+        "sourcePop": 30961
+      },
+      {
+        "name": "嘉富麗苑",
+        "hans": "嘉富丽苑",
+        "cell": [
+          0,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 47,
+        "zoneIds": [
+          "142.1",
+          "114",
+          "122"
+        ],
+        "aliases": [
+          "嘉富麗苑",
+          "嘉富丽苑",
+          "上環站一帶",
+          "上环站一带",
+          "中央廣場",
+          "中央广场"
+        ],
+        "sourcePop": 29158
+      },
+      {
+        "name": "炮台山站一帶",
+        "hans": "炮台山站一带",
+        "cell": [
+          10,
+          4
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 30,
+        "zoneIds": [
+          "151.1",
+          "151.2"
+        ],
+        "aliases": [
+          "炮台山站一帶",
+          "炮台山站一带",
+          "天后站一帶",
+          "天后站一带"
+        ],
+        "sourcePop": 28180
+      },
+      {
+        "name": "紅磡站一帶",
+        "hans": "红磡站一带",
+        "cell": [
+          9,
+          0
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 66,
+        "zoneIds": [
+          "213S",
+          "245.3",
+          "217"
+        ],
+        "aliases": [
+          "紅磡站一帶",
+          "红磡站一带",
+          "九龍海逸君綽酒店",
+          "九龙海逸君绰酒店",
+          "海灣軒 - 海景酒店",
+          "海湾轩 - 海景酒店"
+        ],
+        "sourcePop": 27868
+      }
+    ],
+    "destinations": [
+      {
+        "name": "中環站一帶",
+        "hans": "中环站一带",
+        "kind": "jobs",
+        "cell": [
+          2,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 220289,
+        "attraction": 30.68593333333333,
+        "carExtra": 4,
+        "zoneIds": [
+          "121S",
+          "143"
+        ],
+        "aliases": [
+          "中環站一帶",
+          "中环站一带",
+          "堅麗閣",
+          "坚丽阁"
+        ]
+      },
+      {
+        "name": "銅鑼灣站一帶",
+        "hans": "铜锣湾站一带",
+        "kind": "jobs",
+        "cell": [
+          7,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 206361,
+        "attraction": 29.7574,
+        "carExtra": 3,
+        "zoneIds": [
+          "146S",
+          "134S",
+          "132",
+          "133"
+        ],
+        "aliases": [
+          "銅鑼灣站一帶",
+          "铜锣湾站一带",
+          "會展站一帶",
+          "会展站一带",
+          "南洋酒店",
+          "伊利莎伯大廈",
+          "伊利莎伯大厦"
+        ]
+      },
+      {
+        "name": "往九龍",
+        "hans": "往九龙",
+        "kind": "gate",
+        "cell": [
+          8,
+          0
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobsEquivalent": 15115,
+        "attraction": 17.007673333333337,
+        "carExtra": 2,
+        "sourceTarget": "251S"
+      }
+    ],
+    "roads": [
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ],
+        "via": [
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "cap": 112.97963430095493
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ],
+        "via": [
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            13,
+            2
+          ],
+          [
+            14,
+            2
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            15,
+            4
+          ]
+        ],
+        "cap": 129.88501706814526
+      },
+      {
+        "name": "CONNAUGHT ROAD CENTRAL",
+        "hans": "CONNAUGHT ROAD CENTRAL",
+        "aliases": [
+          "CONNAUGHT ROAD CENTRAL"
+        ],
+        "via": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "cap": 245.40358978416663
+      },
+      {
+        "name": "HUNG HOM BYPASS",
+        "hans": "HUNG HOM BYPASS",
+        "aliases": [
+          "HUNG HOM BYPASS"
+        ],
+        "via": [
+          [
+            9,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "cap": 86.8915629168472
+      },
+      {
+        "name": "CROSS HARBOUR TUNNEL",
+        "hans": "CROSS HARBOUR TUNNEL",
+        "aliases": [
+          "CROSS HARBOUR TUNNEL"
+        ],
+        "via": [
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "cap": 65.84281812165459
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ],
+        "via": [
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "cap": 386.78129850550505
+      },
+      {
+        "name": "維園道",
+        "hans": "维园道",
+        "aliases": [
+          "VICTORIA PARK ROAD"
+        ],
+        "via": [
+          [
+            9,
+            5
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "cap": 509.188967440478
+      },
+      {
+        "name": "梳士巴利道",
+        "hans": "梳士巴利道",
+        "aliases": [
+          "SALISBURY ROAD"
+        ],
+        "via": [
+          [
+            7,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "cap": 128.42864170970034
+      },
+      {
+        "name": "夏慤道",
+        "hans": "夏悫道",
+        "aliases": [
+          "HARCOURT ROAD"
+        ],
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "cap": 260.9630944323735
+      },
+      {
+        "name": "九龍公園徑",
+        "hans": "九龙公园径",
+        "aliases": [
+          "KOWLOON PARK DRIVE"
+        ],
+        "via": [
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "cap": 111.52392867073098
+      }
+    ],
+    "lines": [
+      {
+        "name": "東鐵綫",
+        "hans": "东铁线",
+        "color": "#5EB7E8",
+        "via": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            3,
+            7
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "names": [
+          "金鐘",
+          "會展",
+          "紅磡"
+        ],
+        "namesHans": [
+          "金钟",
+          "会展",
+          "红磡"
+        ],
+        "trains": 5,
+        "sourceTrains": 3
+      },
+      {
+        "name": "荃灣綫",
+        "hans": "荃湾线",
+        "color": "#ED1D24",
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "names": [
+          "中環",
+          "金鐘",
+          "尖沙咀"
+        ],
+        "namesHans": [
+          "中环",
+          "金钟",
+          "尖沙咀"
+        ],
+        "trains": 5,
+        "sourceTrains": 3
+      },
+      {
+        "name": "港島綫",
+        "hans": "港岛线",
+        "color": "#007DC5",
+        "via": [
+          [
+            15,
+            5
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            14,
+            4
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "names": [
+          "鰂魚涌",
+          "北角",
+          "炮台山",
+          "天后",
+          "銅鑼灣",
+          "灣仔",
+          "金鐘",
+          "中環",
+          "上環"
+        ],
+        "namesHans": [
+          "鲗鱼涌",
+          "北角",
+          "炮台山",
+          "天后",
+          "铜锣湾",
+          "湾仔",
+          "金钟",
+          "中环",
+          "上环"
+        ],
+        "trains": 5,
+        "sourceTrains": 3
+      },
+      {
+        "name": "將軍澳綫",
+        "hans": "将军澳线",
+        "color": "#7D499D",
+        "via": [
+          [
+            12,
+            3
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            15,
+            3
+          ]
+        ],
+        "stations": [
+          [
+            12,
+            3
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "names": [
+          "北角",
+          "鰂魚涌"
+        ],
+        "namesHans": [
+          "北角",
+          "鲗鱼涌"
+        ],
+        "trains": 5,
+        "sourceTrains": 3
+      },
+      {
+        "name": "屯馬綫",
+        "hans": "屯马线",
+        "color": "#923011",
+        "via": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "names": [
+          "柯士甸",
+          "尖東",
+          "紅磡"
+        ],
+        "namesHans": [
+          "柯士甸",
+          "尖东",
+          "红磡"
+        ],
+        "trains": 5,
+        "sourceTrains": 3
+      }
+    ],
+    "water": [
+      [
+        11,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        13,
+        0
+      ],
+      [
+        14,
+        0
+      ],
+      [
+        15,
+        0
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        11,
+        2
+      ],
+      [
+        14,
+        2
+      ],
+      [
+        15,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "walkPer": 3,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 25,
+    "budget": 18,
+    "phase2Budget": 10,
+    "years": 8,
+    "crowdBlocks": 8,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "nearby": 10,
+    "stay": 40,
+    "learn": 0.1,
+    "tiers": [
+      216,
+      351,
+      475
+    ],
+    "source": {
+      "area": "causeway-bay-wan-chai",
+      "period": "am",
+      "box": [
+        84,
+        74,
+        100,
+        86
+      ],
+      "scale": 0.010574028775456976,
+      "changes": [],
+      "roadCapCoeff": 1.5,
+      "roadSections": [
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "modelCap": 7123.089770235805,
+          "segments": [
+            {
+              "a": [
+                8,
+                4
+              ],
+              "b": [
+                9,
+                4
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2491"
+              ]
+            },
+            {
+              "a": [
+                8,
+                4
+              ],
+              "b": [
+                8,
+                5
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "2492"
+              ]
+            },
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                8,
+                5
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2546"
+              ]
+            },
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                6,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2544"
+              ]
+            },
+            {
+              "a": [
+                6,
+                5
+              ],
+              "b": [
+                6,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2545"
+              ]
+            },
+            {
+              "a": [
+                9,
+                4
+              ],
+              "b": [
+                10,
+                4
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2493"
+              ]
+            },
+            {
+              "a": [
+                10,
+                3
+              ],
+              "b": [
+                10,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2446"
+              ]
+            },
+            {
+              "a": [
+                10,
+                3
+              ],
+              "b": [
+                11,
+                3
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2445"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "modelCap": 8188.9328294381685,
+          "segments": [
+            {
+              "a": [
+                11,
+                3
+              ],
+              "b": [
+                12,
+                3
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2447"
+              ]
+            },
+            {
+              "a": [
+                12,
+                2
+              ],
+              "b": [
+                12,
+                3
+              ],
+              "modelVC": 1.2,
+              "sectionIds": [
+                "2402"
+              ]
+            },
+            {
+              "a": [
+                13,
+                2
+              ],
+              "b": [
+                12,
+                2
+              ],
+              "modelVC": 1.2,
+              "sectionIds": [
+                "2401"
+              ]
+            },
+            {
+              "a": [
+                13,
+                2
+              ],
+              "b": [
+                14,
+                2
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2403"
+              ]
+            },
+            {
+              "a": [
+                14,
+                2
+              ],
+              "b": [
+                14,
+                3
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2405"
+              ]
+            },
+            {
+              "a": [
+                14,
+                3
+              ],
+              "b": [
+                15,
+                3
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2451"
+              ]
+            },
+            {
+              "a": [
+                15,
+                3
+              ],
+              "b": [
+                15,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2454"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CONNAUGHT ROAD CENTRAL",
+          "modelCap": 15472.09646045001,
+          "segments": [
+            {
+              "a": [
+                0,
+                5
+              ],
+              "b": [
+                1,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2533"
+              ]
+            },
+            {
+              "a": [
+                1,
+                5
+              ],
+              "b": [
+                1,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2536"
+              ]
+            },
+            {
+              "a": [
+                1,
+                6
+              ],
+              "b": [
+                2,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2599"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "HUNG HOM BYPASS",
+          "modelCap": 5478.300640308975,
+          "segments": [
+            {
+              "a": [
+                8,
+                0
+              ],
+              "b": [
+                9,
+                0
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2315"
+              ]
+            },
+            {
+              "a": [
+                8,
+                0
+              ],
+              "b": [
+                8,
+                1
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2316"
+              ]
+            },
+            {
+              "a": [
+                7,
+                1
+              ],
+              "b": [
+                8,
+                1
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2356"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CROSS HARBOUR TUNNEL",
+          "modelCap": 4151.2287334593575,
+          "segments": [
+            {
+              "a": [
+                7,
+                0
+              ],
+              "b": [
+                7,
+                1
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2314"
+              ]
+            },
+            {
+              "a": [
+                7,
+                1
+              ],
+              "b": [
+                7,
+                2
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2357"
+              ]
+            },
+            {
+              "a": [
+                7,
+                2
+              ],
+              "b": [
+                7,
+                3
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "2400"
+              ]
+            },
+            {
+              "a": [
+                7,
+                3
+              ],
+              "b": [
+                8,
+                3
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "2443"
+              ]
+            },
+            {
+              "a": [
+                8,
+                3
+              ],
+              "b": [
+                8,
+                4
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "2444"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "modelCap": 24385.615405375745,
+          "segments": [
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2605"
+              ]
+            },
+            {
+              "a": [
+                5,
+                6
+              ],
+              "b": [
+                6,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2607"
+              ]
+            },
+            {
+              "a": [
+                6,
+                6
+              ],
+              "b": [
+                7,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2609"
+              ]
+            },
+            {
+              "a": [
+                7,
+                6
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2611"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "維園道",
+          "modelCap": 32103.1197129795,
+          "segments": [
+            {
+              "a": [
+                8,
+                5
+              ],
+              "b": [
+                9,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2548"
+              ]
+            },
+            {
+              "a": [
+                8,
+                5
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2549"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "梳士巴利道",
+          "modelCap": 8097.111923116872,
+          "segments": [
+            {
+              "a": [
+                6,
+                1
+              ],
+              "b": [
+                7,
+                1
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2354"
+              ]
+            },
+            {
+              "a": [
+                6,
+                1
+              ],
+              "b": [
+                6,
+                2
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2355"
+              ]
+            },
+            {
+              "a": [
+                5,
+                2
+              ],
+              "b": [
+                6,
+                2
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2398"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "夏慤道",
+          "modelCap": 16453.085194174757,
+          "segments": [
+            {
+              "a": [
+                2,
+                6
+              ],
+              "b": [
+                3,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2601"
+              ]
+            },
+            {
+              "a": [
+                3,
+                6
+              ],
+              "b": [
+                4,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2603"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "九龍公園徑",
+          "modelCap": 7031.311088641726,
+          "segments": [
+            {
+              "a": [
+                4,
+                1
+              ],
+              "b": [
+                4,
+                2
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2351"
+              ]
+            },
+            {
+              "a": [
+                4,
+                2
+              ],
+              "b": [
+                5,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2397"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        }
+      ],
+      "simplification": {
+        "inputRoadObjects": 67,
+        "outputCorridors": 10,
+        "policy": "Positive-flow source spines, one displayed corridor per name; minimum source-edge connectors retained for reachability; harmonic-mean capacity; no invented edges",
+        "moves": [],
+        "connectors": [
+          {
+            "corridor": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+            "via": [
+              [
+                9,
+                4
+              ],
+              [
+                10,
+                4
+              ],
+              [
+                10,
+                3
+              ],
+              [
+                11,
+                3
+              ]
+            ],
+            "sourceRoads": [
+              "ISLAND EASTERN CORRIDOR",
+              "未命名道路"
+            ],
+            "sectionIds": [
+              "2493",
+              "2446",
+              "2445"
+            ]
+          }
+        ]
+      },
+      "calibration": {
+        "coefficient": 1.5,
+        "ranking": {
+          "sections": 39,
+          "spearman": 0.397,
+          "modelTop": [
+            {
+              "name": "CROSS HARBOUR TUNNEL",
+              "vc": 1.3
+            },
+            {
+              "name": "ISLAND EASTERN CORRIDOR",
+              "vc": 1.2
+            },
+            {
+              "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+              "vc": 0.9
+            },
+            {
+              "name": "九龍公園徑",
+              "vc": 0.5
+            },
+            {
+              "name": "告士打道",
+              "vc": 0.3
+            },
+            {
+              "name": "梳士巴利道",
+              "vc": 0.3
+            },
+            {
+              "name": "CONNAUGHT ROAD CENTRAL",
+              "vc": 0.2
+            }
+          ],
+          "gameTop": [
+            {
+              "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+              "vc": 0.65
+            },
+            {
+              "name": "CROSS HARBOUR TUNNEL",
+              "vc": 0.54
+            },
+            {
+              "name": "夏慤道",
+              "vc": 0.41
+            },
+            {
+              "name": "HUNG HOM BYPASS",
+              "vc": 0.41
+            },
+            {
+              "name": "告士打道",
+              "vc": 0.28
+            },
+            {
+              "name": "CONNAUGHT ROAD CENTRAL",
+              "vc": 0.15
+            },
+            {
+              "name": "ISLAND EASTERN CORRIDOR",
+              "vc": 0.07
+            }
+          ]
+        },
+        "notes": [
+          "道路容量统一系数搜索结果：1.500；匹配 39 段，Spearman=0.397；系数搜索内最大逐年跳变 0.0%。"
+        ]
+      },
+      "operatingScenario": {
+        "perTrain": 25,
+        "perTrainBase": 40,
+        "fraction": 0.625,
+        "crowdBlocks": 8,
+        "learn": 0.1,
+        "note": "D-tier teaching scenario: new units carry 75% / 62.5% of built-in 40; crowd penalty is 1.5x / 2x built-in 4; learning=one third of built-in .3. All existing rail branches retained; their unit counts are rounded up to preserve at least the source 3x40 total capacity. These are teaching units, not real train capacities."
+      },
+      "finalRoadRank": {
+        "sections": 39,
+        "spearman": 0.397,
+        "modelTop": [
+          {
+            "name": "CROSS HARBOUR TUNNEL",
+            "vc": 1.3
+          },
+          {
+            "name": "ISLAND EASTERN CORRIDOR",
+            "vc": 1.2
+          },
+          {
+            "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+            "vc": 0.9
+          },
+          {
+            "name": "九龍公園徑",
+            "vc": 0.5
+          },
+          {
+            "name": "告士打道",
+            "vc": 0.3
+          },
+          {
+            "name": "梳士巴利道",
+            "vc": 0.3
+          },
+          {
+            "name": "CONNAUGHT ROAD CENTRAL",
+            "vc": 0.2
+          }
+        ],
+        "gameTop": [
+          {
+            "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+            "vc": 0.65
+          },
+          {
+            "name": "CROSS HARBOUR TUNNEL",
+            "vc": 0.54
+          },
+          {
+            "name": "夏慤道",
+            "vc": 0.41
+          },
+          {
+            "name": "HUNG HOM BYPASS",
+            "vc": 0.41
+          },
+          {
+            "name": "告士打道",
+            "vc": 0.28
+          },
+          {
+            "name": "CONNAUGHT ROAD CENTRAL",
+            "vc": 0.15
+          },
+          {
+            "name": "ISLAND EASTERN CORRIDOR",
+            "vc": 0.07
+          }
+        ]
+      },
+      "cutNotes": [
+        "出行人数来自所选两个岗位团及最大出框方向的 car+pt；总量 28371.4 缩放到约 300，scale=0.0105740。",
+        "岗位团 attraction=16+岗位/15,000；出口用所选方向的出框 car+pt 人数代作岗位量，折算规则相同。",
+        "时段 am 的去处按岗位团选择。",
+        "道路容量初值=模型 cap×scale，roadCapCoeff=1；check.js 会用模型 v/c 对照调一个全局系数并记录排名相关性。"
+      ],
+      "difficulty": [
+        "組合：三個去處、既有多線轉乘、跨海出口與最緊兩期預算；沒有示範。"
+      ]
+    }
+  },
+  "verification": {
+    "bot": "v7_roads.js",
+    "restarts": 18,
+    "seconds": 7.08,
+    "best": 540,
+    "tiers": [
+      216,
+      351,
+      475
+    ],
+    "demoScores": null,
+    "strategyScores": {
+      "pass": 220,
+      "high": 416,
+      "master": 540
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "炮台山站一帶",
+      "to": "中環站一帶",
+      "score": 220,
+      "gap": 4,
+      "plan": {
+        "line": [
+          [
+            10,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "stations": [
+          [
+            10,
+            4
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "trains": 1,
+        "actions": [],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 416
+    },
+    "followUp": "Three strongest simple layouts improved with the same original climb/phase-two routines; no additional randomized restart",
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m3-4",
+          "tier": "challenge",
+          "playable": true,
+          "aiHidden": true
+        }
+      ]
+    }
+  }
+}

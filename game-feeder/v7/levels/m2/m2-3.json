@@ -1,0 +1,609 @@
+{
+  "format": "tl-level/1",
+  "mode": 2,
+  "key": "m2-3",
+  "order": 3,
+  "challenge": false,
+  "title": {
+    "zh-Hant": "將軍澳南·日出康城",
+    "zh-Hans": "将军澳南·日出康城",
+    "en": "Tseung Kwan O South · LOHAS Park"
+  },
+  "story": [
+    "康城人口集中在東南，坑口與將軍澳市中心分在北面和西面。",
+    "三個去處與較緊的預算，逼你在繞路、站數和列車之間取捨。"
+  ],
+  "hub": {
+    "station": "康城"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "cols": 14,
+    "rows": 9,
+    "walkPer": 2,
+    "nearby": 10,
+    "stay": 40,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 35,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "tiers": [
+      406,
+      660,
+      894
+    ],
+    "origins": [
+      {
+        "name": "健明邨",
+        "hans": "健明邨",
+        "cell": [
+          1,
+          4
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 28,
+        "zoneIds": [
+          "833.4"
+        ],
+        "sourcePop": 14398,
+        "sourceAM": 2577.9000000000015,
+        "sourceFraction": 1
+      },
+      {
+        "name": "將軍澳中心",
+        "hans": "将军澳中心",
+        "cell": [
+          4,
+          5
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 27,
+        "zoneIds": [
+          "838.5"
+        ],
+        "sourcePop": 13508,
+        "sourceAM": 2448.6000000000017,
+        "sourceFraction": 1
+      },
+      {
+        "name": "怡明邨",
+        "hans": "怡明邨",
+        "cell": [
+          7,
+          4
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 47,
+        "zoneIds": [
+          "838.4"
+        ],
+        "sourcePop": 22996,
+        "sourceAM": 4306.500000000002,
+        "sourceFraction": 1
+      },
+      {
+        "name": "清水灣半島",
+        "hans": "清水湾半岛",
+        "cell": [
+          9,
+          3
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 10,
+        "zoneIds": [
+          "838.3"
+        ],
+        "sourcePop": 5246,
+        "sourceAM": 910.9000000000002,
+        "sourceFraction": 1
+      },
+      {
+        "name": "康城站一帶",
+        "hans": "康城站一带",
+        "cell": [
+          12,
+          7
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 167,
+        "zoneIds": [
+          "839.1"
+        ],
+        "sourcePop": 70340,
+        "sourceAM": 15148.899999999981,
+        "sourceFraction": 1
+      }
+    ],
+    "destinations": [
+      {
+        "name": "將軍澳市中心",
+        "hans": "将军澳站一带",
+        "short": "將軍澳市中心",
+        "shortHans": "将军澳站一带",
+        "kind": "jobs",
+        "cell": [
+          5,
+          3
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 19.299489,
+        "carExtra": 4,
+        "jobs": 11309,
+        "zoneIds": [
+          "838.1"
+        ]
+      },
+      {
+        "name": "康城商業區",
+        "hans": "康城站一带",
+        "short": "康城商業區",
+        "shortHans": "康城站一带",
+        "kind": "jobs",
+        "cell": [
+          11,
+          7
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 24,
+        "carExtra": 2,
+        "jobs": 27420,
+        "zoneIds": [
+          "839.1"
+        ]
+      },
+      {
+        "name": "坑口商業區",
+        "hans": "坑口站一带",
+        "short": "坑口商業區",
+        "shortHans": "坑口站一带",
+        "kind": "jobs",
+        "cell": [
+          9,
+          0
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 17.003939,
+        "carExtra": 2,
+        "jobs": 3441,
+        "zoneIds": [
+          "837.1"
+        ]
+      }
+    ],
+    "source": {
+      "method": "Manual schematic; origin AM car+pt outflow scaled to 280; attraction=16+8*jobs/max(selected jobs), matching the built-in attraction range",
+      "amTotal": 25392.79999999999,
+      "scale": 0.011026747739516719,
+      "maxJobs": 27420,
+      "difficulty": [
+        "承接分向去處；再新增：三個中心、東南大客源與較緊預算。"
+      ],
+      "coordinateNote": "14×9 teaching layout, preserves broad west/east and north/south; split zone fractions and lot positions are D-tier schematic assumptions.",
+      "assumptions": {
+        "budget": 35,
+        "land": null,
+        "subdivision": []
+      }
+    },
+    "title": "將軍澳南·日出康城",
+    "story": [
+      "康城人口集中在東南，坑口與將軍澳市中心分在北面和西面。",
+      "三個去處與較緊的預算，逼你在繞路、站數和列車之間取捨。"
+    ],
+    "demo": {
+      "tiers": [
+        406,
+        660,
+        894
+      ],
+      "best": 1016,
+      "pass": {
+        "line": [
+          [
+            12,
+            7
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            12,
+            1
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            12,
+            7
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "trains": 2,
+        "score": 440
+      },
+      "high": {
+        "line": [
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            12,
+            1
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            12,
+            7
+          ]
+        ],
+        "stations": [
+          [
+            7,
+            4
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "trains": 3,
+        "score": 700
+      },
+      "master": {
+        "line": [
+          [
+            9,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "stations": [
+          [
+            5,
+            3
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "trains": 2,
+        "score": 1016
+      }
+    }
+  },
+  "verification": {
+    "bot": "v7_metro_grow.js",
+    "restarts": 400,
+    "seconds": 21.77,
+    "best": 1016,
+    "tiers": [
+      406,
+      660,
+      894
+    ],
+    "demoScores": {
+      "pass": 440,
+      "high": 700,
+      "master": 1016
+    },
+    "strategyScores": {
+      "pass": 440,
+      "high": 700,
+      "master": 1016
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "將軍澳市中心",
+      "to": "康城商業區",
+      "score": 409,
+      "gap": 3,
+      "plan": {
+        "line": [
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "stations": [
+          [
+            5,
+            3
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "trains": 1,
+        "actions": [],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 409
+    },
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m2-3",
+          "tier": "pass",
+          "score": 440
+        },
+        {
+          "key": "m2-3",
+          "tier": "high",
+          "score": 700
+        },
+        {
+          "key": "m2-3",
+          "tier": "master",
+          "score": 1016
+        }
+      ]
+    }
+  }
+}

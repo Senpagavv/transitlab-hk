@@ -182,4 +182,11 @@
     };
     paint(); root.addEventListener('tl:lang', () => setTimeout(paint, 0));
   };
+  // a level from a file (levels/mN/*.json → levels/registry.js) brings its own title and story too; the built-in first
+  // level keeps the page's own texts (2026-10-15: task 57's levels showed the first level's place name)
+  root.TLLevelIntro = function (mode, D) {
+    if (root.TL_ACTIVE_PACK) return root.TLPackIntro(root.TL_ACTIVE_PACK);
+    const e = root.TL_LEVELS && D && root.TL_LEVELS.get(mode, D.map);
+    if (e && !e.builtin && e.title) root.TLPackIntro(e);
+  };
 })(typeof window !== 'undefined' ? window : globalThis);

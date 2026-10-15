@@ -51,7 +51,7 @@
   let timers=[],run=0;
   // the three score lines and the bot's plans that reach them
   const PLAN={pass:'shop',high:'home',master:'mixed'};
-  const plans=()=>{const pl=(root.TL_TOD_DEMO||{})[D.map];if(!pl)return null;const out={tiers:pl.tiers};for(const k in PLAN)if(pl[PLAN[k]])out[k]=pl[PLAN[k]];return out;};
+  const plans=()=>{const pl=(root.TL_TOD_DEMO||{})[D.map]||D.demo;if(!pl)return null;if(pl.pass)return pl;const out={tiers:pl.tiers};for(const k in PLAN)if(pl[PLAN[k]])out[k]=pl[PLAN[k]];return out;};
   const btn=document.createElement('button');btn.className='btn btn-sm';btn.id='demoBtn';
   $('lvInfo').after(btn);
   const dlg=document.createElement('dialog');dlg.id='demoDlg';document.body.append(dlg);

@@ -1,0 +1,344 @@
+{
+  "format": "tl-level/1",
+  "mode": 2,
+  "key": "m2-4",
+  "order": 4,
+  "challenge": true,
+  "title": {
+    "zh-Hant": "北部都會區·新田古洞",
+    "zh-Hans": "北部都会区·新田古洞",
+    "en": "Northern Metropolis · San Tin and Kwu Tung"
+  },
+  "story": [
+    "新田與古洞之間是一張待規劃的白地。人口與工作點分散在整條走廊。",
+    "挑戰關：有限預算一次建好，沒有 AI 示範；高分要同時照顧客源、轉乘端與運力。"
+  ],
+  "hub": {
+    "station": "落馬洲"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "cols": 14,
+    "rows": 9,
+    "walkPer": 2,
+    "nearby": 10,
+    "stay": 40,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 32,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "tiers": [
+      270,
+      439,
+      595
+    ],
+    "origins": [
+      {
+        "name": "落馬洲站一帶",
+        "hans": "落马洲站一带",
+        "cell": [
+          1,
+          3
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 84,
+        "zoneIds": [
+          "542"
+        ],
+        "sourcePop": 11183,
+        "sourceAM": 1512.9999999999998,
+        "sourceFraction": 1
+      },
+      {
+        "name": "攸潭尾村",
+        "hans": "攸潭尾村",
+        "cell": [
+          3,
+          7
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 40,
+        "zoneIds": [
+          "543S"
+        ],
+        "sourcePop": 5000,
+        "sourceAM": 720.9000000000003,
+        "sourceFraction": 1
+      },
+      {
+        "name": "河上鄉",
+        "hans": "河上乡",
+        "cell": [
+          7,
+          1
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 13,
+        "zoneIds": [
+          "545"
+        ],
+        "sourcePop": 4854,
+        "sourceAM": 226.70000000000005,
+        "sourceFraction": 1
+      },
+      {
+        "name": "古洞",
+        "hans": "古洞",
+        "cell": [
+          9,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 4,
+        "zoneIds": [
+          "548S"
+        ],
+        "sourcePop": 1287,
+        "sourceAM": 67.69999999999999,
+        "sourceFraction": 1
+      },
+      {
+        "name": "東塘新村",
+        "hans": "东塘新村",
+        "cell": [
+          11,
+          6
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 139,
+        "zoneIds": [
+          "547"
+        ],
+        "sourcePop": 14533,
+        "sourceAM": 2497.7999999999993,
+        "sourceFraction": 1
+      }
+    ],
+    "destinations": [
+      {
+        "name": "落馬洲就業區",
+        "hans": "落马洲站一带",
+        "short": "落馬洲就業區",
+        "shortHans": "落马洲站一带",
+        "kind": "jobs",
+        "cell": [
+          1,
+          0
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 18.542884,
+        "carExtra": 2,
+        "jobs": 3417,
+        "zoneIds": [
+          "542"
+        ]
+      },
+      {
+        "name": "上水商貿區",
+        "hans": "上水 (宝运路)",
+        "short": "上水商貿區",
+        "shortHans": "上水 (宝运路)",
+        "kind": "jobs",
+        "cell": [
+          13,
+          4
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 22.994605,
+        "carExtra": 2,
+        "jobs": 9399,
+        "zoneIds": [
+          "624S.3"
+        ]
+      },
+      {
+        "name": "彩蒲苑商業區",
+        "hans": "彩蒲苑",
+        "short": "彩蒲苑商業區",
+        "shortHans": "彩蒲苑",
+        "kind": "jobs",
+        "cell": [
+          10,
+          8
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 24,
+        "carExtra": 2,
+        "jobs": 10750,
+        "zoneIds": [
+          "626"
+        ]
+      }
+    ],
+    "source": {
+      "method": "Manual schematic; origin AM car+pt outflow scaled to 280; attraction=16+8*jobs/max(selected jobs), matching the built-in attraction range",
+      "amTotal": 5026.099999999999,
+      "scale": 0.055709197986510424,
+      "maxJobs": 10750,
+      "difficulty": [
+        "組合：三個分離中心、稀疏客源、最緊預算；白地只代表沒有預畫新線，沒有虛構未來人口。"
+      ],
+      "coordinateNote": "14×9 teaching layout, preserves broad west/east and north/south; split zone fractions and lot positions are D-tier schematic assumptions.",
+      "assumptions": {
+        "budget": 32,
+        "land": null,
+        "subdivision": []
+      }
+    },
+    "title": "北部都會區·新田古洞",
+    "story": [
+      "新田與古洞之間是一張待規劃的白地。人口與工作點分散在整條走廊。",
+      "挑戰關：有限預算一次建好，沒有 AI 示範；高分要同時照顧客源、轉乘端與運力。"
+    ]
+  },
+  "verification": {
+    "bot": "v7_metro_grow.js",
+    "restarts": 400,
+    "seconds": 13.21,
+    "best": 676,
+    "tiers": [
+      270,
+      439,
+      595
+    ],
+    "demoScores": null,
+    "strategyScores": {
+      "pass": 339,
+      "high": 465,
+      "master": 676
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "落馬洲站一帶",
+      "to": "上水商貿區",
+      "score": 297,
+      "gap": 27,
+      "plan": {
+        "line": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            13,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            1,
+            3
+          ],
+          [
+            13,
+            4
+          ]
+        ],
+        "trains": 1,
+        "actions": [],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 379
+    },
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m2-4",
+          "tier": "challenge",
+          "playable": true,
+          "aiHidden": true
+        }
+      ]
+    }
+  }
+}

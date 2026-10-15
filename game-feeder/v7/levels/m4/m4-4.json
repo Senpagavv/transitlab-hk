@@ -1,0 +1,585 @@
+{
+  "format": "tl-level/1",
+  "mode": 4,
+  "key": "m4-4",
+  "order": 4,
+  "challenge": true,
+  "title": {
+    "zh-Hant": "洪水橋全區·鐵路與物業",
+    "zh-Hans": "洪水桥全区·铁路与物业",
+    "en": "Hung Shui Kiu · district-wide rail and property"
+  },
+  "story": [
+    "洪水橋全區的住宅、工作與可開發地分散在三片。",
+    "挑戰關：沒有 AI 示範；站位、運力、住宅商場比例與售地年份一起決定八年的賬。"
+  ],
+  "hub": {
+    "station": "洪水橋"
+  },
+  "author": "Codex · task 57",
+  "source": {
+    "files": [
+      "v7/hk/hk-base.json",
+      "v7/hk/hk-demand-am.json"
+    ],
+    "trust": "C/D · teaching schematic; not a forecast"
+  },
+  "level": {
+    "cols": 14,
+    "rows": 9,
+    "walkPer": 2,
+    "nearby": 10,
+    "stay": 40,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 32,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "homePeople": 16,
+    "shopBase": 4,
+    "shopPer": 6,
+    "carExtra": 5,
+    "homeRate": 3,
+    "shopRate": 0.5,
+    "tiers": [
+      674,
+      1096,
+      1484
+    ],
+    "origins": [
+      {
+        "name": "廈村",
+        "hans": "厦村",
+        "cell": [
+          1,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 26,
+        "zoneIds": [
+          "511"
+        ],
+        "sourcePop": 8205,
+        "sourceAM": 1450.5000000000002,
+        "sourceFraction": 1
+      },
+      {
+        "name": "洪水橋站一帶",
+        "hans": "洪水桥站一带",
+        "cell": [
+          6,
+          3
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 96,
+        "zoneIds": [
+          "515"
+        ],
+        "sourcePop": 29076,
+        "sourceAM": 5408.200000000003,
+        "sourceFraction": 1
+      },
+      {
+        "name": "鍾屋村站一帶",
+        "hans": "钟屋村站一带",
+        "cell": [
+          5,
+          7
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 34,
+        "zoneIds": [
+          "512"
+        ],
+        "sourcePop": 11570,
+        "sourceAM": 1928.9999999999993,
+        "sourceFraction": 1
+      },
+      {
+        "name": "坑尾村站一帶",
+        "hans": "坑尾村站一带",
+        "cell": [
+          12,
+          2
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 26,
+        "zoneIds": [
+          "517"
+        ],
+        "sourcePop": 7903,
+        "sourceAM": 1472.3999999999996,
+        "sourceFraction": 1
+      },
+      {
+        "name": "唐人新村",
+        "hans": "唐人新村",
+        "cell": [
+          10,
+          7
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 75,
+        "zoneIds": [
+          "519"
+        ],
+        "sourcePop": 21472,
+        "sourceAM": 4192.699999999996,
+        "sourceFraction": 1
+      },
+      {
+        "name": "藍地站一帶",
+        "hans": "蓝地站一带",
+        "cell": [
+          1,
+          8
+        ],
+        "house": [
+          0,
+          -1
+        ],
+        "people": 23,
+        "zoneIds": [
+          "442"
+        ],
+        "sourcePop": 7459,
+        "sourceAM": 1269,
+        "sourceFraction": 1
+      }
+    ],
+    "destinations": [
+      {
+        "name": "洪水橋商貿區",
+        "hans": "洪水桥站一带",
+        "short": "洪水橋商貿區",
+        "shortHans": "洪水桥站一带",
+        "kind": "jobs",
+        "cell": [
+          6,
+          4
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 21.238316,
+        "carExtra": 2,
+        "jobs": 8490,
+        "zoneIds": [
+          "515"
+        ]
+      },
+      {
+        "name": "橫洲就業區",
+        "hans": "横洲东头围 蔡福善堂",
+        "short": "橫洲就業區",
+        "shortHans": "横洲东头围 蔡福善堂",
+        "kind": "jobs",
+        "cell": [
+          13,
+          0
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 24,
+        "carExtra": 2,
+        "jobs": 12966,
+        "zoneIds": [
+          "528"
+        ]
+      },
+      {
+        "name": "唐人新村商業區",
+        "hans": "唐人新村",
+        "short": "唐人新村商業區",
+        "shortHans": "唐人新村",
+        "kind": "jobs",
+        "cell": [
+          11,
+          8
+        ],
+        "house": [
+          0,
+          1
+        ],
+        "attraction": 20.607126,
+        "carExtra": 2,
+        "jobs": 7467,
+        "zoneIds": [
+          "519"
+        ]
+      }
+    ],
+    "land": [
+      {
+        "cell": [
+          1,
+          1
+        ]
+      },
+      {
+        "cell": [
+          2,
+          1
+        ]
+      },
+      {
+        "cell": [
+          3,
+          1
+        ]
+      },
+      {
+        "cell": [
+          1,
+          3
+        ]
+      },
+      {
+        "cell": [
+          3,
+          3
+        ]
+      },
+      {
+        "cell": [
+          5,
+          1
+        ]
+      },
+      {
+        "cell": [
+          6,
+          1
+        ]
+      },
+      {
+        "cell": [
+          7,
+          1
+        ]
+      },
+      {
+        "cell": [
+          5,
+          3
+        ]
+      },
+      {
+        "cell": [
+          7,
+          3
+        ]
+      },
+      {
+        "cell": [
+          9,
+          3
+        ]
+      },
+      {
+        "cell": [
+          10,
+          3
+        ]
+      },
+      {
+        "cell": [
+          11,
+          3
+        ]
+      },
+      {
+        "cell": [
+          9,
+          5
+        ]
+      },
+      {
+        "cell": [
+          11,
+          5
+        ]
+      },
+      {
+        "cell": [
+          4,
+          6
+        ]
+      },
+      {
+        "cell": [
+          5,
+          6
+        ]
+      },
+      {
+        "cell": [
+          6,
+          6
+        ]
+      }
+    ],
+    "source": {
+      "method": "Manual schematic; origin AM car+pt outflow scaled to 280; attraction=16+8*jobs/max(selected jobs), matching the built-in attraction range",
+      "amTotal": 15721.8,
+      "scale": 0.017809665559923166,
+      "maxJobs": 12966,
+      "difficulty": [
+        "組合：三片地塊、六個客源、三個中心、最緊預算；不能靠只賣一種用途拿滿分。"
+      ],
+      "coordinateNote": "14×9 teaching layout, preserves broad west/east and north/south; split zone fractions and lot positions are D-tier schematic assumptions.",
+      "assumptions": {
+        "budget": 32,
+        "land": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "subdivision": []
+      }
+    },
+    "title": "洪水橋全區·鐵路與物業",
+    "story": [
+      "洪水橋全區的住宅、工作與可開發地分散在三片。",
+      "挑戰關：沒有 AI 示範；站位、運力、住宅商場比例與售地年份一起決定八年的賬。"
+    ]
+  },
+  "verification": {
+    "bot": "v7_tod.js",
+    "restarts": 60,
+    "seconds": 12.07,
+    "best": 1686,
+    "tiers": [
+      674,
+      1096,
+      1484
+    ],
+    "demoScores": null,
+    "strategyScores": {
+      "pass": 1088,
+      "high": 1252,
+      "master": 1686
+    },
+    "simple": {
+      "description": "Shortest Manhattan L between two named places, two end stations, one train; no phase two; TOD sells eligible lots as homes in file order, two a year",
+      "from": "鍾屋村站一帶",
+      "to": "橫洲就業區",
+      "score": 674,
+      "gap": 0,
+      "plan": {
+        "line": [
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            13,
+            2
+          ],
+          [
+            13,
+            1
+          ],
+          [
+            13,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            5,
+            7
+          ],
+          [
+            13,
+            0
+          ]
+        ],
+        "trains": 1,
+        "actions": [
+          {
+            "cell": [
+              4,
+              6
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              5,
+              6
+            ],
+            "use": "home",
+            "year": 0
+          },
+          {
+            "cell": [
+              6,
+              6
+            ],
+            "use": "home",
+            "year": 1
+          }
+        ],
+        "phase2": []
+      },
+      "selection": "Example closest to the pass line among plans with the same two-station/one-train complexity; the strongest such plan is reported separately",
+      "strongestBasic": 674
+    },
+    "headlessReplay": true,
+    "browser": {
+      "method": "Actual browser mouse/locator input; completion read from visible DOM",
+      "results": [
+        {
+          "key": "m4-4",
+          "tier": "challenge",
+          "playable": true,
+          "aiHidden": true
+        }
+      ]
+    }
+  }
+}
