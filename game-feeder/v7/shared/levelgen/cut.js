@@ -261,7 +261,7 @@
         }
         const s=edges[first];
         const road=roadById.get(s.road),english=String(road&&road.en||s.name).toUpperCase(),bilingual=ROAD_ALIASES[english]||[];
-        roads.push({name:s.name,hans:bilingual.length?bilingual[1]:s.hans,aliases:[road&&road.en,...bilingual].filter(Boolean),via:via.map(c=>rel(c,box)),cap:Math.max(.1,s.cap*scale)});
+        roads.push({name:s.name,hans:road&&road.hans||s.hans,aliases:[road&&road.en,...bilingual].filter(Boolean),via:via.map(c=>rel(c,box)),cap:Math.max(.1,s.cap*scale)});
         roadSections.push({name:s.name,road:s.road,modelCap:s.cap,segments});
       };
       for(const [k,adj] of at)if(adj.length!==2)for(const i of adj)if(!used.has(i))trace(k.split(',').map(Number),i);
@@ -275,8 +275,10 @@
       const pool=what==='people'?origins:(what==='jobs'?destinations.filter(d=>d.kind!=='gate'):roads);
       const match=matchPlace(ch.place,pool);
       if(!match||match.ambiguous||!match.item){problems.push({code:'place_not_found',message:`找不到可用于 ${what} 的地点“${ch.place||''}”。`});return;}
+      if(what==='road_cap'&&match.score<.999){problems.push({code:'place_not_found',message:`道路“${ch.place||''}”必须精确匹配中文名或英文名。`});return;}
       if(match.score<0.999)problems.push({code:'place_not_found',message:`“${ch.place}”未精确匹配；已回退到同类最近名称“${match.item.name}”（匹配度 ${match.score.toFixed(2)}）。`});
-      const pct=Number(ch.pct);if(!Number.isFinite(pct)||pct < -50||pct>150){problems.push({code:'invalid_request',message:`changes[${index}].pct 必须在 -50 到 +150 之间。`});return;}
+      const minPct=what==='road_cap'?-60:-50,maxPct=what==='road_cap'?50:150;
+      const pct=Number(ch.pct);if(!Number.isFinite(pct)||pct<minPct||pct>maxPct){problems.push({code:'invalid_request',message:`changes[${index}].pct 必须在 ${minPct} 到 +${maxPct} 之间。`});return;}
       const year=ch.by_year==null?0:Number(ch.by_year);if(!Number.isInteger(year)||year<0){problems.push({code:'invalid_request',message:`changes[${index}].by_year 必须为非负整数。`});return;}
       const obj=match.item,mult=1+pct/100,targets=what==='road_cap'?roads.filter(r=>norm(r.name)===norm(obj.name)):[obj];
       let field,oldValue,newValue;

@@ -1,0 +1,887 @@
+{
+  "S01": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "啓德站一帶",
+        "what": "people",
+        "add": 50000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S02": {
+    "area": "kai-tak",
+    "period": "holiday",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "啓德站一帶",
+        "what": "jobs",
+        "add": 50000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S03": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "沙田站一帶",
+        "what": "people",
+        "add": 30000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S04": {
+    "area": "tseung-kwan-o",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "將軍澳隧道公路",
+        "what": "road_cap",
+        "pct": -50
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S05": {
+    "area": "northern-metropolis",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "新田",
+        "what": "jobs",
+        "add": 100000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S06": {
+    "area": "causeway-bay-wan-chai",
+    "period": "holiday",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "銅鑼灣站一帶",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S07": {
+    "area": "mong-kok-yau-tsim-mong",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S08": {
+    "area": "central-admiralty",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "中環站一帶",
+        "what": "jobs",
+        "pct": -50
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S09": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "東涌站一帶",
+        "what": "people",
+        "pct": 100
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S10": {
+    "area": "tuen-mun",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S11": {
+    "area": "yuen-long",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "元朗站一帶",
+        "what": "people",
+        "pct": 10,
+        "by_year": 1
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S12": {
+    "area": "tin-shui-wai-hung-shui-kiu",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S13": {
+    "area": "tai-po",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "大埔工業邨",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S14": {
+    "area": "ma-on-shan",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S15": {
+    "area": "tsuen-wan-kwai-tsing",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S16": {
+    "area": "hong-kong-south",
+    "period": "am",
+    "mode": 4,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S17": {
+    "area": "hung-hom-ho-man-tin",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "紅磡站一帶",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S18": {
+    "area": "tsim-sha-tsui",
+    "period": "holiday",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S19": {
+    "area": "sham-shui-po-cheung-sha-wan",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "深水埗站一帶",
+        "what": "people",
+        "pct": 20
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S20": {
+    "area": "fanling-sheung-shui",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S21": {
+    "area": "kai-tak",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "啓德站一帶",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S22": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "東涌站一帶",
+        "what": "people",
+        "pct": -50
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S23": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "沙田站一帶",
+        "what": "people",
+        "add": 50000
+      }
+    ],
+    "title": "A new plan for transport",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S24": {
+    "area": "kai-tak",
+    "period": "holiday",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "啓德站一帶",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "A new plan for transport",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S25": {
+    "area": "mong-kok-yau-tsim-mong",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S26": {
+    "refuse": "这句话不适合交通关卡。"
+  },
+  "S27": {
+    "refuse": "这句话不适合交通关卡。"
+  },
+  "S28": {
+    "refuse": "这句话不适合交通关卡。"
+  },
+  "S29": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S30": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S31": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S32": {
+    "area": "tseung-kwan-o",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S33": {
+    "area": "tin-shui-wai-hung-shui-kiu",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S34": {
+    "area": "ma-on-shan",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S35": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "A new plan for transport",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S36": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "裕雅苑",
+        "what": "people",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S37": {
+    "area": "tin-shui-wai-hung-shui-kiu",
+    "period": "am",
+    "mode": 4,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S38": {
+    "area": "northern-metropolis",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "古洞",
+        "what": "people",
+        "pct": 10
+      },
+      {
+        "place": "古洞",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S39": {
+    "area": "tseung-kwan-o",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "將軍澳站一帶",
+        "what": "people",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S40": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 4,
+    "changes": [
+      {
+        "place": "觀塘站一帶",
+        "what": "jobs",
+        "pct": 10
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S41": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S42": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 4,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S43": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S44": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 2,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S45": {
+    "area": "kai-tak",
+    "period": "am",
+    "mode": 3,
+    "changes": [],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S46": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "逸東邨",
+        "what": "people",
+        "add": 30000
+      },
+      {
+        "place": "裕雅苑",
+        "what": "jobs",
+        "add": 10000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S47": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "第一城站一帶",
+        "what": "people",
+        "add": -5000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S48": {
+    "area": "kai-tak",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "啓德站一帶",
+        "what": "people",
+        "pct": 20
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S49": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "第一城站一帶",
+        "what": "people",
+        "add": 5000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S50": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "第一城站一帶",
+        "what": "people",
+        "pct": 30
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S51": {
+    "area": "tseung-kwan-o",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "將軍澳隧道公路",
+        "what": "road_cap",
+        "pct": -60
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S52": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "觀塘道",
+        "what": "road_cap",
+        "pct": 50
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S53": {
+    "area": "kowloon-east",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "觀塘繞道",
+        "what": "road_cap",
+        "pct": -50
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S54": {
+    "area": "hong-kong-south",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "香港仔隧道",
+        "what": "road_cap",
+        "pct": -30
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S55": {
+    "area": "sha-tin-tai-wai",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "大老山隧道",
+        "what": "road_cap",
+        "pct": -50
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S56": {
+    "area": "tuen-mun",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "屯門公路",
+        "what": "road_cap",
+        "pct": -40
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S57": {
+    "area": "tung-chung",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "逸東邨",
+        "what": "people",
+        "add": 30000,
+        "by_year": 4
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S58": {
+    "area": "kai-tak",
+    "period": "am",
+    "mode": 3,
+    "changes": [
+      {
+        "place": "啓德站一帶",
+        "what": "people",
+        "add": 50000
+      }
+    ],
+    "title": "交通规划练习",
+    "story": [
+      "假设按原句提供的变化推演。",
+      "规划交通，比较方案。"
+    ],
+    "note": "固定离线测试回复，不能代表真 AI 质量。"
+  },
+  "S59": {
+    "refuse": "这句话不适合交通关卡。"
+  },
+  "S60": {
+    "refuse": "这句话不适合交通关卡。"
+  }
+}

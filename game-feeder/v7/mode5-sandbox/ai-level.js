@@ -70,12 +70,20 @@
   }
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const pick = x => typeof x === 'string' ? x : x && (x[I.lang] || x['zh-Hant']) || '';
+  let namesPromise = null;
+  async function roadMenus(){
+    if(!namesPromise)namesPromise=fetch('../hk/hk-base.json').then(r=>{
+      if(!r.ok)throw Error('Grid HTTP '+r.status);return r.json();
+    }).then(base=>root.TLAI.makeNames(base)).catch(err=>{namesPromise=null;throw err;});
+    return namesPromise;
+  }
   async function run(sentence, { lang, names, mode, status, out, areas }) {
     const say = k => { status.textContent = t(k); };
     mode=mode||Number(document.getElementById('aiMode')?.value)||null;
     out.innerHTML = ''; say('ai.ask');
     let res;
     try {
+      names = await roadMenus();
       res = await root.TLAI.generate(sentence, { lang, names, mode,
         onStep: s => say(s.step === 'ask' ? 'ai.ask' : s.step === 'build' ? 'ai.cut' : 'ai.retry'),
         build: async request => {
