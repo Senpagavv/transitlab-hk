@@ -12,7 +12,7 @@ const M=require('../v7/mode2-metro/engine.js'),{D,P,Plan,same}=M;
 const argv=process.argv.slice(2),lvAt=argv.indexOf('--level'),levelFile=lvAt>=0?argv[lvAt+1]:null,args=argv.filter((_,i)=>lvAt<0||(i!==lvAt&&i!==lvAt+1)),write=args.includes('--write')&&!levelFile,pos=args.filter(a=>a!=='--write');
 if(levelFile){const e=JSON.parse(require('node:fs').readFileSync(levelFile,'utf8'));D.use(e.level,e.key);M.reset();console.log('level file '+levelFile+' → '+e.key);}
 const restarts=+(pos[0]||400),o=pos[1]?JSON.parse(pos[1]):{};
-const base=D.example('m2-1'),def={...base};
+const base=levelFile?JSON.parse(fs.readFileSync(levelFile,'utf8')).level:D.example('m2-1'),def={...base};
 for(const [k,v] of Object.entries(o)){if(k==='att')def.destinations=def.destinations.map((d,j)=>({...d,attraction:v[j]}));
   else if(k==='extra')def.destinations=def.destinations.map((d,j)=>({...d,carExtra:v[j]}));
   else if(k==='spread')def.aware={...def.aware,spread:v};else def[k]=v;}
@@ -23,7 +23,7 @@ const total=p=>p.stations.length>=2?p.simulate().total:0;
 const POI=[...D.origins.map(o=>o.cell),...D.destinations.map(d=>d.cell)];
 // a route through 2–4 places, each leg an L (horizontal or vertical first); stations on the places it passes
 function routePlan(){
-  for(let tries=0;tries<50;tries++){const n=2+Math.floor(rnd()*3),pts=[];while(pts.length<n){const c=pick(POI);if(!pts.some(x=>same(x,c)))pts.push(c);}
+  for(let tries=0;tries<50;tries++){const n=Math.min(2+Math.floor(rnd()*3),new Set(POI.map(String)).size),pts=[];while(pts.length<n){const c=pick(POI);if(!pts.some(x=>same(x,c)))pts.push(c);}
     const p=new Plan();let ok=p.extend(pts[0]);
     for(let j=1;j<pts.length&&ok;j++){let c=p.line.at(-1).slice();const t=pts[j],hFirst=rnd()<.5;
       const stepTo=axis=>{while(ok&&c[axis]!==t[axis]){c=c.slice();c[axis]+=Math.sign(t[axis]-c[axis]);if(!p.extend(c))ok=false;}};
@@ -47,6 +47,7 @@ function climb(){let p=routePlan();if(!p)return null;let s=total(p);
     if(!best||bs<=s+1e-9)break;p=best;s=bs;}
   return{p,s};}
 const found=[];for(let r=0;r<restarts;r++){const f=climb();if(f)found.push(f);}found.sort((a,b)=>b.s-a.s);
+if(!found.length){module.exports={found,clean:()=>false};console.log('No legal metro plan found');return;}
 const q=f=>Math.round(found[Math.floor(f*(found.length-1))].s);
 const b=found[0].p,run=b.simulate(),pot=b.potential();
 const fmt=p=>`line ${p.line.map(c=>c.join(',')).join(' ')} · stations ${p.stations.map(c=>c.join(',')).join(' ')} · trains ${p.trains} · left ${p.money}`;

@@ -28,6 +28,8 @@ function dryRun(e){const{D,M}=load(e.mode);D.use(JSON.parse(JSON.stringify(e.lev
   if(e.mode===2||e.mode===4){const p=new M.Plan();out.budget=p.money;}
   if(e.mode===1)out.estates=(lv.estates||lv.origins||[]).length;
   return out;}
+module.exports={problems,dryRun};
+if(require.main===module){
 const [cmd,a,b,c]=process.argv.slice(2);
 if(cmd==='export'){const mode=+a,{D}=load(mode),lv=D.example(b);
   if(!lv){console.error('no level '+b+' in mode '+mode);process.exit(1);}
@@ -39,3 +41,4 @@ else if(cmd==='check'){const e=JSON.parse(fs.readFileSync(a,'utf8')),bad=problem
   try{console.log('✓ format\n'+JSON.stringify(dryRun(e),null,1));}catch(err){console.log('✗ the engine could not run it: '+err.message);process.exit(1);}
   const t=e.level.tiers;if(t)console.log('tiers '+t.join(' / ')+' — set them from a bot run (see levels/README.md)');}
 else{console.log('usage: levels.js export <mode> <key> [out.json] | check <file.json>');process.exit(1);}
+}

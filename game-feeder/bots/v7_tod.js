@@ -5,7 +5,7 @@ const M=require('../v7/mode4-tod/engine.js'),{D,P,Plan,same}=M;
 const argv=process.argv.slice(2),lvAt=argv.indexOf('--level'),levelFile=lvAt>=0?argv[lvAt+1]:null,args=argv.filter((_,i)=>lvAt<0||(i!==lvAt&&i!==lvAt+1)),write=args.includes('--write')&&!levelFile,pos=args.filter(x=>x!=='--write');
 if(levelFile){const e=JSON.parse(require('node:fs').readFileSync(levelFile,'utf8'));D.use(e.level,e.key);M.reset();console.log('level file '+levelFile+' → '+e.key);}
 const restarts=+(pos[0]||60),opts=pos[1]?JSON.parse(pos[1]):{};
-const def=D.example('m4-1');
+const def=levelFile?JSON.parse(fs.readFileSync(levelFile,'utf8')).level:D.example('m4-1');
 for(const [k,v] of Object.entries(opts)){
   if(k==='att')def.destinations=def.destinations.map((d,i)=>({...d,attraction:v[i]}));
   else if(k==='extra')def.destinations=def.destinations.map((d,i)=>({...d,carExtra:v[i]}));
@@ -18,7 +18,7 @@ const pick=a=>a[Math.floor(rnd()*a.length)],sameKey=p=>JSON.stringify([p.line,p.
 const POI=[...D.origins.map(o=>o.cell),...D.destinations.map(d=>d.cell)];
 function routePlan(){
   for(let tries=0;tries<60;tries++){
-    const n=2+Math.floor(rnd()*3),pts=[];
+    const n=Math.min(2+Math.floor(rnd()*3),new Set(POI.map(String)).size),pts=[];
     while(pts.length<n){const c=pick(POI);if(!pts.some(x=>same(x,c)))pts.push(c);}
     const p=new Plan();let ok=p.extend(pts[0]);
     for(let j=1;j<pts.length&&ok;j++){

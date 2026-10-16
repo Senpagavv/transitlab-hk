@@ -6,6 +6,10 @@
   // many seconds into a round with an extra move), with one sentence on why. Plans: bots/v7_demo_plans.js.
   const $=id=>document.getElementById(id),I=root.I18N,t=(k,v)=>I.t(k,v),L=I.L;
   const PLANS=root.TL_DEMO_PLANS||{},letters=['A','B','C'];
+  // D.make currently omits demo; the registry/active-pack fallback preserves it
+  // without changing data.js. Built-in plans keep the same priority as modes 2-4.
+  const plans=level=>PLANS[level]||(D().map===level&&D().demo)||root.TL_LEVELS?.get(1,level)?.level?.demo||
+    (root.TL_ACTIVE_PACK?.id===level&&root.TL_ACTIVE_PACK.level?.demo);
   I.add({
     'demo.btn':L('AI 示範','AI 示范','AI demo'),
     'demo.h':L('看 AI 怎樣過這一關','看 AI 怎样过这一关','Watch the AI play this level'),
@@ -43,7 +47,7 @@
     let el=$('demoBox');
     if(!el){el=document.createElement('div');el.id='demoBox';el.className='box demobox';$('stations').before(el);}
     if(!active&&!ended){el.remove();return;}
-    el.innerHTML=`<div class="row"><b>${t('demo.box',{tier:t('demo.'+tier),n:PLANS[D().map][tier].score})}</b><div class="sp"></div>${active?`<button class="btn btn-sm" id="demoStop">${t('demo.stop')}</button>`:''}</div><ol>${log.map(x=>`<li>${x}</li>`).join('')}</ol>`;
+    el.innerHTML=`<div class="row"><b>${t('demo.box',{tier:t('demo.'+tier),n:plans(D().map)[tier].score})}</b><div class="sp"></div>${active?`<button class="btn btn-sm" id="demoStop">${t('demo.stop')}</button>`:''}</div><ol>${log.map(x=>`<li>${x}</li>`).join('')}</ol>`;
     const b=$('demoStop');if(b)b.onclick=stop;
     const ol=el.querySelector('ol');ol.scrollTop=ol.scrollHeight;
   }
@@ -56,7 +60,7 @@
   const Demo={
     get active(){return active;},
     start(level,which){
-      const p=PLANS[level]?.[which];if(!p)return;
+      const p=plans(level)?.[which];if(!p)return;
       root.TL_GAME.demo.start(p.opening);   // resets the game first (which stops any demo running)
       plan=p;tier=which;log=[];ended=false;pending=p.moves.map(m=>({...m}));queued=[];active=true;
       const list=p.opening.map((c,id)=>{const sv=serves(c);return t('demo.serves',{s:letters[id],near:sv.near,who:sv.who});}).join('；');
@@ -81,12 +85,12 @@
       const m=pending.find(x=>x.at!==undefined&&g.roundStart[x.r-1]!==undefined);
       if(m&&g.t+1e-6>=g.roundStart[m.r-1]+m.at){pending=pending.filter(x=>x!==m);apply(m);}
       if(g.done&&active){active=false;ended=true;
-        const P=PLANS[D().map],line=P.tiers[['pass','high','master'].indexOf(tier)];
+        const P=plans(D().map),line=P.tiers[['pass','high','master'].indexOf(tier)];
         say(t('demo.end',{d:g.delivered,tier:t('demo.'+tier),n:line})+(g.delivered!==plan.score?t('demo.diff',{s:plan.score}):''));}
     },
     // the choice of score lines for this level
     open(){
-      const lv=D().map,P=PLANS[lv];if(!P)return;
+      const lv=D().map,P=plans(lv);if(!P)return;
       let dlg=$('demoDlg');
       if(!dlg){dlg=document.createElement('dialog');dlg.id='demoDlg';dlg.className='intro';document.body.appendChild(dlg);}
       dlg.innerHTML=`<span class="lbl">AI DEMO</span><h2 class="h1">${t('demo.h')}</h2><p class="note">${t('demo.intro')}</p>`+
@@ -103,7 +107,7 @@
   function button(){
     let b=$('demoBtn');
     if(!b){b=document.createElement('button');b.id='demoBtn';b.className='btn btn-sm';b.onclick=()=>Demo.open();$('lvInfo').after(b);}
-    b.textContent=t('demo.btn');b.hidden=!PLANS[D().map];
+    b.textContent=t('demo.btn');b.hidden=!plans(D().map);
   }
   // its own look (kept here so the demo leaves with its file)
   const css=document.createElement('style');css.textContent=`

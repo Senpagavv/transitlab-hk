@@ -1,4 +1,13 @@
 'use strict';
+// Task 66: the historical filename below is mode4-bus. --level mode 1 uses the
+// actual stations-and-walking engine, without changing that historical default.
+if(require.main===module&&process.argv.includes('--level')){
+  const file=process.argv[process.argv.indexOf('--level')+1];
+  const entry=JSON.parse(require('node:fs').readFileSync(file,'utf8'));
+  if(entry.mode!==1)throw Error('v7_bus.js --level accepts mode 1 (stations and walking)');
+  console.log(JSON.stringify(require('./v7_intake.js').searchMode1(entry)));
+  return;
+}
 // v7 mode 4 (buses on the road, Kowloon East) · tune the level and find the AI demo plans: local search over up to three
 // bus routes (along the roads, stops on them), the buses on each and the bus lanes, kept the same every year, within
 // the yearly budget; scored on the eight-year jam taken off the roads. Starts from routes between road cells next to

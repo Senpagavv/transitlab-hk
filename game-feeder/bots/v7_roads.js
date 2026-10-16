@@ -4,13 +4,13 @@ const M=require('../v7/mode3-roads/engine.js'),{D,P,Plan,G,same,expand}=M;
 // --level <file.json>: tune a level file (v7/levels/README.md) instead of the mode's own level; prints, never writes
 const argv=process.argv.slice(2),lvAt=argv.indexOf('--level'),levelFile=lvAt>=0?argv[lvAt+1]:null,args=argv.filter((_,i)=>lvAt<0||(i!==lvAt&&i!==lvAt+1)),write=args.includes('--write')&&!levelFile,pos=args.filter(x=>x!=='--write'),restarts=Math.max(4,+(pos[0]||18)),opts=pos[1]?JSON.parse(pos[1]):{};
 if(levelFile){const e=JSON.parse(require('node:fs').readFileSync(levelFile,'utf8'));D.use(e.level,e.key);M.reset();console.log('level file '+levelFile+' → '+e.key);}
-const def=D.example('m3-1');for(const [k,v] of Object.entries(opts)){if(k==='people')def.origins=def.origins.map((o,i)=>({...o,people:v[i]}));else if(k==='att')def.destinations=def.destinations.map((d,i)=>({...d,attraction:v[i]}));else if(k==='grow')Object.assign(def,{}),v.origins&&(def.origins=def.origins.map((o,i)=>({...o,grow:v.origins[i]||o.grow}))),v.destinations&&(def.destinations=def.destinations.map((d,i)=>({...d,grow:v.destinations[i]||d.grow})));else def[k]=v;}
+const def=levelFile?JSON.parse(fs.readFileSync(levelFile,'utf8')).level:D.example('m3-1');for(const [k,v] of Object.entries(opts)){if(k==='people')def.origins=def.origins.map((o,i)=>({...o,people:v[i]}));else if(k==='att')def.destinations=def.destinations.map((d,i)=>({...d,attraction:v[i]}));else if(k==='grow')Object.assign(def,{}),v.origins&&(def.origins=def.origins.map((o,i)=>({...o,grow:v.origins[i]||o.grow}))),v.destinations&&(def.destinations=def.destinations.map((d,i)=>({...d,grow:v.destinations[i]||d.grow})));else def[k]=v;}
 D.use(def,'bot-tune');M.reset();
 let seed=71;const rnd=()=>{seed=(Math.imul(seed,1103515245)+12345)&0x7fffffff;return seed/0x80000000;},pick=a=>a[Math.floor(rnd()*a.length)];
 const copy=x=>JSON.parse(JSON.stringify(x)),cp=p=>{const q=new Plan();Object.assign(q,copy(p));return q;};
 const POI=[...D.origins.map(o=>o.cell),...D.destinations.map(d=>d.cell),...G.lines.flatMap(l=>l.stations)];
 const N4=c=>[[c[0]+1,c[1]],[c[0]-1,c[1]],[c[0],c[1]+1],[c[0],c[1]-1]];
-function routePlan(){for(let tries=0;tries<50;tries++){const pts=[],n=2+Math.floor(rnd()*3);while(pts.length<n){const c=pick(POI);if(!pts.some(x=>same(x,c)))pts.push(c);}
+function routePlan(){for(let tries=0;tries<50;tries++){const pts=[],n=Math.min(2+Math.floor(rnd()*3),new Set(POI.map(String)).size);while(pts.length<n){const c=pick(POI);if(!pts.some(x=>same(x,c)))pts.push(c);}
  const p=new Plan();let ok=p.extend(pts[0]);for(let j=1;j<pts.length&&ok;j++){let c=p.line.at(-1).slice(),z=pts[j],h=rnd()<.5;
   const walkAxis=a=>{while(ok&&c[a]!==z[a]){c=c.slice();c[a]+=Math.sign(z[a]-c[a]);if(!p.extend(c))ok=false;}};if(h){walkAxis(0);walkAxis(1);}else{walkAxis(1);walkAxis(0);}}
  if(!ok||p.line.length<2)continue;const candidates=POI.filter(c=>p.onLine(c));for(const c of candidates.sort(()=>rnd()-.5))if(p.canStation(c)&&rnd()<.75)p.toggleStation(c);
@@ -42,6 +42,7 @@ function extendToward(p,road){const q=cp(p),cells=expand(road.road.via);let best
  opts.sort((a,b)=>a.path.length-b.path.length);for(const o of opts){const x=cp(q);let ok=true;const seq=o.path.slice(1);for(const c of seq){if(!x.extend(c)){ok=false;break;}}if(!ok)continue;
   for(const c of x.line)if(x.canStation(c)&&POI.some(z=>same(z,c))&&rnd()<.18)x.toggleStation(c);while(x.canTrain()&&rnd()<.4)x.addTrain();x.continuePhase2();best=x;break;}
  return best||(()=>{const x=cp(q);x.continuePhase2();return x;})();}
+if(!firsts.length){module.exports={finals,climb,doFour};console.log('No legal roads plan found');return;}
 const baseRoad=worstRoad(G.base),baseAlong=makeRoadPlan(baseRoad,false),year4Base=doFour(baseAlong||firsts[0]?.p),road4=worstRoad(year4Base.log.at(-1)),road4Along=baseAlong?extendToward(doFour(baseAlong),road4):null;
 const best=finals[0]||null,bestPlan=best&&best.p,bestRun=bestPlan&&bestPlan.simulate();
 function fmt(p){return'p1 line '+p.phase1State?.line?.map(c=>c.join(',')).join(' ')+' · stations '+p.phase1State?.stations?.map(c=>c.join(',')).join(' ')+' · trains '+(p.phase1State?.trains||p.trains)+' · p2 '+JSON.stringify(p.phase2Actions);}
