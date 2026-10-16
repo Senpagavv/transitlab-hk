@@ -269,7 +269,29 @@
 
   function buildMetroZoneLookup(base, metro) {
     const n = metro.nodes.length, zones = base.zones || [];
-    const access = zones.map(z => metro.nodes.map(s => landDistance(base, z.cell, s.cell, MAX_WALK)));
+    // One bounded land BFS per origin, instead of one per origin/station pair.
+    // Distances remain the same integers, including the six-cell detour limit.
+    const integerCells = zones.every(z => z.cell.every(Number.isInteger)) && metro.nodes.every(s => s.cell.every(Number.isInteger));
+    const access = zones.map(z => {
+      if (!integerCells) return metro.nodes.map(s => landDistance(base, z.cell, s.cell, MAX_WALK));
+      const size = base.cols * base.rows, distances = new Int16Array(size).fill(-1), queue = new Int32Array(size);
+      const [x, y] = z.cell;
+      if (!walkable(base, z.cell)) return metro.nodes.map(() => Infinity);
+      const start = y * base.cols + x; let head = 0, tail = 1; queue[0] = start; distances[start] = 0;
+      while (head < tail) {
+        const at = queue[head++], d = distances[at]; if (d >= MAX_WALK) continue;
+        const cx = at % base.cols, cy = Math.floor(at / base.cols);
+        for (const next of [cx > 0 ? at - 1 : -1, cx + 1 < base.cols ? at + 1 : -1, cy > 0 ? at - base.cols : -1, cy + 1 < base.rows ? at + base.cols : -1]) {
+          if (next < 0 || distances[next] >= 0 || ['~', 'w'].includes((base.land || '')[next])) continue;
+          distances[next] = d + 1; queue[tail++] = next;
+        }
+      }
+      return metro.nodes.map(s => {
+        const [sx, sy] = s.cell;
+        if (sx < 0 || sy < 0 || sx >= base.cols || sy >= base.rows) return Infinity;
+        const d = distances[sy * base.cols + sx]; return d < 0 ? Infinity : d;
+      });
+    });
     const costs = Array.from({ length: zones.length }, () => new Float64Array(zones.length).fill(Infinity));
     const usedNew = Array.from({ length: zones.length }, () => new Uint8Array(zones.length));
     for (let oi = 0; oi < zones.length; oi++) {
@@ -426,14 +448,14 @@
     for (let i = 0; i < prepared.pairs.length; i++) {
       const p = prepared.pairs[i], route = prepared.routes[i];
       let c = 0;
-      for (const si of route) { const s = prepared.sections[si]; if (s) c += s.extra0 - state.perceived[si]; }
+      for (let j=0;j<route.length;j++) { const si=route[j], s = prepared.sections[si]; if (s) c += s.extra0 - state.perceived[si]; }
       const d = state.benefits[i].d, total = prepared.pairTotals[i];
       const baseShare = total ? p.car0 / total : 0;
       const share = clamp(baseShare - 0.1 * (d - c), 0, 1);
       const car = share === baseShare ? p.car0 : total * share, pt = share === baseShare ? p.pt0 : total - car;
       shares.push(share); carFlows.push(car); ptFlows.push(pt); cByPair.push(c);
       const vehicleDelta = (car - p.car0) / CAR_OCCUPANCY;
-      for (const si of route) if (prepared.sections[si]) secDelta[si] += vehicleDelta;
+      for (let j=0;j<route.length;j++) { const si=route[j]; if (prepared.sections[si]) secDelta[si] += vehicleDelta; }
     }
     const loads = prepared.sections.map((s, i) => Math.max(0, s.load + secDelta[i]));
     const actual = prepared.sections.map((s, i) => (loads[i] / s.cap) ** 2);
@@ -522,14 +544,15 @@
           if(share<=0||share>=1||!prepared.routes[p].length)continue;
           const weight=.1*prepared.pairTotals[p]/CAR_OCCUPANCY;
           if(!weight)continue;active.push(p);weights.push(weight);
-          for(const section of prepared.routes[p])diagonal[section]+=learning*derivative[section]*weight;
+          const route=prepared.routes[p];
+          for(let j=0;j<route.length;j++){const section=route[j];diagonal[section]+=learning*derivative[section]*weight;}
         }
         const matvec=vector=>{
           const summed=new Float64Array(count);
           for(let k=0;k<active.length;k++){
             const route=prepared.routes[active[k]];let value=0;
-            for(const section of route)value+=vector[section];
-            value*=weights[k];for(const section of route)summed[section]+=value;
+            for(let j=0;j<route.length;j++)value+=vector[route[j]];
+            value*=weights[k];for(let j=0;j<route.length;j++)summed[route[j]]+=value;
           }
           for(let i=0;i<count;i++)summed[i]=vector[i]+learning*derivative[i]*summed[i];
           return summed;

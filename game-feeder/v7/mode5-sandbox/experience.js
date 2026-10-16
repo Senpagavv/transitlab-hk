@@ -42,6 +42,8 @@
     'v.changeEmpty':L('先跑方案，再看變化','先跑方案，再看变化','Run a plan to see changes'),
     'v.noResult':L('跑完後，這裡說清楚誰改坐車、哪裡少塞車。','跑完后，这里说清楚谁改坐车、哪里少塞车。','Run your plan to see who switched to rail and where traffic eased.'),
     'v.stableOnly':L('目標以跑到穩定的結果判定。','目标以跑到稳定的结果判定。','Goals are checked when the run is stable.'),
+    'v.growthApplied':L('題目另加 {n} 人（D 假設，按原人口比例）；滑杆是你的額外調整，退出題目自動撤回這筆新增人口。','题目另加 {n} 人（D 假设，按原人口比例）；滑杆是你的额外调整，退出题目自动撤回这笔新增人口。','The challenge adds {n} residents (tier D, proportional to original population). Sliders are your additional adjustments; leaving removes the challenge growth.'),
+    'v.growthData':L('題目新增居民（D 假設）','题目新增居民（D 假设）','Challenge residents added (tier D)'),
     'v.population':L('分區的人與吸引力','分区的人与吸引力','People & attraction'),
     'v.noSelection':L('在地圖點一格選分區；Shift 點擊可加選。','在地图点一格选分区；Shift 点击可加选。','Click a map cell to select a zone; Shift-click adds zones.'),
     'v.selected':L('選中 {n} 個分區','选中 {n} 个分区','{n} zones selected'),
@@ -125,7 +127,7 @@
     const esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     function saved(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback;}catch(_){return fallback;}}
     function save(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch(_){}}
-    let achievements=saved('tl-m5-challenges-v2',{}),configs={},weights={zones:{}},weightsReady=false,lastAudit=null;
+    let achievements=saved('tl-m5-challenges-v2',{}),configs={},growth={},weights={zones:{}},weightsReady=false,lastAudit=null;
     const districts=new Map(),boundaries=[];
     for(const z of b.zones){if(!districts.has(z.district))districts.set(z.district,{name:z.district,x:0,y:0,w:0});const d=districts.get(z.district),w=Math.sqrt(z.pop+z.jobs+1);d.x+=(z.cell[0]+.5)*w;d.y+=(z.cell[1]+.5)*w;d.w+=w;}
     for(const d of districts.values()){d.x=d.x/d.w*C;d.y=d.y/d.w*C;}
@@ -155,6 +157,21 @@
     const mobileTools=document.createElement('div');mobileTools.className='mobile-map-tools';mobileTools.innerHTML='<button id="mobileLine" class="btn btn-sm" data-i18n="v.mobileLine"></button><button id="mobileStation" class="btn btn-sm" data-i18n="v.mobileStation"></button><button id="mobileRun" class="btn btn-sm btn-p" data-i18n="v.mobileRun"></button>';document.querySelector('.maptoolbar').append(mobileTools);$('mobileLine').onclick=()=>q.setTool('line');$('mobileStation').onclick=()=>q.setTool('station');$('mobileRun').onclick=()=>$('runStable').click();
     const population=document.createElement('section');population.className='population-panel box';population.innerHTML='<div class="lbl" data-i18n="v.population"></div><p id="selectedZones" class="note"></p><div id="populationSliders"></div><div class="row"><button id="resetZones" class="btn btn-sm" data-i18n="v.resetZone"></button><button id="resetAllZones" class="btn btn-sm" data-i18n="v.resetAllZones"></button></div><p id="scenarioAudit" class="note"></p><p id="scenarioStatus" class="note"></p><p class="note" data-i18n="v.scenarioNote"></p>';document.querySelector('.plan-detail').after(population);
     $('populationSliders').innerHTML=['people','child','adult','elder','attraction'].map(k=>'<label class="population-slider"><span data-i18n="v.'+k+'"></span><output id="value-'+k+'">0%</output><input id="slider-'+k+'" type="range" min="-50" max="150" step="5" value="0" data-kind="'+k+'" aria-label="'+esc(t('v.'+k))+'" disabled></label>').join('');
+    // Keep challenge growth separate from player sliders, so changing/resetting a slider cannot
+    // remove the extra 50,000 and leaving the challenge restores the player's exact settings.
+    function scenarioConfigs(){
+      if(!Object.keys(growth).length)return configs;
+      const out=Object.fromEntries(Object.entries(configs).map(([id,c])=>[id,{...c}]));
+      for(const [id,g]of Object.entries(growth))out[id]={...(out[id]||{}),people:(out[id]?.people||0)+g.pct};
+      return out;
+    }
+    function challengeGrowth(c){
+      growth={};if(!c?.population)return;
+      const zones=b.zones.filter(z=>c.population.zoneIds.includes(String(z.id))&&z.pop>0),total=zones.reduce((n,z)=>n+z.pop,0);
+      let left=c.population.additional;
+      zones.forEach((z,i)=>{const people=i===zones.length-1?left:c.population.additional*z.pop/total;left-=people;growth[String(z.id)]={people,pct:people/z.pop*100};});
+    }
+    const growthNote=document.createElement('p');growthNote.className='note';population.prepend(growthNote);
     let scenarioTimer=0;
     function applyScenario(){if(scenarioTimer)clearTimeout(scenarioTimer);scenarioTimer=setTimeout(()=>{scenarioTimer=0;q.rebuildScenario();},240);}
     $('populationSliders').addEventListener('input',e=>{const key=e.target.dataset.kind;if(!key)return;for(const i of selected){const id=String(b.zones[i].id);configs[id]={...(configs[id]||{}),[key]:Number(e.target.value)};}lastAudit=null;renderPopulation(false);applyScenario();});
@@ -172,16 +189,17 @@
     function setMode(next){mode=next;$('app').hidden=next==='ai';aiPanel.hidden=next!=='ai';document.body.dataset.sandboxMode=next;modeTabs.querySelectorAll('[data-mode]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.mode===next)));if(next==='data'){rightTab(true);q.setTool('inspect');}else if(next==='play'&&q.tool!=='line'&&q.tool!=='station')q.setTool('pan');requestAnimationFrame(q.draw);}
     modeTabs.onclick=e=>{const btn=e.target.closest('[data-mode]');if(btn)setMode(btn.dataset.mode);};
     $('aiGenerate').onclick=async()=>{const sentence=$('aiSentence').value.trim();if(!sentence){$('aiStatus').textContent=t('v.aiEmpty');return;}$('aiGenerate').disabled=true;$('aiJson').hidden=true;$('aiRequest').textContent='';try{const names=Object.fromEntries(b.areas.map(a=>[a.key,b.zones.filter(z=>inside(z.cell,a.box)).map(z=>q.displayName(z))]));const res=await root.TLAILevel.run(sentence,{lang:I.lang,names,status:$('aiStatus'),out:$('aiOut'),areas:b.areas});if(res&&res.request){$('aiRequest').textContent=JSON.stringify(res.request,null,2);$('aiJson').hidden=false;}}catch(e){$('aiStatus').textContent=t('v.aiError');}finally{$('aiGenerate').disabled=false;}};
-    function renderPopulation(updateSlider=true){const n=selected.size;$('selectedZones').textContent=n?t('v.selected',{n})+' · '+[...selected].map(i=>q.displayName(b.zones[i])).join('、'):t('v.noSelection');
+    function renderPopulation(updateSlider=true){const added=Object.values(growth).reduce((n,g)=>n+g.people,0);growthNote.hidden=!added;growthNote.textContent=added?t('v.growthApplied',{n:num(added)}):'';const n=selected.size;$('selectedZones').textContent=n?t('v.selected',{n})+' · '+[...selected].map(i=>q.displayName(b.zones[i])).join('、'):t('v.noSelection');
       for(const key of ['people','child','adult','elder','attraction']){const values=[...selected].map(i=>configs[String(b.zones[i].id)]?.[key]||0),mixed=new Set(values).size>1,value=values[0]||0;const slider=$('slider-'+key);slider.disabled=!n||!weightsReady;slider.setAttribute('aria-label',t('v.'+key));if(updateSlider)slider.value=mixed?0:value;$('value-'+key).textContent=mixed?t('v.mixed'):(value>0?'+':'')+value+'%';}
-      $('resetZones').disabled=!n;$('scenarioStatus').textContent=weightsReady?t('v.zonesEdited',{n:Object.values(configs).filter(c=>Object.values(c).some(Number)).length}):t('v.scenarioLoading');renderAudit();
+      $('resetZones').disabled=!n;$('scenarioStatus').textContent=weightsReady?t('v.zonesEdited',{n:Object.values(scenarioConfigs()).filter(c=>Object.values(c).some(Number)).length}):t('v.scenarioLoading');renderAudit();
     }
-    function renderAudit(){if(!selected.size){$('scenarioAudit').textContent='';return;}const draft=lastAudit||root.SandboxScenarios.adjust(q.demand,configs,weights).audit;let a=0,z=0,schoolA=0,schoolZ=0;for(const i of selected){const id=String(b.zones[i].id),row=draft.zones[id];a+=row?.before??q.stats.totals[i]??0;z+=row?.after??q.stats.totals[i]??0;schoolA+=weights.zones[id]?.HBS||0;schoolZ+=row?.purposes?.HBS??weights.zones[id]?.HBS??0;}$('scenarioAudit').textContent=t('v.departures',{a:num(a),b:num(z)})+'\n'+t('v.purposeSchool',{a:num(schoolA),b:num(schoolZ)});}
+    function renderAudit(){if(!selected.size){$('scenarioAudit').textContent='';return;}const draft=lastAudit||root.SandboxScenarios.adjust(q.demand,scenarioConfigs(),weights).audit;let a=0,z=0,schoolA=0,schoolZ=0;for(const i of selected){const id=String(b.zones[i].id),row=draft.zones[id];a+=row?.before??q.stats.totals[i]??0;z+=row?.after??q.stats.totals[i]??0;schoolA+=weights.zones[id]?.HBS||0;schoolZ+=row?.purposes?.HBS??weights.zones[id]?.HBS??0;}$('scenarioAudit').textContent=t('v.departures',{a:num(a),b:num(z)})+'\n'+t('v.purposeSchool',{a:num(schoolA),b:num(schoolZ)});}
     function dataRow(label,value,tier,source){return '<div class="data-row"><span>'+esc(label)+'</span><b>'+esc(value)+'</b><small class="tier-badge">'+esc(t('v.tier'+(tier||'D')))+'</small><small class="data-source">'+esc(source||'')+'</small></div>';}
     function renderData(){if(!inspected){$('dataContent').textContent=t('v.noObject');return;}let html='';const index=inspected.index,kind=inspected.kind,source=b.sources||{},tiers=b.tiers||{};
       if(kind==='zone'){const z=b.zones[index];if(!z)return;html='<h3>'+esc(q.displayName(z))+'</h3><p class="note">'+esc(districtName(z.district))+'</p>'+dataRow(t('v.popData'),num(z.pop),tiers.zones,source.population_jobs)+dataRow(t('v.jobsData'),num(z.jobs),tiers.zones,source.population_jobs)+dataRow(t('v.shareData'),q.stats.totals[index]?((q.stats.shares[index]||0)*100).toFixed(1)+'%':t('v.notAvailable'),q.demand.tiers?.pairs||q.demand.tier,'hk-demand-'+q.demand.period+'.json · car / (car + transit)');}
       if(kind==='road'){const s=b.sections[index];if(!s)return;html='<h3>'+esc(q.roadName(s))+'</h3>'+dataRow(t('v.loadData'),num(q.stats.loads[index]),q.demand.tiers?.sections||tiers.sections,source.roads)+dataRow(t('v.capacityData'),num(s.cap),tiers.sections,source.roads)+dataRow(t('v.vcData'),(q.stats.loads[index]/s.cap).toFixed(2),tiers.sections,source.roads);}
       if(kind==='station'){const s=b.stations[index];if(!s)return;const flows=(q.demand.lines||[]).filter(r=>r[1]===s.id||r[2]===s.id);html='<h3>'+esc(q.displayName(s))+'</h3>'+dataRow(t('v.stationFlow'),flows.length?num(Math.max(...flows.map(r=>r[3]))):t('v.notAvailable'),q.demand.tiers?.lines||tiers.stations,source.stations_lines);for(const id of s.lines||[]){const l=b.lines.find(l=>l.id===id);if(l)html+=dataRow(q.displayName(l)+' · '+t('v.frequency'),l.trains_per_hour??t('v.notAvailable'),tiers.stations,source.stations_lines);}}
+      if(kind==='zone'&&growth[String(b.zones[index]?.id)])html+=dataRow(t('v.growthData'),num(growth[String(b.zones[index].id)].people),'D','challenges.js · kai-tak-growth');
       $('dataContent').innerHTML=html;
     }
     const roundHeader=$('stableBadge').closest('.row');const roundTable=$('roundRows').closest('.table-wrap');$('reportDetails').append(roundHeader,roundTable);
@@ -197,7 +215,7 @@
       $('challengeList').innerHTML=(root.SandboxChallenges||[]).map((c,i)=>'<button class="challenge-card" data-challenge="'+esc(c.key)+'" aria-pressed="'+(challenge===c)+'"><span class="challenge-mark">'+(achievements[c.key]?.passed?'✓':'0'+(i+1))+'</span><b>'+esc(pick(c.title))+'</b><small>'+esc(pick(c.story))+'</small></button>').join('');
       renderGoal();
     }
-    function chooseChallenge(c){challenge=c;if(c){const i=b.areas.findIndex(a=>a.key===c.area);if(i>=0)q.selectArea(i);}renderChallenges();q.draw();if(window.innerWidth<=700&&c)document.querySelector('.sandbox-play').scrollIntoView({behavior:'smooth',block:'start'});}
+    function chooseChallenge(c){if(challenge===c){renderChallenges();q.draw();return;}challenge=c;challengeGrowth(c);lastAudit=null;renderPopulation();renderData();q.rebuildScenario();if(c){const i=b.areas.findIndex(a=>a.key===c.area);if(i>=0)q.selectArea(i);}renderChallenges();q.draw();if(window.innerWidth<=700&&c)document.querySelector('.sandbox-play').scrollIntoView({behavior:'smooth',block:'start'});}
     $('challengeList').onclick=e=>{const btn=e.target.closest('[data-challenge]');if(btn)chooseChallenge(root.SandboxChallenges.find(c=>c.key===btn.dataset.challenge));};$('freePlay').onclick=()=>{showFlags=!(showFlags&&!challenge);$('freePlay').setAttribute('aria-pressed',String(showFlags));chooseChallenge(null);};
     const inside=(cell,box)=>cell[0]>=box[0]&&cell[1]>=box[1]&&cell[0]<box[2]&&cell[1]<box[3];
     function goalValue(c,m){if(!c||!m)return 0;const g=c.goal;
@@ -281,7 +299,7 @@
     function reset(){renderGoal(null);$('openReport').disabled=true;$('reportSummary').textContent=t('v.noResult');if(report.open)report.close();}
     refresh();const tab=(/(?:^|[#&])tab=(ai|data)/.exec(location.hash)||[])[1];   // the hub's «AI 出關卡» opens #tab=ai
     if(tab)setMode(tab);else if(!saved('tl-m5-played-v2',false))openHelp();
-    return {selectedZones:()=>[...selected],select(list){selected=new Set(list);renderPopulation();renderData();q.draw();},inspect(item){inspected=item;renderData();},setMode,rightTab,get mode(){return mode},draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get configs(){return configs},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
+    return {selectedZones:()=>[...selected],select(list){selected=new Set(list);renderPopulation();renderData();q.draw();},inspect(item){inspected=item;renderData();},setMode,rightTab,get mode(){return mode},draw,tooltip,pointer,tap,refresh,result,reset,roadColor,mapMetrics:()=>before?null:(q.metrics||q.preview),get before(){return before},get challenge(){return challenge},get growth(){return growth},get configs(){return scenarioConfigs()},get weights(){return weights},audit(a){lastAudit=a;renderAudit();}};
   }
   root.SandboxV2={create,districtName};
 })(window);

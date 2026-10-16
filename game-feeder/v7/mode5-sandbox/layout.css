@@ -75,16 +75,66 @@ body.sb3 #periodTabs button:disabled{opacity:.4;cursor:default}
   .sb-scene{width:220px}.sb-info{width:220px}.sb-result{width:230px}
   .sb-toolcard{bottom:66px}
 }
-@media (max-width:640px){
-  body.sb3 #topbar .brand .sub,body.sb3 .sb-zoom{display:none}
-  .sb-scene{top:8px;left:8px;width:calc(100% - 16px);max-height:28%}
-  .sb-info{display:none}
-  .sb-result{left:8px;right:8px;width:auto;bottom:64px;max-height:30%}
-  .sb-layers{display:none}
-  .sb-dock{bottom:8px}
-  .sb-toolcard{bottom:60px;width:calc(100% - 16px)}
-}
 /* the data card: the zone under the pointer; the old «pick a type, then click» controls are not needed for that */
 .sb-info #dataPanel>.note:first-child,.sb-info #dataPanel>.row{display:none}
 .sb-info #dataPanel>p:last-child{font-size:10.5px;color:var(--s-ink3);margin-top:8px}
 body.sb3 .message-corner.sb-quiet{display:none}
+
+/* Task 63: readable titles and mutually exclusive mobile drawers. */
+.sb-drawers{display:contents}
+.sb-drawer-toggle{appearance:none;border:0;background:none;color:var(--s-ink3);padding:0;text-align:left;font:inherit;letter-spacing:.035em;width:100%}
+.sb-card{overflow-wrap:anywhere;min-width:0}
+.sb-drawer-body{min-width:0}
+.sb-dock>*{flex-shrink:0}
+@media (max-width:699px){
+  body.sb3{height:100dvh;max-width:100vw}
+  body.sb3 #topbar{height:auto;min-height:76px;padding:6px 8px;gap:4px 6px;flex-wrap:wrap;align-content:center}
+  body.sb3 #topbar .brand{flex:1;min-width:0}
+  body.sb3 #topbar .brand .sub,body.sb3 #topbar>.sp,body.sb3 .sb-zoom,body.sb3 #topbar>a[href="/"],body.sb3 #help{display:none}
+  body.sb3 #topbar>.sb-topbar-link{order:1;font-size:11px;height:26px;padding:0 6px}
+  body.sb3 #periodTabs{order:2;flex:1;min-width:0;justify-content:space-evenly}
+  body.sb3 #periodTabs button{padding:4px 5px;font-size:10px;white-space:nowrap}
+  body.sb3 #topbar .seg button{min-width:25px;padding:0 5px;height:26px}
+  .sb-drawers{position:absolute;left:8px;right:8px;bottom:calc(64px + env(safe-area-inset-bottom));display:flex;gap:3px;z-index:12;height:40px}
+  .sb-drawers>.sb-card,.sb-drawers>.sb-card[hidden]{display:block;position:static;transform:none;flex:1;width:0;max-height:none;padding:0;overflow:visible;border-radius:7px}
+  .sb-drawers>.sb-card>.sb-drawer-toggle{display:block;height:38px;margin:0;padding:0 4px;text-align:center;font-size:12px;cursor:pointer;letter-spacing:0;white-space:nowrap}
+  .sb-drawer-toggle:disabled{opacity:.45;cursor:default}
+  .sb-drawer-toggle::after{content:' ▴'}
+  .sb-drawer-open>.sb-drawer-toggle{color:var(--s-accent);font-weight:600}
+  .sb-drawer-open>.sb-drawer-toggle::after{content:' ▾'}
+  .sb-drawers .sb-drawer-body{display:none;position:absolute;left:0;right:0;bottom:46px;max-height:max(70px,calc(45dvh - var(--sb-top,76px) - 112px - env(safe-area-inset-bottom)));overflow:auto;overscroll-behavior:contain;background:var(--s-panel);border:1px solid var(--s-line2);border-radius:9px;padding:10px 12px;box-shadow:0 6px 24px #14202326}
+  .sb-drawers .sb-drawer-open>.sb-drawer-body{display:block}
+  .sb-drawers .sb-card[hidden]>.sb-drawer-body{display:none}
+  .sb-dock{left:8px;right:8px;width:auto;max-width:none;transform:none;bottom:calc(8px + env(safe-area-inset-bottom));height:48px;gap:4px;padding:5px 7px;overscroll-behavior-x:contain;scrollbar-width:thin}
+  .sb-dock button.sb-tool{padding:5px 7px;min-height:32px}
+  .sb-layers{left:8px;top:8px;bottom:auto;gap:2px;padding:5px 7px}
+  .sb-layers>.lbl{display:none}
+  .sb-layers label{font-size:10px}
+  body.sb3 .message-corner{top:8px!important;left:auto!important;right:8px!important;transform:none;max-width:55%!important;font-size:10px}
+  body.sb3 .change-key{bottom:112px!important;left:8px!important;font-size:9px;max-width:calc(100% - 16px)}
+  .sb-toolcard .sb-close{display:none}
+  .sb-card h2{font-size:17px}
+  .sb-card .row{flex-wrap:wrap}
+  .sb-card .ed-in,.sb-card select,.sb-card textarea{max-width:100%;min-width:0}
+  .sb-card .data-row{min-width:0}
+}
+
+@media (max-width:699px){
+  body.sb3 #topbar{display:grid;grid-template-columns:110px minmax(0,1fr) auto;grid-template-rows:28px 28px;justify-items:stretch;min-height:76px;height:76px}
+  body.sb3 #topbar .brand{grid-column:1;grid-row:1}
+  body.sb3 #topbar .brand .wm{font-size:17px}
+  body.sb3 #langSeg{grid-column:2;grid-row:1;justify-self:end}
+  body.sb3 #topbar>.seg:last-child{grid-column:3;grid-row:1}
+  body.sb3 #topbar>.sb-topbar-link{grid-column:1;grid-row:2;justify-self:start}
+  body.sb3 #periodTabs{grid-column:2 / 4;grid-row:2;width:100%;overflow:hidden;min-width:0}
+  body.sb3 #periodTabs button{min-width:0;flex:1;padding:3px 2px;font-size:10px;height:24px}
+  .sb-drawers>.sb-card[hidden]{display:block!important}
+  .sb-dock .sb-budget{gap:0;line-height:1.2}
+}
+
+@media (max-width:699px){.sb-drawers>.sb-card{backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+.sb-station-options{margin-top:10px;border-top:1px solid var(--s-line);padding-top:8px}
+.sb-station-options label{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+
+@media (max-width:699px){.sb-drawers>.sb-card{background:var(--s-panel)}}

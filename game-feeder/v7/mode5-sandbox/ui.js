@@ -7,6 +7,7 @@
   let model = null, base = null, demands = {}, demand = null, fixture = false;
   let worker = null, syncPrepared = null, syncState = null, workerReady = false, requestNo = 0, pendingPreview = 0;
   let plan = E.emptyPlan(), activeLine = -1, tool = 'pan', activeArea = null;
+  let freeStation = false;
   let scope = null;   // «only this area»: the chosen zones' ids, or null for all of Hong Kong (setScope)   // no tool picked: drag to look round, wheel to zoom
   let convergenceFailed = false, computing = false, displayStats = { totals: [], shares: [], loads: [] };
   let activeMetrics = null, previewMetrics = null, rows = [], camera = { x: 0, y: 0, zoom: 1 }, firstFit = true;
@@ -180,8 +181,19 @@
     path.push(...additions);
     return additions.length > 0;
   }
+  function stationTarget(cell, line = getActive()) {
+    if (freeStation || !line || !cell) return cell;
+    // Snap only to candidates on this line: an off-line recommendation must never
+    // make an otherwise valid click fail. Distance and transfer rules use Manhattan cells.
+    let best = null, distance = 2;
+    for (const c of root.SandboxVector?.S.suggestions || []) {
+      const d = manhattan(cell, c);
+      if (d <= 1 && d < distance && line.cells.some(x => coordKey(x) === coordKey(c))) { best = c; distance = d; }
+    }
+    return best ? best.slice() : cell;
+  }
   function toggleStation(cell) {
-    const line = getActive();
+    const line = getActive(); cell = stationTarget(cell, line);
     if (!line || !line.cells.some(c => coordKey(c) === coordKey(cell))) { setStatus(t('m5.newStation')); return false; }
     const idx = line.stations.findIndex(s => coordKey(s.cell) === coordKey(cell));
     if (idx >= 0) line.stations.splice(idx, 1);
@@ -715,12 +727,30 @@
     (base.sections || []).forEach((s, i) => {
       const ax = s.a[0] * CELL + CELL / 2, ay = s.a[1] * CELL + CELL / 2;
       const bx = s.b[0] * CELL + CELL / 2, by = s.b[1] * CELL + CELL / 2;
-      const dx = bx - ax, dy = by - ay, length = Math.max(1, Math.hypot(dx, dy)), ox = -dy / length * 3, oy = dx / length * 3;
+      const dx = bx - ax, dy = by - ay, length = Math.max(1, Math.hypot(dx, dy)), vec = root.SandboxVector?.S.ready, ox = vec ? 0 : -dy / length * 3, oy = vec ? 0 : dx / length * 3;
       const fraction = Math.max(0, Math.min(1, ((x - ax - ox) * dx + (y - ay - oy) * dy) / (length * length)));
       const d = Math.hypot(x - ax - ox - fraction * dx, y - ay - oy - fraction * dy) * camera.zoom;
       if (d < distance) { distance = d; best = { s, i }; }
     });
     return distance <= 6 ? best : null;
+  }
+
+  // Hit-test exactly the geometry drawn by vector.js; stations take precedence over roads and zones.
+  function inspectAt(event) {
+    if (!event || !base) return null;
+    const r = canvas.getBoundingClientRect();
+    let station = null, distance = 9;
+    if ($('layerTransit').checked) (base.stations || []).forEach((s, i) => {
+      const point = root.SandboxVector?.S.ready ? SandboxVector.S.stations[i]?.p : null;
+      const p = point || [s.cell[0] + .5, s.cell[1] + .5];
+      const d = Math.hypot(event.clientX - r.left - camera.x - p[0] * CELL * camera.zoom, event.clientY - r.top - camera.y - p[1] * CELL * camera.zoom);
+      if (d < distance) { distance = d; station = { kind: 'station', index: i }; }
+    });
+    if (station) return station;
+    const road = nearestSection(getCell(event.clientX, event.clientY), event);
+    if (road) return { kind: 'road', index: road.i };
+    const zone = zoneAt(event);
+    return zone ? { kind: 'zone', index: zone.i } : null;
   }
 
   function showTooltip(e) {
@@ -792,7 +822,7 @@
       }
       firstFit = true; fitMap(); initializeWorker(); updateMapToolHint(); setTool(tool); loadOtherPeriods();
       // for tests and tools: a grid point (cell units) → a point on the page
-      root.TL_SANDBOX = { get tool() { return tool; }, get scope() { return scope; }, get plan() { return plan; }, setScope, setTool, zoneAt, get base() { return base; }, get demand() { return demand; }, v2, selected: () => v2.selectedZones(), toPage(x, y) { const r = canvas.getBoundingClientRect();
+      root.TL_SANDBOX = { get tool() { return tool; }, get scope() { return scope; }, get plan() { return plan; }, setScope, setTool, zoneAt, inspectAt, stationTarget, get freeStation(){return freeStation}, setFreeStation(value){freeStation=!!value;draw()}, get base() { return base; }, get demand() { return demand; }, v2, selected: () => v2.selectedZones(), toPage(x, y) { const r = canvas.getBoundingClientRect();
         return [r.left + camera.x + x * CELL * camera.zoom, r.top + camera.y + y * CELL * camera.zoom]; }, fitBox, draw };
       root.dispatchEvent(new CustomEvent('tl:sandbox-ready'));   // layout.js arranges the page into its cards
     } catch (e) { $('mapStatus').textContent = e.message; }

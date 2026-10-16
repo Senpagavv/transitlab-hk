@@ -39,6 +39,16 @@
     lines = (base.lines || []).map(l => ({ color: l.color || '#687c93', pts: (l.stations || []).map(id => st.get(String(id))).filter(Boolean).map(s => s.xy ? at(s.xy) : [s.cell[0] + .5, s.cell[1] + .5]) }));
     S.stations = (base.stations || []).map(s => ({ s, p: s.xy ? at(s.xy) : [s.cell[0] + .5, s.cell[1] + .5] }));
     const maxD = k => Math.max(...Z.map(z => z[k] / z.km2));
+    // Candidate cells are an aid, not a forecast: existing MTR grids and the three
+    // largest population / job zones in each existing area. Dedupe shared cells.
+    const suggested = new Map(), walkable = c => c && c[0] >= 0 && c[1] >= 0 && c[0] < base.cols && c[1] < base.rows && !['~', 'w'].includes((base.land || '')[c[1] * base.cols + c[0]]);
+    const add = c => { if (walkable(c)) suggested.set(c.join(','), c.slice()); };
+    for (const st of base.stations || []) add(st.cell);
+    for (const a of base.areas || []) {
+      const zs = base.zones.filter(z => z.cell[0] >= a.box[0] && z.cell[0] < a.box[2] && z.cell[1] >= a.box[1] && z.cell[1] < a.box[3]);
+      for (const metric of ['pop', 'jobs']) zs.slice().sort((a, b) => (b[metric] || 0) - (a[metric] || 0)).slice(0, 3).forEach(z => add(z.cell));
+    }
+    S.suggestions = [...suggested.values()];
     S.maxPop = maxD('pop'); S.maxJobs = maxD('jobs'); S.ready = true;
   }
   const mix = (a, b, t) => '#' + [0, 1, 2].map(i => Math.round(parseInt(a.slice(1 + 2 * i, 3 + 2 * i), 16) * (1 - t) + parseInt(b.slice(1 + 2 * i, 3 + 2 * i), 16) * t).toString(16).padStart(2, '0')).join('');
@@ -83,6 +93,10 @@
     // the selection
     if (sel.size) { ctx.strokeStyle = pal.sel; ctx.lineWidth = 2.2 * px; ctx.fillStyle = dark ? 'rgba(127,209,177,.14)' : 'rgba(43,108,88,.12)';
       for (const i of sel) { const q = zoneIndex.get(i); if (q) { ctx.fill(q.path); ctx.stroke(q.path); } } }
+    if (o.tool === 'station') {
+      ctx.strokeStyle = dark ? '#ffd27a' : '#8b520f'; ctx.fillStyle = dark ? '#ffd27a33' : '#fff6d0b3'; ctx.lineWidth = 1.3 * px;
+      for (const c of S.suggestions || []) { ctx.beginPath(); ctx.arc(c[0] + .5, c[1] + .5, 5 * px, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+    }
     // the one cell under the pointer while drawing a line or placing a station
     if (S.hover && (o.tool === 'line' || o.tool === 'station')) {
       ctx.strokeStyle = dark ? '#ffd27a' : '#c2410c'; ctx.lineWidth = 1.6 * px; ctx.setLineDash([3 * px, 2 * px]);

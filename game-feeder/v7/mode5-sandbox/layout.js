@@ -16,11 +16,11 @@
     'sb.title': L('讓香港少一點塞車', '让香港少一点塞车', 'Fewer jams in Hong Kong'),
     'sb.scopeAll': L('範圍：全港', '范围：全港', 'Area: all of Hong Kong'),
     'sb.scopeSel': L('範圍：{name}{more}（只算這一片）', '范围：{name}{more}（只算这一片）', 'Area: {name}{more} (only this is computed)'),
-    'sb.more': L(' 等 {n} 區', ' 等 {n} 区', ' and {n} zones'),
+    'sb.more': L(' 及另外 {n} 區', ' 及另外 {n} 区', ' and {n} other zones'),
     'sb.scopeOff': L('回全港', '回全港', 'All HK'),
     'sb.jump': L('跳到片區…', '跳到片区…', 'Go to an area…'),
     'sb.info': L('TRANSITLAB · 資料', 'TRANSITLAB · 资料', 'TRANSITLAB · DATA'),
-    'sb.hoverHint': L('把滑鼠停在地圖上一個區，這裡就顯示它的資料和來源。', '把鼠标停在地图上一个区，这里就显示它的资料和来源。', 'Hover a zone on the map to see its data and where it comes from.'),
+    'sb.hoverHint': L('停在分區、道路或車站查看資料與來源；手機用「看地圖」點一下，再開資料。', '停在分区、道路或车站查看资料与来源；手机用“看地图”点一下，再开资料。', 'Hover a zone, road or station for data and sources. On a phone, tap in Look mode, then open Data.'),
     'sb.look': L('✋ 看地圖', '✋ 看地图', '✋ Look'), 'sb.line': L('⌁ 畫線', '⌁ 画线', '⌁ Line'), 'sb.station': L('● 放站', '● 放站', '● Station'),
     'sb.trains': L('列車', '列车', 'Trains'), 'sb.select': L('▣ 選區', '▣ 选区', '▣ Select'), 'sb.people': L('👥 改人口', '👥 改人口', '👥 People'),
     'sb.ai': L('✦ AI 出關卡', '✦ AI 出关卡', '✦ AI level'), 'sb.budget': L('預算', '预算', 'Budget'),
@@ -44,6 +44,12 @@
     'sb.result': L('本輪結果', '本轮结果', 'This round'),
     'sb.details': L('變化最大的路、調度提示', '变化最大的路、调度提示', 'Roads that changed most, notes'),
     'sb.layers': L('圖層', '图层', 'Layers'),
+    'sb.freeStation': L('自由放站（關閉吸附）', '自由放站（关闭吸附）', 'Free placement (no snapping)'),
+    'sb.recommendHint': L('小圓圈：港鐵站格及各片區人口／崗位最多的分區中心。預設吸附到 1 格內、目前線上的最近建議點（D 示意）。', '小圆圈：港铁站格及各片区人口／岗位最多的分区中心。默认吸附到 1 格内、目前线上的最近建议点（D 示意）。', 'Circles mark existing MTR cells and the largest population/job centres per area. Snap within one grid cell to the nearest suggestion on this line (tier D aid).'),
+    'sb.tools': L('工具', '工具', 'Tools'),
+    'sb.drawerScene': L('情境', '情境', 'Scene'),
+    'sb.drawerInfo': L('資料', '资料', 'Data'),
+    'sb.drawerResult': L('結果', '结果', 'Results'),
     'sb.close': L('收起', '收起', 'Close')
   });
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -54,6 +60,9 @@
     if (built || !root.TL_SANDBOX || !root.TL_SANDBOX.v2) return; built = true;
     const S = root.TL_SANDBOX, v2 = S.v2, b = S.base, map = document.querySelector('.sandbox-map'), name = z => z ? (I.lang === 'zh-Hans' ? (z.hans || z.name) : I.lang === 'en' ? (z.en || z.name) : z.name) : '';
     document.body.classList.add('sb3');
+    const sizeTop = () => { document.documentElement.style.setProperty('--sb-top', $('topbar').getBoundingClientRect().height + 'px'); S.draw(); };
+    new ResizeObserver(sizeTop).observe($('topbar'));
+    requestAnimationFrame(sizeTop);
     if (root.TL_SITE?.static) {
       I.add({
         'v.aiNote': L('AI 正式版稍後開放；現在可以試這幾句：啟德多五萬人、沙田多三萬人、銅鑼灣假日人潮、將軍澳隧道封一條線、北部都會區。', 'AI 正式版稍后开放；现在可以试这几句：启德多五万人、沙田多三万人、铜锣湾假日人潮、将军澳隧道封一条线、北部都会区。', 'Full AI is coming later. Try: Kai Tak population growth; Sha Tin population growth; Causeway Bay holiday crowds; TKO tunnel closure; Northern Metropolis.'),
@@ -96,11 +105,15 @@
     dock.append(...tools, trains, el('span', 'sep'), ...more, el('span', 'sep'), run, el('span', 'sep'), budget);
     map.append(dock);
     // ---- the card of the tool in hand
-    const toolcard = card('sb-toolcard', null); toolcard.hidden = true; map.append(toolcard);
-    const close = el('button', 'sb-close', '×'); close.title = t('sb.close'); toolcard.append(close);
+    const toolcard = card('sb-toolcard', 'sb.tools'); toolcard.hidden = true; map.append(toolcard);
+    const close = el('button', 'sb-close', '×'); close.dataset.i18nTitle = 'sb.close'; close.title = t('sb.close'); toolcard.append(close);
     const pages = {};
     pages.line = el('div', 'sb-page'); pages.line.innerHTML = '<span class="lbl" data-i18n="sb.lineCard"></span><p class="note" data-i18n="sb.lineHint"></p>';
     pages.line.append($('newLine').parentElement, $('examplePlan'), $('planDetail'));
+    const stationOptions = el('div', 'sb-station-options'); stationOptions.hidden = true;
+    stationOptions.innerHTML = '<label><input type="checkbox" id="sbFreeStation"><span data-i18n="sb.freeStation"></span></label><p class="note" data-i18n="sb.recommendHint"></p>';
+    pages.line.insertBefore(stationOptions, pages.line.querySelector('p'));
+    stationOptions.querySelector('#sbFreeStation').onchange = e => S.setFreeStation(e.target.checked);
     pages.select = el('div', 'sb-page'); pages.select.innerHTML = '<span class="lbl" data-i18n="sb.selCard"></span><p class="note" data-i18n="sb.selHint"></p><p class="note sb-seln"></p><div class="row sb-selbtns"></div><p class="note sb-cutstatus" role="status"></p>';
     const playSel = el('button', 'btn btn-sm btn-p'); playSel.dataset.i18n = 'sb.playSel';
     const clearSel = el('button', 'btn btn-sm'); clearSel.dataset.i18n = 'sb.clearSel';
@@ -115,7 +128,7 @@
     const det = el('details'); det.innerHTML = '<summary data-i18n="sb.details"></summary>'; det.append($('hotRoads'), $('dispatch'));
     result.append(hud, summary, document.querySelector('.layer-change-tools'), det);
     map.append(result);
-    for (const id of ['runStep', 'runStable']) $(id).addEventListener('click', () => { result.hidden = false; });
+    for (const id of ['runStep', 'runStable']) $(id).addEventListener('click', () => { result.hidden = false; if (mobile.matches) openDrawer(result); });
     // ---- the layers
     const layers = card('sb-layers', 'sb.layers'); for (const lab of [...map.querySelectorAll('.layer-corner label')]) layers.append(lab); map.append(layers);
     if (root.TL_SITE?.static) {
@@ -140,11 +153,40 @@
       }
     }
 
+    // Four mobile drawers share a single open body. Desktop keeps the floating cards.
+    const mobile = root.matchMedia('(max-width: 699px)'), drawers = el('div', 'sb-drawers');
+    map.append(drawers);
+    const drawerCards = [scene, info, result, toolcard];
+    const drawerLabels = ['sb.drawerScene', 'sb.drawerInfo', 'sb.drawerResult', 'sb.tools'];
+    let activeDrawer = null;
+    drawerCards.forEach((c, i) => {
+      const old = c.querySelector(':scope > .lbl'), toggle = el('button', 'sb-drawer-toggle lbl');
+      toggle.type = 'button'; toggle.dataset.i18n = drawerLabels[i];
+      const body = el('div', 'sb-drawer-body'); body.id = 'sb-drawer-' + i;
+      toggle.setAttribute('aria-controls', body.id);
+      if (old) old.remove();
+      while (c.firstChild) body.append(c.firstChild);
+      c.append(toggle, body); drawers.append(c);
+      toggle.onclick = () => { if (mobile.matches && !toggle.disabled) openDrawer(activeDrawer === c ? null : c); };
+    });
+    function syncDrawers() {
+      for (const c of drawerCards) {
+        const on = !mobile.matches || activeDrawer === c, toggle = c.querySelector('.sb-drawer-toggle');
+        c.classList.toggle('sb-drawer-open', on);
+        toggle.setAttribute('aria-expanded', String(on));
+        toggle.disabled = mobile.matches && c.hidden;
+      }
+    }
+    function openDrawer(c) { activeDrawer = c; syncDrawers(); }
+    mobile.addEventListener('change', () => { activeDrawer = null; syncDrawers(); });
+    new MutationObserver(syncDrawers).observe(toolcard, { attributes: true, attributeFilter: ['hidden'] });
+    syncDrawers();
+
     // ---- tools: the dock follows ui.js's tool; the card follows the dock
     let page = null;
-    function show(p) { page = p; toolcard.hidden = !p; for (const [k, x] of Object.entries(pages)) x.hidden = k !== p; sync(); }
+    function show(p) { page = p; toolcard.hidden = !p; for (const [k, x] of Object.entries(pages)) x.hidden = k !== p; if (mobile.matches) openDrawer(p ? toolcard : null); syncDrawers(); sync(); }
     function sync() {
-      const tool = S.tool;
+      const tool = S.tool; stationOptions.hidden = tool !== 'station';
       for (const x of dock.querySelectorAll('.sb-tool')) { const k = x.dataset.tool;
         x.setAttribute('aria-pressed', String(k === 'look' ? tool === 'pan' && !page : k === 'people' || k === 'ai' ? page === k : k === 'select' ? tool === 'select' && page !== 'people' : tool === k)); }
       renderSel(); }
@@ -164,7 +206,7 @@
       $('focusSel').textContent = t(S.scope ? 'sb.unfocus' : 'sb.focus'); $('focusSel').disabled = !sel.length && !S.scope; playSel.disabled = !sel.length; clearSel.disabled = !sel.length;
       const sc = scene.querySelector('.sb-scope'), on = !!S.scope; sc.classList.toggle('on', on);
       const first = on ? b.zones.find(z => String(z.id) === S.scope[0]) : null;
-      sc.querySelector('span').textContent = on ? t('sb.scopeSel', { name: name(first), more: S.scope.length > 1 ? t('sb.more', { n: S.scope.length }) : '' }) : t('sb.scopeAll');
+      sc.querySelector('span').textContent = on ? t('sb.scopeSel', { name: name(first), more: S.scope.length > 1 ? t('sb.more', { n: S.scope.length - 1 }) : '' }) : t('sb.scopeAll');
       const off = sc.querySelector('button'); off.hidden = !on; off.textContent = t('sb.scopeOff'); }
     scene.querySelector('.sb-scope button').onclick = () => S.setScope(null);
     root.addEventListener('tl:scope', renderSel);
@@ -196,9 +238,21 @@
       cutter.postMessage({ request, seconds: 15 });
     }
     // ---- looking: the zone under the pointer goes to the data card
-    let hoverZone = -1, raf = 0;
-    $('board').addEventListener('pointermove', e => { if (e.buttons || raf) return; raf = requestAnimationFrame(() => { raf = 0;
-      const z = S.zoneAt(e); const i = z ? z.i : -1; if (i === hoverZone || i < 0) return; hoverZone = i; v2.inspect({ kind: 'zone', index: i }); }); });
+    let hoverKey = '', raf = 0, latestPointer = null, touchStart = null;
+    function inspectPointer(e) {
+      const item = S.inspectAt(e), key = item ? item.kind + ':' + item.index : '';
+      if (key === hoverKey) return; hoverKey = key; v2.inspect(item);
+    }
+    $('board').addEventListener('pointermove', e => {
+      if (e.buttons || e.pointerType === 'touch') return;
+      latestPointer = { clientX: e.clientX, clientY: e.clientY };
+      if (!raf) raf = requestAnimationFrame(() => { raf = 0; inspectPointer(latestPointer); });
+    });
+    $('board').addEventListener('pointerdown', e => { touchStart = { x: e.clientX, y: e.clientY }; });
+    $('board').addEventListener('pointerup', e => {
+      if (S.tool === 'pan' && touchStart && Math.hypot(e.clientX - touchStart.x, e.clientY - touchStart.y) < 6) inspectPointer(e);
+      touchStart = null;
+    });
     // ---- the note at the top of the map only once there is a line to talk about
     const msg = $('mapMessage'), quiet = () => msg.classList.toggle('sb-quiet', !(S.plan && (S.plan.lines || []).some(l => (l.cells || []).length)));
     new MutationObserver(quiet).observe(msg, { childList: true, characterData: true, subtree: true }); quiet();
