@@ -77,7 +77,7 @@
     'm.tenths':L('{n} 成','{n} 成','{n}/10'),'m.awNext':L('明年 +{n} 成','明年 +{n} 成','next year +{n}'),'m.awSame':L('明年不變','明年不变','no change'),
     'r3.awNote':L('剛開通每個屋苑 {s} 成人知道新線；坐新線的人越多，明年知道的越多。觀塘綫、將軍澳綫大家本來就知道。','刚开通每个屋苑 {s} 成人知道新线；坐新线的人越多，明年知道的越多。观塘线、将军澳线大家本来就知道。',
       '{s}/10 of each estate know the new line at the opening; the more ride it, the more know next year. Everyone knows the 觀塘綫 and 將軍澳綫.'),
-    'm.tripsH':L('每條愿望線的算式','每条愿望线的算式','The sums, desire line by desire line'),
+    'm.tripsH':L('每條願望線的算式','每条愿望线的算式','The sums, desire line by desire line'),
     'm.tTrip':L('從 → 去','从 → 去','From → to'),'m.tGo':L('去','去','go'),'r3.tCar':L('開車','开车','car'),'m.tMetro':L('地鐵','地铁','metro'),
     'r3.tDrive':L('開車人','开车人','drive'),'m.tRiders':L('坐地鐵','坐地铁','metro'),'m.was':L('開通前 {b}','开通前 {b}','was {b}'),'m.chainTag':L('順路','顺路','going on'),
     'r3.carSum':L('{b}+塞{j}','{b}+塞{j}','{b}+{j} jam'),'r3.newTag':L('新線','新线','new'),

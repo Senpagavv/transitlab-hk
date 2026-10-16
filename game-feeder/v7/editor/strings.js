@@ -3,6 +3,10 @@
   // v7 · the level editor for modes 2–4 (2026-10-15): its texts. Mode 1 has its own editor (mode1-bus/editor.html).
   const I = root.I18N, L = I.L;
   I.add({
+    'top.lang': L('語言', '语言', 'Language'),
+    'top.theme': L('主題', '主题', 'Theme'),
+    'top.paper': L('淺色', '浅色', 'Light'),
+    'top.ink': L('深色', '深色', 'Dark'),
     'e.doc': L('TransitLab HK · 關卡編輯器', 'TransitLab HK · 关卡编辑器', 'TransitLab HK · Level editor'),
     'e.brand': L('Level editor · 關卡編輯器', 'Level editor · 关卡编辑器', 'Level editor'),
     'e.hub': L('← 五個模式', '← 五个模式', '← Five modes'),
