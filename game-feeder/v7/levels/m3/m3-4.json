@@ -267,8 +267,8 @@
     ],
     "roads": [
       {
-        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
-        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "name": "Central-Wan Chai Bypass Tunnel",
+        "hans": "Central-Wan Chai Bypass Tunnel",
         "aliases": [
           "CENTRAL-WAN CHAI BYPASS TUNNEL"
         ],
@@ -325,8 +325,8 @@
         "cap": 112.97963430095493
       },
       {
-        "name": "ISLAND EASTERN CORRIDOR",
-        "hans": "ISLAND EASTERN CORRIDOR",
+        "name": "Island Eastern Corridor",
+        "hans": "Island Eastern Corridor",
         "aliases": [
           "ISLAND EASTERN CORRIDOR"
         ],
@@ -367,8 +367,8 @@
         "cap": 129.88501706814526
       },
       {
-        "name": "CONNAUGHT ROAD CENTRAL",
-        "hans": "CONNAUGHT ROAD CENTRAL",
+        "name": "Connaught Road Central",
+        "hans": "Connaught Road Central",
         "aliases": [
           "CONNAUGHT ROAD CENTRAL"
         ],
@@ -393,8 +393,8 @@
         "cap": 245.40358978416663
       },
       {
-        "name": "HUNG HOM BYPASS",
-        "hans": "HUNG HOM BYPASS",
+        "name": "Hung Hom Bypass",
+        "hans": "Hung Hom Bypass",
         "aliases": [
           "HUNG HOM BYPASS"
         ],
@@ -419,8 +419,8 @@
         "cap": 86.8915629168472
       },
       {
-        "name": "CROSS HARBOUR TUNNEL",
-        "hans": "CROSS HARBOUR TUNNEL",
+        "name": "Cross Harbour Tunnel",
+        "hans": "Cross Harbour Tunnel",
         "aliases": [
           "CROSS HARBOUR TUNNEL"
         ],
@@ -1210,7 +1210,7 @@
       "roadCapCoeff": 1.5,
       "roadSections": [
         {
-          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "name": "Central-Wan Chai Bypass Tunnel",
           "modelCap": 7123.089770235805,
           "segments": [
             {
@@ -1330,7 +1330,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "ISLAND EASTERN CORRIDOR",
+          "name": "Island Eastern Corridor",
           "modelCap": 8188.9328294381685,
           "segments": [
             {
@@ -1436,7 +1436,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "CONNAUGHT ROAD CENTRAL",
+          "name": "Connaught Road Central",
           "modelCap": 15472.09646045001,
           "segments": [
             {
@@ -1486,7 +1486,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "HUNG HOM BYPASS",
+          "name": "Hung Hom Bypass",
           "modelCap": 5478.300640308975,
           "segments": [
             {
@@ -1536,7 +1536,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "CROSS HARBOUR TUNNEL",
+          "name": "Cross Harbour Tunnel",
           "modelCap": 4151.2287334593575,
           "segments": [
             {
@@ -1843,7 +1843,7 @@
         "moves": [],
         "connectors": [
           {
-            "corridor": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+            "corridor": "Central-Wan Chai Bypass Tunnel",
             "via": [
               [
                 9,
@@ -1863,7 +1863,7 @@
               ]
             ],
             "sourceRoads": [
-              "ISLAND EASTERN CORRIDOR",
+              "Island Eastern Corridor",
               "未命名道路"
             ],
             "sectionIds": [
@@ -1881,15 +1881,15 @@
           "spearman": 0.397,
           "modelTop": [
             {
-              "name": "CROSS HARBOUR TUNNEL",
+              "name": "Cross Harbour Tunnel",
               "vc": 1.3
             },
             {
-              "name": "ISLAND EASTERN CORRIDOR",
+              "name": "Island Eastern Corridor",
               "vc": 1.2
             },
             {
-              "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+              "name": "Central-Wan Chai Bypass Tunnel",
               "vc": 0.9
             },
             {
@@ -1905,17 +1905,17 @@
               "vc": 0.3
             },
             {
-              "name": "CONNAUGHT ROAD CENTRAL",
+              "name": "Connaught Road Central",
               "vc": 0.2
             }
           ],
           "gameTop": [
             {
-              "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+              "name": "Central-Wan Chai Bypass Tunnel",
               "vc": 0.65
             },
             {
-              "name": "CROSS HARBOUR TUNNEL",
+              "name": "Cross Harbour Tunnel",
               "vc": 0.54
             },
             {
@@ -1923,7 +1923,7 @@
               "vc": 0.41
             },
             {
-              "name": "HUNG HOM BYPASS",
+              "name": "Hung Hom Bypass",
               "vc": 0.41
             },
             {
@@ -1931,11 +1931,11 @@
               "vc": 0.28
             },
             {
-              "name": "CONNAUGHT ROAD CENTRAL",
+              "name": "Connaught Road Central",
               "vc": 0.15
             },
             {
-              "name": "ISLAND EASTERN CORRIDOR",
+              "name": "Island Eastern Corridor",
               "vc": 0.07
             }
           ]
@@ -1957,15 +1957,15 @@
         "spearman": 0.397,
         "modelTop": [
           {
-            "name": "CROSS HARBOUR TUNNEL",
+            "name": "Cross Harbour Tunnel",
             "vc": 1.3
           },
           {
-            "name": "ISLAND EASTERN CORRIDOR",
+            "name": "Island Eastern Corridor",
             "vc": 1.2
           },
           {
-            "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+            "name": "Central-Wan Chai Bypass Tunnel",
             "vc": 0.9
           },
           {
@@ -1981,17 +1981,17 @@
             "vc": 0.3
           },
           {
-            "name": "CONNAUGHT ROAD CENTRAL",
+            "name": "Connaught Road Central",
             "vc": 0.2
           }
         ],
         "gameTop": [
           {
-            "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+            "name": "Central-Wan Chai Bypass Tunnel",
             "vc": 0.65
           },
           {
-            "name": "CROSS HARBOUR TUNNEL",
+            "name": "Cross Harbour Tunnel",
             "vc": 0.54
           },
           {
@@ -1999,7 +1999,7 @@
             "vc": 0.41
           },
           {
-            "name": "HUNG HOM BYPASS",
+            "name": "Hung Hom Bypass",
             "vc": 0.41
           },
           {
@@ -2007,11 +2007,11 @@
             "vc": 0.28
           },
           {
-            "name": "CONNAUGHT ROAD CENTRAL",
+            "name": "Connaught Road Central",
             "vc": 0.15
           },
           {
-            "name": "ISLAND EASTERN CORRIDOR",
+            "name": "Island Eastern Corridor",
             "vc": 0.07
           }
         ]

@@ -288,8 +288,8 @@
         "cap": 18.32322836647261
       },
       {
-        "name": "SHA LEK HIGHWAY",
-        "hans": "SHA LEK HIGHWAY",
+        "name": "Sha Lek Highway",
+        "hans": "Sha Lek Highway",
         "aliases": [
           "SHA LEK HIGHWAY"
         ],
@@ -322,8 +322,8 @@
         "cap": 57.5024846052078
       },
       {
-        "name": "TATE'S CAIRN HIGHWAY",
-        "hans": "TATE'S CAIRN HIGHWAY",
+        "name": "Tate's Cairn Highway",
+        "hans": "Tate's Cairn Highway",
         "aliases": [
           "TATE'S CAIRN HIGHWAY"
         ],
@@ -372,8 +372,8 @@
         "cap": 39.91112938987988
       },
       {
-        "name": "TSING SHA HIGHWAY",
-        "hans": "TSING SHA HIGHWAY",
+        "name": "Tsing Sha Highway",
+        "hans": "Tsing Sha Highway",
         "aliases": [
           "TSING SHA HIGHWAY"
         ],
@@ -448,8 +448,8 @@
         "cap": 20.834884052070738
       },
       {
-        "name": "TAI PO ROAD - SHA TIN",
-        "hans": "TAI PO ROAD - SHA TIN",
+        "name": "Tai Po Road - Sha Tin",
+        "hans": "Tai Po Road - Sha Tin",
         "aliases": [
           "TAI PO ROAD - SHA TIN"
         ],
@@ -532,8 +532,8 @@
         "cap": 25.07386841233856
       },
       {
-        "name": "SHA TIN ROAD",
-        "hans": "SHA TIN ROAD",
+        "name": "Sha Tin Road",
+        "hans": "Sha Tin Road",
         "aliases": [
           "SHA TIN ROAD"
         ],
@@ -592,8 +592,8 @@
         "cap": 17.790793541907117
       },
       {
-        "name": "SHING MUN TUNNEL ROAD",
-        "hans": "SHING MUN TUNNEL ROAD",
+        "name": "Shing Mun Tunnel Road",
+        "hans": "Shing Mun Tunnel Road",
         "aliases": [
           "SHING MUN TUNNEL ROAD"
         ],
@@ -1015,7 +1015,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "SHA LEK HIGHWAY",
+          "name": "Sha Lek Highway",
           "modelCap": 11024.52968846939,
           "segments": [
             {
@@ -1093,7 +1093,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "TATE'S CAIRN HIGHWAY",
+          "name": "Tate's Cairn Highway",
           "modelCap": 7651.868156306147,
           "segments": [
             {
@@ -1227,7 +1227,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "TSING SHA HIGHWAY",
+          "name": "Tsing Sha Highway",
           "modelCap": 8583.84834771345,
           "segments": [
             {
@@ -1411,7 +1411,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "TAI PO ROAD - SHA TIN",
+          "name": "Tai Po Road - Sha Tin",
           "modelCap": 6574.31464724221,
           "segments": [
             {
@@ -1609,7 +1609,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "SHA TIN ROAD",
+          "name": "Sha Tin Road",
           "modelCap": 9361.96831298678,
           "segments": [
             {
@@ -1737,7 +1737,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "SHING MUN TUNNEL ROAD",
+          "name": "Shing Mun Tunnel Road",
           "modelCap": 4700,
           "segments": [
             {
@@ -1820,7 +1820,7 @@
               ]
             ],
             "sourceRoads": [
-              "SHING MUN TUNNEL ROAD"
+              "Shing Mun Tunnel Road"
             ],
             "sectionIds": [
               "1208"
@@ -1858,11 +1858,11 @@
               "vc": 1.5
             },
             {
-              "name": "TATE'S CAIRN HIGHWAY",
+              "name": "Tate's Cairn Highway",
               "vc": 1.3
             },
             {
-              "name": "TAI PO ROAD - SHA TIN",
+              "name": "Tai Po Road - Sha Tin",
               "vc": 1.1
             },
             {
@@ -1870,7 +1870,7 @@
               "vc": 1.1
             },
             {
-              "name": "TSING SHA HIGHWAY",
+              "name": "Tsing Sha Highway",
               "vc": 0.7
             },
             {
@@ -1878,7 +1878,7 @@
               "vc": 0.6
             },
             {
-              "name": "SHING MUN TUNNEL ROAD",
+              "name": "Shing Mun Tunnel Road",
               "vc": 0.6
             }
           ],
@@ -1896,19 +1896,19 @@
               "vc": 0.77
             },
             {
-              "name": "TATE'S CAIRN HIGHWAY",
+              "name": "Tate's Cairn Highway",
               "vc": 0.68
             },
             {
-              "name": "SHA LEK HIGHWAY",
+              "name": "Sha Lek Highway",
               "vc": 0.47
             },
             {
-              "name": "TAI PO ROAD - SHA TIN",
+              "name": "Tai Po Road - Sha Tin",
               "vc": 0.47
             },
             {
-              "name": "SHA TIN ROAD",
+              "name": "Sha Tin Road",
               "vc": 0.33
             }
           ]
@@ -1934,11 +1934,11 @@
             "vc": 1.5
           },
           {
-            "name": "TATE'S CAIRN HIGHWAY",
+            "name": "Tate's Cairn Highway",
             "vc": 1.3
           },
           {
-            "name": "TAI PO ROAD - SHA TIN",
+            "name": "Tai Po Road - Sha Tin",
             "vc": 1.1
           },
           {
@@ -1946,7 +1946,7 @@
             "vc": 1.1
           },
           {
-            "name": "TSING SHA HIGHWAY",
+            "name": "Tsing Sha Highway",
             "vc": 0.7
           },
           {
@@ -1954,7 +1954,7 @@
             "vc": 0.6
           },
           {
-            "name": "SHING MUN TUNNEL ROAD",
+            "name": "Shing Mun Tunnel Road",
             "vc": 0.6
           }
         ],
@@ -1972,19 +1972,19 @@
             "vc": 0.77
           },
           {
-            "name": "TATE'S CAIRN HIGHWAY",
+            "name": "Tate's Cairn Highway",
             "vc": 0.68
           },
           {
-            "name": "SHA LEK HIGHWAY",
+            "name": "Sha Lek Highway",
             "vc": 0.47
           },
           {
-            "name": "TAI PO ROAD - SHA TIN",
+            "name": "Tai Po Road - Sha Tin",
             "vc": 0.47
           },
           {
-            "name": "SHA TIN ROAD",
+            "name": "Sha Tin Road",
             "vc": 0.33
           }
         ]

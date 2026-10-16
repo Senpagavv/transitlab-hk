@@ -36,6 +36,7 @@
    catch(err){return {level:null,request:req,report:null,problems:result.problems.concat({code:'unreachable',message:'Source corridors: '+err.message}),notes:result.notes};}
    const missing=(level.source.changes||[]).filter(c=>c.what==='road_cap'&&!level.roads.some(r=>r.name===c.resolved));
    if(missing.length)return {level:null,request:req,report:null,problems:[{code:'place_not_found',message:'Changed road has no positive-flow source corridor: '+missing.map(c=>c.resolved).join(', ')}],notes:result.notes};
+   simplifier.nameRoads(level,prep.base); // final naming step only; cut and corridor geometry stay unchanged
    const calibration=checker.calibrateRoads(level,engine);level.source.calibration=calibration;
    onProgress('bot');const searched=bot.search(level,engine,seconds||15),checked=checker.check(level,engine,searched);
    return {level,request:req,report:checked.report,problems:result.problems.concat(checked.problems),notes:result.notes.concat(calibration.notes||[],checked.notes||[])};

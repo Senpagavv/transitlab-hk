@@ -226,8 +226,11 @@
   function fit(){$('board').setAttribute('viewBox',`0 0 ${VBW} ${VBH}`);}
   function texts(){
     $('goal').innerHTML=t('m.goal',{pass:P.target,high:P.highScore,master:P.masterScore});
-    const v={st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
-      sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction+restD(k=>t('m2.sep')+shortD(k)+' '+D.destinations[k].attraction),e0:D.destinations[0].carExtra??2,e1:(D.destinations[1].carExtra??2)+restD(k=>t('m2.sep')+shortD(k)+' '+(D.destinations[k].carExtra??2)),d0:shortD(0),d1:shortD(1)};
+    const sep=I.lang==='en'?', ':'、',names=D.destinations.map((_,k)=>shortD(k));
+    const lists={originCount:D.origins.length,destinations:names.join(sep),destTrips:names.map(n=>(I.lang==='en'?'to ':'去')+n).join(sep),
+      attractions:D.destinations.map((d,k)=>names[k]+' '+d.attraction).join(sep),parking:D.destinations.map((d,k)=>names[k]+' '+(d.carExtra??2)).join(sep)};
+    const v={...lists,st:P.stay,wp:P.walkPer,w:P.wait,lc:P.lineCost,sc:P.stationCost,tc:P.trainCost,pt:P.perTrain,b:P.budget,y:P.years,s:tenth(P.aware.start),cb:P.crowdBlocks,nb:P.nearby,
+      sp:P.aware.spread,a0:D.destinations[0].attraction,a1:D.destinations[1].attraction,e0:D.destinations[0].carExtra??2,e1:D.destinations[1].carExtra??2,d0:shortD(0),d1:shortD(1)};
     $('rules').innerHTML=['m2.rule1','m2.rule2','m2.rule3'].map(k=>`<li>${t(k,v)}</li>`).join('');
     $('infoBody').innerHTML=t('m.info',v);$('ivBody').innerHTML=t('iv.m2.body',v);
     $('mapLegend').innerHTML=t('m2.legend2');document.title=t('m.doc');

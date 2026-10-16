@@ -12,7 +12,7 @@ const M=require('../v7/mode2-metro/engine.js'),{D,P,Plan,same}=M;
 const argv=process.argv.slice(2),lvAt=argv.indexOf('--level'),levelFile=lvAt>=0?argv[lvAt+1]:null,args=argv.filter((_,i)=>lvAt<0||(i!==lvAt&&i!==lvAt+1)),write=args.includes('--write')&&!levelFile,pos=args.filter(a=>a!=='--write');
 if(levelFile){const e=JSON.parse(require('node:fs').readFileSync(levelFile,'utf8'));D.use(e.level,e.key);M.reset();console.log('level file '+levelFile+' → '+e.key);}
 const restarts=+(pos[0]||400),o=pos[1]?JSON.parse(pos[1]):{};
-const base=D.example('m2-1'),def={...base};
+const base=(levelFile?JSON.parse(JSON.stringify(D)):D.example('m2-1')),def={...base};
 for(const [k,v] of Object.entries(o)){if(k==='att')def.destinations=def.destinations.map((d,j)=>({...d,attraction:v[j]}));
   else if(k==='extra')def.destinations=def.destinations.map((d,j)=>({...d,carExtra:v[j]}));
   else if(k==='spread')def.aware={...def.aware,spread:v};else def[k]=v;}

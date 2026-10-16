@@ -394,6 +394,22 @@
       const [x, y] = screenXY(s.lon, s.lat, g);
       el.style.left = x.toFixed(1) + 'px'; el.style.top = y.toFixed(1) + 'px';
     });
+    // Label placement is independent of the geographic pins. Measure the actual
+    // language/font/viewport, then choose the least-conflicting cardinal side.
+    const labels=[...$('hubMarks').querySelectorAll('.hm')].map(el=>({el,lab:el.querySelector('.lab'),s:site(el.dataset.site)})).filter(x=>x.s);
+    const panel=$('hubPanel').getBoundingClientRect(),bounds=$('hubMarks').getBoundingClientRect(),used=[];
+    const overlap=(a,b,pad=6)=>Math.max(0,Math.min(a.right,b.right)+pad-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)+pad-Math.max(a.top,b.top));
+    const pins=labels.map(x=>{const r=x.el.getBoundingClientRect();return {left:r.left-10,right:r.left+10,top:r.top-10,bottom:r.top+10};});
+    labels.forEach(({el,lab,s},i)=>{
+      let best=null;
+      for(const side of [...new Set([s.side,'top','bottom','left','right'])]){
+        el.dataset.side=side;
+        const r=lab.getBoundingClientRect(),outside=Math.max(0,bounds.left-r.left)+Math.max(0,r.right-bounds.right)+Math.max(0,bounds.top-r.top)+Math.max(0,r.bottom-bounds.bottom);
+        const cost=used.reduce((sum,x)=>sum+overlap(r,x),0)+pins.reduce((sum,x,j)=>sum+(j===i?0:overlap(r,x)),0)+overlap(r,panel)*2+outside*1000;
+        if(!best||cost<best.cost)best={side,cost};
+      }
+      el.dataset.side=best.side;used.push(lab.getBoundingClientRect());
+    });
   }
 
   /* ---- the hand-off: the map fades, the dots round the level stay; the level's page flies them onto its board ---- */

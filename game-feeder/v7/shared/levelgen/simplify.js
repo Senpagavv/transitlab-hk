@@ -95,7 +95,33 @@ function simplifyCorridors(level,engine,{count=10,calibrate=true,preserveChanges
  return level;
 }
 
- const API={simplifyCorridors};
+ // Display names only. Match source roads by any bilingual name/alias; preserve
+ // aliases and every geometric, demand and capacity field.
+ const chinese=s=>/[\u3400-\u9fff]/.test(s||'');
+ const normal=s=>String(s||'').trim().replace(/\s+/g,' ').toUpperCase();
+ const titleCase=s=>String(s||'').toLowerCase().replace(/(^|[\s-])([a-z])/g,(_,p,c)=>p+c.toUpperCase());
+ function nameRoads(level,base){
+  const index=new Map();
+  for(const r of base?.roads||[])for(const n of [r.name,r.hans,r.en,...(r.aliases||[])])if(n){const k=normal(n),old=index.get(k);if(!old||(!chinese(old.name)&&chinese(r.name)))index.set(k,r);}
+  const renamed=new Map();
+  for(const r of level.roads||[]){
+   const old=r.name,source=[r.name,r.hans,...(r.aliases||[])].map(n=>index.get(normal(n))).find(Boolean);
+   const name=[source?.name,source?.hans,r.name,r.hans].find(chinese)||titleCase(source?.en||r.name||r.hans);
+   const hans=source&&chinese(source.hans)?source.hans:chinese(r.hans)?r.hans:name;
+   r.name=name;r.hans=hans;if(old!==name)renamed.set(old,name);
+  }
+  // Source metadata uses road names as joins; keep those references in sync.
+  const visit=(v,k='')=>{
+   if(typeof v==='string')return ['name','road','corridor','resolved','sourceName','sourceRoads','roads'].includes(k)?renamed.get(v)||v:v;
+   if(Array.isArray(v))return v.map(x=>visit(x,k));
+   if(v&&typeof v==='object')for(const key of Object.keys(v))v[key]=visit(v[key],key);
+   return v;
+  };
+  if(level.source)visit(level.source);
+  return Object.fromEntries(renamed);
+ }
+
+ const API={simplifyCorridors,nameRoads};
  if(typeof module!=='undefined'&&module.exports)module.exports=API;
  root.LevelSimplifier=API;
 })(typeof window!=='undefined'?window:globalThis);

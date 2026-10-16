@@ -257,8 +257,8 @@
     ],
     "roads": [
       {
-        "name": "TSUEN WAN ROAD",
-        "hans": "TSUEN WAN ROAD",
+        "name": "Tsuen Wan Road",
+        "hans": "Tsuen Wan Road",
         "aliases": [
           "TSUEN WAN ROAD"
         ],
@@ -311,8 +311,8 @@
         "cap": 46.0515007638627
       },
       {
-        "name": "TSING TSUEN ROAD",
-        "hans": "TSING TSUEN ROAD",
+        "name": "Tsing Tsuen Road",
+        "hans": "Tsing Tsuen Road",
         "aliases": [
           "TSING TSUEN ROAD"
         ],
@@ -423,8 +423,8 @@
         "cap": 12.91579875389637
       },
       {
-        "name": "CHEUNG PEI SHAN ROAD",
-        "hans": "CHEUNG PEI SHAN ROAD",
+        "name": "Cheung Pei Shan Road",
+        "hans": "Cheung Pei Shan Road",
         "aliases": [
           "CHEUNG PEI SHAN ROAD"
         ],
@@ -611,8 +611,8 @@
         "cap": 29.424219147678997
       },
       {
-        "name": "CASTLE PEAK ROAD - KWAI CHUNG",
-        "hans": "CASTLE PEAK ROAD - KWAI CHUNG",
+        "name": "Castle Peak Road - Kwai Chung",
+        "hans": "Castle Peak Road - Kwai Chung",
         "aliases": [
           "CASTLE PEAK ROAD - KWAI CHUNG"
         ],
@@ -754,9 +754,9 @@
     "stay": 40,
     "learn": 0.1,
     "tiers": [
-      501,
-      814,
-      1103
+      670,
+      1088,
+      1473
     ],
     "source": {
       "area": "tsuen-wan-kwai-tsing",
@@ -772,7 +772,7 @@
       "roadCapCoeff": 0.7,
       "roadSections": [
         {
-          "name": "TSUEN WAN ROAD",
+          "name": "Tsuen Wan Road",
           "modelCap": 9568.098384421675,
           "segments": [
             {
@@ -920,7 +920,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "TSING TSUEN ROAD",
+          "name": "Tsing Tsuen Road",
           "modelCap": 3939.711552322714,
           "segments": [
             {
@@ -1148,7 +1148,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "CHEUNG PEI SHAN ROAD",
+          "name": "Cheung Pei Shan Road",
           "modelCap": 6985.131974374045,
           "segments": [
             {
@@ -1642,7 +1642,7 @@
           "capGrowFactors": null
         },
         {
-          "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+          "name": "Castle Peak Road - Kwai Chung",
           "modelCap": 2006.985666825191,
           "segments": [
             {
@@ -1720,7 +1720,7 @@
           "spearman": -0.149,
           "modelTop": [
             {
-              "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+              "name": "Castle Peak Road - Kwai Chung",
               "vc": 1.1
             },
             {
@@ -1728,11 +1728,11 @@
               "vc": 0.9
             },
             {
-              "name": "TSUEN WAN ROAD",
+              "name": "Tsuen Wan Road",
               "vc": 0.8
             },
             {
-              "name": "TSING TSUEN ROAD",
+              "name": "Tsing Tsuen Road",
               "vc": 0.6
             },
             {
@@ -1744,17 +1744,17 @@
               "vc": 0.5
             },
             {
-              "name": "CHEUNG PEI SHAN ROAD",
+              "name": "Cheung Pei Shan Road",
               "vc": 0.5
             }
           ],
           "gameTop": [
             {
-              "name": "TSUEN WAN ROAD",
+              "name": "Tsuen Wan Road",
               "vc": 1.72
             },
             {
-              "name": "TSING TSUEN ROAD",
+              "name": "Tsing Tsuen Road",
               "vc": 1.21
             },
             {
@@ -1762,7 +1762,7 @@
               "vc": 1.18
             },
             {
-              "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+              "name": "Castle Peak Road - Kwai Chung",
               "vc": 0.55
             },
             {
@@ -1774,7 +1774,7 @@
               "vc": 0.47
             },
             {
-              "name": "CHEUNG PEI SHAN ROAD",
+              "name": "Cheung Pei Shan Road",
               "vc": 0.19
             }
           ]
@@ -1796,7 +1796,7 @@
         "spearman": -0.149,
         "modelTop": [
           {
-            "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+            "name": "Castle Peak Road - Kwai Chung",
             "vc": 1.1
           },
           {
@@ -1804,11 +1804,11 @@
             "vc": 0.9
           },
           {
-            "name": "TSUEN WAN ROAD",
+            "name": "Tsuen Wan Road",
             "vc": 0.8
           },
           {
-            "name": "TSING TSUEN ROAD",
+            "name": "Tsing Tsuen Road",
             "vc": 0.6
           },
           {
@@ -1820,17 +1820,17 @@
             "vc": 0.5
           },
           {
-            "name": "CHEUNG PEI SHAN ROAD",
+            "name": "Cheung Pei Shan Road",
             "vc": 0.5
           }
         ],
         "gameTop": [
           {
-            "name": "TSUEN WAN ROAD",
+            "name": "Tsuen Wan Road",
             "vc": 1.72
           },
           {
-            "name": "TSING TSUEN ROAD",
+            "name": "Tsing Tsuen Road",
             "vc": 1.21
           },
           {
@@ -1838,7 +1838,7 @@
             "vc": 1.18
           },
           {
-            "name": "CASTLE PEAK ROAD - KWAI CHUNG",
+            "name": "Castle Peak Road - Kwai Chung",
             "vc": 0.55
           },
           {
@@ -1850,7 +1850,7 @@
             "vc": 0.47
           },
           {
-            "name": "CHEUNG PEI SHAN ROAD",
+            "name": "Cheung Pei Shan Road",
             "vc": 0.19
           }
         ]
@@ -1867,97 +1867,31 @@
     },
     "demo": {
       "tiers": [
-        501,
-        814,
-        1103
+        670,
+        1088,
+        1473
       ],
-      "best": 1253,
+      "best": 1674,
       "pass": {
         "line": [
           [
-            4,
-            11
-          ],
-          [
-            5,
-            11
-          ],
-          [
-            6,
-            11
-          ],
-          [
-            7,
-            11
-          ],
-          [
-            8,
-            11
-          ]
-        ],
-        "stations": [
-          [
-            4,
-            11
-          ],
-          [
-            8,
-            11
-          ]
-        ],
-        "trains": 1,
-        "phase2": [],
-        "score": 546
-      },
-      "high": {
-        "line": [
-          [
-            4,
-            11
-          ],
-          [
-            5,
-            11
-          ],
-          [
-            6,
-            11
-          ],
-          [
-            6,
-            10
-          ],
-          [
-            6,
+            11,
             9
           ],
           [
-            6,
+            10,
+            9
+          ],
+          [
+            10,
             8
           ],
           [
-            6,
+            10,
             7
-          ]
-        ],
-        "stations": [
-          [
-            4,
-            11
           ],
           [
-            6,
-            7
-          ]
-        ],
-        "trains": 1,
-        "phase2": [],
-        "score": 828
-      },
-      "master": {
-        "line": [
-          [
-            7,
+            9,
             7
           ],
           [
@@ -1967,28 +1901,12 @@
           [
             8,
             8
-          ],
-          [
-            8,
-            9
-          ],
-          [
-            8,
-            10
-          ],
-          [
-            8,
-            11
           ]
         ],
         "stations": [
           [
-            7,
-            7
-          ],
-          [
-            8,
-            11
+            11,
+            9
           ],
           [
             8,
@@ -1996,12 +1914,174 @@
           ]
         ],
         "trains": 2,
+        "phase2": [],
+        "actions": [],
+        "score": 690
+      },
+      "high": {
+        "line": [
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            11
+          ]
+        ],
+        "stations": [
+          [
+            8,
+            8
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "trains": 1,
         "phase2": [
+          {
+            "type": "train"
+          },
+          {
+            "type": "station",
+            "cell": [
+              8,
+              10
+            ]
+          }
+        ],
+        "actions": [],
+        "score": 1091
+      },
+      "master": {
+        "line": [
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            11,
+            9
+          ]
+        ],
+        "stations": [
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            11,
+            9
+          ]
+        ],
+        "trains": 1,
+        "phase2": [
+          {
+            "type": "station",
+            "cell": [
+              6,
+              7
+            ]
+          },
+          {
+            "type": "train"
+          },
           {
             "type": "train"
           }
         ],
-        "score": 1253
+        "actions": [],
+        "score": 1674
       }
     }
   },

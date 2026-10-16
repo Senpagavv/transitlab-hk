@@ -5,7 +5,7 @@ const M=require('../v7/mode4-tod/engine.js'),{D,P,Plan,same}=M;
 const argv=process.argv.slice(2),lvAt=argv.indexOf('--level'),levelFile=lvAt>=0?argv[lvAt+1]:null,args=argv.filter((_,i)=>lvAt<0||(i!==lvAt&&i!==lvAt+1)),write=args.includes('--write')&&!levelFile,pos=args.filter(x=>x!=='--write');
 if(levelFile){const e=JSON.parse(require('node:fs').readFileSync(levelFile,'utf8'));D.use(e.level,e.key);M.reset();console.log('level file '+levelFile+' → '+e.key);}
 const restarts=+(pos[0]||60),opts=pos[1]?JSON.parse(pos[1]):{};
-const def=D.example('m4-1');
+const def=(levelFile?JSON.parse(JSON.stringify(D)):D.example('m4-1'));
 for(const [k,v] of Object.entries(opts)){
   if(k==='att')def.destinations=def.destinations.map((d,i)=>({...d,attraction:v[i]}));
   else if(k==='extra')def.destinations=def.destinations.map((d,i)=>({...d,carExtra:v[i]}));
