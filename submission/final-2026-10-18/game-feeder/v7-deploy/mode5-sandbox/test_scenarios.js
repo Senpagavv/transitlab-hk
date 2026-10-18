@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const E=require('./engine.js'),S=require('./scenarios.js');
+const base=JSON.parse(fs.readFileSync(path.join(__dirname,'../hk/hk-base.json'))),d=JSON.parse(fs.readFileSync(path.join(__dirname,'../hk/hk-demand-am.json'))),w=require('./trip-weights.json');
+const id=d.zones[0],total=(data,id)=>data.pairs.filter(p=>String(data.zones[p[0]])===String(id)).reduce((n,p)=>n+p[2]+p[3],0),originTotals=data=>{const out=new Float64Array(data.zones.length);for(const p of data.pairs)out[p[0]]+=p[2]+p[3];return out;};
+assert.equal(S.adjust(d,{},w).demand,d);assert.equal(S.adjust(d,{[id]:{people:0,child:0,adult:0,elder:0,attraction:0}},w).demand,d);console.log('PASS zero adjustments retain the exact original demand object');
+const increased=S.adjust(d,{[id]:{people:50}},w);assert.ok(Math.abs(total(increased.demand,id)/total(d,id)-1.5)<1e-12);console.log('PASS people +50% => originating trips +50%');
+const elder=S.adjust(d,{[id]:{elder:150}},w);assert.equal(elder.audit.zones[id].purposes.HBS,w.zones[id].HBS);assert.equal(elder.audit.zones[id].purposes.HBW,w.zones[id].HBW);assert.equal(elder.audit.zones[id].purposes.HBO,w.zones[id].HBO*2.5);console.log('PASS older-person proxy affects HBO only; HBS school and HBW work unchanged');
+const attraction=S.adjust(d,{[id]:{attraction:150}},w),old=originTotals(d),now=originTotals(attraction.demand);for(let i=0;i<old.length;i++)assert.ok(Math.abs(old[i]-now[i])<1e-8);assert.notDeepEqual(attraction.demand.pairs,d.pairs);console.log('PASS attraction redistributes destinations and preserves every origin total');
+const mixed=S.adjust(d,{[id]:{people:50,elder:-50,attraction:150}},w);for(const row of Object.values(mixed.audit.zones))if(row.before)assert.ok(Math.abs(row.after-row.expected)<1e-8);assert.ok(mixed.demand.pairs.every(p=>p[2]>=0&&p[3]>=0));console.log('PASS combined changes preserve purpose-weighted origin totals and nonnegative demand');
+const untouched=JSON.stringify(d);const prepared=E.prepare(base,d),rd=S.roadInputs(prepared,d,increased.demand);assert.ok(rd.sections.some((s,i)=>s[1]!==d.sections[i][1]));assert.equal(JSON.stringify(d),untouched);console.log('PASS road inputs use original engine routes without mutating source demand');
+console.log('All scenario input invariants passed.');

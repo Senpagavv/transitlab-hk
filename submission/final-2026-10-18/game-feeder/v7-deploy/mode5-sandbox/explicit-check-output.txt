@@ -1,0 +1,75 @@
+Urban line rounds: round | car share | new-line riders | vehicles reduced | congestion reduced | car change
+1 | 47.23% | 6217.9 | 1768.4 | 58010.7 | 18.569%
+2 | 53.46% | 5412.6 | 745.7 | 17471.2 | 13.187%
+3 | 52.98% | 5364.0 | 824.8 | 21304.0 | 0.901%
+4 | 53.18% | 5297.2 | 792.4 | 20161.8 | 0.372%
+5 | 53.22% | 5268.3 | 784.5 | 19981.8 | 0.091%
+6 | 53.27% | 5251.4 | 777.7 | 19794.7 | 0.078%
+7 | 53.29% | 5242.1 | 773.9 | 19703.5 | 0.043%
+8 | 53.30% | 5236.7 | 771.6 | 19653.1 | 0.026%
+PASS no-build 30 rounds; max baseline drift < 0.00e+0
+PASS urban line stable in 8 rounds; Kai Tak car share 58.0% → 48.5%
+PASS road direction; 觀塘繞道 / 觀塘道 load decreased
+PASS budget, one-cell transfer, six-cell walking limit, and remote park line
+Fixture simulate-to-stable elapsed 4.0 ms (8 rounds; D-tier fixture only)
+PASS full HK am: 134348 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1957.3 ms; mean step + checks 76.5 ms; minute coverage 99.60%
+PASS full HK pm: 138627 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 2138.1 ms; mean step + checks 91.0 ms; minute coverage 99.68%
+PASS full HK day: 76284 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1729.7 ms; mean step + checks 35.3 ms; minute coverage 99.92%
+PASS full HK holiday: 40643 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1616.8 ms; mean step + checks 21.2 ms; minute coverage 99.94%
+Full HK AM urban rounds: round | car share | new-line riders | fewer cars | congestion reduced | car change
+1 | 11.199% | 3621.5 | 232.6 | 955.1 | 0.181%
+2 | 11.235% | 3617.2 | -182.3 | -6130.4 | 0.324%
+3 | 10.963% | 3621.3 | 2926.8 | 73341.6 | 2.418%
+4 | 14.529% | 3600.1 | -37888.8 | -182264951.8 | 32.529%
+5 | 3.353% | 3639.8 | 90021.2 | 662489.9 | 76.919%
+6 | 5.859% | 3634.3 | 61340.6 | -44839.3 | 74.726%
+7 | 7.246% | 3613.4 | 45474.9 | 309952.8 | 23.658%
+8 | 8.180% | 3569.1 | 34783.9 | 299628.9 | 12.892%
+9 | 11.043% | 3522.8 | 2010.5 | -1954467.1 | 35.008%
+10 | 6.345% | 3621.7 | 55787.4 | 449701.6 | 42.548%
+11 | 8.768% | 3572.6 | 28045.2 | 29332.4 | 38.205%
+12 | 8.817% | 3605.9 | 27493.6 | 226177.4 | 0.550%
+13 | 12.036% | 3571.6 | -9354.3 | -11742297.6 | 36.516%
+14 | 5.880% | 3640.1 | 61105.0 | 408185.5 | 51.148%
+15 | 7.240% | 3637.1 | 45541.1 | 210594.0 | 23.127%
+16 | 7.797% | 3627.1 | 39158.4 | 406630.0 | 7.703%
+17 | 10.725% | 3594.1 | 5650.6 | -1339566.8 | 37.547%
+18 | 6.383% | 3618.2 | 55352.5 | 552889.1 | 40.490%
+19 | 10.448% | 3566.7 | 8818.5 | -227733.6 | 63.702%
+20 | 8.444% | 3582.1 | 31755.0 | -6285.8 | 19.180%
+21 | 11.005% | 3544.7 | 2444.5 | -935401.3 | 30.327%
+22 | 7.536% | 3638.3 | 42148.4 | 139367.5 | 31.522%
+23 | 11.150% | 3616.0 | 785.5 | -72636904.9 | 47.955%
+24 | 6.424% | 3598.5 | 54876.1 | 118800.9 | 42.385%
+25 | 10.542% | 3585.7 | 7745.6 | -6732252.0 | 64.101%
+26 | 5.947% | 3634.8 | 60341.0 | 386280.5 | 43.591%
+27 | 7.545% | 3613.9 | 42047.0 | 120549.4 | 26.879%
+28 | 8.367% | 3573.8 | 32638.8 | -74619.3 | 10.895%
+29 | 9.521% | 3605.7 | 19434.6 | -227386.5 | 13.788%
+30 | 8.525% | 3561.5 | 30831.8 | 343966.6 | 10.459%
+FAIL full HK urban convergence within 30 rounds
+PASS full HK first-round direction; Kwun Tong car share 7.985% → 7.800%; target-road summed section load 90324.0 → 89737.5
+PASS full HK unused rural line [[88,4],[89,4],[90,4],[91,4]]; no vehicle or congestion change
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: full HK urban line must settle within 30 rounds; other checks completed before this assertion
+    at Object.<anonymous> (C:\Users\赵禹博\Desktop\TransitLab五模式-Codex\任务52\game-feeder\v7\mode5-sandbox\test_engine.js:208:10)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

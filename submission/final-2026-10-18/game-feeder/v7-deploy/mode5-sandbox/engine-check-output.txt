@@ -1,0 +1,29 @@
+Urban line rounds: round | car share | new-line riders | vehicles reduced | congestion reduced | car change
+1 | 50.49% | 4689.6 | 1049.8 | 31717.0 | 12.957%
+2 | 51.98% | 4489.3 | 841.2 | 23780.3 | 2.958%
+3 | 52.61% | 4391.8 | 753.5 | 20434.1 | 1.207%
+4 | 52.88% | 4342.1 | 715.7 | 19026.1 | 0.515%
+5 | 53.00% | 4315.6 | 698.7 | 18422.4 | 0.230%
+6 | 53.06% | 4300.9 | 690.6 | 18154.5 | 0.109%
+7 | 53.09% | 4292.4 | 686.5 | 18029.8 | 0.055%
+8 | 53.10% | 4287.3 | 684.3 | 17968.5 | 0.030%
+9 | 53.11% | 4284.3 | 683.1 | 17936.4 | 0.017%
+PASS no-build 30 rounds; max baseline drift < 0.00e+0
+PASS urban line stable in 9 rounds; Kai Tak car share 58.0% → 47.4%
+PASS road direction; 觀塘繞道 / 觀塘道 load decreased
+PASS budget, one-cell transfer, six-cell walking limit, and remote park line
+Fixture simulate-to-stable elapsed 5.9 ms (9 rounds; D-tier fixture only)
+PASS full HK am: 134348 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1457.0 ms; mean step + checks 66.2 ms; minute coverage 99.60%
+PASS full HK pm: 138627 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1439.3 ms; mean step + checks 66.6 ms; minute coverage 99.68%
+PASS full HK day: 76284 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1400.3 ms; mean step + checks 28.2 ms; minute coverage 99.92%
+PASS full HK holiday: 40643 OD pairs, 30 no-build rounds, drift 0.00e+0; prepare 1283.6 ms; mean step + checks 15.7 ms; minute coverage 99.94%
+Full HK AM urban rounds: round | car share | new-line riders | fewer cars | congestion reduced | car change
+1 | 11.206% | 3619.4 | 143.0 | 208.4 | 0.111%
+2 | 11.208% | 3618.3 | 122.4 | 105.5 | 0.016%
+3 | 11.209% | 3617.7 | 115.8 | 83.4 | 0.005%
+4 | 11.209% | 3617.4 | 113.1 | 77.2 | 0.002%
+5 | 11.209% | 3617.2 | 111.9 | 75.2 | 0.001%
+PASS full HK urban convergence within 30 rounds
+PASS full HK stable direction (5 rounds); Kwun Tong car share 7.985% → 7.877%; target-road summed section load 90324.0 → 90083.6
+PASS full HK unused rural line [[88,4],[89,4],[90,4],[91,4]]; no vehicle or congestion change
+PASS real JSON interface: 160×120, 455 zones, 97 stations, 3000 road sections, 20 areas

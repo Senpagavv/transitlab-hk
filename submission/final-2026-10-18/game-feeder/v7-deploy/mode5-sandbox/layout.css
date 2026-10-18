@@ -1,0 +1,92 @@
+/* v7 · the sandbox's third layout (2026-10-15, docs/design-sandbox-v3.md): the whole screen is the map, everything else
+   floats on it in cards (layout.js moves the existing pieces into them). */
+body.sb3{overflow:hidden;height:100vh}
+body.sb3 #navrow{display:none}
+body.sb3 #topbar{z-index:30;gap:10px}
+body.sb3 #app{position:fixed;left:0;right:0;bottom:0;top:var(--sb-top,49px);display:block;padding:0;margin:0}
+body.sb3 #app>.side,body.sb3 .sandbox-modes,body.sb3 .maptoolbar,body.sb3 .mobile-map-tools{display:none!important}
+body.sb3 .sandbox-play{position:absolute;inset:0;height:auto;min-height:0;padding:0;background:none}
+body.sb3 .sandbox-map{position:absolute;inset:0;border:0;border-radius:0;min-height:0;height:auto}
+body.sb3 #board{position:absolute;inset:0;width:100%;height:100%}
+body.sb3 #aiPanel{display:none!important}
+body.sb3 #tooltip{display:none!important}
+.sb-scene .map-jump{display:none}
+/* the old corners: the ones still used are placed by the cards below */
+body.sb3 .sandbox-map>.round-corner,body.sb3 .sandbox-map>.zoom-corner,body.sb3 .sandbox-map>.layer-corner,body.sb3 .sandbox-map>.sandbox-hud{display:none}
+body.sb3 .message-corner{left:50%!important;right:auto!important;top:12px!important;transform:translateX(-50%);max-width:46%!important;z-index:6}
+body.sb3 .message-corner:empty{display:none}
+body.sb3 #mapObjective{display:none}
+body.sb3 .change-key{left:14px!important;bottom:118px!important;top:auto!important;right:auto!important}
+/* the cards */
+.sb-card{position:absolute;z-index:10;background:color-mix(in srgb,var(--s-panel) 96%,transparent);border:1px solid var(--s-line2);border-radius:9px;
+  box-shadow:0 8px 28px rgba(20,30,35,.12);padding:11px 13px;font-size:12.5px;pointer-events:auto;backdrop-filter:blur(6px)}
+.sb-card[hidden]{display:none}
+.sb-card .lbl{display:block;margin-bottom:6px}
+.sb-card h2{font:600 19px/1.15 var(--s-display);margin:0 0 4px}
+.sb-close{position:absolute;right:6px;top:4px;border:0;background:none;color:var(--s-ink3);font-size:16px;cursor:pointer;padding:2px 6px}
+.sb-scene{left:14px;top:14px;width:290px;max-height:calc(100% - 150px);overflow:auto}
+.sb-scene .challenge-list{display:flex;flex-direction:column;gap:5px}
+.sb-scene .challenge-card{padding:6px 8px}
+.sb-scene .challenge-card small{display:none}
+.sb-scene .challenge-card[aria-pressed=true] small{display:block}
+.sb-scope{display:flex;align-items:center;gap:6px;margin:6px 0 8px;padding:5px 8px;border-radius:6px;background:var(--s-soft);font-size:12px}
+.sb-scope.on{background:var(--s-accent-soft);color:var(--s-accent)}
+.sb-scope b{font-weight:600}
+.sb-scope button{margin-left:auto}
+.sb-jump{width:100%;margin:2px 0 8px}
+.sb-info{right:14px;top:14px;width:280px;max-height:calc(100% - 200px);overflow:auto}
+.sb-info .data-panel,.sb-info #dataPanel{display:block!important}
+.sb-info #dataContent h3{font:600 16px var(--s-display);margin:0 0 2px}
+.sb-info .sb-hint{color:var(--s-ink3);font-size:12px;margin:0}
+.sb-dock{left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:7px 9px;white-space:nowrap;max-width:calc(100% - 28px);overflow-x:auto}
+.sb-dock .sep{width:1px;align-self:stretch;background:var(--s-line2);margin:0 3px}
+.sb-dock button.sb-tool{appearance:none;border:1px solid transparent;background:none;border-radius:7px;padding:5px 9px;font:500 12.5px var(--s-sans,inherit);color:var(--s-ink2);cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.sb-dock button.sb-tool:hover{background:var(--s-soft)}
+.sb-dock button.sb-tool[aria-pressed=true]{background:var(--s-ink);color:var(--s-paper)}
+.sb-dock .sb-trains{display:inline-flex;align-items:center;gap:3px;font-size:12px;color:var(--s-ink2)}
+.sb-dock .sb-trains .btn{min-width:24px;padding:0 6px;height:24px}
+.sb-dock .sb-run .btn{height:30px}
+.sb-dock .sb-budget{display:flex;flex-direction:column;gap:3px;min-width:96px;font-size:11px;color:var(--s-ink3)}
+.sb-dock .sb-budget .budget{height:5px;margin:0}
+.sb-toolcard{left:50%;bottom:72px;transform:translateX(-50%);width:420px;max-width:calc(100% - 28px);max-height:46vh;overflow:auto}
+.sb-toolcard .population-panel{border:0;padding:0;background:none;margin:0}
+.sb-toolcard .ai-card{max-width:none;margin:0}
+.sb-toolcard .ai-card h2{font-size:18px}
+.sb-toolcard .ai-card textarea{min-height:60px}
+.sb-toolcard .row{flex-wrap:wrap;gap:6px}
+.sb-toolcard .line-actions{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.sb-toolcard .line-actions .btn{min-height:34px;flex:1 1 110px;justify-content:center}
+.sb-toolcard .plan-detail{margin-top:6px}
+.sb-result{right:14px;bottom:14px;width:300px;max-height:calc(100% - 330px);overflow:auto}
+.sb-result .sandbox-hud{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:4px 0 8px;border:0;box-shadow:none;background:none;padding:0}
+.sb-result .sandbox-hud>div{background:var(--s-soft);border-radius:6px}
+.sb-result .layer-change-tools{display:flex;gap:4px;margin:6px 0}
+.sb-result details summary{cursor:pointer;color:var(--s-ink2);font-size:12px;margin-top:6px}
+.sb-layers{left:14px;bottom:14px;display:flex;flex-direction:column;gap:3px;padding:8px 10px}
+.sb-layers label{display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer}
+.sb-topbar-periods{margin-left:6px}
+.sb-topbar-periods button{font-size:12px}
+body.sb3 #periodTabs{display:inline-flex;gap:2px;border:1px solid var(--s-line2);border-radius:6px;padding:2px;background:var(--s-panel)}
+body.sb3 #periodTabs button{appearance:none;border:0;background:none;border-radius:4px;padding:3px 9px;font-size:12px;color:var(--s-ink2);cursor:pointer}
+body.sb3 #periodTabs button[aria-pressed=true]{background:var(--s-ink);color:var(--s-paper)}
+body.sb3 #periodTabs button:disabled{opacity:.4;cursor:default}
+.sb-zoom{display:inline-flex;gap:2px}
+.sb-zoom .btn{min-width:28px;padding:0 6px}
+.sb-topbar-link{text-decoration:none}
+@media (max-width:900px){
+  .sb-scene{width:220px}.sb-info{width:220px}.sb-result{width:230px}
+  .sb-toolcard{bottom:66px}
+}
+@media (max-width:640px){
+  body.sb3 #topbar .brand .sub,body.sb3 .sb-zoom{display:none}
+  .sb-scene{top:8px;left:8px;width:calc(100% - 16px);max-height:28%}
+  .sb-info{display:none}
+  .sb-result{left:8px;right:8px;width:auto;bottom:64px;max-height:30%}
+  .sb-layers{display:none}
+  .sb-dock{bottom:8px}
+  .sb-toolcard{bottom:60px;width:calc(100% - 16px)}
+}
+/* the data card: the zone under the pointer; the old «pick a type, then click» controls are not needed for that */
+.sb-info #dataPanel>.note:first-child,.sb-info #dataPanel>.row{display:none}
+.sb-info #dataPanel>p:last-child{font-size:10.5px;color:var(--s-ink3);margin-top:8px}
+body.sb3 .message-corner.sb-quiet{display:none}

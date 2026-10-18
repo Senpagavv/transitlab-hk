@@ -4,6 +4,15 @@
 > 读完这一份，你应该能独立跑起来、知道每个数字从哪来、知道哪些坑不能再踩。
 > 最后更新：2026-09-18 夜（顶部方向说明与进展 2026-09-25 夜补）
 
+## 2026-10-18：最终提交与评委入口 / Final submission review entry
+
+- **当前成品**：五模式交通学习游戏 + 全港沙盘 + 受约束的 GenAI 情景/复盘；评委先看根 `README.md` 和 `docs/judges/README.md`（中文对应 `.zh-CN.md`），技术证据另列，不再从早期的士方案开始读。
+- **最终源码**：`submission/final-2026-10-18/` 从提交 `4e15852` 的原 `Final.zip` 原样展开，127 文件/18,449,617 字节，清单 `submission/manifest.json`，核对 `python submission/verify.py`。根旧开发树保留，未用部署后台覆盖它。
+- **历史资料**：原首页原文保存在 `docs/history/README-before-submission.txt`，旧车队架构与演示文档加历史提示；仍复用的底层模型和 `game/engine` 等模块保留。`pipeline/check_docs.py` 继续核对这些旧主张，同时检查当前文档中的作废数字。
+- **验证与局限**：包文件一致、文档数字 65 项通过，根回归测试 89 项通过；底座审计保持 118 通过/2 类既有失败。最终包本地服务、主要页面/数据/引用资源与公开入口检查，具体范围见 `docs/judges/verification.md`。没有为此次文档整理重算模型或宣称真实 AI/邮件/全移动端验收。
+- **公开状态**：仓库按负责人要求公开；大体积图则与 LUHK 缓存已在原 Release。密钥、真实账号库、全量依赖和重复历史快照不提交。
+- **English:** Start with the final-product homepage and judges' guide. The final archive is expanded unchanged and checksummed; older taxi/fleet directions are historical. See `docs/judges/verification.md` for actual checks and unresolved baseline limitations.
+
 ## ✅ 2026-10-02：数据与参数可信度分级 + 改动日志 + 一键环境安装
 
 - `model/registry/data_tiers.toml`：105 项逐项标 A 实测 / B 校准推算 / C 依据推断 / D 示意假设（35 数据集、27 模型产物、43 参数；其中 20 个待查参数是游戏和教学模式要用的：造价、运营成本、楼价溢价、排放系数、碳价、贴现率、各种弹性），自动生成 `docs/data-tiers.md`；规则：**结果级别 = 所用数据中最差的级别**。`tests/test_data_tiers.py` 核对登记值与审计一致。

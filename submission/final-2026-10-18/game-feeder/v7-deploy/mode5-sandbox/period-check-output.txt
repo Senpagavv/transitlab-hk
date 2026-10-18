@@ -1,0 +1,3 @@
+PASS full HK pm urban: 5 rounds; 3374.0 new-line riders/h; 133.7 fewer cars; residual 2.724e-10; elapsed 14.541 s
+PASS full HK day urban: 5 rounds; 918.0 new-line riders/h; 52.5 fewer cars; residual 5.603e-11; elapsed 3.238 s
+PASS full HK holiday urban: 5 rounds; 416.2 new-line riders/h; 25.2 fewer cars; residual 9.924e-11; elapsed 2.721 s

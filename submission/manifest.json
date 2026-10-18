@@ -1,0 +1,648 @@
+{
+  "schema": "transitlab-submission/1",
+  "submission_date": "2026-10-18",
+  "source_commit": "4e15852757aa8ea5b109d61a3d7415f78c9e470f",
+  "source_archive": "Final.zip",
+  "archive_git_blob": "f7bb574c628f1ec45e9e7b886ca4c28409b7201a",
+  "archive_sha256": "6c01b7a5111f97ff9a803ed2fb2e1573c10adc8b56fc3da5e89b9bf433ed6f2a",
+  "extracted_directory": "submission/final-2026-10-18",
+  "file_count": 127,
+  "total_bytes": 18449617,
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 259,
+      "sha256": "7c3bf0510cd5bb5b2c344c1e5857decd1a01b83bc131f3bb88dede32d6732ebe"
+    },
+    {
+      "path": "DEPLOY-SANDBOX-DEEPSEEK-20261018.txt",
+      "bytes": 2546,
+      "sha256": "93d874c713dedf945964b3787abb77ac2a429e2ee1709c63df85f6e7abd6d505"
+    },
+    {
+      "path": "DEPLOY-SANDBOX-DEEPSEEK-UI-SIMPLIFIED-ASCII-20261018.txt",
+      "bytes": 2452,
+      "sha256": "992bc1c3b3eddd9b4a070bd6f5aeaf6dbd022230df4e60535db9abfd6373abd6"
+    },
+    {
+      "path": "README-SANDBOX-DEEPSEEK-20261018.txt",
+      "bytes": 3286,
+      "sha256": "5238750b0253eec1d2ac0336c2175a7f534e98ca5256ef9af1b7e0690e5f7a77"
+    },
+    {
+      "path": "README-SANDBOX-DEEPSEEK-UI-SIMPLIFIED-20261018.txt",
+      "bytes": 4243,
+      "sha256": "7634da15e23a8f69782b42fa6e4f31d64d3a1f4501bf344394a65860da544eab"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 68,
+      "sha256": "d550aa5e6aebe30d60f4b1e963b937cdab07fb088cc201154f97fb758472ddf8"
+    },
+    {
+      "path": "apply.py",
+      "bytes": 4602,
+      "sha256": "7c3667ad3f8fbf17b1acbb4395adc2beea82769b5227e15c24c790cbf482bc0c"
+    },
+    {
+      "path": "backend/.env.example",
+      "bytes": 302,
+      "sha256": "748548ed17d4421ef2f9807240617bb88d87073822e5775450e48ee171adaadb"
+    },
+    {
+      "path": "backend/__init__.py",
+      "bytes": 38,
+      "sha256": "f42ce0f52e021229a334caf7aaa9e68b9f4fc95fc0567fb3a46f7f6074442a22"
+    },
+    {
+      "path": "backend/feeder_ai.py",
+      "bytes": 20633,
+      "sha256": "514c3a5ea413f7cc25c366b24c68a3b379ab65ad90ba3402c9522caef1572389"
+    },
+    {
+      "path": "backend/main.py",
+      "bytes": 10918,
+      "sha256": "ed1b6aef066ae69a0c50d7521bac829a317560ddd05e078d7bf9ba2c7f513947"
+    },
+    {
+      "path": "backend/requirements.txt",
+      "bytes": 82,
+      "sha256": "b6765d893761c6eee2b1dbc493cd3102d770aaef5d3950fbe786bd3073e90d59"
+    },
+    {
+      "path": "backend/services/db.py",
+      "bytes": 2794,
+      "sha256": "9a3695cf41f1aeb340a7027249911ec6f4548d5473bd49993981d21b6280d53c"
+    },
+    {
+      "path": "backend/services/feeder_leaderboard.py",
+      "bytes": 6059,
+      "sha256": "83f643accfbe1c9450b3299f8ff8be8bc02dd0c6e4f2bbc8f2411288a2a88350"
+    },
+    {
+      "path": "data/app/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "deploy/Caddyfile",
+      "bytes": 85,
+      "sha256": "cc531bcd9c772be1b61bc5b65db69de7a30b3c2552b63eead6b3651b5e838c8f"
+    },
+    {
+      "path": "deploy/Dockerfile",
+      "bytes": 326,
+      "sha256": "536d4641787c1537f82263ff62aba6c67593273aa8de5e85d41b1f1f7175036c"
+    },
+    {
+      "path": "deploy/docker-compose.yml",
+      "bytes": 493,
+      "sha256": "048541505d84ba3df89007a71cfa6f4d4f259a011c35db7ac4f0e60066670937"
+    },
+    {
+      "path": "game-feeder/v7-deploy/ai/client.js",
+      "bytes": 9377,
+      "sha256": "f720c63165a797ef053a84a5060929be5ae00f498760a948f6dc4d194957345f"
+    },
+    {
+      "path": "game-feeder/v7-deploy/ai/test-sentences.json",
+      "bytes": 5418,
+      "sha256": "57055473b47018ae096a632015477fe88a49a573be09184445d992f323542183"
+    },
+    {
+      "path": "game-feeder/v7-deploy/auth.js",
+      "bytes": 10548,
+      "sha256": "224ce707326b31fd43d73b3d36af9c4b311feabe6c70d00687fe66826c01e5bf"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/README.md",
+      "bytes": 1306,
+      "sha256": "84fec6b4915db0bdaf77d2dc47516d64c49cd4990e4a96ae016768a44adf7997"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/build_static.py",
+      "bytes": 19845,
+      "sha256": "27fe69b0b4d353232077901e785916348d016ebef506ce9797727f42fcb5d00d"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/index.html",
+      "bytes": 8337,
+      "sha256": "f379d049f1e3d4d528522e9fad104d313f762e608dc3642a9d451a559cdf17bd"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode1-play.html",
+      "bytes": 447791,
+      "sha256": "352d73533416320ce09388bb27a5798043c3ffa18366677488ceac9fd042e879"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode1-poster.html",
+      "bytes": 17017,
+      "sha256": "03ca4ce1814c86a0db3ba5b935661669ec63dcb520a3106cf0a211f38fed4c16"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode1.html",
+      "bytes": 461900,
+      "sha256": "e1d61baff4c612cce3d52b9507aa0569791f9ab192e6ffba28a7af4e7a16a60b"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode2.html",
+      "bytes": 11376,
+      "sha256": "6828f599ff5c2ffc06257b19c25e911a8119a586c2619afa3bd67bae9e018133"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode3.html",
+      "bytes": 11263,
+      "sha256": "bb82f732da4f0a8a907f1c71b734b1d3207fe6c86a914f3b32fe2fdbdf7cc07b"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode4-play.html",
+      "bytes": 317822,
+      "sha256": "18a7675d53d966b8c31015a660d4abeb26b0e1e8b35443285b826a18fdfd2147"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode4-poster.html",
+      "bytes": 18221,
+      "sha256": "71eb9fee4092efa5310ca8aacd4a7a65d622a206244e065c9d1f96d25efcfb0d"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/mode4.html",
+      "bytes": 320034,
+      "sha256": "07c5a5bcd0d960dee577d6b43bcb95e798da7f373d4771d0c50ad4d4d52dc016"
+    },
+    {
+      "path": "game-feeder/v7-deploy/demo-static/ring-verification.html",
+      "bytes": 8939,
+      "sha256": "5e27d32d035ae9dec7a6feadc53ee4f2fc6c0c4d6e8adba4101bd306f5bd062b"
+    },
+    {
+      "path": "game-feeder/v7-deploy/editor/index.html",
+      "bytes": 307269,
+      "sha256": "0f38055844e208fb48184f5b91f153f853f73c84259de57a6345da43d0723d8f"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/checks.json",
+      "bytes": 11659,
+      "sha256": "55d8bf984e8b87c40fbb00bbdddb10aa2829dd346b2409ea7cbb9fd72f24af93"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/hk-base.json",
+      "bytes": 780371,
+      "sha256": "c8256b6d00d7b913196f63e6ebf351a18f67bbf0518c99527678df20dccc3fdd"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/hk-demand-am.json",
+      "bytes": 3802073,
+      "sha256": "6ca08972d9566ff1f6e8e986b8e5b836ef502448586e66692aa234031600b252"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/hk-demand-day.json",
+      "bytes": 2140350,
+      "sha256": "802655bda7aca5f05af35d21ef2349db379e170e2feb2003cb627e979858e803"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/hk-demand-holiday.json",
+      "bytes": 1169214,
+      "sha256": "82e15d38eb796803c57525dac32e1d9f2fa910ed0a4e220cb3097f64d0fc0946"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/hk-demand-pm.json",
+      "bytes": 3924302,
+      "sha256": "4ed006ba071ded3bde4b1d0c390d2bebd16c8ed7b6250955e0cfb1dd702968fb"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/hk-shapes.json",
+      "bytes": 814422,
+      "sha256": "cf6daa01e7450396383ac593ef29dc4bdcdc56c13d5e5525283d70cd3703dbbf"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/road-name-map.json",
+      "bytes": 47356,
+      "sha256": "da2e9415ee17b79285e8217b0a9a89e9bbd1ce10e84b41877018074c12d9f768"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/source-verification.json",
+      "bytes": 609,
+      "sha256": "e7d8f1f53e3bf7371cf9b88a8cc31e0ee958f50cd97be79e90626532d218ae60"
+    },
+    {
+      "path": "game-feeder/v7-deploy/hk/verification.json",
+      "bytes": 1381,
+      "sha256": "ecf943db4d5389116c65e78ef2aad01b18474e5f8cfd9b62a2195ca4cf1200cc"
+    },
+    {
+      "path": "game-feeder/v7-deploy/index.html",
+      "bytes": 288039,
+      "sha256": "a8c9874bf09387b3fc775104fd6837932f04a7de240a6c5ca5fa20da5fd49385"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode1-bus/index.html",
+      "bytes": 486306,
+      "sha256": "3df8a49db08bb2aefe09004abaf9da03d394371c3440ac4a3197fd6523217f80"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode2-metro/data.js",
+      "bytes": 3868,
+      "sha256": "5d436610c132b357835343eb203b7b20e7ca4de97fcff339e04f65a3905bbeaa"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode2-metro/engine.js",
+      "bytes": 13179,
+      "sha256": "3e5542d7644ec932daa6d578d3736d50a785f83ee6a92b30bbf6c8e649b5e879"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode2-metro/index.html",
+      "bytes": 307786,
+      "sha256": "831a32a79bff21afac33ef3cacb0b6d77861e29e3c54d67f6541d9f7627773d5"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode3-roads/data.js",
+      "bytes": 6004,
+      "sha256": "51f0d45379e9889abff76285c043ebf682876a955b5fe0a5e426985a6f205df7"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode3-roads/engine.js",
+      "bytes": 20509,
+      "sha256": "640d0091f597f47d2cd15aa0b429d94288409c2de5826ec3687958bac684f66c"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode3-roads/index.html",
+      "bytes": 326331,
+      "sha256": "c20464649920293e82d72013798d66896293b41fde7d6f2b01ffbda1b7935249"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode4-tod/data.js",
+      "bytes": 3495,
+      "sha256": "e1241de170a864916c7a6fb95ad813690a9a5c7aff3a74446fd6af78ee64e44f"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode4-tod/engine.js",
+      "bytes": 17597,
+      "sha256": "c3ec2ec28d45df2478f9bf98011a9f0751bd6cb57f0dae4c2abb9db9cf1535c3"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode4-tod/index.html",
+      "bytes": 348183,
+      "sha256": "dcbf07ba36b59cc77a52f02d42307555433848e1101a081093037a06f0c70bff"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/README.md",
+      "bytes": 12396,
+      "sha256": "02516d485aea01d0ff4c2f5945360f110a5bdb50b0ba19e76017d23399a9e5a3"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/ai-level.js",
+      "bytes": 13199,
+      "sha256": "1a76b624c05e8657a2136181495db83ba1af3c37ccb456443fdd0cdde2fd00de"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/challenges.js",
+      "bytes": 2948,
+      "sha256": "3d064e1c53b14a7c7c1ee0da04226c1dea6a53763150c2c98e369f971896f725"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/engine-check-output.txt",
+      "bytes": 2128,
+      "sha256": "b569ae58190a31653e0315b58350d0dbb29b785cd6af7e47d389fd02c28924f0"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/engine.js",
+      "bytes": 30864,
+      "sha256": "2f8ef9b543a50f8a7428bdd53be3de219fda6dab34cfd1c843c42c5e944eea62"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/experience.css",
+      "bytes": 15370,
+      "sha256": "c6a6a4477f8c1729c39ae796796bbafe19d6966365fed6f42dbf9ef51aafa069"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/experience.js",
+      "bytes": 59347,
+      "sha256": "5a73b1fd84118c808ff77ada2be1808239487170115901d60e65d0bf1a4040ea"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/explicit-check-output.txt",
+      "bytes": 4300,
+      "sha256": "35ebcac98926a18f84e069b06775f765e32967b0fa9fb64d7a37a5d4709cd958"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/fallback.js",
+      "bytes": 6298,
+      "sha256": "90c9a44f96f1d736fb845e9ba2e6c41e7dc7e4ec38982bffd368998bac517f03"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/feedback-check-output.txt",
+      "bytes": 5012,
+      "sha256": "681528d652dd6efa9e6e6b7724560fbe1950f131ed90af0aa6da058d6022d8c3"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/feedback-solver.js",
+      "bytes": 448,
+      "sha256": "57e800439997e717bb9d0846baf46d2b89aa4ddc98c17e08ae03502c53973d0a"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/history.js",
+      "bytes": 7237,
+      "sha256": "68a72b922aeeb44cfe677fb66ce88e52cc9ecb873a1e623b60da0e3cff87b142"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/index.html",
+      "bytes": 11737,
+      "sha256": "b279163920fa9d21fd90eca410e15a27483d8eb1688508815e327bca73705f6a"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/layout.css",
+      "bytes": 6708,
+      "sha256": "bcd4b414f4cf3f8eee59eb5a48c65c3458ef082e20e9b16998b524b10e8a895e"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/layout.js",
+      "bytes": 22667,
+      "sha256": "aba3b6d73b8c93ddc160ce32fb86a1b9d05e50da98a1e2e72c05fc394957c911"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/period-check-output.txt",
+      "bytes": 342,
+      "sha256": "30b37c2e9a83de808f6a8b1f3b225537c6f64c5fc67c3af85ac7e04b2efdbfae"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/sandbox.css",
+      "bytes": 10249,
+      "sha256": "118b3e67517a022b0a0e5eb77e2eaad1b1990ffe2dedc5137ea762ae1a794c90"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/scenario-worker.js",
+      "bytes": 2623,
+      "sha256": "b5865f81edf6a6222c6f7679a1ea0fa396e5d9e38fef9e135201313c9b10fa32"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/scenarios-check-output.txt",
+      "bytes": 455,
+      "sha256": "0f16e985e25bb62f0827becccb9e0ae6ad1305f58d16ac594eaa4ca871c015bc"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/scenarios.js",
+      "bytes": 2649,
+      "sha256": "4ab150639760f9b5757df361e0ecbe1cf1047b0e6c52a849b1b1730858ffff44"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/scoreboard.js",
+      "bytes": 10328,
+      "sha256": "64251d9bad88d5d366c1f70196515759b7d762db8d1909b49ab8e4b31bb049c6"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/serve.js",
+      "bytes": 1431,
+      "sha256": "22d31ce050d8a6e6a031158355a955cd1908b66d9b575cd65e2ac63d0cb46e2c"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/strings.js",
+      "bytes": 15952,
+      "sha256": "2645fc29374ec61b6570e28a894d2a28d849da407720ec0ddded4882581238e3"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/test_engine.js",
+      "bytes": 16613,
+      "sha256": "dcd17e2f70c62a9092356fa913b253bbd8b8d05effc6a1129f07d7926af3ff5a"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/test_feedback_solver.js",
+      "bytes": 1846,
+      "sha256": "0976a679a564caf8a25636be8123f7dc6fbb5b9c47ee524bb8894d6d13456229"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/test_periods.js",
+      "bytes": 1092,
+      "sha256": "dd3a1836196db26170eb4c31cbd3c44aca9bbf7fb6d1e0213ed6146843d98596"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/test_scenarios.js",
+      "bytes": 2362,
+      "sha256": "b0d908e5314a19e1d4d3b66f31df8d9819eb59f6f919a536d6e2db97d94ebd9d"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/trip-weights.json",
+      "bytes": 64250,
+      "sha256": "fa4ab189e3a8768a655f309b195ce71bfd81793aa09697b7a8db67d7965cf633"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/ui.js",
+      "bytes": 65308,
+      "sha256": "18a05a6fb529f5f4f65dea88f699c51b3d144c789407386e2c9bca7faff89d4d"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/vector.js",
+      "bytes": 8886,
+      "sha256": "a9484a79daa8cc9f085cf7f809038a3d12d0f744c9eaaeb79814d52adae27b93"
+    },
+    {
+      "path": "game-feeder/v7-deploy/mode5-sandbox/worker.js",
+      "bytes": 2710,
+      "sha256": "df588fcc701893f33f55c578ada94e63355c744b4cf6b7d088bc200b26807c84"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/board.css",
+      "bytes": 1881,
+      "sha256": "8d8c6ff6d883a57495d29becb35b1053a23a053ddd83f06de0f139767d8320e0"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/board.js",
+      "bytes": 11836,
+      "sha256": "c7452b839cf1c80a473c03a2ee1423351fe152d5a83d24a1c0b7d50c9f066e37"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/flyin.js",
+      "bytes": 5984,
+      "sha256": "5a357a8b65898fe549bffb39cbf8c2883d0a8f9b81c61365ad845e7269e307d7"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/i18n.js",
+      "bytes": 4448,
+      "sha256": "721edc850f71b857eba2f5c712abdb9bd2f9e79e63c5a8cb92fff748e98ca7ef"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/README.md",
+      "bytes": 12723,
+      "sha256": "869d91978a05aba10878da6f54fe28811ec0bfb20753423dacb17489dc76340e"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/bot.js",
+      "bytes": 4606,
+      "sha256": "f3f472e9d04e1a501501d22a3805f6747ba44f995ebeec3a5d4f6acdf53e2dfd"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/bot24.js",
+      "bytes": 7414,
+      "sha256": "d520b93ec838e3f83c3e18a16a7c6c3d8c748800da13bdb81f19805c48d2610a"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/check.js",
+      "bytes": 9424,
+      "sha256": "5d376c4497c52736fba5ce0bb0ff0ff1124b55da5ed43d10e82e6a76d844f9e8"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/compare.js",
+      "bytes": 2922,
+      "sha256": "f8bc57c3b7185c711a34274f15adddf6c61cc80d24062dd90f785d72ab77f116"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/cut.js",
+      "bytes": 26953,
+      "sha256": "efa0755640370747f3dde1547584566d8b1943a3aa61e9c8dd20421265899ba6"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/generate.js",
+      "bytes": 4298,
+      "sha256": "6e6f99acce872e141c63c6f7a04f07e5139d762cb70a9332ed4077684cbceb59"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/layout.js",
+      "bytes": 11458,
+      "sha256": "dc8f3e195a491464a60d8b0825d12de96615f2708cebbd3f44dad8b2f28dd531"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/preview.html",
+      "bytes": 8250,
+      "sha256": "a1459b74ab56ca79258d7564ab287a8f90f8990bb5f5352d113ffb90269adf02"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/cap-sweep.json",
+      "bytes": 24970,
+      "sha256": "1e5ffb23849b58d7aee50f4b48939f6dbe250f11daa65753ff9d377480a72f5f"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/causeway-bay-wan-chai.json",
+      "bytes": 148765,
+      "sha256": "01bfd31cb2a96c59fdb503a5cbce656947072cafa1f50ec5330a554daf6c974a"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/four-areas.json",
+      "bytes": 653228,
+      "sha256": "7912b13476b1f375c0fc1f5d06adf368fff210eefd2d41b3de2d7f33daac9b54"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/kowloon-east.json",
+      "bytes": 162391,
+      "sha256": "6852f889181c248a274e170e7dc979dd2bc044710a13add046d6c267797973bd"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/manual-current.json",
+      "bytes": 10914,
+      "sha256": "d0cfd7b51aee46b748a1467de3212069d3a949d5f3eca96d56c4e6457774f7c0"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/sha-tin-tai-wai.json",
+      "bytes": 114789,
+      "sha256": "f74486f03f6c442bdfbaeb4a19383a0d3373d2993fbbdf5a270c35632644d23d"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/summary.json",
+      "bytes": 12260,
+      "sha256": "a1ca385e9343216a70763f7c37e55566e551b8e49975c177cd6ce5d5f368c6e2"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/results/yuen-long.json",
+      "bytes": 114492,
+      "sha256": "a19f40faa73717aca554e85021f870fcccf8d7da47536f3591a5ff3b90a91941"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/simplify.js",
+      "bytes": 7639,
+      "sha256": "854614729eae2fc62aa6fb69385af8f8801a1aaed6675a9ec959f825d5a11681"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/verification.json",
+      "bytes": 1463,
+      "sha256": "447b0a3bf6cfb351dc7113748dc6fcd710c8136599e4c221abd137b1765b13c8"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelgen/worker.js",
+      "bytes": 1379,
+      "sha256": "4613527a0925135de6d50e39e2a13f3216ef6ac36a69dcb8c0a95087140f6fc7"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/levelpack.js",
+      "bytes": 13735,
+      "sha256": "32e351bdff94dd54b0311cebedc0e716d227019887d6450a29abe578e80547c8"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/logo-tide.svg",
+      "bytes": 1073,
+      "sha256": "3e2d879cc3d206397770d1a20eb113c57d9e23d5bd5d10b2cd78f518a27a011c"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/mode5-entry.css",
+      "bytes": 4450,
+      "sha256": "00393dcf191f0a6756af99d00d23db54a08d5a5bb667ea728d3a7f29629ea847"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/mode5-entry.js",
+      "bytes": 2488,
+      "sha256": "284ae50e8b525cd8773ec9b2b166f5ed7a007de022f7e1634a17aab4f85dd9e0"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/nav.js",
+      "bytes": 3499,
+      "sha256": "b5b4b72e364834f34489587c85c13f9517af833ab889b7f0f4080297b96f1c94"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/progress.js",
+      "bytes": 1405,
+      "sha256": "9c9f3fccdccaf2e87388475075c2c607478897673e0de26773ab3ce5a848044a"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/save.js",
+      "bytes": 2669,
+      "sha256": "ea85d655a0cfaa05e9b538ebca95071907d6fa6bc16ee9724bdde422cce64c10"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/site.js",
+      "bytes": 176,
+      "sha256": "0b0bb7f0bf777cc27ad6f51690cdaef6db6d84b6c172ab7066e5affdc9e91bfe"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/soundscape.js",
+      "bytes": 5436,
+      "sha256": "54ada6da58ec995826ab1eaaccbf06a8ea88e76b8a58c6f66014f033de52208e"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/style.css",
+      "bytes": 55381,
+      "sha256": "e5bef79703a2b2844b8e2ccc33232554ddaf9375d3ac79049a99039ac8568b41"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/tips.js",
+      "bytes": 3751,
+      "sha256": "4d151d7c4e6037731894bd565a12e2483a41cc72dc5ab9be055b5ba0b3eb52b9"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/tl-simplify.css",
+      "bytes": 2325,
+      "sha256": "681331df2f49e54712473639678d7a818162391c7c0f53d58b25051ea6429afd"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/tl-simplify.js",
+      "bytes": 5244,
+      "sha256": "340bd5efca6323f25a59a3edb3c978f56e28632d979927655bdf6686ecc123dc"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/traffic-layer.js",
+      "bytes": 6012,
+      "sha256": "ffa0618ab0e81c3dfc630b9eb6e03f96053c3c72e740930c32969dbc144d496f"
+    },
+    {
+      "path": "game-feeder/v7-deploy/shared/ui-shell.css",
+      "bytes": 13478,
+      "sha256": "9650300d098c50335ff2b2b6322340f32880956a429459ae5d6bc82d9d2211b7"
+    },
+    {
+      "path": "tl-simplify.css",
+      "bytes": 2325,
+      "sha256": "681331df2f49e54712473639678d7a818162391c7c0f53d58b25051ea6429afd"
+    },
+    {
+      "path": "tl-simplify.js",
+      "bytes": 5244,
+      "sha256": "340bd5efca6323f25a59a3edb3c978f56e28632d979927655bdf6686ecc123dc"
+    }
+  ]
+}

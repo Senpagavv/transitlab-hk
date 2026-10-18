@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "checks": [
+    "nonzero-box geometry invariant",
+    "input unchanged",
+    "roads joined",
+    "population scaled",
+    "missing place does not mutate",
+    "unsupported mode/pm rejected",
+    "road-cap growth preserved by calibration",
+    "tiers follow best score",
+    "browser exports and preview script parse"
+  ],
+  "fixtureOnly": true,
+  "notModelValidation": true,
+  "nodeSyntax": {
+    "status": "PASS",
+    "files": [
+      "levelgen/cut.js",
+      "levelgen/check.js",
+      "levelgen/bot.js",
+      "levelgen/compare.js",
+      "bots/v7_levelgen.js"
+    ]
+  },
+  "cliCompare": "PASS (temporary fixture)",
+  "previewEvents": "PASS (browser globals + DOM harness)",
+  "mapCells": 192,
+  "http": {
+    "status": "PASS",
+    "paths": [
+      "/v7/shared/levelgen/preview.html",
+      "/v7/shared/levelgen/cut.js",
+      "/v7/mode3-roads/engine.js"
+    ],
+    "statusCodes": [
+      200,
+      200,
+      200
+    ]
+  },
+  "protectedCopiedFiles": {
+    "checked": 93,
+    "changed": []
+  },
+  "realInputs": "Frozen task51 JSON (inputs/provenance.json)",
+  "realPlanReplays": "PASS (4 generated + live manual)",
+  "requestNameMatching": {
+    "status": "PASS",
+    "people": "啟德 → 啓德站一帶",
+    "jobs": "觀塘 → 觀塘站一帶",
+    "road": "观塘绕道 → KWUN TONG BYPASS",
+    "roadSegments": 12
+  },
+  "capacitySweep": "results/cap-sweep.json; no sampled coefficient reaches 0.2 in the three failing areas"
+}

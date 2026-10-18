@@ -28,7 +28,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "data" / "web"
-DOCS = ["README.md", "docs/architecture-walkthrough.md", "docs/demo-runbook.md"]
+# The fleet study is historical; require its figures where those claims remain,
+# including the preserved old homepage, rather than reintroducing them in the
+# final game's review entry. Keep retired-figure checks on the current guides too.
+FLEET_DOCS = ["docs/history/README-before-submission.txt", "docs/architecture-walkthrough.md", "docs/demo-runbook.md"]
+DOCS = ["README.md", "README.zh-CN.md", *FLEET_DOCS,
+        "docs/judges/technical-evidence.md", "docs/judges/technical-evidence.zh-CN.md"]
 
 # Figures that were true once and are not any more, with the date they were retired. A document may
 # not contain these. Keep the reason: it is the only way to tell a retired figure from a typo later.
@@ -63,8 +68,8 @@ def audits() -> dict:
         # front page, not a data sheet, and demanding every number of it would train people to ignore
         # this check.
         "请求总数": (f"{total:,}", ["docs/architecture-walkthrough.md", "docs/demo-runbook.md"]),
-        "最小达标车队": (f"{min(passing):,}", DOCS),
-        "领牌车队": (f"{simulation['fleet']:,}", DOCS),
+        "最小达标车队": (f"{min(passing):,}", FLEET_DOCS),
+        "领牌车队": (f"{simulation['fleet']:,}", FLEET_DOCS),
         # Must sit on a line that says 走廊 GEH<5: the history table there also holds old values, and on
         # 2026-09-26 an old 29.4% in it let a stale 23.5% pass.
         "走廊 GEH<5": (f"{assignment['corridor_geh_under_5']:.1%}", ["docs/architecture-walkthrough.md"], "走廊 GEH<5"),

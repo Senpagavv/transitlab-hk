@@ -1,0 +1,254 @@
+/* TransitLab v7 · UI prototype shell
+   Shared visual layer for modes 01–04. Gameplay DOM, SVG board and mode 05 are untouched. */
+:root{
+  --s-paper:#F6F4EE;
+  --s-panel:#FFFDF8;
+  --s-soft:#F8F5EE;
+  --s-raise:#EEE9DF;
+  --s-ink:#17211B;
+  --s-ink2:#57635C;
+  --s-ink3:#8D968F;
+  --s-line:rgba(23,33,27,.13);
+  --s-line2:rgba(23,33,27,.07);
+  --s-grid:rgba(23,33,27,.055);
+  --s-accent:#0E7A4E;
+  --s-accent2:#2B9A6B;
+  --s-accent-soft:#E7F1EB;
+  --s-on-accent:#FFFDF8;
+  --s-good:#0E7A4E;
+  --s-warn:#B07C10;
+  --s-bad:#BF3B2B;
+  --s-bad-soft:#FAEDE9;
+  --s-info:#1F5FA8;
+  --s-chrome:rgba(255,253,248,.78);
+  --s-shadow:0 18px 50px rgba(23,33,27,.16),0 2px 8px rgba(23,33,27,.08);
+  --s-shadow-sm:0 8px 26px rgba(23,33,27,.13),0 1px 4px rgba(23,33,27,.08);
+}
+[data-theme="dark"]{
+  --s-paper:#16201B;
+  --s-panel:#1E2A24;
+  --s-soft:#24332B;
+  --s-raise:#2C3A32;
+  --s-ink:#F5F8F3;
+  --s-ink2:#C3CEC5;
+  --s-ink3:#96A49A;
+  --s-line:rgba(245,248,243,.16);
+  --s-line2:rgba(245,248,243,.10);
+  --s-grid:rgba(245,248,243,.06);
+  --s-accent:#56C88D;
+  --s-accent2:#7BD9A8;
+  --s-accent-soft:#1B3C2D;
+  --s-on-accent:#102118;
+  --s-good:#56C88D;
+  --s-warn:#E1AE53;
+  --s-bad:#E27A64;
+  --s-bad-soft:#3B211D;
+  --s-info:#86B4E9;
+  --s-chrome:rgba(22,32,27,.78);
+  --s-shadow:0 18px 50px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.2);
+  --s-shadow-sm:0 8px 26px rgba(0,0,0,.28),0 1px 4px rgba(0,0,0,.18);
+}
+
+/* Warm paper base from the group prototype. */
+body{
+  background-color:var(--s-paper);
+  background-image:radial-gradient(var(--s-grid) 1px,transparent 1px);
+  background-size:10px 10px;
+  color:var(--s-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","PingFang SC","Microsoft JhengHei",system-ui,sans-serif;
+}
+
+/* The top chrome becomes a quiet glass layer instead of a hard strip. */
+#topbar,#navrow{
+  background:var(--s-chrome);
+  backdrop-filter:blur(18px) saturate(1.25);
+  -webkit-backdrop-filter:blur(18px) saturate(1.25);
+  border-color:var(--s-line);
+  box-shadow:0 1px 0 rgba(255,255,255,.35);
+}
+#topbar{height:58px;padding:0 18px;gap:12px}
+#topbar .brand .wm{font-size:21px}
+#topbar .brand .sub{color:var(--s-ink3)}
+#navrow{height:72px}
+#navrow::before{background:var(--s-line)}
+#navrow .stop{background:rgba(255,255,255,.68);border-color:var(--s-line);box-shadow:0 2px 5px rgba(23,33,27,.06)}
+#navrow button[aria-selected="true"] .stop{background:var(--s-accent);border-color:var(--s-accent);color:#fff}
+#navrow button[aria-selected="true"] .t b{color:var(--s-accent-deep,var(--s-accent))}
+
+/* Side rails are floating glass cards like the prototype's goal / legend panels. */
+.eg{gap:0;align-items:stretch}
+.side{
+  width:320px;
+  height:calc(100% - 24px);
+  align-self:center;
+  margin:12px 0 12px 14px;
+  padding:18px 16px 28px;
+  border:1px solid rgba(255,255,255,.68);
+  border-right:1px solid rgba(255,255,255,.68);
+  border-radius:16px;
+  background:rgba(255,253,248,.82);
+  backdrop-filter:blur(22px) saturate(1.25);
+  -webkit-backdrop-filter:blur(22px) saturate(1.25);
+  box-shadow:var(--s-shadow-sm);
+  scrollbar-color:var(--s-ink3) transparent;
+}
+.side.right{
+  width:286px;
+  margin:12px 14px 12px 0;
+  border-left:1px solid rgba(255,255,255,.68);
+  border-right:1px solid rgba(255,255,255,.68);
+}
+[data-theme="dark"] .side{background:rgba(30,42,36,.86);border-color:var(--s-line)}
+.side>.row:first-child{margin-bottom:8px}
+.side>.row:first-child .btn,.side>.row:first-child .chip{border-radius:999px}
+.h1{font-size:29px;letter-spacing:-.01em}
+.h1tc{font-size:17px;letter-spacing:.06em}
+.lede{font-size:14px;color:var(--s-ink2)}
+
+/* Cards, targets, gauges and logs share the prototype's 14px glass treatment. */
+.box,.goal,.stopbox,.facts,.habit,.groups{
+  border-radius:14px;
+  border:1px solid rgba(23,33,27,.10);
+  background:rgba(255,255,255,.64);
+  backdrop-filter:blur(14px) saturate(1.12);
+  -webkit-backdrop-filter:blur(14px) saturate(1.12);
+  box-shadow:0 4px 16px rgba(23,33,27,.06);
+}
+[data-theme="dark"] .box,[data-theme="dark"] .goal,[data-theme="dark"] .stopbox,[data-theme="dark"] .facts,[data-theme="dark"] .habit,[data-theme="dark"] .groups{background:rgba(36,51,43,.72);border-color:var(--s-line)}
+.goal{padding:13px 14px}
+.goal .goalnum b{font-size:24px}
+.gauge{height:9px;margin:23px 0 22px;background:var(--s-raise);border-radius:99px}
+.gauge i{background:linear-gradient(90deg,var(--s-accent),var(--s-accent2));box-shadow:0 0 12px rgba(14,122,78,.28)}
+.controls .btn,.controls .seg,.side .btn{border-radius:9px}
+.btn{border-radius:9px;transition:transform .12s,box-shadow .12s,background .14s,border-color .14s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(23,33,27,.10)}
+.btn-p{background:var(--s-accent);border-color:var(--s-accent);color:#fff}
+.btn-p:hover{background:#0A5C3B;border-color:#0A5C3B}
+.seg{border-radius:9px}
+.seg button{height:30px}
+.chip{border-radius:99px;background:rgba(255,255,255,.62);padding:0 10px}
+[data-theme="dark"] .chip{background:rgba(36,51,43,.7)}
+.station-button{border-radius:11px;background:rgba(255,255,255,.54)}
+.station-button.selected{border-color:var(--s-accent);box-shadow:inset 0 0 0 1px var(--s-accent),0 0 0 2px rgba(14,122,78,.10)}
+
+/* Central map plate remains the live board, with only its shell restyled. */
+.play{padding:12px 12px}
+.mapplate{
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:var(--s-shadow);
+  background:var(--s-panel);
+}
+[data-theme="dark"] .mapplate{border-color:var(--s-line)}
+.clockbox,.lanebox,.hud{
+  background:rgba(255,253,248,.76);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:14px;
+  box-shadow:var(--s-shadow-sm);
+}
+[data-theme="dark"] .clockbox,[data-theme="dark"] .lanebox,[data-theme="dark"] .hud{background:rgba(30,42,36,.82);border-color:var(--s-line)}
+.clockbox{padding:9px 13px}
+.clockbox .c{font-size:23px}
+.lanebox{padding:10px 12px}
+.hud{left:14px;right:14px;bottom:14px;border-radius:14px}
+.hud>div{padding:10px 13px}
+.hud b{font-size:22px}
+.toast{border-radius:999px;box-shadow:var(--s-shadow-sm)}
+.countdown{border-radius:14px;background:rgba(255,253,248,.88);border:1px solid rgba(255,255,255,.78);box-shadow:var(--s-shadow-sm);backdrop-filter:blur(18px)}
+[data-theme="dark"] .countdown{background:rgba(30,42,36,.9);border-color:var(--s-line)}
+
+/* First-level intro and one-line teaching tips read as the AI coach card. */
+dialog{border-radius:20px;border:1px solid rgba(255,255,255,.72);background:rgba(255,253,248,.92);backdrop-filter:blur(24px) saturate(1.2);box-shadow:var(--s-shadow)}
+dialog::backdrop{background:rgba(23,33,27,.38);backdrop-filter:blur(7px)}
+dialog.intro{max-width:620px;padding:26px 28px 22px}
+dialog.intro .tag{border-radius:999px;background:var(--s-accent-soft);color:var(--s-accent);padding:3px 10px}
+dialog.intro .ivcourse{border-left:3px solid var(--s-accent);border-radius:0 9px 9px 0;background:rgba(231,241,235,.62);padding:8px 12px}
+.tipbox{border-radius:14px;background:rgba(255,253,248,.90);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);border-color:var(--s-accent);box-shadow:var(--s-shadow-sm);padding:13px 15px}
+
+/* AI demo/result dialogs inherit the same glass language. */
+#demoDlg,.demobox{border-radius:16px}
+.demobox{background:rgba(231,241,235,.72);border-color:rgba(14,122,78,.38);box-shadow:none}
+
+/* Keep the shell usable on tablets and phones while leaving board input intact. */
+@media (max-width:1100px){
+  .side{width:290px;margin-left:10px;padding-left:13px;padding-right:13px}
+  .side.right{width:260px;margin-right:10px}
+  .play{padding-left:8px;padding-right:8px}
+}
+@media (max-width:860px){
+  body{overflow:auto}
+  #topbar{height:54px;padding:0 12px}
+  #topbar .brand .sub{display:none}
+  #navrow{height:60px}
+  #navrow .t b{display:none}
+  #navrow .t s{font-size:10px}
+  .eg{display:grid;grid-template-columns:1fr;overflow:auto;min-height:calc(100vh - 114px)}
+  .side,.side.right{width:auto;height:auto;max-height:none;margin:10px 10px 0;border-radius:14px}
+  .play{min-height:58vh;padding:10px;margin:0 0 10px;order:-1}
+  .side.right{margin-bottom:10px}
+  .mapplate{min-height:56vh}
+  .hud{grid-template-columns:repeat(2,1fr)}
+  .hud>div:nth-child(2){border-right:0}
+  .hud>div:nth-child(-n+2){border-bottom:1px solid var(--s-line)}
+}
+
+/* Mode 05 sandbox shell: the board/engine remains unchanged; only its chrome becomes glass. */
+.sandbox-top{background:var(--s-chrome);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);border-color:var(--s-line)}
+.sandbox-left,.sandbox > .side:not(.sandbox-right){background:rgba(255,253,248,.82);backdrop-filter:blur(22px) saturate(1.25);-webkit-backdrop-filter:blur(22px) saturate(1.25);border:1px solid rgba(255,255,255,.68);border-radius:16px;box-shadow:var(--s-shadow-sm)}
+.sandbox-right{background:rgba(255,253,248,.82);backdrop-filter:blur(22px) saturate(1.25);-webkit-backdrop-filter:blur(22px) saturate(1.25);border:1px solid rgba(255,255,255,.68);border-radius:16px;box-shadow:var(--s-shadow-sm)}
+[data-theme="dark"] .sandbox-left,[data-theme="dark"] .sandbox-right,[data-theme="dark"] .sandbox > .side:not(.sandbox-right){background:rgba(30,42,36,.86);border-color:var(--s-line)}
+.sandbox-play{gap:10px;padding:12px}
+.maptoolbar{padding:4px 6px;border:1px solid rgba(255,255,255,.68);border-radius:12px;background:rgba(255,253,248,.70);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 14px rgba(23,33,27,.06)}
+[data-theme="dark"] .maptoolbar{background:rgba(30,42,36,.78);border-color:var(--s-line)}
+.periods{border-radius:9px;background:rgba(255,255,255,.52)}
+.periods button{border-radius:7px}
+.periods button[aria-pressed="true"]{background:var(--s-accent);color:#fff}
+.maptools .btn{border-radius:8px}
+.sandbox-map{border-radius:18px;border:1px solid rgba(255,255,255,.72);box-shadow:var(--s-shadow);background:var(--s-panel)}
+[data-theme="dark"] .sandbox-map{border-color:var(--s-line)}
+.map-corner{border-radius:12px;background:rgba(255,253,248,.78);backdrop-filter:blur(16px) saturate(1.15);-webkit-backdrop-filter:blur(16px) saturate(1.15);border-color:rgba(255,255,255,.72);box-shadow:var(--s-shadow-sm)}
+[data-theme="dark"] .map-corner{background:rgba(30,42,36,.84);border-color:var(--s-line)}
+.sandbox-hud{border-radius:14px;left:14px;right:14px;bottom:14px;background:rgba(255,253,248,.78);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border-color:rgba(255,255,255,.72);box-shadow:var(--s-shadow-sm)}
+[data-theme="dark"] .sandbox-hud{background:rgba(30,42,36,.84);border-color:var(--s-line)}
+.sandbox-cards{gap:8px}
+.plan-card{border-radius:11px;background:rgba(255,255,255,.54);border-color:var(--s-line)}
+.plan-card:hover,.plan-card.selected{box-shadow:0 0 0 2px rgba(14,122,78,.12),inset 0 0 0 1px var(--s-accent)}
+[data-theme="dark"] .plan-card{background:rgba(36,51,43,.72)}
+.plan-detail,.roadbox{border-radius:12px}
+.sandbox-table{border-radius:12px;overflow:hidden}
+body .m5-history{border-radius:16px;background:rgba(255,253,248,.90);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);border-color:rgba(255,255,255,.76);box-shadow:var(--s-shadow-sm);color:var(--s-ink)}
+body .m5-history-note,body .m5-history-empty{color:var(--s-ink3)}
+body .m5-history-row{border-top-color:var(--s-line)}
+body .m5-history-row .idx{background:var(--s-accent)}
+body .m5-history-row button{color:var(--s-bad)}
+[data-theme="dark"] body .m5-history{background:rgba(30,42,36,.92);border-color:var(--s-line);color:var(--s-ink)}
+@media(max-width:700px){
+  .sandbox-play{padding:10px;min-height:440px}
+  .maptoolbar{position:sticky;top:0;z-index:12}
+  .sandbox-map{border-radius:14px}
+  .sandbox-hud{left:10px;right:10px;bottom:10px}
+  body .m5-history{bottom:76px;width:min(440px,calc(100% - 20px))}
+}
+
+/* Extra language picker added by the shared i18n layer. */
+.lang-more{height:28px;min-width:34px;padding:0 8px;border:1px solid var(--s-line);border-radius:999px;background:rgba(255,255,255,.62);color:var(--s-ink2);font:11px var(--s-mono);cursor:pointer}
+.lang-more:hover{border-color:var(--s-accent);color:var(--s-accent);background:var(--s-accent-soft)}
+[data-theme="dark"] .lang-more{background:rgba(36,51,43,.72);color:var(--s-ink2);border-color:var(--s-line)}
+
+/* UI改造包(3) · 站点吸引力色阶。绿色弧线表示吸引力，琥珀/红色只表示容量压力。 */
+:root{
+  --s-pull-100:#0E7A4E;--s-pull-90:#328E67;--s-pull-80:#56A181;--s-pull-70:#73B195;--s-pull-60:#90C0A9;
+  --s-pull-50:#A8CDBA;--s-pull-40:#BED9C9;--s-pull-30:#D1E3D7;--s-pull-20:#E2ECE3;--s-pull-10:#F1F4ED;
+}
+[data-theme="dark"]{
+  --s-pull-100:#4EBE84;--s-pull-90:#44A372;--s-pull-80:#3A885F;--s-pull-70:#317251;--s-pull-60:#295D42;
+  --s-pull-50:#224B36;--s-pull-40:#1C3B2B;--s-pull-30:#172C21;--s-pull-20:#122019;--s-pull-10:#0E1511;
+}
+/* 纸潮原型的半透明浮层，保留原有地图和控件事件。 */
+body .eg:not(.sandbox) .box,body .eg:not(.sandbox) .lanebox,body:not(.sb3) dialog{
+  background:rgba(255,253,248,.74);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);
+  border-color:rgba(255,255,255,.72);box-shadow:0 8px 26px rgba(23,33,27,.13);
+}
+[data-theme="dark"] body .eg:not(.sandbox) .box,[data-theme="dark"] body .eg:not(.sb3) dialog{background:rgba(30,42,36,.84);border-color:var(--s-line)}

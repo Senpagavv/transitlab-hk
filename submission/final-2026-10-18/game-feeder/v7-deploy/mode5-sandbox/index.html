@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TransitLab HK · 模式 5 · 全港沙盤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../shared/style.css"><link rel="stylesheet" href="sandbox.css?v=20261018c"><link rel="stylesheet" href="experience.css?v=20261018b"><link rel="stylesheet" href="layout.css?v=20261018b"><link rel="stylesheet" href="../shared/ui-shell.css">
+<link rel="stylesheet" href="../shared/tl-simplify.css"></head><body class="entered sb3">
+<header id="topbar">
+  <div class="brand"><img class="brandlogo" src="../shared/logo-tide.svg" alt="TransitLab" width="22" height="22"><span class="wm">TransitLab</span><span class="sub" data-i18n="brand.sub">HK · Feeder bus · 接駁巴士</span></div>
+  <div class="sp"></div><button class="btn btn-sm" id="help" data-i18n="top.rules">Rules 規則</button>
+  <div class="seg lang" id="langSeg" role="group" data-i18n-aria="top.lang"><button data-lang="zh-Hant" title="繁體中文" aria-pressed="true">繁</button><button data-lang="zh-Hans" title="简体中文" aria-pressed="false">简</button><button data-lang="en" title="English" aria-pressed="false">EN</button></div><select class="lang-more" id="langMore" aria-label="More languages" title="More languages"><option value="">＋</option><option value="es">ES · Español</option><option value="ja">日本語</option><option value="kk">Қазақша</option><option value="ko">한국어</option></select>
+  <div class="seg" role="group" data-i18n-aria="top.theme"><button id="thPaper" aria-pressed="true" data-i18n-title="top.paper">☀</button><button id="thInk" aria-pressed="false" data-i18n-title="top.ink">☾</button></div>
+</header>
+<nav id="navrow" data-current="5"></nav>
+<main id="app" class="eg sandbox">
+  <aside class="side scol">
+    <div class="row"><a class="btn btn-sm" href="../index.html" data-i18n="m.back">← 五個模式</a><button class="btn btn-sm" id="about" data-i18n="g.lvInfo">本關</button><div class="sp"></div><span class="chip"><i></i><span data-i18n="m5.mode">Mode 05 · 全港沙盤</span></span></div>
+    <h1 class="h1"><span>Hong Kong sandbox</span><span class="h1tc" data-i18n="m5.title">全港沙盤</span></h1>
+    <p class="lede" data-i18n-html="m5.lede">Draw a metro line across Hong Kong and watch trips shift.<span class="tcb">在全港格子上畫線、放站，逐輪看人流和車流怎樣改變。</span></p>
+    <div class="box goal">
+      <div class="row"><span class="lbl" data-i18n="m5.today">本輪結果</span><div class="sp"></div><span class="mono" id="roundLabel">—</span></div>
+      <div class="goal-grid">
+        <div><b id="goalNew">0</b><small data-i18n="m5.newRiders">坐新線 / 小時</small></div>
+        <div><b id="goalCars">0</b><small data-i18n="m5.fewerCars">少了多少車</small></div>
+        <div><b id="goalJam">0</b><small data-i18n="m5.lessJam">塞車減少</small></div>
+        <div><b id="goalSaved">0</b><small data-i18n="m5.saved">省下人·分鐘</small></div>
+      </div>
+    </div>
+    <div class="row controls sandbox-controls">
+      <button class="btn btn-p" id="runStep" data-i18n="m5.runStep">▶ 跑一輪</button>
+      <button class="btn" id="runStable" data-i18n="m5.runStable">自動跑到穩定</button><span id="sandboxSpeedHint" class="sandbox-speed-hint" data-i18n="m5.fast">按住 F 加速</span>
+      <button class="btn btn-sm" id="reset" data-i18n-title="g.reset" data-i18n-aria="g.reset" aria-label="Reset">↺</button>
+    </div>
+    <div class="budgetrow"><span class="lbl" data-i18n="m5.budget">建造預算</span><b class="mono"><span id="budgetUsed">0</span> / <span id="budgetMax">300</span></b></div>
+    <div class="budget"><i id="budgetBar"></i></div>
+    <div class="sandbox-cards">
+      <button class="plan-card selected" id="lineTool" data-tool="line" aria-pressed="true"><span class="card-icon">⌁</span><span data-i18n="m5.line">線路</span><b id="lineCount">0</b><small data-i18n="m5.lineCost">每格 1</small></button>
+      <button class="plan-card" id="stationTool" data-tool="station" aria-pressed="false"><span class="card-icon">●</span><span data-i18n="m5.station">車站</span><b id="stationCount">0</b><small data-i18n="m5.stationCost">每站 3</small></button>
+      <div class="plan-card train-card"><span class="card-icon">▰</span><span data-i18n="m5.trains">列車</span><b id="trainCount">0</b><small data-i18n="m5.trainCost">每列 4</small><div class="row train-buttons"><button class="btn btn-sm" id="trainMinus" data-i18n-aria="m5.removeTrain" aria-label="Remove train">−</button><button class="btn btn-sm" id="trainPlus" data-i18n-aria="m5.addTrain" aria-label="Add train">+</button></div></div>
+    </div>
+    <div class="row plan-actions"><button class="btn btn-sm" id="newLine" data-i18n="m5.newLine">＋ 新增一條線</button><select id="linePicker" data-i18n-aria="m5.selectLine"></select><span id="activeLineNote" class="note"></span></div>
+    <button class="btn btn-sm example-control" id="examplePlan" data-i18n="m5.example" hidden>試玩九龍東示例</button>
+    <div class="box plan-detail" id="planDetail"></div>
+    <div class="lbl" style="margin-top:14px" data-i18n="m5.rulesH">三條規則</div>
+    <ol class="mini"><li data-i18n-html="m5.rule1"></li><li data-i18n-html="m5.rule2"></li><li data-i18n-html="m5.rule3"></li></ol>
+    <div class="lbl" style="margin-top:12px" data-i18n="g.read">How to read the map · 怎麼看</div>
+    <div class="legend sandbox-legend"><span><i class="key-road"></i><span data-i18n="m5.legendRoad">道路車流</span></span><span><i class="key-rail"></i><span data-i18n="m5.legendRail">公共交通</span></span><span><i class="key-home"></i><span data-i18n="m5.legendPop">人口</span></span><span><i class="key-job"></i><span data-i18n="m5.legendJobs">岗位</span></span></div>
+  </aside>
+  <section class="play sandbox-play">
+    <div class="maptoolbar">
+      <div class="periods" id="periodTabs" role="group" data-i18n-aria="m5.periods">
+        <button data-period="am" aria-pressed="true" data-i18n="p.am">早高峰</button><button data-period="pm" aria-pressed="false" data-i18n="p.pm" disabled>晚高峰</button><button data-period="day" aria-pressed="false" data-i18n="p.day" disabled>平日日常</button><button data-period="holiday" aria-pressed="false" data-i18n="p.holiday" disabled>節假日</button>
+      </div>
+      <div class="maptools"><button class="btn btn-sm" id="panTool" aria-pressed="false" data-i18n="m5.pan">平移</button><button class="btn btn-sm" id="zoomIn" data-i18n-aria="m5.zoomIn" aria-label="Zoom in">＋</button><button class="btn btn-sm" id="zoomOut" data-i18n-aria="m5.zoomOut" aria-label="Zoom out">−</button><button class="btn btn-sm" id="resetView" data-i18n="m5.fit">全圖</button><button class="btn btn-sm view3d-toggle" id="view3d" type="button" aria-pressed="false" title="切换立体视图">3D</button></div>
+    </div>
+    <div class="mapplate sandbox-map">
+      <canvas id="board" data-i18n-aria="m5.board" aria-label="Hong Kong transit sandbox map"></canvas>
+      <div class="map-corner round-corner"><b id="roundBadge">第 0 輪</b><small id="fixtureBadge"></small></div>
+      <div class="map-corner message-corner" id="mapMessage"></div>
+      <div class="map-corner layer-corner">
+        <label><input id="layerRoads" type="checkbox" checked><span data-i18n="m5.layerRoads">🚗 道路車流</span></label>
+        <label><input id="layerTransit" type="checkbox" checked><span data-i18n="m5.layerTransit">🚇 公共交通</span></label>
+        <label><input id="layerPop" type="checkbox" checked><span data-i18n="m5.layerPop">人口</span></label>
+        <label><input id="layerJobs" type="checkbox" checked><span data-i18n="m5.layerJobs">岗位</span></label>
+      </div>
+      <div class="map-corner zoom-corner"><span id="toolHint" data-i18n="m5.drawHint">拖動畫 4 連通線</span></div>
+      <div class="hud sandbox-hud">
+        <div><b id="hudNew">0</b><small data-i18n="m5.newRiders">坐新線 / 小時</small></div>
+        <div><b id="hudTransit">0</b><small data-i18n="m5.changedTransit">改坐公交</small></div>
+        <div><b id="hudCars">0</b><small data-i18n="m5.fewerCars">少了多少車</small></div>
+        <div><b id="hudJam">0</b><small data-i18n="m5.lessJam">塞車減少</small></div>
+      </div>
+      <div id="tooltip" class="map-tooltip" hidden></div>
+      <div id="mapStatus" class="map-status" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+  <aside class="side right scol sandbox-right">
+    <div class="row"><span class="lbl" data-i18n="m5.rounds">逐輪結果</span><div class="sp"></div><span class="chip"><i></i><span id="stableBadge" data-i18n="m5.waiting">未開始</span></span></div>
+    <div class="table-wrap"><table class="sandbox-table"><thead><tr><th data-i18n="m5.colRound">輪</th><th data-i18n="m5.colNew">坐新線</th><th data-i18n="m5.colCars">少車</th><th data-i18n="m5.colJam">塞車</th></tr></thead><tbody id="roundRows"></tbody></table></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="m5.topRoads">變化最大的 5 段路</div>
+    <div class="box roadbox" id="hotRoads"></div>
+    <div class="lbl" style="margin-top:16px" data-i18n="g.log">Dispatch log · 調度提示</div>
+    <p id="dispatch" class="note" role="status" aria-live="polite"></p>
+    <div class="lbl" style="margin-top:16px" data-i18n="m5.areas">片區</div>
+    <div class="areas" id="areasList"></div>
+    <button class="btn btn-sm cut-button" id="cutArea" data-i18n="m5.cut" disabled>切成關卡</button>
+    <p class="note" data-i18n="m5.cutNote">切關卡由任務 53 接上。</p>
+    <p class="note caveat" id="sourceNote"></p>
+    <p class="note" id="timeNote"></p>
+  </aside>
+</main>
+<dialog id="info"><button class="close" data-close="info">×</button><span class="lbl" data-i18n="m5.infoLbl">Rules &amp; sources · 規則與資料</span><h2 class="h1" data-i18n="m5.infoTitle">全港沙盤怎樣算</h2><ol class="rules"><li data-i18n-html="m5.rule1"></li><li data-i18n-html="m5.rule2"></li><li data-i18n-html="m5.rule3"></li><li data-i18n-html="m5.infoCrowd"></li></ol><p class="note" data-i18n="m5.infoSource"></p></dialog>
+<script src="../shared/site.js"></script><script src="../auth.js"></script>
+<script src="../mode3-roads/data.js"></script><script src="../shared/i18n.js"></script><script src="../shared/nav.js"></script><script src="strings.js?v=20261018b"></script><script src="engine.js"></script><script src="fallback.js"></script><script src="challenges.js"></script><script src="../shared/levelpack.js"></script><script src="../ai/client.js?v=20261017f"></script><script src="ai-level.js?v=20261018b"></script><script src="scenarios.js"></script><script src="experience.js?v=20261018b"></script><script src="scoreboard.js?v=20261017e"></script><script src="vector.js"></script><script src="ui.js?v=20261018c"></script><script src="layout.js?v=20261018c"></script><script src="history.js?v=20261018c"></script><script src="../shared/soundscape.js"></script><script src="../shared/tl-simplify.js"></script></body></html>
+
+
+
+
+
+
+

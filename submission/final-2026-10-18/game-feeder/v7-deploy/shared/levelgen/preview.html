@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全港切关卡 · TransitLab</title>
+<style>
+:root{font-family:system-ui,"Segoe UI",sans-serif;color:#233142;background:#f5f3ed}*{box-sizing:border-box}body{margin:0;padding:24px;max-width:1180px;margin-inline:auto}h1{margin:0 0 6px;font-size:24px}p{margin:4px 0 16px;color:#617080}.panel{background:#fff;border:1px solid #d9e0e7;border-radius:12px;padding:16px;margin:12px 0}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:end}label{display:grid;gap:6px;font-size:13px;color:#586878;flex:1;min-width:180px}input,select,textarea,button{font:inherit;border:1px solid #c8d1db;border-radius:8px;padding:9px;background:#fff;color:#243447}textarea{width:100%;min-height:145px;font:13px/1.45 ui-monospace,Consolas,monospace}button{cursor:pointer;background:#284d71;color:#fff;border:0;font-weight:650}button:disabled{opacity:.45;cursor:default}.gridwrap{overflow:auto}.map{display:grid;gap:2px;width:max-content;background:#d9e4eb;padding:6px;border-radius:8px}.tile{width:30px;height:28px;background:#e7e1c9;border-radius:3px;display:grid;place-items:center;font-size:11px;color:#284055;position:relative}.tile.water{background:#a9d2e6}.tile.road{box-shadow:inset 0 0 0 2px #65717e}.tile.rail{border-bottom:3px solid #328054}.tile.home{background:#f3c66a;font-weight:800}.tile.dest{background:#e99678;font-weight:800}.tile.gate{background:#e8a0a7;font-weight:800}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;margin-top:10px;color:#586878}.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}.out{display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1fr);gap:14px}.out pre{max-height:460px;overflow:auto;background:#172432;color:#e6edf4;border-radius:8px;padding:12px;font-size:12px;white-space:pre-wrap;word-break:break-word}.status{font-size:13px;min-height:1.3em;color:#385a76}.warning{color:#a23a34}@media(max-width:740px){body{padding:12px}.out{grid-template-columns:1fr}}
+</style></head><body>
+<h1>从全港底板切出关卡</h1><p>选择任务51输出的底板和时段需求，填入关卡请求；此页只预览第三关 mode 3。</p>
+<section class="panel"><div class="row">
+<label>hk-base.json<input id="baseFile" type="file" accept=".json,application/json"></label>
+<label>hk-demand-*.json<input id="demandFile" type="file" accept=".json,application/json"></label>
+<label>片区<select id="area"><option value="">先载入底板</option></select></label>
+<label>机器人秒数<input id="seconds" type="number" min="1" max="120" value="20"></label>
+</div><p id="status" class="status">先载入两个 JSON 文件。</p>
+<label>关卡请求 JSON</label><textarea id="request">{
+  "area": "",
+  "period": "am",
+  "mode": 3,
+  "changes": [],
+  "title": "",
+  "story": []
+}</textarea>
+<div class="row"><button id="generate" disabled>切片并验收</button><button id="open" disabled>在第三关打开</button></div></section>
+<section class="panel"><b id="summary">地图预览</b><div class="gridwrap"><div id="map" class="map"></div></div><div class="legend"><span><i class="sw" style="background:#f3c66a"></i>屋苑</span><span><i class="sw" style="background:#e99678"></i>去处</span><span><i class="sw" style="background:#a9d2e6"></i>海/水塘</span><span>底色路段 / 线底边为港铁</span></div></section>
+<section class="out"><div class="panel"><b>关卡 JSON</b><pre id="levelOut"></pre></div><div class="panel"><b>机器人验收</b><pre id="reportOut"></pre></div></section>
+<script src="../../mode3-roads/data.js"></script><script src="../../mode3-roads/engine.js"></script><script src="cut.js"></script><script src="check.js"></script><script src="bot.js"></script>
+<script>
+(function(){
+'use strict';
+var base=null,demand=null,last=null;
+var el=function(id){return document.getElementById(id);};
+function status(t,bad){el('status').textContent=t;el('status').className='status'+(bad?' warning':'');}
+function read(file){return file.text().then(function(t){return JSON.parse(t.replace(/^\uFEFF/,''));});}
+function clearLast(){last=null;el('open').disabled=true;}
+function updateReady(){el('generate').disabled=!(base&&demand&&el('area').value);}
+function loadArea(){var sel=el('area');sel.innerHTML='';(base&&base.areas||[]).forEach(function(a){var o=document.createElement('option');o.value=a.key;o.textContent=(a.name||a.hans||a.key)+' · '+a.key;sel.appendChild(o);});if(sel.options.length)sel.selectedIndex=0;updateReady();}
+el('baseFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;base=null;clearLast();updateReady();read(f).then(function(x){base=x;clearLast();loadArea();status('底板已载入：'+(base.zones||[]).length+' 分区。');}).catch(function(err){status('底板读取失败：'+err.message,true);});});
+el('demandFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;demand=null;clearLast();updateReady();read(f).then(function(x){demand=x;clearLast();updateReady();status('需求已载入：'+(demand.period||'?')+' · '+(demand.pairs||[]).length+' OD 对。');}).catch(function(err){status('需求读取失败：'+err.message,true);});});
+el('area').addEventListener('change',function(){clearLast();updateReady();});
+function draw(level){var map=el('map'),cols=level.cols,rows=level.rows,water=new Set((level.water||[]).map(function(c){return c[0]+','+c[1];})),roads=new Set(),rails=new Set(),marks=new Map();
+(level.roads||[]).forEach(function(r){(r.via||[]).forEach(function(c){roads.add(c[0]+','+c[1]);});});
+(level.lines||[]).forEach(function(l){(l.via||[]).forEach(function(c){rails.add(c[0]+','+c[1]);});(l.stations||[]).forEach(function(c){marks.set(c[0]+','+c[1],'●');});});
+(level.origins||[]).forEach(function(x){marks.set(x.cell[0]+','+x.cell[1],{mark:'H',kind:'home',name:x.name+' · '+x.people+'人'});});
+(level.destinations||[]).forEach(function(x){marks.set(x.cell[0]+','+x.cell[1],{mark:x.kind==='gate'?'G':'D',kind:x.kind==='gate'?'gate':'dest',name:x.name});});
+map.innerHTML='';map.style.gridTemplateColumns='repeat('+cols+',30px)';
+for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){var k=x+','+y,t=document.createElement('div');t.className='tile'+(water.has(k)?' water':'')+(roads.has(k)?' road':'')+(rails.has(k)?' rail':'');var mark=marks.get(k);if(mark&&typeof mark==='object'){t.textContent=mark.mark;t.className+=' '+mark.kind;t.title=mark.name;}else t.textContent=mark||'';map.appendChild(t);}
+}
+el('generate').addEventListener('click',function(){clearLast();el('generate').disabled=true;status('正在切片并运行机器人，请稍候。');setTimeout(function(){try{var req=JSON.parse(el('request').value||'{}');req.area=el('area').value;req.period=req.period||demand.period||'am';req.mode=req.mode||3;var res=LevelCutter.cut(base,demand,req);if(!res.level){el('reportOut').textContent=JSON.stringify(res,null,2);status('切片失败。',true);return;}
+var cal=LevelChecker.calibrateRoads(res.level,Roads),b=LevelBot.search(res.level,Roads,Number(el('seconds').value)||20),check=LevelChecker.check(res.level,Roads,b);last={level:res.level,report:check.report,problems:res.problems.concat(check.problems),notes:res.notes.concat(cal.notes,check.notes)};draw(res.level);el('levelOut').textContent=JSON.stringify(res.level,null,2);el('reportOut').textContent=JSON.stringify({report:check.report,problems:last.problems,notes:last.notes,search:{seconds:b.seconds,iterations:b.iterations}},null,2);el('summary').textContent=res.level.title+' · '+res.level.origins.length+' 屋苑 · '+res.level.destinations.length+' 去处 · '+res.level.roads.length+' 路段';el('open').disabled=false;status('切片与机器人验收完成。');}
+catch(err){status('生成失败：'+err.message,true);el('reportOut').textContent=err.stack||err.message;}finally{updateReady();}},30);});
+el('open').addEventListener('click',function(){if(!last)return;try{localStorage.setItem('tl-gen-level',JSON.stringify(last.level));window.open('../../mode3-roads/index.html#gen','_blank');}catch(err){status('无法写入 localStorage：'+err.message,true);}});
+})();
+</script></body></html>

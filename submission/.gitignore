@@ -1,0 +1,3 @@
+# Local account and leaderboard state created when running the preserved app.
+final-2026-10-18/data/app/*
+!final-2026-10-18/data/app/.gitkeep

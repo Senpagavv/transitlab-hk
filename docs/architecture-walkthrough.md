@@ -1,3 +1,5 @@
+> **Historical fleet-study document / 早期车队方案资料.** This is retained for traceability and is not the current product walkthrough. Review the [final project](../README.md), [judges guide](judges/README.md) and [technical evidence](judges/technical-evidence.md) first. 当前五模式游戏不以本文旧车队结果作为现实影响主张。
+
 # TransitLab HK 工程全景：做了什么、怎么做的、还差什么
 
 > 写于 2026-09-22。目的：让项目发起人完整掌握这个工程，能判断哪里要优化、哪里可能有偏差。

@@ -5,3 +5,7 @@ game-demo/data*.js -text -diff
 
 # Shell scripts must keep LF line endings for macOS / Linux
 *.sh text eol=lf
+
+# Preserve the uploaded final archive's extracted bytes on every platform.
+submission/final-2026-10-18/** -text
+docs/history/README-before-submission.txt -text

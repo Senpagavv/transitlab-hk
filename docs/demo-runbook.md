@@ -1,3 +1,5 @@
+> **Historical fleet-study document / 早期车队方案资料.** This is retained for traceability and is not the current product walkthrough. Review the [final project](../README.md), [judges guide](judges/README.md) and [technical evidence](judges/technical-evidence.md) first. 当前五模式游戏不以本文旧车队结果作为现实影响主张。
+
 # 演示手册
 
 > 写于 2026-09-23。目的：不用回忆、照着念就能把这个项目演示完。

@@ -1,0 +1,5886 @@
+{
+  "level": {
+    "title": "元朗多两万人",
+    "story": [
+      "“元朗站一帶”人口增加 20000；按原数量换算为 36.8%。"
+    ],
+    "cols": 16,
+    "rows": 12,
+    "origins": [
+      {
+        "name": "元朗站一帶",
+        "hans": "元朗站一带",
+        "cell": [
+          7,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 74,
+        "zoneIds": [
+          "524.2",
+          "524.1",
+          "524.4"
+        ],
+        "aliases": [
+          "元朗站一帶",
+          "元朗站一带",
+          "康樂路站一帶",
+          "康乐路站一带",
+          "尚豪庭"
+        ],
+        "sourcePop": 54416,
+        "grow": [
+          [
+            0,
+            74
+          ],
+          [
+            4,
+            101
+          ]
+        ]
+      },
+      {
+        "name": "天晴邨",
+        "hans": "天晴邨",
+        "cell": [
+          0,
+          2
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 61,
+        "zoneIds": [
+          "510.12",
+          "510.8",
+          "510.3",
+          "510.9"
+        ],
+        "aliases": [
+          "天晴邨",
+          "天榮站一帶",
+          "天荣站一带",
+          "銀座站一帶",
+          "银座站一带",
+          "伊利沙伯中學舊生會湯國華中學",
+          "伊利沙伯中学旧生会汤国华中学"
+        ],
+        "sourcePop": 50074
+      },
+      {
+        "name": "大棠路站一帶",
+        "hans": "大棠路站一带",
+        "cell": [
+          5,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 58,
+        "zoneIds": [
+          "524.3",
+          "527.3",
+          "527.1"
+        ],
+        "aliases": [
+          "大棠路站一帶",
+          "大棠路站一带",
+          "水邊圍站一帶",
+          "水边围站一带",
+          "豐年路站一帶",
+          "丰年路站一带"
+        ],
+        "sourcePop": 46154
+      },
+      {
+        "name": "蝶翠峯",
+        "hans": "蝶翠峰",
+        "cell": [
+          7,
+          9
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 41,
+        "zoneIds": [
+          "529",
+          "523"
+        ],
+        "aliases": [
+          "蝶翠峯",
+          "蝶翠峰",
+          "東華三院馬振玉中學(近朗善邨",
+          "东华三院马振玉中学(近朗善邨"
+        ],
+        "sourcePop": 33591
+      },
+      {
+        "name": "天慈站一帶",
+        "hans": "天慈站一带",
+        "cell": [
+          0,
+          5
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 35,
+        "zoneIds": [
+          "510.7"
+        ],
+        "aliases": [
+          "天慈站一帶",
+          "天慈站一带"
+        ],
+        "sourcePop": 27667
+      },
+      {
+        "name": "朗屏邨",
+        "hans": "朗屏邨",
+        "cell": [
+          5,
+          5
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 31,
+        "zoneIds": [
+          "527.2",
+          "528"
+        ],
+        "aliases": [
+          "朗屏邨",
+          "橫洲東頭圍 蔡福善堂",
+          "横洲东头围 蔡福善堂"
+        ],
+        "sourcePop": 26333
+      }
+    ],
+    "destinations": [
+      {
+        "name": "尚豪庭",
+        "hans": "尚豪庭",
+        "kind": "jobs",
+        "cell": [
+          7,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 27546,
+        "attraction": 17.8364,
+        "carExtra": 2,
+        "zoneIds": [
+          "524.4",
+          "524.1",
+          "524.2"
+        ],
+        "aliases": [
+          "尚豪庭",
+          "康樂路站一帶",
+          "康乐路站一带",
+          "元朗站一帶",
+          "元朗站一带"
+        ]
+      },
+      {
+        "name": "天榮站一帶",
+        "hans": "天荣站一带",
+        "kind": "jobs",
+        "cell": [
+          0,
+          2
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 27199,
+        "attraction": 17.813266666666667,
+        "carExtra": 2,
+        "zoneIds": [
+          "510.8",
+          "510.3",
+          "510.12",
+          "510.9"
+        ],
+        "aliases": [
+          "天榮站一帶",
+          "天荣站一带",
+          "銀座站一帶",
+          "银座站一带",
+          "天晴邨",
+          "伊利沙伯中學舊生會湯國華中學",
+          "伊利沙伯中学旧生会汤国华中学"
+        ]
+      },
+      {
+        "name": "往南面",
+        "hans": "往南面",
+        "kind": "gate",
+        "cell": [
+          4,
+          11
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobsEquivalent": 20897,
+        "attraction": 17.393106666666668,
+        "carExtra": 2,
+        "sourceTarget": "121S"
+      }
+    ],
+    "roads": [
+      {
+        "name": "濕地公園路",
+        "hans": "湿地公园路",
+        "via": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "cap": 32.24701244556356,
+        "aliases": [
+          "WETLAND PARK ROAD"
+        ]
+      },
+      {
+        "name": "KAM POK ROAD",
+        "hans": "KAM POK ROAD",
+        "via": [
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "cap": 21.05219706507606,
+        "aliases": [
+          "KAM POK ROAD"
+        ]
+      },
+      {
+        "name": "KAM POK ROAD EAST",
+        "hans": "KAM POK ROAD EAST",
+        "via": [
+          [
+            12,
+            0
+          ],
+          [
+            13,
+            0
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "KAM POK ROAD EAST"
+        ]
+      },
+      {
+        "name": "SAN TIN HIGHWAY",
+        "hans": "SAN TIN HIGHWAY",
+        "via": [
+          [
+            13,
+            0
+          ],
+          [
+            13,
+            1
+          ]
+        ],
+        "cap": 91.89903201172321,
+        "aliases": [
+          "SAN TIN HIGHWAY"
+        ]
+      },
+      {
+        "name": "SAN TIN HIGHWAY",
+        "hans": "SAN TIN HIGHWAY",
+        "via": [
+          [
+            13,
+            1
+          ],
+          [
+            12,
+            1
+          ],
+          [
+            12,
+            2
+          ]
+        ],
+        "cap": 64.6550122804483,
+        "aliases": [
+          "SAN TIN HIGHWAY"
+        ]
+      },
+      {
+        "name": "天葵路",
+        "hans": "天葵路",
+        "via": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "cap": 22.451548987637,
+        "aliases": [
+          "TIN KWAI ROAD"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "cap": 53.24967492931003,
+        "aliases": []
+      },
+      {
+        "name": "WANG LEE STREET",
+        "hans": "WANG LEE STREET",
+        "via": [
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "WANG LEE STREET"
+        ]
+      },
+      {
+        "name": "福喜街",
+        "hans": "福喜街",
+        "via": [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "cap": 21.05219706507606,
+        "aliases": [
+          "FUK HI STREET"
+        ]
+      },
+      {
+        "name": "福喜街",
+        "hans": "福喜街",
+        "via": [
+          [
+            5,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "FUK HI STREET"
+        ]
+      },
+      {
+        "name": "福喜街",
+        "hans": "福喜街",
+        "via": [
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "cap": 70.0295143547089,
+        "aliases": [
+          "FUK HI STREET"
+        ]
+      },
+      {
+        "name": "WANG LOK STREET",
+        "hans": "WANG LOK STREET",
+        "via": [
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "WANG LOK STREET"
+        ]
+      },
+      {
+        "name": "WANG LOK STREET",
+        "hans": "WANG LOK STREET",
+        "via": [
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "cap": 21.05219706507606,
+        "aliases": [
+          "WANG LOK STREET"
+        ]
+      },
+      {
+        "name": "WANG LOK STREET",
+        "hans": "WANG LOK STREET",
+        "via": [
+          [
+            7,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "WANG LOK STREET"
+        ]
+      },
+      {
+        "name": "WANG LOK STREET",
+        "hans": "WANG LOK STREET",
+        "via": [
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "cap": 48.29621679635096,
+        "aliases": [
+          "WANG LOK STREET"
+        ]
+      },
+      {
+        "name": "WANG LOK STREET",
+        "hans": "WANG LOK STREET",
+        "via": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "cap": 46.61204103114488,
+        "aliases": [
+          "WANG LOK STREET"
+        ]
+      },
+      {
+        "name": "新潭路",
+        "hans": "新潭路",
+        "via": [
+          [
+            13,
+            1
+          ],
+          [
+            13,
+            2
+          ],
+          [
+            12,
+            2
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "SAN TAM ROAD"
+        ]
+      },
+      {
+        "name": "天華路",
+        "hans": "天华路",
+        "via": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "TIN WAH ROAD"
+        ]
+      },
+      {
+        "name": "天龍路",
+        "hans": "天龙路",
+        "via": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "cap": 46.74826112980125,
+        "aliases": [
+          "TIN LUNG ROAD"
+        ]
+      },
+      {
+        "name": "TIN TSZ ROAD",
+        "hans": "TIN TSZ ROAD",
+        "via": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "cap": 58.20313306226911,
+        "aliases": [
+          "TIN TSZ ROAD"
+        ]
+      },
+      {
+        "name": "TIN TSZ ROAD",
+        "hans": "TIN TSZ ROAD",
+        "via": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "cap": 73.06350746114633,
+        "aliases": [
+          "TIN TSZ ROAD"
+        ]
+      },
+      {
+        "name": "WANG LEE STREET",
+        "hans": "WANG LEE STREET",
+        "via": [
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "WANG LEE STREET"
+        ]
+      },
+      {
+        "name": "FUK WANG STREET",
+        "hans": "FUK WANG STREET",
+        "via": [
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "FUK WANG STREET"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            12,
+            2
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            4
+          ]
+        ],
+        "cap": 75.18111081298633,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TIN CHEUNG ROAD",
+        "hans": "TIN CHEUNG ROAD",
+        "via": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "cap": 37.150935997193045,
+        "aliases": [
+          "TIN CHEUNG ROAD"
+        ]
+      },
+      {
+        "name": "天城路",
+        "hans": "天城路",
+        "via": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "cap": 32.25939609089596,
+        "aliases": [
+          "TIN SHING ROAD"
+        ]
+      },
+      {
+        "name": "天城路",
+        "hans": "天城路",
+        "via": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "cap": 33.6835153041217,
+        "aliases": [
+          "TIN SHING ROAD"
+        ]
+      },
+      {
+        "name": "天城路",
+        "hans": "天城路",
+        "via": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "cap": 64.91506883242866,
+        "aliases": [
+          "TIN SHING ROAD"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "cap": 55.726403995789575,
+        "aliases": []
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            12,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "cap": 81.11287692720482,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "cap": 37.150935997193045,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ]
+        ],
+        "cap": 70.5867783946668,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            9,
+            6
+          ],
+          [
+            10,
+            6
+          ]
+        ],
+        "cap": 72.55577800251803,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            9,
+            6
+          ],
+          [
+            9,
+            7
+          ]
+        ],
+        "cap": 86.5616808734598,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            10,
+            6
+          ],
+          [
+            11,
+            6
+          ]
+        ],
+        "cap": 33.43584239747374,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            11,
+            6
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            12,
+            7
+          ]
+        ],
+        "cap": 66.87168479494748,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "cap": 104.02262079214053,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            8
+          ]
+        ],
+        "cap": 103.94831892014615,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            9,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "cap": 66.7973829229531,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "新潭路",
+        "hans": "新潭路",
+        "via": [
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            5
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "SAN TAM ROAD"
+        ]
+      },
+      {
+        "name": "天耀路",
+        "hans": "天耀路",
+        "via": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ]
+        ],
+        "cap": 67.61470351489135,
+        "aliases": [
+          "TIN YIU ROAD"
+        ]
+      },
+      {
+        "name": "LONG TIN ROAD",
+        "hans": "LONG TIN ROAD",
+        "via": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "cap": 58.20313306226911,
+        "aliases": [
+          "LONG TIN ROAD"
+        ]
+      },
+      {
+        "name": "LONG PING ROAD",
+        "hans": "LONG PING ROAD",
+        "via": [
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "LONG PING ROAD"
+        ]
+      },
+      {
+        "name": "LONG PING ROAD",
+        "hans": "LONG PING ROAD",
+        "via": [
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "cap": 34.67420693071351,
+        "aliases": [
+          "LONG PING ROAD"
+        ]
+      },
+      {
+        "name": "德業街",
+        "hans": "德业街",
+        "via": [
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "cap": 21.05219706507606,
+        "aliases": [
+          "TAK YIP STREET"
+        ]
+      },
+      {
+        "name": "WANG YIP STREET WEST",
+        "hans": "WANG YIP STREET WEST",
+        "via": [
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "WANG YIP STREET WEST"
+        ]
+      },
+      {
+        "name": "寶業街",
+        "hans": "宝业街",
+        "via": [
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        "cap": 34.67420693071351,
+        "aliases": [
+          "PO YIP STREET"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - TAM MI",
+        "hans": "CASTLE PEAK ROAD - TAM MI",
+        "via": [
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ]
+        ],
+        "cap": 58.20313306226911,
+        "aliases": [
+          "CASTLE PEAK ROAD - TAM MI"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - TAM MI",
+        "hans": "CASTLE PEAK ROAD - TAM MI",
+        "via": [
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ]
+        ],
+        "cap": 70.5867783946668,
+        "aliases": [
+          "CASTLE PEAK ROAD - TAM MI"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - TAM MI",
+        "hans": "CASTLE PEAK ROAD - TAM MI",
+        "via": [
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ]
+        ],
+        "cap": 37.150935997193045,
+        "aliases": [
+          "CASTLE PEAK ROAD - TAM MI"
+        ]
+      },
+      {
+        "name": "屏廈路",
+        "hans": "屏厦路",
+        "via": [
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            7
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "PING HA ROAD"
+        ]
+      },
+      {
+        "name": "SHUI PIN WAI INTERCHANGE",
+        "hans": "SHUI PIN WAI INTERCHANGE",
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "cap": 107.10614847990756,
+        "aliases": [
+          "SHUI PIN WAI INTERCHANGE"
+        ]
+      },
+      {
+        "name": "媽橫路",
+        "hans": "妈横路",
+        "via": [
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "cap": 122.96959815070899,
+        "aliases": [
+          "MA WANG ROAD"
+        ]
+      },
+      {
+        "name": "媽橫路",
+        "hans": "妈横路",
+        "via": [
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "cap": 101.07531320302989,
+        "aliases": [
+          "MA WANG ROAD"
+        ]
+      },
+      {
+        "name": "LONG TIN ROAD",
+        "hans": "LONG TIN ROAD",
+        "via": [
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "cap": 98.69765329920953,
+        "aliases": [
+          "LONG TIN ROAD"
+        ]
+      },
+      {
+        "name": "LONG TIN ROAD",
+        "hans": "LONG TIN ROAD",
+        "via": [
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            8
+          ]
+        ],
+        "cap": 54.12891374791027,
+        "aliases": [
+          "LONG TIN ROAD"
+        ]
+      },
+      {
+        "name": "MA MIU ROAD",
+        "hans": "MA MIU ROAD",
+        "via": [
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ]
+        ],
+        "cap": 21.733297558357933,
+        "aliases": [
+          "MA MIU ROAD"
+        ]
+      },
+      {
+        "name": "LONG YIP STREET",
+        "hans": "LONG YIP STREET",
+        "via": [
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "cap": 83.58960599368436,
+        "aliases": [
+          "LONG YIP STREET"
+        ]
+      },
+      {
+        "name": "LONG YIP STREET",
+        "hans": "LONG YIP STREET",
+        "via": [
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        "cap": 76.15941879424575,
+        "aliases": [
+          "LONG YIP STREET"
+        ]
+      },
+      {
+        "name": "LONG YIP STREET",
+        "hans": "LONG YIP STREET",
+        "via": [
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "cap": 112.24536129285259,
+        "aliases": [
+          "LONG YIP STREET"
+        ]
+      },
+      {
+        "name": "SAI TAI STREET",
+        "hans": "SAI TAI STREET",
+        "via": [
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "SAI TAI STREET"
+        ]
+      },
+      {
+        "name": "LONG YAT ROAD",
+        "hans": "LONG YAT ROAD",
+        "via": [
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "cap": 22.451548987637,
+        "aliases": [
+          "LONG YAT ROAD"
+        ]
+      },
+      {
+        "name": "LONG YAT ROAD",
+        "hans": "LONG YAT ROAD",
+        "via": [
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "cap": 44.20961383665973,
+        "aliases": [
+          "LONG YAT ROAD"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - PING SHAN",
+        "hans": "CASTLE PEAK ROAD - PING SHAN",
+        "via": [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "cap": 88.54306412664343,
+        "aliases": [
+          "CASTLE PEAK ROAD - PING SHAN"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - PING SHAN",
+        "hans": "CASTLE PEAK ROAD - PING SHAN",
+        "via": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ]
+        ],
+        "cap": 58.20313306226911,
+        "aliases": [
+          "CASTLE PEAK ROAD - PING SHAN"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - PING SHAN",
+        "hans": "CASTLE PEAK ROAD - PING SHAN",
+        "via": [
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "cap": 78.0169655941054,
+        "aliases": [
+          "CASTLE PEAK ROAD - PING SHAN"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - PING SHAN",
+        "hans": "CASTLE PEAK ROAD - PING SHAN",
+        "via": [
+          [
+            1,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ]
+        ],
+        "cap": 54.12891374791027,
+        "aliases": [
+          "CASTLE PEAK ROAD - PING SHAN"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - PING SHAN",
+        "hans": "CASTLE PEAK ROAD - PING SHAN",
+        "via": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "CASTLE PEAK ROAD - PING SHAN"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - YUEN LONG",
+        "hans": "CASTLE PEAK ROAD - YUEN LONG",
+        "via": [
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "cap": 32.25939609089596,
+        "aliases": [
+          "CASTLE PEAK ROAD - YUEN LONG"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - YUEN LONG",
+        "hans": "CASTLE PEAK ROAD - YUEN LONG",
+        "via": [
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "cap": 22.451548987637,
+        "aliases": [
+          "CASTLE PEAK ROAD - YUEN LONG"
+        ]
+      },
+      {
+        "name": "YUEN LONG TAI YUK ROAD",
+        "hans": "YUEN LONG TAI YUK ROAD",
+        "via": [
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "YUEN LONG TAI YUK ROAD"
+        ]
+      },
+      {
+        "name": "馬田路",
+        "hans": "马田路",
+        "via": [
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "MA TIN ROAD"
+        ]
+      },
+      {
+        "name": "馬田路",
+        "hans": "马田路",
+        "via": [
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "MA TIN ROAD"
+        ]
+      },
+      {
+        "name": "大棠路",
+        "hans": "大棠路",
+        "via": [
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "TAI TONG ROAD"
+        ]
+      },
+      {
+        "name": "大棠路",
+        "hans": "大棠路",
+        "via": [
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            9
+          ]
+        ],
+        "cap": 58.82231532888899,
+        "aliases": [
+          "TAI TONG ROAD"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - YUEN LONG",
+        "hans": "CASTLE PEAK ROAD - YUEN LONG",
+        "via": [
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "cap": 190.70813811892432,
+        "aliases": [
+          "CASTLE PEAK ROAD - YUEN LONG"
+        ]
+      },
+      {
+        "name": "鳳翔路",
+        "hans": "凤翔路",
+        "via": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "FUNG CHEUNG ROAD"
+        ]
+      },
+      {
+        "name": "POK OI INTERCHANGE",
+        "hans": "POK OI INTERCHANGE",
+        "via": [
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ]
+        ],
+        "cap": 66.92121937627708,
+        "aliases": [
+          "POK OI INTERCHANGE"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - YUEN LONG",
+        "hans": "CASTLE PEAK ROAD - YUEN LONG",
+        "via": [
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ]
+        ],
+        "cap": 52.011310396070265,
+        "aliases": [
+          "CASTLE PEAK ROAD - YUEN LONG"
+        ]
+      },
+      {
+        "name": "CASTLE PEAK ROAD - YUEN LONG",
+        "hans": "CASTLE PEAK ROAD - YUEN LONG",
+        "via": [
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "cap": 131.76198633671135,
+        "aliases": [
+          "CASTLE PEAK ROAD - YUEN LONG"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ]
+        ],
+        "cap": 87.0570266867557,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            12,
+            8
+          ],
+          [
+            13,
+            8
+          ]
+        ],
+        "cap": 87.0570266867557,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            12,
+            7
+          ],
+          [
+            12,
+            8
+          ]
+        ],
+        "cap": 98.07847103258965,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            13,
+            8
+          ],
+          [
+            14,
+            8
+          ]
+        ],
+        "cap": 63.52810055520011,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            13,
+            8
+          ],
+          [
+            13,
+            9
+          ],
+          [
+            14,
+            9
+          ]
+        ],
+        "cap": 85.81866215351594,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            14,
+            8
+          ],
+          [
+            14,
+            9
+          ]
+        ],
+        "cap": 40.866029596912355,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            14,
+            9
+          ],
+          [
+            14,
+            10
+          ],
+          [
+            15,
+            10
+          ]
+        ],
+        "cap": 52.382819756042196,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "TSING LONG HIGHWAY",
+        "hans": "TSING LONG HIGHWAY",
+        "via": [
+          [
+            15,
+            10
+          ],
+          [
+            15,
+            11
+          ]
+        ],
+        "cap": 62.90891828858023,
+        "aliases": [
+          "TSING LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "錦慶路",
+        "hans": "锦庆路",
+        "via": [
+          [
+            14,
+            7
+          ],
+          [
+            14,
+            8
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "KAM HING ROAD"
+        ]
+      },
+      {
+        "name": "TONG YAN SAN TSUEN INTERCHANGE",
+        "hans": "TONG YAN SAN TSUEN INTERCHANGE",
+        "via": [
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ]
+        ],
+        "cap": 87.92388186002354,
+        "aliases": [
+          "TONG YAN SAN TSUEN INTERCHANGE"
+        ]
+      },
+      {
+        "name": "TONG YAN SAN TSUEN INTERCHANGE",
+        "hans": "TONG YAN SAN TSUEN INTERCHANGE",
+        "via": [
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ]
+        ],
+        "cap": 53.24967492931003,
+        "aliases": [
+          "TONG YAN SAN TSUEN INTERCHANGE"
+        ]
+      },
+      {
+        "name": "TONG YAN SAN TSUEN INTERCHANGE",
+        "hans": "TONG YAN SAN TSUEN INTERCHANGE",
+        "via": [
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            9
+          ]
+        ],
+        "cap": 51.8255557160843,
+        "aliases": [
+          "TONG YAN SAN TSUEN INTERCHANGE"
+        ]
+      },
+      {
+        "name": "TOWN PARK ROAD NORTH",
+        "hans": "TOWN PARK ROAD NORTH",
+        "via": [
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "cap": 21.05219706507606,
+        "aliases": [
+          "TOWN PARK ROAD NORTH"
+        ]
+      },
+      {
+        "name": "十八鄉路",
+        "hans": "十八乡路",
+        "via": [
+          [
+            4,
+            8
+          ],
+          [
+            4,
+            9
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "SHAP PAT HEUNG ROAD"
+        ]
+      },
+      {
+        "name": "MA TONG ROAD",
+        "hans": "MA TONG ROAD",
+        "via": [
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "cap": 21.05219706507606,
+        "aliases": [
+          "MA TONG ROAD"
+        ]
+      },
+      {
+        "name": "公庵路",
+        "hans": "公庵路",
+        "via": [
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "KUNG UM ROAD"
+        ]
+      },
+      {
+        "name": "十八鄉路",
+        "hans": "十八乡路",
+        "via": [
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "cap": 34.67420693071351,
+        "aliases": [
+          "SHAP PAT HEUNG ROAD"
+        ]
+      },
+      {
+        "name": "十八鄉路",
+        "hans": "十八乡路",
+        "via": [
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "cap": 46.61204103114488,
+        "aliases": [
+          "SHAP PAT HEUNG ROAD"
+        ]
+      },
+      {
+        "name": "十八鄉路",
+        "hans": "十八乡路",
+        "via": [
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "cap": 22.451548987637,
+        "aliases": [
+          "SHAP PAT HEUNG ROAD"
+        ]
+      },
+      {
+        "name": "SHAP PAT HEUNG INTERCHANGE",
+        "hans": "SHAP PAT HEUNG INTERCHANGE",
+        "via": [
+          [
+            9,
+            8
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "cap": 32.24701244556356,
+        "aliases": [
+          "SHAP PAT HEUNG INTERCHANGE"
+        ]
+      },
+      {
+        "name": "KAM TIN BYPASS",
+        "hans": "KAM TIN BYPASS",
+        "via": [
+          [
+            14,
+            8
+          ],
+          [
+            15,
+            8
+          ]
+        ],
+        "cap": 46.93401580978722,
+        "aliases": [
+          "KAM TIN BYPASS"
+        ]
+      },
+      {
+        "name": "錦上路",
+        "hans": "锦上路",
+        "via": [
+          [
+            15,
+            8
+          ],
+          [
+            15,
+            9
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "KAM SHEUNG ROAD"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            9
+          ]
+        ],
+        "cap": 54.12891374791027,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            9
+          ]
+        ],
+        "cap": 54.12891374791027,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            5,
+            10
+          ],
+          [
+            6,
+            10
+          ]
+        ],
+        "cap": 54.12891374791027,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9
+          ]
+        ],
+        "cap": 133.94150791521335,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            4,
+            9
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "cap": 64.6550122804483,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            5,
+            9
+          ],
+          [
+            6,
+            9
+          ]
+        ],
+        "cap": 64.6550122804483,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            5,
+            9
+          ],
+          [
+            5,
+            10
+          ]
+        ],
+        "cap": 64.6550122804483,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            6,
+            9
+          ],
+          [
+            6,
+            10
+          ]
+        ],
+        "cap": 83.9115807723267,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "YUEN LONG HIGHWAY",
+        "hans": "YUEN LONG HIGHWAY",
+        "via": [
+          [
+            6,
+            10
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "cap": 74.45047573837486,
+        "aliases": [
+          "YUEN LONG HIGHWAY"
+        ]
+      },
+      {
+        "name": "SHAP PAT HEUNG INTERCHANGE",
+        "hans": "SHAP PAT HEUNG INTERCHANGE",
+        "via": [
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "cap": 102.72233803223878,
+        "aliases": [
+          "SHAP PAT HEUNG INTERCHANGE"
+        ]
+      },
+      {
+        "name": "SHAP PAT HEUNG INTERCHANGE",
+        "hans": "SHAP PAT HEUNG INTERCHANGE",
+        "via": [
+          [
+            7,
+            9
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "cap": 78.5742296340633,
+        "aliases": [
+          "SHAP PAT HEUNG INTERCHANGE"
+        ]
+      },
+      {
+        "name": "錦河路",
+        "hans": "锦河路",
+        "via": [
+          [
+            14,
+            9
+          ],
+          [
+            15,
+            9
+          ],
+          [
+            15,
+            10
+          ]
+        ],
+        "cap": 24.14810839817548,
+        "aliases": [
+          "KAM HO ROAD"
+        ]
+      },
+      {
+        "name": "公庵路",
+        "hans": "公庵路",
+        "via": [
+          [
+            5,
+            10
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            4,
+            11
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "KUNG UM ROAD"
+        ]
+      },
+      {
+        "name": "大棠路",
+        "hans": "大棠路",
+        "via": [
+          [
+            6,
+            10
+          ],
+          [
+            6,
+            11
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "TAI TONG ROAD"
+        ]
+      },
+      {
+        "name": "TAI SHU HA ROAD WEST",
+        "hans": "TAI SHU HA ROAD WEST",
+        "via": [
+          [
+            7,
+            10
+          ],
+          [
+            7,
+            11
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "cap": 10.52609853253803,
+        "aliases": [
+          "TAI SHU HA ROAD WEST"
+        ]
+      }
+    ],
+    "lines": [
+      {
+        "name": "屯馬綫",
+        "hans": "屯马线",
+        "color": "#923011",
+        "via": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            13,
+            8
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            14,
+            9
+          ],
+          [
+            15,
+            9
+          ],
+          [
+            15,
+            10
+          ]
+        ],
+        "stations": [
+          [
+            0,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            15,
+            9
+          ]
+        ],
+        "names": [
+          "天水圍",
+          "朗屏",
+          "元朗",
+          "錦上路"
+        ],
+        "namesHans": [
+          "天水围",
+          "朗屏",
+          "元朗",
+          "锦上路"
+        ],
+        "trains": 3
+      }
+    ],
+    "water": [],
+    "walkPer": 3,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 30,
+    "phase2Budget": 0,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "nearby": 10,
+    "stay": 40,
+    "learn": 0.3,
+    "tiers": [
+      336,
+      546,
+      739
+    ],
+    "source": {
+      "area": "yuen-long",
+      "period": "am",
+      "box": [
+        46,
+        28,
+        62,
+        40
+      ],
+      "scale": 0.012383645332397683,
+      "changes": [
+        {
+          "place": "元朗站一帶",
+          "resolved": "元朗站一帶",
+          "what": "people",
+          "pct": 36.8,
+          "by_year": 4,
+          "from": 74,
+          "to": 101,
+          "fallback": false,
+          "affectedSegments": 1
+        }
+      ],
+      "roadCapCoeff": 1,
+      "roadSections": [
+        {
+          "name": "濕地公園路",
+          "road": "768",
+          "modelCap": 2604,
+          "segments": [
+            {
+              "a": [
+                0,
+                0
+              ],
+              "b": [
+                0,
+                1
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "348"
+              ]
+            },
+            {
+              "a": [
+                0,
+                1
+              ],
+              "b": [
+                1,
+                1
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "366"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "KAM POK ROAD",
+          "road": "246",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                11,
+                0
+              ],
+              "b": [
+                12,
+                0
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "349"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "KAM POK ROAD EAST",
+          "road": "247",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                12,
+                0
+              ],
+              "b": [
+                13,
+                0
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "350"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SAN TIN HIGHWAY",
+          "road": "507",
+          "modelCap": 7421,
+          "segments": [
+            {
+              "a": [
+                13,
+                0
+              ],
+              "b": [
+                13,
+                1
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "351"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SAN TIN HIGHWAY",
+          "road": "507",
+          "modelCap": 5221,
+          "segments": [
+            {
+              "a": [
+                13,
+                1
+              ],
+              "b": [
+                12,
+                1
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "372"
+              ]
+            },
+            {
+              "a": [
+                12,
+                1
+              ],
+              "b": [
+                12,
+                2
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "373"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天葵路",
+          "road": "650",
+          "modelCap": 1813,
+          "segments": [
+            {
+              "a": [
+                0,
+                1
+              ],
+              "b": [
+                0,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "367"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "862",
+          "modelCap": 4300,
+          "segments": [
+            {
+              "a": [
+                1,
+                1
+              ],
+              "b": [
+                1,
+                2
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "368"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LEE STREET",
+          "road": "752",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                1
+              ],
+              "b": [
+                6,
+                1
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "369"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "福喜街",
+          "road": "167",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                5,
+                1
+              ],
+              "b": [
+                5,
+                2
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "370"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "福喜街",
+          "road": "167",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                2
+              ],
+              "b": [
+                4,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "398"
+              ]
+            },
+            {
+              "a": [
+                4,
+                2
+              ],
+              "b": [
+                4,
+                3
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "399"
+              ]
+            },
+            {
+              "a": [
+                4,
+                3
+              ],
+              "b": [
+                5,
+                3
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "433"
+              ]
+            },
+            {
+              "a": [
+                5,
+                3
+              ],
+              "b": [
+                5,
+                4
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "434"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "福喜街",
+          "road": "167",
+          "modelCap": 5655,
+          "segments": [
+            {
+              "a": [
+                5,
+                4
+              ],
+              "b": [
+                5,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "469"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LOK STREET",
+          "road": "754",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                6,
+                1
+              ],
+              "b": [
+                6,
+                2
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "371"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LOK STREET",
+          "road": "754",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                6,
+                2
+              ],
+              "b": [
+                6,
+                3
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "402"
+              ]
+            },
+            {
+              "a": [
+                6,
+                3
+              ],
+              "b": [
+                7,
+                3
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "435"
+              ]
+            },
+            {
+              "a": [
+                7,
+                3
+              ],
+              "b": [
+                7,
+                4
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "436"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LOK STREET",
+          "road": "754",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                7,
+                4
+              ],
+              "b": [
+                6,
+                4
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "470"
+              ]
+            },
+            {
+              "a": [
+                6,
+                4
+              ],
+              "b": [
+                6,
+                5
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "471"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LOK STREET",
+          "road": "754",
+          "modelCap": 3900,
+          "segments": [
+            {
+              "a": [
+                5,
+                5
+              ],
+              "b": [
+                6,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "507"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LOK STREET",
+          "road": "754",
+          "modelCap": 3764,
+          "segments": [
+            {
+              "a": [
+                5,
+                5
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "508"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "新潭路",
+          "road": "505",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                13,
+                1
+              ],
+              "b": [
+                13,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "374"
+              ]
+            },
+            {
+              "a": [
+                13,
+                2
+              ],
+              "b": [
+                12,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "403"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天華路",
+          "road": "659",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                0,
+                2
+              ],
+              "b": [
+                1,
+                2
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "395"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天龍路",
+          "road": "652",
+          "modelCap": 3775,
+          "segments": [
+            {
+              "a": [
+                0,
+                2
+              ],
+              "b": [
+                0,
+                3
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "396"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TIN TSZ ROAD",
+          "road": "658",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                1,
+                2
+              ],
+              "b": [
+                1,
+                3
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "397"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TIN TSZ ROAD",
+          "road": "658",
+          "modelCap": 5900,
+          "segments": [
+            {
+              "a": [
+                1,
+                3
+              ],
+              "b": [
+                1,
+                4
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "432"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG LEE STREET",
+          "road": "753",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                2
+              ],
+              "b": [
+                6,
+                2
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "400"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "FUK WANG STREET",
+          "road": "169",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                2
+              ],
+              "b": [
+                5,
+                3
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "401"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "684",
+          "modelCap": 6071,
+          "segments": [
+            {
+              "a": [
+                12,
+                2
+              ],
+              "b": [
+                12,
+                3
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "404"
+              ]
+            },
+            {
+              "a": [
+                12,
+                3
+              ],
+              "b": [
+                12,
+                4
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "437"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TIN CHEUNG ROAD",
+          "road": "646",
+          "modelCap": 3000,
+          "segments": [
+            {
+              "a": [
+                0,
+                3
+              ],
+              "b": [
+                1,
+                3
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "430"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天城路",
+          "road": "656",
+          "modelCap": 2605,
+          "segments": [
+            {
+              "a": [
+                0,
+                3
+              ],
+              "b": [
+                0,
+                4
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "431"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天城路",
+          "road": "656",
+          "modelCap": 2720,
+          "segments": [
+            {
+              "a": [
+                0,
+                4
+              ],
+              "b": [
+                0,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "467"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天城路",
+          "road": "656",
+          "modelCap": 5242,
+          "segments": [
+            {
+              "a": [
+                0,
+                5
+              ],
+              "b": [
+                1,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "502"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "863",
+          "modelCap": 4500,
+          "segments": [
+            {
+              "a": [
+                1,
+                4
+              ],
+              "b": [
+                1,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "468"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 6550,
+          "segments": [
+            {
+              "a": [
+                12,
+                4
+              ],
+              "b": [
+                11,
+                4
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "472"
+              ]
+            },
+            {
+              "a": [
+                11,
+                4
+              ],
+              "b": [
+                11,
+                5
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "473"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 3000,
+          "segments": [
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                11,
+                5
+              ],
+              "modelVC": 1.4,
+              "sectionIds": [
+                "512"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 5700,
+          "segments": [
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 1.1,
+              "sectionIds": [
+                "513"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 5859,
+          "segments": [
+            {
+              "a": [
+                9,
+                6
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "559"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 6990,
+          "segments": [
+            {
+              "a": [
+                9,
+                6
+              ],
+              "b": [
+                9,
+                7
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "560"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 2700,
+          "segments": [
+            {
+              "a": [
+                10,
+                6
+              ],
+              "b": [
+                11,
+                6
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "561"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 5400,
+          "segments": [
+            {
+              "a": [
+                11,
+                6
+              ],
+              "b": [
+                12,
+                6
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "562"
+              ]
+            },
+            {
+              "a": [
+                12,
+                6
+              ],
+              "b": [
+                12,
+                7
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "564"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 8400,
+          "segments": [
+            {
+              "a": [
+                11,
+                6
+              ],
+              "b": [
+                11,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "563"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 8394,
+          "segments": [
+            {
+              "a": [
+                9,
+                7
+              ],
+              "b": [
+                9,
+                8
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "602"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "808",
+          "modelCap": 5394,
+          "segments": [
+            {
+              "a": [
+                9,
+                8
+              ],
+              "b": [
+                8,
+                8
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "643"
+              ]
+            },
+            {
+              "a": [
+                8,
+                8
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "644"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "新潭路",
+          "road": "506",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                12,
+                4
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "474"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天耀路",
+          "road": "663",
+          "modelCap": 5460,
+          "segments": [
+            {
+              "a": [
+                0,
+                5
+              ],
+              "b": [
+                0,
+                6
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "503"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG TIN ROAD",
+          "road": "328",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                1,
+                5
+              ],
+              "b": [
+                1,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "504"
+              ]
+            },
+            {
+              "a": [
+                1,
+                6
+              ],
+              "b": [
+                2,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "547"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG PING ROAD",
+          "road": "327",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                4,
+                5
+              ],
+              "b": [
+                5,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "505"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG PING ROAD",
+          "road": "327",
+          "modelCap": 2800,
+          "segments": [
+            {
+              "a": [
+                4,
+                5
+              ],
+              "b": [
+                4,
+                6
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "506"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "德業街",
+          "road": "636",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                6,
+                5
+              ],
+              "b": [
+                7,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "509"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WANG YIP STREET WEST",
+          "road": "756",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                6,
+                5
+              ],
+              "b": [
+                6,
+                6
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "510"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "寶業街",
+          "road": "463",
+          "modelCap": 2800,
+          "segments": [
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                7,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "511"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - TAM MI",
+          "road": "58",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "514"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - TAM MI",
+          "road": "58",
+          "modelCap": 5700,
+          "segments": [
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                11,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "515"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - TAM MI",
+          "road": "58",
+          "modelCap": 3000,
+          "segments": [
+            {
+              "a": [
+                12,
+                5
+              ],
+              "b": [
+                12,
+                6
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "516"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "屏廈路",
+          "road": "438",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                0,
+                6
+              ],
+              "b": [
+                0,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "546"
+              ]
+            },
+            {
+              "a": [
+                0,
+                7
+              ],
+              "b": [
+                1,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "586"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHUI PIN WAI INTERCHANGE",
+          "road": "563",
+          "modelCap": 8649,
+          "segments": [
+            {
+              "a": [
+                2,
+                6
+              ],
+              "b": [
+                3,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "548"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "媽橫路",
+          "road": "358",
+          "modelCap": 9930,
+          "segments": [
+            {
+              "a": [
+                3,
+                6
+              ],
+              "b": [
+                4,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "549"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "媽橫路",
+          "road": "358",
+          "modelCap": 8162,
+          "segments": [
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "551"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG TIN ROAD",
+          "road": "329",
+          "modelCap": 7970,
+          "segments": [
+            {
+              "a": [
+                3,
+                6
+              ],
+              "b": [
+                3,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "550"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG TIN ROAD",
+          "road": "329",
+          "modelCap": 4371,
+          "segments": [
+            {
+              "a": [
+                3,
+                7
+              ],
+              "b": [
+                3,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "591"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "MA MIU ROAD",
+          "road": "347",
+          "modelCap": 1755,
+          "segments": [
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                4,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "552"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG YIP STREET",
+          "road": "331",
+          "modelCap": 6750,
+          "segments": [
+            {
+              "a": [
+                5,
+                6
+              ],
+              "b": [
+                6,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "553"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG YIP STREET",
+          "road": "331",
+          "modelCap": 6150,
+          "segments": [
+            {
+              "a": [
+                6,
+                6
+              ],
+              "b": [
+                7,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "554"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG YIP STREET",
+          "road": "331",
+          "modelCap": 9064,
+          "segments": [
+            {
+              "a": [
+                7,
+                6
+              ],
+              "b": [
+                7,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "557"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SAI TAI STREET",
+          "road": "497",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                6,
+                6
+              ],
+              "b": [
+                6,
+                7
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "555"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG YAT ROAD",
+          "road": "330",
+          "modelCap": 1813,
+          "segments": [
+            {
+              "a": [
+                7,
+                6
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "556"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "LONG YAT ROAD",
+          "road": "330",
+          "modelCap": 3570,
+          "segments": [
+            {
+              "a": [
+                8,
+                6
+              ],
+              "b": [
+                8,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "558"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - PING SHAN",
+          "road": "50",
+          "modelCap": 7150,
+          "segments": [
+            {
+              "a": [
+                1,
+                7
+              ],
+              "b": [
+                2,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "587"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - PING SHAN",
+          "road": "50",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                1,
+                7
+              ],
+              "b": [
+                1,
+                8
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "588"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - PING SHAN",
+          "road": "50",
+          "modelCap": 6300,
+          "segments": [
+            {
+              "a": [
+                2,
+                7
+              ],
+              "b": [
+                3,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "589"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - PING SHAN",
+          "road": "50",
+          "modelCap": 4371,
+          "segments": [
+            {
+              "a": [
+                1,
+                8
+              ],
+              "b": [
+                0,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "630"
+              ]
+            },
+            {
+              "a": [
+                0,
+                8
+              ],
+              "b": [
+                0,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "631"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - PING SHAN",
+          "road": "49",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                3,
+                7
+              ],
+              "b": [
+                4,
+                7
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "590"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - YUEN LONG",
+          "road": "67",
+          "modelCap": 2605,
+          "segments": [
+            {
+              "a": [
+                4,
+                7
+              ],
+              "b": [
+                5,
+                7
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "592"
+              ]
+            },
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                6,
+                7
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "594"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - YUEN LONG",
+          "road": "67",
+          "modelCap": 1813,
+          "segments": [
+            {
+              "a": [
+                6,
+                7
+              ],
+              "b": [
+                7,
+                7
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "596"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG TAI YUK ROAD",
+          "road": "810",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                4,
+                7
+              ],
+              "b": [
+                4,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "593"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "馬田路",
+          "road": "356",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                5,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "595"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "馬田路",
+          "road": "356",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                4,
+                8
+              ],
+              "b": [
+                5,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "636"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大棠路",
+          "road": "627",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                6,
+                7
+              ],
+              "b": [
+                6,
+                8
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "597"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大棠路",
+          "road": "627",
+          "modelCap": 4750,
+          "segments": [
+            {
+              "a": [
+                6,
+                8
+              ],
+              "b": [
+                6,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "641"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - YUEN LONG",
+          "road": "69",
+          "modelCap": 15400,
+          "segments": [
+            {
+              "a": [
+                7,
+                7
+              ],
+              "b": [
+                8,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "598"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "鳳翔路",
+          "road": "170",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                7,
+                7
+              ],
+              "b": [
+                7,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "599"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "POK OI INTERCHANGE",
+          "road": "468",
+          "modelCap": 5404,
+          "segments": [
+            {
+              "a": [
+                8,
+                7
+              ],
+              "b": [
+                9,
+                7
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "600"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - YUEN LONG",
+          "road": "68",
+          "modelCap": 4200,
+          "segments": [
+            {
+              "a": [
+                9,
+                7
+              ],
+              "b": [
+                10,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "601"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CASTLE PEAK ROAD - YUEN LONG",
+          "road": "68",
+          "modelCap": 10640,
+          "segments": [
+            {
+              "a": [
+                10,
+                7
+              ],
+              "b": [
+                11,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "603"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 7030,
+          "segments": [
+            {
+              "a": [
+                11,
+                7
+              ],
+              "b": [
+                12,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "604"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 7030,
+          "segments": [
+            {
+              "a": [
+                12,
+                8
+              ],
+              "b": [
+                13,
+                8
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "646"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 7920,
+          "segments": [
+            {
+              "a": [
+                12,
+                7
+              ],
+              "b": [
+                12,
+                8
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "605"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 5130,
+          "segments": [
+            {
+              "a": [
+                13,
+                8
+              ],
+              "b": [
+                14,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "647"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 6930,
+          "segments": [
+            {
+              "a": [
+                13,
+                8
+              ],
+              "b": [
+                13,
+                9
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "648"
+              ]
+            },
+            {
+              "a": [
+                13,
+                9
+              ],
+              "b": [
+                14,
+                9
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "699"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 3300,
+          "segments": [
+            {
+              "a": [
+                14,
+                8
+              ],
+              "b": [
+                14,
+                9
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "650"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 4230,
+          "segments": [
+            {
+              "a": [
+                14,
+                9
+              ],
+              "b": [
+                14,
+                10
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "701"
+              ]
+            },
+            {
+              "a": [
+                14,
+                10
+              ],
+              "b": [
+                15,
+                10
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "730"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "road": "682",
+          "modelCap": 5080,
+          "segments": [
+            {
+              "a": [
+                15,
+                10
+              ],
+              "b": [
+                15,
+                11
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "732"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "錦慶路",
+          "road": "243",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                14,
+                7
+              ],
+              "b": [
+                14,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "606"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TONG YAN SAN TSUEN INTERCHANGE",
+          "road": "671",
+          "modelCap": 7100,
+          "segments": [
+            {
+              "a": [
+                2,
+                8
+              ],
+              "b": [
+                3,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "632"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TONG YAN SAN TSUEN INTERCHANGE",
+          "road": "671",
+          "modelCap": 4300,
+          "segments": [
+            {
+              "a": [
+                2,
+                8
+              ],
+              "b": [
+                2,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "633"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TONG YAN SAN TSUEN INTERCHANGE",
+          "road": "671",
+          "modelCap": 4185,
+          "segments": [
+            {
+              "a": [
+                3,
+                8
+              ],
+              "b": [
+                3,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "635"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TOWN PARK ROAD NORTH",
+          "road": "674",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                3,
+                8
+              ],
+              "b": [
+                4,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "634"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "十八鄉路",
+          "road": "541",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                4,
+                8
+              ],
+              "b": [
+                4,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "637"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "MA TONG ROAD",
+          "road": "357",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                5,
+                8
+              ],
+              "b": [
+                6,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "638"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "公庵路",
+          "road": "273",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                8
+              ],
+              "b": [
+                5,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "639"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "十八鄉路",
+          "road": "540",
+          "modelCap": 2800,
+          "segments": [
+            {
+              "a": [
+                6,
+                8
+              ],
+              "b": [
+                7,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "640"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "十八鄉路",
+          "road": "540",
+          "modelCap": 3764,
+          "segments": [
+            {
+              "a": [
+                7,
+                8
+              ],
+              "b": [
+                7,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "642"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "十八鄉路",
+          "road": "540",
+          "modelCap": 1813,
+          "segments": [
+            {
+              "a": [
+                6,
+                9
+              ],
+              "b": [
+                7,
+                9
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "694"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHAP PAT HEUNG INTERCHANGE",
+          "road": "539",
+          "modelCap": 2604,
+          "segments": [
+            {
+              "a": [
+                9,
+                8
+              ],
+              "b": [
+                9,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "645"
+              ]
+            },
+            {
+              "a": [
+                9,
+                9
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "698"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "KAM TIN BYPASS",
+          "road": "251",
+          "modelCap": 3790,
+          "segments": [
+            {
+              "a": [
+                14,
+                8
+              ],
+              "b": [
+                15,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "649"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "錦上路",
+          "road": "250",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                15,
+                8
+              ],
+              "b": [
+                15,
+                9
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "652"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 4371,
+          "segments": [
+            {
+              "a": [
+                0,
+                10
+              ],
+              "b": [
+                0,
+                9
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "687"
+              ]
+            },
+            {
+              "a": [
+                0,
+                9
+              ],
+              "b": [
+                1,
+                9
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "686"
+              ]
+            },
+            {
+              "a": [
+                1,
+                9
+              ],
+              "b": [
+                2,
+                9
+              ],
+              "modelVC": 0.8,
+              "sectionIds": [
+                "688"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 4371,
+          "segments": [
+            {
+              "a": [
+                3,
+                9
+              ],
+              "b": [
+                4,
+                9
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "690"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 4371,
+          "segments": [
+            {
+              "a": [
+                5,
+                10
+              ],
+              "b": [
+                6,
+                10
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "725"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 10816,
+          "segments": [
+            {
+              "a": [
+                2,
+                9
+              ],
+              "b": [
+                3,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "689"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 5221,
+          "segments": [
+            {
+              "a": [
+                4,
+                9
+              ],
+              "b": [
+                5,
+                9
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "691"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 5221,
+          "segments": [
+            {
+              "a": [
+                5,
+                9
+              ],
+              "b": [
+                6,
+                9
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "692"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 5221,
+          "segments": [
+            {
+              "a": [
+                5,
+                9
+              ],
+              "b": [
+                5,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "693"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 6776,
+          "segments": [
+            {
+              "a": [
+                6,
+                9
+              ],
+              "b": [
+                6,
+                10
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "695"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "road": "807",
+          "modelCap": 6012,
+          "segments": [
+            {
+              "a": [
+                6,
+                10
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "727"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHAP PAT HEUNG INTERCHANGE",
+          "road": "538",
+          "modelCap": 8295,
+          "segments": [
+            {
+              "a": [
+                7,
+                9
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "696"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "SHAP PAT HEUNG INTERCHANGE",
+          "road": "538",
+          "modelCap": 6345,
+          "segments": [
+            {
+              "a": [
+                7,
+                9
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "697"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "錦河路",
+          "road": "245",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                14,
+                9
+              ],
+              "b": [
+                15,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "700"
+              ]
+            },
+            {
+              "a": [
+                15,
+                9
+              ],
+              "b": [
+                15,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "703"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "公庵路",
+          "road": "272",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                10
+              ],
+              "b": [
+                5,
+                11
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "726"
+              ]
+            },
+            {
+              "a": [
+                5,
+                11
+              ],
+              "b": [
+                4,
+                11
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "760"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大棠路",
+          "road": "626",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                6,
+                10
+              ],
+              "b": [
+                6,
+                11
+              ],
+              "modelVC": 1.2,
+              "sectionIds": [
+                "728"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "TAI SHU HA ROAD WEST",
+          "road": "624",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                7,
+                10
+              ],
+              "b": [
+                7,
+                11
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "729"
+              ]
+            },
+            {
+              "a": [
+                7,
+                11
+              ],
+              "b": [
+                8,
+                11
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "763"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        }
+      ]
+    }
+  },
+  "request": {
+    "area": "yuen-long",
+    "period": "am",
+    "mode": 3,
+    "title": "元朗多两万人",
+    "story": [
+      "“元朗站一帶”人口增加 20000；按原数量换算为 36.8%。"
+    ],
+    "changes": [
+      {
+        "place": "元朗站一帶",
+        "what": "people",
+        "pct": 36.8,
+        "by_year": 4
+      }
+    ]
+  },
+  "report": {
+    "accepted": false,
+    "doNothing": {
+      "yearly": [
+        298.396,
+        296.721,
+        304.604,
+        300.18,
+        300.798,
+        295.008,
+        301.894,
+        293.105
+      ],
+      "jam": 2390.706,
+      "score": 0,
+      "stable": true,
+      "maxStepPct": 0.0291
+    },
+    "best": 840,
+    "bestPlan": {
+      "line": [
+        [
+          7,
+          9
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "stations": [
+        [
+          7,
+          6
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          7,
+          9
+        ]
+      ],
+      "trains": 2,
+      "spent": 28,
+      "score": 840
+    },
+    "tiers": [
+      336,
+      546,
+      739
+    ],
+    "seconds": 20.08,
+    "simpleBest": 179,
+    "iterations": 2873,
+    "roadRank": {
+      "sections": 142,
+      "spearman": -0.123,
+      "modelTop": [
+        {
+          "name": "YUEN LONG HIGHWAY",
+          "vc": 1.4
+        },
+        {
+          "name": "大棠路",
+          "vc": 1.2
+        },
+        {
+          "name": "SAN TIN HIGHWAY",
+          "vc": 1
+        },
+        {
+          "name": "TSING LONG HIGHWAY",
+          "vc": 0.9
+        },
+        {
+          "name": "CASTLE PEAK ROAD - PING SHAN",
+          "vc": 0.8
+        },
+        {
+          "name": "LONG YAT ROAD",
+          "vc": 0.7
+        },
+        {
+          "name": "POK OI INTERCHANGE",
+          "vc": 0.6
+        }
+      ],
+      "gameTop": [
+        {
+          "name": "公庵路",
+          "vc": 2.17
+        },
+        {
+          "name": "鳳翔路",
+          "vc": 1.56
+        },
+        {
+          "name": "天城路",
+          "vc": 0.96
+        },
+        {
+          "name": "德業街",
+          "vc": 0.72
+        },
+        {
+          "name": "天龍路",
+          "vc": 0.66
+        },
+        {
+          "name": "LONG TIN ROAD",
+          "vc": 0.63
+        },
+        {
+          "name": "LONG YIP STREET",
+          "vc": 0.62
+        }
+      ],
+      "acceptable": false
+    }
+  },
+  "problems": [
+    {
+      "code": "model_vc_mismatch",
+      "message": "游戏与模型 v/c 排名 Spearman=-0.123，低于第一版粗对照阈值0.2。"
+    }
+  ],
+  "notes": [
+    "出行人数来自所选两个岗位团及最大出框方向的 car+pt；总量 24225.5 缩放到约 300，scale=0.0123836。",
+    "岗位团 attraction=16+岗位/15,000；出口用所选方向的出框 car+pt 人数代作岗位量，折算规则相同。",
+    "时段 am 的去处按岗位团选择。",
+    "道路容量初值=模型 cap×scale，roadCapCoeff=1；check.js 会用模型 v/c 对照调一个全局系数并记录排名相关性。",
+    "道路容量统一系数搜索结果：1.000；匹配 142 段，Spearman=-0.123；系数搜索内最大逐年跳变 2.9%。",
+    "单一容量系数未能让模型堵点排名与游戏接近，需检查穿境流量、OD 简化及格网道路合并。"
+  ],
+  "inputs": {
+    "base": {
+      "path": "C:\\Users\\赵禹博\\Desktop\\TransitLab五模式-Codex\\任务53\\game-feeder\\v7\\shared\\levelgen\\inputs\\hk-base.json",
+      "bytes": 780371,
+      "sha256": "c8256b6d00d7b913196f63e6ebf351a18f67bbf0518c99527678df20dccc3fdd"
+    },
+    "demand": {
+      "path": "C:\\Users\\赵禹博\\Desktop\\TransitLab五模式-Codex\\任务53\\game-feeder\\v7\\shared\\levelgen\\inputs\\hk-demand-am.json",
+      "bytes": 3802073,
+      "sha256": "6ca08972d9566ff1f6e8e986b8e5b836ef502448586e66692aa234031600b252"
+    }
+  }
+}
