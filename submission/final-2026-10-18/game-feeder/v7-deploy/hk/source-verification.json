@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "population": 7517309,
+  "jobs": 3947200,
+  "checks": {
+    "am": {
+      "pairs": 134348,
+      "flow_error_at_most": 0.1,
+      "pair_car_loss_pct": 2.9,
+      "pair_pt_loss_pct": 1.8
+    },
+    "pm": {
+      "pairs": 138627,
+      "flow_error_at_most": 0.1,
+      "pair_car_loss_pct": 2.3,
+      "pair_pt_loss_pct": 1.6
+    },
+    "day": {
+      "pairs": 76284,
+      "flow_error_at_most": 0.1,
+      "pair_car_loss_pct": 8.1,
+      "pair_pt_loss_pct": 7.4
+    }
+  },
+  "rail_am_passenger_volume_and_capacity": true,
+  "skim_null_semantics": true,
+  "source_project_read_only": true
+}

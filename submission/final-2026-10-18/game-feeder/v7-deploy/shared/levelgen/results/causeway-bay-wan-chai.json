@@ -1,0 +1,7822 @@
+{
+  "level": {
+    "title": "铜锣湾·湾仔多一万五千个岗位",
+    "story": [
+      "“中環站一帶”岗位增加 15000；按原数量换算为 6.8%。"
+    ],
+    "cols": 16,
+    "rows": 12,
+    "origins": [
+      {
+        "name": "新時代廣場",
+        "hans": "新时代广场",
+        "cell": [
+          11,
+          3
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 52,
+        "zoneIds": [
+          "153.2",
+          "153.1",
+          "151.3"
+        ],
+        "aliases": [
+          "新時代廣場",
+          "新时代广场",
+          "北角站一帶",
+          "北角站一带",
+          "城市花園",
+          "城市花园"
+        ],
+        "sourcePop": 55883
+      },
+      {
+        "name": "灣仔站一帶",
+        "hans": "湾仔站一带",
+        "cell": [
+          6,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 76,
+        "zoneIds": [
+          "131",
+          "132"
+        ],
+        "aliases": [
+          "灣仔站一帶",
+          "湾仔站一带",
+          "南洋酒店"
+        ],
+        "sourcePop": 39647
+      },
+      {
+        "name": "健威花園",
+        "hans": "健威花园",
+        "cell": [
+          13,
+          3
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 28,
+        "zoneIds": [
+          "153.4",
+          "154",
+          "153.3"
+        ],
+        "aliases": [
+          "健威花園",
+          "健威花园",
+          "模範邨",
+          "模范邨",
+          "港運城",
+          "港运城"
+        ],
+        "sourcePop": 30961
+      },
+      {
+        "name": "嘉富麗苑",
+        "hans": "嘉富丽苑",
+        "cell": [
+          0,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 47,
+        "zoneIds": [
+          "142.1",
+          "114",
+          "122"
+        ],
+        "aliases": [
+          "嘉富麗苑",
+          "嘉富丽苑",
+          "上環站一帶",
+          "上环站一带",
+          "中央廣場",
+          "中央广场"
+        ],
+        "sourcePop": 29158
+      },
+      {
+        "name": "炮台山站一帶",
+        "hans": "炮台山站一带",
+        "cell": [
+          10,
+          4
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 30,
+        "zoneIds": [
+          "151.1",
+          "151.2"
+        ],
+        "aliases": [
+          "炮台山站一帶",
+          "炮台山站一带",
+          "天后站一帶",
+          "天后站一带"
+        ],
+        "sourcePop": 28180
+      },
+      {
+        "name": "紅磡站一帶",
+        "hans": "红磡站一带",
+        "cell": [
+          9,
+          0
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "people": 66,
+        "zoneIds": [
+          "213S",
+          "245.3",
+          "217"
+        ],
+        "aliases": [
+          "紅磡站一帶",
+          "红磡站一带",
+          "九龍海逸君綽酒店",
+          "九龙海逸君绰酒店",
+          "海灣軒 - 海景酒店",
+          "海湾轩 - 海景酒店"
+        ],
+        "sourcePop": 27868
+      }
+    ],
+    "destinations": [
+      {
+        "name": "中環站一帶",
+        "hans": "中环站一带",
+        "kind": "jobs",
+        "cell": [
+          2,
+          7
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 220289,
+        "attraction": 30.68593333333333,
+        "carExtra": 4,
+        "zoneIds": [
+          "121S",
+          "143"
+        ],
+        "aliases": [
+          "中環站一帶",
+          "中环站一带",
+          "堅麗閣",
+          "坚丽阁"
+        ],
+        "grow": [
+          [
+            0,
+            30.68593333333333
+          ],
+          [
+            4,
+            31.6845768
+          ]
+        ],
+        "jobsTarget": 235269
+      },
+      {
+        "name": "銅鑼灣站一帶",
+        "hans": "铜锣湾站一带",
+        "kind": "jobs",
+        "cell": [
+          7,
+          6
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobs": 206361,
+        "attraction": 29.7574,
+        "carExtra": 3,
+        "zoneIds": [
+          "146S",
+          "134S",
+          "132",
+          "133"
+        ],
+        "aliases": [
+          "銅鑼灣站一帶",
+          "铜锣湾站一带",
+          "會展站一帶",
+          "会展站一带",
+          "南洋酒店",
+          "伊利莎伯大廈",
+          "伊利莎伯大厦"
+        ]
+      },
+      {
+        "name": "往九龍",
+        "hans": "往九龙",
+        "kind": "gate",
+        "cell": [
+          8,
+          0
+        ],
+        "house": [
+          1,
+          0
+        ],
+        "jobsEquivalent": 15115,
+        "attraction": 17.007673333333337,
+        "carExtra": 2,
+        "sourceTarget": "251S"
+      }
+    ],
+    "roads": [
+      {
+        "name": "WESTERN HARBOUR CROSSING",
+        "hans": "WESTERN HARBOUR CROSSING",
+        "via": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "cap": 60.46767850722912,
+        "aliases": [
+          "WESTERN HARBOUR CROSSING"
+        ]
+      },
+      {
+        "name": "WESTERN HARBOUR CROSSING",
+        "hans": "WESTERN HARBOUR CROSSING",
+        "via": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "cap": 22.83326906673622,
+        "aliases": [
+          "WESTERN HARBOUR CROSSING"
+        ]
+      },
+      {
+        "name": "AUSTIN ROAD WEST",
+        "hans": "AUSTIN ROAD WEST",
+        "via": [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "cap": 30.104288790824565,
+        "aliases": [
+          "AUSTIN ROAD WEST"
+        ]
+      },
+      {
+        "name": "AUSTIN ROAD WEST",
+        "hans": "AUSTIN ROAD WEST",
+        "via": [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "cap": 42.79483620829427,
+        "aliases": [
+          "AUSTIN ROAD WEST"
+        ]
+      },
+      {
+        "name": "柯士甸道",
+        "hans": "柯士甸道",
+        "via": [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "cap": 14.380101369689196,
+        "aliases": [
+          "AUSTIN ROAD"
+        ]
+      },
+      {
+        "name": "柯士甸道",
+        "hans": "柯士甸道",
+        "via": [
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "cap": 15.114220658832489,
+        "aliases": [
+          "AUSTIN ROAD"
+        ]
+      },
+      {
+        "name": "CANTON ROAD",
+        "hans": "CANTON ROAD",
+        "via": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "cap": 24.906076471376107,
+        "aliases": [
+          "CANTON ROAD"
+        ]
+      },
+      {
+        "name": "彌敦道",
+        "hans": "弥敦道",
+        "via": [
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "cap": 9.47337759151822,
+        "aliases": [
+          "NATHAN ROAD"
+        ]
+      },
+      {
+        "name": "彌敦道",
+        "hans": "弥敦道",
+        "via": [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "cap": 9.786457876594037,
+        "aliases": [
+          "NATHAN ROAD"
+        ]
+      },
+      {
+        "name": "PRINCESS MARGARET ROAD",
+        "hans": "PRINCESS MARGARET ROAD",
+        "via": [
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "cap": 50.54627223189551,
+        "aliases": [
+          "PRINCESS MARGARET ROAD"
+        ]
+      },
+      {
+        "name": "CHATHAM ROAD SOUTH",
+        "hans": "CHATHAM ROAD SOUTH",
+        "via": [
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "cap": 15.788962652530367,
+        "aliases": [
+          "CHATHAM ROAD SOUTH"
+        ]
+      },
+      {
+        "name": "暢運道",
+        "hans": "畅运道",
+        "via": [
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "cap": 15.114220658832489,
+        "aliases": [
+          "CHEONG WAN ROAD"
+        ]
+      },
+      {
+        "name": "CROSS HARBOUR TUNNEL",
+        "hans": "CROSS HARBOUR TUNNEL",
+        "via": [
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "cap": 82.31852323114123,
+        "aliases": [
+          "CROSS HARBOUR TUNNEL"
+        ]
+      },
+      {
+        "name": "CROSS HARBOUR TUNNEL",
+        "hans": "CROSS HARBOUR TUNNEL",
+        "via": [
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ]
+        ],
+        "cap": 38.86513883699782,
+        "aliases": [
+          "CROSS HARBOUR TUNNEL"
+        ]
+      },
+      {
+        "name": "CROSS HARBOUR TUNNEL",
+        "hans": "CROSS HARBOUR TUNNEL",
+        "via": [
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "cap": 16.193807848749096,
+        "aliases": [
+          "CROSS HARBOUR TUNNEL"
+        ]
+      },
+      {
+        "name": "HUNG HOM BYPASS",
+        "hans": "HUNG HOM BYPASS",
+        "via": [
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "cap": 42.9135907991851,
+        "aliases": [
+          "HUNG HOM BYPASS"
+        ]
+      },
+      {
+        "name": "HUNG HOM BYPASS",
+        "hans": "HUNG HOM BYPASS",
+        "via": [
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        "cap": 60.99667623028826,
+        "aliases": [
+          "HUNG HOM BYPASS"
+        ]
+      },
+      {
+        "name": "HUNG HOM BYPASS",
+        "hans": "HUNG HOM BYPASS",
+        "via": [
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        "cap": 16.193807848749096,
+        "aliases": [
+          "HUNG HOM BYPASS"
+        ]
+      },
+      {
+        "name": "海防道",
+        "hans": "海防道",
+        "via": [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "HAIPHONG ROAD"
+        ]
+      },
+      {
+        "name": "九龍公園徑",
+        "hans": "九龙公园径",
+        "via": [
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "cap": 30.903183311362852,
+        "aliases": [
+          "KOWLOON PARK DRIVE"
+        ]
+      },
+      {
+        "name": "九龍公園徑",
+        "hans": "九龙公园径",
+        "via": [
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "cap": 49.17519650070142,
+        "aliases": [
+          "KOWLOON PARK DRIVE"
+        ]
+      },
+      {
+        "name": "PRAT AVENUE",
+        "hans": "PRAT AVENUE",
+        "via": [
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "PRAT AVENUE"
+        ]
+      },
+      {
+        "name": "梳士巴利道",
+        "hans": "梳士巴利道",
+        "via": [
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "cap": 50.60564952734092,
+        "aliases": [
+          "SALISBURY ROAD"
+        ]
+      },
+      {
+        "name": "梳士巴利道",
+        "hans": "梳士巴利道",
+        "via": [
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "cap": 49.02405429411309,
+        "aliases": [
+          "SALISBURY ROAD"
+        ]
+      },
+      {
+        "name": "梳士巴利道",
+        "hans": "梳士巴利道",
+        "via": [
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "cap": 35.11357335203762,
+        "aliases": [
+          "SALISBURY ROAD"
+        ]
+      },
+      {
+        "name": "梳士巴利道",
+        "hans": "梳士巴利道",
+        "via": [
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ]
+        ],
+        "cap": 22.671330988248734,
+        "aliases": [
+          "SALISBURY ROAD"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            13,
+            2
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "cap": 25.37029896304025,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            13,
+            2
+          ],
+          [
+            14,
+            2
+          ],
+          [
+            14,
+            3
+          ]
+        ],
+        "cap": 48.58142354624729,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            13,
+            2
+          ],
+          [
+            13,
+            3
+          ]
+        ],
+        "cap": 49.66101073616389,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "cap": 65.07751580817303,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            13,
+            3
+          ],
+          [
+            14,
+            3
+          ]
+        ],
+        "cap": 51.03748440330756,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            14,
+            3
+          ],
+          [
+            15,
+            3
+          ]
+        ],
+        "cap": 134.09552485954165,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            15,
+            3
+          ],
+          [
+            15,
+            4
+          ]
+        ],
+        "cap": 64.37038619877765,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ]
+        ],
+        "cap": 72.66161581733719,
+        "aliases": []
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ]
+        ],
+        "cap": 109.57809977653554,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            4
+          ]
+        ],
+        "cap": 84.7475944084536,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "ISLAND EASTERN CORRIDOR",
+        "hans": "ISLAND EASTERN CORRIDOR",
+        "via": [
+          [
+            9,
+            4
+          ],
+          [
+            9,
+            5
+          ]
+        ],
+        "cap": 50.7405979260805,
+        "aliases": [
+          "ISLAND EASTERN CORRIDOR"
+        ]
+      },
+      {
+        "name": "英皇道",
+        "hans": "英皇道",
+        "via": [
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "cap": 30.525327794892043,
+        "aliases": [
+          "KING'S ROAD"
+        ]
+      },
+      {
+        "name": "英皇道",
+        "hans": "英皇道",
+        "via": [
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "cap": 24.733342520989453,
+        "aliases": [
+          "KING'S ROAD"
+        ]
+      },
+      {
+        "name": "渣華道",
+        "hans": "渣华道",
+        "via": [
+          [
+            12,
+            3
+          ],
+          [
+            13,
+            3
+          ]
+        ],
+        "cap": 33.63453890185187,
+        "aliases": [
+          "JAVA ROAD"
+        ]
+      },
+      {
+        "name": "百福道",
+        "hans": "百福道",
+        "via": [
+          [
+            14,
+            3
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "PAK FUK ROAD"
+        ]
+      },
+      {
+        "name": "百福道",
+        "hans": "百福道",
+        "via": [
+          [
+            13,
+            4
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "PAK FUK ROAD"
+        ]
+      },
+      {
+        "name": "MAN KAT STREET",
+        "hans": "MAN KAT STREET",
+        "via": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "cap": 73.62784635231255,
+        "aliases": [
+          "MAN KAT STREET"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "cap": 57.38005914406762,
+        "aliases": []
+      },
+      {
+        "name": "民光街",
+        "hans": "民光街",
+        "via": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "MAN KWONG STREET"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "cap": 105.86431984322242,
+        "aliases": []
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            4
+          ]
+        ],
+        "cap": 25.37029896304025,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "cap": 41.56410681178934,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "cap": 39.788185884376524,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        "cap": 50.7405979260805,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            7,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "cap": 23.59437803562743,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            5
+          ]
+        ],
+        "cap": 29.14885412774837,
+        "aliases": []
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            9,
+            5
+          ],
+          [
+            10,
+            5
+          ]
+        ],
+        "cap": 138.67297454478808,
+        "aliases": []
+      },
+      {
+        "name": "天后廟道",
+        "hans": "天后庙道",
+        "via": [
+          [
+            11,
+            4
+          ],
+          [
+            12,
+            4
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "TIN HAU TEMPLE ROAD"
+        ]
+      },
+      {
+        "name": "天后廟道",
+        "hans": "天后庙道",
+        "via": [
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "cap": 13.440860514461749,
+        "aliases": [
+          "TIN HAU TEMPLE ROAD"
+        ]
+      },
+      {
+        "name": "天后廟道",
+        "hans": "天后庙道",
+        "via": [
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "TIN HAU TEMPLE ROAD"
+        ]
+      },
+      {
+        "name": "寶馬山道",
+        "hans": "宝马山道",
+        "via": [
+          [
+            12,
+            4
+          ],
+          [
+            13,
+            4
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "BRAEMAR HILL ROAD"
+        ]
+      },
+      {
+        "name": "寶馬山道",
+        "hans": "宝马山道",
+        "via": [
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "BRAEMAR HILL ROAD"
+        ]
+      },
+      {
+        "name": "英皇道",
+        "hans": "英皇道",
+        "via": [
+          [
+            15,
+            4
+          ],
+          [
+            15,
+            5
+          ]
+        ],
+        "cap": 21.05195020337382,
+        "aliases": [
+          "KING'S ROAD"
+        ]
+      },
+      {
+        "name": "CONNAUGHT ROAD CENTRAL",
+        "hans": "CONNAUGHT ROAD CENTRAL",
+        "via": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "cap": 93.843116483501,
+        "aliases": [
+          "CONNAUGHT ROAD CENTRAL"
+        ]
+      },
+      {
+        "name": "CONNAUGHT ROAD CENTRAL",
+        "hans": "CONNAUGHT ROAD CENTRAL",
+        "via": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ]
+        ],
+        "cap": 80.25651169840052,
+        "aliases": [
+          "CONNAUGHT ROAD CENTRAL"
+        ]
+      },
+      {
+        "name": "CONNAUGHT ROAD CENTRAL",
+        "hans": "CONNAUGHT ROAD CENTRAL",
+        "via": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "cap": 78.0973373185673,
+        "aliases": [
+          "CONNAUGHT ROAD CENTRAL"
+        ]
+      },
+      {
+        "name": "HOLLYWOOD ROAD",
+        "hans": "HOLLYWOOD ROAD",
+        "via": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ]
+        ],
+        "cap": 19.702466215978063,
+        "aliases": [
+          "HOLLYWOOD ROAD"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "cap": 127.51004300105036,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "cap": 76.51034414938988,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "cap": 47.18875607125486,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "cap": 41.159261615570614,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "CONNAUGHT ROAD CENTRAL",
+        "hans": "CONNAUGHT ROAD CENTRAL",
+        "via": [
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "cap": 33.909833635280606,
+        "aliases": [
+          "CONNAUGHT ROAD CENTRAL"
+        ]
+      },
+      {
+        "name": "EXPO DRIVE EAST",
+        "hans": "EXPO DRIVE EAST",
+        "via": [
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "EXPO DRIVE EAST"
+        ]
+      },
+      {
+        "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "hans": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+        "via": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "cap": 25.58621640102357,
+        "aliases": [
+          "CENTRAL-WAN CHAI BYPASS TUNNEL"
+        ]
+      },
+      {
+        "name": "維園道",
+        "hans": "维园道",
+        "via": [
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            5
+          ]
+        ],
+        "cap": 148.43784067758378,
+        "aliases": [
+          "VICTORIA PARK ROAD"
+        ]
+      },
+      {
+        "name": "維園道",
+        "hans": "维园道",
+        "via": [
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "cap": 208.1390122799721,
+        "aliases": [
+          "VICTORIA PARK ROAD"
+        ]
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "via": [
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            6
+          ]
+        ],
+        "cap": 4.264369400170596,
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ]
+      },
+      {
+        "name": "高士威道",
+        "hans": "高士威道",
+        "via": [
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ]
+        ],
+        "cap": 24.96545376682152,
+        "aliases": [
+          "CAUSEWAY ROAD"
+        ]
+      },
+      {
+        "name": "高士威道",
+        "hans": "高士威道",
+        "via": [
+          [
+            9,
+            6
+          ],
+          [
+            10,
+            6
+          ]
+        ],
+        "cap": 15.788962652530367,
+        "aliases": [
+          "CAUSEWAY ROAD"
+        ]
+      },
+      {
+        "name": "高士威道",
+        "hans": "高士威道",
+        "via": [
+          [
+            9,
+            6
+          ],
+          [
+            9,
+            7
+          ]
+        ],
+        "cap": 57.97383209852176,
+        "aliases": [
+          "CAUSEWAY ROAD"
+        ]
+      },
+      {
+        "name": "雲景道",
+        "hans": "云景道",
+        "via": [
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "CLOUD VIEW ROAD"
+        ]
+      },
+      {
+        "name": "怡景道",
+        "hans": "怡景道",
+        "via": [
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "YEE KING ROAD"
+        ]
+      },
+      {
+        "name": "怡景道",
+        "hans": "怡景道",
+        "via": [
+          [
+            10,
+            6
+          ],
+          [
+            11,
+            6
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "YEE KING ROAD"
+        ]
+      },
+      {
+        "name": "雲鹹街",
+        "hans": "云咸街",
+        "via": [
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            6
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "WYNDHAM STREET"
+        ]
+      },
+      {
+        "name": "羅便臣道",
+        "hans": "罗便臣道",
+        "via": [
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ],
+        "cap": 22.941227785727882,
+        "aliases": [
+          "ROBINSON ROAD"
+        ]
+      },
+      {
+        "name": "羅便臣道",
+        "hans": "罗便臣道",
+        "via": [
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            7
+          ]
+        ],
+        "cap": 39.40493243195613,
+        "aliases": [
+          "ROBINSON ROAD"
+        ]
+      },
+      {
+        "name": "ALBANY ROAD",
+        "hans": "ALBANY ROAD",
+        "via": [
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ]
+        ],
+        "cap": 24.290711773123643,
+        "aliases": [
+          "ALBANY ROAD"
+        ]
+      },
+      {
+        "name": "夏慤道",
+        "hans": "夏悫道",
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "cap": 92.55300979155065,
+        "aliases": [
+          "HARCOURT ROAD"
+        ]
+      },
+      {
+        "name": "夏慤道",
+        "hans": "夏悫道",
+        "via": [
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "cap": 85.36295910670606,
+        "aliases": [
+          "HARCOURT ROAD"
+        ]
+      },
+      {
+        "name": "紅棉路",
+        "hans": "红棉路",
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "cap": 42.10390040674764,
+        "aliases": [
+          "COTTON TREE DRIVE"
+        ]
+      },
+      {
+        "name": "金鐘道",
+        "hans": "金钟道",
+        "via": [
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "cap": 59.09660277603503,
+        "aliases": [
+          "QUEENSWAY"
+        ]
+      },
+      {
+        "name": "金鐘道",
+        "hans": "金钟道",
+        "via": [
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "QUEENSWAY"
+        ]
+      },
+      {
+        "name": "金鐘道",
+        "hans": "金钟道",
+        "via": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ]
+        ],
+        "cap": 53.63928953100658,
+        "aliases": [
+          "QUEENSWAY"
+        ]
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "via": [
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "cap": 97.89156844568828,
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ]
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "via": [
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "cap": 148.7131354110125,
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ]
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "via": [
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "cap": 8.096903924374548,
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ]
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "via": [
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            6
+          ]
+        ],
+        "cap": 124.69232043536802,
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ]
+      },
+      {
+        "name": "告士打道",
+        "hans": "告士打道",
+        "via": [
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "cap": 184.2207580873697,
+        "aliases": [
+          "GLOUCESTER ROAD"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ]
+        ],
+        "cap": 32.19868793926278,
+        "aliases": []
+      },
+      {
+        "name": "杜老誌道",
+        "hans": "杜老志道",
+        "via": [
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "cap": 28.42013277455466,
+        "aliases": [
+          "TONNOCHY ROAD"
+        ]
+      },
+      {
+        "name": "CANAL ROAD FLYOVER",
+        "hans": "CANAL ROAD FLYOVER",
+        "via": [
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "cap": 71.00984741676477,
+        "aliases": [
+          "CANAL ROAD FLYOVER"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            8,
+            6
+          ],
+          [
+            9,
+            6
+          ]
+        ],
+        "cap": 24.911474407325688,
+        "aliases": []
+      },
+      {
+        "name": "波斯富街",
+        "hans": "波斯富街",
+        "via": [
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "cap": 15.114220658832489,
+        "aliases": [
+          "PERCIVAL STREET"
+        ]
+      },
+      {
+        "name": "銅鑼灣道",
+        "hans": "铜锣湾道",
+        "via": [
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            7
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "TUNG LO WAN ROAD"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "cap": 19.702466215978063,
+        "aliases": []
+      },
+      {
+        "name": "花園道",
+        "hans": "花园道",
+        "via": [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "cap": 30.228441317664977,
+        "aliases": [
+          "GARDEN ROAD"
+        ]
+      },
+      {
+        "name": "花園道",
+        "hans": "花园道",
+        "via": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ]
+        ],
+        "cap": 46.017403970195346,
+        "aliases": [
+          "GARDEN ROAD"
+        ]
+      },
+      {
+        "name": "花園道",
+        "hans": "花园道",
+        "via": [
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            8
+          ]
+        ],
+        "cap": 21.05195020337382,
+        "aliases": [
+          "GARDEN ROAD"
+        ]
+      },
+      {
+        "name": "麥當勞道",
+        "hans": "麦当劳道",
+        "via": [
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "MACDONNELL ROAD"
+        ]
+      },
+      {
+        "name": "堅尼地道",
+        "hans": "坚尼地道",
+        "via": [
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            8
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "KENNEDY ROAD"
+        ]
+      },
+      {
+        "name": "堅尼地道",
+        "hans": "坚尼地道",
+        "via": [
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "KENNEDY ROAD"
+        ]
+      },
+      {
+        "name": "堅尼地道",
+        "hans": "坚尼地道",
+        "via": [
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "KENNEDY ROAD"
+        ]
+      },
+      {
+        "name": "堅尼地道",
+        "hans": "坚尼地道",
+        "via": [
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "cap": 25.6401957605194,
+        "aliases": [
+          "KENNEDY ROAD"
+        ]
+      },
+      {
+        "name": "分域街",
+        "hans": "分域街",
+        "via": [
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "cap": 59.566223203648754,
+        "aliases": [
+          "FENWICK STREET"
+        ]
+      },
+      {
+        "name": "軒尼詩道",
+        "hans": "轩尼诗道",
+        "via": [
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "cap": 38.49807919242618,
+        "aliases": [
+          "HENNESSY ROAD"
+        ]
+      },
+      {
+        "name": "軒尼詩道",
+        "hans": "轩尼诗道",
+        "via": [
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "cap": 29.003109857109628,
+        "aliases": [
+          "HENNESSY ROAD"
+        ]
+      },
+      {
+        "name": "灣仔道",
+        "hans": "湾仔道",
+        "via": [
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "cap": 20.31783091423053,
+        "aliases": [
+          "WAN CHAI ROAD"
+        ]
+      },
+      {
+        "name": "禮頓道",
+        "hans": "礼顿道",
+        "via": [
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "cap": 26.31493775421728,
+        "aliases": [
+          "LEIGHTON ROAD"
+        ]
+      },
+      {
+        "name": "禮頓道",
+        "hans": "礼顿道",
+        "via": [
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            7
+          ]
+        ],
+        "cap": 18.96834692683477,
+        "aliases": [
+          "LEIGHTON ROAD"
+        ]
+      },
+      {
+        "name": "WONG NAI CHUNG GAP FLYOVER",
+        "hans": "WONG NAI CHUNG GAP FLYOVER",
+        "via": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "cap": 74.89636130046456,
+        "aliases": [
+          "WONG NAI CHUNG GAP FLYOVER"
+        ]
+      },
+      {
+        "name": "WONG NAI CHUNG GAP FLYOVER",
+        "hans": "WONG NAI CHUNG GAP FLYOVER",
+        "via": [
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "cap": 49.87692817414721,
+        "aliases": [
+          "WONG NAI CHUNG GAP FLYOVER"
+        ]
+      },
+      {
+        "name": "黃泥涌道",
+        "hans": "黄泥涌道",
+        "via": [
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "cap": 20.377208209675945,
+        "aliases": [
+          "WONG NAI CHUNG ROAD"
+        ]
+      },
+      {
+        "name": "黃泥涌道",
+        "hans": "黄泥涌道",
+        "via": [
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "cap": 15.788962652530367,
+        "aliases": [
+          "WONG NAI CHUNG ROAD"
+        ]
+      },
+      {
+        "name": "黃泥涌道",
+        "hans": "黄泥涌道",
+        "via": [
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "WONG NAI CHUNG ROAD"
+        ]
+      },
+      {
+        "name": "大坑道",
+        "hans": "大坑道",
+        "via": [
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            7
+          ]
+        ],
+        "cap": 23.23811426295495,
+        "aliases": [
+          "TAI HANG ROAD"
+        ]
+      },
+      {
+        "name": "大坑道",
+        "hans": "大坑道",
+        "via": [
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "cap": 9.47337759151822,
+        "aliases": [
+          "TAI HANG ROAD"
+        ]
+      },
+      {
+        "name": "大坑道",
+        "hans": "大坑道",
+        "via": [
+          [
+            10,
+            7
+          ],
+          [
+            10,
+            8
+          ]
+        ],
+        "cap": 18.35298222858231,
+        "aliases": [
+          "TAI HANG ROAD"
+        ]
+      },
+      {
+        "name": "大坑道",
+        "hans": "大坑道",
+        "via": [
+          [
+            11,
+            7
+          ],
+          [
+            11,
+            8
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "TAI HANG ROAD"
+        ]
+      },
+      {
+        "name": "大坑道",
+        "hans": "大坑道",
+        "via": [
+          [
+            10,
+            8
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "TAI HANG ROAD"
+        ]
+      },
+      {
+        "name": "大坑道",
+        "hans": "大坑道",
+        "via": [
+          [
+            10,
+            8
+          ],
+          [
+            11,
+            8
+          ]
+        ],
+        "cap": 13.76473667143673,
+        "aliases": [
+          "TAI HANG ROAD"
+        ]
+      },
+      {
+        "name": "加路連山道",
+        "hans": "加路连山道",
+        "via": [
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            8
+          ]
+        ],
+        "cap": 19.702466215978063,
+        "aliases": [
+          "CAROLINE HILL ROAD"
+        ]
+      },
+      {
+        "name": "馬己仙峽道",
+        "hans": "马己仙峡道",
+        "via": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "MAGAZINE GAP ROAD"
+        ]
+      },
+      {
+        "name": "馬己仙峽道",
+        "hans": "马己仙峡道",
+        "via": [
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            9
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "MAGAZINE GAP ROAD"
+        ]
+      },
+      {
+        "name": "馬己仙峽道",
+        "hans": "马己仙峡道",
+        "via": [
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "MAGAZINE GAP ROAD"
+        ]
+      },
+      {
+        "name": "寶雲道",
+        "hans": "宝云道",
+        "via": [
+          [
+            4,
+            8
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "BOWEN ROAD"
+        ]
+      },
+      {
+        "name": "灣仔峽道",
+        "hans": "湾仔峡道",
+        "via": [
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            5,
+            10
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "WAN CHAI GAP ROAD"
+        ]
+      },
+      {
+        "name": "QUEEN'S ROAD EAST",
+        "hans": "QUEEN'S ROAD EAST",
+        "via": [
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "cap": 42.10390040674764,
+        "aliases": [
+          "QUEEN'S ROAD EAST"
+        ]
+      },
+      {
+        "name": "司徒拔道",
+        "hans": "司徒拔道",
+        "via": [
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "STUBBS ROAD"
+        ]
+      },
+      {
+        "name": "司徒拔道",
+        "hans": "司徒拔道",
+        "via": [
+          [
+            5,
+            10
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "STUBBS ROAD"
+        ]
+      },
+      {
+        "name": "司徒拔道",
+        "hans": "司徒拔道",
+        "via": [
+          [
+            6,
+            9
+          ],
+          [
+            6,
+            10
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "STUBBS ROAD"
+        ]
+      },
+      {
+        "name": "司徒拔道",
+        "hans": "司徒拔道",
+        "via": [
+          [
+            4,
+            10
+          ],
+          [
+            5,
+            10
+          ]
+        ],
+        "cap": 9.176491114291155,
+        "aliases": [
+          "STUBBS ROAD"
+        ]
+      },
+      {
+        "name": "司徒拔道",
+        "hans": "司徒拔道",
+        "via": [
+          [
+            7,
+            10
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "cap": 13.76473667143673,
+        "aliases": [
+          "STUBBS ROAD"
+        ]
+      },
+      {
+        "name": "樂活道",
+        "hans": "乐活道",
+        "via": [
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            9,
+            9
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "BROADWOOD ROAD"
+        ]
+      },
+      {
+        "name": "東院道",
+        "hans": "东院道",
+        "via": [
+          [
+            9,
+            8
+          ],
+          [
+            10,
+            8
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "EASTERN HOSPITAL ROAD"
+        ]
+      },
+      {
+        "name": "睦誠道",
+        "hans": "睦诚道",
+        "via": [
+          [
+            11,
+            8
+          ],
+          [
+            11,
+            9
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "MOORSOM ROAD"
+        ]
+      },
+      {
+        "name": "山頂道",
+        "hans": "山顶道",
+        "via": [
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            3,
+            9
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "PEAK ROAD"
+        ]
+      },
+      {
+        "name": "山頂道",
+        "hans": "山顶道",
+        "via": [
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            10
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "PEAK ROAD"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            7,
+            9
+          ],
+          [
+            7,
+            10
+          ]
+        ],
+        "cap": 36.651985097668785,
+        "aliases": []
+      },
+      {
+        "name": "成和道",
+        "hans": "成和道",
+        "via": [
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            9,
+            10
+          ]
+        ],
+        "cap": 10.52597510168691,
+        "aliases": [
+          "SING WOO ROAD"
+        ]
+      },
+      {
+        "name": "未命名道路",
+        "hans": "未命名道路",
+        "via": [
+          [
+            9,
+            9
+          ],
+          [
+            10,
+            9
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": []
+      },
+      {
+        "name": "白建時道",
+        "hans": "白建时道",
+        "via": [
+          [
+            10,
+            9
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            11,
+            10
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "PERKINS ROAD"
+        ]
+      },
+      {
+        "name": "香港仔隧道",
+        "hans": "香港仔隧道",
+        "via": [
+          [
+            7,
+            10
+          ],
+          [
+            7,
+            11
+          ]
+        ],
+        "cap": 16.193807848749096,
+        "aliases": [
+          "ABERDEEN TUNNEL"
+        ]
+      },
+      {
+        "name": "藍塘道",
+        "hans": "蓝塘道",
+        "via": [
+          [
+            9,
+            10
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "cap": 4.588245557145577,
+        "aliases": [
+          "BLUE POOL ROAD"
+        ]
+      },
+      {
+        "name": "畢拉山道",
+        "hans": "毕拉山道",
+        "via": [
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            10
+          ]
+        ],
+        "cap": 13.76473667143673,
+        "aliases": [
+          "MOUNT BUTLER ROAD"
+        ]
+      },
+      {
+        "name": "黃泥涌峽道",
+        "hans": "黄泥涌峡道",
+        "via": [
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "cap": 13.76473667143673,
+        "aliases": [
+          "WONG NAI CHUNG GAP ROAD"
+        ]
+      },
+      {
+        "name": "黃泥涌峽道",
+        "hans": "黄泥涌峡道",
+        "via": [
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "cap": 24.290711773123643,
+        "aliases": [
+          "WONG NAI CHUNG GAP ROAD"
+        ]
+      }
+    ],
+    "lines": [
+      {
+        "name": "東鐵綫",
+        "hans": "东铁线",
+        "color": "#5EB7E8",
+        "via": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            3,
+            7
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "names": [
+          "金鐘",
+          "會展",
+          "紅磡"
+        ],
+        "namesHans": [
+          "金钟",
+          "会展",
+          "红磡"
+        ],
+        "trains": 3
+      },
+      {
+        "name": "荃灣綫",
+        "hans": "荃湾线",
+        "color": "#ED1D24",
+        "via": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "names": [
+          "中環",
+          "金鐘",
+          "尖沙咀"
+        ],
+        "namesHans": [
+          "中环",
+          "金钟",
+          "尖沙咀"
+        ],
+        "trains": 3
+      },
+      {
+        "name": "港島綫",
+        "hans": "港岛线",
+        "color": "#007DC5",
+        "via": [
+          [
+            15,
+            5
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "stations": [
+          [
+            14,
+            4
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "names": [
+          "鰂魚涌",
+          "北角",
+          "炮台山",
+          "天后",
+          "銅鑼灣",
+          "灣仔",
+          "金鐘",
+          "中環",
+          "上環"
+        ],
+        "namesHans": [
+          "鲗鱼涌",
+          "北角",
+          "炮台山",
+          "天后",
+          "铜锣湾",
+          "湾仔",
+          "金钟",
+          "中环",
+          "上环"
+        ],
+        "trains": 3
+      },
+      {
+        "name": "將軍澳綫",
+        "hans": "将军澳线",
+        "color": "#7D499D",
+        "via": [
+          [
+            12,
+            3
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            15,
+            3
+          ]
+        ],
+        "stations": [
+          [
+            12,
+            3
+          ],
+          [
+            14,
+            4
+          ]
+        ],
+        "names": [
+          "北角",
+          "鰂魚涌"
+        ],
+        "namesHans": [
+          "北角",
+          "鲗鱼涌"
+        ],
+        "trains": 3
+      },
+      {
+        "name": "屯馬綫",
+        "hans": "屯马线",
+        "color": "#923011",
+        "via": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "stations": [
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "names": [
+          "柯士甸",
+          "尖東",
+          "紅磡"
+        ],
+        "namesHans": [
+          "柯士甸",
+          "尖东",
+          "红磡"
+        ],
+        "trains": 3
+      }
+    ],
+    "water": [
+      [
+        11,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        13,
+        0
+      ],
+      [
+        14,
+        0
+      ],
+      [
+        15,
+        0
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        11,
+        2
+      ],
+      [
+        14,
+        2
+      ],
+      [
+        15,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "walkPer": 3,
+    "wait": 2,
+    "lineCost": 1,
+    "stationCost": 3,
+    "trainCost": 4,
+    "perTrain": 40,
+    "budget": 30,
+    "phase2Budget": 0,
+    "years": 8,
+    "crowdBlocks": 4,
+    "aware": {
+      "start": 0.2,
+      "spread": 2
+    },
+    "nearby": 10,
+    "stay": 40,
+    "learn": 0.3,
+    "tiers": [
+      363,
+      590,
+      798
+    ],
+    "source": {
+      "area": "causeway-bay-wan-chai",
+      "period": "am",
+      "box": [
+        84,
+        74,
+        100,
+        86
+      ],
+      "scale": 0.010574028775456976,
+      "changes": [
+        {
+          "place": "中環站一帶",
+          "resolved": "中環站一帶",
+          "what": "jobs",
+          "pct": 6.8,
+          "by_year": 4,
+          "from": 30.686,
+          "to": 31.685,
+          "fallback": false,
+          "affectedSegments": 1
+        }
+      ],
+      "roadCapCoeff": 0.51049,
+      "roadSections": [
+        {
+          "name": "WESTERN HARBOUR CROSSING",
+          "road": "767",
+          "modelCap": 11202,
+          "segments": [
+            {
+              "a": [
+                1,
+                0
+              ],
+              "b": [
+                2,
+                0
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2303"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WESTERN HARBOUR CROSSING",
+          "road": "767",
+          "modelCap": 4230,
+          "segments": [
+            {
+              "a": [
+                1,
+                0
+              ],
+              "b": [
+                1,
+                1
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "2304"
+              ]
+            },
+            {
+              "a": [
+                1,
+                1
+              ],
+              "b": [
+                0,
+                1
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "2348"
+              ]
+            },
+            {
+              "a": [
+                0,
+                1
+              ],
+              "b": [
+                0,
+                2
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "2349"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "AUSTIN ROAD WEST",
+          "road": "16",
+          "modelCap": 5577,
+          "segments": [
+            {
+              "a": [
+                2,
+                0
+              ],
+              "b": [
+                3,
+                0
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2305"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "AUSTIN ROAD WEST",
+          "road": "17",
+          "modelCap": 7928,
+          "segments": [
+            {
+              "a": [
+                3,
+                0
+              ],
+              "b": [
+                4,
+                0
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2306"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "柯士甸道",
+          "road": "15",
+          "modelCap": 2664,
+          "segments": [
+            {
+              "a": [
+                4,
+                0
+              ],
+              "b": [
+                5,
+                0
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2307"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "柯士甸道",
+          "road": "15",
+          "modelCap": 2800,
+          "segments": [
+            {
+              "a": [
+                5,
+                0
+              ],
+              "b": [
+                6,
+                0
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2309"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CANTON ROAD",
+          "road": "31",
+          "modelCap": 4614,
+          "segments": [
+            {
+              "a": [
+                4,
+                0
+              ],
+              "b": [
+                4,
+                1
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "2308"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "彌敦道",
+          "road": "387",
+          "modelCap": 1755,
+          "segments": [
+            {
+              "a": [
+                5,
+                0
+              ],
+              "b": [
+                5,
+                1
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2310"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "彌敦道",
+          "road": "387",
+          "modelCap": 1813,
+          "segments": [
+            {
+              "a": [
+                5,
+                1
+              ],
+              "b": [
+                5,
+                2
+              ],
+              "modelVC": 1,
+              "sectionIds": [
+                "2353"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "PRINCESS MARGARET ROAD",
+          "road": "478",
+          "modelCap": 9364,
+          "segments": [
+            {
+              "a": [
+                6,
+                0
+              ],
+              "b": [
+                7,
+                0
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2311"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CHATHAM ROAD SOUTH",
+          "road": "80",
+          "modelCap": 2925,
+          "segments": [
+            {
+              "a": [
+                6,
+                0
+              ],
+              "b": [
+                6,
+                1
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2312"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "暢運道",
+          "road": "90",
+          "modelCap": 2800,
+          "segments": [
+            {
+              "a": [
+                7,
+                0
+              ],
+              "b": [
+                8,
+                0
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2313"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CROSS HARBOUR TUNNEL",
+          "road": "136",
+          "modelCap": 15250,
+          "segments": [
+            {
+              "a": [
+                7,
+                0
+              ],
+              "b": [
+                7,
+                1
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2314"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CROSS HARBOUR TUNNEL",
+          "road": "136",
+          "modelCap": 7200,
+          "segments": [
+            {
+              "a": [
+                7,
+                1
+              ],
+              "b": [
+                7,
+                2
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2357"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CROSS HARBOUR TUNNEL",
+          "road": "136",
+          "modelCap": 3000,
+          "segments": [
+            {
+              "a": [
+                7,
+                2
+              ],
+              "b": [
+                7,
+                3
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "2400"
+              ]
+            },
+            {
+              "a": [
+                7,
+                3
+              ],
+              "b": [
+                8,
+                3
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "2443"
+              ]
+            },
+            {
+              "a": [
+                8,
+                3
+              ],
+              "b": [
+                8,
+                4
+              ],
+              "modelVC": 1.3,
+              "sectionIds": [
+                "2444"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "HUNG HOM BYPASS",
+          "road": "217",
+          "modelCap": 7950,
+          "segments": [
+            {
+              "a": [
+                8,
+                0
+              ],
+              "b": [
+                9,
+                0
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2315"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "HUNG HOM BYPASS",
+          "road": "217",
+          "modelCap": 11300,
+          "segments": [
+            {
+              "a": [
+                8,
+                0
+              ],
+              "b": [
+                8,
+                1
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2316"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "HUNG HOM BYPASS",
+          "road": "217",
+          "modelCap": 3000,
+          "segments": [
+            {
+              "a": [
+                7,
+                1
+              ],
+              "b": [
+                8,
+                1
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2356"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "海防道",
+          "road": "183",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                4,
+                1
+              ],
+              "b": [
+                5,
+                1
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2350"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "九龍公園徑",
+          "road": "271",
+          "modelCap": 5725,
+          "segments": [
+            {
+              "a": [
+                4,
+                1
+              ],
+              "b": [
+                4,
+                2
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2351"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "九龍公園徑",
+          "road": "271",
+          "modelCap": 9110,
+          "segments": [
+            {
+              "a": [
+                4,
+                2
+              ],
+              "b": [
+                5,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2397"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "PRAT AVENUE",
+          "road": "471",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                1
+              ],
+              "b": [
+                6,
+                1
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2352"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "梳士巴利道",
+          "road": "499",
+          "modelCap": 9375,
+          "segments": [
+            {
+              "a": [
+                6,
+                1
+              ],
+              "b": [
+                7,
+                1
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2354"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "梳士巴利道",
+          "road": "499",
+          "modelCap": 9082,
+          "segments": [
+            {
+              "a": [
+                6,
+                1
+              ],
+              "b": [
+                6,
+                2
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2355"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "梳士巴利道",
+          "road": "499",
+          "modelCap": 6505,
+          "segments": [
+            {
+              "a": [
+                5,
+                2
+              ],
+              "b": [
+                6,
+                2
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2398"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "梳士巴利道",
+          "road": "499",
+          "modelCap": 4200,
+          "segments": [
+            {
+              "a": [
+                6,
+                2
+              ],
+              "b": [
+                7,
+                2
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2399"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                13,
+                2
+              ],
+              "b": [
+                12,
+                2
+              ],
+              "modelVC": 1.2,
+              "sectionIds": [
+                "2401"
+              ]
+            },
+            {
+              "a": [
+                12,
+                2
+              ],
+              "b": [
+                12,
+                3
+              ],
+              "modelVC": 1.2,
+              "sectionIds": [
+                "2402"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 9000,
+          "segments": [
+            {
+              "a": [
+                13,
+                2
+              ],
+              "b": [
+                14,
+                2
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2403"
+              ]
+            },
+            {
+              "a": [
+                14,
+                2
+              ],
+              "b": [
+                14,
+                3
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2405"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 9200,
+          "segments": [
+            {
+              "a": [
+                13,
+                2
+              ],
+              "b": [
+                13,
+                3
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2404"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 12056,
+          "segments": [
+            {
+              "a": [
+                11,
+                3
+              ],
+              "b": [
+                12,
+                3
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2447"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 9455,
+          "segments": [
+            {
+              "a": [
+                13,
+                3
+              ],
+              "b": [
+                14,
+                3
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "2450"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 24842,
+          "segments": [
+            {
+              "a": [
+                14,
+                3
+              ],
+              "b": [
+                15,
+                3
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2451"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "223",
+          "modelCap": 11925,
+          "segments": [
+            {
+              "a": [
+                15,
+                3
+              ],
+              "b": [
+                15,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2454"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "875",
+          "modelCap": 13461,
+          "segments": [
+            {
+              "a": [
+                10,
+                3
+              ],
+              "b": [
+                11,
+                3
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2445"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "225",
+          "modelCap": 20300,
+          "segments": [
+            {
+              "a": [
+                10,
+                3
+              ],
+              "b": [
+                10,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2446"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "225",
+          "modelCap": 15700,
+          "segments": [
+            {
+              "a": [
+                9,
+                4
+              ],
+              "b": [
+                10,
+                4
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2493"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "road": "225",
+          "modelCap": 9400,
+          "segments": [
+            {
+              "a": [
+                9,
+                4
+              ],
+              "b": [
+                9,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2494"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "英皇道",
+          "road": "260",
+          "modelCap": 5655,
+          "segments": [
+            {
+              "a": [
+                11,
+                3
+              ],
+              "b": [
+                11,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2448"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "英皇道",
+          "road": "260",
+          "modelCap": 4582,
+          "segments": [
+            {
+              "a": [
+                10,
+                4
+              ],
+              "b": [
+                11,
+                4
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2495"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "渣華道",
+          "road": "227",
+          "modelCap": 6231,
+          "segments": [
+            {
+              "a": [
+                12,
+                3
+              ],
+              "b": [
+                13,
+                3
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2449"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "百福道",
+          "road": "418",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                14,
+                3
+              ],
+              "b": [
+                14,
+                4
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2452"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "百福道",
+          "road": "418",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                13,
+                4
+              ],
+              "b": [
+                14,
+                4
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2501"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "MAN KAT STREET",
+          "road": "363",
+          "modelCap": 13640,
+          "segments": [
+            {
+              "a": [
+                0,
+                4
+              ],
+              "b": [
+                1,
+                4
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2486"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "852",
+          "modelCap": 10630,
+          "segments": [
+            {
+              "a": [
+                0,
+                4
+              ],
+              "b": [
+                0,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2487"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "民光街",
+          "road": "364",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                1,
+                4
+              ],
+              "b": [
+                2,
+                4
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2488"
+              ]
+            },
+            {
+              "a": [
+                2,
+                4
+              ],
+              "b": [
+                2,
+                5
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2490"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "876",
+          "modelCap": 19612,
+          "segments": [
+            {
+              "a": [
+                1,
+                4
+              ],
+              "b": [
+                1,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2489"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "72",
+          "modelCap": 4700,
+          "segments": [
+            {
+              "a": [
+                8,
+                4
+              ],
+              "b": [
+                9,
+                4
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2491"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "72",
+          "modelCap": 7700,
+          "segments": [
+            {
+              "a": [
+                8,
+                4
+              ],
+              "b": [
+                8,
+                5
+              ],
+              "modelVC": 0.9,
+              "sectionIds": [
+                "2492"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "72",
+          "modelCap": 7371,
+          "segments": [
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                8,
+                5
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2546"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "72",
+          "modelCap": 9400,
+          "segments": [
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                7,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2547"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "72",
+          "modelCap": 4371,
+          "segments": [
+            {
+              "a": [
+                7,
+                5
+              ],
+              "b": [
+                6,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2544"
+              ]
+            },
+            {
+              "a": [
+                6,
+                5
+              ],
+              "b": [
+                6,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2545"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "860",
+          "modelCap": 5400,
+          "segments": [
+            {
+              "a": [
+                10,
+                4
+              ],
+              "b": [
+                10,
+                5
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2496"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "860",
+          "modelCap": 25690,
+          "segments": [
+            {
+              "a": [
+                9,
+                5
+              ],
+              "b": [
+                10,
+                5
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2550"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天后廟道",
+          "road": "648",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                11,
+                4
+              ],
+              "b": [
+                12,
+                4
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2497"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天后廟道",
+          "road": "648",
+          "modelCap": 2490,
+          "segments": [
+            {
+              "a": [
+                11,
+                4
+              ],
+              "b": [
+                11,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2498"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "天后廟道",
+          "road": "648",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                11,
+                5
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2552"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "寶馬山道",
+          "road": "24",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                12,
+                4
+              ],
+              "b": [
+                13,
+                4
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2499"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "寶馬山道",
+          "road": "24",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                12,
+                4
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2500"
+              ]
+            },
+            {
+              "a": [
+                12,
+                5
+              ],
+              "b": [
+                12,
+                6
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2556"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "英皇道",
+          "road": "261",
+          "modelCap": 3900,
+          "segments": [
+            {
+              "a": [
+                15,
+                4
+              ],
+              "b": [
+                15,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2503"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CONNAUGHT ROAD CENTRAL",
+          "road": "131",
+          "modelCap": 17385,
+          "segments": [
+            {
+              "a": [
+                0,
+                5
+              ],
+              "b": [
+                1,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2533"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CONNAUGHT ROAD CENTRAL",
+          "road": "131",
+          "modelCap": 14868,
+          "segments": [
+            {
+              "a": [
+                1,
+                5
+              ],
+              "b": [
+                1,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2536"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CONNAUGHT ROAD CENTRAL",
+          "road": "131",
+          "modelCap": 14468,
+          "segments": [
+            {
+              "a": [
+                1,
+                6
+              ],
+              "b": [
+                2,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2599"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "HOLLYWOOD ROAD",
+          "road": "209",
+          "modelCap": 3650,
+          "segments": [
+            {
+              "a": [
+                0,
+                5
+              ],
+              "b": [
+                0,
+                6
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2534"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "73",
+          "modelCap": 23622,
+          "segments": [
+            {
+              "a": [
+                1,
+                5
+              ],
+              "b": [
+                2,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2535"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "73",
+          "modelCap": 14174,
+          "segments": [
+            {
+              "a": [
+                2,
+                5
+              ],
+              "b": [
+                3,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2537"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "73",
+          "modelCap": 8742,
+          "segments": [
+            {
+              "a": [
+                3,
+                5
+              ],
+              "b": [
+                4,
+                5
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2539"
+              ]
+            },
+            {
+              "a": [
+                4,
+                5
+              ],
+              "b": [
+                4,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2541"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "73",
+          "modelCap": 7625,
+          "segments": [
+            {
+              "a": [
+                3,
+                5
+              ],
+              "b": [
+                3,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2540"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CONNAUGHT ROAD CENTRAL",
+          "road": "130",
+          "modelCap": 6282,
+          "segments": [
+            {
+              "a": [
+                2,
+                5
+              ],
+              "b": [
+                2,
+                6
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2538"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "EXPO DRIVE EAST",
+          "road": "153",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                5
+              ],
+              "b": [
+                6,
+                5
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2542"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "road": "74",
+          "modelCap": 4740,
+          "segments": [
+            {
+              "a": [
+                5,
+                5
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2543"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "維園道",
+          "road": "733",
+          "modelCap": 27499,
+          "segments": [
+            {
+              "a": [
+                8,
+                5
+              ],
+              "b": [
+                9,
+                5
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2548"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "維園道",
+          "road": "733",
+          "modelCap": 38559,
+          "segments": [
+            {
+              "a": [
+                8,
+                5
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2549"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "road": "178",
+          "modelCap": 790,
+          "segments": [
+            {
+              "a": [
+                9,
+                5
+              ],
+              "b": [
+                9,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2551"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "高士威道",
+          "road": "71",
+          "modelCap": 4625,
+          "segments": [
+            {
+              "a": [
+                10,
+                5
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2553"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "高士威道",
+          "road": "71",
+          "modelCap": 2925,
+          "segments": [
+            {
+              "a": [
+                9,
+                6
+              ],
+              "b": [
+                10,
+                6
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2615"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "高士威道",
+          "road": "71",
+          "modelCap": 10740,
+          "segments": [
+            {
+              "a": [
+                9,
+                6
+              ],
+              "b": [
+                9,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2616"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "雲景道",
+          "road": "128",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                12,
+                5
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2554"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "怡景道",
+          "road": "796",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                11,
+                5
+              ],
+              "b": [
+                11,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2555"
+              ]
+            },
+            {
+              "a": [
+                11,
+                6
+              ],
+              "b": [
+                11,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2619"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "怡景道",
+          "road": "796",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                10,
+                6
+              ],
+              "b": [
+                11,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2617"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "雲鹹街",
+          "road": "792",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                0,
+                6
+              ],
+              "b": [
+                1,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2597"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "羅便臣道",
+          "road": "488",
+          "modelCap": 4250,
+          "segments": [
+            {
+              "a": [
+                0,
+                6
+              ],
+              "b": [
+                0,
+                7
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2598"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "羅便臣道",
+          "road": "488",
+          "modelCap": 7300,
+          "segments": [
+            {
+              "a": [
+                0,
+                7
+              ],
+              "b": [
+                1,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2646"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "ALBANY ROAD",
+          "road": "9",
+          "modelCap": 4500,
+          "segments": [
+            {
+              "a": [
+                1,
+                6
+              ],
+              "b": [
+                1,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2600"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "夏慤道",
+          "road": "186",
+          "modelCap": 17146,
+          "segments": [
+            {
+              "a": [
+                2,
+                6
+              ],
+              "b": [
+                3,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2601"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "夏慤道",
+          "road": "186",
+          "modelCap": 15814,
+          "segments": [
+            {
+              "a": [
+                3,
+                6
+              ],
+              "b": [
+                4,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2603"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "紅棉路",
+          "road": "135",
+          "modelCap": 7800,
+          "segments": [
+            {
+              "a": [
+                2,
+                6
+              ],
+              "b": [
+                2,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2602"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "金鐘道",
+          "road": "485",
+          "modelCap": 10948,
+          "segments": [
+            {
+              "a": [
+                3,
+                6
+              ],
+              "b": [
+                3,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2604"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "金鐘道",
+          "road": "485",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                2,
+                7
+              ],
+              "b": [
+                3,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2650"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "金鐘道",
+          "road": "485",
+          "modelCap": 9937,
+          "segments": [
+            {
+              "a": [
+                3,
+                7
+              ],
+              "b": [
+                4,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2652"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "road": "179",
+          "modelCap": 18135,
+          "segments": [
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                5,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2605"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "road": "179",
+          "modelCap": 27550,
+          "segments": [
+            {
+              "a": [
+                5,
+                6
+              ],
+              "b": [
+                6,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2607"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "road": "179",
+          "modelCap": 1500,
+          "segments": [
+            {
+              "a": [
+                5,
+                6
+              ],
+              "b": [
+                5,
+                7
+              ],
+              "modelVC": 0.6,
+              "sectionIds": [
+                "2608"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "road": "179",
+          "modelCap": 23100,
+          "segments": [
+            {
+              "a": [
+                6,
+                6
+              ],
+              "b": [
+                7,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2609"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "告士打道",
+          "road": "179",
+          "modelCap": 34128,
+          "segments": [
+            {
+              "a": [
+                7,
+                6
+              ],
+              "b": [
+                8,
+                6
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2611"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "877",
+          "modelCap": 5965,
+          "segments": [
+            {
+              "a": [
+                4,
+                6
+              ],
+              "b": [
+                4,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2606"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "杜老誌道",
+          "road": "673",
+          "modelCap": 5265,
+          "segments": [
+            {
+              "a": [
+                6,
+                6
+              ],
+              "b": [
+                6,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2610"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "CANAL ROAD FLYOVER",
+          "road": "30",
+          "modelCap": 13155,
+          "segments": [
+            {
+              "a": [
+                7,
+                6
+              ],
+              "b": [
+                7,
+                7
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2612"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "878",
+          "modelCap": 4615,
+          "segments": [
+            {
+              "a": [
+                8,
+                6
+              ],
+              "b": [
+                9,
+                6
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2613"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "波斯富街",
+          "road": "431",
+          "modelCap": 2800,
+          "segments": [
+            {
+              "a": [
+                8,
+                6
+              ],
+              "b": [
+                8,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2614"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "銅鑼灣道",
+          "road": "726",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                10,
+                6
+              ],
+              "b": [
+                10,
+                7
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2618"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "841",
+          "modelCap": 3650,
+          "segments": [
+            {
+              "a": [
+                0,
+                7
+              ],
+              "b": [
+                0,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2647"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "花園道",
+          "road": "175",
+          "modelCap": 5600,
+          "segments": [
+            {
+              "a": [
+                1,
+                7
+              ],
+              "b": [
+                2,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2648"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "花園道",
+          "road": "175",
+          "modelCap": 8525,
+          "segments": [
+            {
+              "a": [
+                1,
+                7
+              ],
+              "b": [
+                1,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2649"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "花園道",
+          "road": "175",
+          "modelCap": 3900,
+          "segments": [
+            {
+              "a": [
+                0,
+                8
+              ],
+              "b": [
+                1,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2685"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "麥當勞道",
+          "road": "359",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                2,
+                7
+              ],
+              "b": [
+                2,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2651"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "堅尼地道",
+          "road": "257",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                3,
+                7
+              ],
+              "b": [
+                3,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2653"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "堅尼地道",
+          "road": "257",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                3,
+                8
+              ],
+              "b": [
+                4,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2689"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "堅尼地道",
+          "road": "257",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                4,
+                8
+              ],
+              "b": [
+                5,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2691"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "堅尼地道",
+          "road": "257",
+          "modelCap": 4750,
+          "segments": [
+            {
+              "a": [
+                5,
+                8
+              ],
+              "b": [
+                6,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2693"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "分域街",
+          "road": "161",
+          "modelCap": 11035,
+          "segments": [
+            {
+              "a": [
+                4,
+                7
+              ],
+              "b": [
+                5,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2654"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "軒尼詩道",
+          "road": "189",
+          "modelCap": 7132,
+          "segments": [
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                6,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2655"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "軒尼詩道",
+          "road": "189",
+          "modelCap": 5373,
+          "segments": [
+            {
+              "a": [
+                6,
+                7
+              ],
+              "b": [
+                7,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2657"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "灣仔道",
+          "road": "744",
+          "modelCap": 3764,
+          "segments": [
+            {
+              "a": [
+                5,
+                7
+              ],
+              "b": [
+                5,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2656"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "禮頓道",
+          "road": "308",
+          "modelCap": 4875,
+          "segments": [
+            {
+              "a": [
+                7,
+                7
+              ],
+              "b": [
+                8,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2658"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "禮頓道",
+          "road": "308",
+          "modelCap": 3514,
+          "segments": [
+            {
+              "a": [
+                8,
+                7
+              ],
+              "b": [
+                9,
+                7
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2660"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WONG NAI CHUNG GAP FLYOVER",
+          "road": "781",
+          "modelCap": 13875,
+          "segments": [
+            {
+              "a": [
+                7,
+                7
+              ],
+              "b": [
+                7,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2659"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "WONG NAI CHUNG GAP FLYOVER",
+          "road": "781",
+          "modelCap": 9240,
+          "segments": [
+            {
+              "a": [
+                7,
+                8
+              ],
+              "b": [
+                7,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2697"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "黃泥涌道",
+          "road": "783",
+          "modelCap": 3775,
+          "segments": [
+            {
+              "a": [
+                8,
+                7
+              ],
+              "b": [
+                8,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2661"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "黃泥涌道",
+          "road": "783",
+          "modelCap": 2925,
+          "segments": [
+            {
+              "a": [
+                8,
+                8
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2699"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "黃泥涌道",
+          "road": "783",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                7,
+                9
+              ],
+              "b": [
+                8,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2724"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大坑道",
+          "road": "598",
+          "modelCap": 4305,
+          "segments": [
+            {
+              "a": [
+                9,
+                7
+              ],
+              "b": [
+                10,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2662"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大坑道",
+          "road": "598",
+          "modelCap": 1755,
+          "segments": [
+            {
+              "a": [
+                10,
+                7
+              ],
+              "b": [
+                11,
+                7
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2664"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大坑道",
+          "road": "598",
+          "modelCap": 3400,
+          "segments": [
+            {
+              "a": [
+                10,
+                7
+              ],
+              "b": [
+                10,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2665"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大坑道",
+          "road": "598",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                11,
+                7
+              ],
+              "b": [
+                11,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2666"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大坑道",
+          "road": "598",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                10,
+                8
+              ],
+              "b": [
+                10,
+                9
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2703"
+              ]
+            },
+            {
+              "a": [
+                10,
+                9
+              ],
+              "b": [
+                10,
+                10
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2730"
+              ]
+            },
+            {
+              "a": [
+                10,
+                10
+              ],
+              "b": [
+                10,
+                11
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2759"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "大坑道",
+          "road": "598",
+          "modelCap": 2550,
+          "segments": [
+            {
+              "a": [
+                10,
+                8
+              ],
+              "b": [
+                11,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2702"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "加路連山道",
+          "road": "35",
+          "modelCap": 3650,
+          "segments": [
+            {
+              "a": [
+                9,
+                7
+              ],
+              "b": [
+                9,
+                8
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2663"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "馬己仙峽道",
+          "road": "360",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                1,
+                8
+              ],
+              "b": [
+                2,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2686"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "馬己仙峽道",
+          "road": "360",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                3,
+                9
+              ],
+              "b": [
+                4,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2717"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "馬己仙峽道",
+          "road": "360",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                2,
+                8
+              ],
+              "b": [
+                3,
+                8
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2687"
+              ]
+            },
+            {
+              "a": [
+                3,
+                8
+              ],
+              "b": [
+                3,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2690"
+              ]
+            },
+            {
+              "a": [
+                3,
+                9
+              ],
+              "b": [
+                2,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2716"
+              ]
+            },
+            {
+              "a": [
+                2,
+                9
+              ],
+              "b": [
+                2,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2688"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "寶雲道",
+          "road": "23",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                4,
+                8
+              ],
+              "b": [
+                4,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2692"
+              ]
+            },
+            {
+              "a": [
+                4,
+                9
+              ],
+              "b": [
+                5,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2719"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "灣仔峽道",
+          "road": "743",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                8
+              ],
+              "b": [
+                5,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2694"
+              ]
+            },
+            {
+              "a": [
+                5,
+                9
+              ],
+              "b": [
+                5,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2721"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "QUEEN'S ROAD EAST",
+          "road": "483",
+          "modelCap": 7800,
+          "segments": [
+            {
+              "a": [
+                6,
+                8
+              ],
+              "b": [
+                7,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2695"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "司徒拔道",
+          "road": "588",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                6,
+                8
+              ],
+              "b": [
+                6,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2696"
+              ]
+            },
+            {
+              "a": [
+                6,
+                9
+              ],
+              "b": [
+                7,
+                9
+              ],
+              "modelVC": 0.5,
+              "sectionIds": [
+                "2722"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "司徒拔道",
+          "road": "588",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                5,
+                10
+              ],
+              "b": [
+                6,
+                10
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2752"
+              ]
+            },
+            {
+              "a": [
+                6,
+                10
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2753"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "司徒拔道",
+          "road": "588",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                6,
+                9
+              ],
+              "b": [
+                6,
+                10
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2723"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "司徒拔道",
+          "road": "588",
+          "modelCap": 1700,
+          "segments": [
+            {
+              "a": [
+                4,
+                10
+              ],
+              "b": [
+                5,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2751"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "司徒拔道",
+          "road": "588",
+          "modelCap": 2550,
+          "segments": [
+            {
+              "a": [
+                7,
+                10
+              ],
+              "b": [
+                8,
+                10
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2754"
+              ]
+            },
+            {
+              "a": [
+                8,
+                10
+              ],
+              "b": [
+                8,
+                11
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2756"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "樂活道",
+          "road": "26",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                8,
+                8
+              ],
+              "b": [
+                9,
+                8
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2698"
+              ]
+            },
+            {
+              "a": [
+                9,
+                8
+              ],
+              "b": [
+                9,
+                9
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2701"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "東院道",
+          "road": "152",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                9,
+                8
+              ],
+              "b": [
+                10,
+                8
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2700"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "睦誠道",
+          "road": "374",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                11,
+                8
+              ],
+              "b": [
+                11,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2704"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "山頂道",
+          "road": "428",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                0,
+                9
+              ],
+              "b": [
+                0,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2715"
+              ]
+            },
+            {
+              "a": [
+                0,
+                10
+              ],
+              "b": [
+                1,
+                10
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2748"
+              ]
+            },
+            {
+              "a": [
+                1,
+                10
+              ],
+              "b": [
+                2,
+                10
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2749"
+              ]
+            },
+            {
+              "a": [
+                2,
+                10
+              ],
+              "b": [
+                3,
+                10
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2750"
+              ]
+            },
+            {
+              "a": [
+                3,
+                10
+              ],
+              "b": [
+                3,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2718"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "山頂道",
+          "road": "429",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                4,
+                9
+              ],
+              "b": [
+                4,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2720"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "879",
+          "modelCap": 6790,
+          "segments": [
+            {
+              "a": [
+                7,
+                9
+              ],
+              "b": [
+                7,
+                10
+              ],
+              "modelVC": 0.4,
+              "sectionIds": [
+                "2725"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "成和道",
+          "road": "573",
+          "modelCap": 1950,
+          "segments": [
+            {
+              "a": [
+                8,
+                9
+              ],
+              "b": [
+                9,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2726"
+              ]
+            },
+            {
+              "a": [
+                9,
+                9
+              ],
+              "b": [
+                9,
+                10
+              ],
+              "modelVC": 0.1,
+              "sectionIds": [
+                "2728"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "未命名道路",
+          "road": "843",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                9,
+                9
+              ],
+              "b": [
+                10,
+                9
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2727"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "白建時道",
+          "road": "432",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                10,
+                9
+              ],
+              "b": [
+                11,
+                9
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2729"
+              ]
+            },
+            {
+              "a": [
+                11,
+                9
+              ],
+              "b": [
+                11,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2731"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "香港仔隧道",
+          "road": "2",
+          "modelCap": 3000,
+          "segments": [
+            {
+              "a": [
+                7,
+                10
+              ],
+              "b": [
+                7,
+                11
+              ],
+              "modelVC": 0.7,
+              "sectionIds": [
+                "2755"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "藍塘道",
+          "road": "21",
+          "modelCap": 850,
+          "segments": [
+            {
+              "a": [
+                9,
+                10
+              ],
+              "b": [
+                9,
+                11
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2757"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "畢拉山道",
+          "road": "375",
+          "modelCap": 2550,
+          "segments": [
+            {
+              "a": [
+                10,
+                10
+              ],
+              "b": [
+                11,
+                10
+              ],
+              "modelVC": 0,
+              "sectionIds": [
+                "2758"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "黃泥涌峽道",
+          "road": "782",
+          "modelCap": 2550,
+          "segments": [
+            {
+              "a": [
+                8,
+                11
+              ],
+              "b": [
+                9,
+                11
+              ],
+              "modelVC": 0.3,
+              "sectionIds": [
+                "2782"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        },
+        {
+          "name": "黃泥涌峽道",
+          "road": "782",
+          "modelCap": 4500,
+          "segments": [
+            {
+              "a": [
+                9,
+                11
+              ],
+              "b": [
+                10,
+                11
+              ],
+              "modelVC": 0.2,
+              "sectionIds": [
+                "2783"
+              ]
+            }
+          ],
+          "capFactor": 1,
+          "capGrowFactors": null
+        }
+      ]
+    }
+  },
+  "request": {
+    "area": "causeway-bay-wan-chai",
+    "period": "am",
+    "mode": 3,
+    "title": "铜锣湾·湾仔多一万五千个岗位",
+    "story": [
+      "“中環站一帶”岗位增加 15000；按原数量换算为 6.8%。"
+    ],
+    "changes": [
+      {
+        "place": "中環站一帶",
+        "what": "jobs",
+        "pct": 6.8,
+        "by_year": 4
+      }
+    ]
+  },
+  "report": {
+    "accepted": true,
+    "doNothing": {
+      "yearly": [
+        353.084,
+        354.59,
+        355.456,
+        356.332,
+        356.323,
+        355.671,
+        355.597,
+        355.504
+      ],
+      "jam": 2842.557,
+      "score": 0,
+      "stable": true,
+      "maxStepPct": 0.0043
+    },
+    "best": 907,
+    "bestPlan": {
+      "line": [
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "stations": [
+        [
+          0,
+          6
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "trains": 2,
+      "spent": 29,
+      "score": 907
+    },
+    "tiers": [
+      363,
+      590,
+      798
+    ],
+    "seconds": 20.04,
+    "simpleBest": 377,
+    "iterations": 1164,
+    "roadRank": {
+      "sections": 180,
+      "spearman": 0.3,
+      "modelTop": [
+        {
+          "name": "CROSS HARBOUR TUNNEL",
+          "vc": 1.3
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "vc": 1.2
+        },
+        {
+          "name": "WESTERN HARBOUR CROSSING",
+          "vc": 1
+        },
+        {
+          "name": "彌敦道",
+          "vc": 1
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "vc": 0.9
+        },
+        {
+          "name": "CHATHAM ROAD SOUTH",
+          "vc": 0.7
+        },
+        {
+          "name": "香港仔隧道",
+          "vc": 0.7
+        }
+      ],
+      "gameTop": [
+        {
+          "name": "金鐘道",
+          "vc": 1.83
+        },
+        {
+          "name": "CENTRAL-WAN CHAI BYPASS TUNNEL",
+          "vc": 1.14
+        },
+        {
+          "name": "CROSS HARBOUR TUNNEL",
+          "vc": 1.04
+        },
+        {
+          "name": "夏慤道",
+          "vc": 0.79
+        },
+        {
+          "name": "告士打道",
+          "vc": 0.69
+        },
+        {
+          "name": "ISLAND EASTERN CORRIDOR",
+          "vc": 0.67
+        },
+        {
+          "name": "CONNAUGHT ROAD CENTRAL",
+          "vc": 0.46
+        }
+      ],
+      "acceptable": true
+    }
+  },
+  "problems": [],
+  "notes": [
+    "出行人数来自所选两个岗位团及最大出框方向的 car+pt；总量 28371.4 缩放到约 300，scale=0.0105740。",
+    "岗位团 attraction=16+岗位/15,000；出口用所选方向的出框 car+pt 人数代作岗位量，折算规则相同。",
+    "时段 am 的去处按岗位团选择。",
+    "道路容量初值=模型 cap×scale，roadCapCoeff=1；check.js 会用模型 v/c 对照调一个全局系数并记录排名相关性。",
+    "道路容量统一系数搜索结果：0.510；匹配 180 段，Spearman=0.3；系数搜索内最大逐年跳变 0.4%。"
+  ],
+  "inputs": {
+    "base": {
+      "path": "C:\\Users\\赵禹博\\Desktop\\TransitLab五模式-Codex\\任务53\\game-feeder\\v7\\shared\\levelgen\\inputs\\hk-base.json",
+      "bytes": 780371,
+      "sha256": "c8256b6d00d7b913196f63e6ebf351a18f67bbf0518c99527678df20dccc3fdd"
+    },
+    "demand": {
+      "path": "C:\\Users\\赵禹博\\Desktop\\TransitLab五模式-Codex\\任务53\\game-feeder\\v7\\shared\\levelgen\\inputs\\hk-demand-am.json",
+      "bytes": 3802073,
+      "sha256": "6ca08972d9566ff1f6e8e986b8e5b836ef502448586e66692aa234031600b252"
+    }
+  }
+}

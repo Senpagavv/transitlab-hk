@@ -1,0 +1,48 @@
+TransitLab HK · 沙盘第二公网部署说明（2026-10-18）
+
+ZIP：transitlab-v7-sandbox-deepseek-ai-20261018.zip
+
+上传与启动（Windows PowerShell → 腾讯云 Ubuntu）
+1. 购买 Ubuntu 22.04 LTS 轻量应用服务器/CVM，安全组放行 TCP 22、80、443。
+2. PowerShell 上传：
+   scp "C:\你的路径\transitlab-v7-sandbox-deepseek-ai-20261018.zip" ubuntu@你的公网IP:/home/ubuntu/
+3. SSH 后执行：
+   sudo apt update
+   sudo apt install -y docker.io docker-compose-plugin unzip
+   sudo systemctl enable --now docker
+   mkdir -p /home/ubuntu/transitlab-sandbox
+   unzip -o /home/ubuntu/transitlab-v7-sandbox-deepseek-ai-20261018.zip -d /home/ubuntu/transitlab-sandbox
+   cd /home/ubuntu/transitlab-sandbox
+   cp .env.example .env
+   nano .env
+4. 在 .env 填入（只在服务器，绝不要放前端）：
+   DEEPSEEK_API_KEY=你的DeepSeek API Key
+   DEEPSEEK_BASE_URL=https://api.deepseek.com
+   DEEPSEEK_MODEL=deepseek-chat
+   
+   要启用 QQ 邮箱注册验证码，再填：
+   SMTP_HOST=smtp.qq.com
+   SMTP_PORT=465
+   SMTP_USER=你的QQ邮箱
+   SMTP_PASSWORD=QQ邮箱设置里生成的SMTP授权码
+   SMTP_FROM=你的QQ邮箱
+   QQ SMTP_PASSWORD 是授权码，不是 QQ 登录密码，也不要发给我或写入 HTML。
+5. 构建与启动：
+   sudo docker compose -f deploy/docker-compose.yml build --no-cache
+   sudo docker compose -f deploy/docker-compose.yml up -d --force-recreate
+   sudo docker compose -f deploy/docker-compose.yml ps
+6. 验收：
+   curl http://127.0.0.1/api/health
+   curl http://127.0.0.1/api/feeder/ai/status
+   浏览器打开 http://你的公网IP/feeder/ ；沙盘为 /feeder/mode5-sandbox/
+
+功能验收顺序
+- 改人口 → 点空白取消 → 画线 → 放站 → 跑到稳定；右下操作记录会逐行记录，可单行删除。
+- 三个 AI 固定问题可以直接演示；输入自定义句子时，DeepSeek 只生成受限关卡请求，地图切图和计算仍在浏览器完成。
+- 右下 3D 按钮是轻量立体视图。公交、地铁、人流动画继续由前端渲染。
+- 注册后才能提交排行榜；不配置 SMTP 时演示账号会直接启用，配置 SMTP 后才要求邮箱验证码。
+
+安全与更新
+- DeepSeek Key 只存在服务器 .env。前端 ai/client.js 只请求 /api/feeder/ai，不携带 Authorization。
+- Caddy 将请求反代到 FastAPI，并限制单请求体 1 MB；AI level/comment 还有按 IP 的一分钟限流。
+- 更新 ZIP 后覆盖目录，再重复 build 与 up。data/app 挂载为账号/排行榜持久化目录。

@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "sizes_bytes": {
+    "hk-base.json": 780371,
+    "hk-demand-am.json": 3802073,
+    "hk-demand-pm.json": 3924302,
+    "hk-demand-day.json": 2140350,
+    "hk-demand-holiday.json": 1169214
+  },
+  "flow": {
+    "am": {
+      "pairs": 134348,
+      "pair_car": 166922.5,
+      "pair_pt": 1320948.8,
+      "car_pct": 10.7,
+      "pt_pct": 83.8,
+      "null_minutes": {
+        "car": 851,
+        "pt": 0,
+        "walk": 107013
+      }
+    },
+    "pm": {
+      "pairs": 138627,
+      "pair_car": 317322.5,
+      "pair_pt": 1270455.7,
+      "car_pct": 19.1,
+      "pt_pct": 75.9,
+      "null_minutes": {
+        "car": 782,
+        "pt": 0,
+        "walk": 111123
+      }
+    },
+    "day": {
+      "pairs": 76284,
+      "pair_car": 127696.1,
+      "pair_pt": 365735.8,
+      "car_pct": 25,
+      "pt_pct": 71.1,
+      "null_minutes": {
+        "car": 134,
+        "pt": 0,
+        "walk": 51304
+      }
+    },
+    "holiday": {
+      "pairs": 40643,
+      "pair_car": 158918.5,
+      "pair_pt": 402817.3,
+      "car_pct": 27.6,
+      "pt_pct": 69.5,
+      "null_minutes": {
+        "car": 60,
+        "pt": 0,
+        "walk": 26427
+      }
+    }
+  },
+  "browser": {
+    "errors": [],
+    "period_switch": true,
+    "pan": true,
+    "zoom": true,
+    "layers": true,
+    "hover": true
+  },
+  "screenshots": [
+    "viewer-full.png",
+    "viewer-kowloon-east.png"
+  ]
+}

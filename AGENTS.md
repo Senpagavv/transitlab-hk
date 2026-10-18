@@ -5,8 +5,10 @@
 > 读者：在这个仓库里干活的 AI 助手（Claude Code、Codex、Cursor、Copilot 等）。人类组员请看 [`docs/onboarding.md`](docs/onboarding.md)（同一套规矩的人话版）。
 > 最新进度、已知局限、下一步：[`docs/handoff.md`](docs/handoff.md) **顶部**。开始任何任务前先读那里。
 
+> **2026-10-18 最终提交入口 / Final submission:** 评委先读根 `README.md` 与 `docs/judges/README.md`。当前部署原型的可浏览源码是 `submission/final-2026-10-18/`，从原 `Final.zip` 按字节保留，校验见 `submission/manifest.json` 与 `verify.py`。根目录 `game-feeder/v7/`、`backend/` 是较早开发树，不能与最终包的启动入口混用。早期的士/车队方向见 `docs/history/`；当前仍复用的模型底座与通用模块保留。仓库已按负责人要求公开。
+
 ## 1. 项目是什么
-香港全港四阶段交通模型 + 土地数据底座（455 个交通分区 + 15 个口岸），用于一个「在真实地图上画新地铁线/新路 → 算客流、塞车、人口变化、值不值得修」的规划游戏。
+当前主产品是五模式交通学习游戏：车站与步行、地铁、道路拥堵、站旁开发、全港沙盘，以及受约束的 AI 情景/关卡与复盘。它继承香港全港四阶段交通模型 + 土地数据底座（455 个内部分区 + 15 个边界端点）；游戏的内区 OD、400 米几何与简化计算不等于每次重跑完整专业模型。技术分工与局限见 `docs/judges/technical-evidence.md`。
 Python 3.12（uv 管理）+ AequilibraE（道路/公交分配）+ r5py（公交时间矩阵，需 Java 21）；前端 React + MapLibre + deck.gl；后端 FastAPI。
 
 ## 2. 目录地图
@@ -70,4 +72,4 @@ Windows 注意：用户名含中文时，GDAL 需要 `CPL_TMPDIR` 指向纯英�
 ## 7. 仓库协作
 - `main` 只放审核过的内容；在分支上工作（`<名字>/<做什么>`），通过 Pull Request 合并，按 `.github/pull_request_template.md` 勾选。
 - 改到 `data/`、`pipeline/` 的 PR 需要 CODEOWNERS（项目负责人）批准。
-- 仓库是**私有**的；法定图则（`data/raw/zoning/`）与土地用途缓存（`data/cache/luhk2024/`）在 Release 附件里（见 `docs/onboarding.md` 1.3）。
+- 仓库已于 **2026-10-18 按负责人授权改为公开**；法定图则（`data/raw/zoning/`）与土地用途缓存（`data/cache/luhk2024/`）在 Release 附件里（见 `docs/onboarding.md` 1.3）。密钥和真实账号数据仍不得提交。

@@ -1,0 +1,7 @@
+PASS zero adjustments retain the exact original demand object
+PASS people +50% => originating trips +50%
+PASS older-person proxy affects HBO only; HBS school and HBW work unchanged
+PASS attraction redistributes destinations and preserves every origin total
+PASS combined changes preserve purpose-weighted origin totals and nonnegative demand
+PASS road inputs use original engine routes without mutating source demand
+All scenario input invariants passed.

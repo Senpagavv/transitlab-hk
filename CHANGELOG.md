@@ -4,6 +4,14 @@
 > Every change adds an entry at the top — **time (HKT), commit, what changed, why, how it was verified** — and is pushed to GitHub right after the local commit, so local and online stay identical.
 > 更详细的过程和数字见 [`docs/handoff.md`](docs/handoff.md) 顶部。Details and numbers: top of `docs/handoff.md`.
 
+## 2026-10-18
+
+### 20:34 HKT · 评委入口与最终源码整理 / Final-source and review navigation
+- **提交 / Commit:** 本条所在整理提交见 GitHub History/PR；归档输入基线 `4e15852`。The current change is recorded by this entry's Git history; archive input is `4e15852`.
+- **改动 / What:** 英文为主的最终项目首页、中文对照、双语评委导览和技术证据；从 `Final.zip` 原字节展开最终包，增加文件清单、只读核对工具与本地启动说明；旧首页和车队方向放入历史阅读区，现有模型/游戏源码与数据不重写。Updated repository instructions and the legacy-figure check's document scope.
+- **原因 / Why:** 负责人授权提交前整理公开仓库，使评委先体验当前五模式游戏和沙盘，再按官方标准核查 GenAI、数据与局限，避免读到旧产品方向。
+- **验证 / Validation:** `submission/verify.py`：127 文件与原 ZIP 一致；`pipeline/check_docs.py`：65 项通过；根 pytest：89 passed；数据审计仍为 118 pass、2 类既有 fail；本地最终服务 15 个页面/API/数据和 29 个资源请求通过，公开试玩入口与文档导航核查。完整范围见 `docs/judges/verification.md`；未重跑整条模型管线，未以静态示例冒充实时 AI。
+
 ## 2026-10-15
 
 ### 22:14 · 交接文档：换电脑、换 AI 接着做 / Handoff

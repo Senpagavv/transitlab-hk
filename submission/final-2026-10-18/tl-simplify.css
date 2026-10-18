@@ -1,0 +1,40 @@
+/* ==========================================================================
+   TransitLab · 页面信息简化（tl-simplify.css）
+   作用：① 顶部导航栏（#navrow）上下留白等距、不越界
+        ② 左右栏被 tl-simplify.js 折起的 <details class="tl-fold"> 样式
+   加载顺序：必须在 shared/style.css 之后。删除本文件即完全恢复原状。
+   ========================================================================== */
+
+/* ---------- ① 导航栏：内容垂直居中 → 上下等距；线恒穿站点圆心 ---------- */
+#navrow button{justify-content:center;padding-top:0;padding-bottom:0}
+#navrow::before{top:calc(50% - 1.5px)}
+
+/* ---------- ①b 地图零遮挡：原浮卡搬进右栏顶部，改为普通流式卡片 ---------- */
+.tl-mapcards{display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+.tl-mapcards .ov{position:static;left:auto;right:auto;top:auto;bottom:auto;z-index:auto;width:auto;box-shadow:none}
+.tl-mapcards .clockbox{min-width:0}
+.tl-mapcards .lanebox{display:block;width:auto}   /* 小屏原本隐藏，侧栏里恢复 */
+
+/* ---------- ② 折叠条（沿用 v7 已有的 details.tripsd 视觉语言） ---------- */
+details.tl-fold{
+  border:1px solid var(--s-line2);border-radius:8px;background:var(--s-panel);
+  margin:14px 0 0;overflow:hidden;
+}
+details.tl-fold>summary{
+  list-style:none;cursor:pointer;user-select:none;
+  display:flex;align-items:center;gap:8px;padding:9px 12px;
+  font-family:'Geist Mono',var(--s-mono,monospace);font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--s-ink3);
+  transition:background .14s,color .14s;
+}
+details.tl-fold>summary::-webkit-details-marker{display:none}
+details.tl-fold>summary::after{
+  content:'▾';margin-left:auto;font-size:10px;color:var(--s-ink3);flex:0 0 auto;
+}
+details.tl-fold[open]>summary::after{content:'▴'}
+details.tl-fold>summary:hover{background:var(--s-soft);color:var(--s-ink)}
+details.tl-fold>summary+.tl-fold-body{padding:4px 12px 12px}
+/* 行头折叠：整行作 summary 时，行内 chip（如“4 輪”）收起时可见、展开后隐藏 */
+details.tl-fold>summary.row{padding:9px 12px}
+details.tl-fold[open]>summary .chip{visibility:hidden}
+details.tl-fold[open]>summary::after{margin-left:auto}

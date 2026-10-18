@@ -1,0 +1,53 @@
+TransitLab HK · 组员 UI 版部署说明（ASCII 安全部署包，2026-10-18）
+
+本包为什么是 ASCII 版
+原始 v7 目录包含几个重复的中文文件名。Windows 上传后，Ubuntu 解压时这些文件名可能变成无效 UTF-8，Docker 会报：string field contains invalid UTF-8。ASCII 版保留所有实际入口和功能，只排除这些重复的中文文件名，避免构建失败。
+
+一、Windows PowerShell 上传
+scp "C:\你的路径\transitlab-v7-sandbox-deepseek-ai-UI-SIMPLIFIED-20261018-GROUP-ASCII.zip" ubuntu@你的公网IP:/home/ubuntu/
+
+二、服务器换成干净目录（保留旧目录作为备份）
+不要继续在旧的 transitlab-sandbox 目录覆盖，因为里面可能已经有乱码文件名。执行：
+cd /home/ubuntu
+OLD="transitlab-sandbox-backup-$(date +%Y%m%d-%H%M%S)"
+sudo mv transitlab-sandbox "$OLD"
+sudo mkdir -p transitlab-sandbox
+sudo unzip -o /home/ubuntu/transitlab-v7-sandbox-deepseek-ai-UI-SIMPLIFIED-20261018-GROUP-ASCII.zip -d transitlab-sandbox
+
+如果旧目录已有密钥和账号数据，复制回来：
+if [ -f "$OLD/.env" ]; then sudo cp "$OLD/.env" transitlab-sandbox/.env; fi
+if [ -d "$OLD/data/app" ]; then sudo cp -a "$OLD/data/app/." transitlab-sandbox/data/app/; fi
+sudo chown -R ubuntu:ubuntu transitlab-sandbox
+if [ -f transitlab-sandbox/.env ]; then sudo chmod 600 transitlab-sandbox/.env; fi
+cd /home/ubuntu/transitlab-sandbox
+
+三、配置 DeepSeek
+如果没有 .env：
+sudo cp .env.example .env
+sudo chown ubuntu:ubuntu .env
+sudo chmod 600 .env
+nano .env
+
+填写：
+DEEPSEEK_API_KEY=你的完整sk-密钥
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_MODEL=deepseek-chat
+
+四、构建并启动
+sudo docker compose -f deploy/docker-compose.yml build --no-cache
+sudo docker compose -f deploy/docker-compose.yml up -d --force-recreate
+sudo docker compose -f deploy/docker-compose.yml ps
+
+五、验收
+curl http://127.0.0.1/api/health
+curl http://127.0.0.1/api/feeder/ai/status
+
+浏览器打开：
+http://你的公网IP/feeder/
+http://你的公网IP/feeder/mode1-bus/
+http://你的公网IP/feeder/mode4-tod/
+http://你的公网IP/feeder/mode5-sandbox/
+
+如果仍看到旧界面，在浏览器按 Ctrl + F5。确认 docker compose build 先显示成功，再执行 up；如果 build 失败，up 只会启动旧镜像。
+
+不要删除旧备份目录，确认新站点正常后再自行清理。DeepSeek Key 只放服务器 .env，不要发到聊天或写入前端。
